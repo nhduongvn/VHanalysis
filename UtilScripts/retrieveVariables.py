@@ -41,28 +41,33 @@ print "======================================\n"
 for datatype in datatypes:
 
 	## Output to let us know which file we're on
-        print "Retrieving variable list for: ", datatype
+        print "Retrieving variable list for:", datatype
 	filename = files[datatype]
-	print "file: ", filename
+	print "file:", filename
 	
 	## Retrieve the variables for this file.
 	f = ROOT.TFile.Open(filename)
-	
         tree = f.Get("Events")
 	names = [b.GetName() for b in tree.GetListOfBranches()]
         nBranches = len(names)
-
-	print nBranches, " variables found."
+	
+	## Generate the selector so we have the code.
+	tree.MakeSelector(outputdir + datatype)
+	print "Created TSelector for ", datatype
+	print ">>> ", outputdir + datatype + ".C"
+	print ">>> ", outputdir + datatype + ".h"
 
 	## Write these to a text file in the proper location
         outputfile = outputdir + datatype + ".txt"
+	print nBranches, " variables found."
+        print "Variables retrieved:", outputfile
+
 	with open(outputfile, "w") as f:
 		for i in range(nBranches):
 			f.write(names[i] + "\n")
 	f.close()	
 
 	## End statements to let them know this file is completed.
-        print "Variables retrieved: ", outputfile
 	print "\n============================================================="
 
 ## Now, let them know where the files are located.
