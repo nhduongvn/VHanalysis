@@ -22,9 +22,14 @@ public:
   virtual void SlaveTerminate(Reader* r) {} ;
   virtual void Terminate(TList* mergedList, std::string outFileName) ;
 private:
+
   //histograms
   TH1D* h_evt;
+  TH1D* h_evt_cutflow;
   VHPlots* h_VH ;
+  VHPlots* h_VH_Zll ;
+  VHPlots* h_VH_Zqq ;
+  VHPlots* h_VH_Znn ;
 } ;
 
 #endif

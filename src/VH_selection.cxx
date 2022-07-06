@@ -20,17 +20,38 @@ void VH_selection::SlaveBegin(Reader* r) {
   h_evt = new TH1D("Nevt","",4,-1.5,2.5) ; //bin 1: total negative weight events, bin 2: total positive weight events, bin 3: total event weighted by genWeight (= bin2 - bin1, if genWeight are always -1,1
 
   h_VH = new VHPlots("VH") ;
+  h_VH_Zll = new VHPlots("VH_Zll") ;
+  h_VH_Zqq = new VHPlots("VH_Zqq") ;
+  h_VH_Znn = new VHPlots("VH_Znn") ;
+
+  h_evt_cutflow = new TH1D("evt_cutflow", "", 13, -0.5, 12.5);
 
   //Add histograms to fOutput so they can be saved in Processor::SlaveTerminate
   r->GetOutputList()->Add(h_evt) ;
   std::vector<TH1*> tmp = h_VH->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  
+  tmp = h_VH_Zll->returnHisto() ;
+  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_Zqq->returnHisto() ;
+  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  
+  tmp = h_VH_Znn->returnHisto() ;
+  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  
+  r->GetOutputList()->Add(h_evt_cutflow);
+  
+  const Int_t nevt = 12;
+  const char *evt_cut[nevt] = { "All Events", "Pass Lepton Selection",
+    "Jet requirements", "p_{T}^{miss} filter", "Jet ID", "Pass b-tag selection", 
+    "N_2^{DDT}", "Trigger", "Golden JSON", "CvB", "CvL"};
+  for (int i=1;i<=nevt;i++) h_evt_cutflow->GetXaxis()->SetBinLabel(i+1.5, evt_cut[i-1]);
 
 }
 
 void VH_selection::Process(Reader* r) {
 
-//Weights
+  //Weights
   float genWeight = 1.;
   float puSF = 1.;
   float l1preW = 1.;
@@ -82,6 +103,11 @@ void VH_selection::Process(Reader* r) {
     h_VH->Fill(it);
   }
   h_VH->FillNjet(jets.size());
+
+
+  //== Event Selection ========================================================
+  h_evt_cutflow->Fill(1);  // all events
+
 
 } //end Process
 
