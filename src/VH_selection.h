@@ -25,11 +25,15 @@ private:
 
   //histograms
   TH1D* h_evt;
-  TH1D* h_evt_cutflow;
+  
   VHPlots* h_VH ;
   VHPlots* h_VH_Zll ;
   VHPlots* h_VH_Zqq ;
   VHPlots* h_VH_Znn ;
+
+  TH1D* h_evt_cutflow;
+  TH1D* h_elec_cutflow;
+  TH1D* h_muon_cutflow;
 } ;
 
 #endif

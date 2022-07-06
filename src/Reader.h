@@ -53,6 +53,15 @@ public :
    TTreeReaderArray<Int_t> Jet_hadronFlavour = {fReader, "Jet_hadronFlavour"};
 #endif
 
+   // Electron
+   TTreeReaderValue<UInt_t> nElectron = {fReader, "nElectron"};
+   TTreeReaderArray<Float_t> Electron_pt = {fReader, "Electron_pt"};
+   TTreeReaderArray<Float_t> Electron_eta = {fReader, "Electron_eta"};
+   TTreeReaderArray<Float_t> Electron_phi = {fReader, "Electron_phi"};
+   TTreeReaderArray<Float_t> Electron_mass = {fReader, "Electron_mass"};
+   TTreeReaderArray<Int_t> Electron_charge = {fReader, "Electron_charge"};
+   TTreeReaderArray<Float_t> Electron_deltaEtaSC = {fReader, "Electron_deltaEtaSC"};
+   TTreeReaderArray<Int_t> Electron_cutBased = {fReader, "Electron_cutBased"};
 
    Reader(TTree * /*tree*/ =0) {}
 
