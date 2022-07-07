@@ -16,6 +16,14 @@ namespace glob {
         parameterNames.push_back("jet_pt") ;
         parameterNames.push_back("jet_eta") ;
         parameterNames.push_back("jet_main_btagWP") ;
+        parameterNames.push_back("lep_eta") ;
+        parameterNames.push_back("lep_pt0") ;
+        parameterNames.push_back("lep_pt1") ;
+        parameterNames.push_back("lep_jetOverlap_pt");
+        parameterNames.push_back("lep_jetOverlap_eta");
+        parameterNames.push_back("muon_iso");
+        parameterNames.push_back("ZMassL");
+        parameterNames.push_back("ZMassH");
       } ;
       
       //passing a constant string https://stackoverflow.com/questions/4475634/c-pass-a-string

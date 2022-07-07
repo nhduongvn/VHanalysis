@@ -29,9 +29,16 @@ class VHPlots
       h_pt_jet = new TH1D(name + "_pt_jet","",NBIN_PT_JET,X_PT_JET[0],X_PT_JET[1]) ;
       h_eta_jet = new TH1D(name + "_eta_jet","",NBIN_ETA,X_ETA[0],X_ETA[1]) ;
       h_Njet = new TH1D(name + "_Njet","",15,0,15) ;
+      h_nElec = new TH1D(name + "_Nelec", "", 15, 0, 15);
+      h_nMuon = new TH1D(name + "_Nmuon", "", 15, 0, 15);
+      h_nLep = new TH1D(name + "_Nlep", "", 15, 0, 15);
+     
       h_pt_jet->Sumw2() ;
       h_eta_jet->Sumw2() ;
       h_Njet->Sumw2() ;
+      h_nElec->Sumw2() ;
+      h_nMuon->Sumw2() ;
+      h_nLep->Sumw2() ;
     } ;
  
     // Fill the general histograms.   
@@ -47,6 +54,13 @@ class VHPlots
       h_Njet->Fill(nJet,w) ;
     } ;
 
+    // Fill the number of leptons
+    void FillNlep(size_t nElec, size_t nMuon, float w=1) {
+      h_nElec->Fill(nElec, w);
+      h_nMuon->Fill(nMuon, w);
+      h_nLep->Fill(nElec + nMuon, w);
+    } ;
+
     // Return a list of all the histograms.
     std::vector<TH1*> returnHisto(){
       std::vector<TH1*> histolist ;
@@ -54,7 +68,10 @@ class VHPlots
       histolist.push_back(h_pt_jet) ;
       histolist.push_back(h_eta_jet) ;   
       histolist.push_back(h_Njet) ;
-      
+      histolist.push_back(h_nElec);
+      histolist.push_back(h_nMuon);
+      histolist.push_back(h_nLep);      
+
       return histolist ; 
     }
 
@@ -64,6 +81,10 @@ class VHPlots
     TH1D* h_pt_jet ;
     TH1D* h_eta_jet ;
     TH1D* h_Njet ;
+
+    TH1D* h_nElec;
+    TH1D* h_nMuon;
+    TH1D* h_nLep;
 } ;
 
 

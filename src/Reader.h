@@ -63,6 +63,16 @@ public :
    TTreeReaderArray<Float_t> Electron_deltaEtaSC = {fReader, "Electron_deltaEtaSC"};
    TTreeReaderArray<Int_t> Electron_cutBased = {fReader, "Electron_cutBased"};
 
+   // Muon
+   TTreeReaderValue<UInt_t> nMuon = {fReader, "nMuon"};
+   TTreeReaderArray<Float_t> Muon_pt = {fReader, "Muon_pt"};
+   TTreeReaderArray<Float_t> Muon_eta = {fReader, "Muon_eta"};
+   TTreeReaderArray<Float_t> Muon_phi = {fReader, "Muon_phi"};
+   TTreeReaderArray<Float_t> Muon_mass = {fReader, "Muon_mass"};
+   TTreeReaderArray<Int_t> Muon_charge = {fReader, "Muon_charge"};
+   TTreeReaderArray<Float_t> Muon_pfRelIso04_all = {fReader, "Muon_pfRelIso04_all"};
+   TTreeReaderArray<Bool_t> Muon_mediumId = {fReader, "Muon_mediumId"};
+
    Reader(TTree * /*tree*/ =0) {}
 
    virtual ~Reader() { }

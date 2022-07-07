@@ -124,17 +124,80 @@ void VH_selection::Process(Reader* r) {
 
     h_elec_cutflow->Fill(1); // All electrons
 
+    // Reconstruct a lepton from the information in the file.
     float etaSC = (r->Electron_eta)[i] - (r->Electron_deltaEtaSC)[i];
     LepObj elec((r->Electron_pt)[i], (r->Electron_eta)[i], etaSC,
                 (r->Electron_phi)[i], (r->Electron_mass)[i], i, 
                 (r->Electron_charge)[i], 0);
+    h_elec_cutflow->Fill(2);
     
-    int elecID = r->Electron_cutBased[i];
+    // Check for electron jet overlamp removal
+    int elecID = r->Electron_cutBased[i];      // (0:fail, 1:veto, 2:loose, 3:medium, 4:tight)
+    if (elec.m_lvec.Pt() > CUTS.Get<float>("lep_jetOverlap_pt") && 
+        fabs(elec.m_lvec.Eta()) < CUTS.Get<float>("lep_jetOverlap_eta"))
+    {
+      if (elecID >= 4) { // tight ID for jet removal
+        elecs_jetOverlap.push_back(elec);
+      }
+    }
+
+    // Use lower pT threshold to select both.
+    if (elec.m_lvec.Pt() < CUTS.Get<float>("lep_pt1") || fabs(elec.m_lvec.Eta()) > CUTS.Get<float>("lep_eta")) continue;
+    if (fabs(elec.m_scEta) < 1.566 && fabs(elec.m_scEta) > 1.442) continue;  //EB-EE gap removal
+    h_elec_cutflow->Fill(3);
+
+    // Use tight ID to be consistent with single electron trigger
+    if (elecID < 4) continue;
+    h_elec_cutflow->Fill(4);
+
+    elecs.push_back(elec);
 
   }//end-elec-loop
 
+  
+  //Muons
+  std::vector<LepObj> muons;
+  std::vector<LepObj> muons_jetOverlap;
+  for (unsigned int i = 0; i < *(r->nMuon); ++i) {
+
+    h_muon_cutflow->Fill(1);
+
+    // Reconstruct a muon from the information given.
+    LepObj muon((r->Muon_pt)[i], (r->Muon_eta)[i], -1, (r->Muon_phi)[i], 
+                (r->Muon_mass)[i], i, (r->Muon_charge)[i], 
+                (r->Muon_pfRelIso04_all)[i]);
+ 
+    // -- Rochester correction goes here --
+    
+    // Muon for muon jet overlap removal
+    if (muon.m_lvec.Pt() > CUTS.Get<float>("lep_jetOverlap_pt")
+        && fabs(muon.m_lvec.Eta()) < CUTS.Get<float>("lep_jetOverlap_eta"))
+    {
+      if ((r->Muon_mediumId)[i] > 0 && (r->Muon_pfRelIso04_all)[i] < CUTS.Get<float>("muon_iso")) {
+        muons_jetOverlap.push_back(muon);
+      } 
+    }  
+
+    // Make sure the muons meet our cuts
+    if (muon.m_lvec.Pt() < CUTS.Get<float>("lep_pt1") || 
+        fabs(muon.m_lvec.Eta()) < CUTS.Get<float>("lep_eta")) continue;
+    h_muon_cutflow->Fill(2) ;
+
+    if (r->Muon_mediumId[i] <= 0) continue;
+    h_muon_cutflow->Fill(3);
+
+    if (muon.m_iso > CUTS.Get<float>("muon_iso")) continue;
+    h_muon_cutflow->Fill(4);
+
+    muons.push_back(muon);
+
+  }//end-muon-loop
+
+
   //== Event Selection ========================================================
   h_evt_cutflow->Fill(1);  // all events
+
+  h_VH->FillNlep(elecs.size(), muons.size(), 1.0);  
 
 
 } //end Process
