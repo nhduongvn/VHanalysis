@@ -115,6 +115,7 @@ void VH_selection::Process(Reader* r) {
     h_VH->Fill(it);
   }
   h_VH->FillNjet(jets.size());
+  
 
 
   // Electrons
@@ -197,7 +198,7 @@ void VH_selection::Process(Reader* r) {
   //== Event Selection ========================================================
   h_evt_cutflow->Fill(1);  // all events
 
-  h_VH->FillNlep(elecs.size(), muons.size(), 1.0);  
+    
 
 
 } //end Process

@@ -7,7 +7,7 @@
 void draw_histogram() 
 {
   std::string filepath = "../test.root";
-  std::string histogram_name = "evt_cutflow";
+  std::string histogram_name = "VH_flavor_jet";
 
   TFile *f = new TFile(filepath.c_str());
   TH1D *h = (TH1D*)f->Get(histogram_name.c_str());

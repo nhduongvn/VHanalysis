@@ -29,6 +29,7 @@ class VHPlots
       h_pt_jet = new TH1D(name + "_pt_jet","",NBIN_PT_JET,X_PT_JET[0],X_PT_JET[1]) ;
       h_eta_jet = new TH1D(name + "_eta_jet","",NBIN_ETA,X_ETA[0],X_ETA[1]) ;
       h_Njet = new TH1D(name + "_Njet","",15,0,15) ;
+      h_flavor_jet = new TH1D(name + "_flavor_jet", "", 10,-0.5, 9.5);
       h_nElec = new TH1D(name + "_Nelec", "", 15, 0, 15);
       h_nMuon = new TH1D(name + "_Nmuon", "", 15, 0, 15);
       h_nLep = new TH1D(name + "_Nlep", "", 15, 0, 15);
@@ -36,6 +37,8 @@ class VHPlots
       h_pt_jet->Sumw2() ;
       h_eta_jet->Sumw2() ;
       h_Njet->Sumw2() ;
+      h_flavor_jet->Sumw2() ;
+
       h_nElec->Sumw2() ;
       h_nMuon->Sumw2() ;
       h_nLep->Sumw2() ;
@@ -44,9 +47,10 @@ class VHPlots
     // Fill the general histograms.   
     void Fill(JetObj& J, float w=1) {
   
+
       h_pt_jet->Fill(J.m_lvec.Pt(), w) ;
       h_eta_jet->Fill(J.m_lvec.Eta(), w) ;
-
+      h_flavor_jet->Fill(J.m_flav, w);
     } ;
 
     // Fill the number of jets.
@@ -68,6 +72,7 @@ class VHPlots
       histolist.push_back(h_pt_jet) ;
       histolist.push_back(h_eta_jet) ;   
       histolist.push_back(h_Njet) ;
+      histolist.push_back(h_flavor_jet);
       histolist.push_back(h_nElec);
       histolist.push_back(h_nMuon);
       histolist.push_back(h_nLep);      
@@ -81,6 +86,7 @@ class VHPlots
     TH1D* h_pt_jet ;
     TH1D* h_eta_jet ;
     TH1D* h_Njet ;
+    TH1D* h_flavor_jet;
 
     TH1D* h_nElec;
     TH1D* h_nMuon;
