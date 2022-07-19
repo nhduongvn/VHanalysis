@@ -198,8 +198,21 @@ void VH_selection::Process(Reader* r) {
   //== Event Selection ========================================================
   h_evt_cutflow->Fill(1);  // all events
 
-    
+  
+  // Select the types of jets
+  std::vector<JetObj> bjets, cjets, ljets;
+  for (auto it : jets) {
+    if (it.m_flav == 5) bjets.push_back(it);
+    else if (it.m_flav == 4) cjets.push_back(it);
+    else if (it.m_flav > 0) ljets.push_back(it);
+  } 
 
+  // We need at least two c-jets
+  if (cjets.size() >= 2) 
+  {
+    h_evt_cutflow->Fill(2); // passed jet cut
+
+  }//end-cjet-selection
 
 } //end Process
 
