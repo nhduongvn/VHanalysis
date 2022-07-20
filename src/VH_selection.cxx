@@ -207,10 +207,19 @@ void VH_selection::Process(Reader* r) {
     else if (it.m_flav > 0) ljets.push_back(it);
   } 
 
+  h_VH->FillNjet_flav(bjets.size(), 5);
+  h_VH->FillNjet_flav(cjets.size(), 4);
+  h_VH->FillNjet_flav(ljets.size(), 1);
+
   // We need at least two c-jets
   if (cjets.size() >= 2) 
   {
     h_evt_cutflow->Fill(2); // passed jet cut
+
+    // Reconstruct the Higgs mass from the jets
+    JetObj c0 = cjets.at(0), c1 = cjets.at(1);
+    Float_t h_mass = (c0.m_lvec + c1.m_lvec).M();
+    h_VH->FillHmass(h_mass, 1);
 
   }//end-cjet-selection
 
