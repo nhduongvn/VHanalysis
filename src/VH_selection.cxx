@@ -211,8 +211,10 @@ void VH_selection::Process(Reader* r) {
   h_VH->FillNjet_flav(cjets.size(), 4);
   h_VH->FillNjet_flav(ljets.size(), 1);
 
-  // We need at least two c-jets
-  if (cjets.size() >= 2) 
+  //====== Scenario #1 ======
+  // We need at least four c-jets - two for Higgs, two for Z
+
+  if (cjets.size() >= 4) 
   {
     h_evt_cutflow->Fill(2); // passed jet cut
 
@@ -221,9 +223,31 @@ void VH_selection::Process(Reader* r) {
     Float_t h_mass = (c0.m_lvec + c1.m_lvec).M();
     h_VH->FillHmass(h_mass, 1);
 
+    // Reconstruct the Z mass from the jets
+    JetObj c2 = cjets.at(2), c3 = cjets.at(3);
+    Float_t z_mass = (c2.m_lvec + c3.m_lvec).M();
+    h_VH->FillZmass(z_mass, 1);
+
   }//end-cjet-selection
 
   
+  //====== Scenario #2 ======
+  // We need two c-jets for Higgs, two b-jets for Z
+  if (cjets.size() >= 2)
+  {
+    if (bjets.size() >= 2)
+    {
+      // Reconstruct the Higgs mass from the jets
+      JetObj c0 = cjets.at(0), c1 = cjets.at(1);
+      Float_t h_mass = (c0.m_lvec + c1.m_lvec).M();
+      h_VH->FillHmass(h_mass, 1);
+      
+      // Reconstruct the Z mass from the jets
+      JetObj b0 = bjets.at(0), b1 = bjets.at(1);
+      Float_t z_mass = (b0.m_lvec + b1.m_lvec).M();
+      h_VH->FillZmass(z_mass, 1);
+    }
+  }//end-cjet-selection  
 
 } //end Process
 
