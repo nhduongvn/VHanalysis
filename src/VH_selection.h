@@ -27,11 +27,12 @@ private:
   TH1D* h_evt;
   
   VHPlots* h_VH ;
-  VHPlots* h_VH_Zll ;
   VHPlots* h_VH_Zqq ;
-  VHPlots* h_VH_Znn ;
+  VHPlots* h_VH_Zbb ;
+  VHPlots* h_VH_Zcc ;
 
-  TH1D* h_evt_cutflow;
+  TH1D* h_evtCC_cutflow;
+  TH1D* h_evtBB_cutflow;
   TH1D* h_elec_cutflow;
   TH1D* h_muon_cutflow;
 } ;

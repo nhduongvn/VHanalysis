@@ -20,11 +20,12 @@ void VH_selection::SlaveBegin(Reader* r) {
   h_evt = new TH1D("Nevt","",4,-1.5,2.5) ; //bin 1: total negative weight events, bin 2: total positive weight events, bin 3: total event weighted by genWeight (= bin2 - bin1, if genWeight are always -1,1
 
   h_VH = new VHPlots("VH") ;
-  h_VH_Zll = new VHPlots("VH_Zll") ;
+  h_VH_Zcc = new VHPlots("VH_Zcc") ;
+  h_VH_Zbb = new VHPlots("VH_Zbb") ;
   h_VH_Zqq = new VHPlots("VH_Zqq") ;
-  h_VH_Znn = new VHPlots("VH_Znn") ;
 
-  h_evt_cutflow = new TH1D("evt_cutflow", "", 13, -0.5, 12.5);
+  h_evtCC_cutflow = new TH1D("evtCC_cutflow", "", 13, -0.5, 12.5);
+  h_evtBB_cutflow = new TH1D("evtBB_cutflow", "", 13, -0.5, 12.5);
   h_elec_cutflow = new TH1D("elec_cutflow", "", 10, -0.5, 9.5);
   h_muon_cutflow = new TH1D("muon_cutflow", "", 10, -0.5, 9.5);
 
@@ -33,15 +34,16 @@ void VH_selection::SlaveBegin(Reader* r) {
   std::vector<TH1*> tmp = h_VH->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   
-  tmp = h_VH_Zll->returnHisto() ;
-  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_VH_Zqq->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  
-  tmp = h_VH_Znn->returnHisto() ;
+  tmp = h_VH_Zcc->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   
-  r->GetOutputList()->Add(h_evt_cutflow);
+  tmp = h_VH_Zbb->returnHisto() ;
+  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  
+  r->GetOutputList()->Add(h_evtCC_cutflow);
+  r->GetOutputList()->Add(h_evtBB_cutflow);
   r->GetOutputList()->Add(h_elec_cutflow);
   r->GetOutputList()->Add(h_muon_cutflow);
   
@@ -55,7 +57,7 @@ void VH_selection::SlaveBegin(Reader* r) {
 
   for (int i=1;i<=nx;i++) h_elec_cutflow->GetXaxis()->SetBinLabel(i+1.5, elec_cut[i-1]);
   for (int i=1;i<=nx1;i++) h_muon_cutflow->GetXaxis()->SetBinLabel(i+1.5, muon_cut[i-1]);
-  for (int i=1;i<=nevt;i++) h_evt_cutflow->GetXaxis()->SetBinLabel(i+1.5, evt_cut[i-1]);
+  //for (int i=1;i<=nevt;i++) h_evt_cutflow->GetXaxis()->SetBinLabel(i+1.5, evt_cut[i-1]);
 
 }
 
@@ -196,7 +198,7 @@ void VH_selection::Process(Reader* r) {
 
 
   //== Event Selection ========================================================
-  h_evt_cutflow->Fill(1);  // all events
+  //h_evt_cutflow->Fill(1);  // all events
 
   
   // Select the types of jets
@@ -216,17 +218,19 @@ void VH_selection::Process(Reader* r) {
 
   if (cjets.size() >= 4) 
   {
-    h_evt_cutflow->Fill(2); // passed jet cut
+    //h_evt_cutflow->Fill(2); // passed jet cut
 
     // Reconstruct the Higgs mass from the jets
     JetObj c0 = cjets.at(0), c1 = cjets.at(1);
     Float_t h_mass = (c0.m_lvec + c1.m_lvec).M();
-    h_VH->FillHmass(h_mass, 1);
+    h_VH_Zqq->FillHmass(h_mass, 1);
+    h_VH_Zcc->FillHmass(h_mass, 1);
 
     // Reconstruct the Z mass from the jets
     JetObj c2 = cjets.at(2), c3 = cjets.at(3);
     Float_t z_mass = (c2.m_lvec + c3.m_lvec).M();
-    h_VH->FillZmass(z_mass, 1);
+    h_VH_Zqq->FillZmass(z_mass, 1);
+    h_VH_Zcc->FillZmass(z_mass, 1);
 
   }//end-cjet-selection
 
@@ -240,12 +244,14 @@ void VH_selection::Process(Reader* r) {
       // Reconstruct the Higgs mass from the jets
       JetObj c0 = cjets.at(0), c1 = cjets.at(1);
       Float_t h_mass = (c0.m_lvec + c1.m_lvec).M();
-      h_VH->FillHmass(h_mass, 1);
+      h_VH_Zqq->FillHmass(h_mass, 1);
+      h_VH_Zbb->FillHmass(h_mass, 1);
       
       // Reconstruct the Z mass from the jets
       JetObj b0 = bjets.at(0), b1 = bjets.at(1);
       Float_t z_mass = (b0.m_lvec + b1.m_lvec).M();
-      h_VH->FillZmass(z_mass, 1);
+      h_VH_Zqq->FillZmass(z_mass, 1);
+      h_VH_Zbb->FillZmass(z_mass, 1);
     }
   }//end-cjet-selection  
 
