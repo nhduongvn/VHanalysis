@@ -223,6 +223,12 @@ void VH_selection::Process(Reader* r) {
     // Reconstruct the Higgs mass from the jets
     JetObj c0 = cjets.at(0), c1 = cjets.at(1);
     Float_t h_mass = (c0.m_lvec + c1.m_lvec).M();
+    
+    // Add the jets to our proper plots
+    h_VH_Zqq->Fill(c0, 1); h_VH_Zqq->Fill(c1, 1);
+    h_VH_Zcc->Fill(c0, 1); h_VH_Zcc->Fill(c1, 1);
+
+    // Add the reconstructed masses.
     h_VH_Zqq->FillHmass(h_mass, 1);
     h_VH_Zcc->FillHmass(h_mass, 1);
 
@@ -244,6 +250,10 @@ void VH_selection::Process(Reader* r) {
       // Reconstruct the Higgs mass from the jets
       JetObj c0 = cjets.at(0), c1 = cjets.at(1);
       Float_t h_mass = (c0.m_lvec + c1.m_lvec).M();
+      
+      h_VH_Zqq->Fill(c0, 1); h_VH_Zqq->Fill(c1, 1);
+      h_VH_Zbb->Fill(c0, 1); h_VH_Zbb->Fill(c1, 1);
+      
       h_VH_Zqq->FillHmass(h_mass, 1);
       h_VH_Zbb->FillHmass(h_mass, 1);
       
