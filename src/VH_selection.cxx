@@ -112,11 +112,8 @@ void VH_selection::Process(Reader* r) {
   }
 
   //Make selection and fill histograms
-  
-  //for (auto it : jets) {
-  //  h_VH->Fill(it);
-  // }
-  //h_VH->FillNjet(jets.size());
+  h_VH_Zqq->FillJets(jets);
+  h_VH_Zqq->FillNjet(jets.size());
   
 
 
@@ -199,7 +196,6 @@ void VH_selection::Process(Reader* r) {
 
   //== Event Selection ========================================================
   //h_evt_cutflow->Fill(1);  // all events
-
   
   // Select the types of jets
   std::vector<JetObj> bjets, cjets, ljets;
@@ -208,10 +204,6 @@ void VH_selection::Process(Reader* r) {
     else if (it.m_flav == 4) cjets.push_back(it);
     else if (it.m_flav > 0) ljets.push_back(it);
   } 
-
-  //h_VH->FillNjet_flav(bjets.size(), 5);
-  //h_VH->FillNjet_flav(cjets.size(), 4);
-  //h_VH->FillNjet_flav(ljets.size(), 1);
 
   //====== Scenario #1 ======
   // We need at least four c-jets - two for Higgs, two for Z
