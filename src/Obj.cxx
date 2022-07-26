@@ -108,7 +108,7 @@ class HObj { // Higgs boson
       }
     }
 
-    virtual ~ZObj() {} ;
+    virtual ~HObj() {} ;
 
     // Variables
     TLorentzVector m_lvec;      // 4-vector

@@ -113,10 +113,10 @@ void VH_selection::Process(Reader* r) {
 
   //Make selection and fill histograms
   
-  for (auto it : jets) {
-    h_VH->Fill(it);
-  }
-  h_VH->FillNjet(jets.size());
+  //for (auto it : jets) {
+  //  h_VH->Fill(it);
+  // }
+  //h_VH->FillNjet(jets.size());
   
 
 
@@ -209,9 +209,9 @@ void VH_selection::Process(Reader* r) {
     else if (it.m_flav > 0) ljets.push_back(it);
   } 
 
-  h_VH->FillNjet_flav(bjets.size(), 5);
-  h_VH->FillNjet_flav(cjets.size(), 4);
-  h_VH->FillNjet_flav(ljets.size(), 1);
+  //h_VH->FillNjet_flav(bjets.size(), 5);
+  //h_VH->FillNjet_flav(cjets.size(), 4);
+  //h_VH->FillNjet_flav(ljets.size(), 1);
 
   //====== Scenario #1 ======
   // We need at least four c-jets - two for Higgs, two for Z
@@ -222,21 +222,19 @@ void VH_selection::Process(Reader* r) {
 
     // Reconstruct the Higgs mass from the jets
     JetObj c0 = cjets.at(0), c1 = cjets.at(1);
-    Float_t h_mass = (c0.m_lvec + c1.m_lvec).M();
-    
-    // Add the jets to our proper plots
-    h_VH_Zqq->Fill(c0, 1); h_VH_Zqq->Fill(c1, 1);
-    h_VH_Zcc->Fill(c0, 1); h_VH_Zcc->Fill(c1, 1);
-
-    // Add the reconstructed masses.
-    h_VH_Zqq->FillHmass(h_mass, 1);
-    h_VH_Zcc->FillHmass(h_mass, 1);
+    std::vector<JetObj> higgs_jets;
+    higgs_jets.push_back(c0);  higgs_jets.push_back(c1);
+    HObj H(higgs_jets);
 
     // Reconstruct the Z mass from the jets
     JetObj c2 = cjets.at(2), c3 = cjets.at(3);
-    Float_t z_mass = (c2.m_lvec + c3.m_lvec).M();
-    h_VH_Zqq->FillZmass(z_mass, 1);
-    h_VH_Zcc->FillZmass(z_mass, 1);
+    std::vector<JetObj> z_jets;
+    z_jets.push_back(c2); z_jets.push_back(c3);
+    ZObj Z(z_jets);
+
+    // Fill our plots.
+    h_VH_Zqq->Fill(H, Z);
+    h_VH_Zcc->Fill(H, Z);
 
   }//end-cjet-selection
 
@@ -249,19 +247,19 @@ void VH_selection::Process(Reader* r) {
     {
       // Reconstruct the Higgs mass from the jets
       JetObj c0 = cjets.at(0), c1 = cjets.at(1);
-      Float_t h_mass = (c0.m_lvec + c1.m_lvec).M();
-      
-      h_VH_Zqq->Fill(c0, 1); h_VH_Zqq->Fill(c1, 1);
-      h_VH_Zbb->Fill(c0, 1); h_VH_Zbb->Fill(c1, 1);
-      
-      h_VH_Zqq->FillHmass(h_mass, 1);
-      h_VH_Zbb->FillHmass(h_mass, 1);
+      std::vector<JetObj> higgs_jets;
+      higgs_jets.push_back(c0);  higgs_jets.push_back(c1);
+      HObj H(higgs_jets);
       
       // Reconstruct the Z mass from the jets
       JetObj b0 = bjets.at(0), b1 = bjets.at(1);
-      Float_t z_mass = (b0.m_lvec + b1.m_lvec).M();
-      h_VH_Zqq->FillZmass(z_mass, 1);
-      h_VH_Zbb->FillZmass(z_mass, 1);
+      std::vector<JetObj> z_jets;
+      z_jets.push_back(b0); z_jets.push_back(b1);
+      ZObj Z(z_jets);
+
+      // Fill our plots.
+      h_VH_Zqq->Fill(H, Z);
+      h_VH_Zbb->Fill(H, Z);
     }
   }//end-cjet-selection  
 
