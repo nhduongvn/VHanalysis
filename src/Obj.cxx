@@ -90,6 +90,27 @@ class ZObj { // Z Boson
   
     virtual ~ZObj() {} ;
 
+    // Methods
+    size_t nJets() {
+      return m_jets.size();
+    }
+
+    float DeltaR() {
+      return m_jets.at(0).m_lvec.DeltaR(m_jets.at(1).m_lvec);
+    }
+ 
+    float Dphi(float x, float y) { return (x-y); }
+    float DphiC(double x) {
+      if ((x <= TMath::Pi() && x >= 0) or (x<0 && x > -TMath::Pi())) return x;
+      else if (x >= TMath::Pi()) return DphiC(x-2*TMath::Pi());
+      else if (x < -TMath::Pi()) return DphiC(x+2*TMath::Pi());
+    }
+    
+    float DPhi() {
+      float dphi = Dphi(m_jets.at(0).m_lvec.Phi(), m_jets.at(1).m_lvec.Phi());
+      return DphiC(dphi);
+    }
+
     // Variables
     TLorentzVector m_lvec;      // 4-vector
     std::vector<JetObj> m_jets; // list of jets that compose Z boson
@@ -109,6 +130,28 @@ class HObj { // Higgs boson
     }
 
     virtual ~HObj() {} ;
+
+    // Methods
+    size_t nJets() {
+      return m_jets.size();
+    }
+
+    float DeltaR() {
+      return m_jets.at(0).m_lvec.DeltaR(m_jets.at(1).m_lvec);
+    }
+
+    float Dphi(float x, float y) { return (x-y); }
+    float DphiC(double x) {
+      if ((x <= TMath::Pi() && x >= 0) or (x<0 && x > -TMath::Pi())) return x;
+      else if (x >= TMath::Pi()) return DphiC(x-2*TMath::Pi());
+      else if (x < -TMath::Pi()) return DphiC(x+2*TMath::Pi());
+    }
+
+    float DPhi() {
+      float dphi = Dphi(m_jets.at(0).m_lvec.Phi(), m_jets.at(1).m_lvec.Phi());
+      return DphiC(dphi);
+    }
+
 
     // Variables
     TLorentzVector m_lvec;      // 4-vector
