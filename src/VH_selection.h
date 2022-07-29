@@ -31,6 +31,10 @@ private:
   VHPlots* h_VH_Zbb ;
   VHPlots* h_VH_Zcc ;
 
+  TH1D* h_Nbjet;
+  TH1D* h_Ncjet;
+  TH1D* h_Nljet;
+
   TH1D* h_evtCC_cutflow;
   TH1D* h_evtBB_cutflow;
   TH1D* h_elec_cutflow;

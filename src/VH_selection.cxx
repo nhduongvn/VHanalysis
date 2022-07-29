@@ -24,6 +24,10 @@ void VH_selection::SlaveBegin(Reader* r) {
   h_VH_Zbb = new VHPlots("VH_Zbb") ;
   h_VH_Zqq = new VHPlots("VH_Zqq") ;
 
+  h_Nbjet = new TH1D("Nbjet", "", 13, 0, 13);
+  h_Ncjet = new TH1D("Ncjet", "", 13, 0, 13);
+  h_Nljet = new TH1D("Nljet", "", 13, 0, 13);
+
   h_evtCC_cutflow = new TH1D("evtCC_cutflow", "", 13, -0.5, 12.5);
   h_evtBB_cutflow = new TH1D("evtBB_cutflow", "", 13, -0.5, 12.5);
   h_elec_cutflow = new TH1D("elec_cutflow", "", 10, -0.5, 9.5);
@@ -46,6 +50,10 @@ void VH_selection::SlaveBegin(Reader* r) {
   r->GetOutputList()->Add(h_evtBB_cutflow);
   r->GetOutputList()->Add(h_elec_cutflow);
   r->GetOutputList()->Add(h_muon_cutflow);
+
+  r->GetOutputList()->Add(h_Nbjet);
+  r->GetOutputList()->Add(h_Ncjet);
+  r->GetOutputList()->Add(h_Nljet);
   
   const Int_t nevt = 12;
   const Int_t nx = 4, nx1 = 4;
@@ -204,6 +212,10 @@ void VH_selection::Process(Reader* r) {
     else if (it.m_flav == 4) cjets.push_back(it);
     else if (it.m_flav > 0) ljets.push_back(it);
   } 
+
+  h_Nbjet->Fill(bjets.size());
+  h_Ncjet->Fill(cjets.size());
+  h_Nljet->Fill(ljets.size());
 
   //====== Scenario #1 ======
   // We need at least four c-jets - two for Higgs, two for Z
