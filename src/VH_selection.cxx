@@ -63,6 +63,14 @@ void VH_selection::SlaveBegin(Reader* r) {
   const char *elec_cut[nx] = { "all", "ip", "kine", "ID" };
   const char *muon_cut[nx1] = { "all", "kine", "medium muon ID", "iso" };
 
+  const Int_t nxCC = 2, nxBB = 3;
+  const char *evt_cutCC[nxCC] = { "All Events", "Pass c-jet requirement" };
+  const char *evt_cutBB[nxBB] = { "All Events", "Pass c-jet (H) requirement",
+    "Pass b-jet (Z) requirement" };
+
+  for (int i=1;i<=nxCC;i++) h_evtCC_cutflow->GetXaxis()->SetBinLabel(i+1.5, evt_cutCC[i-1]);
+  for (int i=1;i<=nxBB;i++) h_evtBB_cutflow->GetXaxis()->SetBinLabel(i+1.5, evt_cutBB[i-1]);
+
   for (int i=1;i<=nx;i++) h_elec_cutflow->GetXaxis()->SetBinLabel(i+1.5, elec_cut[i-1]);
   for (int i=1;i<=nx1;i++) h_muon_cutflow->GetXaxis()->SetBinLabel(i+1.5, muon_cut[i-1]);
   //for (int i=1;i<=nevt;i++) h_evt_cutflow->GetXaxis()->SetBinLabel(i+1.5, evt_cut[i-1]);
@@ -203,7 +211,8 @@ void VH_selection::Process(Reader* r) {
 
 
   //== Event Selection ========================================================
-  //h_evt_cutflow->Fill(1);  // all events
+  h_evtCC_cutflow->Fill(1);  // all events
+  h_evtBB_cutflow->Fill(1);
   
   // Select the types of jets
   std::vector<JetObj> bjets, cjets, ljets;
@@ -222,7 +231,7 @@ void VH_selection::Process(Reader* r) {
 
   if (cjets.size() >= 4) 
   {
-    //h_evt_cutflow->Fill(2); // passed jet cut
+    h_evtCC_cutflow->Fill(2); // passed jet cut
 
     // Reconstruct the Higgs mass from the jets
     JetObj c0 = cjets.at(0), c1 = cjets.at(1);
@@ -247,8 +256,11 @@ void VH_selection::Process(Reader* r) {
   // We need two c-jets for Higgs, two b-jets for Z
   if (cjets.size() >= 2)
   {
+    h_evtBB_cutflow->Fill(2); //passed c-jet cut
     if (bjets.size() >= 2)
     {
+      h_evtBB_cutflow->Fill(3); // passed b-jet cut
+
       // Reconstruct the Higgs mass from the jets
       JetObj c0 = cjets.at(0), c1 = cjets.at(1);
       std::vector<JetObj> higgs_jets;
