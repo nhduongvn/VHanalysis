@@ -16,7 +16,7 @@ const float X_PT_JET[2] = {0, 2000};
 const unsigned NBIN_PT_Z = 2000;
 const float X_PT_Z[2] = {0, 2000};
 const unsigned NBIN_ETA = 480;
-const float X_ETA[2] = {-2.4, 2.4};
+const float X_ETA[2] = {-5.0, 5.0};
 const unsigned NBIN_PHI = 480;
 const float X_PHI[2] = {-4.0, 4.0};
 
@@ -37,7 +37,27 @@ class VHPlots
       h_eta_jet = new TH1D(name + "_eta_jet", "", NBIN_ETA, X_ETA[0], X_ETA[1]);
       h_phi_jet = new TH1D(name + "_phi_jet", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
       h_mSV_jet = new TH1D(name + "_mSV_jet", "", 100, 0, 10);
-      h_Njet = new TH1D(name + "_Njet", "", 15, 0, 15);   
+      h_Njet = new TH1D(name + "_Njet", "", 15, -0.5, 14.5);   
+
+      h_H_pt_jet0 = new TH1D(name + "_H_pt_jet0", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      h_H_pt_jet1 = new TH1D(name + "_H_pt_jet1", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      h_H_pt_jet2 = new TH1D(name + "_H_pt_jet2", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      h_H_eta_jet0 = new TH1D(name + "_H_eta_jet0", "", NBIN_ETA, X_ETA[0], X_ETA[1]);
+      h_H_eta_jet1 = new TH1D(name + "_H_eta_jet1", "", NBIN_ETA, X_ETA[0], X_ETA[1]);
+      h_H_eta_jet2 = new TH1D(name + "_H_eta_jet2", "", NBIN_ETA, X_ETA[0], X_ETA[1]);
+      h_H_phi_jet0 = new TH1D(name + "_H_phi_jet0", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
+      h_H_phi_jet1 = new TH1D(name + "_H_phi_jet1", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
+      h_H_phi_jet2 = new TH1D(name + "_H_phi_jet2", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
+
+      h_Z_pt_jet0 = new TH1D(name + "_Z_pt_jet0", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      h_Z_pt_jet1 = new TH1D(name + "_Z_pt_jet1", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      h_Z_pt_jet2 = new TH1D(name + "_Z_pt_jet2", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      h_Z_eta_jet0 = new TH1D(name + "_Z_eta_jet0", "", NBIN_ETA, X_ETA[0], X_ETA[1]);
+      h_Z_eta_jet1 = new TH1D(name + "_Z_eta_jet1", "", NBIN_ETA, X_ETA[0], X_ETA[1]);
+      h_Z_eta_jet2 = new TH1D(name + "_Z_eta_jet2", "", NBIN_ETA, X_ETA[0], X_ETA[1]);
+      h_Z_phi_jet0 = new TH1D(name + "_Z_phi_jet0", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
+      h_Z_phi_jet1 = new TH1D(name + "_Z_phi_jet1", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
+      h_Z_phi_jet2 = new TH1D(name + "_Z_phi_jet2", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
 
       h_HMass = new TH1D(name + "_HMass", "", NBIN_M_H, X_M_H[0], X_M_H[1]);
       h_ZMass = new TH1D(name + "_ZMass", "", NBIN_M_Z, X_M_Z[0], X_M_Z[1]);
@@ -52,6 +72,14 @@ class VHPlots
       h_phi_jet->Sumw2();
       h_mSV_jet->Sumw2();
       h_Njet->Sumw2();
+
+      h_H_pt_jet0->Sumw2(); h_H_pt_jet1->Sumw2(); h_H_pt_jet2->Sumw2();
+      h_H_eta_jet0->Sumw2(); h_H_eta_jet1->Sumw2(); h_H_eta_jet2->Sumw2();
+      h_H_phi_jet0->Sumw2(); h_Z_phi_jet1->Sumw2(); h_H_phi_jet2->Sumw2();
+      h_Z_pt_jet0->Sumw2(); h_Z_pt_jet1->Sumw2(); h_Z_pt_jet2->Sumw2();
+      h_Z_eta_jet0->Sumw2(); h_Z_eta_jet1->Sumw2(); h_Z_eta_jet2->Sumw2();
+      h_Z_phi_jet0->Sumw2(); h_Z_phi_jet1->Sumw2(); h_Z_phi_jet2->Sumw2();
+
       h_HMass->Sumw2();
       h_ZMass->Sumw2();
       h_dR_H->Sumw2();
@@ -100,6 +128,21 @@ class VHPlots
       histolist.push_back(h_phi_jet);
       histolist.push_back(h_mSV_jet);
       histolist.push_back(h_Njet);
+ 
+      histolist.push_back(h_H_pt_jet0); histolist.push_back(h_H_pt_jet1); 
+      histolist.push_back(h_H_pt_jet2); 
+      histolist.push_back(h_H_eta_jet0); histolist.push_back(h_H_eta_jet1);
+      histolist.push_back(h_H_eta_jet2);
+      histolist.push_back(h_H_phi_jet0); histolist.push_back(h_H_phi_jet1);
+      histolist.push_back(h_H_phi_jet2);
+
+      histolist.push_back(h_Z_pt_jet0); histolist.push_back(h_Z_pt_jet1);
+      histolist.push_back(h_Z_pt_jet2);
+      histolist.push_back(h_Z_eta_jet0); histolist.push_back(h_Z_eta_jet1);
+      histolist.push_back(h_Z_eta_jet2);
+      histolist.push_back(h_Z_phi_jet0); histolist.push_back(h_Z_phi_jet1);
+      histolist.push_back(h_Z_phi_jet2);
+
      
       // Mass-Related Plots
       histolist.push_back(h_HMass);
@@ -122,11 +165,31 @@ class VHPlots
     TH1D* h_HMass;    
     TH1D* h_dR_H;
     TH1D* h_dPhi_H;
+    
+    TH1D* h_H_pt_jet0;
+    TH1D* h_H_eta_jet0;
+    TH1D* h_H_phi_jet0;
+    TH1D* h_H_pt_jet1;
+    TH1D* h_H_eta_jet1;
+    TH1D* h_H_phi_jet1;
+    TH1D* h_H_pt_jet2;
+    TH1D* h_H_eta_jet2;
+    TH1D* h_H_phi_jet2;
 
     //Z Plots
     TH1D* h_ZMass;
     TH1D* h_dR_Z;
     TH1D* h_dPhi_Z;
+
+    TH1D* h_Z_pt_jet0;
+    TH1D* h_Z_eta_jet0;
+    TH1D* h_Z_phi_jet0;
+    TH1D* h_Z_pt_jet1;
+    TH1D* h_Z_eta_jet1;
+    TH1D* h_Z_phi_jet1;
+    TH1D* h_Z_pt_jet2;
+    TH1D* h_Z_eta_jet2;
+    TH1D* h_Z_phi_jet2;
     
     //VH Plots
     TH1D* h_pt_jet;

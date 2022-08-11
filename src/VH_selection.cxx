@@ -24,6 +24,7 @@ void VH_selection::SlaveBegin(Reader* r) {
   h_VH_Zbb = new VHPlots("VH_Zbb") ;
   h_VH_Zqq = new VHPlots("VH_Zqq") ;
 
+  h_flavor_jet = new TH1D("flavor_jet", "", 15, -1.5, 13.5);
   h_Nbjet = new TH1D("Nbjet", "", 13, 0, 13);
   h_Ncjet = new TH1D("Ncjet", "", 13, 0, 13);
   h_Nljet = new TH1D("Nljet", "", 13, 0, 13);
@@ -51,6 +52,7 @@ void VH_selection::SlaveBegin(Reader* r) {
   r->GetOutputList()->Add(h_elec_cutflow);
   r->GetOutputList()->Add(h_muon_cutflow);
 
+  r->GetOutputList()->Add(h_flavor_jet);
   r->GetOutputList()->Add(h_Nbjet);
   r->GetOutputList()->Add(h_Ncjet);
   r->GetOutputList()->Add(h_Nljet);
@@ -220,6 +222,8 @@ void VH_selection::Process(Reader* r) {
     if (it.m_flav == 5) bjets.push_back(it);
     else if (it.m_flav == 4) cjets.push_back(it);
     else if (it.m_flav > 0) ljets.push_back(it);
+
+    h_flavor_jet->Fill(it.m_flav);
   } 
 
   h_Nbjet->Fill(bjets.size());

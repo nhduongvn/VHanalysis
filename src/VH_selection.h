@@ -31,6 +31,7 @@ private:
   VHPlots* h_VH_Zbb ;
   VHPlots* h_VH_Zcc ;
 
+  TH1D* h_flavor_jet;
   TH1D* h_Nbjet;
   TH1D* h_Ncjet;
   TH1D* h_Nljet;
