@@ -28,6 +28,28 @@ class LepObj { // Lepton
     
 } ;
 
+class GenObj { // Generator Objects
+
+  public:
+  
+    // Constructor & Deconstructor
+    GenObj(int pdgID, float pt, float eta, float phi, float mass, unsigned idx,
+           int mother, int status) : m_pdgID(pdgID), m_idx(idx), m_motherID(mother),
+           m_status(status) { 
+             m_lvec.SetPtEtaPhiM(pt, eta, phi, mass) ;
+    } ;
+    virtual ~GenObj() {} ;
+ 
+    // Variables
+    TLorentzVector m_lvec;  //4-vector
+
+    int m_pdgID;   // Particle ID from PDG
+    unsigned m_idx; // index
+    int m_motherID;  // mother ID
+    int m_status;  // status
+        
+};
+
 
 class JetObj { // Jets
   
@@ -83,7 +105,7 @@ class ZObj { // Z Boson
 
     // Constructor & Deconstructor
     ZObj(std::vector<JetObj> jetlist) : m_jets(jetlist) {
-      for (int idx = 0; idx < jetlist.size(); ++idx) {
+      for (size_t idx = 0; idx < jetlist.size(); ++idx) {
         m_lvec += jetlist.at(idx).m_lvec;
       }
     }
@@ -104,6 +126,7 @@ class ZObj { // Z Boson
       if ((x <= TMath::Pi() && x >= 0) or (x<0 && x > -TMath::Pi())) return x;
       else if (x >= TMath::Pi()) return DphiC(x-2*TMath::Pi());
       else if (x < -TMath::Pi()) return DphiC(x+2*TMath::Pi());
+      return 0; // make sure we return a value
     }
     
     float DPhi() {
@@ -122,9 +145,9 @@ class HObj { // Higgs boson
 
   public:
 
-    // Constructro & Deconstructor
+    // Constructor & Deconstructor
     HObj(std::vector<JetObj> jetlist) : m_jets(jetlist) {
-      for (int idx = 0; idx < jetlist.size(); ++idx) {
+      for (size_t idx = 0; idx < jetlist.size(); ++idx) {
         m_lvec += jetlist.at(idx).m_lvec;
       }
     }
@@ -145,6 +168,7 @@ class HObj { // Higgs boson
       if ((x <= TMath::Pi() && x >= 0) or (x<0 && x > -TMath::Pi())) return x;
       else if (x >= TMath::Pi()) return DphiC(x-2*TMath::Pi());
       else if (x < -TMath::Pi()) return DphiC(x+2*TMath::Pi());
+      return 0; // make sure we return a value
     }
 
     float DPhi() {
@@ -156,7 +180,7 @@ class HObj { // Higgs boson
     // Variables
     TLorentzVector m_lvec;      // 4-vector
     std::vector<JetObj> m_jets; // list of jets that compose Higgs boson
-} ;
+};
 
 
 #endif

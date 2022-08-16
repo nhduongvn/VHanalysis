@@ -73,6 +73,17 @@ public :
    TTreeReaderArray<Float_t> Muon_pfRelIso04_all = {fReader, "Muon_pfRelIso04_all"};
    TTreeReaderArray<Bool_t> Muon_mediumId = {fReader, "Muon_mediumId"};
 
+#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
+TTreeReaderValue<UInt_t> nGenPart = {fReader, "nGenPart"};
+TTreeReaderArray<Float_t> GenPart_eta = {fReader, "GenPart_eta"};
+TTreeReaderArray<Float_t> GenPart_mass = {fReader, "GenPart_mass"};
+TTreeReaderArray<Float_t> GenPart_phi = {fReader, "GenPart_phi"};
+TTreeReaderArray<Float_t> GenPart_pt = {fReader, "GenPart_pt"};
+TTreeReaderArray<Int_t> GenPart_genPartIdxMother = {fReader, "GenPart_genPartIdxMother"};
+TTreeReaderArray<Int_t> GenPart_pdgId = {fReader, "GenPart_pdgId"};
+TTreeReaderArray<Int_t> GenPart_status = {fReader, "GenPart_status"};
+#endif
+
    Reader(TTree * /*tree*/ =0) {}
 
    virtual ~Reader() { }

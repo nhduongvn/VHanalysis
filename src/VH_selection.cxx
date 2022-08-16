@@ -20,15 +20,17 @@ void VH_selection::SlaveBegin(Reader* r) {
   h_evt = new TH1D("Nevt","",4,-1.5,2.5) ; //bin 1: total negative weight events, bin 2: total positive weight events, bin 3: total event weighted by genWeight (= bin2 - bin1, if genWeight are always -1,1
 
   h_VH = new VHPlots("VH") ;
+  h_VH_Zll = new VHPlots("VH_Zll") ;
   h_VH_Zcc = new VHPlots("VH_Zcc") ;
   h_VH_Zbb = new VHPlots("VH_Zbb") ;
   h_VH_Zqq = new VHPlots("VH_Zqq") ;
 
-  h_flavor_jet = new TH1D("flavor_jet", "", 15, -1.5, 13.5);
+  h_flavor_jet = new TH1D("flavor_jet", "", 25, -1.5, 23.5);
   h_Nbjet = new TH1D("Nbjet", "", 13, 0, 13);
   h_Ncjet = new TH1D("Ncjet", "", 13, 0, 13);
   h_Nljet = new TH1D("Nljet", "", 13, 0, 13);
 
+  h_evtLL_cutflow = new TH1D("evtLL_cutflow", "", 13, -0.5, 12.5);
   h_evtCC_cutflow = new TH1D("evtCC_cutflow", "", 13, -0.5, 12.5);
   h_evtBB_cutflow = new TH1D("evtBB_cutflow", "", 13, -0.5, 12.5);
   h_elec_cutflow = new TH1D("elec_cutflow", "", 10, -0.5, 9.5);
@@ -41,12 +43,14 @@ void VH_selection::SlaveBegin(Reader* r) {
   
   tmp = h_VH_Zqq->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_Zll->returnHisto() ;
+  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_VH_Zcc->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  
   tmp = h_VH_Zbb->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   
+  r->GetOutputList()->Add(h_evtLL_cutflow);
   r->GetOutputList()->Add(h_evtCC_cutflow);
   r->GetOutputList()->Add(h_evtBB_cutflow);
   r->GetOutputList()->Add(h_elec_cutflow);
@@ -65,9 +69,9 @@ void VH_selection::SlaveBegin(Reader* r) {
   const char *elec_cut[nx] = { "all", "ip", "kine", "ID" };
   const char *muon_cut[nx1] = { "all", "kine", "medium muon ID", "iso" };
 
-  const Int_t nxCC = 2, nxBB = 3;
-  const char *evt_cutCC[nxCC] = { "All Events", "Pass c-jet requirement" };
-  const char *evt_cutBB[nxBB] = { "All Events", "Pass c-jet (H) requirement",
+  const Int_t nxCC = 3, nxBB = 4;
+  const char *evt_cutCC[nxCC] = { "All Events", "Pass GenObj reconstruction",  "Pass c-jet requirement" };
+  const char *evt_cutBB[nxBB] = { "All Events", "Pass GenObj reconstruction", "Pass c-jet (H) requirement",
     "Pass b-jet (Z) requirement" };
 
   for (int i=1;i<=nxCC;i++) h_evtCC_cutflow->GetXaxis()->SetBinLabel(i+1.5, evt_cutCC[i-1]);
@@ -211,17 +215,53 @@ void VH_selection::Process(Reader* r) {
 
   }//end-muon-loop
 
+  //== Generator Object Reconstruction ========================================
+  // For purposes of being able to analyze the MC samples, we want to locate 
+  // the Z & Higgs boson data inside the generated particles. We want to store
+  // them here. Remember that abs(pdgID) = 23 is Z, abs(pdgID) = 25 is Higgs.
+  GenObj* genZ;
+  GenObj* genHiggs;
+
+  for (unsigned int i = 0; i < *(r->nGenPart); ++i) {
+    
+    // Get the PDG ID and keep this particle if it's what we want.
+    int pdgID = (r->GenPart_pdgId)[i];
+    if (abs(pdgID) != 23 && abs(pdgID) != 25) continue;
+
+    // See if it's a Z boson
+    if (abs(pdgID) == 23) {
+      genZ = new GenObj(pdgID, (r->GenPart_pt)[i], (r->GenPart_eta)[i],
+                 (r->GenPart_phi)[i], (r->GenPart_mass)[i], i,
+                 (r->GenPart_genPartIdxMother)[i], (r->GenPart_status)[i]);
+    }
+
+    // See if it's a Higgs boson
+    if (abs(pdgID) == 25) {
+      genHiggs = new GenObj(pdgID, (r->GenPart_pt)[i], (r->GenPart_eta)[i],
+                     (r->GenPart_phi)[i], (r->GenPart_mass)[i], i,
+                     (r->GenPart_genPartIdxMother)[i], (r->GenPart_status)[i]);
+    }
+  }  
 
   //== Event Selection ========================================================
   h_evtCC_cutflow->Fill(1);  // all events
   h_evtBB_cutflow->Fill(1);
-  
+  h_evtLL_cutflow->Fill(1);
+
+  // Make sure we have the proper generator events. (They should exist in every
+  // single event by definition of the file.)
+  if (genZ != NULL and genHiggs != NULL) {
+    h_evtLL_cutflow->Fill(2); // theoretically all events
+    h_evtCC_cutflow->Fill(2); 
+    h_evtBB_cutflow->Fill(2);
+  }  
+
   // Select the types of jets
   std::vector<JetObj> bjets, cjets, ljets;
   for (auto it : jets) {
     if (it.m_flav == 5) bjets.push_back(it);
     else if (it.m_flav == 4) cjets.push_back(it);
-    else if (it.m_flav > 0) ljets.push_back(it);
+    else if (it.m_flav >= 0) ljets.push_back(it);
 
     h_flavor_jet->Fill(it.m_flav);
   } 
@@ -235,7 +275,7 @@ void VH_selection::Process(Reader* r) {
 
   if (cjets.size() >= 4) 
   {
-    h_evtCC_cutflow->Fill(2); // passed jet cut
+    h_evtCC_cutflow->Fill(3); // passed jet cut
 
     // Reconstruct the Higgs mass from the jets
     JetObj c0 = cjets.at(0), c1 = cjets.at(1);
@@ -260,10 +300,10 @@ void VH_selection::Process(Reader* r) {
   // We need two c-jets for Higgs, two b-jets for Z
   if (cjets.size() >= 2)
   {
-    h_evtBB_cutflow->Fill(2); //passed c-jet cut
+    h_evtBB_cutflow->Fill(3); //passed c-jet cut
     if (bjets.size() >= 2)
     {
-      h_evtBB_cutflow->Fill(3); // passed b-jet cut
+      h_evtBB_cutflow->Fill(4); // passed b-jet cut
 
       // Reconstruct the Higgs mass from the jets
       JetObj c0 = cjets.at(0), c1 = cjets.at(1);

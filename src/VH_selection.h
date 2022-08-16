@@ -30,6 +30,7 @@ private:
   VHPlots* h_VH_Zqq ;
   VHPlots* h_VH_Zbb ;
   VHPlots* h_VH_Zcc ;
+  VHPlots* h_VH_Zll ;
 
   TH1D* h_flavor_jet;
   TH1D* h_Nbjet;
@@ -38,6 +39,7 @@ private:
 
   TH1D* h_evtCC_cutflow;
   TH1D* h_evtBB_cutflow;
+  TH1D* h_evtLL_cutflow;
   TH1D* h_elec_cutflow;
   TH1D* h_muon_cutflow;
 } ;
