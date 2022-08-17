@@ -69,8 +69,9 @@ void VH_selection::SlaveBegin(Reader* r) {
   const char *elec_cut[nx] = { "all", "ip", "kine", "ID" };
   const char *muon_cut[nx1] = { "all", "kine", "medium muon ID", "iso" };
 
-  const Int_t nxCC = 3, nxBB = 4;
-  const char *evt_cutCC[nxCC] = { "All Events", "Pass GenObj reconstruction",  "Pass c-jet requirement" };
+  const Int_t nxCC = 4, nxBB = 4;
+  const char *evt_cutCC[nxCC] = { "All Events", "Pass GenObj reconstruction",  "Pass c-jet (H) requirement",
+    "Pass c-jet (Z) requirement" };
   const char *evt_cutBB[nxBB] = { "All Events", "Pass GenObj reconstruction", "Pass c-jet (H) requirement",
     "Pass b-jet (Z) requirement" };
 
@@ -270,58 +271,26 @@ void VH_selection::Process(Reader* r) {
   h_Ncjet->Fill(cjets.size());
   h_Nljet->Fill(ljets.size());
 
+  float dRcut = 0.04;
   //====== Scenario #1 ======
   // We need at least four c-jets - two for Higgs, two for Z
-
-  if (cjets.size() >= 4) 
-  {
-    h_evtCC_cutflow->Fill(3); // passed jet cut
-
-    // Reconstruct the Higgs mass from the jets
-    JetObj c0 = cjets.at(0), c1 = cjets.at(1);
-    std::vector<JetObj> higgs_jets;
-    higgs_jets.push_back(c0);  higgs_jets.push_back(c1);
-    HObj H(higgs_jets);
-
-    // Reconstruct the Z mass from the jets
-    JetObj c2 = cjets.at(2), c3 = cjets.at(3);
-    std::vector<JetObj> z_jets;
-    z_jets.push_back(c2); z_jets.push_back(c3);
-    ZObj Z(z_jets);
-
-    // Fill our plots.
-    h_VH_Zqq->Fill(H, Z);
-    h_VH_Zcc->Fill(H, Z);
-
-  }//end-cjet-selection
-
+  // Use the static method in the GenObj class to determine which
+  // c-jets are for each object.
+  std::vector<JetObj> Hjets = GenObj::get_proper_jets(cjets, genHiggs, dRcut);
+  std::vector<JetObj> Zjets = GenObj::get_proper_jets(cjets, genHiggs, dRcut);
   
-  //====== Scenario #2 ======
-  // We need two c-jets for Higgs, two b-jets for Z
-  if (cjets.size() >= 2)
-  {
-    h_evtBB_cutflow->Fill(3); //passed c-jet cut
-    if (bjets.size() >= 2)
-    {
-      h_evtBB_cutflow->Fill(4); // passed b-jet cut
+  if (Hjets.size() >= 2) {
+    h_evtCC_cutflow->Fill(3); // passed jet requirement (H)
 
-      // Reconstruct the Higgs mass from the jets
-      JetObj c0 = cjets.at(0), c1 = cjets.at(1);
-      std::vector<JetObj> higgs_jets;
-      higgs_jets.push_back(c0);  higgs_jets.push_back(c1);
-      HObj H(higgs_jets);
-      
-      // Reconstruct the Z mass from the jets
-      JetObj b0 = bjets.at(0), b1 = bjets.at(1);
-      std::vector<JetObj> z_jets;
-      z_jets.push_back(b0); z_jets.push_back(b1);
-      ZObj Z(z_jets);
-
-      // Fill our plots.
-      h_VH_Zqq->Fill(H, Z);
-      h_VH_Zbb->Fill(H, Z);
+    if (Zjets.size() >= 2) {
+      h_evtCC_cutflow->Fill(4); // passed jet requirement (Z)
     }
-  }//end-cjet-selection  
+  }
+
+  //====== Scenario #2 ======
+  // We need two c-jets and two b-jets. This is easier because there's no
+  // possible cross-contamination.
+  
 
 } //end Process
 

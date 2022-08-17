@@ -47,7 +47,19 @@ class GenObj { // Generator Objects
     unsigned m_idx; // index
     int m_motherID;  // mother ID
     int m_status;  // status
-        
+
+    static std::vector<JetObj> get_proper_jets(std::vector<JetObj>& arr, GenObj& gen_obj, float dRcut) {
+      // For each jet in the vector, check to see if our deltaR separation is less than
+      // the amount we want to require. If our requirement is met, add it to the return
+      // list.
+      std::vector<JetObj> constituents;
+      for (size_t i = 0; i < arr.size(); ++i) {
+        float dR = gen_obj.m_lvec.DeltaR(arr.at(i).m_lvec);
+        if (dR < dRcut) constituents.push_back(arr.at(i));
+      }
+  
+      return constituents;
+    }
 };
 
 
