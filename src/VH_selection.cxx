@@ -272,25 +272,50 @@ void VH_selection::Process(Reader* r) {
   h_Nljet->Fill(ljets.size());
 
   float dRcut = 0.04;
-  //====== Scenario #1 ======
-  // We need at least four c-jets - two for Higgs, two for Z
-  // Use the static method in the GenObj class to determine which
-  // c-jets are for each object.
+  // ==== Start of Actual Selections ====
+  // Note: In each case, we have Higgs forced to CC, so we never need
+  // a secondary check for the Higgs jets.
   std::vector<JetObj> Hjets = GenObj::get_proper_jets(cjets, genHiggs, dRcut);
-  std::vector<JetObj> Zjets = GenObj::get_proper_jets(cjets, genHiggs, dRcut);
-  
   if (Hjets.size() >= 2) {
-    h_evtCC_cutflow->Fill(3); // passed jet requirement (H)
 
+    h_evtCC_cutflow->Fill(3); // passed jet requirement (H)
+    h_evtBB_cutflow->Fill(3);
+    h_evtLL_cutflow->Fill(3);
+    HObj H(Hjets); // Reconstruct the Higgs boson
+
+    // ==== Scenario #1 ====
+    // H->CC, Z->CC
+    std::vector<JetObj> Zjets = GenObj::get_proper_jets(cjets, genZ, dRcut);
     if (Zjets.size() >= 2) {
       h_evtCC_cutflow->Fill(4); // passed jet requirement (Z)
+      ZObj Z(Zjets); // Reconstruct the Z boson
+   
+      h_VH_Zqq->Fill(H, Z);
+      h_VH_Zcc->Fill(H, Z);
+    }
+
+    // ==== Scenario #2 ====
+    // H->CC, Z->bb
+    Zjets = GenObj::get_proper_jets(bjets, genZ, dRcut);
+    if (Zjets.size() >= 2) {
+      h_evtBB_cutflow->Fill(4); //passed jet requirement (Z)
+      ZObj Z(Zjets); // Reconstruct the Z boson
+      
+      h_VH_Zqq->Fill(H, Z);
+      h_VH_Zbb->Fill(H, Z);
+    }
+
+    // ==== Scenario #3 ====
+    // H->CC, Z->ll
+    Zjets = GenObj::get_proper_jets(ljets, genZ, dRcut);
+    if (Zjets.size() >= 2) {
+      h_evtLL_cutflow->Fill(4); //passed jet requirement (Z)
+      ZObj Z(Zjets);
+      
+      h_VH_Zqq->Fill(H, Z);
+      h_VH_Zll->Fill(H, Z);
     }
   }
-
-  //====== Scenario #2 ======
-  // We need two c-jets and two b-jets. This is easier because there's no
-  // possible cross-contamination.
-  
 
 } //end Process
 

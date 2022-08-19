@@ -28,40 +28,6 @@ class LepObj { // Lepton
     
 } ;
 
-class GenObj { // Generator Objects
-
-  public:
-  
-    // Constructor & Deconstructor
-    GenObj(int pdgID, float pt, float eta, float phi, float mass, unsigned idx,
-           int mother, int status) : m_pdgID(pdgID), m_idx(idx), m_motherID(mother),
-           m_status(status) { 
-             m_lvec.SetPtEtaPhiM(pt, eta, phi, mass) ;
-    } ;
-    virtual ~GenObj() {} ;
- 
-    // Variables
-    TLorentzVector m_lvec;  //4-vector
-
-    int m_pdgID;   // Particle ID from PDG
-    unsigned m_idx; // index
-    int m_motherID;  // mother ID
-    int m_status;  // status
-
-    static std::vector<JetObj> get_proper_jets(std::vector<JetObj>& arr, GenObj& gen_obj, float dRcut) {
-      // For each jet in the vector, check to see if our deltaR separation is less than
-      // the amount we want to require. If our requirement is met, add it to the return
-      // list.
-      std::vector<JetObj> constituents;
-      for (size_t i = 0; i < arr.size(); ++i) {
-        float dR = gen_obj.m_lvec.DeltaR(arr.at(i).m_lvec);
-        if (dR < dRcut) constituents.push_back(arr.at(i));
-      }
-  
-      return constituents;
-    }
-};
-
 
 class JetObj { // Jets
   
@@ -192,6 +158,38 @@ class HObj { // Higgs boson
     // Variables
     TLorentzVector m_lvec;      // 4-vector
     std::vector<JetObj> m_jets; // list of jets that compose Higgs boson
+};
+
+class GenObj { // Generator Objects
+
+  public:
+    
+    // Constructor & Deconstructor
+    GenObj(int pdgID, float pt, float eta, float phi, float mass, unsigned idx,
+           int mother, int status) : m_pdgID(pdgID), m_idx(idx), m_motherID(mother),
+           m_status(status) {
+             m_lvec.SetPtEtaPhiM(pt, eta, phi, mass);
+    };
+    virtual ~GenObj() {};
+
+    // Variables
+    TLorentzVector m_lvec; //4-vector
+    int m_pdgID;
+    unsigned m_idx;
+    int m_motherID;
+    int m_status;
+    
+    //Methods
+    static std::vector<JetObj> get_proper_jets(std::vector<JetObj>& arr, GenObj* gen_obj,
+    float dRcut) {
+      std::vector<JetObj> constituents;
+      for (size_t i = 0; i < arr.size(); ++i) {
+        float dR = gen_obj->m_lvec.DeltaR(arr.at(i).m_lvec);
+        if (dR < dRcut) constituents.push_back(arr.at(i));
+      }
+ 
+      return constituents;
+    }
 };
 
 
