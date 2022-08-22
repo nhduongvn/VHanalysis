@@ -26,9 +26,19 @@ void VH_selection::SlaveBegin(Reader* r) {
   h_VH_Zqq = new VHPlots("VH_Zqq") ;
 
   h_flavor_jet = new TH1D("flavor_jet", "", 25, -1.5, 23.5);
-  h_Nbjet = new TH1D("Nbjet", "", 13, 0, 13);
-  h_Ncjet = new TH1D("Ncjet", "", 13, 0, 13);
-  h_Nljet = new TH1D("Nljet", "", 13, 0, 13);
+  h_Nbjet = new TH1D("Nbjet", "", 13, -0.5, 12.5);
+  h_Ncjet = new TH1D("Ncjet", "", 13, -0.5, 12.5);
+  h_Nljet = new TH1D("Nljet", "", 13, -0.5, 12.5);
+
+  h_Higgs_nJet = new TH1D("Higgs_nJet", "", 13, -0.5, 12.5);
+  h_GenH_pt = new TH1D("GenH_pt", "", 480, 0, 480);
+  h_GenH_mass = new TH1D("GenH_mass", "", 480, 0, 480);
+  h_GenH_phi = new TH1D("GenH_phi", "", 60, -TMath::Pi(), TMath::Pi());
+  h_GenZ_pt = new TH1D("GenZ_pt", "", 480, 0, 480);
+  h_GenZ_mass = new TH1D("GenZ_mass", "", 480, 0, 480);
+  h_GenZ_phi = new TH1D("GenZ_phi", "", 60, -TMath::Pi(), TMath::Pi());
+
+  h_Gen_dPhi = new TH1D("Gen_dPhi", "", 60, -TMath::Pi(), TMath::Pi());
 
   h_evtLL_cutflow = new TH1D("evtLL_cutflow", "", 13, -0.5, 12.5);
   h_evtCC_cutflow = new TH1D("evtCC_cutflow", "", 13, -0.5, 12.5);
@@ -60,7 +70,16 @@ void VH_selection::SlaveBegin(Reader* r) {
   r->GetOutputList()->Add(h_Nbjet);
   r->GetOutputList()->Add(h_Ncjet);
   r->GetOutputList()->Add(h_Nljet);
-  
+  r->GetOutputList()->Add(h_Higgs_nJet); 
+
+  r->GetOutputList()->Add(h_GenH_pt);
+  r->GetOutputList()->Add(h_GenH_mass);
+  r->GetOutputList()->Add(h_GenH_phi);
+  r->GetOutputList()->Add(h_GenZ_pt);
+  r->GetOutputList()->Add(h_GenZ_mass);
+  r->GetOutputList()->Add(h_GenZ_phi);
+  r->GetOutputList()->Add(h_Gen_dPhi);
+ 
   const Int_t nevt = 12;
   const Int_t nx = 4, nx1 = 4;
   const char *evt_cut[nevt] = { "All Events", "Pass Lepton Selection",
@@ -255,6 +274,16 @@ void VH_selection::Process(Reader* r) {
     h_evtLL_cutflow->Fill(2); // theoretically all events
     h_evtCC_cutflow->Fill(2); 
     h_evtBB_cutflow->Fill(2);
+
+    h_GenH_pt->Fill(genHiggs->m_lvec.Pt());
+    h_GenH_mass->Fill(genHiggs->m_lvec.M());
+    h_GenH_phi->Fill(genHiggs->m_lvec.Phi());
+   
+    h_GenZ_pt->Fill(genZ->m_lvec.Pt());
+    h_GenZ_mass->Fill(genZ->m_lvec.M());
+    h_GenZ_phi->Fill(genZ->m_lvec.Phi());
+
+    h_Gen_dPhi->Fill(genZ->m_lvec.DeltaPhi(genHiggs->m_lvec));
   }  
 
   // Select the types of jets
@@ -271,11 +300,12 @@ void VH_selection::Process(Reader* r) {
   h_Ncjet->Fill(cjets.size());
   h_Nljet->Fill(ljets.size());
 
-  float dRcut = 0.04;
+  float dRcut = TMath::Pi()/2;
   // ==== Start of Actual Selections ====
   // Note: In each case, we have Higgs forced to CC, so we never need
   // a secondary check for the Higgs jets.
   std::vector<JetObj> Hjets = GenObj::get_proper_jets(cjets, genHiggs, dRcut);
+  h_Higgs_nJet->Fill(Hjets.size());
   if (Hjets.size() >= 2) {
 
     h_evtCC_cutflow->Fill(3); // passed jet requirement (H)

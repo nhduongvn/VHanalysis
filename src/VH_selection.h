@@ -36,6 +36,16 @@ private:
   TH1D* h_Nbjet;
   TH1D* h_Ncjet;
   TH1D* h_Nljet;
+  TH1D* h_Higgs_nJet;
+
+  TH1D* h_GenH_pt;
+  TH1D* h_GenH_mass;
+  TH1D* h_GenH_phi;
+  TH1D* h_GenZ_pt;
+  TH1D* h_GenZ_mass;
+  TH1D* h_GenZ_phi;
+  TH1D* h_Gen_dPhi;
+  TH1D* h_Gen_dR;
 
   TH1D* h_evtCC_cutflow;
   TH1D* h_evtBB_cutflow;
