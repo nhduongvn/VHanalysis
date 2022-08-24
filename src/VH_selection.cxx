@@ -39,6 +39,8 @@ void VH_selection::SlaveBegin(Reader* r) {
   h_GenZ_phi = new TH1D("GenZ_phi", "", 60, -TMath::Pi(), TMath::Pi());
 
   h_Gen_dPhi = new TH1D("Gen_dPhi", "", 60, -TMath::Pi(), TMath::Pi());
+  h_Gen_dR_jet_Higgs = new TH1D("Gen_dR_jet_Higgs", 60, 0, 2*TMath::Pi());
+  h_Gen_dR_jet_Z = new TH1D("Gen_dR_jet_Z", 60, 0, 2*TMath::Pi());
 
   h_evtLL_cutflow = new TH1D("evtLL_cutflow", "", 13, -0.5, 12.5);
   h_evtCC_cutflow = new TH1D("evtCC_cutflow", "", 13, -0.5, 12.5);

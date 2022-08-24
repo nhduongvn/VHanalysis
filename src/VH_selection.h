@@ -47,6 +47,9 @@ private:
   TH1D* h_Gen_dPhi;
   TH1D* h_Gen_dR;
 
+  TH1D* h_Gen_dR_jet_Higgs;
+  TH1D* h_Gen_dR_jet_Z;
+
   TH1D* h_evtCC_cutflow;
   TH1D* h_evtBB_cutflow;
   TH1D* h_evtLL_cutflow;
