@@ -199,4 +199,56 @@ class VHPlots
     TH1D* h_Njet;
 } ;
 
+//=== Gen Plots ===
+// For purposes of analyzing MC samples, we want to occasionally deal with the
+// Gen-Level objects. Rather than continuously adding plots, it'd be nice to have
+// a class that handles them all together.
+class GenPlots
+{
+  public:
+    // Constructor
+    GenPlots(TString name) : m_name(name) {
+      
+      h_Higgs_mass = new TH1D(name + "_Higgs_mass", "", NBIN_M_H, X_M_H[0], X_M_H[1]);
+      h_Higgs_pt = new TH1D(name + "_Higgs_pt", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      h_Higgs_phi = new TH1D(name + "_H_phi", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
+
+      h_Z_mass = new TH1D(name + "_Z_mass", "", NBIN_M_H, X_M_H[0], X_M_H[1]);
+      h_Z_pt = new TH1D(name + "_Z_pt", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      h_Z_phi = new TH1D(name + "_Z_phi", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
+    };
+
+    void Fill(GenObj* H, GenObj* Z, float w=1) {
+      h_Higgs_mass->Fill(H->m_lvec.M());
+      h_Higgs_pt->Fill(H->m_lvec.Pt());
+      h_Higgs_phi->Fill(H->m_lvec.Phi());
+
+      h_Z_mass->Fill(Z->m_lvec.M());
+      h_Z_pt->Fill(Z->m_lvec.Pt());
+      h_Z_phi->Fill(Z->m_lvec.Phi());
+    }
+
+    std::vector<TH1*> returnHisto() {
+      std::vector<TH1*> histolist;
+      
+      histolist.push_back(h_Higgs_mass); histolist.push_back(h_Higgs_pt); histolist.push_back(h_Higgs_phi);
+      histolist.push_back(h_Z_mass); histolist.push_back(h_Z_pt); histolist.push_back(h_Z_phi);
+      return histolist;
+    }
+
+  protected:
+    // Variables
+    TString m_name;
+
+    // Plots Related to Gen Objects Themselves
+    TH1D* h_Higgs_mass;
+    TH1D* h_Higgs_pt;
+    TH1D* h_Higgs_phi;
+    TH1D* h_Z_mass;
+    TH1D* h_Z_pt;
+    TH1D* h_Z_phi;
+
+    // Plots Related to Physics Analysis
+} ;
+
 #endif
