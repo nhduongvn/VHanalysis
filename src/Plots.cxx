@@ -216,23 +216,47 @@ class GenPlots
       h_Z_mass = new TH1D(name + "_Z_mass", "", NBIN_M_H, X_M_H[0], X_M_H[1]);
       h_Z_pt = new TH1D(name + "_Z_pt", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
       h_Z_phi = new TH1D(name + "_Z_phi", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
+
+      h_HZ_dPhi = new TH1D(name + "_HZ_dPhi", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
+      
     };
 
     void Fill(GenObj* H, GenObj* Z, float w=1) {
-      h_Higgs_mass->Fill(H->m_lvec.M());
-      h_Higgs_pt->Fill(H->m_lvec.Pt());
-      h_Higgs_phi->Fill(H->m_lvec.Phi());
+      h_Higgs_mass->Fill(H->m_lvec.M(), w);
+      h_Higgs_pt->Fill(H->m_lvec.Pt(), w);
+      h_Higgs_phi->Fill(H->m_lvec.Phi(), w);
 
-      h_Z_mass->Fill(Z->m_lvec.M());
-      h_Z_pt->Fill(Z->m_lvec.Pt());
-      h_Z_phi->Fill(Z->m_lvec.Phi());
+      h_Z_mass->Fill(Z->m_lvec.M(), w);
+      h_Z_pt->Fill(Z->m_lvec.Pt(), w);
+      h_Z_phi->Fill(Z->m_lvec.Phi(), w);
+
+      h_HZ_dPhi->Fill(Z->m_lvec.DeltaPhi(H->m_lvec), w);
     }
+
+    void FillJets(GenObj* obj, std::vector<JetObj>& jets, Int_t jetID, float w=1) {
+      Int_t pdgID = obj->m_pdgID;
+      if (abs(pdgID) == 25) { // Higgs
+        for (auto it : jets) {
+          h_Hc_dR->Fill(it.m_lvec.DeltaR(obj->m_lvec), w);
+        }
+      }
+      else if (abs(pdgID) == 23) { // Z
+        for (auto it : jets) {
+          float dR = it.m_lvec.DeltaR(obj->m_lvec);
+          if (jetID == 5) h_Zb_dR->Fill(dR, w);
+          else if (jetID == 4) h_Zc_dR->Fill(dR, w);
+          else h_Zl_dR->Fill(dR, w);
+        }
+      }
+    }//end-method 
 
     std::vector<TH1*> returnHisto() {
       std::vector<TH1*> histolist;
       
       histolist.push_back(h_Higgs_mass); histolist.push_back(h_Higgs_pt); histolist.push_back(h_Higgs_phi);
       histolist.push_back(h_Z_mass); histolist.push_back(h_Z_pt); histolist.push_back(h_Z_phi);
+     
+      histolist.push_back(h_HZ_dPhi);
       return histolist;
     }
 
@@ -249,6 +273,11 @@ class GenPlots
     TH1D* h_Z_phi;
 
     // Plots Related to Physics Analysis
+    TH1D* h_HZ_dPhi;
+    TH1D* h_Hc_dR;
+    TH1D* h_Zc_dR;
+    TH1D* h_Zb_dR;
+    TH1D* h_Zl_dR;
 } ;
 
 #endif
