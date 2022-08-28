@@ -25,6 +25,9 @@ const float X_M_H[2] = {0, 300};
 const float NBIN_M_Z = 300;
 const float X_M_Z[2] = {0, 300};
 
+const float NBIN_DR = 90;
+const float X_DR[2] = {-0.5, 8.5};
+
 // Main Plots class
 class VHPlots
 {
@@ -211,14 +214,23 @@ class GenPlots
       
       h_Higgs_mass = new TH1D(name + "_Higgs_mass", "", NBIN_M_H, X_M_H[0], X_M_H[1]);
       h_Higgs_pt = new TH1D(name + "_Higgs_pt", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
-      h_Higgs_phi = new TH1D(name + "_H_phi", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
+      h_Higgs_phi = new TH1D(name + "_Higgs_phi", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
 
       h_Z_mass = new TH1D(name + "_Z_mass", "", NBIN_M_H, X_M_H[0], X_M_H[1]);
       h_Z_pt = new TH1D(name + "_Z_pt", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
       h_Z_phi = new TH1D(name + "_Z_phi", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
 
+      h_cjet_phi = new TH1D(name + "_cjet_phi", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
+      h_bjet_phi = new TH1D(name + "_bjet_phi", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
+      h_ljet_phi = new TH1D(name + "_ljet_phi", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
+
       h_HZ_dPhi = new TH1D(name + "_HZ_dPhi", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
-      
+      h_HZ_dR = new TH1D(name + "_HZ_dR", "", 40, -0.5, 12.5); 
+
+      h_Hc_dR = new TH1D(name + "_Hc_dR", "", NBIN_DR, X_DR[0], X_DR[1]);
+      h_Zc_dR = new TH1D(name + "_Zc_dR", "", NBIN_DR, X_DR[0], X_DR[1]);
+      h_Zb_dR = new TH1D(name + "_Zb_dR", "", NBIN_DR, X_DR[0], X_DR[1]);
+      h_Zl_dR = new TH1D(name + "_Zl_dR", "", NBIN_DR, X_DR[0], X_DR[1]);
     };
 
     void Fill(GenObj* H, GenObj* Z, float w=1) {
@@ -231,6 +243,7 @@ class GenPlots
       h_Z_phi->Fill(Z->m_lvec.Phi(), w);
 
       h_HZ_dPhi->Fill(Z->m_lvec.DeltaPhi(H->m_lvec), w);
+      h_HZ_dR->Fill(Z->m_lvec.DeltaR(H->m_lvec), w);
     }
 
     void FillJets(GenObj* obj, std::vector<JetObj>& jets, Int_t jetID, float w=1) {
@@ -243,9 +256,19 @@ class GenPlots
       else if (abs(pdgID) == 23) { // Z
         for (auto it : jets) {
           float dR = it.m_lvec.DeltaR(obj->m_lvec);
-          if (jetID == 5) h_Zb_dR->Fill(dR, w);
-          else if (jetID == 4) h_Zc_dR->Fill(dR, w);
-          else h_Zl_dR->Fill(dR, w);
+          float phi = it.m_lvec.Phi();
+          if (jetID == 5) {
+            h_Zb_dR->Fill(dR, w);
+            h_cjet_phi->Fill(phi, w);
+          }
+          else if (jetID == 4){
+            h_Zc_dR->Fill(dR, w);
+            h_bjet_phi->Fill(phi, w);
+          }
+          else{
+            h_Zl_dR->Fill(dR, w);
+            h_ljet_phi->Fill(phi, w);
+          }
         }
       }
     }//end-method 
@@ -255,8 +278,11 @@ class GenPlots
       
       histolist.push_back(h_Higgs_mass); histolist.push_back(h_Higgs_pt); histolist.push_back(h_Higgs_phi);
       histolist.push_back(h_Z_mass); histolist.push_back(h_Z_pt); histolist.push_back(h_Z_phi);
-     
-      histolist.push_back(h_HZ_dPhi);
+      histolist.push_back(h_cjet_phi); histolist.push_back(h_bjet_phi); histolist.push_back(h_ljet_phi);     
+
+      histolist.push_back(h_HZ_dPhi); histolist.push_back(h_HZ_dR);
+      histolist.push_back(h_Hc_dR); histolist.push_back(h_Zc_dR);
+      histolist.push_back(h_Zb_dR); histolist.push_back(h_Zl_dR);
       return histolist;
     }
 
@@ -271,13 +297,17 @@ class GenPlots
     TH1D* h_Z_mass;
     TH1D* h_Z_pt;
     TH1D* h_Z_phi;
+    TH1D* h_cjet_phi;
+    TH1D* h_bjet_phi;
+    TH1D* h_ljet_phi;
 
     // Plots Related to Physics Analysis
-    TH1D* h_HZ_dPhi;
-    TH1D* h_Hc_dR;
-    TH1D* h_Zc_dR;
-    TH1D* h_Zb_dR;
-    TH1D* h_Zl_dR;
+    TH1D* h_HZ_dPhi;      //Phi separation of H & Z
+    TH1D* h_HZ_dR;        //R separation of H & Z
+    TH1D* h_Hc_dR;        //R separation of H & c-jets
+    TH1D* h_Zc_dR;        //R separation of Z & c-jets
+    TH1D* h_Zb_dR;        //R separation of Z & b-jets
+    TH1D* h_Zl_dR;        //R separation of Z & l-jets
 } ;
 
 #endif

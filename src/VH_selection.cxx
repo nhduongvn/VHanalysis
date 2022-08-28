@@ -278,12 +278,12 @@ void VH_selection::Process(Reader* r) {
   h_Nljet->Fill(ljets.size());
 
   //== Handle Stuff Related to the Jets & Gen Objects here ==
-  //h_GenPlots->FillJets(genHiggs, cjets, 4);
-  //h_GenPlots->FillJets(genZ, bjets, 5);
-  //h_GenPlots->FillJets(genZ, cjets, 4);
-  //h_GenPlots->FillJets(genZ, ljets, 0);
+  h_GenPlots->FillJets(genHiggs, cjets, 4);
+  h_GenPlots->FillJets(genZ, bjets, 5);
+  h_GenPlots->FillJets(genZ, cjets, 4);
+  h_GenPlots->FillJets(genZ, ljets, 0);
 
-  float dRcut = TMath::Pi()/4;
+  float dRcut = TMath::Pi()/2;
   // ==== Start of Actual Selections ====
   // Note: In each case, we have Higgs forced to CC, so we never need
   // a secondary check for the Higgs jets.
