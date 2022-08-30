@@ -40,6 +40,7 @@ private:
   TH1D* h_Nljet;
   TH1D* h_Higgs_nJet;
 
+  TH1D* h_evt_cutflow;
   TH1D* h_evtCC_cutflow;
   TH1D* h_evtBB_cutflow;
   TH1D* h_evtLL_cutflow;

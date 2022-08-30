@@ -7,7 +7,7 @@
 void draw_histogram(std::string histogram_name) 
 {
   std::string filepath = "../QCD_results/results_200to300.root";
-  filepath = "../test.root";
+  filepath = "../results/ZH_2018.root";
   //std::string histogram_name = "evt_cutflow";
 
   TFile *f = new TFile(filepath.c_str());

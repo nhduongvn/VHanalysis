@@ -19,12 +19,7 @@ void VH_selection::SlaveBegin(Reader* r) {
   
   h_evt = new TH1D("Nevt","",4,-1.5,2.5) ; //bin 1: total negative weight events, bin 2: total positive weight events, bin 3: total event weighted by genWeight (= bin2 - bin1, if genWeight are always -1,1
 
-  h_VH = new VHPlots("VH") ;
-  h_VH_Zll = new VHPlots("VH_Zll") ;
-  h_VH_Zcc = new VHPlots("VH_Zcc") ;
-  h_VH_Zbb = new VHPlots("VH_Zbb") ;
-  h_VH_Zqq = new VHPlots("VH_Zqq") ;
-
+  h_VH = new VHPlots("VbbHcc") ;
   h_GenPlots = new GenPlots("GenObj") ;
 
   h_flavor_jet = new TH1D("flavor_jet", "", 25, -1.5, 23.5);
@@ -33,9 +28,7 @@ void VH_selection::SlaveBegin(Reader* r) {
   h_Nljet = new TH1D("Nljet", "", 13, -0.5, 12.5);
 
   h_Higgs_nJet = new TH1D("Higgs_nJet", "", 13, -0.5, 12.5);
-  h_evtLL_cutflow = new TH1D("evtLL_cutflow", "", 13, -0.5, 12.5);
-  h_evtCC_cutflow = new TH1D("evtCC_cutflow", "", 13, -0.5, 12.5);
-  h_evtBB_cutflow = new TH1D("evtBB_cutflow", "", 13, -0.5, 12.5);
+  h_evt_cutflow = new TH1D("evt_cutflow", "", 13, -0.5, 12.5);
   h_elec_cutflow = new TH1D("elec_cutflow", "", 10, -0.5, 9.5);
   h_muon_cutflow = new TH1D("muon_cutflow", "", 10, -0.5, 9.5);
 
@@ -43,21 +36,10 @@ void VH_selection::SlaveBegin(Reader* r) {
   r->GetOutputList()->Add(h_evt) ;
   std::vector<TH1*> tmp = h_VH->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  
-  tmp = h_VH_Zqq->returnHisto() ;
-  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_VH_Zll->returnHisto() ;
-  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_VH_Zcc->returnHisto() ;
-  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_VH_Zbb->returnHisto() ;
-  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_GenPlots->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   
-  r->GetOutputList()->Add(h_evtLL_cutflow);
-  r->GetOutputList()->Add(h_evtCC_cutflow);
-  r->GetOutputList()->Add(h_evtBB_cutflow);
+  r->GetOutputList()->Add(h_evt_cutflow);
   r->GetOutputList()->Add(h_elec_cutflow);
   r->GetOutputList()->Add(h_muon_cutflow);
 
@@ -75,21 +57,14 @@ void VH_selection::SlaveBegin(Reader* r) {
   const char *elec_cut[nx] = { "all", "ip", "kine", "ID" };
   const char *muon_cut[nx1] = { "all", "kine", "medium muon ID", "iso" };
 
-  const Int_t nxCC = 4, nxBB = 4, nxLL = 4;
-  const char *evt_cutCC[nxCC] = { "All Events", "Pass GenObj reconstruction",  "Pass c-jet (H) requirement",
-    "Pass c-jet (Z) requirement" };
+  const Int_t nxBB = 4;
   const char *evt_cutBB[nxBB] = { "All Events", "Pass GenObj reconstruction", "Pass c-jet (H) requirement",
     "Pass b-jet (Z) requirement" };
-  const char *evt_cutLL[nxLL] = { "All Events", "Pass GenObj reconstruction", "Pass c-jet (H) requirement",
-    "Pass l-jet (Z) requirement" };
 
-  for (int i=1;i<=nxCC;i++) h_evtCC_cutflow->GetXaxis()->SetBinLabel(i+1.5, evt_cutCC[i-1]);
-  for (int i=1;i<=nxBB;i++) h_evtBB_cutflow->GetXaxis()->SetBinLabel(i+1.5, evt_cutBB[i-1]);
-  for (int i=1;i<=nxLL;i++) h_evtLL_cutflow->GetXaxis()->SetBinLabel(i+1.5, evt_cutLL[i-1]);
+  for (int i=1;i<=nxBB;i++) h_evt_cutflow->GetXaxis()->SetBinLabel(i+1.5, evt_cutBB[i-1]);
 
   for (int i=1;i<=nx;i++) h_elec_cutflow->GetXaxis()->SetBinLabel(i+1.5, elec_cut[i-1]);
   for (int i=1;i<=nx1;i++) h_muon_cutflow->GetXaxis()->SetBinLabel(i+1.5, muon_cut[i-1]);
-  //for (int i=1;i<=nevt;i++) h_evt_cutflow->GetXaxis()->SetBinLabel(i+1.5, evt_cut[i-1]);
 
 }
 
@@ -144,82 +119,9 @@ void VH_selection::Process(Reader* r) {
   }
 
   //Make selection and fill histograms
-  h_VH_Zqq->FillJets(jets);
-  h_VH_Zqq->FillNjet(jets.size());
+  h_VH->FillJets(jets);
+  h_VH->FillNjet(jets.size());
   
-
-
-  // Electrons
-  std::vector<LepObj> elecs;
-  std::vector<LepObj> elecs_jetOverlap;
-  for (unsigned int i = 0; i < *(r->nElectron); ++i) {
-
-    h_elec_cutflow->Fill(1); // All electrons
-
-    // Reconstruct a lepton from the information in the file.
-    float etaSC = (r->Electron_eta)[i] - (r->Electron_deltaEtaSC)[i];
-    LepObj elec((r->Electron_pt)[i], (r->Electron_eta)[i], etaSC,
-                (r->Electron_phi)[i], (r->Electron_mass)[i], i, 
-                (r->Electron_charge)[i], 0);
-    h_elec_cutflow->Fill(2);
-    
-    // Check for electron jet overlamp removal
-    int elecID = r->Electron_cutBased[i];      // (0:fail, 1:veto, 2:loose, 3:medium, 4:tight)
-    if (elec.m_lvec.Pt() > CUTS.Get<float>("lep_jetOverlap_pt") && 
-        fabs(elec.m_lvec.Eta()) < CUTS.Get<float>("lep_jetOverlap_eta"))
-    {
-      if (elecID >= 4) { // tight ID for jet removal
-        elecs_jetOverlap.push_back(elec);
-      }
-    }
-
-    // Use lower pT threshold to select both.
-    if (elec.m_lvec.Pt() < CUTS.Get<float>("lep_pt1") || fabs(elec.m_lvec.Eta()) > CUTS.Get<float>("lep_eta")) continue;
-    if (fabs(elec.m_scEta) < 1.566 && fabs(elec.m_scEta) > 1.442) continue;
-    h_elec_cutflow->Fill(3);
-
-    if (elecID < 4) continue;
-    h_elec_cutflow->Fill(4);
-    elecs.push_back(elec);
-  }//end-elec-loop
-
-  // Muons
-  std::vector<LepObj> muons;
-  std::vector<LepObj> muons_jetOverlap;
-  for (unsigned int i = 0; i < *(r->nMuon); ++i) {
-
-    h_muon_cutflow->Fill(1);
-    // Reconstruct a muon from the information given.
-    LepObj muon((r->Muon_pt)[i], (r->Muon_eta)[i], -1, (r->Muon_phi)[i], 
-                (r->Muon_mass)[i], i, (r->Muon_charge)[i], 
-                (r->Muon_pfRelIso04_all)[i]);
- 
-    // -- Rochester correction goes here --
-    
-    // Muon for muon jet overlap removal
-    if (muon.m_lvec.Pt() > CUTS.Get<float>("lep_jetOverlap_pt")
-        && fabs(muon.m_lvec.Eta()) < CUTS.Get<float>("lep_jetOverlap_eta"))
-    {
-      if ((r->Muon_mediumId)[i] > 0 && (r->Muon_pfRelIso04_all)[i] < CUTS.Get<float>("muon_iso")) {
-        muons_jetOverlap.push_back(muon);
-      } 
-    }  
-
-    // Make sure the muons meet our cuts
-    if (muon.m_lvec.Pt() < CUTS.Get<float>("lep_pt1") || 
-        fabs(muon.m_lvec.Eta()) < CUTS.Get<float>("lep_eta")) continue;
-    h_muon_cutflow->Fill(2) ;
-
-    if (r->Muon_mediumId[i] <= 0) continue;
-    h_muon_cutflow->Fill(3);
-
-    if (muon.m_iso > CUTS.Get<float>("muon_iso")) continue;
-    h_muon_cutflow->Fill(4);
-
-    muons.push_back(muon);
-
-  }//end-muon-loop
-
   //== Generator Object Reconstruction ========================================
   // For purposes of being able to analyze the MC samples, we want to locate 
   // the Z & Higgs boson data inside the generated particles. We want to store
@@ -249,16 +151,13 @@ void VH_selection::Process(Reader* r) {
   }  
 
   //== Event Selection ========================================================
-  h_evtCC_cutflow->Fill(1);  // all events
-  h_evtBB_cutflow->Fill(1);
-  h_evtLL_cutflow->Fill(1);
+  h_evt_cutflow->Fill(1);  // all events
+  
 
   // Make sure we have the proper generator events. (They should exist in every
   // single event by definition of the file.)
   if (genZ != NULL and genHiggs != NULL) {
-    h_evtLL_cutflow->Fill(2); // theoretically all events
-    h_evtCC_cutflow->Fill(2); 
-    h_evtBB_cutflow->Fill(2);
+    h_evt_cutflow->Fill(2); // theoretically all events
 
     h_GenPlots->Fill(genHiggs, genZ);
   }  
@@ -291,44 +190,19 @@ void VH_selection::Process(Reader* r) {
   h_Higgs_nJet->Fill(Hjets.size());
   if (Hjets.size() >= 2) {
 
-    h_evtCC_cutflow->Fill(3); // passed jet requirement (H)
-    h_evtBB_cutflow->Fill(3);
-    h_evtLL_cutflow->Fill(3);
+    h_evt_cutflow->Fill(3); // passed jet requirement (H)
+    
     HObj H(Hjets); // Reconstruct the Higgs boson
 
-    // ==== Scenario #1 ====
-    // H->CC, Z->CC
-    std::vector<JetObj> Zjets = GenObj::get_proper_jets(cjets, genZ, dRcut);
+    std::vector<JetObj> Zjets = GenObj::get_proper_jets(bjets, genZ, dRcut);
     if (Zjets.size() >= 2) {
-      h_evtCC_cutflow->Fill(4); // passed jet requirement (Z)
-      ZObj Z(Zjets); // Reconstruct the Z boson
-   
-      h_VH_Zqq->Fill(H, Z);
-      h_VH_Zcc->Fill(H, Z);
-    }
-
-    // ==== Scenario #2 ====
-    // H->CC, Z->bb
-    Zjets = GenObj::get_proper_jets(bjets, genZ, dRcut);
-    if (Zjets.size() >= 2) {
-      h_evtBB_cutflow->Fill(4); //passed jet requirement (Z)
+      h_evt_cutflow->Fill(4); //passed jet requirement (Z)
       ZObj Z(Zjets); // Reconstruct the Z boson
       
-      h_VH_Zqq->Fill(H, Z);
-      h_VH_Zbb->Fill(H, Z);
-    }
+      h_VH->Fill(H, Z);
 
-    // ==== Scenario #3 ====
-    // H->CC, Z->ll
-    Zjets = GenObj::get_proper_jets(ljets, genZ, dRcut);
-    if (Zjets.size() >= 2) {
-      h_evtLL_cutflow->Fill(4); //passed jet requirement (Z)
-      ZObj Z(Zjets);
-      
-      h_VH_Zqq->Fill(H, Z);
-      h_VH_Zll->Fill(H, Z);
-    }
-  }
+    }//end-Z-Selection
+  }//end-Higgs-Selection
 
 } //end Process
 
