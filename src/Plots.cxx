@@ -100,10 +100,44 @@ class VHPlots
       if (H.nJets() >= 2) {
         h_dR_H->Fill(H.DeltaR(), w);
         h_dPhi_H->Fill(H.DPhi(), w);
+  
+        TLorentzVector jet0 = H.getJet(0).m_lvec;
+        h_H_pt_jet0->Fill(jet0.Pt(), w);
+        h_H_eta_jet0->Fill(jet0.Eta(), w);
+        h_H_phi_jet0->Fill(jet0.Phi(), w);
+
+        TLorentzVector jet1 = H.getJet(1).m_lvec;
+        h_H_pt_jet1->Fill(jet1.Pt(), w);
+        h_H_eta_jet1->Fill(jet1.Eta(), w);
+        h_H_phi_jet1->Fill(jet1.Phi(), w);
+
+        if (H.nJets() > 2) {
+          TLorentzVector jet2 = H.getJet(2).m_lvec;
+          h_H_pt_jet2->Fill(jet2.Pt(), w);
+          h_H_eta_jet2->Fill(jet2.Eta(), w);
+          h_H_phi_jet2->Fill(jet2.Phi(), w);
+        }
       }
       if (Z.nJets() >= 2) {
         h_dR_Z->Fill(Z.DeltaR(), w);
         h_dPhi_Z->Fill(Z.DPhi(), w);
+
+        TLorentzVector jet0 = Z.getJet(0).m_lvec;
+        h_Z_pt_jet0->Fill(jet0.Pt(), w);
+        h_Z_eta_jet0->Fill(jet0.Eta(), w);
+        h_Z_phi_jet0->Fill(jet0.Phi(), w);
+
+        TLorentzVector jet1 = Z.getJet(1).m_lvec;
+        h_Z_pt_jet1->Fill(jet1.Pt(), w);
+        h_Z_eta_jet1->Fill(jet1.Eta(), w);
+        h_Z_phi_jet1->Fill(jet1.Phi(), w);
+
+        if (Z.nJets() > 2) {
+          TLorentzVector jet2 = Z.getJet(2).m_lvec;
+          h_Z_pt_jet2->Fill(jet2.Pt(), w);
+          h_Z_eta_jet2->Fill(jet2.Eta(), w);
+          h_Z_phi_jet2->Fill(jet2.Phi(), w);
+        }
       }
     };
 

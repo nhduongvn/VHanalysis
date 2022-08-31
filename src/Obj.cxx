@@ -95,6 +95,10 @@ class ZObj { // Z Boson
       return m_jets.size();
     }
 
+    JetObj getJet(Int_t idx) {
+      return m_jets.at(idx);
+    }
+
     float DeltaR() {
       return m_jets.at(0).m_lvec.DeltaR(m_jets.at(1).m_lvec);
     }
@@ -135,6 +139,10 @@ class HObj { // Higgs boson
     // Methods
     size_t nJets() {
       return m_jets.size();
+    }
+
+    JetObj getJet(Int_t idx) {
+      return m_jets.at(idx);
     }
 
     float DeltaR() {
