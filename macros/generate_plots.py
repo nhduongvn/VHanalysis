@@ -20,11 +20,12 @@ plots = [ "HMass", "dR_H", "dPhi_H", "H_pt_jet0", "H_eta_jet0", "H_phi_jet0",
 
 x_axis = {
  "HMass": "m_{c#bar{c}}", "dR_H": "#Delta R_{c#bar{c}}",
- "dPhi_H": "#Delta#phi_{H}", "H_pt_jet0": "p_{T,j0}^{H}",
+ "dPhi_H": "#Delta#phi_{c#bar{c}}", "H_pt_jet0": "p_{T,j0}^{H}",
  "H_eta_jet0": "#eta_{j0}^{H}", "H_phi_jet0": "#phi_{j0}^{H}",
  "H_pt_jet1": "p_{T,j1}^{H}", "H_eta_jet1": "#eta_{j1}^{H}", 
  "H_phi_jet1": "#phi_{j1}^{H}", "H_pt_jet2": "p_{T,j2}^{H}",
  "H_eta_jet2": "#eta_{j2}^{H}", "H_phi_jet2": "#phi_{j2}^{H}",
+ "ZMass": "m_{b#bar{b}}",
  "dR_Z": "#Delta R_{b#bar{b}}", "dPhi_Z": "#Delta#phi_{b#bar{b}}",
  "Z_pt_jet0": "p_{T,j0}^{Z}", "Z_eta_jet0": "#eta_{j0}^{Z}", 
  "Z_pZi_jet0": "#pZi_{j0}^{Z}", "Z_pt_jet1": "p_{T,j1}^{Z}", 
@@ -38,6 +39,17 @@ x_axis = {
 gen_plots = ["Higgs_mass", "Higgs_pt", "Higgs_phi", "Z_mass", "Z_pt", "Z_phi",
 "cjet_phi", "bjet_phi", "ljet_phi", "HZ_dPhi", "HZ_dR", "Hc_dR", "Zb_dR", 
 "cc_dR", "bb_dR"]
+
+gen_x_axis = {
+ "Higgs_mass": "m_{H}^{gen}", "Higgs_pt": "p_{T,H}^{gen}",
+ "Higgs_phi": "#phi_{H}^{gen}",
+ "Z_mass": "m_{Z}^{gen}", "Z_pt": "p_{T,Z}^{gen}", "Z_phi": "#phi_{Z}^{gen}",
+ "cjet_phi": "#phi_{c-jet}^{gen}", "bjet_phi": "#phi_{b-jet}^{gen}",
+ "ljet_phi": "#phi_{l-jet}^{gen}", "HZ_dPhi": "#Delta#phi_{HZ}",
+ "HZ_dR": "#Delta R_{HZ}", "Hc_dR": "#Delta R_{Hc}", 
+ "Zb_dR": "#Delta R_{Zb}", "cc_dR": "#Delta R_{cc}",
+ "bb_dR": "#Delta R_{bb}",
+}
 
 ## == Useful Methods ==========================================================
 
@@ -86,7 +98,7 @@ for yr in [18]:
   
   if debug: print "Checking for year " + str(yr) 
   
-  ## Go through each plot/histogram
+  ## == Go through each plot/histogram (Standard Plots) ==
   for plt in plots:
     if debug: print ">> Checking for plot " + plt
 
@@ -139,6 +151,10 @@ for yr in [18]:
     t2 = ROOT.TLatex(); t2.SetNDC()
     t2.SetTextFont(42); t2.SetTextSize(0.04)
     t2.DrawLatex(0.7, 0.93, getLumiStr(yr))
+    
+    t3 = ROOT.TLatex(); t3.SetNDC()
+    t3.SetTextFont(42); t3.SetTextSize(0.04)
+    t3.DrawLatex(0.4, 0.93, "Work in Progress")
     c.Update()
     
     ROOT.gPad.Modified()
@@ -146,5 +162,71 @@ for yr in [18]:
     
     ## Add some necessary labels to our canvas
     ## == LABELS GO HERE ==
-    savepath = "../saved_plots/" + plt + "_20" + str(yr) + ".pdf"
+    savepath = "../saved_plots/" + plt + "_20" + str(yr) + ".png"
+    c.SaveAs(savepath)
+  
+  ## == Go through each plot/histogram (Generator Object Plots) ==
+  for plt in gen_plots:
+    
+    ## Create a stack on which we will stack the plots.
+    hstack = ROOT.THStack("hs", "")
+    legend = ROOT.TLegend(0.75, 0.7, 0.89, 0.89)
+    legend.SetHeader("H#rightarrow cc Productions", "C")
+    legend.SetBorderSize(0)
+
+    ## Go through each sample & pull the proper plot.
+    for sample in samples:
+      
+      ## Make sure we have the proper file path
+      file_name = fileloc + sample + "_20" + str(yr) + ".root"
+      if debug: print ">>>>", file_name   
+      
+      ## Open the file & pull out the desired plot
+      f = ROOT.TFile.Open(file_name, "read")
+      hist_name = "GenObj_" + plt
+      hist_data = f.Get(hist_name)
+      ROOT.gROOT.cd()
+      hnew = hist_data.Clone()
+
+      ## Modify the histogram (scale & rebin it)
+      hnew.SetFillColor(colors[sample])
+      if shouldScaleToLumi:
+        scale = scaleToLumi(file_name, xSec[sample][yr], lumi[yr])
+        hnew.Scale(scale)
+      hnew.GetYaxis().SetTitle("Events")
+      if plt in x_axis:
+        hnew.GetXaxis().SetTitle(x_axis[plt])
+     
+      legend.AddEntry(hnew, sample, "f")
+      ## Draw the histogram to the canvas
+      hstack.Add(hnew)
+   
+    ## Make a canvas and add our stack to it.
+    c = ROOT.TCanvas()
+    c.cd()
+    hstack.Draw("HIST")
+    hstack.GetYaxis().SetTitle("Events")
+    if plt in gen_x_axis:
+      hstack.GetXaxis().SetTitle(gen_x_axis[plt])
+    legend.Draw("same")
+    
+    ## Add some necessary labels
+    t = ROOT.TLatex(); t.SetNDC()
+    t.DrawLatex(0.1, 0.92, "CMS")
+    
+    t2 = ROOT.TLatex(); t2.SetNDC()
+    t2.SetTextFont(42); t2.SetTextSize(0.04)
+    t2.DrawLatex(0.7, 0.93, getLumiStr(yr))
+    
+    t3 = ROOT.TLatex(); t3.SetNDC()
+    t3.SetTextFont(42); t3.SetTextSize(0.04)
+    t3.DrawLatex(0.4, 0.93, "Work in Progress")
+    c.Update()
+    
+    ROOT.gPad.Modified()
+    ROOT.gPad.Update()
+    
+    ## Add some necessary labels to our canvas
+    ## == LABELS GO HERE ==
+    savepath = "../saved_plots/generator_" + plt + "_20" + str(yr) + ".png"
     c.SaveAs(savepath)
