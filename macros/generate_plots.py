@@ -20,6 +20,8 @@ plots = [ "HMass", "dR_H", "dPhi_H", "H_pt_jet0", "H_eta_jet0", "H_phi_jet0",
 
 x_axis = {
  "HMass": "m_{c#bar{c}}", "dR_H": "#Delta R_{c#bar{c}}",
+ "dPhi_H": "#Delta#phi_H", "H_pt_jet0": "p_{T,j0}^{H}",
+ "H_eta_jet0": "#eta_{j0}^{H}", "H_phi_jet0": "#phi_{j0}^{H}",
 }
 
 gen_plots = ["Higgs_mass", "Higgs_pt", "Higgs_phi", "Z_mass", "Z_pt", "Z_phi",
@@ -60,8 +62,8 @@ for yr in [18]:
   for plt in plots:
     if debug: print ">> Checking for plot " + plt
 
-    ## Create a canvas on which we will stack the plots.
-    c = ROOT.TCanvas()
+    ## Create a stack on which we will stack the plots.
+    hstack = ROOT.THStack()
 
     ## Go through each sample & pull the proper plot.
     for sample in samples:
@@ -76,11 +78,17 @@ for yr in [18]:
       hist_data = f.Get(hist_name)
 
       ## Modify the histogram (scale & rebin it)
-      ## == CODE TO GO HERE == 
+      hist_data.SetFillStyle(1001);
+      hist_data.SetFillColor(colors[sample])
+      hist_data.SetLineColor(colors[sample])
      
       ## Draw the histogram to the canvas
       hist_data.Draw()
    
+    ## Make a canvas and add our stack to it.
+    c = ROOT.TCanvas()
+    hstack.Draw()
+    
     ## Add some necessary labels to our canvas
     ## == LABELS GO HERE ==
     savepath = "../saved_plots/" + plt + "_20" + str(yr) + ".pdf"
