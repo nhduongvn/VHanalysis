@@ -268,6 +268,9 @@ class GenPlots
       h_cc_dR = new TH1D(name + "_cc_dR", "", NBIN_DR, X_DR[0], X_DR[1]);
       h_bb_dR = new TH1D(name + "_bb_dR", "", NBIN_DR, X_DR[0], X_DR[1]);
       h_ll_dR = new TH1D(name + "_ll_dR", "", NBIN_DR, X_DR[0], X_DR[1]);
+
+      h_cc_dPhi = new TH1D(name + "_cc_dPhi", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
+      h_bb_dPhi = new TH1D(name + "_bb_dPhi", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
     };
 
     void Fill(GenObj* H, GenObj* Z, float w=1) {
@@ -295,6 +298,8 @@ class GenPlots
           for (Int_t j = i + 1; j < jets.size(); ++j) {
             float dR = jets.at(i).m_lvec.DeltaR(jets.at(j).m_lvec);
             h_cc_dR->Fill(dR, w);
+            float dPhi = jets.at(i).m_lvec.DeltaPhi(jets.at(j).m_lvec);
+            h_cc_dPhi->Fill(dPhi, w);
           }
         }
       }
@@ -320,7 +325,11 @@ class GenPlots
         for (Int_t i = 0; i < jets.size(); ++i) {
           for (Int_t j = 0; j < jets.size(); ++j) {
             float dR = jets.at(i).m_lvec.DeltaR(jets.at(j).m_lvec);
-            if (jetID == 5) h_bb_dR->Fill(dR, w);
+            float dPhi = jets.at(i).m_lvec.DeltaPhi(jets.at(j).m_lvec);
+            if (jetID == 5){
+              h_bb_dR->Fill(dR, w);
+              h_bb_dPhi->Fill(dPhi, w);
+            }
             else if (jetID == 4) h_cc_dR->Fill(dR, w);
             else h_ll_dR->Fill(dR, w);
           }
@@ -340,6 +349,7 @@ class GenPlots
       histolist.push_back(h_Zb_dR); histolist.push_back(h_Zl_dR);
 
       histolist.push_back(h_cc_dR); histolist.push_back(h_bb_dR); histolist.push_back(h_ll_dR);
+      histolist.push_back(h_cc_dPhi); histolist.push_back(h_bb_dPhi);
       return histolist;
     }
 
@@ -368,6 +378,8 @@ class GenPlots
     TH1D* h_cc_dR;        //R separation of c-jets
     TH1D* h_bb_dR;        //R separation of b-jets
     TH1D* h_ll_dR;        //R separation of l-jets
+    TH1D* h_cc_dPhi;      //Phi separation of c-jets
+    TH1D* h_bb_dPhi;      //Phi separation of b-jets
 } ;
 
 #endif

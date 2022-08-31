@@ -38,7 +38,7 @@ x_axis = {
 
 gen_plots = ["Higgs_mass", "Higgs_pt", "Higgs_phi", "Z_mass", "Z_pt", "Z_phi",
 "cjet_phi", "bjet_phi", "ljet_phi", "HZ_dPhi", "HZ_dR", "Hc_dR", "Zb_dR", 
-"cc_dR", "bb_dR"]
+"cc_dR", "bb_dR", "cc_dPhi", "bb_dPhi"]
 
 gen_x_axis = {
  "Higgs_mass": "m_{H}^{gen}", "Higgs_pt": "p_{T,H}^{gen}",
@@ -48,7 +48,8 @@ gen_x_axis = {
  "ljet_phi": "#phi_{l-jet}^{gen}", "HZ_dPhi": "#Delta#phi_{HZ}",
  "HZ_dR": "#Delta R_{HZ}", "Hc_dR": "#Delta R_{Hc}", 
  "Zb_dR": "#Delta R_{Zb}", "cc_dR": "#Delta R_{cc}",
- "bb_dR": "#Delta R_{bb}",
+ "bb_dR": "#Delta R_{bb}", "cc_dPhi": "#Delta#phi_{cc}^{gen}",
+ "bb_dPhi": "#Delta#phi_{bb}^{gen}",
 }
 
 ## == Useful Methods ==========================================================
