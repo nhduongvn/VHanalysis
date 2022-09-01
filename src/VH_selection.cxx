@@ -129,6 +129,7 @@ void VH_selection::Process(Reader* r) {
   GenObj* genZ;
   GenObj* genHiggs;
 
+  Int_t nHiggs, nZ;
   for (unsigned int i = 0; i < *(r->nGenPart); ++i) {
     
     // Get the PDG ID and keep this particle if it's what we want.
@@ -137,6 +138,7 @@ void VH_selection::Process(Reader* r) {
 
     // See if it's a Z boson
     if (abs(pdgID) == 23) {
+      nZ++;
       genZ = new GenObj(pdgID, (r->GenPart_pt)[i], (r->GenPart_eta)[i],
                  (r->GenPart_phi)[i], (r->GenPart_mass)[i], i,
                  (r->GenPart_genPartIdxMother)[i], (r->GenPart_status)[i]);
@@ -144,11 +146,14 @@ void VH_selection::Process(Reader* r) {
 
     // See if it's a Higgs boson
     if (abs(pdgID) == 25) {
+      nHiggs++;
       genHiggs = new GenObj(pdgID, (r->GenPart_pt)[i], (r->GenPart_eta)[i],
                      (r->GenPart_phi)[i], (r->GenPart_mass)[i], i,
                      (r->GenPart_genPartIdxMother)[i], (r->GenPart_status)[i]);
     }
   }  
+
+  h_GenPlots->FillMult(nHiggs, nZ, evtW);
 
   //== Event Selection ========================================================
   h_evt_cutflow->Fill(1);  // all events
@@ -159,7 +164,7 @@ void VH_selection::Process(Reader* r) {
   if (genZ != NULL and genHiggs != NULL) {
     h_evt_cutflow->Fill(2); // theoretically all events
 
-    h_GenPlots->Fill(genHiggs, genZ);
+    h_GenPlots->Fill(genHiggs, genZ, evtW);
   }  
 
   // Select the types of jets
@@ -169,25 +174,26 @@ void VH_selection::Process(Reader* r) {
     else if (it.m_flav == 4) cjets.push_back(it);
     else if (it.m_flav >= 0) ljets.push_back(it);
 
-    h_flavor_jet->Fill(it.m_flav);
+    h_flavor_jet->Fill(it.m_flav, evtW);
   } 
 
-  h_Nbjet->Fill(bjets.size());
-  h_Ncjet->Fill(cjets.size());
-  h_Nljet->Fill(ljets.size());
+  h_Nbjet->Fill(bjets.size(), evtW);
+  h_Ncjet->Fill(cjets.size(), evtW);
+  h_Nljet->Fill(ljets.size(), evtW);
 
   //== Handle Stuff Related to the Jets & Gen Objects here ==
-  h_GenPlots->FillJets(genHiggs, cjets, 4);
-  h_GenPlots->FillJets(genZ, bjets, 5);
-  h_GenPlots->FillJets(genZ, cjets, 4);
-  h_GenPlots->FillJets(genZ, ljets, 0);
+  h_GenPlots->FillJets(genHiggs, bjets, 5, evtW);
+  h_GenPlots->FillJets(genHiggs, cjets, 4, evtW);
+  h_GenPlots->FillJets(genZ, bjets, 5, evtW);
+  h_GenPlots->FillJets(genZ, cjets, 4, evtW);
+  h_GenPlots->FillJets(genZ, ljets, 0, evtW);
 
   float dRcut = TMath::Pi()/2;
   // ==== Start of Actual Selections ====
   // Note: In each case, we have Higgs forced to CC, so we never need
   // a secondary check for the Higgs jets.
   std::vector<JetObj> Hjets = GenObj::get_proper_jets(cjets, genHiggs, dRcut);
-  h_Higgs_nJet->Fill(Hjets.size());
+  h_Higgs_nJet->Fill(Hjets.size(), evtW);
   if (Hjets.size() >= 2) {
 
     h_evt_cutflow->Fill(3); // passed jet requirement (H)
@@ -199,7 +205,7 @@ void VH_selection::Process(Reader* r) {
       h_evt_cutflow->Fill(4); //passed jet requirement (Z)
       ZObj Z(Zjets); // Reconstruct the Z boson
       
-      h_VH->Fill(H, Z);
+      h_VH->Fill(H, Z, evtW);
 
     }//end-Z-Selection
   }//end-Higgs-Selection
