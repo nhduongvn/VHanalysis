@@ -266,3 +266,6 @@ for yr in [18]:
     ## == LABELS GO HERE ==
     savepath = "../saved_plots/" + scale + "/generator_" + plt + "_20" + str(yr) + ".png"
     c.SaveAs(savepath)
+  
+  ## == Make sure to get the event cutflow too ==
+  
