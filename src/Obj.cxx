@@ -4,6 +4,7 @@
 //The objects are wrapper so that the analysis is independent on variable name on the ntuple, only when the objects are created such dependences occur 
 
 #include "TLorentzVector.h"
+#include <math.h> 
 
 //-------------------------------objs------------------------------
 class LepObj { // Lepton
@@ -34,9 +35,8 @@ class JetObj { // Jets
   public:
     
     // Constructor & Deconstructor
-    JetObj(float pt, float eta, float phi, float mass, unsigned flav, 
-           float deepCSV, float deepJet, float PUjetID) : m_flav(flav), m_deepCSV(deepCSV), m_deepJet(deepJet), m_puid(PUjetID)  {
-              m_lvec.SetPtEtaPhiM(pt, eta, phi, mass) ; 
+    JetObj(float pt, float eta, float phi, float mass, unsigned flav, float deepCSV, float PUjetID) : m_flav(flav), m_deepCSV(deepCSV), m_puid(PUjetID)  {
+              m_lvec.SetPtEtaPhiM(pt, eta, phi, mass) ;
     } ;
 
     virtual ~JetObj() {} ;
@@ -67,13 +67,36 @@ class JetObj { // Jets
 
     // Variables
     TLorentzVector m_lvec ; // 4-vector
-    unsigned m_flav ;       // jet flavor
-    float m_deepCSV ;       // DeepCSV value
-    float m_deepJet ;       // DeepJet value
-    unsigned m_svIdx ;      // SV index
+    unsigned m_flav;       // jet flavor
+    float m_deepCSV;
+    unsigned m_svIdx;      // SV index
     float m_mSV;            // SV mass
     float m_puid;           // PU ID
 
+} ;
+
+class JetObjBoosted: public JetObj {
+  
+  public:
+  
+    JetObjBoosted(float pt, float eta, float phi, float mass, unsigned flav, float DDCvB, float DDCvL, float DDBvL, float DT_ZHccvsQCD, float DT_ZbbvsQCD, float PN_HccvsQCD, float n2b1, float PUjetID):
+    JetObj(pt, eta, phi, mass, flav, -1, PUjetID), 
+    m_DDCvB(DDCvB), m_DDCvL(DDCvL), m_DDBvL(DDBvL), 
+    m_DT_ZHccvsQCD(DT_ZHccvsQCD), m_DT_ZbbvsQCD(DT_ZbbvsQCD),
+    m_PN_HccvsQCD(PN_HccvsQCD),
+    m_n2b1(n2b1) {
+      m_rho = -10;
+      if(pt>0 && mass>0) m_rho = 2*log(mass/pt);
+    };
+    virtual ~JetObjBoosted() {} ;
+    float m_DDCvB;       // DeepDoubCvsB value
+    float m_DDCvL;       // DeepDoubCvsL value
+    float m_DDBvL;       // DeepDoubBvsL value
+    float m_DT_ZHccvsQCD;//FatJet_deepTagMD_ZHccvsQCD
+    float m_DT_ZbbvsQCD;//FatJet_deepTagMD_ZbbvsQCD
+    float m_PN_HccvsQCD;//FatJet_particleNet_HccvsQCD
+    float m_n2b1;
+    float m_rho;
 } ;
 
 
@@ -87,6 +110,12 @@ class ZObj { // Z Boson
         m_lvec += jetlist.at(idx).m_lvec;
       }
     }
+
+    ZObj(JetObj jet) {
+      m_jets.push_back(jet);
+      m_lvec = jet.m_lvec;
+    }
+
   
     virtual ~ZObj() {} ;
 
@@ -127,6 +156,11 @@ class HObj { // Higgs boson
       for (int idx = 0; idx < jetlist.size(); ++idx) {
         m_lvec += jetlist.at(idx).m_lvec;
       }
+    }
+
+    HObj(JetObj jet) {
+      m_jets.push_back(jet);
+      m_lvec = jet.m_lvec;
     }
 
     virtual ~HObj() {} ;

@@ -47,6 +47,27 @@ public :
    TTreeReaderArray<Float_t> Jet_btagDeepFlavB = {fReader, "Jet_btagDeepFlavB"};
    TTreeReaderArray<Float_t> Jet_puIdDisc = {fReader, "Jet_puIdDisc"};
 
+   //FatJet
+   TTreeReaderValue<UInt_t> nFatJet = {fReader, "nFatJet"};
+   TTreeReaderArray<Float_t> FatJet_pt = {fReader, "FatJet_pt"};
+   TTreeReaderArray<Float_t> FatJet_eta = {fReader, "FatJet_eta"};
+   TTreeReaderArray<Float_t> FatJet_phi = {fReader, "FatJet_phi"};
+   TTreeReaderArray<Float_t> FatJet_mass = {fReader, "FatJet_mass"};
+   TTreeReaderArray<Float_t> FatJet_n2b1 = {fReader, "FatJet_n2b1"};
+#if defined(NANOAODV7)
+   TTreeReaderArray<Float_t> FatJet_btagDDCvB = {fReader, "FatJet_btagDDCvB"};
+   TTreeReaderArray<Float_t> FatJet_btagDDCvL = {fReader, "FatJet_btagDDCvL"};
+   TTreeReaderArray<Float_t> FatJet_btagDDBvL = {fReader, "FatJet_btagDDBvL"};
+#endif
+#if defined(NANOAODV9)
+   TTreeReaderArray<Float_t> FatJet_btagDDCvB = {fReader, "FatJet_btagDDCvBV2"};
+   TTreeReaderArray<Float_t> FatJet_btagDDCvL = {fReader, "FatJet_btagDDCvLV2"};
+   TTreeReaderArray<Float_t> FatJet_btagDDBvL = {fReader, "FatJet_btagDDBvLV2"};
+#endif
+   TTreeReaderArray<Float_t> FatJet_deepTagMD_ZHccvsQCD = {fReader, "FatJet_deepTagMD_ZHccvsQCD"};
+   TTreeReaderArray<Float_t> FatJet_deepTagMD_ZbbvsQCD = {fReader, "FatJet_deepTagMD_ZbbvsQCD"};
+   
+
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
    TTreeReaderValue<Float_t> Pileup_nTrueInt = {fReader, "Pileup_nTrueInt"};
    TTreeReaderValue<Float_t> genWeight = {fReader, "genWeight"};
@@ -72,6 +93,9 @@ public :
    TTreeReaderArray<Int_t> Muon_charge = {fReader, "Muon_charge"};
    TTreeReaderArray<Float_t> Muon_pfRelIso04_all = {fReader, "Muon_pfRelIso04_all"};
    TTreeReaderArray<Bool_t> Muon_mediumId = {fReader, "Muon_mediumId"};
+
+   //MET
+   TTreeReaderValue<Float_t> MET_pt = {fReader, "MET_pt"};
 
    Reader(TTree * /*tree*/ =0) {}
 

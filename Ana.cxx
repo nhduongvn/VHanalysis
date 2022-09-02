@@ -7,6 +7,7 @@
 #include "src/Processor.h"
 #include "src/Selector.h"
 #include "src/VH_selection.h"
+#include "src/VbbHcc_selector.h"
 
 #include "src/Global.h"
 
@@ -172,6 +173,7 @@ int main(int argc, char *argv[]) {
   
   //Selection for VH 
   VH_selection sel ;
+  VbbHcc_selector VbbHcc_sel ;
 
   std::string fName_puSF;
   std::string fName_PUjetID_SF;
@@ -180,6 +182,8 @@ int main(int argc, char *argv[]) {
   //Syst
   if (syst == "L1PREFIRINGU") sel.SetL1prefiring("l1prefiringu");
   if (syst == "L1PREFIRINGD") sel.SetL1prefiring("l1prefiringd");
+  if (syst == "L1PREFIRINGU") VbbHcc_sel.SetL1prefiring("l1prefiringu");
+  if (syst == "L1PREFIRINGD") VbbHcc_sel.SetL1prefiring("l1prefiringd");
   std::string jetPUidUncType = "central";
   if (syst == "JETPUIDU") jetPUidUncType = "up";
   if (syst == "JETPUIDD") jetPUidUncType = "down";
@@ -218,16 +222,21 @@ int main(int argc, char *argv[]) {
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
   sel.SetCentralGenWeight(centralGenWeight);
   sel.SetPileupSF(fName_puSF);
+  VbbHcc_sel.SetCentralGenWeight(centralGenWeight);
+  VbbHcc_sel.SetPileupSF(fName_puSF);
   fName_PUjetID_SF = "CalibData/scalefactorsPUID_81Xtraining.root";
   fName_PUjetID_eff = "CalibData/effcyPUID_81Xtraining.root";
   sel.SetPUjetidCalib(fName_PUjetID_SF,fName_PUjetID_eff,jetPUidUncType); //pileup jet ID SF
+  VbbHcc_sel.SetPUjetidCalib(fName_PUjetID_SF,fName_PUjetID_eff,jetPUidUncType); //pileup jet ID SF
 #endif
 #if defined(DATA_2016) || defined(DATA_2017) || defined(DATA_2018)
   sel.SetLumiMaskFilter(fName_lumiMaskFilter);
+  VbbHcc_sel.SetLumiMaskFilter(fName_lumiMaskFilter);
 #endif
 
 
   sels.push_back(&sel) ;
+  sels.push_back(&VbbHcc_sel);
   
   //add all selectors to processors
   for (std::vector<Selector*>::iterator it = sels.begin() ; it != sels.end() ; it++) ana.addSelector(*it) ;
