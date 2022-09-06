@@ -4,7 +4,6 @@
 //The objects are wrapper so that the analysis is independent on variable name on the ntuple, only when the objects are created such dependences occur 
 
 #include "TLorentzVector.h"
-#include <math.h> 
 
 //-------------------------------objs------------------------------
 class LepObj { // Lepton
@@ -26,7 +25,7 @@ class LepObj { // Lepton
     unsigned m_idx ; // index
     int m_charge ;   // charge
     float m_iso ;    // isolation
-    int m_objIdx = 1;
+    
 } ;
 
 
@@ -35,8 +34,9 @@ class JetObj { // Jets
   public:
     
     // Constructor & Deconstructor
-    JetObj(float pt, float eta, float phi, float mass, unsigned flav, float deepCSV, float PUjetID) : m_flav(flav), m_deepCSV(deepCSV), m_puid(PUjetID)  {
-              m_lvec.SetPtEtaPhiM(pt, eta, phi, mass) ;
+    JetObj(float pt, float eta, float phi, float mass, unsigned flav, 
+           float deepCSV, float deepJet, float PUjetID) : m_flav(flav), m_deepCSV(deepCSV), m_deepJet(deepJet), m_puid(PUjetID)  {
+              m_lvec.SetPtEtaPhiM(pt, eta, phi, mass) ; 
     } ;
 
     virtual ~JetObj() {} ;
@@ -67,36 +67,13 @@ class JetObj { // Jets
 
     // Variables
     TLorentzVector m_lvec ; // 4-vector
-    unsigned m_flav;       // jet flavor
-    float m_deepCSV;
-    unsigned m_svIdx;      // SV index
+    unsigned m_flav ;       // jet flavor
+    float m_deepCSV ;       // DeepCSV value
+    float m_deepJet ;       // DeepJet value
+    unsigned m_svIdx ;      // SV index
     float m_mSV;            // SV mass
     float m_puid;           // PU ID
 
-} ;
-
-class JetObjBoosted: public JetObj {
-  
-  public:
-  
-    JetObjBoosted(float pt, float eta, float phi, float mass, unsigned flav, float DDCvB, float DDCvL, float DDBvL, float DT_ZHccvsQCD, float DT_ZbbvsQCD, float PN_HccvsQCD, float n2b1, float PUjetID):
-    JetObj(pt, eta, phi, mass, flav, -1, PUjetID), 
-    m_DDCvB(DDCvB), m_DDCvL(DDCvL), m_DDBvL(DDBvL), 
-    m_DT_ZHccvsQCD(DT_ZHccvsQCD), m_DT_ZbbvsQCD(DT_ZbbvsQCD),
-    m_PN_HccvsQCD(PN_HccvsQCD),
-    m_n2b1(n2b1) {
-      m_rho = -10;
-      if(pt>0 && mass>0) m_rho = 2*log(mass/pt);
-    };
-    virtual ~JetObjBoosted() {} ;
-    float m_DDCvB;       // DeepDoubCvsB value
-    float m_DDCvL;       // DeepDoubCvsL value
-    float m_DDBvL;       // DeepDoubBvsL value
-    float m_DT_ZHccvsQCD;//FatJet_deepTagMD_ZHccvsQCD
-    float m_DT_ZbbvsQCD;//FatJet_deepTagMD_ZbbvsQCD
-    float m_PN_HccvsQCD;//FatJet_particleNet_HccvsQCD
-    float m_n2b1;
-    float m_rho;
 } ;
 
 
@@ -106,22 +83,20 @@ class ZObj { // Z Boson
 
     // Constructor & Deconstructor
     ZObj(std::vector<JetObj> jetlist) : m_jets(jetlist) {
-      for (int idx = 0; idx < jetlist.size(); ++idx) {
+      for (size_t idx = 0; idx < jetlist.size(); ++idx) {
         m_lvec += jetlist.at(idx).m_lvec;
       }
     }
-
-    ZObj(JetObj jet) {
-      m_jets.push_back(jet);
-      m_lvec = jet.m_lvec;
-    }
-
   
     virtual ~ZObj() {} ;
 
     // Methods
     size_t nJets() {
       return m_jets.size();
+    }
+
+    JetObj getJet(Int_t idx) {
+      return m_jets.at(idx);
     }
 
     float DeltaR() {
@@ -133,6 +108,7 @@ class ZObj { // Z Boson
       if ((x <= TMath::Pi() && x >= 0) or (x<0 && x > -TMath::Pi())) return x;
       else if (x >= TMath::Pi()) return DphiC(x-2*TMath::Pi());
       else if (x < -TMath::Pi()) return DphiC(x+2*TMath::Pi());
+      return 0; // make sure we return a value
     }
     
     float DPhi() {
@@ -151,16 +127,11 @@ class HObj { // Higgs boson
 
   public:
 
-    // Constructro & Deconstructor
+    // Constructor & Deconstructor
     HObj(std::vector<JetObj> jetlist) : m_jets(jetlist) {
-      for (int idx = 0; idx < jetlist.size(); ++idx) {
+      for (size_t idx = 0; idx < jetlist.size(); ++idx) {
         m_lvec += jetlist.at(idx).m_lvec;
       }
-    }
-
-    HObj(JetObj jet) {
-      m_jets.push_back(jet);
-      m_lvec = jet.m_lvec;
     }
 
     virtual ~HObj() {} ;
@@ -168,6 +139,10 @@ class HObj { // Higgs boson
     // Methods
     size_t nJets() {
       return m_jets.size();
+    }
+
+    JetObj getJet(Int_t idx) {
+      return m_jets.at(idx);
     }
 
     float DeltaR() {
@@ -179,6 +154,7 @@ class HObj { // Higgs boson
       if ((x <= TMath::Pi() && x >= 0) or (x<0 && x > -TMath::Pi())) return x;
       else if (x >= TMath::Pi()) return DphiC(x-2*TMath::Pi());
       else if (x < -TMath::Pi()) return DphiC(x+2*TMath::Pi());
+      return 0; // make sure we return a value
     }
 
     float DPhi() {
@@ -190,7 +166,39 @@ class HObj { // Higgs boson
     // Variables
     TLorentzVector m_lvec;      // 4-vector
     std::vector<JetObj> m_jets; // list of jets that compose Higgs boson
-} ;
+};
+
+class GenObj { // Generator Objects
+
+  public:
+    
+    // Constructor & Deconstructor
+    GenObj(int pdgID, float pt, float eta, float phi, float mass, unsigned idx,
+           int mother, int status) : m_pdgID(pdgID), m_idx(idx), m_motherID(mother),
+           m_status(status) {
+             m_lvec.SetPtEtaPhiM(pt, eta, phi, mass);
+    };
+    virtual ~GenObj() {};
+
+    // Variables
+    TLorentzVector m_lvec; //4-vector
+    int m_pdgID;
+    unsigned m_idx;
+    int m_motherID;
+    int m_status;
+    
+    //Methods
+    static std::vector<JetObj> get_proper_jets(std::vector<JetObj>& arr, GenObj* gen_obj,
+    float dRcut) {
+      std::vector<JetObj> constituents;
+      for (size_t i = 0; i < arr.size(); ++i) {
+        float dR = gen_obj->m_lvec.DeltaR(arr.at(i).m_lvec);
+        if (dR < dRcut) constituents.push_back(arr.at(i));
+      }
+ 
+      return constituents;
+    }
+};
 
 
 #endif

@@ -3,7 +3,7 @@ import json
 import time
 
 #def write_condor_config(workDir,sample_format,sample_format_processing, data_name, name_output_dir, nJob, syst='none', compile_with_pdfscalesyst='NONE', compile_for_sherpa='NOTSHERPA', debug = False):
-def write_condor_config(workDir,sample_format, data_name, name_output_dir, nJob, syst='none', centralGenWeight=0, debug = False):
+def write_condor_config(workDir,sample_format, nanoaod_format, data_name, name_output_dir, nJob, syst='none', centralGenWeight=0, debug = False):
   exe_fileName = 'exe_' + data_name + '.sh'
   if syst != 'none':
     exe_fileName = 'exe_' + syst + '_' + data_name + '.sh'
@@ -39,7 +39,7 @@ def write_condor_config(workDir,sample_format, data_name, name_output_dir, nJob,
   f.write('tar -xvf input.tar \n')
 #  f.write('make clean \n')
 #  f.write('make FORMAT='+sample_format+' FORMATPROCESSING='+sample_format_processing+' INPUT=TCHAIN'+' PDFSCALESYST='+compile_with_pdfscalesyst+' SHERPA='+compile_for_sherpa+'\n')
-  f.write('make FORMAT='+sample_format+' INPUT=TCHAIN'+'\n')
+  f.write('make FORMAT='+sample_format+' NANOAOD='+nanoaod_format+' INPUT=TCHAIN'+'\n')
 
   sampleType = '0'
   if 'DATA' in sample_format:
@@ -77,7 +77,7 @@ def make_input_file_list(nFile, outDir_file_list, file_list_name):
 
 
 #///////////////////////////////////////////////////////////////////
-runMode = 0 #0: submit, 1: check output and hadd output file
+runMode = 1 #0: submit, 1: check output and hadd output file
 submit = True# for testing setup or executing submission 
 debug = False   # just run on 10000 
 
@@ -93,8 +93,9 @@ outputDir_eos = '/store/user/duong/Output_VH/'+syst+'/'
 outputDir_scratch = '/uscmst1b_scratch/lpc1/lpctrig/duong//Output_VH/'+syst+'/'
 
 #Input data sets
-#dataSet_list = sourceDir+"/Dataset_lists/datasets_JetHT.json" #data
-dataSet_list = sourceDir+"/Dataset_lists/datasets_MC.json" #data
+#dataSet_list = sourceDir+"/Dataset_lists/datasets_JetHT_combined.txt" #data
+#dataSet_list = sourceDir+"/Dataset_lists/datasets_NANOAODv9_MC.txt" #all except Hcc
+dataSet_list = sourceDir+"/Dataset_lists/datasets_HToCC_NANOAODv7_MC.txt" #data
 nFile = 2
 dir_file_list = sourceDir+'/FileLists/'
 
@@ -125,7 +126,10 @@ samples = json.load(json_file)
 lines = samples.keys() 
 
 sample_format = ''
+nanoaod_format= ''
+
 dir_affix = 'test'
+
 
 for line in lines:
   if len(samples_input) > 0 and line not in samples_input: continue
@@ -137,7 +141,10 @@ for line in lines:
   if syst != 'none':
     work_dir = condorRunDir+'/condor_run_'+syst+'/' + data_name + '_' + dir_affix
 
-  sample_format = data_name.split('_')[-2] + '_' + data_name.split('_')[-1] 
+  sample_format = data_name.split('_')[-2] + '_' + data_name.split('_')[-1]
+  nanoaod_format='NANOAODV9'
+  if 'HToCC' in data_name:
+    nanoaod_format='NANOAODV7'
   
   #create output directories on eos
   dir_final_rootFile = outputDir_eos + '/' + data_name
@@ -169,7 +176,7 @@ for line in lines:
     nJob = make_input_file_list(nFile, work_dir, file_list_name)
     
     #prepare condor job configuration
-    write_condor_config(work_dir, sample_format, data_name, dir_final_rootFile, nJob, syst, centralGenWeight, debug)
+    write_condor_config(work_dir, sample_format, nanoaod_format, data_name, dir_final_rootFile, nJob, syst, centralGenWeight, debug)
     
     #copy codes, ....
     os.system('cp '+sourceDir+'/Makefile ' + work_dir)
