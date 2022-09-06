@@ -68,7 +68,8 @@ class JetObj { // Jets
     // Variables
     TLorentzVector m_lvec ; // 4-vector
     unsigned m_flav;       // jet flavor
-    float m_deepCSV;
+    float m_deepCSV;       // b-tagging
+    float m_deepCvL;       // c-tagging
     unsigned m_svIdx;      // SV index
     float m_mSV;            // SV mass
     float m_puid;           // PU ID

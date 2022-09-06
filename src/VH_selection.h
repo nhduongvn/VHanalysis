@@ -27,25 +27,9 @@ private:
   TH1D* h_evt;
   
   VHPlots* h_VH ;
-  VHPlots* h_VH_Zqq ;
-  VHPlots* h_VH_Zbb ;
-  VHPlots* h_VH_Zcc ;
-  VHPlots* h_VH_Zll ;
-
-  GenPlots* h_GenPlots;
-
-  TH1D* h_flavor_jet;
-  TH1D* h_Nbjet;
-  TH1D* h_Ncjet;
-  TH1D* h_Nljet;
-  TH1D* h_Higgs_nJet;
-
+  
   TH1D* h_evt_cutflow;
-  TH1D* h_evtCC_cutflow;
-  TH1D* h_evtBB_cutflow;
-  TH1D* h_evtLL_cutflow;
-  TH1D* h_elec_cutflow;
-  TH1D* h_muon_cutflow;
+  TH1D* h_jet_cutflow;
 } ;
 
 #endif

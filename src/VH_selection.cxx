@@ -17,56 +17,40 @@ VH_selection::~VH_selection() {
 
 void VH_selection::SlaveBegin(Reader* r) {
   
-  h_evt = new TH1D("Nevt","",4,-1.5,2.5) ; //bin 1: total negative weight events, bin 2: total positive weight events, bin 3: total event weighted by genWeight (= bin2 - bin1, if genWeight are always -1,1
+  // Set up the plots we want
+  h_evt = new TH1D("Nevt_VbbHcc","",4,-1.5,2.5) ; //bin 1: total negative weight events
+                                                  // bin 2: total positive weight events
+                                                  // bin 3: total event weighted by genWeight
+                                                  // (= bin2 - bin1, if genWeight are always -1,1
 
-  h_VH = new VHPlots("VbbHcc") ;
-  h_GenPlots = new GenPlots("GenObj") ;
+  h_VH = new VHPlots("VbbHcc");
 
-  h_flavor_jet = new TH1D("flavor_jet", "", 25, -1.5, 23.5);
-  h_Nbjet = new TH1D("Nbjet", "", 13, -0.5, 12.5);
-  h_Ncjet = new TH1D("Ncjet", "", 13, -0.5, 12.5);
-  h_Nljet = new TH1D("Nljet", "", 13, -0.5, 12.5);
+  // Cut flow to select events for analysis
+  h_evt_cutflow = new TH1D("CutFlow_VbbHcc", "", 7, 0, 7);
+  h_evt_cutflow->GetXaxis()->SetBinLabel(1, "Total");
+  h_evt_cutflow->GetXaxis()->SetBinLabel(2, "Passed jet requirements");
+  h_evt_cutflow->GetXaxis()->SetBinLabel(3, "Passed b-tagging for Z candidate");
+  h_evt_cutflow->GetXaxis()->SetBinLabel(4, "Passed c-tagging for H candidate");
+  h_evt_cutflow->GetXaxis()->SetBinLabel(5, "Passed MET cut");
+  h_evt_cutflow->GetXaxis()->SetBinLabel(6, "Passed V pT cut");
+  h_evt_cutflow->GetXaxis()->SetBinLabel(7, "Passed dPhi cut");
 
-  h_Higgs_nJet = new TH1D("Higgs_nJet", "", 13, -0.5, 12.5);
-  h_evt_cutflow = new TH1D("evt_cutflow", "", 13, -0.5, 12.5);
-  h_elec_cutflow = new TH1D("elec_cutflow", "", 10, -0.5, 9.5);
-  h_muon_cutflow = new TH1D("muon_cutflow", "", 10, -0.5, 9.5);
-
+  // Cut flow to select jets for event
+  h_jet_cutflow = new TH1D("CutFlow_jets", "", 4, 0, 4);
+  h_jet_cutflow->GetXaxis()->SetBinLabel(1, "Total");
+  h_jet_cutflow->GetXaxis()->SetBinLabel(2, "pT cut");
+  h_jet_cutflow->GetXaxis()->SetBinLabel(3, "eta cut");
+  h_jet_cutflow->GetXaxis()->SetBinLabel(4, "iso req");
+  
   //Add histograms to fOutput so they can be saved in Processor::SlaveTerminate
   r->GetOutputList()->Add(h_evt) ;
   std::vector<TH1*> tmp = h_VH->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_GenPlots->returnHisto() ;
-  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   
   r->GetOutputList()->Add(h_evt_cutflow);
-  r->GetOutputList()->Add(h_elec_cutflow);
-  r->GetOutputList()->Add(h_muon_cutflow);
+  r->GetOutputList()->Add(h_jet_cutflow);
+}//end-SlaveBegin
 
-  r->GetOutputList()->Add(h_flavor_jet);
-  r->GetOutputList()->Add(h_Nbjet);
-  r->GetOutputList()->Add(h_Ncjet);
-  r->GetOutputList()->Add(h_Nljet);
-  r->GetOutputList()->Add(h_Higgs_nJet); 
- 
-  const Int_t nevt = 12;
-  const Int_t nx = 4, nx1 = 4;
-  const char *evt_cut[nevt] = { "All Events", "Pass Lepton Selection",
-    "Jet requirements", "p_{T}^{miss} filter", "Jet ID", "Pass b-tag selection", 
-    "N_2^{DDT}", "Trigger", "Golden JSON", "CvB", "CvL"};
-  const char *elec_cut[nx] = { "all", "ip", "kine", "ID" };
-  const char *muon_cut[nx1] = { "all", "kine", "medium muon ID", "iso" };
-
-  const Int_t nxBB = 4;
-  const char *evt_cutBB[nxBB] = { "All Events", "Pass GenObj reconstruction", "Pass c-jet (H) requirement",
-    "Pass b-jet (Z) requirement" };
-
-  for (int i=1;i<=nxBB;i++) h_evt_cutflow->GetXaxis()->SetBinLabel(i+1.5, evt_cutBB[i-1]);
-
-  for (int i=1;i<=nx;i++) h_elec_cutflow->GetXaxis()->SetBinLabel(i+1.5, elec_cut[i-1]);
-  for (int i=1;i<=nx1;i++) h_muon_cutflow->GetXaxis()->SetBinLabel(i+1.5, muon_cut[i-1]);
-
-}
 
 void VH_selection::Process(Reader* r) {
 
@@ -114,102 +98,96 @@ void VH_selection::Process(Reader* r) {
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
     jetFlav = (r->Jet_hadronFlavour)[i];
 #endif
-    JetObj jet((r->Jet_pt)[i],(r->Jet_eta)[i],(r->Jet_phi)[i],(r->Jet_mass)[i],jetFlav,(r->Jet_btagDeepB)[i],(r->Jet_btagDeepFlavB)[i],(r->Jet_puIdDisc)[i]) ;
+    JetObj jet((r->Jet_pt)[i],(r->Jet_eta)[i],(r->Jet_phi)[i],(r->Jet_mass)[i],
+      jetFlav,(r->Jet_btagDeepB)[i],(r->Jet_btagDeepFlavB)[i],(r->Jet_puIdDisc)[i]) ;
+    jet.m_deepCvL = (r->Jet_btagDeepFlavCvL)[i];
+
     jets.push_back(jet) ;
   }
 
-  //Make selection and fill histograms
-  h_VH->FillJets(jets);
-  h_VH->FillNjet(jets.size());
-  
-  //== Generator Object Reconstruction ========================================
-  // For purposes of being able to analyze the MC samples, we want to locate 
-  // the Z & Higgs boson data inside the generated particles. We want to store
-  // them here. Remember that abs(pdgID) = 23 is Z, abs(pdgID) = 25 is Higgs.
-  GenObj* genZ;
-  GenObj* genHiggs;
+  // Electrons
+  std::vector<LepObj> elecs;
+  for (unsigned int i = 0; i < *(r->nElectron); ++i) {
 
-  Int_t nHiggs, nZ;
-  for (unsigned int i = 0; i < *(r->nGenPart); ++i) {
+  }
+   
+
+  // All cut flows need to show the total events //
+  h_evt_cutflow->Fill(0.5, genWeight);
+
+  // Cut #1 - Proper Jets /////////////////////////
+  // We want to keep jets that meet the following criteria:
+  // pT(j) > 30 GeV, |eta| < 2.5
+  // dR(small-R jet, lepton) < 0.4 = discard
+  std::vector<JetObj> selected_jets;
+  for (unsigned int i = 0; i < jets.size(); ++i) {
+  
+    TLorentzVector vec = jets.at(i).m_lvec;
+    h_jet_cutflow->Fill(0.5, genWeight); // All jets
+    if (vec.Pt() < 30) continue; 
+    h_jet_cutflow->Fill(1.5, genWeight); // Passed pT cut
+    if (fabs(vec.Eta()) > 2.5) continue;
+    h_jet_cutflow->Fill(2.5, genWeight); // Passed eta cut
+   
+    // == Iso Cut to Go Here ==
     
-    // Get the PDG ID and keep this particle if it's what we want.
-    int pdgID = (r->GenPart_pdgId)[i];
-    if (abs(pdgID) != 23 && abs(pdgID) != 25) continue;
-
-    // See if it's a Z boson
-    if (abs(pdgID) == 23) {
-      nZ++;
-      genZ = new GenObj(pdgID, (r->GenPart_pt)[i], (r->GenPart_eta)[i],
-                 (r->GenPart_phi)[i], (r->GenPart_mass)[i], i,
-                 (r->GenPart_genPartIdxMother)[i], (r->GenPart_status)[i]);
-    }
-
-    // See if it's a Higgs boson
-    if (abs(pdgID) == 25) {
-      nHiggs++;
-      genHiggs = new GenObj(pdgID, (r->GenPart_pt)[i], (r->GenPart_eta)[i],
-                     (r->GenPart_phi)[i], (r->GenPart_mass)[i], i,
-                     (r->GenPart_genPartIdxMother)[i], (r->GenPart_status)[i]);
-    }
-  }  
-
-  h_GenPlots->FillMult(nHiggs, nZ, evtW);
-
-  //== Event Selection ========================================================
-  h_evt_cutflow->Fill(1);  // all events
-  
-
-  // Make sure we have the proper generator events. (They should exist in every
-  // single event by definition of the file.)
-  if (genZ != NULL and genHiggs != NULL) {
-    h_evt_cutflow->Fill(2); // theoretically all events
-
-    h_GenPlots->Fill(genHiggs, genZ, evtW);
-  }  
-
-  // Select the types of jets
-  std::vector<JetObj> bjets, cjets, ljets;
-  for (auto it : jets) {
-    if (it.m_flav == 5) bjets.push_back(it);
-    else if (it.m_flav == 4) cjets.push_back(it);
-    else if (it.m_flav >= 0) ljets.push_back(it);
-
-    h_flavor_jet->Fill(it.m_flav, evtW);
+    h_jet_cutflow->Fill(3.5, genWeight); // Passed iso
+    selected_jets.push_back(jets.at(i));
   } 
 
-  h_Nbjet->Fill(bjets.size(), evtW);
-  h_Ncjet->Fill(cjets.size(), evtW);
-  h_Nljet->Fill(ljets.size(), evtW);
+  // Remember, we want at least 4 jets.
+  if (selected_jets.size() >= 4) {
 
-  //== Handle Stuff Related to the Jets & Gen Objects here ==
-  h_GenPlots->FillJets(genHiggs, bjets, 5, evtW);
-  h_GenPlots->FillJets(genHiggs, cjets, 4, evtW);
-  h_GenPlots->FillJets(genZ, bjets, 5, evtW);
-  h_GenPlots->FillJets(genZ, cjets, 4, evtW);
-  h_GenPlots->FillJets(genZ, ljets, 0, evtW);
-
-  float dRcut = TMath::Pi()/2;
-  // ==== Start of Actual Selections ====
-  // Note: In each case, we have Higgs forced to CC, so we never need
-  // a secondary check for the Higgs jets.
-  std::vector<JetObj> Hjets = GenObj::get_proper_jets(cjets, genHiggs, dRcut);
-  h_Higgs_nJet->Fill(Hjets.size(), evtW);
-  if (Hjets.size() >= 2) {
-
-    h_evt_cutflow->Fill(3); // passed jet requirement (H)
+    h_evt_cutflow->Fill(1.5, genWeight); // passed jet selection
     
-    HObj H(Hjets); // Reconstruct the Higgs boson
+    // Cut #2 - b-tagging ///////////////////////////////
+    // Pick two jets with the largest btag value and then
+    // make pass ~medium WP (Jet_btagDeepFlavB > 0.3)
+    JetObj bjet0, bjet1;
 
-    std::vector<JetObj> Zjets = GenObj::get_proper_jets(bjets, genZ, dRcut);
-    if (Zjets.size() >= 2) {
-      h_evt_cutflow->Fill(4); //passed jet requirement (Z)
-      ZObj Z(Zjets); // Reconstruct the Z boson
-      
-      h_VH->Fill(H, Z, evtW);
+    // Determine jet #1
+    float maxCSV = -2000.; int maxIdx = -1;
+    for (unsigned int i = 0; i < selected_jets.size(): ++i) {
+    
+      float jet_csv = selected_jets.at(i).m_deepCSV;
+      if (jet_csv > maxCSV) {
+        maxCSV = jet_csv;
+        maxIdx = i;
+      }
+    }
+    bjet0 = selected_jets.at(maxIdx);
+    selected_jets.erase(bjet0);
 
-    }//end-Z-Selection
-  }//end-Higgs-Selection
+    // Determine jet #2
+    maxCSV = -2000.; maxIdx = -1;
+    for (unsigned int i = 0; i < selected_jets.size(); ++i) {
 
+      float jet_csv = selected_jets.at(i).m_deepCSV;
+      if (jet_csv > maxCSV) {
+        maxCSV = jet_csv;
+        maxIdx = i;
+      }
+    }
+    bjet1 = selected_jets.at(maxIdx);
+    selected_jets.erase(bjet1);
+
+    // Now that we've selected the jets, make sure they
+    // meet the working point we're interested in.
+    if (bjet0.m_deepCSV > 0.3 and bjet1.m_deepCSV > 0.3) 
+    {
+
+      h_evt_cutflow->Fill(2.5, genWeight); // passed bjet selection
+
+      // Cut #3 - c-tagging ////////////////////////////////////
+      // We want to take the two remaining jets with the highest
+      // CvL and pass two working points.
+      float maxCvL = -2000.; maxIdx = -1;
+
+    }//end-bjet-selection
+
+
+  }//end-jet-selection
+   
 } //end Process
 
 
