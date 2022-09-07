@@ -98,8 +98,8 @@ void VH_selection::Process(Reader* r) {
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
     jetFlav = (r->Jet_hadronFlavour)[i];
 #endif
-    JetObj jet((r->Jet_pt)[i],(r->Jet_eta)[i],(r->Jet_phi)[i],(r->Jet_mass)[i],
-      jetFlav,(r->Jet_btagDeepB)[i],(r->Jet_btagDeepFlavB)[i],(r->Jet_puIdDisc)[i]) ;
+    JetObj jet((r->Jet_pt)[i],(r->Jet_eta)[i],(r->Jet_phi)[i],(r->Jet_mass)[i], 
+      jetFlav, (r->Jet_btagDeepFlavB)[i],(r->Jet_puIdDisc)[i]) ;
     jet.m_deepCvL = (r->Jet_btagDeepFlavCvL)[i];
 
     jets.push_back(jet) ;
@@ -143,45 +143,117 @@ void VH_selection::Process(Reader* r) {
     // Cut #2 - b-tagging ///////////////////////////////
     // Pick two jets with the largest btag value and then
     // make pass ~medium WP (Jet_btagDeepFlavB > 0.3)
-    JetObj bjet0, bjet1;
-
+    
     // Determine jet #1
-    float maxCSV = -2000.; int maxIdx = -1;
-    for (unsigned int i = 0; i < selected_jets.size(): ++i) {
+    float maxCSV = -2000.; int bIdx0 = -1;
+    for (unsigned int i = 0; i < selected_jets.size(); ++i) {
     
       float jet_csv = selected_jets.at(i).m_deepCSV;
       if (jet_csv > maxCSV) {
         maxCSV = jet_csv;
-        maxIdx = i;
+        bIdx0 = i;
       }
     }
-    bjet0 = selected_jets.at(maxIdx);
-    selected_jets.erase(bjet0);
-
+    
     // Determine jet #2
-    maxCSV = -2000.; maxIdx = -1;
+    maxCSV = -2000.; int bIdx1 = -1;
     for (unsigned int i = 0; i < selected_jets.size(); ++i) {
 
       float jet_csv = selected_jets.at(i).m_deepCSV;
       if (jet_csv > maxCSV) {
         maxCSV = jet_csv;
-        maxIdx = i;
+        bIdx1 = i;
       }
     }
-    bjet1 = selected_jets.at(maxIdx);
-    selected_jets.erase(bjet1);
+    
+    std::vector<JetObj> bjets;    
+    bjets.push_back(selected_jets[bIdx0]);
+    bjets.push_back(selected_jets[bIdx1]);
+    selected_jets.erase(selected_jets.begin() + bIdx0);
+    selected_jets.erase(selected_jets.begin() + bIdx1);
 
-    // Now that we've selected the jets, make sure they
+    // Now that we've selected the b-jets, make sure they
     // meet the working point we're interested in.
-    if (bjet0.m_deepCSV > 0.3 and bjet1.m_deepCSV > 0.3) 
+    if (bjets[0].m_deepCSV > 0.3 and bjets[1].m_deepCSV > 0.3) 
     {
 
       h_evt_cutflow->Fill(2.5, genWeight); // passed bjet selection
 
+      // Since we have two appropriate b-jets, let's reconstruct
+      // a Z candidate from these jets.
+      ZObj Z(bjets);
+
       // Cut #3 - c-tagging ////////////////////////////////////
       // We want to take the two remaining jets with the highest
       // CvL and pass two working points.
-      float maxCvL = -2000.; maxIdx = -1;
+      float maxCvL = -2000.; int cIdx0 = -1;
+      for (unsigned int i = 0; i < selected_jets.size(); ++i) {
+        
+        float jet_cvl = selected_jets.at(i).m_deepCvL;
+        if (jet_cvl > maxCvL) {
+          maxCvL = jet_cvl;
+          cIdx0 = i;
+        }
+      }
+      
+      maxCvL = -2000.; int cIdx1 = -1;
+      for (unsigned int i = 0; i < selected_jets.size(); ++i) {
+      
+        float jet_cvl = selected_jets.at(i).m_deepCvL;
+        if (jet_cvl > maxCvL) {
+          maxCvL = jet_cvl;
+          cIdx1 = i;
+        }
+      } 
+
+      std::vector<JetObj> cjets;
+      cjets.push_back(selected_jets[cIdx0]);
+      cjets.push_back(selected_jets[cIdx1]);
+      selected_jets.erase(selected_jets.begin() + cIdx0);
+      selected_jets.erase(selected_jets.begin() + cIdx1);
+
+      
+      // Now that we've selected the c-jets, make sure they
+      // meet the working point we're interested in.
+      if (cjets[0].m_deepCvL > 0.37 and cjets[1].m_deepCvL > 0.37) {
+
+        h_evt_cutflow->Fill(3.5, genWeight); // passed cjet selection
+        
+        // Since we have two appropriate c-jets, let's reconstruct
+        // a H candidate from these jets.
+        HObj H(cjets);
+        
+        // Cut #4 - Minimize Missing Transverse Energy ///////////
+        // We want to minimize background events by elminating 
+        // events with high MET.
+        if (*(r->MET_pt) < 140) {
+
+          h_evt_cutflow->Fill(4.5, genWeight); // passed MET cut
+
+          // Cut #5 - "maximize" Vector boson mass //////////////
+          // The Z mass is 91 GeV and we need enough momentum to
+          // hit the proper mass window.
+          if (Z.m_lvec.Pt() > 50) {
+          
+            h_evt_cutflow->Fill(5.5, genWeight); // passed V pT cut
+            
+            // Cut #6 - make sure the objects are back-to-back ////
+            float dPhi = Z.m_lvec.DeltaPhi(H.m_lvec);
+            if (fabs(dPhi) > 2.5) {
+
+              h_evt_cutflow->Fill(6.5, genWeight); // passed dPhi cut
+
+              // Now that we've passed all the appropriate cuts, let's
+              // fill what we want.
+              h_VH->Fill(H, Z);
+
+            }//end-dPhi-cut
+            
+          }//end-pt(V)-cut
+
+        }//end-met-cut        
+
+      }//end-cjet-selection
 
     }//end-bjet-selection
 
