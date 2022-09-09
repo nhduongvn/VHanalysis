@@ -7,8 +7,9 @@ ROOTGLIBS    	:= $(shell root-config --glibs)
 
 #FORMAT: MC_2016, MC_2017, MC_2018, DATA_2016, DATA_2017, DATA_2018
 #INPUT: TFILE,TCHAIN
+#NANOAOD: NANOAODV7, NANOAODV9
 
-CXXFLAGS	= -O -Wall -fPIC -D $(FORMAT) -D $(INPUT)
+CXXFLAGS	= -O -Wall -fPIC -D $(FORMAT) -D $(NANOAOD) -D $(INPUT)
 CXXFLAGS	+= $(ROOTCFLAGS)	
 
 SOFLAGS		= -O -shared
@@ -27,7 +28,7 @@ mydict:
 	@rootcint Reader_dict.cxx -c src/Reader.h
 	@rootcint Processor_dict.cxx -c src/Processor.h
 
-main:	Ana.cxx Global.o Reader.o Processor.o BTagCalibrationStandalone.o LumiMaskFilter.o Reader_dict.o Processor_dict.o Selector.o VH_selection.o
+main:	Ana.cxx Global.o Reader.o Processor.o BTagCalibrationStandalone.o LumiMaskFilter.o Reader_dict.o Processor_dict.o Selector.o VH_selection.o VbbHcc_selector.o
 	#$(CXX) $(CXXFLAGS) $(ROOTGLIBS) $^ -o $@
 	$(CXX) $(CXXFLAGS) $(ROOTGLIBS) $^ -o $@ yaml-cpp/build/libyaml-cpp.a
 
