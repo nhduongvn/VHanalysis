@@ -41,7 +41,21 @@ void VH_selection::SlaveBegin(Reader* r) {
   h_jet_cutflow->GetXaxis()->SetBinLabel(2, "pT cut");
   h_jet_cutflow->GetXaxis()->SetBinLabel(3, "eta cut");
   h_jet_cutflow->GetXaxis()->SetBinLabel(4, "iso req");
-  
+
+  // Cut flow to select electrons
+  h_elec_cutflow = new TH1D("CutFlow_elec", "", 4, 0, 4);
+  h_elec_cutflow->GetXaxis()->SetBinLabel(1, "Total");
+  h_elec_cutflow->GetXaxis()->SetBinLabel(2, "Passed phase-space cut");
+  h_elec_cutflow->GetXaxis()->SetBinLabel(3, "Passed SC cut");
+  h_elec_cutflow->GetXaxis()->SetBinLabel(4, "Passed id cut");  
+
+  // Cut flow to select muons
+  h_muon_cutflow = new TH1D("CutFlow_muon", "", 4, 0, 4);
+  h_muon_cutflow->GetXaxis()->SetBinLabel(1, "Total");
+  h_muon_cutflow->GetXaxis()->SetBinLabel(2, "Passed phase-space cut");
+  h_muon_cutflow->GetXaxis()->SetBinLabel(3, "Passed looseID cut");
+  h_muon_cutflow->GetXaxis()->SetBinLabel(4, "Passed iso cut");
+
   //Add histograms to fOutput so they can be saved in Processor::SlaveTerminate
   r->GetOutputList()->Add(h_evt) ;
   std::vector<TH1*> tmp = h_VH->returnHisto() ;
@@ -49,6 +63,8 @@ void VH_selection::SlaveBegin(Reader* r) {
   
   r->GetOutputList()->Add(h_evt_cutflow);
   r->GetOutputList()->Add(h_jet_cutflow);
+  r->GetOutputList()->Add(h_elec_cutflow);
+  r->GetOutputList()->Add(h_muon_cutflow);
 }//end-SlaveBegin
 
 
@@ -100,7 +116,14 @@ void VH_selection::Process(Reader* r) {
 #endif
     JetObj jet((r->Jet_pt)[i],(r->Jet_eta)[i],(r->Jet_phi)[i],(r->Jet_mass)[i], 
       jetFlav, (r->Jet_btagDeepFlavB)[i],(r->Jet_puIdDisc)[i]) ;
+
+#if defined(NANOAODV9)
     jet.m_deepCvL = (r->Jet_btagDeepFlavCvL)[i];
+#endif
+
+#if defined(NANOAODV7)
+    jet.m_deepCvL = (r->FatJet_btagDDCvL)[i];
+#endif
 
     jets.push_back(jet) ;
   }
@@ -108,7 +131,62 @@ void VH_selection::Process(Reader* r) {
   // Electrons
   std::vector<LepObj> elecs;
   for (unsigned int i = 0; i < *(r->nElectron); ++i) {
+    
+    // Produce an electron from the information.
+    h_elec_cutflow->Fill(0.5, genWeight); // All electrons
 
+    float etaSC = (r->Electron_eta)[i] - (r->Electron_deltaEtaSC)[i];
+    LepObj elec((r->Electron_pt)[i], (r->Electron_eta)[i], etaSC,
+           (r->Electron_phi)[i], (r->Electron_mass)[i], i,
+           (r->Electron_charge)[i], 0);
+
+    // Cut #1 - check phase space /////////////////////
+    // We want electrons with high enough pT and within
+    // the eta limit of the tracker.
+    if (elec.m_lvec.Pt() < CUTS.Get<float>("lep_pt1") || 
+       fabs(elec.m_lvec.Eta()) > CUTS.Get<float>("lep_eta"))
+       continue;
+
+    h_elec_cutflow->Fill(1.5, genWeight); // passed phase cut
+
+    // Cut #2 - make a cut based on SC /////////////////
+    if (fabs(etaSC) < 1.566 && fabs(etaSC) > 1.442) continue;
+
+    h_elec_cutflow->Fill(2.5, genWeight); // passed SC cut
+
+    // Cut #3 - make sure to only keep proper electrons ////
+    int elecID = r->Electron_cutBased[i];
+    if (elecID < 2) continue; // loose electron ID
+    h_elec_cutflow->Fill(3.5, genWeight); // passed ID cut
+
+    elecs.push_back(elec);
+  }
+
+  // Muons
+  std::vector<LepObj> muons;
+  for (unsigned int i = 0; i < *(r->nMuon); ++i) {
+  
+    h_muon_cutflow->Fill(0.5, genWeight); // All muons
+    LepObj muon((r->Muon_pt)[i], (r->Muon_eta)[i], -1, (r->Muon_phi)[i],
+           (r->Muon_mass)[i], i, (r->Muon_charge)[i],
+           (r->Muon_pfRelIso04_all)[i]);
+ 
+    // Cut #1 - check phase space /////////////////////////
+    if (muon.m_lvec.Pt() > CUTS.Get<float>("lep_pt1") ||
+       fabs(muon.m_lvec.Eta()) > CUTS.Get<float>("lep_eta"))
+       continue;
+
+    h_muon_cutflow->Fill(1.5, genWeight); // passed phase cut
+    
+    // Cut #2 - check loose ID /////////////////////////////
+    if (r->Muon_looseId[i] <= 0) continue;
+    h_muon_cutflow->Fill(2.5, genWeight); // passed ID cut
+
+    // Cut #3 - isolation cut //////////////////////////////
+    if (muon.m_iso > CUTS.Get<float>("muon_iso")) continue;
+    h_muon_cutflow->Fill(3.5, genWeight); // passed iso cut
+
+    muons.push_back(muon);
   }
    
 
@@ -129,7 +207,23 @@ void VH_selection::Process(Reader* r) {
     if (fabs(vec.Eta()) > 2.5) continue;
     h_jet_cutflow->Fill(2.5, genWeight); // Passed eta cut
    
-    // == Iso Cut to Go Here ==
+    // Check the electrons & muons for overlap with the jets.
+    // If dR(jet, lepton) < 0.4, discard the jet.
+    bool should_discard = false;
+    for (unsigned int j = 0; j < elecs.size(); ++j) {
+      float dR = vec.DeltaR(elecs.at(j).m_lvec);
+      if (dR < 0.4) { should_discard = true; break; }
+    };
+
+    if (should_discard) continue;
+
+    should_discard = false;
+    for (unsigned int j = 0; j < muons.size(); ++j) {
+      float dR = vec.DeltaR(muons.at(j).m_lvec);
+      if (dR < 0.4) { should_discard = true; break; }
+    };
+
+    if (should_discard) continue;
     
     h_jet_cutflow->Fill(3.5, genWeight); // Passed iso
     selected_jets.push_back(jets.at(i));

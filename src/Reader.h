@@ -46,7 +46,20 @@ public :
    TTreeReaderArray<Float_t> Jet_btagDeepB = {fReader, "Jet_btagDeepB"};
    TTreeReaderArray<Float_t> Jet_btagDeepFlavB = {fReader, "Jet_btagDeepFlavB"};
    TTreeReaderArray<Float_t> Jet_puIdDisc = {fReader, "Jet_puIdDisc"};
+#if defined(NANOAODV9) || defined(DATA_2016) || defined(DATA_2017) || defined(DATA_2018)
    TTreeReaderArray<Float_t> Jet_btagDeepFlavCvL = {fReader, "Jet_btagDeepFlavCvL"};
+#endif
+
+#if defined(NANOAODV7)
+   TTreeReaderArray<Float_t> FatJet_btagDDCvB = {fReader, "FatJet_btagDDCvB"};
+   TTreeReaderArray<Float_t> FatJet_btagDDCvL = {fReader, "FatJet_btagDDCvL"};
+   TTreeReaderArray<Float_t> FatJet_btagDDBvL = {fReader, "FatJet_btagDDBvL"};
+#endif
+#if defined(NANOAODV9)
+   TTreeReaderArray<Float_t> FatJet_btagDDCvB = {fReader, "FatJet_btagDDCvBV2"};
+   TTreeReaderArray<Float_t> FatJet_btagDDCvL = {fReader, "FatJet_btagDDCvLV2"};
+   TTreeReaderArray<Float_t> FatJet_btagDDBvL = {fReader, "FatJet_btagDDBvLV2"};
+#endif
  
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
    TTreeReaderValue<Float_t> Pileup_nTrueInt = {fReader, "Pileup_nTrueInt"};
@@ -73,6 +86,7 @@ public :
    TTreeReaderArray<Int_t> Muon_charge = {fReader, "Muon_charge"};
    TTreeReaderArray<Float_t> Muon_pfRelIso04_all = {fReader, "Muon_pfRelIso04_all"};
    TTreeReaderArray<Bool_t> Muon_mediumId = {fReader, "Muon_mediumId"};
+   TTreeReaderArray<Bool_t> Muon_looseId = {fReader, "Muon_looseId"};
 
    TTreeReaderValue<Float_t> MET_pt = {fReader, "MET_pt"};
 
