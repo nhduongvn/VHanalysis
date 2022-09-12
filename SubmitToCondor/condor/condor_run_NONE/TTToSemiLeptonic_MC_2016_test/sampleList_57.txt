@@ -1,0 +1,2 @@
+root:://cmsxrootd.fnal.gov///store/mc/RunIISummer20UL16NanoAODAPVv9/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/NANOAODSIM/106X_mcRun2_asymptotic_preVFP_v11-v1/270000/25819290-1B37-6543-AC59-13D845FCE8DA.root
+root:://cmsxrootd.fnal.gov///store/mc/RunIISummer20UL16NanoAODAPVv9/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/NANOAODSIM/106X_mcRun2_asymptotic_preVFP_v11-v1/270000/8B311D33-2D18-C34C-A0B5-ED5BE3A093F4.root

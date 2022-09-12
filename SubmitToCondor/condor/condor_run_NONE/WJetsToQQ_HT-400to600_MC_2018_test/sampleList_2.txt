@@ -1,0 +1,2 @@
+root:://cmsxrootd.fnal.gov///store/mc/RunIISummer20UL18NanoAODv9/WJetsToQQ_HT-400to600_TuneCP5_13TeV-madgraphMLM-pythia8/NANOAODSIM/106X_upgrade2018_realistic_v16_L1v1-v2/40000/B10E6CD3-3D1F-7240-BF1A-11BB936C08F1.root
+root:://cmsxrootd.fnal.gov///store/mc/RunIISummer20UL18NanoAODv9/WJetsToQQ_HT-400to600_TuneCP5_13TeV-madgraphMLM-pythia8/NANOAODSIM/106X_upgrade2018_realistic_v16_L1v1-v2/40000/69760625-DAC3-8B43-8733-4248B431D96E.root

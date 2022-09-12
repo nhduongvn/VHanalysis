@@ -1,0 +1,2 @@
+root:://cmsxrootd.fnal.gov///store/mc/RunIISummer20UL16NanoAODAPVv9/ST_t-channel_top_4f_InclusiveDecays_TuneCP5_13TeV-powheg-madspin-pythia8/NANOAODSIM/106X_mcRun2_asymptotic_preVFP_v11-v1/2510000/2FD223DC-C884-0B48-8C82-18F2D7109582.root
+root:://cmsxrootd.fnal.gov///store/mc/RunIISummer20UL16NanoAODAPVv9/ST_t-channel_top_4f_InclusiveDecays_TuneCP5_13TeV-powheg-madspin-pythia8/NANOAODSIM/106X_mcRun2_asymptotic_preVFP_v11-v1/2510000/17167663-6887-7849-A62A-293F9755FF17.root

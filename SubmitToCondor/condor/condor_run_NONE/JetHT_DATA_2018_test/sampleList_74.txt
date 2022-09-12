@@ -1,0 +1,2 @@
+root:://cmsxrootd.fnal.gov///store/data/Run2018B/JetHT/NANOAOD/UL2018_MiniAODv2_NanoAODv9-v1/120000/02113304-6253-8A41-88DB-C3077FA2AC47.root
+root:://cmsxrootd.fnal.gov///store/data/Run2018B/JetHT/NANOAOD/UL2018_MiniAODv2_NanoAODv9-v1/120000/23A26F0F-4D0D-5C4A-B8A3-707298897D2C.root

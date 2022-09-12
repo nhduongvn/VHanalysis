@@ -35,7 +35,8 @@ def getHist(pN,samName,fH,lS): #samName = ['Electron'],['DY_0J','DY_1J','DY_2J']
 years = ['16','17','18']
 
 #regions = ['VbbHcc_boosted_twojets']
-regions = ['VbbHcc_boosted_select1','VbbHcc_boosted_select2']
+#regions = ['VbbHcc_boosted_select1','VbbHcc_boosted_select2']
+regions = ['VbbHcc']
 
 summary_control_plot_name = 'summary_control_plot_zjet_zHFjet.txt'
 

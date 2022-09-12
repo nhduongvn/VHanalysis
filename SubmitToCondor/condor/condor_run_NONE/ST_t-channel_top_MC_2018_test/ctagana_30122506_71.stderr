@@ -1,0 +1,73 @@
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+In file included from input_line_11:6:
+In file included from ./src/Processor.h:12:
+In file included from ./src/Selector.h:5:
+./src/Obj.cxx:137:5: warning: control may reach end of non-void function [-Wreturn-type]
+    }
+    ^
+./src/Obj.cxx:183:5: warning: control may reach end of non-void function [-Wreturn-type]
+    }
+    ^
+In file included from src/Selector.h:5,
+                 from src/Processor.h:12,
+                 from src/Processor.cxx:3:
+src/Obj.cxx: In constructor 'ZObj::ZObj(std::vector<JetObj>)':
+src/Obj.cxx:110:29: warning: comparison of integer expressions of different signedness: 'int' and 'std::vector<JetObj>::size_type' {aka 'long unsigned int'} [-Wsign-compare]
+       for (int idx = 0; idx < jetlist.size(); ++idx) {
+                         ~~~~^~~~~~~~~~~~~~~~
+src/Obj.cxx: In constructor 'HObj::HObj(std::vector<JetObj>)':
+src/Obj.cxx:157:29: warning: comparison of integer expressions of different signedness: 'int' and 'std::vector<JetObj>::size_type' {aka 'long unsigned int'} [-Wsign-compare]
+       for (int idx = 0; idx < jetlist.size(); ++idx) {
+                         ~~~~^~~~~~~~~~~~~~~~
+In file included from src/Selector.h:5,
+                 from src/Processor.h:12,
+                 from Processor_dict.cxx:40:
+src/Obj.cxx: In constructor 'ZObj::ZObj(std::vector<JetObj>)':
+src/Obj.cxx:110:29: warning: comparison of integer expressions of different signedness: 'int' and 'std::vector<JetObj>::size_type' {aka 'long unsigned int'} [-Wsign-compare]
+       for (int idx = 0; idx < jetlist.size(); ++idx) {
+                         ~~~~^~~~~~~~~~~~~~~~
+src/Obj.cxx: In constructor 'HObj::HObj(std::vector<JetObj>)':
+src/Obj.cxx:157:29: warning: comparison of integer expressions of different signedness: 'int' and 'std::vector<JetObj>::size_type' {aka 'long unsigned int'} [-Wsign-compare]
+       for (int idx = 0; idx < jetlist.size(); ++idx) {
+                         ~~~~^~~~~~~~~~~~~~~~
+In file included from src/Selector.h:5,
+                 from src/Selector.cxx:1:
+src/Obj.cxx: In constructor 'ZObj::ZObj(std::vector<JetObj>)':
+src/Obj.cxx:110:29: warning: comparison of integer expressions of different signedness: 'int' and 'std::vector<JetObj>::size_type' {aka 'long unsigned int'} [-Wsign-compare]
+       for (int idx = 0; idx < jetlist.size(); ++idx) {
+                         ~~~~^~~~~~~~~~~~~~~~
+src/Obj.cxx: In constructor 'HObj::HObj(std::vector<JetObj>)':
+src/Obj.cxx:157:29: warning: comparison of integer expressions of different signedness: 'int' and 'std::vector<JetObj>::size_type' {aka 'long unsigned int'} [-Wsign-compare]
+       for (int idx = 0; idx < jetlist.size(); ++idx) {
+                         ~~~~^~~~~~~~~~~~~~~~
+In file included from src/Selector.h:5,
+                 from src/VH_selection.h:7,
+                 from src/VH_selection.cxx:8:
+src/Obj.cxx: In constructor 'ZObj::ZObj(std::vector<JetObj>)':
+src/Obj.cxx:110:29: warning: comparison of integer expressions of different signedness: 'int' and 'std::vector<JetObj>::size_type' {aka 'long unsigned int'} [-Wsign-compare]
+       for (int idx = 0; idx < jetlist.size(); ++idx) {
+                         ~~~~^~~~~~~~~~~~~~~~
+src/Obj.cxx: In constructor 'HObj::HObj(std::vector<JetObj>)':
+src/Obj.cxx:157:29: warning: comparison of integer expressions of different signedness: 'int' and 'std::vector<JetObj>::size_type' {aka 'long unsigned int'} [-Wsign-compare]
+       for (int idx = 0; idx < jetlist.size(); ++idx) {
+                         ~~~~^~~~~~~~~~~~~~~~
+src/Obj.cxx: In member function 'float HObj::DphiC(double)':
+src/Obj.cxx:183:5: warning: control reaches end of non-void function [-Wreturn-type]
+     }
+     ^
+src/Obj.cxx: In member function 'float ZObj::DphiC(double)':
+src/Obj.cxx:137:5: warning: control reaches end of non-void function [-Wreturn-type]
+     }
+     ^
+In file included from src/Selector.h:5,
+                 from src/Processor.h:12,
+                 from Ana.cxx:7:
+src/Obj.cxx: In constructor 'ZObj::ZObj(std::vector<JetObj>)':
+src/Obj.cxx:110:29: warning: comparison of integer expressions of different signedness: 'int' and 'std::vector<JetObj>::size_type' {aka 'long unsigned int'} [-Wsign-compare]
+       for (int idx = 0; idx < jetlist.size(); ++idx) {
+                         ~~~~^~~~~~~~~~~~~~~~
+src/Obj.cxx: In constructor 'HObj::HObj(std::vector<JetObj>)':
+src/Obj.cxx:157:29: warning: comparison of integer expressions of different signedness: 'int' and 'std::vector<JetObj>::size_type' {aka 'long unsigned int'} [-Wsign-compare]
+       for (int idx = 0; idx < jetlist.size(); ++idx) {
+                         ~~~~^~~~~~~~~~~~~~~~
+[23.6kB/23.6kB][100%][==================================================][23.6kB/s]  [23.6kB/23.6kB][100%][==================================================][23.6kB/s]  

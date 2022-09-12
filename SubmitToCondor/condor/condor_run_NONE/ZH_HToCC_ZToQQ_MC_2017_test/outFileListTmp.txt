@@ -1,0 +1,16 @@
+root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/NONE//ZH_HToCC_ZToQQ_MC_2017/output_0.root
+root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/NONE//ZH_HToCC_ZToQQ_MC_2017/output_1.root
+root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/NONE//ZH_HToCC_ZToQQ_MC_2017/output_10.root
+root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/NONE//ZH_HToCC_ZToQQ_MC_2017/output_11.root
+root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/NONE//ZH_HToCC_ZToQQ_MC_2017/output_12.root
+root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/NONE//ZH_HToCC_ZToQQ_MC_2017/output_13.root
+root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/NONE//ZH_HToCC_ZToQQ_MC_2017/output_15.root
+root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/NONE//ZH_HToCC_ZToQQ_MC_2017/output_16.root
+root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/NONE//ZH_HToCC_ZToQQ_MC_2017/output_2.root
+root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/NONE//ZH_HToCC_ZToQQ_MC_2017/output_3.root
+root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/NONE//ZH_HToCC_ZToQQ_MC_2017/output_4.root
+root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/NONE//ZH_HToCC_ZToQQ_MC_2017/output_5.root
+root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/NONE//ZH_HToCC_ZToQQ_MC_2017/output_6.root
+root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/NONE//ZH_HToCC_ZToQQ_MC_2017/output_7.root
+root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/NONE//ZH_HToCC_ZToQQ_MC_2017/output_8.root
+root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/NONE//ZH_HToCC_ZToQQ_MC_2017/output_9.root

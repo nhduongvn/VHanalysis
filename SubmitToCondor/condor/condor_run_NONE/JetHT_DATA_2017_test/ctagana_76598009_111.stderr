@@ -1,0 +1,158 @@
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+In file included from input_line_11:6:
+In file included from ./src/Processor.h:12:
+In file included from ./src/Selector.h:5:
+./src/Obj.cxx:137:5: warning: control may reach end of non-void function [-Wreturn-type]
+    }
+    ^
+./src/Obj.cxx:183:5: warning: control may reach end of non-void function [-Wreturn-type]
+    }
+    ^
+In file included from src/Selector.h:5,
+                 from src/Processor.h:12,
+                 from src/Processor.cxx:3:
+src/Obj.cxx: In constructor 'ZObj::ZObj(std::vector<JetObj>)':
+src/Obj.cxx:110:29: warning: comparison of integer expressions of different signedness: 'int' and 'std::vector<JetObj>::size_type' {aka 'long unsigned int'} [-Wsign-compare]
+       for (int idx = 0; idx < jetlist.size(); ++idx) {
+                         ~~~~^~~~~~~~~~~~~~~~
+src/Obj.cxx: In constructor 'HObj::HObj(std::vector<JetObj>)':
+src/Obj.cxx:157:29: warning: comparison of integer expressions of different signedness: 'int' and 'std::vector<JetObj>::size_type' {aka 'long unsigned int'} [-Wsign-compare]
+       for (int idx = 0; idx < jetlist.size(); ++idx) {
+                         ~~~~^~~~~~~~~~~~~~~~
+In file included from src/Selector.h:5,
+                 from src/Processor.h:12,
+                 from Processor_dict.cxx:40:
+src/Obj.cxx: In constructor 'ZObj::ZObj(std::vector<JetObj>)':
+src/Obj.cxx:110:29: warning: comparison of integer expressions of different signedness: 'int' and 'std::vector<JetObj>::size_type' {aka 'long unsigned int'} [-Wsign-compare]
+       for (int idx = 0; idx < jetlist.size(); ++idx) {
+                         ~~~~^~~~~~~~~~~~~~~~
+src/Obj.cxx: In constructor 'HObj::HObj(std::vector<JetObj>)':
+src/Obj.cxx:157:29: warning: comparison of integer expressions of different signedness: 'int' and 'std::vector<JetObj>::size_type' {aka 'long unsigned int'} [-Wsign-compare]
+       for (int idx = 0; idx < jetlist.size(); ++idx) {
+                         ~~~~^~~~~~~~~~~~~~~~
+In file included from src/Selector.h:5,
+                 from src/Selector.cxx:1:
+src/Obj.cxx: In constructor 'ZObj::ZObj(std::vector<JetObj>)':
+src/Obj.cxx:110:29: warning: comparison of integer expressions of different signedness: 'int' and 'std::vector<JetObj>::size_type' {aka 'long unsigned int'} [-Wsign-compare]
+       for (int idx = 0; idx < jetlist.size(); ++idx) {
+                         ~~~~^~~~~~~~~~~~~~~~
+src/Obj.cxx: In constructor 'HObj::HObj(std::vector<JetObj>)':
+src/Obj.cxx:157:29: warning: comparison of integer expressions of different signedness: 'int' and 'std::vector<JetObj>::size_type' {aka 'long unsigned int'} [-Wsign-compare]
+       for (int idx = 0; idx < jetlist.size(); ++idx) {
+                         ~~~~^~~~~~~~~~~~~~~~
+In file included from src/Selector.h:5,
+                 from src/VH_selection.h:7,
+                 from src/VH_selection.cxx:8:
+src/Obj.cxx: In constructor 'ZObj::ZObj(std::vector<JetObj>)':
+src/Obj.cxx:110:29: warning: comparison of integer expressions of different signedness: 'int' and 'std::vector<JetObj>::size_type' {aka 'long unsigned int'} [-Wsign-compare]
+       for (int idx = 0; idx < jetlist.size(); ++idx) {
+                         ~~~~^~~~~~~~~~~~~~~~
+src/Obj.cxx: In constructor 'HObj::HObj(std::vector<JetObj>)':
+src/Obj.cxx:157:29: warning: comparison of integer expressions of different signedness: 'int' and 'std::vector<JetObj>::size_type' {aka 'long unsigned int'} [-Wsign-compare]
+       for (int idx = 0; idx < jetlist.size(); ++idx) {
+                         ~~~~^~~~~~~~~~~~~~~~
+src/Obj.cxx: In member function 'float HObj::DphiC(double)':
+src/Obj.cxx:183:5: warning: control reaches end of non-void function [-Wreturn-type]
+     }
+     ^
+src/Obj.cxx: In member function 'float ZObj::DphiC(double)':
+src/Obj.cxx:137:5: warning: control reaches end of non-void function [-Wreturn-type]
+     }
+     ^
+In file included from src/Selector.h:5,
+                 from src/Processor.h:12,
+                 from Ana.cxx:7:
+src/Obj.cxx: In constructor 'ZObj::ZObj(std::vector<JetObj>)':
+src/Obj.cxx:110:29: warning: comparison of integer expressions of different signedness: 'int' and 'std::vector<JetObj>::size_type' {aka 'long unsigned int'} [-Wsign-compare]
+       for (int idx = 0; idx < jetlist.size(); ++idx) {
+                         ~~~~^~~~~~~~~~~~~~~~
+src/Obj.cxx: In constructor 'HObj::HObj(std::vector<JetObj>)':
+src/Obj.cxx:157:29: warning: comparison of integer expressions of different signedness: 'int' and 'std::vector<JetObj>::size_type' {aka 'long unsigned int'} [-Wsign-compare]
+       for (int idx = 0; idx < jetlist.size(); ++idx) {
+                         ~~~~^~~~~~~~~~~~~~~~
+Warning in <TBasket::ReadBasketBuffers>: basket: has fNevBuf=0 but fEntryOffset=0, pos=254176497, len=73834, fNbytes=0, fObjlen=0, trying to repair
+Error in <TBranch::GetBasket>: File: root:://cmsxrootd.fnal.gov//store/data/Run2017F/JetHT/NANOAOD/UL2017_MiniAODv2_NanoAODv9-v1/120000/B552E4F5-163E-9D4E-9F2B-28A3D47EB476.root at byte:0, branch:Jet_puIdDisc, entry:186155, badread=0, nerrors=1, basketnumber=64
+
+ *** Break *** segmentation violation
+
+
+
+===========================================================
+There was a crash.
+This is the entire stack trace of all threads:
+===========================================================
+
+Thread 6 (Thread 0x7f237be70700 (LWP 226)):
+#0  0x00007f238abeee29 in syscall () from /lib64/libc.so.6
+#1  0x00007f237e2cb30d in XrdSys::LinuxSemaphore::Wait (this=0x3b492b0) at /build/cmsbld/auto-builds/CMSSW_10_6_0_pre4-slc7_amd64_gcc820/build/CMSSW_10_6_0_pre4-build/BUILD/slc7_amd64_gcc820/external/xrootd/4.8.5-pafccj/xrootd-4.8.5/src/./XrdSys/XrdSysLinuxSemaphore.hh:161
+#2  XrdCl::SyncQueue<XrdCl::JobManager::JobHelper>::Get (this=0x3b14b58) at /build/cmsbld/auto-builds/CMSSW_10_6_0_pre4-slc7_amd64_gcc820/build/CMSSW_10_6_0_pre4-build/BUILD/slc7_amd64_gcc820/external/xrootd/4.8.5-pafccj/xrootd-4.8.5/src/./XrdCl/XrdClSyncQueue.hh:67
+#3  XrdCl::JobManager::RunJobs() () at /build/cmsbld/auto-builds/CMSSW_10_6_0_pre4-slc7_amd64_gcc820/build/CMSSW_10_6_0_pre4-build/BUILD/slc7_amd64_gcc820/external/xrootd/4.8.5-pafccj/xrootd-4.8.5/src/XrdCl/XrdClJobManager.cc:146
+#4  0x00007f237e2cb4c9 in RunRunnerThread (arg=<optimized out>) at /build/cmsbld/auto-builds/CMSSW_10_6_0_pre4-slc7_amd64_gcc820/build/CMSSW_10_6_0_pre4-build/BUILD/slc7_amd64_gcc820/external/xrootd/4.8.5-pafccj/xrootd-4.8.5/src/XrdCl/XrdClJobManager.cc:33
+#5  0x00007f238aecbea5 in start_thread () from /lib64/libpthread.so.0
+#6  0x00007f238abf4b0d in clone () from /lib64/libc.so.6
+
+Thread 5 (Thread 0x7f237c671700 (LWP 225)):
+#0  0x00007f238abeee29 in syscall () from /lib64/libc.so.6
+#1  0x00007f237e2cb30d in XrdSys::LinuxSemaphore::Wait (this=0x3b492b0) at /build/cmsbld/auto-builds/CMSSW_10_6_0_pre4-slc7_amd64_gcc820/build/CMSSW_10_6_0_pre4-build/BUILD/slc7_amd64_gcc820/external/xrootd/4.8.5-pafccj/xrootd-4.8.5/src/./XrdSys/XrdSysLinuxSemaphore.hh:161
+#2  XrdCl::SyncQueue<XrdCl::JobManager::JobHelper>::Get (this=0x3b14b58) at /build/cmsbld/auto-builds/CMSSW_10_6_0_pre4-slc7_amd64_gcc820/build/CMSSW_10_6_0_pre4-build/BUILD/slc7_amd64_gcc820/external/xrootd/4.8.5-pafccj/xrootd-4.8.5/src/./XrdCl/XrdClSyncQueue.hh:67
+#3  XrdCl::JobManager::RunJobs() () at /build/cmsbld/auto-builds/CMSSW_10_6_0_pre4-slc7_amd64_gcc820/build/CMSSW_10_6_0_pre4-build/BUILD/slc7_amd64_gcc820/external/xrootd/4.8.5-pafccj/xrootd-4.8.5/src/XrdCl/XrdClJobManager.cc:146
+#4  0x00007f237e2cb4c9 in RunRunnerThread (arg=<optimized out>) at /build/cmsbld/auto-builds/CMSSW_10_6_0_pre4-slc7_amd64_gcc820/build/CMSSW_10_6_0_pre4-build/BUILD/slc7_amd64_gcc820/external/xrootd/4.8.5-pafccj/xrootd-4.8.5/src/XrdCl/XrdClJobManager.cc:33
+#5  0x00007f238aecbea5 in start_thread () from /lib64/libpthread.so.0
+#6  0x00007f238abf4b0d in clone () from /lib64/libc.so.6
+
+Thread 4 (Thread 0x7f237ce72700 (LWP 224)):
+#0  0x00007f238abeee29 in syscall () from /lib64/libc.so.6
+#1  0x00007f237e2cb30d in XrdSys::LinuxSemaphore::Wait (this=0x3b492b0) at /build/cmsbld/auto-builds/CMSSW_10_6_0_pre4-slc7_amd64_gcc820/build/CMSSW_10_6_0_pre4-build/BUILD/slc7_amd64_gcc820/external/xrootd/4.8.5-pafccj/xrootd-4.8.5/src/./XrdSys/XrdSysLinuxSemaphore.hh:161
+#2  XrdCl::SyncQueue<XrdCl::JobManager::JobHelper>::Get (this=0x3b14b58) at /build/cmsbld/auto-builds/CMSSW_10_6_0_pre4-slc7_amd64_gcc820/build/CMSSW_10_6_0_pre4-build/BUILD/slc7_amd64_gcc820/external/xrootd/4.8.5-pafccj/xrootd-4.8.5/src/./XrdCl/XrdClSyncQueue.hh:67
+#3  XrdCl::JobManager::RunJobs() () at /build/cmsbld/auto-builds/CMSSW_10_6_0_pre4-slc7_amd64_gcc820/build/CMSSW_10_6_0_pre4-build/BUILD/slc7_amd64_gcc820/external/xrootd/4.8.5-pafccj/xrootd-4.8.5/src/XrdCl/XrdClJobManager.cc:146
+#4  0x00007f237e2cb4c9 in RunRunnerThread (arg=<optimized out>) at /build/cmsbld/auto-builds/CMSSW_10_6_0_pre4-slc7_amd64_gcc820/build/CMSSW_10_6_0_pre4-build/BUILD/slc7_amd64_gcc820/external/xrootd/4.8.5-pafccj/xrootd-4.8.5/src/XrdCl/XrdClJobManager.cc:33
+#5  0x00007f238aecbea5 in start_thread () from /lib64/libpthread.so.0
+#6  0x00007f238abf4b0d in clone () from /lib64/libc.so.6
+
+Thread 3 (Thread 0x7f237d673700 (LWP 223)):
+#0  0x00007f238aed2e9d in nanosleep () from /lib64/libpthread.so.0
+#1  0x00007f237e67387d in XrdSysTimer::Wait (mills=<optimized out>) at /build/cmsbld/auto-builds/CMSSW_10_6_0_pre4-slc7_amd64_gcc820/build/CMSSW_10_6_0_pre4-build/BUILD/slc7_amd64_gcc820/external/xrootd/4.8.5-pafccj/xrootd-4.8.5/src/XrdSys/XrdSysTimer.cc:239
+#2  0x00007f237e276bc8 in XrdCl::TaskManager::RunTasks() () at /build/cmsbld/auto-builds/CMSSW_10_6_0_pre4-slc7_amd64_gcc820/build/CMSSW_10_6_0_pre4-build/BUILD/slc7_amd64_gcc820/external/xrootd/4.8.5-pafccj/xrootd-4.8.5/src/XrdCl/XrdClTaskManager.cc:244
+#3  0x00007f237e276ca9 in RunRunnerThread (arg=<optimized out>) at /build/cmsbld/auto-builds/CMSSW_10_6_0_pre4-slc7_amd64_gcc820/build/CMSSW_10_6_0_pre4-build/BUILD/slc7_amd64_gcc820/external/xrootd/4.8.5-pafccj/xrootd-4.8.5/src/XrdCl/XrdClTaskManager.cc:37
+#4  0x00007f238aecbea5 in start_thread () from /lib64/libpthread.so.0
+#5  0x00007f238abf4b0d in clone () from /lib64/libc.so.6
+
+Thread 2 (Thread 0x7f237de74700 (LWP 222)):
+#0  0x00007f238abf50e3 in epoll_wait () from /lib64/libc.so.6
+#1  0x00007f237e6787d7 in XrdSys::IOEvents::PollE::Begin (syncsem=<optimized out>, retcode=<optimized out>, eTxt=<optimized out>, this=<optimized out>) at /build/cmsbld/auto-builds/CMSSW_10_6_0_pre4-slc7_amd64_gcc820/build/CMSSW_10_6_0_pre4-build/BUILD/slc7_amd64_gcc820/external/xrootd/4.8.5-pafccj/xrootd-4.8.5/src/./XrdSys/XrdSysIOEventsPollE.icc:213
+#2  XrdSys::IOEvents::PollE::Begin (this=0x3b162b0, syncsem=<optimized out>, retcode=<optimized out>, eTxt=<optimized out>) at /build/cmsbld/auto-builds/CMSSW_10_6_0_pre4-slc7_amd64_gcc820/build/CMSSW_10_6_0_pre4-build/BUILD/slc7_amd64_gcc820/external/xrootd/4.8.5-pafccj/xrootd-4.8.5/src/./XrdSys/XrdSysIOEventsPollE.icc:197
+#3  0x00007f237e674fc5 in XrdSys::IOEvents::BootStrap::Start(void*) () at /build/cmsbld/auto-builds/CMSSW_10_6_0_pre4-slc7_amd64_gcc820/build/CMSSW_10_6_0_pre4-build/BUILD/slc7_amd64_gcc820/external/xrootd/4.8.5-pafccj/xrootd-4.8.5/src/XrdSys/XrdSysIOEvents.cc:131
+#4  0x00007f237e673068 in XrdSysThread_Xeq (myargs=0x3ab5270) at /build/cmsbld/auto-builds/CMSSW_10_6_0_pre4-slc7_amd64_gcc820/build/CMSSW_10_6_0_pre4-build/BUILD/slc7_amd64_gcc820/external/xrootd/4.8.5-pafccj/xrootd-4.8.5/src/XrdSys/XrdSysPthread.cc:86
+#5  0x00007f238aecbea5 in start_thread () from /lib64/libpthread.so.0
+#6  0x00007f238abf4b0d in clone () from /lib64/libc.so.6
+
+Thread 1 (Thread 0x7f2388f26c40 (LWP 198)):
+#0  0x00007f238abbb659 in waitpid () from /lib64/libc.so.6
+#1  0x00007f238ab38f62 in do_system () from /lib64/libc.so.6
+#2  0x00007f238ab39311 in system () from /lib64/libc.so.6
+#3  0x00007f238cd15ed3 in TUnixSystem::StackTrace() () from /cvmfs/cms.cern.ch/slc7_amd64_gcc820/cms/cmssw/CMSSW_10_6_4/external/slc7_amd64_gcc820/lib/libCore.so
+#4  0x00007f238cd18724 in TUnixSystem::DispatchSignals(ESignals) () from /cvmfs/cms.cern.ch/slc7_amd64_gcc820/cms/cmssw/CMSSW_10_6_4/external/slc7_amd64_gcc820/lib/libCore.so
+#5  <signal handler called>
+#6  0x0000000000441b7c in VH_selection::Process(Reader*) ()
+#7  0x000000000042c6ab in Processor::Process(long long) ()
+#8  0x00007f238bd03dc6 in TTreePlayer::Process(TSelector*, char const*, long long, long long) () from /cvmfs/cms.cern.ch/slc7_amd64_gcc820/cms/cmssw/CMSSW_10_6_4/external/slc7_amd64_gcc820/lib/libTreePlayer.so
+#9  0x0000000000424715 in main ()
+===========================================================
+
+
+The lines below might hint at the cause of the crash.
+You may get help by asking at the ROOT forum http://root.cern.ch/forum
+Only if you are really convinced it is a bug in ROOT then please submit a
+report at http://root.cern.ch/bugs Please post the ENTIRE stack trace
+from above as an attachment in addition to anything else
+that might help us fixing this issue.
+===========================================================
+#6  0x0000000000441b7c in VH_selection::Process(Reader*) ()
+#7  0x000000000042c6ab in Processor::Process(long long) ()
+#8  0x00007f238bd03dc6 in TTreePlayer::Process(TSelector*, char const*, long long, long long) () from /cvmfs/cms.cern.ch/slc7_amd64_gcc820/cms/cmssw/CMSSW_10_6_4/external/slc7_amd64_gcc820/lib/libTreePlayer.so
+#9  0x0000000000424715 in main ()
+===========================================================
+
+
+xrdcp: No such file or directory processing *.root
+rm: cannot remove '*.root': No such file or directory
