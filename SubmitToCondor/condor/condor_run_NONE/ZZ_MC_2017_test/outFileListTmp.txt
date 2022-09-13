@@ -1,1 +1,0 @@
-root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/NONE//ZZ_MC_2017/output_0.root

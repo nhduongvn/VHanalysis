@@ -40,7 +40,15 @@ class VHPlots
       h_phi_jet = new TH1D(name + "_phi_jet", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
       h_mSV_jet = new TH1D(name + "_mSV_jet", "", 100, 0, 10);
       h_Njet = new TH1D(name + "_Njet", "", 15, 0, 15);   
-      
+ 
+      h_pt_jet_selected = new TH1D(name + "_pt_jet_selected", "",
+          NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      h_eta_jet_selected = new TH1D(name + "_eta_jet_selected", "",  
+          NBIN_ETA, X_ETA[0], X_ETA[1]);
+      h_eta_jet_selected = new TH1D(name + "_phi_jet_selected", "",
+          NBIN_PHI, X_PHI[0], X_PHI[1]);
+      h_Njet_selected = new TH1D(name + "_Njet_selected", "", 15, 0, 15);     
+
       h_HPt = new TH1D(name + "_HPt", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
       h_HEta = new TH1D(name + "_HEta", "", NBIN_ETA, X_ETA[0], X_ETA[1]);
       h_HMass = new TH1D(name + "_HMass", "", NBIN_M_H, X_M_H[0], X_M_H[1]);
@@ -89,20 +97,47 @@ class VHPlots
     // Fill the general histograms.
     void Fill(HObj& H, ZObj& Z, float w=1) {
 
+      // Fill in histograms related to Z & H objects
       h_HMass->Fill(H.m_lvec.M(), w);
       h_HPt->Fill(H.m_lvec.Pt(), w);
       h_HEta->Fill(H.m_lvec.Eta(), w);
       h_ZMass->Fill(Z.m_lvec.M(), w);
       h_ZPt->Fill(Z.m_lvec.Pt(), w);
       h_ZEta->Fill(Z.m_lvec.Eta(), w);
-      
+
+      // Each object will have at least one jet. Fill the
+      // distributions for those objects here.
+      TLorentzVector zjet0 = Z.getJet(0).m_lvec;
+      h_Z_pt_jet0->Fill(zjet0.Pt());
+      h_Z_eta_jet0->Fill(zjet0.Eta());
+      h_Z_phi_jet0->Fill(zjet0.Phi());
+
+      TLorentzVector hjet0 = H.getJet(0).m_lvec;
+      h_H_pt_jet0->Fill(hjet0.Pt());
+      h_H_eta_jet0->Fill(hjet0.Eta());
+      h_H_phi_jet0->Fill(hjet0.Phi());     
+
+      // If we have two (or more) jets, we need to 
+      // check the separation of the jets and fill
+      // the appropriate distributions.
       if (H.nJets() >= 2) {
         h_dR_H->Fill(H.DeltaR(), w);
         h_dPhi_H->Fill(H.DPhi(), w);
+
+        TLorentzVector hjet1 = H.getJet(1).m_lvec;
+        h_H_pt_jet1->Fill(hjet1.Pt());
+        h_H_eta_jet1->Fill(hjet1.Eta());
+        h_H_phi_jet1->Fill(hjet1.Phi());
       }
+
       if (Z.nJets() >= 2) {
         h_dR_Z->Fill(Z.DeltaR(), w);
         h_dPhi_Z->Fill(Z.DPhi(), w);
+
+        TLorentzVector zjet1 = Z.getJet(1).m_lvec;
+        h_Z_pt_jet1->Fill(zjet1.Pt());
+        h_Z_eta_jet1->Fill(zjet1.Eta());
+        h_Z_phi_jet1->Fill(zjet1.Phi());
       }
     };
 
@@ -118,6 +153,19 @@ class VHPlots
 
     void FillNjet(size_t nJet, float w=1) {
       h_Njet->Fill(nJet, w);
+    }
+
+    void FillJets_selected(std::vector<JetObj>& jets, float w=1) {
+      for (auto it : jets) {
+        h_pt_jet_selected->Fill(it.m_lvec.Pt(), w);
+        h_eta_jet_selected->Fill(it.m_lvec.Eta(), w);
+        h_phi_jet_selected->Fill(it.m_lvec.Phi(), w);
+        h_mSV_jet_selected->Fill(it.m_mSV, w);
+      }
+    }
+
+    void FillNjet_selected(size_t nJet, float w=1) {
+      h_Njet_selected->Fill(nJet, w);
     }
 
     // Return a list of all the histograms.
@@ -211,6 +259,13 @@ class VHPlots
     TH1D* h_phi_jet;
     TH1D* h_mSV_jet;
     TH1D* h_Njet;
+
+    TH1D* h_pt_jet_selected;
+    TH1D* h_eta_jet_selected;
+    TH1D* h_phi_jet_selected;
+    TH1D* h_mSV_jet_selected;
+    TH1D* h_Njet_selected;
+
 } ;
 
 // Main Plots class

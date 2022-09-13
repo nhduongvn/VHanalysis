@@ -18,10 +18,10 @@ VH_selection::~VH_selection() {
 void VH_selection::SlaveBegin(Reader* r) {
   
   // Set up the plots we want
-  h_evt = new TH1D("Nevt_VbbHcc","",4,-1.5,2.5) ; //bin 1: total negative weight events
-                                                  // bin 2: total positive weight events
-                                                  // bin 3: total event weighted by genWeight
-                                                  // (= bin2 - bin1, if genWeight are always -1,1
+  h_evt = new TH1D("Nevt","",4,-1.5,2.5) ; //bin 1: total negative weight events
+                                           // bin 2: total positive weight events
+                                           // bin 3: total event weighted by genWeight
+                                           // (= bin2 - bin1, if genWeight are always -1,1
 
   h_VH = new VHPlots("VbbHcc");
 
@@ -193,6 +193,11 @@ void VH_selection::Process(Reader* r) {
   // All cut flows need to show the total events //
   h_evt_cutflow->Fill(0.5, genWeight);
 
+  // So we have them for reference (in terms of making cuts),
+  // make sure to place ALL jets into distributions.
+  h_VH->FillJets(jets, evtW);
+  h_VH->FillNjet(jets.size(), evtW);
+
   // Cut #1 - Proper Jets /////////////////////////
   // We want to keep jets that meet the following criteria:
   // pT(j) > 30 GeV, |eta| < 2.5
@@ -228,6 +233,11 @@ void VH_selection::Process(Reader* r) {
     h_jet_cutflow->Fill(3.5, genWeight); // Passed iso
     selected_jets.push_back(jets.at(i));
   } 
+
+  // We want to be able to plot the distributions of the
+  // jets that survive our selections.
+  h_VH->FillJets_selected(selected_jets, evtW);
+  h_VH->FillNjet_selected(selected_jets.size(), evtW);
 
   // Remember, we want at least 4 jets.
   if (selected_jets.size() >= 4) {
@@ -339,7 +349,7 @@ void VH_selection::Process(Reader* r) {
 
               // Now that we've passed all the appropriate cuts, let's
               // fill what we want.
-              h_VH->Fill(H, Z);
+              h_VH->Fill(H, Z, evtW);
 
             }//end-dPhi-cut
             

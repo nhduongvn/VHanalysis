@@ -10,10 +10,20 @@ import myutils as utl
 ROOT.gROOT.Macro(os.path.expanduser('~/rootLogOn_forPyROOT.C' ))
 ROOT.gROOT.SetBatch(True)
 
+def scaleToLumi1(fName, xSec, lumi):
+  f = ROOT.TFile.Open(fName, 'read')
+  hTmp = f.Get('Nevt')
+  nP = hTmp.GetBinContent(3)
+  nN = hTmp.GetBinContent(1)
+  return lumi*xSec/(nP-nN)
+
+
 def getHist(pN,samName,fH,lS): #samName = ['Electron'],['DY_0J','DY_1J','DY_2J']...
   hOut = {}
+  print pN
   for y in years:
   #for y in ['17']:
+    print samName[0], pN, y
     hOut[y] = fH[samName[0]][y][0].Get(pN).Clone() #first sample, first file
     if samName[0] not in ['JetHT']:
       hOut[y].Scale(lS[samName[0]][y][0])
@@ -35,7 +45,8 @@ def getHist(pN,samName,fH,lS): #samName = ['Electron'],['DY_0J','DY_1J','DY_2J']
 years = ['16','17','18']
 
 #regions = ['VbbHcc_boosted_twojets']
-regions = ['VbbHcc_boosted_select1','VbbHcc_boosted_select2']
+#regions = ['VbbHcc_boosted_select1','VbbHcc_boosted_select2']
+regions = ['VbbHcc']
 
 summary_control_plot_name = 'summary_control_plot_zjet_zHFjet.txt'
 
@@ -43,6 +54,7 @@ cfg = utl.BetterConfigParser()
 cfg.read('../Configs/config.ini')
 
 plotFolder = '../Test/'
+#plotFolder = '../condor_results/NONE/'
 
 lumiS = {}
 for y in years:
@@ -96,10 +108,11 @@ for s in ss:
     for iN in range(len(fNames[s][y])):
       if s not in ['JetHT']:
         print s, y, iN, fNames[s][y][iN]
-        lumiScales[s][y][iN] = utl_func.scaleToLumi1(fNames[s][y][iN],xSecs[s][y][iN],lumi)
+        lumiScales[s][y][iN] = scaleToLumi1(fNames[s][y][iN],xSecs[s][y][iN],lumi)
  
 
 nums = {}
+#print fNames
 
 for r in regions:
   
@@ -112,7 +125,7 @@ for r in regions:
     if plN == 'CutFlow':
       hN = plN + '_' + r
     
-    print hN, plN
+    print hN, plN # (Histogram Name, Plot Name)
     
     hDat = getHist(hN,['JetHT'],fHist,lumiScales)
     hZHcc = getHist(hN,['ZH_HToCC_ZToQQ'],fHist,lumiScales)

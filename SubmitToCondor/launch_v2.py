@@ -78,7 +78,7 @@ def make_input_file_list(nFile, outDir_file_list, file_list_name):
 
 #///////////////////////////////////////////////////////////////////
 runMode = 1 #0: submit, 1: check output and hadd output file
-submit = True# for testing setup or executing submission 
+submit = True # for testing setup or executing submission 
 debug = False   # just run on 10000 
 
 syst = 'NONE' #NONE,PUU,PUD
@@ -93,14 +93,15 @@ outputDir_eos = '/store/user/duong/Output_VH/'+syst+'/'
 outputDir_scratch = '/uscmst1b_scratch/lpc1/lpctrig/duong//Output_VH/'+syst+'/'
 
 sourceDir = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/'
-condorRunDir = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/SubmitToCondor/condor/'
+#condorRunDir = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/SubmitToCondor/condor/'
+condorRunDir = '/uscmst1b_scratch/lpc1/lpcphys/peteryou/Output_VH/'
 outputDir_eos = '/store/user/peteryou/Output_VH/'+syst+'/' 
 outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/' + syst + '/'
 
 #Input data sets
 #dataSet_list = sourceDir+"/Dataset_lists/datasets_JetHT_combined.txt" #data
-#dataSet_list = sourceDir+"/Dataset_lists/datasets_NANOAODv9_MC.txt" #all except Hcc
-dataSet_list = sourceDir+"/Dataset_lists/datasets_HToCC_NANOAODV7_MC.txt" #data
+dataSet_list = sourceDir+"/Dataset_lists/datasets_NANOAODv9_MC.txt" #all except Hcc
+#dataSet_list = sourceDir+"/Dataset_lists/datasets_HToCC_NANOAODV7_MC.txt" #data
 nFile = 2
 dir_file_list = sourceDir+'/FileLists/'
 
@@ -191,7 +192,7 @@ for line in lines:
     os.system('cp -r '+sourceDir+'/Configs/ ' + work_dir)
     os.system('cp -r '+sourceDir+'/CalibData/ ' + work_dir)
     os.system('cp -r '+sourceDir+'/yaml-cpp/ ' + work_dir)
-
+    time.sleep(1)
     os.system('tar -cf input.tar Makefile *.cxx *.hpp src/ Configs/ CalibData/ yaml-cpp/ sampleList_*.txt')
     
     #submit jobs

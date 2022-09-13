@@ -1,3 +1,0 @@
-root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/NONE//ZZ_MC_2018/output_0.root
-root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/NONE//ZZ_MC_2018/output_1.root
-root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/NONE//ZZ_MC_2018/output_2.root

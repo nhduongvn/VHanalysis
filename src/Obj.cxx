@@ -109,6 +109,7 @@ class ZObj { // Z Boson
     ZObj(std::vector<JetObj> jetlist) : m_jets(jetlist) {
       for (int idx = 0; idx < jetlist.size(); ++idx) {
         m_lvec += jetlist.at(idx).m_lvec;
+        m_jets.push_back(jetlist.at(idx));
       }
     }
 
@@ -121,6 +122,10 @@ class ZObj { // Z Boson
     virtual ~ZObj() {} ;
 
     // Methods
+    JetObj getJet(int idx) {
+      return m_jets.at(idx);
+    }
+
     size_t nJets() {
       return m_jets.size();
     }
@@ -156,6 +161,7 @@ class HObj { // Higgs boson
     HObj(std::vector<JetObj> jetlist) : m_jets(jetlist) {
       for (int idx = 0; idx < jetlist.size(); ++idx) {
         m_lvec += jetlist.at(idx).m_lvec;
+        m_jets.push_back(jetlist.at(idx));
       }
     }
 
@@ -167,6 +173,10 @@ class HObj { // Higgs boson
     virtual ~HObj() {} ;
 
     // Methods
+    JetObj getJet(int idx) {
+      return m_jets.at(idx);
+    }
+
     size_t nJets() {
       return m_jets.size();
     }
