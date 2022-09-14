@@ -41,12 +41,10 @@ class VHPlots
       h_mSV_jet = new TH1D(name + "_mSV_jet", "", 100, 0, 10);
       h_Njet = new TH1D(name + "_Njet", "", 15, 0, 15);   
  
-      h_pt_jet_selected = new TH1D(name + "_pt_jet_selected", "",
-          NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
-      h_eta_jet_selected = new TH1D(name + "_eta_jet_selected", "",  
-          NBIN_ETA, X_ETA[0], X_ETA[1]);
-      h_eta_jet_selected = new TH1D(name + "_phi_jet_selected", "",
-          NBIN_PHI, X_PHI[0], X_PHI[1]);
+      h_pt_jet_selected = new TH1D(name + "_pt_jet_selected", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      h_eta_jet_selected = new TH1D(name + "_eta_jet_selected", "", NBIN_ETA, X_ETA[0], X_ETA[1]);
+      h_eta_jet_selected = new TH1D(name + "_phi_jet_selected", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
+      h_mSV_jet_selected = new TH1D(name + "_mSV_jet_selected", "", 100, 0, 10);
       h_Njet_selected = new TH1D(name + "_Njet_selected", "", 15, 0, 15);     
 
       h_HPt = new TH1D(name + "_HPt", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
@@ -81,11 +79,11 @@ class VHPlots
       h_H_phi_jet1 = new TH1D(name + "_H_phi_jet1", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
       h_H_phi_jet2 = new TH1D(name + "_H_phi_jet2", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
 
-      h_pt_jet->Sumw2();
-      h_eta_jet->Sumw2();
-      h_phi_jet->Sumw2();
-      h_mSV_jet->Sumw2();
-      h_Njet->Sumw2();
+      h_pt_jet->Sumw2();   h_pt_jet_selected->Sumw2();
+      h_eta_jet->Sumw2();  h_eta_jet_selected->Sumw2();
+      h_phi_jet->Sumw2();  h_phi_jet_selected->Sumw2();
+      h_mSV_jet->Sumw2();  h_mSV_jet_selected->Sumw2();
+      h_Njet->Sumw2();     h_Njet_selected->Sumw2();
       h_HMass->Sumw2();
       h_ZMass->Sumw2();
       h_dR_H->Sumw2();
@@ -165,7 +163,7 @@ class VHPlots
     }
 
     void FillNjet_selected(size_t nJet, float w=1) {
-      h_Njet_selected->Fill(nJet, w);
+     h_Njet_selected->Fill(nJet, w);
     }
 
     // Return a list of all the histograms.
@@ -179,6 +177,12 @@ class VHPlots
       histolist.push_back(h_mSV_jet);
       histolist.push_back(h_Njet);
      
+      histolist.push_back(h_pt_jet_selected);
+      histolist.push_back(h_eta_jet_selected);
+      histolist.push_back(h_phi_jet_selected);
+      histolist.push_back(h_mSV_jet_selected);
+      histolist.push_back(h_Njet_selected);      
+
       // V and H plots
       histolist.push_back(h_HMass);
       histolist.push_back(h_HPt);
