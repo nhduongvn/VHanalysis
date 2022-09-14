@@ -232,14 +232,13 @@ void VH_selection::Process(Reader* r) {
     
     h_jet_cutflow->Fill(3.5, genWeight); // Passed iso
 
-
     selected_jets.push_back(jets.at(i));
   } 
 
   // We want to be able to plot the distributions of the
   // jets that survive our selections.
-  h_VH->FillJets_selected(selected_jets, evtW);
-  h_VH->FillNjet_selected(selected_jets.size(), evtW);
+  //h_VH->FillJets_selected(selected_jets, evtW);
+  //h_VH->FillNjet_selected(selected_jets.size(), evtW);
 
   // Remember, we want at least 4 jets.
   if (selected_jets.size() >= 4) {
