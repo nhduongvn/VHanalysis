@@ -32,6 +32,9 @@ private:
   TH1D* h_jet_cutflow;
   TH1D* h_elec_cutflow;
   TH1D* h_muon_cutflow;
+  
+  TH1D* h_CSV;
+  TH1D* h_CvL;
 } ;
 
 #endif

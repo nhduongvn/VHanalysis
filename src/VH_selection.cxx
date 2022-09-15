@@ -12,11 +12,11 @@
 //VH_selection::VH_selection(bool isData) : Selector(isData), h_zee_jet(0), h_zmm_jet(0) {}
 
 VH_selection::~VH_selection() {
-  if (h_VH) delete h_VH;
+  //if (h_VH) delete h_VH;
 } 
 
 void VH_selection::SlaveBegin(Reader* r) {
-  
+
   // Set up the plots we want
   h_evt = new TH1D("Nevt","",4,-1.5,2.5) ; //bin 1: total negative weight events
                                            // bin 2: total positive weight events
@@ -56,6 +56,10 @@ void VH_selection::SlaveBegin(Reader* r) {
   h_muon_cutflow->GetXaxis()->SetBinLabel(3, "Passed looseID cut");
   h_muon_cutflow->GetXaxis()->SetBinLabel(4, "Passed iso cut");
 
+  // Other Histograms we want
+  h_CSV = new TH1D("CSV", "", 200, 0, 1);
+  h_CvL = new TH1D("CvL", "", 200, 0, 1);
+
   //Add histograms to fOutput so they can be saved in Processor::SlaveTerminate
   r->GetOutputList()->Add(h_evt) ;
   std::vector<TH1*> tmp = h_VH->returnHisto() ;
@@ -65,6 +69,9 @@ void VH_selection::SlaveBegin(Reader* r) {
   r->GetOutputList()->Add(h_jet_cutflow);
   r->GetOutputList()->Add(h_elec_cutflow);
   r->GetOutputList()->Add(h_muon_cutflow);
+  r->GetOutputList()->Add(h_CvL);
+  r->GetOutputList()->Add(h_CSV);
+
 }//end-SlaveBegin
 
 
@@ -237,8 +244,6 @@ void VH_selection::Process(Reader* r) {
 
   // We want to be able to plot the distributions of the
   // jets that survive our selections.
-  //h_VH->FillJets_selected(selected_jets, evtW);
-  //h_VH->FillNjet_selected(selected_jets.size(), evtW);
 
   // Remember, we want at least 4 jets.
   if (selected_jets.size() >= 4) {
@@ -254,27 +259,29 @@ void VH_selection::Process(Reader* r) {
     for (unsigned int i = 0; i < selected_jets.size(); ++i) {
     
       float jet_csv = selected_jets.at(i).m_deepCSV;
+      h_CSV->Fill(jet_csv, genWeight);
       if (jet_csv > maxCSV) {
         maxCSV = jet_csv;
         bIdx0 = i;
       }
     }
+
+    std::vector<JetObj> bjets;
+    bjets.push_back(selected_jets[bIdx0]);
+    selected_jets.erase(selected_jets.begin() + bIdx0);
     
     // Determine jet #2
     maxCSV = -2000.; int bIdx1 = -1;
     for (unsigned int i = 0; i < selected_jets.size(); ++i) {
 
       float jet_csv = selected_jets.at(i).m_deepCSV;
-      if (jet_csv > maxCSV) {
+      if (jet_csv > maxCSV) { // && i != bIdx0) {
         maxCSV = jet_csv;
         bIdx1 = i;
       }
     }
-    
-    std::vector<JetObj> bjets;    
-    bjets.push_back(selected_jets[bIdx0]);
+
     bjets.push_back(selected_jets[bIdx1]);
-    selected_jets.erase(selected_jets.begin() + bIdx0);
     selected_jets.erase(selected_jets.begin() + bIdx1);
 
     // Now that we've selected the b-jets, make sure they
@@ -295,29 +302,30 @@ void VH_selection::Process(Reader* r) {
       for (unsigned int i = 0; i < selected_jets.size(); ++i) {
         
         float jet_cvl = selected_jets.at(i).m_deepCvL;
+        h_CvL->Fill(jet_cvl, genWeight);
         if (jet_cvl > maxCvL) {
           maxCvL = jet_cvl;
           cIdx0 = i;
         }
       }
+
+      std::vector<JetObj> cjets;
+      cjets.push_back(selected_jets[cIdx0]);
+      selected_jets.erase(selected_jets.begin() + cIdx0);
       
       maxCvL = -2000.; int cIdx1 = -1;
       for (unsigned int i = 0; i < selected_jets.size(); ++i) {
       
         float jet_cvl = selected_jets.at(i).m_deepCvL;
-        if (jet_cvl > maxCvL) {
+        if (jet_cvl > maxCvL){ // && i != cIdx0) {
           maxCvL = jet_cvl;
           cIdx1 = i;
         }
       } 
 
-      std::vector<JetObj> cjets;
-      cjets.push_back(selected_jets[cIdx0]);
       cjets.push_back(selected_jets[cIdx1]);
-      selected_jets.erase(selected_jets.begin() + cIdx0);
       selected_jets.erase(selected_jets.begin() + cIdx1);
 
-      
       // Now that we've selected the c-jets, make sure they
       // meet the working point we're interested in.
       if (cjets[0].m_deepCvL > 0.37 and cjets[1].m_deepCvL > 0.37) {
@@ -364,9 +372,8 @@ void VH_selection::Process(Reader* r) {
 
 
   }//end-jet-selection
-   
+ 
 } //end Process
-
 
 
 void VH_selection::Terminate(TList* mergedList, std::string outFileName) {
