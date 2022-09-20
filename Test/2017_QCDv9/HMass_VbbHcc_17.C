@@ -1,7 +1,7 @@
 void HMass_VbbHcc_17()
 {
 //=========Macro generated from canvas: HMass_VbbHcc_17/HMass_VbbHcc_17
-//=========  (Tue Sep 20 12:29:19 2022) by ROOT version 6.14/09
+//=========  (Tue Sep 20 13:13:09 2022) by ROOT version 6.14/09
    TCanvas *HMass_VbbHcc_17 = new TCanvas("HMass_VbbHcc_17", "HMass_VbbHcc_17",0,0,600,600);
    HMass_VbbHcc_17->SetHighLightColor(2);
    HMass_VbbHcc_17->Range(0,0,1,1);
@@ -1594,7 +1594,7 @@ tex->SetNDC();
    data_mc_ratio__12->SetLineWidth(2);
    data_mc_ratio__12->SetMarkerStyle(20);
    data_mc_ratio__12->SetMarkerSize(1.2);
-   data_mc_ratio__12->GetXaxis()->SetTitle("M_{H}");
+   data_mc_ratio__12->GetXaxis()->SetTitle("M_{H} [GeV]");
    data_mc_ratio__12->GetXaxis()->SetRange(1,30);
    data_mc_ratio__12->GetXaxis()->SetLabelFont(42);
    data_mc_ratio__12->GetXaxis()->SetLabelSize(0.12);

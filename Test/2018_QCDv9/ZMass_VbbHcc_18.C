@@ -1,7 +1,7 @@
 void ZMass_VbbHcc_18()
 {
 //=========Macro generated from canvas: ZMass_VbbHcc_18/ZMass_VbbHcc_18
-//=========  (Tue Sep 20 12:29:19 2022) by ROOT version 6.14/09
+//=========  (Tue Sep 20 13:13:08 2022) by ROOT version 6.14/09
    TCanvas *ZMass_VbbHcc_18 = new TCanvas("ZMass_VbbHcc_18", "ZMass_VbbHcc_18",0,0,600,600);
    ZMass_VbbHcc_18->SetHighLightColor(2);
    ZMass_VbbHcc_18->Range(0,0,1,1);
@@ -1592,7 +1592,7 @@ tex->SetNDC();
    data_mc_ratio__6->SetLineWidth(2);
    data_mc_ratio__6->SetMarkerStyle(20);
    data_mc_ratio__6->SetMarkerSize(1.2);
-   data_mc_ratio__6->GetXaxis()->SetTitle("M_{Z}");
+   data_mc_ratio__6->GetXaxis()->SetTitle("M_{Z} [GeV]");
    data_mc_ratio__6->GetXaxis()->SetRange(1,30);
    data_mc_ratio__6->GetXaxis()->SetLabelFont(42);
    data_mc_ratio__6->GetXaxis()->SetLabelSize(0.12);
