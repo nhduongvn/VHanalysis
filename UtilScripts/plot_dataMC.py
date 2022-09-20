@@ -20,7 +20,7 @@ def scaleToLumi1(fName, xSec, lumi):
 
 def getHist(pN,samName,fH,lS): #samName = ['Electron'],['DY_0J','DY_1J','DY_2J']...
   hOut = {}
-  print pN
+  #print pN
   for y in years:
   #for y in ['17']:
     print samName[0], pN, y
@@ -125,7 +125,7 @@ for r in regions:
     if plN == 'CutFlow':
       hN = plN + '_' + r
     
-    print hN, plN # (Histogram Name, Plot Name)
+    #print hN, plN # (Histogram Name, Plot Name)
     
     hDat = getHist(hN,['JetHT'],fHist,lumiScales)
     hZHcc = getHist(hN,['ZH_HToCC_ZToQQ'],fHist,lumiScales)
