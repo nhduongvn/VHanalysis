@@ -41,6 +41,12 @@ class JetObj { // Jets
 
     virtual ~JetObj() {} ;
 
+    // overload the > operator
+    // (This allows us to sort the jets by pT
+    // in descending order.)
+    bool operator>(const JetObj &r) const
+    { return m_lvec.Pt() > r.m_lvec.Pt(); }
+
     // IsLepton - checks to make sure our jet isn't actually a lepton
     bool IsLepton(std::vector<LepObj>& leps) {
       float minDr = 1000 ;

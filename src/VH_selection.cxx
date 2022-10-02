@@ -24,9 +24,12 @@ void VH_selection::SlaveBegin(Reader* r) {
                                            // (= bin2 - bin1, if genWeight are always -1,1
 
   h_VH = new VHPlots("VbbHcc");
+  h_VH_tags = new VHPlots("VbbHcc_tags");
+  h_VH_algo = new VHPlots("VbbHcc_algo");
+  h_VH_both = new VHPlots("VbbHcc_both");
 
   // Cut flow to select events for analysis
-  h_evt_cutflow = new TH1D("CutFlow_VbbHcc", "", 7, 0, 7);
+  h_evt_cutflow = new TH1D("VbbHcc_CutFlow", "", 7, 0, 7);
   h_evt_cutflow->GetXaxis()->SetBinLabel(1, "Total");
   h_evt_cutflow->GetXaxis()->SetBinLabel(2, "Passed jet requirements");
   h_evt_cutflow->GetXaxis()->SetBinLabel(3, "Passed b-tagging for Z candidate");
@@ -36,33 +39,50 @@ void VH_selection::SlaveBegin(Reader* r) {
   h_evt_cutflow->GetXaxis()->SetBinLabel(7, "Passed dPhi cut");
 
   // Cut flow to select jets for event
-  h_jet_cutflow = new TH1D("CutFlow_jets", "", 4, 0, 4);
+  h_jet_cutflow = new TH1D("VbbHcc_CutFlow_jets", "", 4, 0, 4);
   h_jet_cutflow->GetXaxis()->SetBinLabel(1, "Total");
   h_jet_cutflow->GetXaxis()->SetBinLabel(2, "pT cut");
   h_jet_cutflow->GetXaxis()->SetBinLabel(3, "eta cut");
   h_jet_cutflow->GetXaxis()->SetBinLabel(4, "iso req");
 
   // Cut flow to select electrons
-  h_elec_cutflow = new TH1D("CutFlow_elec", "", 4, 0, 4);
+  h_elec_cutflow = new TH1D("VbbHcc_CutFlow_elec", "", 4, 0, 4);
   h_elec_cutflow->GetXaxis()->SetBinLabel(1, "Total");
   h_elec_cutflow->GetXaxis()->SetBinLabel(2, "Passed phase-space cut");
   h_elec_cutflow->GetXaxis()->SetBinLabel(3, "Passed SC cut");
   h_elec_cutflow->GetXaxis()->SetBinLabel(4, "Passed id cut");  
 
   // Cut flow to select muons
-  h_muon_cutflow = new TH1D("CutFlow_muon", "", 4, 0, 4);
+  h_muon_cutflow = new TH1D("VbbHcc_CutFlow_muon", "", 4, 0, 4);
   h_muon_cutflow->GetXaxis()->SetBinLabel(1, "Total");
   h_muon_cutflow->GetXaxis()->SetBinLabel(2, "Passed phase-space cut");
   h_muon_cutflow->GetXaxis()->SetBinLabel(3, "Passed looseID cut");
   h_muon_cutflow->GetXaxis()->SetBinLabel(4, "Passed iso cut");
 
   // Other Histograms we want
-  h_CSV = new TH1D("CSV", "", 200, 0, 1);
-  h_CvL = new TH1D("CvL", "", 200, 0, 1);
+  h_CSV = new TH1D("VbbHcc_CSV", "", 200, 0, 1);
+  h_CvL = new TH1D("VbbHcc_CvL", "", 200, 0, 1);
+
+  h_Nselected = new TH1D("VbbHcc_Nselected", "", 10, -0.5, 9.5);
+  h_Nbjet = new TH1D("VbbHcc_Nbjet", "", 10, -0.5, 9.5);
+  h_Ncjet = new TH1D("VbbHcc_Ncjet", "", 10, -0.5, 9.5);
+  h_Z_dM = new TH1D("VbbHcc_Z_dM", "", 100, 0, 100);
+  h_H_dM = new TH1D("VbbHcc_H_dM", "", 100, 0, 100);
+
+  h_HZ0 = new TH1D("VbbHcc_HZ0", "", 100, -50, 50);
+  h_HZ1 = new TH1D("VbbHcc_HZ1", "", 100, -50, 50);
+  h_HZ2 = new TH1D("VbbHcc_HZ2", "", 100, -50, 50);
+  h_dH = new TH1D("VbbHcc_dH", "", 100, 0, 100);
 
   //Add histograms to fOutput so they can be saved in Processor::SlaveTerminate
   r->GetOutputList()->Add(h_evt) ;
   std::vector<TH1*> tmp = h_VH->returnHisto() ;
+  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_tags->returnHisto();
+  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_algo->returnHisto();
+  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_both->returnHisto();
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   
   r->GetOutputList()->Add(h_evt_cutflow);
@@ -71,8 +91,33 @@ void VH_selection::SlaveBegin(Reader* r) {
   r->GetOutputList()->Add(h_muon_cutflow);
   r->GetOutputList()->Add(h_CvL);
   r->GetOutputList()->Add(h_CSV);
+  r->GetOutputList()->Add(h_Nselected);
+  r->GetOutputList()->Add(h_Nbjet);
+  r->GetOutputList()->Add(h_Ncjet);
+  r->GetOutputList()->Add(h_Z_dM);
+  r->GetOutputList()->Add(h_H_dM);
+  r->GetOutputList()->Add(h_HZ0);
+  r->GetOutputList()->Add(h_HZ1);
+  r->GetOutputList()->Add(h_HZ2);
+  r->GetOutputList()->Add(h_dH);
 
 }//end-SlaveBegin
+
+float D_HZ(float mH, float mZ) {
+  float x0 = 125.0, y0 = 91.0;
+  float k = x0 / y0;
+  float m0 = std::max(mH, mZ);
+  float m1 = std::min(mH, mZ);
+  return fabs(m0 - k * m1) / sqrt(1 + pow(k,2));
+}
+
+
+float get_mass_from_indices(std::vector<JetObj>& jets, int idx0, int idx1) {
+  TLorentzVector vec0 = jets.at(idx0).m_lvec;
+  TLorentzVector vec1 = jets.at(idx1).m_lvec;
+  TLorentzVector vec_total = vec0 + vec1;
+  return vec_total.M(); 
+}
 
 
 void VH_selection::Process(Reader* r) {
@@ -244,132 +289,158 @@ void VH_selection::Process(Reader* r) {
 
   // We want to be able to plot the distributions of the
   // jets that survive our selections.
+  h_Nselected->Fill(selected_jets.size(), genWeight);
 
   // Remember, we want at least 4 jets.
   if (selected_jets.size() >= 4) {
 
     h_evt_cutflow->Fill(1.5, genWeight); // passed jet selection
+
+    // CASE #1 - MC TRUTH /////////////////////////////////////////////////////
     
-    // Cut #2 - b-tagging ///////////////////////////////
-    // Pick two jets with the largest btag value and then
+    // CASE #2 - TAGGING //////////////////////////////////////////////////////
+    
+    // Select two jets with the largest btag value and then 
     // make pass ~medium WP (Jet_btagDeepFlavB > 0.3)
-    
-    // Determine jet #1
-    float maxCSV = -2000.; int bIdx0 = -1;
-    for (unsigned int i = 0; i < selected_jets.size(); ++i) {
-    
-      float jet_csv = selected_jets.at(i).m_deepCSV;
-      h_CSV->Fill(jet_csv, genWeight);
-      if (jet_csv > maxCSV) {
-        maxCSV = jet_csv;
-        bIdx0 = i;
-      }
-    }
-
+    std::vector<JetObj> jets2 = selected_jets;
     std::vector<JetObj> bjets;
-    bjets.push_back(selected_jets[bIdx0]);
-    selected_jets.erase(selected_jets.begin() + bIdx0);
-    
-    // Determine jet #2
-    maxCSV = -2000.; int bIdx1 = -1;
-    for (unsigned int i = 0; i < selected_jets.size(); ++i) {
+    float csv0 = -2000.0, csv1 = -2000.0; int bIdx0 = -1, bIdx1 = -1;
 
-      float jet_csv = selected_jets.at(i).m_deepCSV;
-      if (jet_csv > maxCSV) { // && i != bIdx0) {
-        maxCSV = jet_csv;
-        bIdx1 = i;
-      }
+    for (unsigned int i = 0; i < jets2.size(); ++i) {
+      float jet_csv = jets2.at(i).m_deepCSV;    
+      if (jet_csv > csv0) { csv0 = jet_csv; bIdx0 = i; }  
     }
+    bjets.push_back(jets2[bIdx0]);
+    jets2.erase(jets2.begin() + bIdx0);
+    
+    for (unsigned int i = 0; i < jets2.size(); ++i) {
+      float jet_csv = jets2.at(i).m_deepCSV;
+      if (jet_csv > csv1) { csv1 = jet_csv; bIdx1 = i; }
+    }
+    bjets.push_back(jets2[bIdx1]);
+    jets2.erase(jets2.begin() + bIdx0);
 
-    bjets.push_back(selected_jets[bIdx1]);
-    selected_jets.erase(selected_jets.begin() + bIdx1);
-
-    // Now that we've selected the b-jets, make sure they
-    // meet the working point we're interested in.
-    if (bjets[0].m_deepCSV > 0.3 and bjets[1].m_deepCSV > 0.3) 
+    if (csv0 > 0.3 && csv1 > 0.3)
     {
+       ZObj Z(bjets);
+       std::vector<JetObj> cjets;
 
-      h_evt_cutflow->Fill(2.5, genWeight); // passed bjet selection
+       // Do the same matching process but with c-jets
+       float cvl0 = -2000.0, cvl1 = -2000.0; int cIdx0 = -1, cIdx1 = -1;
+       for (unsigned int i = 0; i < jets2.size(); ++i) {
+         float jet_cvl = jets2.at(i).m_deepCvL;
+         if (jet_cvl > cvl0) { cvl0 = jet_cvl; cIdx0 = i; }
+       }
+       cjets.push_back(jets2[cIdx0]);
+       jets2.erase(jets2.begin() + cIdx0);
 
-      // Since we have two appropriate b-jets, let's reconstruct
-      // a Z candidate from these jets.
-      ZObj Z(bjets);
+       for (unsigned int i = 0; i < jets2.size(); ++i) {
+         float jet_cvl = jets2.at(i).m_deepCvL;
+         if (jet_cvl > cvl1) { cvl1 = jet_cvl; cIdx1 = i; }
+       }
+       cjets.push_back(jets2[cIdx1]);
+       jets2.erase(jets2.begin() + cIdx1);
+       
+       if (cvl0 > 0.37 && cvl1 > 0.37) {
 
-      // Cut #3 - c-tagging ////////////////////////////////////
-      // We want to take the two remaining jets with the highest
-      // CvL and pass two working points.
-      float maxCvL = -2000.; int cIdx0 = -1;
-      for (unsigned int i = 0; i < selected_jets.size(); ++i) {
-        
-        float jet_cvl = selected_jets.at(i).m_deepCvL;
-        h_CvL->Fill(jet_cvl, genWeight);
-        if (jet_cvl > maxCvL) {
-          maxCvL = jet_cvl;
-          cIdx0 = i;
-        }
-      }
+         HObj H(cjets);
+         if (*(r->MET_pt) < 140) {
+           if (Z.m_lvec.Pt() > 50) {
+             float dPhi = Z.m_lvec.DeltaPhi(H.m_lvec);
+             if (fabs(dPhi) > 2.5) {
 
-      std::vector<JetObj> cjets;
-      cjets.push_back(selected_jets[cIdx0]);
-      selected_jets.erase(selected_jets.begin() + cIdx0);
-      
-      maxCvL = -2000.; int cIdx1 = -1;
-      for (unsigned int i = 0; i < selected_jets.size(); ++i) {
-      
-        float jet_cvl = selected_jets.at(i).m_deepCvL;
-        if (jet_cvl > maxCvL){ // && i != cIdx0) {
-          maxCvL = jet_cvl;
-          cIdx1 = i;
-        }
-      } 
+               h_VH_tags->Fill(H, Z, evtW);
 
-      cjets.push_back(selected_jets[cIdx1]);
-      selected_jets.erase(selected_jets.begin() + cIdx1);
+             }//end-dPhi-cut
+           }//end-pt(V)-cut
+         }//end-met-cut          
 
-      // Now that we've selected the c-jets, make sure they
-      // meet the working point we're interested in.
-      if (cjets[0].m_deepCvL > 0.37 and cjets[1].m_deepCvL > 0.37) {
-
-        h_evt_cutflow->Fill(3.5, genWeight); // passed cjet selection
-        
-        // Since we have two appropriate c-jets, let's reconstruct
-        // a H candidate from these jets.
-        HObj H(cjets);
-        
-        // Cut #4 - Minimize Missing Transverse Energy ///////////
-        // We want to minimize background events by elminating 
-        // events with high MET.
-        if (*(r->MET_pt) < 140) {
-
-          h_evt_cutflow->Fill(4.5, genWeight); // passed MET cut
-
-          // Cut #5 - "maximize" Vector boson mass //////////////
-          // The Z mass is 91 GeV and we need enough momentum to
-          // hit the proper mass window.
-          if (Z.m_lvec.Pt() > 50) {
-          
-            h_evt_cutflow->Fill(5.5, genWeight); // passed V pT cut
-            
-            // Cut #6 - make sure the objects are back-to-back ////
-            float dPhi = Z.m_lvec.DeltaPhi(H.m_lvec);
-            if (fabs(dPhi) > 2.5) {
-
-              h_evt_cutflow->Fill(6.5, genWeight); // passed dPhi cut
-
-              // Now that we've passed all the appropriate cuts, let's
-              // fill what we want.
-              h_VH->Fill(H, Z, evtW);
-
-            }//end-dPhi-cut
-            
-          }//end-pt(V)-cut
-
-        }//end-met-cut        
-
-      }//end-cjet-selection
-
+       }//end-cjet-selection
     }//end-bjet-selection
 
+    // CASE #3 - D_HZ ALGORITHM ///////////////////////////////////////////////
+
+    // Make sure we have our jets properly sorted by pT(j)
+    std::vector<JetObj> jets3 = selected_jets;
+    std::sort(jets3.begin(), jets3.end(), std::greater<JetObj>());    
+
+    // Run the D_HZ algorithm (i.e. let's pair the jets)
+    float x0 = 125.0, y0 = 91.0;
+    float k = x0 / y0;
+    float denom = sqrt(1 + pow(k,2));
+
+    float M_H0 = (jets3[0].m_lvec + jets3[0].m_lvec).M(); // get_mass_from_indices(jets3, 0, 1);
+    float M_Z0 = (jets3[2].m_lvec + jets3[3].m_lvec).M(); // get_mass_from_indices(jets3, 2, 3);
+    float D_HZ0 = (std::max(M_H0,M_Z0) - k*std::min(M_H0,M_Z0)) / denom;
+
+    float M_H1 = (jets3[0].m_lvec + jets3[2].m_lvec).M(); //get_mass_from_indices(jets3, 0, 2);
+    float M_Z1 = (jets3[1].m_lvec + jets3[3].m_lvec).M(); //get_mass_from_indices(jets3, 1, 3);
+    float D_HZ1 = (std::max(M_H1,M_Z1) - k*std::min(M_H1,M_Z1)) / denom;
+
+    float M_H2 = (jets3[0].m_lvec + jets3[3].m_lvec).M(); //get_mass_from_indices(jets3, 0, 3);
+    float M_Z2 = (jets3[1].m_lvec + jets3[2].m_lvec).M(); //get_mass_from_indices(jets3, 1, 2);
+    float D_HZ2 = (std::max(M_H2,M_Z2) - k*std::min(M_H2,M_Z2)) / denom;
+
+    // Sort the values in increasing order.
+    std::vector<float> D_values; D_values.push_back(D_HZ0);
+    D_values.push_back(D_HZ1);   D_values.push_back(D_HZ2);
+    std::sort(D_values.begin(), D_values.end());
+    h_HZ0->Fill(D_values[0], evtW); h_HZ1->Fill(D_values[1], evtW);
+    h_HZ2->Fill(D_values[1], evtW);
+
+    // Check the difference between the lowest two.
+    float dDH = fabs(D_values[0] - D_values[1]);
+    h_dH->Fill(dDH, evtW);
+    float chosen_DHZ = 0.0;
+
+    // If the two lowest are separated well enough,
+    // choose the one closest to the diagonal.
+    if (dDH >= 30) {
+      chosen_DHZ = D_values.at(0);
+      
+      // Now that we have the jets, match them to the proper tagging
+      // to see if we get what we want. To do this, we first need to 
+      // know which jets we used.
+      int hIdx0 = -1, hIdx1 = -1, zIdx0 = -1, zIdx1 = -1;
+      bool indicesChosen = true;
+      if (fabs(chosen_DHZ - D_HZ0) < 1e-3) {
+        hIdx0 = 0; hIdx1 = 1; zIdx0 = 2; zIdx1 = 3;
+      }
+      else if(fabs(chosen_DHZ - D_HZ1) < 1e-3) {
+        hIdx0 = 0; hIdx1 = 2; zIdx0 = 1; zIdx1 = 3; 
+      }
+      else if(fabs(chosen_DHZ - D_HZ2) < 1e-3) {
+        hIdx0 = 0; hIdx1 = 3; zIdx0 = 1; zIdx1 = 2;
+      }
+      else indicesChosen = false;
+      
+      // If we have proper IDs, reconstruct the bosons.
+      if (indicesChosen) {
+        std::vector<JetObj> cjets;
+        cjets.push_back(jets3[hIdx0]); cjets.push_back(jets3[hIdx1]);
+        ZObj Z(cjets);
+
+        std::vector<JetObj> bjets;
+        bjets.push_back(jets3[zIdx0]); bjets.push_back(jets3[zIdx1]);
+        HObj H(bjets);
+
+        // Check our remaining criteria/cuts
+        if (bjets[0].m_deepCSV > 0.3 && bjets[1].m_deepCSV > 0.3 && 
+        cjets[1].m_deepCvL > 0.37 && cjets[1].m_deepCvL > 0.37) {
+          if (*(r->MET_pt) < 140) {
+            if (Z.m_lvec.Pt() > 50) {
+              float dPhi = Z.m_lvec.DeltaPhi(H.m_lvec);
+              if (fabs(dPhi) > 2.5) {
+                h_VH_algo->Fill(H, Z, evtW);
+              }//end-dPhi-cut
+            }//end-pT(v)-cut
+          }//end-MET-cut
+        }//end-jet-tagging
+      }//end-indices-chosen
+
+    }//end-match-algorithm
+
+    // CASE #4 - TAGGING & ALGORITHM //////////////////////////////////////////
 
   }//end-jet-selection
  
