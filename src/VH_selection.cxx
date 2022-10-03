@@ -381,7 +381,7 @@ void VH_selection::Process(Reader* r) {
     // Determine which pairing we want to use based on this deltaD.
     // If we are outside the resolution window (30 GeV), we can 
     // just choose the closest pair.
-    DObj chosenPair;
+    DObj chosenPair = distances[0];
     if (deltaD >= 30) { chosenPair = distances[0];}
     // Otherwise, we want to choose the pairing of the lowest two
     // that has the largest pT(H).
@@ -395,8 +395,36 @@ void VH_selection::Process(Reader* r) {
     }
 
     // Now that we've passed the algorithm for matching, let's check the 
-    // tagging for the b- and c-jets.
-    
+    // tagging for the b- and c-jets. The tagging will be taken care of
+    // inside the DObj class.
+    if (chosenPair.Z_has_bjets()) {
+
+      if (chosenPair.H_has_cjets()) {
+
+        if (*(r->MET_pt) < 140) {
+          if (chosenPair.ZPt() > 50) {
+            float dPhi = fabs(chosenPair.DPhi());
+            if (dPhi > 2.5) {
+              // We need to build the objects to fill our histograms.
+              std::vector<JetObj> bjets;
+              bjets.push_back(jets3[chosenPair.m_zIdx0]);
+              bjets.push_back(jets3[chosenPair.m_zIdx1]);
+              ZObj Z(bjets);
+              
+              std::vector<JetObj> cjets;
+              cjets.push_back(jets3[chosenPair.m_hIdx0]);
+              cjets.push_back(jets3[chosenPair.m_hIdx1]);
+              HObj H(cjets);
+
+              h_VH_algo->Fill(H, Z, evtW);
+         
+            }//end-dPhi-cut 
+          }//end-pt(V)-cut
+        }//end-MET-cut        
+
+      }//end-b-tag
+
+    }//end-c-tag
 
     // CASE #4 - TAGGING & ALGORITHM //////////////////////////////////////////
 

@@ -233,12 +233,12 @@ class DObj { // Distance Object for mass-matching algorithm
     // Methods
     void calculate_d() {
       // Reconstruct the 4-vectors of the bosons.
-      TLorentzVector vec0 = m_jets[m_hIdx0].m_lvec + m_jets[m_hIdx1].m_lvec;
-      TLorentzVector vec1 = m_jets[m_zIdx0].m_lvec + m_jets[m_zIdx1].m_lvec;
+      m_Hvec = m_jets[m_hIdx0].m_lvec + m_jets[m_hIdx1].m_lvec;
+      m_Zvec = m_jets[m_zIdx0].m_lvec + m_jets[m_zIdx1].m_lvec;
 
       // Reconstruct the masses & make sure that pT(H) > pT(Z)
-      float m0 = vec0.M(); float m1 = vec1.M();
-      if (vec1.Pt() > vec0.Pt()) {m0 = vec1.M(); m1 = vec0.M();}
+      float m0 = m_Hvec.M(); float m1 = m_Zvec.M();
+      if (m_Zvec.Pt() > m_Hvec.Pt()) {m0 = m_Zvec.M(); m1 = m_Hvec.M();}
       
       // Calculate the distance value
       float num = fabs(m0 - k*m1);
@@ -247,17 +247,41 @@ class DObj { // Distance Object for mass-matching algorithm
     }
 
     float HPt() {
-      TLorentzVector vec0 = m_jets[m_hIdx0].m_lvec + m_jets[m_hIdx1].m_lvec;
-      return vec0.Pt();
+      return m_Hvec.Pt();
     }
 
+    float ZPt() {
+     return m_Zvec.Pt();
+    }
+
+    float DPhi() {
+      return m_Zvec.DeltaPhi(m_Hvec);
+    }
+
+    bool H_has_cjets() {
+      float cvl0 = m_jets[m_hIdx0].m_deepCvL;
+      float cvl1 = m_jets[m_hIdx1].m_deepCvL;
+      return (cvl0 > cvl_cut) && (cvl1 > cvl_cut);
+    }
+
+    bool Z_has_bjets() {
+      float csv0 = m_jets[m_zIdx0].m_deepCSV;
+      float csv1 = m_jets[m_zIdx1].m_deepCSV;
+      return (csv0 > csv_cut) && (csv1 > csv_cut);
+    }
+
+
+
     // Variables
-    const float k = 125.0 / 91.0;
+    float k = 125.0 / 91.0;
+    float csv_cut = 0.3;
+    float cvl_cut = 0.37;
     int m_hIdx0, m_hIdx1;           // indices for jets selected to Higgs
     int m_zIdx0, m_zIdx1;           // indices for jets selected to Z boson
     std::vector<JetObj> m_jets; // list of jets that we've selected
     float m_d;
- 
+    TLorentzVector m_Hvec;
+    TLorentzVector m_Zvec;
 };
 
 #endif
