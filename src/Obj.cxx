@@ -210,4 +210,54 @@ class HObj { // Higgs boson
 } ;
 
 
+class DObj { // Distance Object for mass-matching algorithm
+
+  public:
+    
+    // Constructor & Deconstructor
+    DObj(std::vector<JetObj> jets, int h0, int h1, int z0, int z1) : m_jets(jets),
+    m_hIdx0(h0), m_hIdx1(h1), m_zIdx0(z0), m_zIdx1(z1) {
+      calculate_d();
+    }
+    virtual ~DObj() {};
+
+    // overload the < and > operators.
+    // (This allows us to sort the jets by pT
+    // in ascending and descending order.)
+    bool operator>(const DObj &r) const
+    { return m_d > r.m_d; }
+
+    bool operator<(const DObj &r) const
+    { return m_d < r.m_d; }
+
+    // Methods
+    void calculate_d() {
+      // Reconstruct the 4-vectors of the bosons.
+      TLorentzVector vec0 = m_jets[m_hIdx0].m_lvec + m_jets[m_hIdx1].m_lvec;
+      TLorentzVector vec1 = m_jets[m_zIdx0].m_lvec + m_jets[m_zIdx1].m_lvec;
+
+      // Reconstruct the masses & make sure that pT(H) > pT(Z)
+      float m0 = vec0.M(); float m1 = vec1.M();
+      if (vec1.Pt() > vec0.Pt()) {m0 = vec1.M(); m1 = vec0.M();}
+      
+      // Calculate the distance value
+      float num = fabs(m0 - k*m1);
+      float denom = sqrt(1 + pow(k,2));
+      m_d = num / denom;        
+    }
+
+    float HPt() {
+      TLorentzVector vec0 = m_jets[m_hIdx0].m_lvec + m_jets[m_hIdx1].m_lvec;
+      return vec0.Pt();
+    }
+
+    // Variables
+    const float k = 125.0 / 91.0;
+    int m_hIdx0, m_hIdx1;           // indices for jets selected to Higgs
+    int m_zIdx0, m_zIdx1;           // indices for jets selected to Z boson
+    std::vector<JetObj> m_jets; // list of jets that we've selected
+    float m_d;
+ 
+};
+
 #endif

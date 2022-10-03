@@ -363,82 +363,40 @@ void VH_selection::Process(Reader* r) {
     // Make sure we have our jets properly sorted by pT(j)
     std::vector<JetObj> jets3 = selected_jets;
     std::sort(jets3.begin(), jets3.end(), std::greater<JetObj>());    
+  
+    // Create the objects for the distance calculations & make sure we sort
+    // them in ascending order. NOTE: The algorithm for calculating the distance
+    // is contained within the DObj class and is done immediately upon creation.
+    // Additionally, the operators > and < within the class are designed to sort
+    // the objects based on the distance calculated.
+    DObj d0(jets3, 0, 1, 2, 3); // H(0,1) ; Z(2,3)
+    DObj d1(jets3, 0, 2, 1, 3); // H(0,2) ; Z(1,3)
+    DObj d2(jets3, 0, 3, 1, 2); // H(0,3) ; Z(1,2)
+    std::vector<DObj> distances{ d0, d1, d2 };
+    std::sort(distances.begin(), distances.end());
 
-    // Run the D_HZ algorithm (i.e. let's pair the jets)
-    float x0 = 125.0, y0 = 91.0;
-    float k = x0 / y0;
-    float denom = sqrt(1 + pow(k,2));
+    // Determine the difference between the closest two.
+    float deltaD = fabs(distances[0].m_d - distances[1].m_d);
+    
+    // Determine which pairing we want to use based on this deltaD.
+    // If we are outside the resolution window (30 GeV), we can 
+    // just choose the closest pair.
+    DObj chosenPair;
+    if (deltaD >= 30) { chosenPair = distances[0];}
+    // Otherwise, we want to choose the pairing of the lowest two
+    // that has the largest pT(H).
+    else {
+      float pt0 = distances[0].HPt();
+      float pt1 = distances[1].HPt();
+      int idx;
+      if (pt0 > pt1) idx = 0;
+      else idx = 1;
+      chosenPair = distances[idx];
+    }
 
-    float M_H0 = (jets3[0].m_lvec + jets3[0].m_lvec).M(); // get_mass_from_indices(jets3, 0, 1);
-    float M_Z0 = (jets3[2].m_lvec + jets3[3].m_lvec).M(); // get_mass_from_indices(jets3, 2, 3);
-    float D_HZ0 = (std::max(M_H0,M_Z0) - k*std::min(M_H0,M_Z0)) / denom;
-
-    float M_H1 = (jets3[0].m_lvec + jets3[2].m_lvec).M(); //get_mass_from_indices(jets3, 0, 2);
-    float M_Z1 = (jets3[1].m_lvec + jets3[3].m_lvec).M(); //get_mass_from_indices(jets3, 1, 3);
-    float D_HZ1 = (std::max(M_H1,M_Z1) - k*std::min(M_H1,M_Z1)) / denom;
-
-    float M_H2 = (jets3[0].m_lvec + jets3[3].m_lvec).M(); //get_mass_from_indices(jets3, 0, 3);
-    float M_Z2 = (jets3[1].m_lvec + jets3[2].m_lvec).M(); //get_mass_from_indices(jets3, 1, 2);
-    float D_HZ2 = (std::max(M_H2,M_Z2) - k*std::min(M_H2,M_Z2)) / denom;
-
-    // Sort the values in increasing order.
-    std::vector<float> D_values; D_values.push_back(D_HZ0);
-    D_values.push_back(D_HZ1);   D_values.push_back(D_HZ2);
-    std::sort(D_values.begin(), D_values.end());
-    h_HZ0->Fill(D_values[0], evtW); h_HZ1->Fill(D_values[1], evtW);
-    h_HZ2->Fill(D_values[1], evtW);
-
-    // Check the difference between the lowest two.
-    float dDH = fabs(D_values[0] - D_values[1]);
-    h_dH->Fill(dDH, evtW);
-    float chosen_DHZ = 0.0;
-
-    // If the two lowest are separated well enough,
-    // choose the one closest to the diagonal.
-    if (dDH >= 30) {
-      chosen_DHZ = D_values.at(0);
-      
-      // Now that we have the jets, match them to the proper tagging
-      // to see if we get what we want. To do this, we first need to 
-      // know which jets we used.
-      int hIdx0 = -1, hIdx1 = -1, zIdx0 = -1, zIdx1 = -1;
-      bool indicesChosen = true;
-      if (fabs(chosen_DHZ - D_HZ0) < 1e-3) {
-        hIdx0 = 0; hIdx1 = 1; zIdx0 = 2; zIdx1 = 3;
-      }
-      else if(fabs(chosen_DHZ - D_HZ1) < 1e-3) {
-        hIdx0 = 0; hIdx1 = 2; zIdx0 = 1; zIdx1 = 3; 
-      }
-      else if(fabs(chosen_DHZ - D_HZ2) < 1e-3) {
-        hIdx0 = 0; hIdx1 = 3; zIdx0 = 1; zIdx1 = 2;
-      }
-      else indicesChosen = false;
-      
-      // If we have proper IDs, reconstruct the bosons.
-      if (indicesChosen) {
-        std::vector<JetObj> cjets;
-        cjets.push_back(jets3[hIdx0]); cjets.push_back(jets3[hIdx1]);
-        ZObj Z(cjets);
-
-        std::vector<JetObj> bjets;
-        bjets.push_back(jets3[zIdx0]); bjets.push_back(jets3[zIdx1]);
-        HObj H(bjets);
-
-        // Check our remaining criteria/cuts
-        if (bjets[0].m_deepCSV > 0.3 && bjets[1].m_deepCSV > 0.3 && 
-        cjets[1].m_deepCvL > 0.37 && cjets[1].m_deepCvL > 0.37) {
-          if (*(r->MET_pt) < 140) {
-            if (Z.m_lvec.Pt() > 50) {
-              float dPhi = Z.m_lvec.DeltaPhi(H.m_lvec);
-              if (fabs(dPhi) > 2.5) {
-                h_VH_algo->Fill(H, Z, evtW);
-              }//end-dPhi-cut
-            }//end-pT(v)-cut
-          }//end-MET-cut
-        }//end-jet-tagging
-      }//end-indices-chosen
-
-    }//end-match-algorithm
+    // Now that we've passed the algorithm for matching, let's check the 
+    // tagging for the b- and c-jets.
+    
 
     // CASE #4 - TAGGING & ALGORITHM //////////////////////////////////////////
 
