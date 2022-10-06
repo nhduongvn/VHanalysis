@@ -271,7 +271,6 @@ class DObj { // Distance Object for mass-matching algorithm
     }
 
 
-
     // Variables
     float k = 125.0 / 91.0;
     float csv_cut = 0.3;

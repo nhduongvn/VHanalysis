@@ -27,6 +27,8 @@ void VH_selection::SlaveBegin(Reader* r) {
   h_VH_tags = new VHPlots("VbbHcc_tags");
   h_VH_algo = new VHPlots("VbbHcc_algo");
   h_VH_both = new VHPlots("VbbHcc_both");
+  h_VH_bothTags = new VHPlots("VbbHcc_bothTags");
+  h_VH_bothAlgo = new VHPlots("VbbHcc_bothAlgo");
 
   // Cut flow to select events for analysis
   h_evt_cutflow = new TH1D("VbbHcc_CutFlow", "", 7, 0, 7);
@@ -84,6 +86,10 @@ void VH_selection::SlaveBegin(Reader* r) {
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_VH_both->returnHisto();
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_bothTags->returnHisto();
+  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_bothAlgo->returnHisto();
+  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   
   r->GetOutputList()->Add(h_evt_cutflow);
   r->GetOutputList()->Add(h_jet_cutflow);
@@ -118,6 +124,31 @@ float get_mass_from_indices(std::vector<JetObj>& jets, int idx0, int idx1) {
   TLorentzVector vec_total = vec0 + vec1;
   return vec_total.M(); 
 }
+
+
+#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
+std::vector<std::vector<int> > VH_selection::DauIdxs_ZH(Reader* r) {
+  // store the indices of the H and Z daughters
+  std::vector<std::vector<int> > dauIdxs;
+  std::vector<int> dauIdxsZ;
+  std::vector<int> dauIdxsH;
+
+  // loop over the gen parts
+  for (unsigned i = 0; i < *(r->nGenPart); ++i) {
+    // mother index
+    int mIdx = (r->GenPart_genPartIdxMother)[i];
+    // b quarks from Z (id = 5, has a mother, & mother id = 23)
+    if (fabs((r->GenPart_pdgId)[i]) == 5 && mIdx > -1 && (r->GenPart_pdgId)[mIdx] == 23) dauIdxsZ.push_back(i);
+    // c quarks from H (id = 4, has a mother, & mother id = 25)
+    if (fabs((r->GenPart_pdgId)[i]) == 4 && mIdx > -1 && (r->GenPart_pdgId)[mIdx] == 25) dauIdxsH.push_back(i);
+  }
+
+  // push back & return the proper IDs
+  dauIdxs.push_back(dauIdxsZ);
+  dauIdxs.push_back(dauIdxsH);
+  return dauIdxs;
+}
+#endif
 
 
 void VH_selection::Process(Reader* r) {
@@ -291,13 +322,45 @@ void VH_selection::Process(Reader* r) {
   // jets that survive our selections.
   h_Nselected->Fill(selected_jets.size(), genWeight);
 
+// CASE #1 - MC TRUTH /////////////////////////////////////////////////////
+// Remember, we only want to do this if we have a proper MC file.
+// We ignore this part for data files.
+#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018) 
+
+    // Make sure we have two daughters for each particle
+    int Zid = 0, Hid = 1;
+    std::vector<std::vector<int> > dauIdxs = DauIdxs_ZH(r);
+    if (dauIdxs[Zid].size() == 2 && dauIdxs[Hid].size() == 2) {
+      int idx1_Z = dauIdxs[Zid][0];
+      int idx2_Z = dauIdxs[Zid][1];
+      int idx1_H = dauIdxs[Hid][0];
+      int idx2_H = dauIdxs[Hid][1];
+      
+      // Reconstruct from the GenPart data.
+      JetObj b0((r->GenPart_pt)[idx1_Z], (r->GenPart_eta)[idx1_Z],
+         (r->GenPart_phi)[idx1_Z], (r->GenPart_mass)[idx1_Z], 5, 0., 0.);
+      JetObj b1((r->GenPart_pt)[idx2_Z], (r->GenPart_eta)[idx2_Z],
+         (r->GenPart_phi)[idx2_Z], (r->GenPart_mass)[idx2_Z], 5, 0., 0.);
+      std::vector<JetObj> bjets{b0, b1};
+      ZObj Z(bjets);
+
+      JetObj c0((r->GenPart_pt)[idx1_H], (r->GenPart_eta)[idx1_H],
+         (r->GenPart_phi)[idx1_H], (r->GenPart_mass)[idx1_H], 4, 0., 0.);
+      JetObj c1((r->GenPart_pt)[idx2_H], (r->GenPart_eta)[idx2_H],
+         (r->GenPart_phi)[idx2_H], (r->GenPart_mass)[idx2_H], 4, 0., 0.);
+      std::vector<JetObj> cjets{c0, c1};
+      HObj H(cjets);      
+
+      // Fill the objects
+      h_VH->Fill(H, Z, evtW);
+    }
+#endif 
+
   // Remember, we want at least 4 jets.
   if (selected_jets.size() >= 4) {
 
     h_evt_cutflow->Fill(1.5, genWeight); // passed jet selection
-
-    // CASE #1 - MC TRUTH /////////////////////////////////////////////////////
-    
+   
     // CASE #2 - TAGGING //////////////////////////////////////////////////////
     
     // Select two jets with the largest btag value and then 
@@ -427,6 +490,110 @@ void VH_selection::Process(Reader* r) {
     }//end-c-tag
 
     // CASE #4 - TAGGING & ALGORITHM //////////////////////////////////////////
+
+    // Make sure we have our jets properly sorted by pT(j)
+    std::vector<JetObj> jets4 = selected_jets;
+    std::sort(jets4.begin(), jets4.end(), std::greater<JetObj>());
+    
+    // Check to see which jets pass which tagging.
+    std::vector<int> bIndices; std::vector<int> cIndices;
+    bool ctags[4] = { false, false, false, false };
+    bool btags[4] = { false, false, false, false };
+    for (int i = 0; i < 4; ++i) {
+      if (jets4[i].m_deepCSV > 0.3){ btags[i] = true; bIndices.push_back(i); }
+      if (jets4[i].m_deepCvL > 0.37){ ctags[i] = true; cIndices.push_back(i); }
+    }
+
+    // Make sure we have no jets that pass both tags.
+    bool properly_chosen = true;
+    for (int i = 0; i < 4; ++i) {
+      if (ctags[i] && btags[i]) {
+        properly_chosen = false; break;
+      }  
+    }
+
+    // Make sure we have 2 b-jets and 2 c-jets.
+    if (properly_chosen && bIndices.size() == 2 && cIndices.size() == 2) {
+      
+      // Get the jets into proper lists. Reconstruct the bosons.
+      std::vector<JetObj> bjets;
+      bjets.push_back(jets4[bIndices[0]]);
+      bjets.push_back(jets4[bIndices[1]]);
+      ZObj Z(bjets);
+ 
+      std::vector<JetObj> cjets;
+      cjets.push_back(jets4[cIndices[0]]);
+      cjets.push_back(jets4[cIndices[1]]);
+      HObj H(cjets);
+
+      // Go through the rest of our cuts.
+      if (*(r->MET_pt) < 140) {
+        if (Z.m_lvec.Pt() > 50) {
+          float dPhi = fabs(Z.m_lvec.DeltaPhi(H.m_lvec));
+          if (dPhi > 2.5) {
+            h_VH_both->Fill(H, Z, evtW);
+            h_VH_bothTags->Fill(H, Z, evtW);
+          }//end-dPhi-cut
+        }//end-pt(V)-cut
+      }//end-MET-cut   
+    }
+    // If we don't, we have to go through the mass matching algorithm.
+    else {
+
+      // Run the mass matching algorithm.
+      DObj d0(jets4, 0, 1, 2, 3); // H(0,1) ; Z(2,3)
+      DObj d1(jets4, 0, 2, 1, 3); // H(0,2) ; Z(1,3)
+      DObj d2(jets4, 0, 3, 1, 2); // H(0,3) ; Z(1,2)
+      std::vector<DObj> distances{ d0, d1, d2 };
+      std::sort(distances.begin(), distances.end());    
+
+      // Determine the difference between the closest two.
+      float deltaD = fabs(distances[0].m_d - distances[1].m_d);
+
+      // Determine which pairing we want to use based on this deltaD.
+      // If we are outside the resolution window (30 GeV), we can
+      // just choose the closest pair.
+      DObj chosenPair = distances[0];
+      if (deltaD >= 30) { chosenPair = distances[0]; }
+      // Otherwise, we want to choose the pairing of the lowest two
+      // that has the largest pT(H).   
+      else {
+        float pt0 = distances[0].HPt();
+        float pt1 = distances[0].HPt();
+        int idx;
+        if (pt0 > pt1) idx = 0;
+        else idx = 1;
+        chosenPair = distances[idx];
+      }
+
+      // Now that we've passed the algorithm, let's check the tagging
+      // for b- and c-jets.
+      if (chosenPair.Z_has_bjets()) {
+        if (chosenPair.H_has_cjets()) {
+          if (*(r->MET_pt) < 140) {
+            if (chosenPair.ZPt() > 50) {
+              float dPhi = fabs(chosenPair.DPhi());
+              if (dPhi > 2.5) {
+                // We need to build the objects to fill our histograms.
+                std::vector<JetObj> bjets;
+	        bjets.push_back(jets4[chosenPair.m_zIdx0]);
+	        bjets.push_back(jets4[chosenPair.m_zIdx1]);
+	        ZObj Z(bjets);
+                
+                std::vector<JetObj> cjets;
+	        cjets.push_back(jets4[chosenPair.m_hIdx0]);
+	        cjets.push_back(jets4[chosenPair.m_hIdx1]);
+	        HObj H(cjets);
+
+	        h_VH_both->Fill(H, Z, evtW);
+                h_VH_bothAlgo->Fill(H, Z, evtW);
+              }//end-dPhi-cut
+            }//end-pT(V)-cut
+          }//end-MET-cut
+        }//end-c-tag
+      }//end-b-tag
+    }
+
 
   }//end-jet-selection
  

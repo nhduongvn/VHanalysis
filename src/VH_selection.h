@@ -22,6 +22,9 @@ public:
   virtual void Process(Reader* r) ;
   virtual void SlaveTerminate(Reader* r) {} ;
   virtual void Terminate(TList* mergedList, std::string outFileName) ;
+
+  std::vector<std::vector<int> > DauIdxs_ZH(Reader* r);
+
 private:
 
   float D_HZ(float mH, float mZ);
@@ -34,7 +37,9 @@ private:
   VHPlots* h_VH_tags;
   VHPlots* h_VH_algo;
   VHPlots* h_VH_both;
-  
+  VHPlots* h_VH_bothTags;
+  VHPlots* h_VH_bothAlgo; 
+ 
   TH1D* h_evt_cutflow;
   TH1D* h_jet_cutflow;
   TH1D* h_elec_cutflow;
