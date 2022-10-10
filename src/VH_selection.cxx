@@ -31,14 +31,36 @@ void VH_selection::SlaveBegin(Reader* r) {
   h_VH_bothAlgo = new VHPlots("VbbHcc_bothAlgo");
 
   // Cut flow to select events for analysis
-  h_evt_cutflow = new TH1D("VbbHcc_CutFlow", "", 7, 0, 7);
+  h_evt_cutflow = new TH1D("VbbHcc_CutFlow", "", 2, 0, 2);
   h_evt_cutflow->GetXaxis()->SetBinLabel(1, "Total");
-  h_evt_cutflow->GetXaxis()->SetBinLabel(2, "Passed jet requirements");
-  h_evt_cutflow->GetXaxis()->SetBinLabel(3, "Passed b-tagging for Z candidate");
-  h_evt_cutflow->GetXaxis()->SetBinLabel(4, "Passed c-tagging for H candidate");
-  h_evt_cutflow->GetXaxis()->SetBinLabel(5, "Passed MET cut");
-  h_evt_cutflow->GetXaxis()->SetBinLabel(6, "Passed V pT cut");
-  h_evt_cutflow->GetXaxis()->SetBinLabel(7, "Passed dPhi cut");
+  h_evt_cutflow->GetXaxis()->SetBinLabel(2, "Passed daughter selection");
+
+  h_evt_tags_cutflow = new TH1D("VbbHcc_tags_CutFlow", "", 7, 0, 7);
+  h_evt_tags_cutflow->GetXaxis()->SetBinLabel(1, "Total");
+  h_evt_tags_cutflow->GetXaxis()->SetBinLabel(2, "Passed jet requirements");
+  h_evt_tags_cutflow->GetXaxis()->SetBinLabel(3, "Passed b-tagging for Z candidate");
+  h_evt_tags_cutflow->GetXaxis()->SetBinLabel(4, "Passed c-tagging for H candidate");
+  h_evt_tags_cutflow->GetXaxis()->SetBinLabel(5, "Passed MET cut");
+  h_evt_tags_cutflow->GetXaxis()->SetBinLabel(6, "Passed V pT cut");
+  h_evt_tags_cutflow->GetXaxis()->SetBinLabel(7, "Passed dPhi cut");
+
+  h_evt_algo_cutflow = new TH1D("VbbHcc_algo_CutFlow", "", 7, 0, 7);
+  h_evt_algo_cutflow->GetXaxis()->SetBinLabel(1, "Total");
+  h_evt_algo_cutflow->GetXaxis()->SetBinLabel(2, "Passed jet requirements");
+  h_evt_algo_cutflow->GetXaxis()->SetBinLabel(3, "Passed b-tagging for Z candidate");
+  h_evt_algo_cutflow->GetXaxis()->SetBinLabel(4, "Passed c-tagging for H candidate");
+  h_evt_algo_cutflow->GetXaxis()->SetBinLabel(5, "Passed MET cut");
+  h_evt_algo_cutflow->GetXaxis()->SetBinLabel(6, "Passed V pT cut");
+  h_evt_algo_cutflow->GetXaxis()->SetBinLabel(7, "Passed dPhi cut");
+
+  h_evt_both_cutflow = new TH1D("VbbHcc_both_CutFlow", "", 7, 0, 7);
+  h_evt_both_cutflow->GetXaxis()->SetBinLabel(1, "Total");
+  h_evt_both_cutflow->GetXaxis()->SetBinLabel(2, "Passed jet requirements");
+  h_evt_both_cutflow->GetXaxis()->SetBinLabel(3, "Passed b-tagging for Z candidate");
+  h_evt_both_cutflow->GetXaxis()->SetBinLabel(4, "Passed c-tagging for H candidate");
+  h_evt_both_cutflow->GetXaxis()->SetBinLabel(5, "Passed MET cut");
+  h_evt_both_cutflow->GetXaxis()->SetBinLabel(6, "Passed V pT cut");
+  h_evt_both_cutflow->GetXaxis()->SetBinLabel(7, "Passed dPhi cut");
 
   // Cut flow to select jets for event
   h_jet_cutflow = new TH1D("VbbHcc_CutFlow_jets", "", 4, 0, 4);
@@ -71,11 +93,12 @@ void VH_selection::SlaveBegin(Reader* r) {
   h_Z_dM = new TH1D("VbbHcc_Z_dM", "", 100, 0, 100);
   h_H_dM = new TH1D("VbbHcc_H_dM", "", 100, 0, 100);
 
-  h_HZ0 = new TH1D("VbbHcc_HZ0", "", 100, -50, 50);
-  h_HZ1 = new TH1D("VbbHcc_HZ1", "", 100, -50, 50);
-  h_HZ2 = new TH1D("VbbHcc_HZ2", "", 100, -50, 50);
+  h_HZ0 = new TH1D("VbbHcc_HZ0", "", 100, 0, 100);
+  h_HZ1 = new TH1D("VbbHcc_HZ1", "", 100, 0, 100);
+  h_HZ2 = new TH1D("VbbHcc_HZ2", "", 100, 0, 100);
   h_dH = new TH1D("VbbHcc_dH", "", 100, 0, 100);
-
+  h_MH_v_MZ = new TH2D("VbbHcc_MH_v_MZ", "", 200, 0, 200, 200, 0, 200); 
+ 
   //Add histograms to fOutput so they can be saved in Processor::SlaveTerminate
   r->GetOutputList()->Add(h_evt) ;
   std::vector<TH1*> tmp = h_VH->returnHisto() ;
@@ -92,6 +115,9 @@ void VH_selection::SlaveBegin(Reader* r) {
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   
   r->GetOutputList()->Add(h_evt_cutflow);
+  r->GetOutputList()->Add(h_evt_tags_cutflow);
+  r->GetOutputList()->Add(h_evt_algo_cutflow);
+  r->GetOutputList()->Add(h_evt_both_cutflow);
   r->GetOutputList()->Add(h_jet_cutflow);
   r->GetOutputList()->Add(h_elec_cutflow);
   r->GetOutputList()->Add(h_muon_cutflow);
@@ -106,7 +132,7 @@ void VH_selection::SlaveBegin(Reader* r) {
   r->GetOutputList()->Add(h_HZ1);
   r->GetOutputList()->Add(h_HZ2);
   r->GetOutputList()->Add(h_dH);
-
+  r->GetOutputList()->Add(h_MH_v_MZ);
 }//end-SlaveBegin
 
 float D_HZ(float mH, float mZ) {
@@ -275,7 +301,10 @@ void VH_selection::Process(Reader* r) {
 
   // All cut flows need to show the total events //
   h_evt_cutflow->Fill(0.5, genWeight);
-
+  h_evt_tags_cutflow->Fill(0.5, genWeight);
+  h_evt_algo_cutflow->Fill(0.5, genWeight);
+  h_evt_both_cutflow->Fill(0.5, genWeight);
+ 
   // So we have them for reference (in terms of making cuts),
   // make sure to place ALL jets into distributions.
   h_VH->FillJets(jets, evtW);
@@ -331,6 +360,8 @@ void VH_selection::Process(Reader* r) {
     int Zid = 0, Hid = 1;
     std::vector<std::vector<int> > dauIdxs = DauIdxs_ZH(r);
     if (dauIdxs[Zid].size() == 2 && dauIdxs[Hid].size() == 2) {
+
+      h_evt_cutflow->Fill(1.5, genWeight);
       int idx1_Z = dauIdxs[Zid][0];
       int idx2_Z = dauIdxs[Zid][1];
       int idx1_H = dauIdxs[Hid][0];
@@ -359,8 +390,10 @@ void VH_selection::Process(Reader* r) {
   // Remember, we want at least 4 jets.
   if (selected_jets.size() >= 4) {
 
-    h_evt_cutflow->Fill(1.5, genWeight); // passed jet selection
-   
+    h_evt_tags_cutflow->Fill(1.5, genWeight); // passed jet selection
+    h_evt_algo_cutflow->Fill(1.5, genWeight);
+    h_evt_both_cutflow->Fill(1.5, genWeight);   
+
     // CASE #2 - TAGGING //////////////////////////////////////////////////////
     
     // Select two jets with the largest btag value and then 
@@ -385,6 +418,7 @@ void VH_selection::Process(Reader* r) {
 
     if (csv0 > 0.3 && csv1 > 0.3)
     {
+       h_evt_tags_cutflow->Fill(2.5, genWeight); // pass b-cuts
        ZObj Z(bjets);
        std::vector<JetObj> cjets;
 
@@ -406,12 +440,18 @@ void VH_selection::Process(Reader* r) {
        
        if (cvl0 > 0.37 && cvl1 > 0.37) {
 
+         h_evt_tags_cutflow->Fill(3.5, genWeight); // pass c-cuts
          HObj H(cjets);
          if (*(r->MET_pt) < 140) {
+
+           h_evt_tags_cutflow->Fill(4.5, genWeight); // pass MET cut
            if (Z.m_lvec.Pt() > 50) {
+
+             h_evt_tags_cutflow->Fill(5.5, genWeight); // pass pT(Z) cut
              float dPhi = Z.m_lvec.DeltaPhi(H.m_lvec);
              if (fabs(dPhi) > 2.5) {
 
+               h_evt_tags_cutflow->Fill(6.5, genWeight); // pass dPhi cut
                h_VH_tags->Fill(H, Z, evtW);
 
              }//end-dPhi-cut
@@ -438,9 +478,15 @@ void VH_selection::Process(Reader* r) {
     std::vector<DObj> distances{ d0, d1, d2 };
     std::sort(distances.begin(), distances.end());
 
+    h_HZ0->Fill(d0.m_d, evtW); h_HZ1->Fill(d1.m_d, evtW); h_HZ2->Fill(d2.m_d, evtW);
+    h_MH_v_MZ->Fill(d0.HM(), d0.ZM(), evtW);
+    h_MH_v_MZ->Fill(d1.HM(), d1.ZM(), evtW);
+    h_MH_v_MZ->Fill(d2.HM(), d2.ZM(), evtW); 
+
     // Determine the difference between the closest two.
     float deltaD = fabs(distances[0].m_d - distances[1].m_d);
-    
+    h_dH->Fill(deltaD, evtW);    
+
     // Determine which pairing we want to use based on this deltaD.
     // If we are outside the resolution window (30 GeV), we can 
     // just choose the closest pair.
@@ -462,12 +508,20 @@ void VH_selection::Process(Reader* r) {
     // inside the DObj class.
     if (chosenPair.Z_has_bjets()) {
 
+      h_evt_algo_cutflow->Fill(2.5, genWeight); // pass b-tagging
       if (chosenPair.H_has_cjets()) {
 
+        h_evt_algo_cutflow->Fill(3.5, genWeight); // pass c-tagging
         if (*(r->MET_pt) < 140) {
+
+          h_evt_algo_cutflow->Fill(4.5, genWeight); // pass MET cut
           if (chosenPair.ZPt() > 50) {
+
+            h_evt_algo_cutflow->Fill(5.5, genWeight); // pass pT(Z) cut
             float dPhi = fabs(chosenPair.DPhi());
             if (dPhi > 2.5) {
+
+              h_evt_algo_cutflow->Fill(6.5, genWeight); // pass dPhi cut
               // We need to build the objects to fill our histograms.
               std::vector<JetObj> bjets;
               bjets.push_back(jets3[chosenPair.m_zIdx0]);
@@ -515,6 +569,9 @@ void VH_selection::Process(Reader* r) {
     // Make sure we have 2 b-jets and 2 c-jets.
     if (properly_chosen && bIndices.size() == 2 && cIndices.size() == 2) {
       
+      h_evt_both_cutflow->Fill(2.5, genWeight); //pass b-tagging
+      h_evt_both_cutflow->Fill(3.5, genWeight); //pass c-tagging
+
       // Get the jets into proper lists. Reconstruct the bosons.
       std::vector<JetObj> bjets;
       bjets.push_back(jets4[bIndices[0]]);
@@ -528,15 +585,21 @@ void VH_selection::Process(Reader* r) {
 
       // Go through the rest of our cuts.
       if (*(r->MET_pt) < 140) {
+        h_evt_both_cutflow->Fill(4.5, genWeight); // pass MET cut
         if (Z.m_lvec.Pt() > 50) {
+
+          h_evt_both_cutflow->Fill(5.5, genWeight); // pass pT(Z) cut
           float dPhi = fabs(Z.m_lvec.DeltaPhi(H.m_lvec));
+ 
           if (dPhi > 2.5) {
+            h_evt_both_cutflow->Fill(6.5, genWeight); // pass dPhi cut
             h_VH_both->Fill(H, Z, evtW);
             h_VH_bothTags->Fill(H, Z, evtW);
           }//end-dPhi-cut
         }//end-pt(V)-cut
       }//end-MET-cut   
-    }
+    }//end-tagging
+
     // If we don't, we have to go through the mass matching algorithm.
     else {
 
@@ -547,8 +610,14 @@ void VH_selection::Process(Reader* r) {
       std::vector<DObj> distances{ d0, d1, d2 };
       std::sort(distances.begin(), distances.end());    
 
+      h_HZ0->Fill(d0.m_d, evtW); h_HZ1->Fill(d1.m_d, evtW); h_HZ2->Fill(d2.m_d, evtW);
+      h_MH_v_MZ->Fill(d0.HM(), d0.ZM(), evtW);
+      h_MH_v_MZ->Fill(d1.HM(), d1.ZM(), evtW);
+      h_MH_v_MZ->Fill(d2.HM(), d2.ZM(), evtW);
+
       // Determine the difference between the closest two.
       float deltaD = fabs(distances[0].m_d - distances[1].m_d);
+      h_dH->Fill(deltaD, evtW);
 
       // Determine which pairing we want to use based on this deltaD.
       // If we are outside the resolution window (30 GeV), we can
@@ -569,11 +638,21 @@ void VH_selection::Process(Reader* r) {
       // Now that we've passed the algorithm, let's check the tagging
       // for b- and c-jets.
       if (chosenPair.Z_has_bjets()) {
+
+        h_evt_both_cutflow->Fill(2.5, genWeight); // pass b-tagging
         if (chosenPair.H_has_cjets()) {
+
+          h_evt_both_cutflow->Fill(3.5, genWeight); //  pass c-tagging
           if (*(r->MET_pt) < 140) {
+
+            h_evt_both_cutflow->Fill(4.5, genWeight); // pass MET cut
             if (chosenPair.ZPt() > 50) {
+
+              h_evt_both_cutflow->Fill(5.5, genWeight); // pass pT(Z) cut
               float dPhi = fabs(chosenPair.DPhi());
               if (dPhi > 2.5) {
+                h_evt_both_cutflow->Fill(6.5, genWeight); // pass dPhi cut
+
                 // We need to build the objects to fill our histograms.
                 std::vector<JetObj> bjets;
 	        bjets.push_back(jets4[chosenPair.m_zIdx0]);
@@ -592,7 +671,7 @@ void VH_selection::Process(Reader* r) {
           }//end-MET-cut
         }//end-c-tag
       }//end-b-tag
-    }
+    }//end-mass-match
 
 
   }//end-jet-selection

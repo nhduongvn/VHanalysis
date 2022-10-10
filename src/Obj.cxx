@@ -246,13 +246,11 @@ class DObj { // Distance Object for mass-matching algorithm
       m_d = num / denom;        
     }
 
-    float HPt() {
-      return m_Hvec.Pt();
-    }
+    float HPt() { return m_Hvec.Pt(); }
+    float HM() { return m_Hvec.M(); }
 
-    float ZPt() {
-     return m_Zvec.Pt();
-    }
+    float ZPt() { return m_Zvec.Pt(); }
+    float ZM() { return m_Zvec.M(); }
 
     float DPhi() {
       return m_Zvec.DeltaPhi(m_Hvec);

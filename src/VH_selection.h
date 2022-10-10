@@ -41,6 +41,9 @@ private:
   VHPlots* h_VH_bothAlgo; 
  
   TH1D* h_evt_cutflow;
+  TH1D* h_evt_tags_cutflow;
+  TH1D* h_evt_algo_cutflow;
+  TH1D* h_evt_both_cutflow;
   TH1D* h_jet_cutflow;
   TH1D* h_elec_cutflow;
   TH1D* h_muon_cutflow;
@@ -58,6 +61,7 @@ private:
   TH1D* h_HZ1;
   TH1D* h_HZ2;
   TH1D* h_dH;
+  TH2D* h_MH_v_MZ;
 } ;
 
 #endif
