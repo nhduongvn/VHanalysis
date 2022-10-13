@@ -30,6 +30,10 @@ void VH_selection::SlaveBegin(Reader* r) {
   h_VH_bothTags = new VHPlots("VbbHcc_bothTags");
   h_VH_bothAlgo = new VHPlots("VbbHcc_bothAlgo");
 
+  h_eff_tags = new EffPlots("VbbHcc_tags");
+  h_eff_algo = new EffPlots("VbbHcc_algo");
+  h_eff_both = new EffPlots("VbbHcc_both");
+
   // Cut flow to select events for analysis
   h_evt_cutflow = new TH1D("VbbHcc_CutFlow", "", 2, 0, 2);
   h_evt_cutflow->GetXaxis()->SetBinLabel(1, "Total");
@@ -98,7 +102,7 @@ void VH_selection::SlaveBegin(Reader* r) {
   h_HZ2 = new TH1D("VbbHcc_HZ2", "", 100, 0, 100);
   h_dH = new TH1D("VbbHcc_dH", "", 100, 0, 100);
   h_MH_v_MZ = new TH2D("VbbHcc_MH_v_MZ", "", 200, 0, 200, 200, 0, 200); 
- 
+  
   //Add histograms to fOutput so they can be saved in Processor::SlaveTerminate
   r->GetOutputList()->Add(h_evt) ;
   std::vector<TH1*> tmp = h_VH->returnHisto() ;
@@ -113,7 +117,13 @@ void VH_selection::SlaveBegin(Reader* r) {
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_VH_bothAlgo->returnHisto();
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  
+  tmp = h_eff_tags->returnHisto();
+  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_eff_algo->returnHisto();
+  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_eff_both->returnHisto();
+  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+
   r->GetOutputList()->Add(h_evt_cutflow);
   r->GetOutputList()->Add(h_evt_tags_cutflow);
   r->GetOutputList()->Add(h_evt_algo_cutflow);
@@ -133,6 +143,7 @@ void VH_selection::SlaveBegin(Reader* r) {
   r->GetOutputList()->Add(h_HZ2);
   r->GetOutputList()->Add(h_dH);
   r->GetOutputList()->Add(h_MH_v_MZ);
+
 }//end-SlaveBegin
 
 float D_HZ(float mH, float mZ) {
@@ -253,7 +264,7 @@ void VH_selection::Process(Reader* r) {
     // We want electrons with high enough pT and within
     // the eta limit of the tracker.
     if (elec.m_lvec.Pt() < CUTS.Get<float>("lep_pt1") || 
-       fabs(elec.m_lvec.Eta()) > CUTS.Get<float>("lep_eta"))
+      fabs(elec.m_lvec.Eta()) > CUTS.Get<float>("lep_eta"))
        continue;
 
     h_elec_cutflow->Fill(1.5, genWeight); // passed phase cut
@@ -354,13 +365,17 @@ void VH_selection::Process(Reader* r) {
 // CASE #1 - MC TRUTH /////////////////////////////////////////////////////
 // Remember, we only want to do this if we have a proper MC file.
 // We ignore this part for data files.
+bool canCompareToMC = false;
+std::vector<std::vector<int> > dauIdxs;
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018) 
 
     // Make sure we have two daughters for each particle
     int Zid = 0, Hid = 1;
-    std::vector<std::vector<int> > dauIdxs = DauIdxs_ZH(r);
+    dauIdxs = DauIdxs_ZH(r);
+    std::vector<JetObj> genObjs;
     if (dauIdxs[Zid].size() == 2 && dauIdxs[Hid].size() == 2) {
 
+      canCompareToMC = true;
       h_evt_cutflow->Fill(1.5, genWeight);
       int idx1_Z = dauIdxs[Zid][0];
       int idx2_Z = dauIdxs[Zid][1];
@@ -374,6 +389,7 @@ void VH_selection::Process(Reader* r) {
          (r->GenPart_phi)[idx2_Z], (r->GenPart_mass)[idx2_Z], 5, 0., 0.);
       std::vector<JetObj> bjets{b0, b1};
       ZObj Z(bjets);
+      genObjs.push_back(b0); genObjs.push_back(b1);
 
       JetObj c0((r->GenPart_pt)[idx1_H], (r->GenPart_eta)[idx1_H],
          (r->GenPart_phi)[idx1_H], (r->GenPart_mass)[idx1_H], 4, 0., 0.);
@@ -381,10 +397,12 @@ void VH_selection::Process(Reader* r) {
          (r->GenPart_phi)[idx2_H], (r->GenPart_mass)[idx2_H], 4, 0., 0.);
       std::vector<JetObj> cjets{c0, c1};
       HObj H(cjets);      
+      genObjs.push_back(c0); genObjs.push_back(c1);
 
       // Fill the objects
       h_VH->Fill(H, Z, evtW);
     }
+
 #endif 
 
   // Remember, we want at least 4 jets.
@@ -453,6 +471,28 @@ void VH_selection::Process(Reader* r) {
 
                h_evt_tags_cutflow->Fill(6.5, genWeight); // pass dPhi cut
                h_VH_tags->Fill(H, Z, evtW);
+
+#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
+               
+             if (canCompareToMC) {
+               // Get the gen-level objects. 
+               int idx1_Z = dauIdxs[0][0], idx2_Z = dauIdxs[0][1];
+               int idx1_H = dauIdxs[1][0], idx2_H = dauIdxs[1][1];
+               JetObj b0((r->GenPart_pt)[idx1_Z], (r->GenPart_eta)[idx1_Z],
+                 (r->GenPart_phi)[idx1_Z], (r->GenPart_mass)[idx1_Z], 5, 0., 0.);
+               JetObj b1((r->GenPart_pt)[idx2_Z], (r->GenPart_eta)[idx2_Z],
+                 (r->GenPart_phi)[idx2_Z], (r->GenPart_mass)[idx2_Z], 5, 0., 0.);
+               std::vector<JetObj> bjets{b0, b1};
+
+               JetObj c0((r->GenPart_pt)[idx1_H], (r->GenPart_eta)[idx1_H],
+                 (r->GenPart_phi)[idx1_H], (r->GenPart_mass)[idx1_H], 4, 0., 0.);
+               JetObj c1((r->GenPart_pt)[idx2_H], (r->GenPart_eta)[idx2_H],
+                 (r->GenPart_phi)[idx2_H], (r->GenPart_mass)[idx2_H], 4, 0., 0.);
+               std::vector<JetObj> cjets{c0, c1};
+
+               h_eff_tags->Fill(H, Z, cjets, bjets, evtW);            
+             }
+#endif
 
              }//end-dPhi-cut
            }//end-pt(V)-cut
@@ -534,6 +574,29 @@ void VH_selection::Process(Reader* r) {
               HObj H(cjets);
 
               h_VH_algo->Fill(H, Z, evtW);
+
+#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
+
+            if (canCompareToMC) {
+              // Get the gen-level objects. 
+              int idx1_Z = dauIdxs[0][0], idx2_Z = dauIdxs[0][1];
+              int idx1_H = dauIdxs[1][0], idx2_H = dauIdxs[1][1];
+              JetObj b0((r->GenPart_pt)[idx1_Z], (r->GenPart_eta)[idx1_Z],
+                (r->GenPart_phi)[idx1_Z], (r->GenPart_mass)[idx1_Z], 5, 0., 0.);
+              JetObj b1((r->GenPart_pt)[idx2_Z], (r->GenPart_eta)[idx2_Z],
+                (r->GenPart_phi)[idx2_Z], (r->GenPart_mass)[idx2_Z], 5, 0., 0.);
+              std::vector<JetObj> bjets{b0, b1};
+
+              JetObj c0((r->GenPart_pt)[idx1_H], (r->GenPart_eta)[idx1_H],
+                (r->GenPart_phi)[idx1_H], (r->GenPart_mass)[idx1_H], 4, 0., 0.);
+              JetObj c1((r->GenPart_pt)[idx2_H], (r->GenPart_eta)[idx2_H],
+                (r->GenPart_phi)[idx2_H], (r->GenPart_mass)[idx2_H], 4, 0., 0.);
+              std::vector<JetObj> cjets{c0, c1};
+
+              h_eff_algo->Fill(H, Z, cjets, bjets, evtW);
+             }
+#endif
+
          
             }//end-dPhi-cut 
           }//end-pt(V)-cut
@@ -595,6 +658,28 @@ void VH_selection::Process(Reader* r) {
             h_evt_both_cutflow->Fill(6.5, genWeight); // pass dPhi cut
             h_VH_both->Fill(H, Z, evtW);
             h_VH_bothTags->Fill(H, Z, evtW);
+
+#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
+
+            if (canCompareToMC) {
+               // Get the gen-level objects. 
+               int idx1_Z = dauIdxs[0][0], idx2_Z = dauIdxs[0][1];
+               int idx1_H = dauIdxs[1][0], idx2_H = dauIdxs[1][1];
+               JetObj b0((r->GenPart_pt)[idx1_Z], (r->GenPart_eta)[idx1_Z],
+                 (r->GenPart_phi)[idx1_Z], (r->GenPart_mass)[idx1_Z], 5, 0., 0.);
+               JetObj b1((r->GenPart_pt)[idx2_Z], (r->GenPart_eta)[idx2_Z],
+                 (r->GenPart_phi)[idx2_Z], (r->GenPart_mass)[idx2_Z], 5, 0., 0.);
+               std::vector<JetObj> bjets{b0, b1};
+
+               JetObj c0((r->GenPart_pt)[idx1_H], (r->GenPart_eta)[idx1_H],
+                 (r->GenPart_phi)[idx1_H], (r->GenPart_mass)[idx1_H], 4, 0., 0.);
+               JetObj c1((r->GenPart_pt)[idx2_H], (r->GenPart_eta)[idx2_H],
+                 (r->GenPart_phi)[idx2_H], (r->GenPart_mass)[idx2_H], 4, 0., 0.);
+               std::vector<JetObj> cjets{c0, c1};
+
+               h_eff_both->Fill(H, Z, cjets, bjets, evtW);
+             }
+#endif
           }//end-dPhi-cut
         }//end-pt(V)-cut
       }//end-MET-cut   
@@ -666,6 +751,29 @@ void VH_selection::Process(Reader* r) {
 
 	        h_VH_both->Fill(H, Z, evtW);
                 h_VH_bothAlgo->Fill(H, Z, evtW);
+
+#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
+
+            if (canCompareToMC) {
+               // Get the gen-level objects. 
+               int idx1_Z = dauIdxs[0][0], idx2_Z = dauIdxs[0][1];
+               int idx1_H = dauIdxs[1][0], idx2_H = dauIdxs[1][1];
+               JetObj b0((r->GenPart_pt)[idx1_Z], (r->GenPart_eta)[idx1_Z],
+                 (r->GenPart_phi)[idx1_Z], (r->GenPart_mass)[idx1_Z], 5, 0., 0.);
+               JetObj b1((r->GenPart_pt)[idx2_Z], (r->GenPart_eta)[idx2_Z],
+                 (r->GenPart_phi)[idx2_Z], (r->GenPart_mass)[idx2_Z], 5, 0., 0.);
+               std::vector<JetObj> bjets{b0, b1};
+
+               JetObj c0((r->GenPart_pt)[idx1_H], (r->GenPart_eta)[idx1_H],
+                 (r->GenPart_phi)[idx1_H], (r->GenPart_mass)[idx1_H], 4, 0., 0.);
+               JetObj c1((r->GenPart_pt)[idx2_H], (r->GenPart_eta)[idx2_H],
+                 (r->GenPart_phi)[idx2_H], (r->GenPart_mass)[idx2_H], 4, 0., 0.);
+               std::vector<JetObj> cjets{c0, c1};
+
+               h_eff_both->Fill(H, Z, cjets, bjets, evtW);
+             }
+#endif
+
               }//end-dPhi-cut
             }//end-pT(V)-cut
           }//end-MET-cut

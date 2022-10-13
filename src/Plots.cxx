@@ -73,6 +73,9 @@ class VHPlots
       h_H_phi_jet1 = new TH1D(name + "_H_phi_jet1", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
       h_H_phi_jet2 = new TH1D(name + "_H_phi_jet2", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
 
+      //h_dR_bjets = new TH1D(name + "_dR_bjets", "", 100, 0, 10);
+      //h_dR_cjets = new TH1D(name + "_dR_cjets", "", 100, 0, 10);
+
       h_pt_jet->Sumw2();
       h_eta_jet->Sumw2(); 
       h_phi_jet->Sumw2(); 
@@ -148,7 +151,6 @@ class VHPlots
      h_Njet->Fill(nJet, w);
     }
 
-
     // Return a list of all the histograms.
     std::vector<TH1*> returnHisto() {
       std::vector<TH1*> histolist;
@@ -181,7 +183,9 @@ class VHPlots
       histolist.push_back(h_H_pt_jet0); histolist.push_back(h_H_eta_jet0); histolist.push_back(h_H_phi_jet0);
       histolist.push_back(h_H_pt_jet1); histolist.push_back(h_H_eta_jet1); histolist.push_back(h_H_phi_jet1);
       histolist.push_back(h_H_pt_jet2); histolist.push_back(h_H_eta_jet2); histolist.push_back(h_H_phi_jet2);
-      
+
+      //histolist.push_back(h_dR_bjets); histolist.push_back(h_dR_cjets); 
+     
       return histolist;
     }
 
@@ -240,6 +244,10 @@ class VHPlots
     TH1D* h_phi_jet;
     TH1D* h_mSV_jet;
     TH1D* h_Njet;
+
+    //MC Efficiency plots
+    //TH1D* h_dR_bjets;
+    //TH1D* h_dR_cjets;
 
 } ;
 
@@ -436,4 +444,110 @@ class HBoostedPlots
     TH1D* h_phi_jet;
     TH1D* h_m_jet;
 } ;
+
+class EffPlots
+{
+  public:
+    EffPlots(TString name) : m_name(name) {
+      h_eff = new TH1D(name + "_eff", "", 4, 0, 4);
+      h_eff->GetXaxis()->SetBinLabel(1, "Total");
+      h_eff->GetXaxis()->SetBinLabel(2, "Pass only b-jet");
+      h_eff->GetXaxis()->SetBinLabel(3, "Pass only c-jet");
+      h_eff->GetXaxis()->SetBinLabel(4, "Passed all criteria");
+      h_dR_b = new TH1D(name + "_dR_bjets", "", 100, -0.5, 7.5);
+      h_dR_c = new TH1D(name + "_dR_cjets", "", 100, -0.5, 7.5);
+      h_dR_b_all = new TH1D(name + "_dR_bjets_all", "", 100, -0.5, 7.5);
+      h_dR_c_all = new TH1D(name + "_dR_cjets_all", "", 100, -0.5, 7.5);
+      h_pT_bjet = new TH1D(name + "_pT_bjet", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      h_pT_b = new TH1D(name + "_pT_b", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);        
+      h_pT_cjet = new TH1D(name + "_pT_cjet", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      h_pT_c = new TH1D(name + "_pT_c", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);   
+      h_pT_ratio_cjet = new TH1D(name + "_pT_ratio_cjet", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]); 
+      h_pT_ratio_bjet = new TH1D(name + "_pT_ratio_bjet", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+    };
+
+    // Fill all the plots we're interested in.
+    void Fill(HObj& H, ZObj& Z, std::vector<JetObj> cjets, std::vector<JetObj> bjets, float w=1.) {
+
+      // We do not know which b goes to which jet or which c goes to which jet,
+      // so we have to try each combination.
+      float dR00_c = H.m_jets[0].m_lvec.DeltaR(cjets[0].m_lvec); h_dR_c_all->Fill(dR00_c);
+      float dR11_c = H.m_jets[1].m_lvec.DeltaR(cjets[1].m_lvec); h_dR_c_all->Fill(dR11_c);
+      float dR01_c = H.m_jets[0].m_lvec.DeltaR(cjets[1].m_lvec); h_dR_c_all->Fill(dR01_c);
+      float dR10_c = H.m_jets[1].m_lvec.DeltaR(cjets[0].m_lvec); h_dR_c_all->Fill(dR10_c);
+      
+      float dR00_b = Z.m_jets[0].m_lvec.DeltaR(bjets[0].m_lvec); h_dR_b_all->Fill(dR00_b);
+      float dR11_b = Z.m_jets[1].m_lvec.DeltaR(bjets[1].m_lvec); h_dR_b_all->Fill(dR11_b);
+      float dR01_b = Z.m_jets[0].m_lvec.DeltaR(bjets[1].m_lvec); h_dR_b_all->Fill(dR01_b);
+      float dR10_b = Z.m_jets[1].m_lvec.DeltaR(bjets[0].m_lvec); h_dR_b_all->Fill(dR10_b);
+
+      // Check to see which combination gives us the best match for each pairing.
+      bool passCmatch = false;
+      if (dR00_c < dR_cut && dR11_c < dR_cut) { // H matching
+        h_dR_c->Fill(dR00_c); h_dR_c->Fill(dR11_c);
+        passCmatch = true;
+      } 
+      else if (dR01_c < dR_cut && dR10_c < dR_cut) { 
+        h_dR_c->Fill(dR01_c); h_dR_c->Fill(dR10_c);
+        passCmatch = true;
+      }
+
+      bool passBmatch = false;
+      if (dR00_b < dR_cut && dR11_b < dR_cut) { // Z matching
+        h_dR_b->Fill(dR00_b); h_dR_b->Fill(dR11_b);
+        passBmatch = true;
+      }
+      else if (dR01_b < dR_cut && dR10_b < dR_cut) { 
+        h_dR_b->Fill(dR01_b); h_dR_b->Fill(dR10_b);
+        passBmatch = true;
+      }
+
+      // Properly fill the efficiency diagram.
+      h_eff->Fill(0.5);
+      if (passBmatch && passCmatch) h_eff->Fill(3.5);
+      else if (passBmatch) h_eff->Fill(1.5);
+      else if (passCmatch) h_eff->Fill(2.5);
+
+      // Fill pT distributions
+      h_pT_cjet->Fill(H.m_jets[0].m_lvec.Pt());
+      h_pT_cjet->Fill(H.m_jets[1].m_lvec.Pt());
+      h_pT_c->Fill(cjets[0].m_lvec.Pt());
+      h_pT_c->Fill(cjets[1].m_lvec.Pt());
+      h_pT_bjet->Fill(Z.m_jets[0].m_lvec.Pt());
+      h_pT_bjet->Fill(Z.m_jets[1].m_lvec.Pt());
+      h_pT_b->Fill(bjets[0].m_lvec.Pt());
+      h_pT_b->Fill(bjets[1].m_lvec.Pt());
+
+    } 
+
+    // Return a list of all the histograms.
+    std::vector<TH1*> returnHisto() {
+      std::vector<TH1*> histolist;
+    
+      // Jet-Related Plots
+      histolist.push_back(h_eff);
+      histolist.push_back(h_dR_b); histolist.push_back(h_dR_c);
+      histolist.push_back(h_dR_b_all); histolist.push_back(h_dR_c_all);
+      histolist.push_back(h_pT_bjet); histolist.push_back(h_pT_b);
+      histolist.push_back(h_pT_cjet); histolist.push_back(h_pT_c);
+      histolist.push_back(h_pT_ratio_cjet);
+      histolist.push_back(h_pT_ratio_bjet);
+
+      return histolist;
+    }
+ 
+  protected:
+    // Variables
+    TString m_name;
+    Float_t dR_cut = 1.2;
+
+    // Plots
+    TH1D* h_eff;
+    TH1D* h_dR_b;    TH1D* h_dR_c;
+    TH1D* h_dR_b_all; TH1D* h_dR_c_all;
+    TH1D* h_pT_bjet; TH1D* h_pT_b;
+    TH1D* h_pT_cjet; TH1D* h_pT_c;
+    TH1D* h_pT_ratio_cjet;
+    TH1D* h_pT_ratio_bjet;
+};
 #endif

@@ -24,6 +24,7 @@ public:
   virtual void Terminate(TList* mergedList, std::string outFileName) ;
 
   std::vector<std::vector<int> > DauIdxs_ZH(Reader* r);
+  //float check_efficiency(HObj& H, ZObj& Z, std::vector<JetObj> genObjs);
 
 private:
 
@@ -33,6 +34,7 @@ private:
   //histograms
   TH1D* h_evt;
   
+  //VH Plots & histograms
   VHPlots* h_VH;
   VHPlots* h_VH_tags;
   VHPlots* h_VH_algo;
@@ -40,6 +42,7 @@ private:
   VHPlots* h_VH_bothTags;
   VHPlots* h_VH_bothAlgo; 
  
+  // CutFlows
   TH1D* h_evt_cutflow;
   TH1D* h_evt_tags_cutflow;
   TH1D* h_evt_algo_cutflow;
@@ -48,20 +51,28 @@ private:
   TH1D* h_elec_cutflow;
   TH1D* h_muon_cutflow;
   
+  // Tagging Scores
   TH1D* h_CSV;
   TH1D* h_CvL;
 
+  // Misc.
   TH1D* h_Nselected;
   TH1D* h_Nbjet;
   TH1D* h_Ncjet;
   TH1D* h_Z_dM;
   TH1D* h_H_dM;
 
+  // Mass-Matching Plots
   TH1D* h_HZ0;
   TH1D* h_HZ1;
   TH1D* h_HZ2;
   TH1D* h_dH;
   TH2D* h_MH_v_MZ;
+
+  // Efficiency Plots
+  EffPlots* h_eff_tags;
+  EffPlots* h_eff_algo;
+  EffPlots* h_eff_both;
 } ;
 
 #endif
