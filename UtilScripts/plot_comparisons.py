@@ -65,9 +65,15 @@ sample_info = {
 }
 
 
-
 years = ['16', '17', '18']
-plot_names = ['ZMass', 'HMass', 'dR_Z', 'dR_H', 'HPt', 'ZPt']
+
+## These are all the plots we want to pull from.
+plot_names = ['ZMass', 'HMass', 'dR_Z', 'dR_H', 'HPt', 'ZPt', 'CutFlow', 'dR_cjets', 'dR_cjets_all',
+		'dR_bjets', 'dR_bjets_all', 'eff', 'pT_c', 'pT_cjet', 'pT_b', 'pT_bjet']
+
+## If the plot does not have a direct copy in the MC truth run, make sure to note it here.
+no_truth_plots = ['dR_cjets', 'dR_cjets_all', 'dR_bjets', 'dR_bjets_all', 'eff','pT_c', 'pT_cjet', 'pT_b', 'pT_bjet']
+
 axis_titles = {
   'ZMass': 'm_{bb} [GeV]',
   'HMass': 'm_{cc} [GeV]',
@@ -75,12 +81,28 @@ axis_titles = {
   'dR_H': '#Delta R_{cc}',
   'HPt': 'p_{T}(H)',
   'ZPt': 'p_{T}(Z)',
+  'CutFlow': '',
+  'dR_cjets': '#Delta R{c,c-jet}',
+  'dR_cjets_all': '#Delta R{c,c-jet} (all combo)',
+  'dR_bjets': '#Delta R{b,b-jet}',
+  'dR_bjets_all': '#Delta R{b,b-jet} (all combo)',
+  'eff': '',
+  'pT_c': 'p_{T}(c^{MC}) [GeV]',
+  'pT_b': 'p_{T}(b^{MC}) [GeV]',
+  'pT_cjet': 'p_{T}(c-jet) [GeV]',
+  'pT_bjet': 'p_{T}(b-jet) [GeV]',
 }
 
 filepath = '../new_condor_results/NONE/'
 plotFolder = '../MC_comparison_plots/'
 
-samples = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ']
+samples = ['ggZH_HToCC_ZToQQ'] #'ZH_HToCC_ZToQQ']#,
+logY = True
+
+if len(samples) > 1:
+  plotFolder = plotFolder + 'COMBINED/'
+else:
+  plotFolder = plotFolder + samples[0] + '/'
 
 print "===================================="
 print "MC comparison of selection methods"
@@ -116,7 +138,8 @@ for s in samples:
 for plN in plot_names:
   
   ## Get the appropriate histograms we want.
-  hMC = getHist(plN, samples, files, lumiScales, 'MC')
+  if not plN in no_truth_plots:
+    hMC = getHist(plN, samples, files, lumiScales, 'MC')
   hTags = getHist(plN, samples, files, lumiScales, 'tags')
   hAlgo = getHist(plN, samples, files, lumiScales, 'algo')
   hBoth = getHist(plN, samples, files, lumiScales, 'both')
@@ -128,8 +151,7 @@ for plN in plot_names:
   for y in years:
     
     plots_process = [hTags[y].Clone(), hBoth[y].Clone(), hAlgo[y].Clone()]
-    plotNames_process = ['Tagging Only','Tagging Prioritized', 'DHH Prioritized']
-    logY = False
+    plotNames_process = ['Tagging Only','Tagging Prioritized', 'DHZ Prioritized']
     
     ## Properly stack the plots
     xAxis_title = axis_titles[plN]
@@ -138,6 +160,7 @@ for plN in plot_names:
       plotFolder + '/20' + y, xAxis_title, xAxis_range, logY, lumi[y])
     
     ## Output the MC Truth Versions
+    if plN in no_truth_plots: continue
     makeOverlapPlot([hMC[y].Clone()], ['MC Truth'], plN + '_MCTruth_' + y,
       plotFolder + '/20' + y, xAxis_title, xAxis_range, logY, lumi[y])
     
