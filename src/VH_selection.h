@@ -63,11 +63,9 @@ private:
   TH1D* h_H_dM;
 
   // Mass-Matching Plots
-  TH1D* h_HZ0;
-  TH1D* h_HZ1;
-  TH1D* h_HZ2;
-  TH1D* h_dH;
-  TH2D* h_MH_v_MZ;
+  TH2D* h_tags_MH_v_MZ;
+  TH2D* h_algo_MH_v_MZ;
+  TH2D* h_both_MH_v_MZ;
 
   // Efficiency Plots
   EffPlots* h_eff_tags;

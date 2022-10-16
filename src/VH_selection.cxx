@@ -97,11 +97,14 @@ void VH_selection::SlaveBegin(Reader* r) {
   h_Z_dM = new TH1D("VbbHcc_Z_dM", "", 100, 0, 100);
   h_H_dM = new TH1D("VbbHcc_H_dM", "", 100, 0, 100);
 
-  h_HZ0 = new TH1D("VbbHcc_HZ0", "", 100, 0, 100);
-  h_HZ1 = new TH1D("VbbHcc_HZ1", "", 100, 0, 100);
-  h_HZ2 = new TH1D("VbbHcc_HZ2", "", 100, 0, 100);
-  h_dH = new TH1D("VbbHcc_dH", "", 100, 0, 100);
-  h_MH_v_MZ = new TH2D("VbbHcc_MH_v_MZ", "", 200, 0, 200, 200, 0, 200); 
+  //h_HZ0 = new TH1D("VbbHcc_HZ0", "", 100, 0, 100);
+  //h_HZ1 = new TH1D("VbbHcc_HZ1", "", 100, 0, 100);
+  //h_HZ2 = new TH1D("VbbHcc_HZ2", "", 100, 0, 100);
+  //h_dH = new TH1D("VbbHcc_dH", "", 100, 0, 100);
+
+  h_tags_MH_v_MZ = new TH2D("VbbHcc_tags_MH_v_MZ", "", 200, 0, 200, 200, 0, 200);
+  h_algo_MH_v_MZ = new TH2D("VbbHcc_algo_MH_v_MZ", "", 200, 0, 200, 200, 0, 200);
+  h_both_MH_v_MZ = new TH2D("VbbHcc_both_MH_v_MZ", "", 200, 0, 200, 200, 0, 200);
   
   //Add histograms to fOutput so they can be saved in Processor::SlaveTerminate
   r->GetOutputList()->Add(h_evt) ;
@@ -138,11 +141,9 @@ void VH_selection::SlaveBegin(Reader* r) {
   r->GetOutputList()->Add(h_Ncjet);
   r->GetOutputList()->Add(h_Z_dM);
   r->GetOutputList()->Add(h_H_dM);
-  r->GetOutputList()->Add(h_HZ0);
-  r->GetOutputList()->Add(h_HZ1);
-  r->GetOutputList()->Add(h_HZ2);
-  r->GetOutputList()->Add(h_dH);
-  r->GetOutputList()->Add(h_MH_v_MZ);
+  r->GetOutputList()->Add(h_tags_MH_v_MZ);
+  r->GetOutputList()->Add(h_algo_MH_v_MZ);
+  r->GetOutputList()->Add(h_both_MH_v_MZ);
 
 }//end-SlaveBegin
 
@@ -471,6 +472,7 @@ std::vector<std::vector<int> > dauIdxs;
 
                h_evt_tags_cutflow->Fill(6.5, genWeight); // pass dPhi cut
                h_VH_tags->Fill(H, Z, evtW);
+               h_tags_MH_v_MZ->Fill(H.m_lvec.M(), Z.m_lvec.M(), evtW);
 
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
                
@@ -518,14 +520,16 @@ std::vector<std::vector<int> > dauIdxs;
     std::vector<DObj> distances{ d0, d1, d2 };
     std::sort(distances.begin(), distances.end());
 
-    h_HZ0->Fill(d0.m_d, evtW); h_HZ1->Fill(d1.m_d, evtW); h_HZ2->Fill(d2.m_d, evtW);
-    h_MH_v_MZ->Fill(d0.HM(), d0.ZM(), evtW);
-    h_MH_v_MZ->Fill(d1.HM(), d1.ZM(), evtW);
-    h_MH_v_MZ->Fill(d2.HM(), d2.ZM(), evtW); 
+    //h_HZ0->Fill(d0.m_d, evtW); h_HZ1->Fill(d1.m_d, evtW); h_HZ2->Fill(d2.m_d, evtW);
+    //h_VH_algo->FillAlgo(d0.m_d, d1.m_d, d2.m_d, evtW);
+    h_VH_algo->FillAlgo(distances[0].m_d, distances[1].m_d, distances[2].m_d, evtW);
+    h_algo_MH_v_MZ->Fill(d0.HM(), d0.ZM(), evtW);
+    h_algo_MH_v_MZ->Fill(d1.HM(), d1.ZM(), evtW);
+    h_algo_MH_v_MZ->Fill(d2.HM(), d2.ZM(), evtW); 
 
     // Determine the difference between the closest two.
     float deltaD = fabs(distances[0].m_d - distances[1].m_d);
-    h_dH->Fill(deltaD, evtW);    
+    //h_dH->Fill(deltaD, evtW);    
 
     // Determine which pairing we want to use based on this deltaD.
     // If we are outside the resolution window (30 GeV), we can 
@@ -657,6 +661,7 @@ std::vector<std::vector<int> > dauIdxs;
           if (dPhi > 2.5) {
             h_evt_both_cutflow->Fill(6.5, genWeight); // pass dPhi cut
             h_VH_both->Fill(H, Z, evtW);
+            h_both_MH_v_MZ->Fill(H.m_lvec.M(), Z.m_lvec.M(), evtW);
             h_VH_bothTags->Fill(H, Z, evtW);
 
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
@@ -695,14 +700,16 @@ std::vector<std::vector<int> > dauIdxs;
       std::vector<DObj> distances{ d0, d1, d2 };
       std::sort(distances.begin(), distances.end());    
 
-      h_HZ0->Fill(d0.m_d, evtW); h_HZ1->Fill(d1.m_d, evtW); h_HZ2->Fill(d2.m_d, evtW);
-      h_MH_v_MZ->Fill(d0.HM(), d0.ZM(), evtW);
-      h_MH_v_MZ->Fill(d1.HM(), d1.ZM(), evtW);
-      h_MH_v_MZ->Fill(d2.HM(), d2.ZM(), evtW);
+      //h_HZ0->Fill(d0.m_d, evtW); h_HZ1->Fill(d1.m_d, evtW); h_HZ2->Fill(d2.m_d, evtW);
+      //h_VH_both->FillAlgo(d0.m_d, d1.m_d, d2.m_d, evtW);
+      h_VH_algo->FillAlgo(distances[0].m_d, distances[1].m_d, distances[2].m_d, evtW);
+      h_both_MH_v_MZ->Fill(d0.HM(), d0.ZM(), evtW);
+      h_both_MH_v_MZ->Fill(d1.HM(), d1.ZM(), evtW);
+      h_both_MH_v_MZ->Fill(d2.HM(), d2.ZM(), evtW);
 
       // Determine the difference between the closest two.
       float deltaD = fabs(distances[0].m_d - distances[1].m_d);
-      h_dH->Fill(deltaD, evtW);
+      //h_dH->Fill(deltaD, evtW);
 
       // Determine which pairing we want to use based on this deltaD.
       // If we are outside the resolution window (30 GeV), we can

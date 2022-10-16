@@ -73,6 +73,10 @@ class VHPlots
       h_H_phi_jet1 = new TH1D(name + "_H_phi_jet1", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
       h_H_phi_jet2 = new TH1D(name + "_H_phi_jet2", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
 
+      h_DHZ0 = new TH1D(name + "_DHZ0", "", 200, 0, 200);
+      h_DHZ1 = new TH1D(name + "_DHZ1", "", 200, 0, 200);
+      h_DHZ2 = new TH1D(name + "_DHZ2", "", 200, 0, 200);
+      h_dH = new TH1D(name + "_dH", "", 200, 0, 200);
       //h_dR_bjets = new TH1D(name + "_dR_bjets", "", 100, 0, 10);
       //h_dR_cjets = new TH1D(name + "_dR_cjets", "", 100, 0, 10);
 
@@ -151,6 +155,13 @@ class VHPlots
      h_Njet->Fill(nJet, w);
     }
 
+    void FillAlgo(float d1, float d2, float d3, float w=1.) {
+      h_DHZ0->Fill(d1, w);
+      h_DHZ1->Fill(d2, w);
+      h_DHZ2->Fill(d3, w);
+      h_dH->Fill(fabs(d1-d2), w);
+    }
+
     // Return a list of all the histograms.
     std::vector<TH1*> returnHisto() {
       std::vector<TH1*> histolist;
@@ -183,7 +194,9 @@ class VHPlots
       histolist.push_back(h_H_pt_jet0); histolist.push_back(h_H_eta_jet0); histolist.push_back(h_H_phi_jet0);
       histolist.push_back(h_H_pt_jet1); histolist.push_back(h_H_eta_jet1); histolist.push_back(h_H_phi_jet1);
       histolist.push_back(h_H_pt_jet2); histolist.push_back(h_H_eta_jet2); histolist.push_back(h_H_phi_jet2);
-
+      histolist.push_back(h_DHZ0); histolist.push_back(h_DHZ1); histolist.push_back(h_DHZ2);
+      histolist.push_back(h_dH);
+ 
       //histolist.push_back(h_dR_bjets); histolist.push_back(h_dR_cjets); 
      
       return histolist;
@@ -244,6 +257,11 @@ class VHPlots
     TH1D* h_phi_jet;
     TH1D* h_mSV_jet;
     TH1D* h_Njet;
+
+    TH1D* h_DHZ0;
+    TH1D* h_DHZ1;
+    TH1D* h_DHZ2;
+    TH1D* h_dH;
 
     //MC Efficiency plots
     //TH1D* h_dR_bjets;
