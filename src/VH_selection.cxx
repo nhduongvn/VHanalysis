@@ -105,7 +105,11 @@ void VH_selection::SlaveBegin(Reader* r) {
   h_tags_MH_v_MZ = new TH2D("VbbHcc_tags_MH_v_MZ", "", 200, 0, 200, 200, 0, 200);
   h_algo_MH_v_MZ = new TH2D("VbbHcc_algo_MH_v_MZ", "", 200, 0, 200, 200, 0, 200);
   h_both_MH_v_MZ = new TH2D("VbbHcc_both_MH_v_MZ", "", 200, 0, 200, 200, 0, 200);
-  
+  h_tags_MH_v_MZ_select = new TH2D("VbbHcc_tags_MH_v_MZ_select", "", 200, 0, 200, 200, 0, 200);
+  h_algo_MH_v_MZ_select = new TH2D("VbbHcc_algo_MH_v_MZ_select", "", 200, 0, 200, 200, 0, 200);
+  h_both_MH_v_MZ_select = new TH2D("VbbHcc_both_MH_v_MZ_select", "", 200, 0, 200, 200, 0, 200);
+ 
+ 
   //Add histograms to fOutput so they can be saved in Processor::SlaveTerminate
   r->GetOutputList()->Add(h_evt) ;
   std::vector<TH1*> tmp = h_VH->returnHisto() ;
@@ -144,6 +148,9 @@ void VH_selection::SlaveBegin(Reader* r) {
   r->GetOutputList()->Add(h_tags_MH_v_MZ);
   r->GetOutputList()->Add(h_algo_MH_v_MZ);
   r->GetOutputList()->Add(h_both_MH_v_MZ);
+  r->GetOutputList()->Add(h_tags_MH_v_MZ_select);
+  r->GetOutputList()->Add(h_algo_MH_v_MZ_select);
+  r->GetOutputList()->Add(h_both_MH_v_MZ_select);
 
 }//end-SlaveBegin
 
@@ -472,7 +479,7 @@ std::vector<std::vector<int> > dauIdxs;
 
                h_evt_tags_cutflow->Fill(6.5, genWeight); // pass dPhi cut
                h_VH_tags->Fill(H, Z, evtW);
-               h_tags_MH_v_MZ->Fill(H.m_lvec.M(), Z.m_lvec.M(), evtW);
+               h_tags_MH_v_MZ_select->Fill(H.m_lvec.M(), Z.m_lvec.M(), evtW);
 
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
                
@@ -578,6 +585,7 @@ std::vector<std::vector<int> > dauIdxs;
               HObj H(cjets);
 
               h_VH_algo->Fill(H, Z, evtW);
+              h_algo_MH_v_MZ_select->Fill(H.m_lvec.M(), Z.m_lvec.M(), evtW);
 
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
 
@@ -661,7 +669,7 @@ std::vector<std::vector<int> > dauIdxs;
           if (dPhi > 2.5) {
             h_evt_both_cutflow->Fill(6.5, genWeight); // pass dPhi cut
             h_VH_both->Fill(H, Z, evtW);
-            h_both_MH_v_MZ->Fill(H.m_lvec.M(), Z.m_lvec.M(), evtW);
+            h_both_MH_v_MZ_select->Fill(H.m_lvec.M(), Z.m_lvec.M(), evtW);
             h_VH_bothTags->Fill(H, Z, evtW);
 
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
@@ -758,6 +766,7 @@ std::vector<std::vector<int> > dauIdxs;
 
 	        h_VH_both->Fill(H, Z, evtW);
                 h_VH_bothAlgo->Fill(H, Z, evtW);
+                h_both_MH_v_MZ_select->Fill(H.m_lvec.M(), Z.m_lvec.M(), evtW);
 
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
 
