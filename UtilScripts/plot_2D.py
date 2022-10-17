@@ -73,7 +73,9 @@ years = ['16', '17', '18']
 filepath = '../new_condor_results/NONE/'
 plotFolder = '../MC_comparison_plots/'
 
-samples = ['ggZH_HToCC_ZToQQ', 'ZH_HToCC_ZToQQ']
+samples = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ']
+#samples = ['ZH_HToCC_ZToQQ']
+#samples = ['ggZH_HToCC_ZToQQ']
 logY = True
 
 if len(samples) > 1:
@@ -81,7 +83,7 @@ if len(samples) > 1:
 else:
   plotFolder = plotFolder + samples[0] + '/'
 
-plots = ['MH_v_MZ']
+plots = ['MH_v_MZ_select']
 xAxisTitles = ['M(H) [GeV]']
 yAxisTitles = ['M(Z) [GeV]']
 

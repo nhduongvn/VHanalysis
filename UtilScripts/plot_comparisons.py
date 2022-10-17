@@ -103,7 +103,9 @@ axis_titles = {
 filepath = '../new_condor_results/NONE/'
 plotFolder = '../MC_comparison_plots/'
 
-samples = ['ZH_HToCC_ZToQQ']#,'ggZH_HToCC_ZToQQ']#, 
+samples = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ']
+#samples = ['ZH_HToCC_ZToQQ']
+#samples = ['ggZH_HToCC_ZToQQ']
 logY = False
 fill = False
 
