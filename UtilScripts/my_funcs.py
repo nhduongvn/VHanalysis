@@ -126,9 +126,9 @@ def makeRatioPlots(plots, plotNames, cName, plotDir, xAxisTitle, xAxisRange, log
 ###############################################################################
 ## Make 2D Plots
 ###############################################################################
-def make2Dplots(plot, plotName, cName, plotDir, xAxisTitle, yAxisTitle):
+def make2DPlots(plot, plotName, cName, plotDir, xAxisTitle, yAxisTitle):
 
-  ROOT.gStyle.SetStats(0)
+  ROOT.gStyle.SetOptStat(0)
   
   ## Make the canvas
   c = ROOT.TCanvas(cName, cName, 600, 600)
