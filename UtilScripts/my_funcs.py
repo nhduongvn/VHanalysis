@@ -10,7 +10,7 @@ fill_colors = [16, 46, 38]
 ###############################################################################
 ## Make Overlap Plots
 ###############################################################################
-def makeOverlapPlot(plots, plotNames, cName, plotDir, xAxisTitle, xAxisRange, logY, lumi):
+def makeOverlapPlot(plots, plotNames, cName, plotDir, xAxisTitle, xAxisRange, logY, lumi, fill=True):
   
   ## Make the canvas
   c = ROOT.TCanvas(cName, cName, 600, 600)
@@ -29,7 +29,8 @@ def makeOverlapPlot(plots, plotNames, cName, plotDir, xAxisTitle, xAxisRange, lo
   ## Overlap the plots (stack w/o stacking)
   allStack = ROOT.THStack('st', '')
   for i in range(0, len(plots)):
-    plots[i].SetFillColor(fill_colors[i])
+    if fill: 
+      plots[i].SetFillColor(fill_colors[i])
     plots[i].SetLineColor(colors[i])
     #plots[i].SetLineWidth(2)
     l.AddEntry(plots[i], plotNames[i], 'F')

@@ -710,7 +710,7 @@ std::vector<std::vector<int> > dauIdxs;
 
       //h_HZ0->Fill(d0.m_d, evtW); h_HZ1->Fill(d1.m_d, evtW); h_HZ2->Fill(d2.m_d, evtW);
       //h_VH_both->FillAlgo(d0.m_d, d1.m_d, d2.m_d, evtW);
-      h_VH_algo->FillAlgo(distances[0].m_d, distances[1].m_d, distances[2].m_d, evtW);
+      h_VH_both->FillAlgo(distances[0].m_d, distances[1].m_d, distances[2].m_d, evtW);
       h_both_MH_v_MZ->Fill(d0.HM(), d0.ZM(), evtW);
       h_both_MH_v_MZ->Fill(d1.HM(), d1.ZM(), evtW);
       h_both_MH_v_MZ->Fill(d2.HM(), d2.ZM(), evtW);

@@ -71,8 +71,11 @@ years = ['16', '17', '18']
 plot_names = ['ZMass', 'HMass', 'dR_Z', 'dR_H', 'HPt', 'ZPt', 'CutFlow', 'dR_cjets', 'dR_cjets_all',
 		'dR_bjets', 'dR_bjets_all', 'eff', 'pT_c', 'pT_cjet', 'pT_b', 'pT_bjet']
 
+plot_names = ['DHZ0', 'DHZ1', 'DHZ2', 'dH']
+
 ## If the plot does not have a direct copy in the MC truth run, make sure to note it here.
 no_truth_plots = ['dR_cjets', 'dR_cjets_all', 'dR_bjets', 'dR_bjets_all', 'eff','pT_c', 'pT_cjet', 'pT_b', 'pT_bjet']
+no_truth_plots = ['DHZ0', 'DHZ1', 'DHZ2', 'dH']
 
 axis_titles = {
   'ZMass': 'm_{bb} [GeV]',
@@ -91,13 +94,18 @@ axis_titles = {
   'pT_b': 'p_{T}(b^{MC}) [GeV]',
   'pT_cjet': 'p_{T}(c-jet) [GeV]',
   'pT_bjet': 'p_{T}(b-jet) [GeV]',
+  'DHZ0': 'D_{HZ}^{1} [GeV]',
+  'DHZ1': 'D_{HZ}^{2} [GeV]',
+  'DHZ2': 'D_{HZ}^{3} [GeV]',
+  'dH': '|D_{HZ}^{1} - D_{HZ}^{2} | [GeV]',
 }
 
 filepath = '../new_condor_results/NONE/'
 plotFolder = '../MC_comparison_plots/'
 
-samples = ['ggZH_HToCC_ZToQQ'] #'ZH_HToCC_ZToQQ']#,
-logY = True
+samples = ['ZH_HToCC_ZToQQ']#,'ggZH_HToCC_ZToQQ']#, 
+logY = False
+fill = False
 
 if len(samples) > 1:
   plotFolder = plotFolder + 'COMBINED/'
@@ -157,12 +165,12 @@ for plN in plot_names:
     xAxis_title = axis_titles[plN]
     xAxis_range = [0,1000]
     makeOverlapPlot(plots_process, plotNames_process, plN + '_' + y, 
-      plotFolder + '/20' + y, xAxis_title, xAxis_range, logY, lumi[y])
+      plotFolder + '/20' + y, xAxis_title, xAxis_range, logY, lumi[y], fill)
     
     ## Output the MC Truth Versions
     if plN in no_truth_plots: continue
     makeOverlapPlot([hMC[y].Clone()], ['MC Truth'], plN + '_MCTruth_' + y,
-      plotFolder + '/20' + y, xAxis_title, xAxis_range, logY, lumi[y])
+      plotFolder + '/20' + y, xAxis_title, xAxis_range, logY, lumi[y], fill)
     
   ##################################
   ## Plot control plot for all years
