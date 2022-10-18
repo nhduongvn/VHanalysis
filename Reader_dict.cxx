@@ -1,7 +1,6 @@
 // Do NOT change. Changes will be lost next time file is generated
 
 #define R__DICTIONARY_FILENAME Reader_dict
-#define R__NO_DEPRECATION
 
 /*******************************************************************/
 #include <stddef.h>
@@ -34,13 +33,13 @@
 
 #include "TDataMember.h"
 
+// Since CINT ignores the std namespace, we need to do so in this file.
+namespace std {} using namespace std;
+
 // Header files passed as explicit arguments
 #include "src/Reader.h"
 
 // Header files passed via #pragma extra_include
-
-// The generated code does not explicitly qualify STL entities
-namespace std {} using namespace std;
 
 namespace ROOT {
    static void *new_Reader(void *p = 0);
@@ -151,8 +150,8 @@ namespace {
 0
     };
     static const char* includePaths[] = {
-"/home/peteryou/Physics_Programs/root/include/",
-"/home/peteryou/Documents/Research/VHanalysis/",
+"/cvmfs/cms.cern.ch/slc7_amd64_gcc820/lcg/root/6.14.09/include",
+"/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/",
 0
     };
     static const char* fwdDeclCode = R"DICTFWDDCLS(
@@ -160,28 +159,30 @@ namespace {
 #pragma clang diagnostic ignored "-Wkeyword-compat"
 #pragma clang diagnostic ignored "-Wignored-attributes"
 #pragma clang diagnostic ignored "-Wreturn-type-c-linkage"
-extern int __Cling_AutoLoading_Map;
+extern int __Cling_Autoloading_Map;
 class __attribute__((annotate("$clingAutoload$src/Reader.h")))  Reader;
 )DICTFWDDCLS";
     static const char* payloadCode = R"DICTPAYLOAD(
 #line 1 "Reader_dict dictionary payload"
 
+#ifndef G__VECTOR_HAS_CLASS_ITERATOR
+  #define G__VECTOR_HAS_CLASS_ITERATOR 1
+#endif
 
 #define _BACKWARD_BACKWARD_WARNING_H
-// Inline headers
 #include "src/Reader.h"
 
 #undef  _BACKWARD_BACKWARD_WARNING_H
 )DICTPAYLOAD";
-    static const char* classesHeaders[] = {
+    static const char* classesHeaders[]={
 "Reader", payloadCode, "@",
-nullptr
-};
+nullptr};
+
     static bool isInitialized = false;
     if (!isInitialized) {
       TROOT::RegisterModule("Reader_dict",
         headers, includePaths, payloadCode, fwdDeclCode,
-        TriggerDictionaryInitialization_Reader_dict_Impl, {}, classesHeaders, /*hasCxxModule*/false);
+        TriggerDictionaryInitialization_Reader_dict_Impl, {}, classesHeaders, /*has no C++ module*/false);
       isInitialized = true;
     }
   }

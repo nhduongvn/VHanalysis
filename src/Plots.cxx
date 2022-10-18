@@ -86,7 +86,7 @@ class VHPlots
       
       // Initailize mass plots
       h_MH_v_MZ = new TH2D(name + "_MH_v_MZ", "", 200, 0, 200, 200, 0, 200);
-      h_MH_v_MZ_select = new TH2D(name + "_MH_v_MZ", "", 200, 0, 200, 200, 0, 200);
+      h_MH_v_MZ_select = new TH2D(name + "_MH_v_MZ_select", "", 200, 0, 200, 200, 0, 200);
 
       // Store sum of squares of weights.
       h_pt_jet->Sumw2();  h_eta_jet->Sumw2(); h_phi_jet->Sumw2(); 
