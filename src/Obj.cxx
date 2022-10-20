@@ -7,6 +7,10 @@
 #include <math.h> 
 
 //-------------------------------objs------------------------------
+
+/******************************************************************************
+* Lepton Object                                                               *
+******************************************************************************/
 class LepObj { // Lepton
 
   public:
@@ -30,6 +34,9 @@ class LepObj { // Lepton
 } ;
 
 
+/******************************************************************************
+* Jet Object                                                                  *
+******************************************************************************/
 class JetObj { // Jets
   
   public:
@@ -82,6 +89,9 @@ class JetObj { // Jets
 
 } ;
 
+/******************************************************************************
+* Jet Object (Boosted Version)                                                *
+******************************************************************************/
 class JetObjBoosted: public JetObj {
   
   public:
@@ -107,13 +117,16 @@ class JetObjBoosted: public JetObj {
 } ;
 
 
+/******************************************************************************
+* Z boson Object                                                              *
+******************************************************************************/
 class ZObj { // Z Boson
 
   public:
 
     // Constructor & Deconstructor
     ZObj(std::vector<JetObj> jetlist) : m_jets(jetlist) {
-      for (int idx = 0; idx < jetlist.size(); ++idx) {
+      for (unsigned int idx = 0; idx < jetlist.size(); ++idx) {
         m_lvec += jetlist.at(idx).m_lvec;
         m_jets.push_back(jetlist.at(idx));
       }
@@ -145,6 +158,7 @@ class ZObj { // Z Boson
       if ((x <= TMath::Pi() && x >= 0) or (x<0 && x > -TMath::Pi())) return x;
       else if (x >= TMath::Pi()) return DphiC(x-2*TMath::Pi());
       else if (x < -TMath::Pi()) return DphiC(x+2*TMath::Pi());
+      return x;
     }
     
     float DPhi() {
@@ -158,14 +172,16 @@ class ZObj { // Z Boson
 
 } ;
 
-
+/******************************************************************************
+* Higgs boson Object                                                          *
+******************************************************************************/
 class HObj { // Higgs boson
 
   public:
 
     // Constructro & Deconstructor
     HObj(std::vector<JetObj> jetlist) : m_jets(jetlist) {
-      for (int idx = 0; idx < jetlist.size(); ++idx) {
+      for (unsigned int idx = 0; idx < jetlist.size(); ++idx) {
         m_lvec += jetlist.at(idx).m_lvec;
         m_jets.push_back(jetlist.at(idx));
       }
@@ -196,6 +212,7 @@ class HObj { // Higgs boson
       if ((x <= TMath::Pi() && x >= 0) or (x<0 && x > -TMath::Pi())) return x;
       else if (x >= TMath::Pi()) return DphiC(x-2*TMath::Pi());
       else if (x < -TMath::Pi()) return DphiC(x+2*TMath::Pi());
+      return x;
     }
 
     float DPhi() {
@@ -210,6 +227,9 @@ class HObj { // Higgs boson
 } ;
 
 
+/******************************************************************************
+* D_HZ Algorithm Object                                                       *
+******************************************************************************/
 class DObj { // Distance Object for mass-matching algorithm
 
   public:
@@ -238,7 +258,7 @@ class DObj { // Distance Object for mass-matching algorithm
 
       // Reconstruct the masses & make sure that pT(H) > pT(Z)
       float m0 = m_Hvec.M(); float m1 = m_Zvec.M();
-      if (m_Zvec.Pt() > m_Hvec.Pt()) {m0 = m_Zvec.M(); m1 = m_Hvec.M();}
+      //if (m_Zvec.Pt() > m_Hvec.Pt()) {m0 = m_Zvec.M(); m1 = m_Hvec.M();}
       
       // Calculate the distance value
       float num = fabs(m0 - k*m1);

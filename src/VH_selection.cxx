@@ -31,9 +31,15 @@ void VH_selection::SlaveBegin(Reader *r) {
   
   // Set up the VHPlots instances
   h_VH_MC = new VHPlots("VbbHcc_MC");
+  h_VH_all = new VHPlots("VbbHcc_all");
+
   h_VH_tags = new VHPlots("VbbHcc_tags");
   h_VH_algo = new VHPlots("VbbHcc_algo");
   h_VH_both = new VHPlots("VbbHcc_both");
+
+  h_VH_tags_all = new VHPlots("VbbHcc_tags_all");
+  h_VH_algo_all = new VHPlots("VbbHcc_algo_all");
+  h_VH_both_all = new VHPlots("VbbHcc_both_all");
   
   // Set up the EffPlots instances
   h_eff_tags = new EffPlots("VbbHcc_tags");
@@ -93,15 +99,14 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_muon_cutflow->GetXaxis()->SetBinLabel(4, "loose ID cut");
   h_muon_cutflow->GetXaxis()->SetBinLabel(5, "iso cut");
   
-  // Set up Miscellaneous Histograms
-  h_CSV = new TH1D("VbbHcc_CSV", "", 200, 0, 1);
-  h_CvL = new TH1D("VbbHcc_CvL", "", 200, 0, 1);
-  
   // Add histograms to fOutput so they can be saved in Processor::SlaveTerminate
   r->GetOutputList()->Add(h_evt);
   
   std::vector<TH1*> tmp = h_VH_MC->returnHisto();
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_all->returnHisto();
+  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  
   tmp = h_VH_tags->returnHisto();
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_VH_algo->returnHisto();
@@ -109,6 +114,13 @@ void VH_selection::SlaveBegin(Reader *r) {
   tmp = h_VH_both->returnHisto();
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   
+  tmp = h_VH_tags_all->returnHisto();
+  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_algo_all->returnHisto();
+  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_both_all->returnHisto();
+  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+
   tmp = h_eff_tags->returnHisto();
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_eff_algo->returnHisto();
@@ -240,6 +252,7 @@ void VH_selection::Process(Reader *r) {
     jets.push_back(jet);
 
   }//end-jet
+  h_VH_all->FillJets(jets, evtW);
 
   // ==== ELECTRONS ====
   std::vector<LepObj> elecs;
@@ -311,6 +324,9 @@ void VH_selection::Process(Reader *r) {
   h_evt_algo_cutflow->Fill(0.5, genWeight); // Matching Prioritized
   h_evt_both_cutflow->Fill(0.5, genWeight); // Tagging Prioritized
 
+  // Fill MET spectrum
+  h_VH_all->FillMET(*(r->MET_pt), evtW);
+
   // Capture the MC truth values so that we can use them for reference.
   bool canCompareToMC = false;
   std::vector<std::vector<int> > dauIdxs;
@@ -319,7 +335,7 @@ void VH_selection::Process(Reader *r) {
   // Make sure we have two daughters for each particle
   int idZ = 0, idH = 1;
   dauIdxs = DauIdxs_ZH(r);
-  std::vector<JetObj> genObjs;
+  std::vector<JetObj> gen_cjets, gen_bjets;
   if (dauIdxs[idZ].size() == 2 && dauIdxs.size() == 2) {
 
     canCompareToMC = true;
@@ -336,6 +352,8 @@ void VH_selection::Process(Reader *r) {
     JetObj b1((r->GenPart_pt)[idx2_Z], (r->GenPart_eta)[idx2_Z],
       (r->GenPart_phi)[idx2_Z], (r->GenPart_mass)[idx2_Z], 5, 0., 0.);
     std::vector<JetObj> bjets{b0, b1};
+    gen_bjets.push_back(b0); 
+    gen_bjets.push_back(b1);
     ZObj Z(bjets);
 
     // Two c quarks --> HObj
@@ -344,6 +362,8 @@ void VH_selection::Process(Reader *r) {
     JetObj c1((r->GenPart_pt)[idx2_H], (r->GenPart_eta)[idx2_H],
       (r->GenPart_phi)[idx2_H], (r->GenPart_mass)[idx2_H], 4, 0., 0.);
     std::vector<JetObj> cjets{c0, c1};
+    gen_cjets.push_back(c0);
+    gen_cjets.push_back(c1);
     HObj H(cjets);
     
     // Fill the histograms
@@ -392,6 +412,7 @@ void VH_selection::Process(Reader *r) {
     selected_jets.push_back(jets.at(i));
 
   }//end-jets
+  h_VH_all->FillJets_selected(selected_jets, evtW);
 
   // Only continue on to select events if we have
   // at least 4 jets (via the criteria above).
@@ -458,6 +479,11 @@ void VH_selection::Process(Reader *r) {
         h_evt_tags_cutflow->Fill(3.5, genWeight); // pass c-cuts
         HObj H(cjets);
 
+        // Plot all options of H & Z even if they don't
+        // survive our cuts. We want to have them for
+        // reference of what cuts we should make.
+        h_VH_tags_all->Fill(H, Z, evtW);
+
         // Now, check our remaining cuts.
         if (*(r->MET_pt) < 140) {
           h_evt_tags_cutflow->Fill(4.5, genWeight); // pass MET cut
@@ -475,7 +501,7 @@ void VH_selection::Process(Reader *r) {
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
 
               if (canCompareToMC) {
-                // Get the generator-level objects.
+                h_eff_tags->Fill(H, Z, gen_cjets, gen_bjets, evtW);
               }
 
 #endif            
@@ -488,10 +514,246 @@ void VH_selection::Process(Reader *r) {
 
     }//end-b-tag
 
+    /**************************************************************************
+    * CASE #3 - MASS MATCHING PRIORITIZED                                     *
+    **************************************************************************/
+    std::vector<JetObj> jets3 = selected_jets;
+    std::sort(jets3.begin(), jets3.end(), std::greater<JetObj>());
+
+    // Create the objects for the distance calculations & make sure we sort
+    // them in ascending order. (All necessary calculations for algorithms
+    // are handled within the DObj class.)
+    DObj d0(jets3, 0, 1, 2, 3);     // H(0,1) ; Z(2,3)
+    DObj d1(jets3, 0, 2, 1, 3);     // H(0,2) ; Z(1,3)
+    DObj d2(jets3, 0, 3, 1, 2);     // H(0,3) ; Z(1,2)
+    std::vector<DObj> distances{ d0, d1, d2 };
+    std::sort(distances.begin(), distances.end());
+
+    // Determine the distance between the closest two.
+    float deltaD = fabs(distances[0].m_d - distances[1].m_d);
+
+    // Determine which pairing we want to use based on this deltaD.
+    // If we are outside the resolution window (30 GeV), we can
+    // just choose the closest pair. Otherwise, we need to make a 
+    // logical choice between d0 and d1.
+    DObj chosenPair = distances[0];
+    if (deltaD < 30) {
+      float pt0 = distances[0].HPt();
+      float pt1 = distances[1].HPt();
+      int idx = 0;
+      if (pt1 > pt0) idx = 1;
+      chosenPair = distances[idx];
+    }
+
+    // Plot all the possible combinations for some references
+    // before we go through the cuts.
+    std::vector<JetObj> cjets0 { jets3[d0.m_hIdx0], jets3[d0.m_hIdx1] };
+    std::vector<JetObj> bjets0 { jets3[d0.m_zIdx0], jets3[d0.m_zIdx1] };
+    HObj H0(cjets0); ZObj Z0(bjets0);
+    h_VH_algo_all->Fill(H0, Z0, evtW);
+
+    std::vector<JetObj> cjets1 { jets3[d1.m_hIdx0], jets3[d1.m_hIdx1] };
+    std::vector<JetObj> bjets1 { jets3[d1.m_zIdx0], jets3[d1.m_zIdx1] };
+    HObj H1(cjets1); ZObj Z1(bjets1);
+    h_VH_algo_all->Fill(H1, Z1, evtW);
+
+    std::vector<JetObj> cjets2 { jets3[d2.m_hIdx0], jets3[d2.m_hIdx1] };
+    std::vector<JetObj> bjets2 { jets3[d2.m_zIdx0], jets3[d2.m_zIdx1] };
+    HObj H2(cjets2); ZObj Z2(bjets2);
+    h_VH_algo_all->Fill(H2, Z2, evtW);
+
+    // Now check to see if we pass the tagging requirements
+    // and our other cuts.
+    if (chosenPair.Z_has_bjets()) {
+      h_evt_algo_cutflow->Fill(2.5, genWeight); // pass b-tag
+      if (chosenPair.H_has_cjets()) {
+        h_evt_algo_cutflow->Fill(3.5, genWeight); // pass c-tag
+        if (*(r->MET_pt) < 140) {
+          h_evt_algo_cutflow->Fill(4.5, genWeight); // pass MET
+          if (chosenPair.ZPt() > 50) {
+            h_evt_algo_cutflow->Fill(5.5, genWeight); // pass pT(Z)
+            float dPhi = fabs(chosenPair.DPhi());
+            if (dPhi > 2.5) {
+              
+              h_evt_algo_cutflow->Fill(6.5, genWeight); // pass dPhi
+             
+              // Reconstruct the objects and fill our histograms.
+              std::vector<JetObj> bjets;
+              bjets.push_back(jets3[chosenPair.m_zIdx0]);
+              bjets.push_back(jets3[chosenPair.m_zIdx1]);
+              ZObj Z(bjets);
+
+              std::vector<JetObj> cjets;
+              cjets.push_back(jets3[chosenPair.m_hIdx0]);
+              cjets.push_back(jets3[chosenPair.m_hIdx1]);
+              HObj H(cjets);
+
+              h_VH_algo->Fill(H, Z, evtW);
+
+               // If we're in a MC file, let's check to match our 
+               // selected objects to the MC truth. This should 
+               // help us see how accurate we are.
+#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
+               if (canCompareToMC) {
+                 h_eff_algo->Fill(H, Z, gen_cjets, gen_bjets, evtW);
+               }
+#endif
+            }
+          }//end-pT(Z)
+        }//end-MET
+      }//end-c-tag
+    }//end-b-tag
+
+    /**************************************************************************
+    * CASE #4 - TAGGING PRIORITIZED                                           *
+    **************************************************************************/
+    std::vector<JetObj> jets4 = selected_jets;
+    std::sort(jets4.begin(), jets4.end(), std::greater<JetObj>());
+
+    // Check to see which jets pass which tagging.
+    std::vector<int> bIndices, cIndices;
+    bool btags[4] = { false, false, false, false };
+    bool ctags[4] = { false, false, false, false };
+    for (int i = 0; i < 4; ++i) {
+      if (jets4[i].m_deepCSV > 0.3) { btags[i] = true; bIndices.push_back(i); }
+      if (jets4[i].m_deepCvL > 0.3) { ctags[i] = true; cIndices.push_back(i); }
+    } 
+
+    // Make sure we have no jets that pass both tags.
+    bool properly_chosen = true;
+    for (int i = 0; i < 4; ++i) {
+      if (ctags[i] && btags[i]) {
+        properly_chosen = false; break;
+      }
+    }
+
+    // Make sure we have 2 b-jets and 2 c-jets
+    if (properly_chosen && bIndices.size() == 2 && cIndices.size() == 2) {
+    
+      h_evt_both_cutflow->Fill(2.5, genWeight); // pass b-tag
+      h_evt_both_cutflow->Fill(3.5, genWeight); // pass c-tag
+
+      // Get the jets into proper lists. Reconstruct the bosons.
+      std::vector<JetObj> bjets, cjets;
+      bjets.push_back(jets4[bIndices[0]]);
+      bjets.push_back(jets4[bIndices[1]]);
+      cjets.push_back(jets4[cIndices[0]]);
+      cjets.push_back(jets4[cIndices[1]]);
+      ZObj Z(bjets); HObj H(cjets);
+
+      // Go through the rest of the cuts.
+      if (*(r->MET_pt) < 140) {
+        h_evt_both_cutflow->Fill(4.5, genWeight); // pass MET
+        if (Z.m_lvec.Pt() > 50) {
+          h_evt_both_cutflow->Fill(5.5, genWeight); // pass pT(Z)
+          float dPhi = fabs(Z.m_lvec.DeltaPhi(H.m_lvec));
+          if (dPhi > 2.5) {
+            h_evt_both_cutflow->Fill(6.5, genWeight); // pass dPhi
+            h_VH_both->Fill(H, Z, evtW);
+
+            // If we're in a MC file, let's check to match our 
+            // selected objects to the MC truth. This should 
+            // help us see how accurate we are.
+#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
+            if (canCompareToMC) {
+              h_eff_both->Fill(H, Z, gen_cjets, gen_bjets, evtW);
+            }
+#endif
+          }//end-dPhi
+        }//end-pT(Z)
+      }//end-MET
+ 
+    } 
+    // If we don't, we have to go through the mass matching algorithm.
+    else {
+
+      // Create the objects for the distance calculations & make sure we sort
+      // them in ascending order. (All necessary calculations for algorithms
+      // are handled within the DObj class.)
+      DObj d0(jets3, 0, 1, 2, 3);     // H(0,1) ; Z(2,3)
+      DObj d1(jets3, 0, 2, 1, 3);     // H(0,2) ; Z(1,3)
+      DObj d2(jets3, 0, 3, 1, 2);     // H(0,3) ; Z(1,2)
+      std::vector<DObj> distances{ d0, d1, d2 };
+      std::sort(distances.begin(), distances.end());
+
+      // Determine the distance between the closest two.
+      float deltaD = fabs(distances[0].m_d - distances[1].m_d);
+
+      // Determine which pairing we want to use based on this deltaD.
+      // If we are outside the resolution window (30 GeV), we can
+      // just choose the closest pair. Otherwise, we need to make a 
+      // logical choice between d0 and d1.
+      DObj chosenPair = distances[0];
+      if (deltaD < 30) {
+        float pt0 = distances[0].HPt();
+        float pt1 = distances[1].HPt();
+        int idx = 0;
+        if (pt1 > pt0) idx = 1;
+        chosenPair = distances[idx];
+      }
+
+      // Plot all the possible combinations for some references
+      // before we go through the cuts.
+      std::vector<JetObj> cjets0 { jets4[d0.m_hIdx0], jets4[d0.m_hIdx1] };
+      std::vector<JetObj> bjets0 { jets4[d0.m_zIdx0], jets4[d0.m_zIdx1] };
+      HObj H0(cjets0); ZObj Z0(bjets0);
+      h_VH_both_all->Fill(H0, Z0, evtW);
+
+      std::vector<JetObj> cjets1 { jets4[d1.m_hIdx0], jets4[d1.m_hIdx1] };
+      std::vector<JetObj> bjets1 { jets4[d1.m_zIdx0], jets4[d1.m_zIdx1] };
+      HObj H1(cjets1); ZObj Z1(bjets1);
+      h_VH_both_all->Fill(H1, Z1, evtW);
+
+      std::vector<JetObj> cjets2 { jets4[d2.m_hIdx0], jets4[d2.m_hIdx1] };
+      std::vector<JetObj> bjets2 { jets4[d2.m_zIdx0], jets4[d2.m_zIdx1] };
+      HObj H2(cjets2); ZObj Z2(bjets2);
+      h_VH_both_all->Fill(H2, Z2, evtW);
+
+      // Now check to see if we pass the tagging requirements
+      // and our other cuts.
+      if (chosenPair.Z_has_bjets()) {
+        h_evt_both_cutflow->Fill(2.5, genWeight); // pass b-tag
+        if (chosenPair.H_has_cjets()) {
+          h_evt_both_cutflow->Fill(3.5, genWeight); // pass c-tag
+          if (*(r->MET_pt) < 140) {
+            h_evt_both_cutflow->Fill(4.5, genWeight); // pass MET
+            if (chosenPair.ZPt() > 50) {
+              h_evt_both_cutflow->Fill(5.5, genWeight); // pass pT(Z)
+              float dPhi = fabs(chosenPair.DPhi());
+              if (dPhi > 2.5) {
+              
+                h_evt_both_cutflow->Fill(6.5, genWeight); // pass dPhi
+             
+                // Reconstruct the objects and fill our histograms.
+                std::vector<JetObj> bjets;
+                bjets.push_back(jets3[chosenPair.m_zIdx0]);
+                bjets.push_back(jets3[chosenPair.m_zIdx1]);
+                ZObj Z(bjets);
+
+                std::vector<JetObj> cjets;
+                cjets.push_back(jets3[chosenPair.m_hIdx0]);
+                cjets.push_back(jets3[chosenPair.m_hIdx1]);
+                HObj H(cjets);
+
+                h_VH_both->Fill(H, Z, evtW);
+
+                // If we're in a MC file, let's check to match our 
+                // selected objects to the MC truth. This should 
+                // help us see how accurate we are.
+#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
+                if (canCompareToMC) {
+                  h_eff_both->Fill(H, Z, gen_cjets, gen_bjets, evtW);
+                }
+#endif
+              }//end-dPhi  
+            }//end-pT(Z)
+          }//end-MET
+        }//end-c-tag
+      }//end-b-tag
+    }//end-else
   }//end-jets-cut
 
 } // end Process
-
 
 ///////////////////////////////////////////
 // Terminate

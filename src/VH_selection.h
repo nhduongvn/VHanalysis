@@ -33,10 +33,16 @@ private:
   TH1D* h_evt;
   
   // VH Plots
-  VHPlots* h_VH_MC;
-  VHPlots* h_VH_tags;	// Tagging Only
+  VHPlots* h_VH_MC;    // MC Truth events
+  VHPlots* h_VH_all;   // Plots related to general events
+
+  VHPlots* h_VH_tags;  // Tagging Only
   VHPlots* h_VH_algo;  // Mass Matching Prioritized
   VHPlots* h_VH_both;  // Tagging Prioritized
+
+  VHPlots* h_VH_tags_all; // Tagging Only (before cuts)
+  VHPlots* h_VH_algo_all; // Matching Prioritized (before cuts)
+  VHPlots* h_VH_both_all; // Tagging Prioritized (before cuts)
   
   // CutFlows for event selection
   TH1D* h_evt_MC_cutflow;

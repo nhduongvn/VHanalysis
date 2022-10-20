@@ -27,7 +27,9 @@ const float X_M_H[2] = {0, 300};
 const float NBIN_M_Z = 300;
 const float X_M_Z[2] = {0, 300};
 
-// Main Plots class
+/******************************************************************************
+* VHPlots - all plots related to VH (ZH) events                               *
+******************************************************************************/
 class VHPlots
 {
 
@@ -41,7 +43,16 @@ class VHPlots
       h_phi_jet = new TH1D(name + "_phi_jet", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
       h_mSV_jet = new TH1D(name + "_mSV_jet", "", 100, 0, 10);
       h_Njet = new TH1D(name + "_Njet", "", 15, 0, 15);   
- 
+
+      h_pt_jet_selected = new TH1D(name + "_pt_jet_selected", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      h_eta_jet_selected = new TH1D(name + "_eta_jet_selected", "", NBIN_ETA, X_ETA[0], X_ETA[1]);
+      h_phi_jet_selected = new TH1D(name + "_phi_jet_selected", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
+      h_mSV_jet_selected = new TH1D(name + "_mSV_jet_selected", "", 100, 0, 10);
+      h_Njet_selected = new TH1D(name + "_Njet_selected", "", 15, 0, 15);
+
+      // Initialize MET-related plots
+      h_MET = new TH1D(name + "_MET", "", 500, 0, 500); 
+
       // Initialize boson-related plots
       h_HPt = new TH1D(name + "_HPt", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
       h_HEta = new TH1D(name + "_HEta", "", NBIN_ETA, X_ETA[0], X_ETA[1]);
@@ -49,6 +60,9 @@ class VHPlots
       h_ZPt = new TH1D(name + "_ZPt", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
       h_ZEta = new TH1D(name + "_ZEta", "", NBIN_ETA, X_ETA[0], X_ETA[1]);
       h_ZMass = new TH1D(name + "_ZMass", "", NBIN_M_Z, X_M_Z[0], X_M_Z[1]);
+
+      h_dPhi_HZ = new TH1D(name + "_dPhi_HZ", "", NBIN_PHI/2, 0, X_PHI[1]);
+      h_dR_HZ = new TH1D(name + "_dR_HZ", "", 100, 0, 10); 
 
       // Initialize jet-separation plots
       h_dR_H = new TH1D(name + "_dR_H", "", 100, 0, 10);
@@ -77,6 +91,12 @@ class VHPlots
       h_H_phi_jet0 = new TH1D(name + "_H_phi_jet0", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
       h_H_phi_jet1 = new TH1D(name + "_H_phi_jet1", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
       h_H_phi_jet2 = new TH1D(name + "_H_phi_jet2", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
+ 
+      // Initialize tagging plots
+      h_CSV = new TH1D(name + "_CSV", "", 100, 0, 1);
+      h_CvL = new TH1D(name + "_CvL", "", 100, 0, 1);
+      h_CSV_selected = new TH1D(name + "_CSV_selected", "", 100, 0, 1);
+      h_CvL_selected = new TH1D(name + "_CvL_selected", "", 100, 0, 1);
 
       // Initialize mass matching plots
       h_DHZ0 = new TH1D(name + "_DHZ0", "", 200, 0, 200);
@@ -86,8 +106,7 @@ class VHPlots
       
       // Initailize mass plots
       h_MH_v_MZ = new TH2D(name + "_MH_v_MZ", "", 200, 0, 200, 200, 0, 200);
-      h_MH_v_MZ_select = new TH2D(name + "_MH_v_MZ_select", "", 200, 0, 200, 200, 0, 200);
-
+      
       // Store sum of squares of weights.
       h_pt_jet->Sumw2();  h_eta_jet->Sumw2(); h_phi_jet->Sumw2(); 
       h_mSV_jet->Sumw2(); h_Njet->Sumw2();
@@ -100,6 +119,9 @@ class VHPlots
     // Fill the general histograms.
     void Fill(HObj& H, ZObj& Z, float w=1) {
       
+      // Fill the masses
+      h_MH_v_MZ->Fill(H.m_lvec.M(), Z.m_lvec.M(), w);
+
       // Fill in histograms related to Z & H objects
       h_HMass->Fill(H.m_lvec.M(), w);
       h_HPt->Fill(H.m_lvec.Pt(), w);
@@ -107,6 +129,9 @@ class VHPlots
       h_ZMass->Fill(Z.m_lvec.M(), w);
       h_ZPt->Fill(Z.m_lvec.Pt(), w);
       h_ZEta->Fill(Z.m_lvec.Eta(), w);
+
+      h_dPhi_HZ->Fill(fabs(Z.m_lvec.DeltaPhi(H.m_lvec)));
+      h_dR_HZ->Fill(fabs(Z.m_lvec.DeltaR(H.m_lvec)));
 
       // Each object will have at least one jet. Fill the
       // distributions for those objects here.
@@ -147,16 +172,40 @@ class VHPlots
 
     // Fill stuff about jets.
     void FillJets(std::vector<JetObj>& jets, float w=1) {
+      h_Njet->Fill(jets.size(), w);
       for (auto it : jets) {
         h_pt_jet->Fill(it.m_lvec.Pt(), w);
         h_eta_jet->Fill(it.m_lvec.Eta(), w);
         h_phi_jet->Fill(it.m_lvec.Phi(), w);
         h_mSV_jet->Fill(it.m_mSV, w);
+        h_CvL->Fill(it.m_deepCvL, w);
+        h_CSV->Fill(it.m_deepCSV, w);
       }
     }
 
     void FillNjet(size_t nJet, float w=1) {
-     h_Njet->Fill(nJet, w);
+      h_Njet->Fill(nJet, w);
+    }
+
+    void FillJets_selected(std::vector<JetObj>& jets, float w=1) {
+      h_Njet_selected->Fill(jets.size(), w);
+      for (auto it : jets) {
+        h_pt_jet_selected->Fill(it.m_lvec.Pt(), w);
+        h_eta_jet_selected->Fill(it.m_lvec.Eta(), w);
+        h_phi_jet_selected->Fill(it.m_lvec.Phi(), w);
+        h_mSV_jet_selected->Fill(it.m_mSV, w);
+        h_CvL_selected->Fill(it.m_deepCvL, w);
+        h_CSV_selected->Fill(it.m_deepCSV, w);
+      }
+    }
+
+    void FillNjet_selected(size_t nJet, float w=1) {
+      h_Njet_selected->Fill(nJet, w);
+    }
+
+
+    void FillMET(float met, float w=1) {
+      h_MET->Fill(met, w);
     }
 
     void FillAlgo(float d1, float d2, float d3, float w=1.) {
@@ -171,12 +220,15 @@ class VHPlots
       std::vector<TH1*> histolist;
       
       // Jet-Related Plots
-      histolist.push_back(h_pt_jet);
-      histolist.push_back(h_eta_jet);
-      histolist.push_back(h_phi_jet);
-      histolist.push_back(h_mSV_jet);
-      histolist.push_back(h_Njet);
+      histolist.push_back(h_pt_jet);  histolist.push_back(h_pt_jet_selected);
+      histolist.push_back(h_eta_jet); histolist.push_back(h_eta_jet_selected);
+      histolist.push_back(h_phi_jet); histolist.push_back(h_phi_jet_selected);
+      histolist.push_back(h_mSV_jet); histolist.push_back(h_mSV_jet_selected);
+      histolist.push_back(h_Njet);    histolist.push_back(h_Njet_selected);
      
+      // MET-Related Plots
+      histolist.push_back(h_MET);
+
       // V and H plots
       histolist.push_back(h_HMass);
       histolist.push_back(h_HPt);
@@ -209,10 +261,11 @@ class VHPlots
       histolist.push_back(h_dH);
       
       histolist.push_back(h_MH_v_MZ);
-      histolist.push_back(h_MH_v_MZ_select);
- 
-      //histolist.push_back(h_dR_bjets); histolist.push_back(h_dR_cjets); 
-     
+      histolist.push_back(h_dPhi_HZ);
+      histolist.push_back(h_dR_HZ);
+
+      histolist.push_back(h_CSV); histolist.push_back(h_CSV_selected);
+      histolist.push_back(h_CvL); histolist.push_back(h_CvL_selected);
       return histolist;
     }
 
@@ -220,7 +273,10 @@ class VHPlots
     // Variables
     TString m_name;
 
-    //Jet Plots
+    // MET Plots
+    TH1D* h_MET;
+
+    // Selected Jet Plots
     TH1D* h_pt_jet0;
     TH1D* h_eta_jet0;
     TH1D* h_phi_jet0;
@@ -251,42 +307,47 @@ class VHPlots
     TH1D* h_H_eta_jet2;
     TH1D* h_H_phi_jet2;
         
-    //Higgs Plots
-    TH1D* h_HPt;    
+    // Higgs Plots
+    TH1D* h_HPt;   
     TH1D* h_HEta;    
     TH1D* h_HMass;    
-    TH1D* h_dR_H;
-    TH1D* h_dPhi_H;
+    TH1D* h_dR_H;   // R-separation of daughter jets
+    TH1D* h_dPhi_H; // Phi-separation of daughter jets
 
-    //Z Plots
+    // Z Plots
     TH1D* h_ZPt;
     TH1D* h_ZEta;
     TH1D* h_ZMass;
-    TH1D* h_dR_Z;
-    TH1D* h_dPhi_Z;
+    TH1D* h_dR_Z;   // R-separation of daughter jets
+    TH1D* h_dPhi_Z; // R-separation of daughter jets
     
-    //VH Plots
-    TH1D* h_pt_jet;
-    TH1D* h_eta_jet;
-    TH1D* h_phi_jet;
-    TH1D* h_mSV_jet;
-    TH1D* h_Njet;
+    // VH Plots
+    TH1D* h_pt_jet;   TH1D* h_pt_jet_selected;
+    TH1D* h_eta_jet;  TH1D* h_eta_jet_selected;
+    TH1D* h_phi_jet;  TH1D* h_phi_jet_selected;
+    TH1D* h_mSV_jet;  TH1D* h_mSV_jet_selected;
+    TH1D* h_Njet;     TH1D* h_Njet_selected;
 
-    TH1D* h_DHZ0;
-    TH1D* h_DHZ1;
-    TH1D* h_DHZ2;
-    TH1D* h_dH;
+    TH1D* h_dPhi_HZ; 
+    TH1D* h_dR_HZ;
+
+    // Mass Matching Plots
+    TH1D* h_DHZ0;   // D1 values (closest pair)
+    TH1D* h_DHZ1;   // D2 values (middle pair)
+    TH1D* h_DHZ2;   // D3 values (farthest pair)
+    TH1D* h_dH;     // |D1 - D2|
     
     TH2D* h_MH_v_MZ;
-    TH2D* h_MH_v_MZ_select;
-
-    //MC Efficiency plots
-    //TH1D* h_dR_bjets;
-    //TH1D* h_dR_cjets;
-
+     
+    // Tagging plots
+    TH1D* h_CSV;  TH1D* h_CSV_selected;
+    TH1D* h_CvL;  TH1D* h_CvL_selected;
+    
 } ;
 
-// Main Plots class
+/******************************************************************************
+* VHBoostedPlots - plots related to boosted VH events                         *
+******************************************************************************/
 class VHBoostedPlots
 {
 
@@ -431,6 +492,9 @@ class VHBoostedPlots
     TH1D* h_m_jet1;
 } ;
 
+/******************************************************************************
+* HBoostedPlots - plots for boosted Higgs boson objects                       *
+******************************************************************************/
 class HBoostedPlots
 {
 
@@ -480,6 +544,9 @@ class HBoostedPlots
     TH1D* h_m_jet;
 } ;
 
+/******************************************************************************
+* EffPlots - plots related to efficiency of MC Truth matching                 *
+******************************************************************************/
 class EffPlots
 {
   public:
