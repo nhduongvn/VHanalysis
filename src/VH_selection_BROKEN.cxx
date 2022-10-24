@@ -16,7 +16,13 @@ IMPORT STATEMENTS
 MAIN SELECTOR METHODS
 /////////////////////////////////////////////////////////////////////////////*/
 
-VH_selection::~VH_selection() { }
+VH_selection::~VH_selection() {
+  if (h_VH_MC) delete h_VH_MC;
+  if (h_VH_all) delete h_VH_all;
+  if (h_VH_tags) delete h_VH_tags;
+  if (h_VH_algo) delete h_VH_algo;
+  if (h_VH_both) delete h_VH_both;
+}
 
 ///////////////////////////////////////////
 // Slave Begin
