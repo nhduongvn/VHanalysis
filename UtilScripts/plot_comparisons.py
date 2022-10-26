@@ -20,8 +20,8 @@ def scaleToLumi1(fName, xSec, lumi):
 def getHist(pN, samList, fList, lS, selType):
   hOut = {}
   plotName = 'VbbHcc'
-  if selType != 'MC':
-    plotName = plotName + '_' + selType
+  #if selType != 'MC':
+  #  plotName = plotName + '_' + selType
   plotName = plotName + '_' + pN
   for y in years:
     
@@ -66,16 +66,17 @@ sample_info = {
 
 
 years = ['16', '17', '18']
+years = ['18']
 
 ## These are all the plots we want to pull from.
 plot_names = ['ZMass', 'HMass', 'dR_Z', 'dR_H', 'HPt', 'ZPt', 'CutFlow', 'dR_cjets', 'dR_cjets_all',
 		'dR_bjets', 'dR_bjets_all', 'eff', 'pT_c', 'pT_cjet', 'pT_b', 'pT_bjet']
 
-plot_names = ['DHZ0', 'DHZ1', 'DHZ2', 'dH']
+#plot_names = ['DHZ0', 'DHZ1', 'DHZ2', 'dH']
 
 ## If the plot does not have a direct copy in the MC truth run, make sure to note it here.
 no_truth_plots = ['dR_cjets', 'dR_cjets_all', 'dR_bjets', 'dR_bjets_all', 'eff','pT_c', 'pT_cjet', 'pT_b', 'pT_bjet']
-no_truth_plots = ['DHZ0', 'DHZ1', 'DHZ2', 'dH']
+#no_truth_plots = ['DHZ0', 'DHZ1', 'DHZ2', 'dH']
 
 axis_titles = {
   'ZMass': 'm_{bb} [GeV]',
@@ -94,10 +95,10 @@ axis_titles = {
   'pT_b': 'p_{T}(b^{MC}) [GeV]',
   'pT_cjet': 'p_{T}(c-jet) [GeV]',
   'pT_bjet': 'p_{T}(b-jet) [GeV]',
-  'DHZ0': 'D_{HZ}^{1} [GeV]',
-  'DHZ1': 'D_{HZ}^{2} [GeV]',
-  'DHZ2': 'D_{HZ}^{3} [GeV]',
-  'dH': '|D_{HZ}^{1} - D_{HZ}^{2} | [GeV]',
+  'DHZ0': 'D_{HZ1} [GeV]',
+  'DHZ1': 'D_{HZ2} [GeV]',
+  'DHZ2': 'D_{HZ3} [GeV]',
+  'dH': '|D_{HZ1} - D_{HZ2} | [GeV]',
 }
 
 filepath = '../new_condor_results/NONE/'
@@ -146,7 +147,8 @@ for s in samples:
 
 ## Go through each plot we're interested in.
 for plN in plot_names:
-  
+ 
+  print "plot:", plN 
   ## Get the appropriate histograms we want.
   if not plN in no_truth_plots:
     hMC = getHist(plN, samples, files, lumiScales, 'MC')
@@ -161,7 +163,7 @@ for plN in plot_names:
   for y in years:
     
     plots_process = [hTags[y].Clone(), hBoth[y].Clone(), hAlgo[y].Clone()]
-    plotNames_process = ['Tagging Only','Tagging Prioritized', 'DHZ Prioritized']
+    plotNames_process = ['Tagging Only','Tagging Prioritized', 'D_{HZ} Prioritized']
     
     ## Properly stack the plots
     xAxis_title = axis_titles[plN]
