@@ -41,7 +41,11 @@ private:
   VHPlots* h_VH_tags_all; // Tagging Only (before cuts)
   VHPlots* h_VH_algo_all; // Matching Prioritized (before cuts)
   VHPlots* h_VH_both_all; // Tagging Prioritized (before cuts)
-  
+
+  VHPlots* h_VH_tags_afterTag; // Tagging Only (after tagging cuts)
+  VHPlots* h_VH_algo_afterTag; // Match Prioritized (after tagging cuts)
+  VHPlots* h_VH_both_afterTag; // Tagging Prioritzied (after tagigng cuts) 
+ 
   // CutFlows for event selections
   TH1D* h_evt_MC_cutflow;
   TH1D* h_evt_tags_cutflow;

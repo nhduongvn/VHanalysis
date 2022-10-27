@@ -41,7 +41,11 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_VH_tags_all = new VHPlots("VbbHcc_tags_all");
   h_VH_algo_all = new VHPlots("VbbHcc_algo_all");
   h_VH_both_all = new VHPlots("VbbHcc_both_all");
-  
+
+  h_VH_tags_afterTag = new VHPlots("VbbHcc_tags_afterTag");
+  h_VH_algo_afterTag = new VHPlots("VbbHcc_algo_afterTag");
+  h_VH_both_afterTag = new VHPlots("VbbHcc_both_afterTag");  
+
   // Set up the EffPlots instances
   h_eff_tags = new EffPlots("VbbHcc_tags");
   h_eff_algo = new EffPlots("VbbHcc_algo");
@@ -120,6 +124,13 @@ void VH_selection::SlaveBegin(Reader *r) {
   tmp = h_VH_algo_all->returnHisto();
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_VH_both_all->returnHisto();
+  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+
+  tmp = h_VH_tags_afterTag->returnHisto();
+  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_algo_afterTag->returnHisto();
+  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_both_afterTag->returnHisto();
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
 
   tmp = h_eff_tags->returnHisto();
@@ -540,7 +551,7 @@ void VH_selection::Process(Reader* r) {
     h_VH_algo_all->Fill(H0, Z0, evtW);
 
     std::vector<JetObj> cjets1 { jets3[d1.m_hIdx0], jets3[d1.m_hIdx1] };
-    std::vector<JetObj> bjets1 { jets3[d1.m_zIdx0], jets3[d1.m_zIdx0] };
+    std::vector<JetObj> bjets1 { jets3[d1.m_zIdx0], jets3[d1.m_zIdx1] };
     HObj H1(cjets1); ZObj Z1(bjets1);
     h_VH_algo_all->Fill(H1, Z1, evtW);
 
@@ -548,6 +559,17 @@ void VH_selection::Process(Reader* r) {
     std::vector<JetObj> bjets2 { jets3[d2.m_zIdx0], jets3[d2.m_zIdx1] };
     HObj H2(cjets2); ZObj Z2(bjets2);
     h_VH_algo_all->Fill(H2, Z2, evtW);
+
+    // Reconstruct the objects here for various uses.
+    std::vector<JetObj> bjets_algo;
+    bjets_algo.push_back(jets3[chosenPair.m_zIdx0]);
+    bjets_algo.push_back(jets3[chosenPair.m_zIdx1]);
+    ZObj Z(bjets_algo);
+
+    std::vector<JetObj> cjets_algo;
+    cjets_algo.push_back(jets3[chosenPair.m_hIdx0]);
+    cjets_algo.push_back(jets3[chosenPair.m_hIdx1]);
+    HObj H(cjets_algo);
  
     // Now, check to see if we pass the tagging requirements
     // and our other cuts.
@@ -555,6 +577,8 @@ void VH_selection::Process(Reader* r) {
       h_evt_algo_cutflow->Fill(2.5, genWeight); // pass b-tag
       if (chosenPair.H_has_cjets()) {
         h_evt_algo_cutflow->Fill(3.5, genWeight); // pass c-tag
+        h_VH_algo_afterTag->Fill(H, Z, evtW);
+
         if (*(r->MET_pt) < 140) {
           h_evt_algo_cutflow->Fill(4.5, genWeight); // pass MET
           if (chosenPair.ZPt() > 50) {
@@ -565,16 +589,6 @@ void VH_selection::Process(Reader* r) {
               h_evt_algo_cutflow->Fill(6.5, genWeight); // pass dPhi
               
               // Reconstruct the objects and fill our histograms.
-              std::vector<JetObj> bjets;
-              bjets.push_back(jets3[chosenPair.m_zIdx0]);
-              bjets.push_back(jets3[chosenPair.m_zIdx1]); 
-              ZObj Z(bjets);
-
-              std::vector<JetObj> cjets;
-              cjets.push_back(jets3[chosenPair.m_hIdx0]);
-              cjets.push_back(jets3[chosenPair.m_hIdx1]);
-              HObj H(cjets);
-
               h_VH_algo->Fill(H, Z, evtW);
 
               // If we're in a MC file, let's check to match our
@@ -696,12 +710,27 @@ void VH_selection::Process(Reader* r) {
       HObj H2(cjets2); ZObj Z2(bjets2);
       h_VH_both_all->Fill(H2, Z2, evtW);
 
+      // Reconstruct our objects here for use.
+      std::vector<JetObj> bjets_both;
+      bjets_both.push_back(jets4[chosenPair.m_zIdx0]);
+      bjets_both.push_back(jets4[chosenPair.m_zIdx1]);
+      ZObj Z(bjets_both);
+
+      std::vector<JetObj> cjets_both;
+      cjets_both.push_back(jets4[chosenPair.m_hIdx0]);
+      cjets_both.push_back(jets4[chosenPair.m_hIdx1]);
+      HObj H(cjets_both);
+
       // Now, check to see if we pass the tagging requirements
       // and our other cuts.
       if (chosenPair.Z_has_bjets()) {
         h_evt_both_cutflow->Fill(2.5, genWeight); // pass b-tag
         if (chosenPair.H_has_cjets()) {
           h_evt_both_cutflow->Fill(3.5, genWeight); // pass c-tag
+ 
+          // Fill here so we have all of them that are tagged properly.
+          h_VH_both_afterTag->Fill(H, Z, evtW);          
+
           if(*(r->MET_pt) < 140) {
             h_evt_both_cutflow->Fill(4.5, genWeight); // pass MET
             if (chosenPair.ZPt() > 50) {
@@ -711,17 +740,7 @@ void VH_selection::Process(Reader* r) {
 
                 h_evt_both_cutflow->Fill(6.5, genWeight); // pass dPhi
 
-                // Reconstruct the objects and fill our histograms.
-                std::vector<JetObj> bjets;
-                bjets.push_back(jets4[chosenPair.m_zIdx0]);
-                bjets.push_back(jets4[chosenPair.m_zIdx1]);
-                ZObj Z(bjets);
-
-                std::vector<JetObj> cjets;
-                cjets.push_back(jets4[chosenPair.m_hIdx0]);
-                cjets.push_back(jets4[chosenPair.m_hIdx1]);
-                HObj H(cjets);
-
+                // Fill our histograms.
                 h_VH_both->Fill(H, Z, evtW);
 
                 // If we're in a MC file, let's check to match our
