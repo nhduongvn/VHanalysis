@@ -21,7 +21,7 @@ def getHist(pN, samList, fList, lS, selType):
   hOut = {}
   plotName = 'VbbHcc'
   #if selType != 'MC':
-  #  plotName = plotName + '_' + selType
+  plotName = plotName + '_' + selType
   plotName = plotName + '_' + pN
   for y in years:
     
@@ -110,10 +110,11 @@ samples = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ']
 logY = False
 fill = False
 
+subfolder = ''
 if len(samples) > 1:
-  plotFolder = plotFolder + 'COMBINED/'
+  subfolder = 'COMBINED/'
 else:
-  plotFolder = plotFolder + samples[0] + '/'
+  subfolder = samples[0] + '/'
 
 print "===================================="
 print "MC comparison of selection methods"
@@ -169,12 +170,12 @@ for plN in plot_names:
     xAxis_title = axis_titles[plN]
     xAxis_range = [0,1000]
     makeOverlapPlot(plots_process, plotNames_process, plN + '_' + y, 
-      plotFolder + '/20' + y, xAxis_title, xAxis_range, logY, lumi[y], fill)
+      plotFolder + '/20' + y + '/' + subfolder, xAxis_title, xAxis_range, logY, lumi[y], fill)
     
     ## Output the MC Truth Versions
     if plN in no_truth_plots: continue
     makeOverlapPlot([hMC[y].Clone()], ['MC Truth'], plN + '_MCTruth_' + y,
-      plotFolder + '/20' + y, xAxis_title, xAxis_range, logY, lumi[y], fill)
+      plotFolder + '/20' + y + '/' + subfolder, xAxis_title, xAxis_range, logY, lumi[y], fill)
     
   ##################################
   ## Plot control plot for all years
