@@ -108,7 +108,7 @@ samples = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ']
 #samples = ['ZH_HToCC_ZToQQ']
 #samples = ['ggZH_HToCC_ZToQQ']
 logY = False
-fill = False
+fill = True
 
 subfolder = ''
 if len(samples) > 1:

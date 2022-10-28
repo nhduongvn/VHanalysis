@@ -24,8 +24,8 @@ def scaleToLumi1(fName, xSec, lumi):
 def getHist(pN, samList, fList, lS, selType):
   hOut = {}
   plotName = 'VbbHcc'
-  if selType != 'MC':
-    plotName = plotName + '_' + selType
+  #if selType != 'MC':
+  plotName = plotName + '_' + selType
   plotName = plotName + '_' + pN
   for y in years:
     
@@ -69,6 +69,7 @@ sample_info = {
 }
 
 years = ['16', '17', '18']
+years = ['18']
 
 filepath = '../new_condor_results/NONE/'
 plotFolder = '../MC_comparison_plots/'
@@ -83,7 +84,7 @@ if len(samples) > 1:
 else:
   plotFolder = plotFolder + samples[0] + '/'
 
-plots = ['MH_v_MZ_select']
+plots = ['all_MH_v_MZ']
 xAxisTitles = ['M(H) [GeV]']
 yAxisTitles = ['M(Z) [GeV]']
 
@@ -114,6 +115,7 @@ for s in samples:
 
 ## Get the appropriate histograms we want.
 for i in range(len(plots)):
+  print plots[i]
   hTags = getHist(plots[i], samples, files, lumiScales, 'tags')
   hAlgo = getHist(plots[i], samples, files, lumiScales, 'algo')
   hBoth = getHist(plots[i], samples, files, lumiScales, 'both')
