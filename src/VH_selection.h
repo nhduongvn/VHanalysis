@@ -62,6 +62,15 @@ private:
   EffPlots* h_eff_algo;
   EffPlots* h_eff_both;
   
+  // Miscellaneous Plots
+  TH1D* h_nJet;
+  TH1D* h_nBjet_loose;
+  TH1D* h_nCjet_loose;
+  TH1D* h_nBjet_medium;
+  TH1D* h_nCjet_medium;
+  TH1D* h_bScore;
+  TH1D* h_cScore;
+  TH2D* h_btag_v_ctag;
 };
 
 #endif
