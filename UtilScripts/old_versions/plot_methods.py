@@ -72,17 +72,18 @@ years = ['16', '17', '18']
 years = ['18']
 
 ## These are all the plots we want to pull.
-plot_names = ['CutFlow']
+plot_names = ['CutFlow', 'eff']
 
 axis_titles = {
   'CutFlow': '',
+  'eff': '',
 }
 
 filepath = '../new_condor_results/NONE/'
 plotFolder = '../MC_plots/'
 
 samples = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ']
-logY = True
+logY = False
 
 subfolder = ''
 if len(samples) > 1:

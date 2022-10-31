@@ -69,10 +69,12 @@ sample_info = {
 }
 
 years = ['16', '17', '18']
+years = ['17', '18']
 
 filepath = '../new_condor_results/NONE/'
 
-samples = ['ggZH_HToCC_ZToQQ'] #'ZH_HToCC_ZToQQ']#,
+samples = ['ggZH_HToCC_ZToQQ', 'ZH_HToCC_ZToQQ']#,
+samples = ['ZH_HToCC_ZToQQ']
 
 print "========================================="
 print "Calculating efficiency of event selection"
