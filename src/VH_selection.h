@@ -71,6 +71,16 @@ private:
   TH1D* h_bScore;
   TH1D* h_cScore;
   TH2D* h_btag_v_ctag;
+
+  TH1D* h_nJet_all;
+  TH1D* h_nBjet_loose_all;
+  TH1D* h_nCjet_loose_all;
+  TH1D* h_nBjet_medium_all;
+  TH1D* h_nCjet_medium_all;
+  TH1D* h_bScore_all;
+  TH1D* h_cScore_all;
+  TH2D* h_btag_v_ctag_all;
+
 };
 
 #endif

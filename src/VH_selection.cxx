@@ -110,9 +110,18 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_nCjet_loose = new TH1D("VbbHcc_nCjet_loose", "", 10, -0.5, 9.5);
   h_nBjet_medium = new TH1D("VbbHcc_nBjet_medium", "", 10, -0.5, 9.5);
   h_nCjet_medium = new TH1D("VbbHcc_nCjet_medium", "", 10, -0.5, 9.5);
-  h_bScore = new TH1D("VbbHcc_bScore", "", 20, 0, 1);
-  h_cScore = new TH1D("VbbHcc_cScore", "", 20, 0, 1);
-  h_btag_v_ctag = new TH2D("VbbHcc_btag_v_ctag", "", 20, 0, 1, 20, 0, 1);
+  h_bScore = new TH1D("VbbHcc_bScore", "", 20, 0., 1.);
+  h_cScore = new TH1D("VbbHcc_cScore", "", 20, 0., 1.);
+  h_btag_v_ctag = new TH2D("VbbHcc_btag_v_ctag", "", 20, 0., 1., 20, 0., 1.);
+
+  h_nJet_all = new TH1D("VbbHcc_nJet_all", "", 10, -0.5, 9.5);
+  h_nBjet_loose_all = new TH1D("VbbHcc_nBjet_loose_all", "", 10, -0.5, 9.5);
+  h_nCjet_loose_all = new TH1D("VbbHcc_nCjet_loose_all", "", 10, -0.5, 9.5);
+  h_nBjet_medium_all = new TH1D("VbbHcc_nBjet_medium_all", "", 10, -0.5, 9.5);
+  h_nCjet_medium_all = new TH1D("VbbHcc_nCjet_medium_all", "", 10, -0.5, 9.5);
+  h_bScore_all = new TH1D("VbbHcc_bScore_all", "", 20, 0., 1.);
+  h_cScore_all = new TH1D("VbbHcc_cScore_all", "", 20, 0., 1.);
+  h_btag_v_ctag_all = new TH2D("VbbHcc_btag_v_ctag_all", "", 20, 0., 1., 20, 0., 1.);
 
   // Add histograms to fOutput so they can be saved in Processor::SlaveTerminate
   r->GetOutputList()->Add(h_evt);
@@ -166,6 +175,15 @@ void VH_selection::SlaveBegin(Reader *r) {
   r->GetOutputList()->Add(h_bScore);
   r->GetOutputList()->Add(h_cScore);
   r->GetOutputList()->Add(h_btag_v_ctag);
+
+  r->GetOutputList()->Add(h_nJet_all);
+  r->GetOutputList()->Add(h_nBjet_loose_all);
+  r->GetOutputList()->Add(h_nCjet_loose_all);
+  r->GetOutputList()->Add(h_nBjet_medium_all);
+  r->GetOutputList()->Add(h_nCjet_medium_all);
+  r->GetOutputList()->Add(h_bScore_all);
+  r->GetOutputList()->Add(h_cScore_all);
+  r->GetOutputList()->Add(h_btag_v_ctag_all);
 
 }// end SlaveBegin
 
@@ -467,6 +485,31 @@ void VH_selection::Process(Reader* r) {
   h_nBjet_medium->Fill(nB_medium);
   h_nCjet_loose->Fill(nC_loose);
   h_nCjet_medium->Fill(nC_medium);
+
+  // Check ALL jets against the loose & medium WP.
+  nB_loose = 0; nB_medium = 0;
+  nC_loose = 0; nC_medium = 0;
+  for (unsigned int i = 0; i < jets.size(); ++i) {
+
+    // Pull the scores from the jet
+    float btag = jets[i].m_deepCSV;
+    float ctag = jets[i].m_deepCvL;
+    h_bScore_all->Fill(btag, evtW);
+    h_cScore_all->Fill(ctag, evtW);
+    h_btag_v_ctag_all->Fill(btag, ctag, evtW);
+    
+    // Check b-tagging against our WPs
+    if (btag > 0.0508) nB_loose++;
+    if (btag > 0.3) nB_medium++;
+
+    // Check c-tagging against our WPs
+    if (ctag > 0.327) nC_loose++;
+    if (ctag > 0.370) nC_medium++;
+  }
+  h_nBjet_loose_all->Fill(nB_loose);
+  h_nBjet_medium_all->Fill(nB_medium);
+  h_nCjet_loose_all->Fill(nC_loose);
+  h_nCjet_medium_all->Fill(nC_medium);
 
   if (selected_jets.size() >= 4) {
 
