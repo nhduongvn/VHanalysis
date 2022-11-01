@@ -105,7 +105,7 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_muon_cutflow->GetXaxis()->SetBinLabel(5, "iso cut");
 
   // Set up the miscellaneous histograms.
-  h_nJet = new TH1D("VbbHcc_nJet", "", 10, -0.5, 9.5);
+  h_nJet = new TH1D("VbbHcc_nJet", "", 13, -0.5, 12.5);
   h_nBjet_loose = new TH1D("VbbHcc_nBjet_loose", "", 10, -0.5, 9.5);
   h_nCjet_loose = new TH1D("VbbHcc_nCjet_loose", "", 10, -0.5, 9.5);
   h_nBjet_medium = new TH1D("VbbHcc_nBjet_medium", "", 10, -0.5, 9.5);
@@ -114,7 +114,7 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_cScore = new TH1D("VbbHcc_cScore", "", 20, 0., 1.);
   h_btag_v_ctag = new TH2D("VbbHcc_btag_v_ctag", "", 20, 0., 1., 20, 0., 1.);
 
-  h_nJet_all = new TH1D("VbbHcc_nJet_all", "", 10, -0.5, 9.5);
+  h_nJet_all = new TH1D("VbbHcc_nJet_all", "", 13, -0.5, 12.5);
   h_nBjet_loose_all = new TH1D("VbbHcc_nBjet_loose_all", "", 10, -0.5, 9.5);
   h_nCjet_loose_all = new TH1D("VbbHcc_nCjet_loose_all", "", 10, -0.5, 9.5);
   h_nBjet_medium_all = new TH1D("VbbHcc_nBjet_medium_all", "", 10, -0.5, 9.5);
@@ -460,7 +460,8 @@ void VH_selection::Process(Reader* r) {
   * JET ANALYSIS                                                              *
   ****************************************************************************/
   h_nJet->Fill(selected_jets.size(), evtW);
-  
+  h_nJet_all->Fill(jets.size(), evtW);  
+
   // Check our selected jets against the loose & medium WP.
   int nB_loose = 0, nB_medium = 0;
   int nC_loose = 0, nC_medium = 0;
