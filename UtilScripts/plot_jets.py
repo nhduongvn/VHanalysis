@@ -6,8 +6,9 @@ import os,sys
 ## Main Code
 ###############################################################################
 
-path_to_file = "../test.root"
+path_to_file = "../new_condor_results/NONE/ZH_HToCC_ZToQQ_MC_2018.root"
 output_dir = "../mult_plots/"
+logY = False
 
 plots = [ 
   "nJet", "nBjet_loose", "nCjet_loose", "nBjet_medium", "nCjet_medium",
@@ -51,8 +52,11 @@ for i in range(len(plots)):
     plot.GetXaxis().SetTitle(xAxisTitles[i])
     plot.GetYaxis().SetTitle(yAxisTitles[i])
     plot.Draw("hist")
+    
+    if logY: c.SetLogy()
 
     fullpath = output_dir + plots[i] + extra_bit
+    if logY: fullpath = fullpath + "_logY"
     c.Print(fullpath + '.png')
     c.Print(fullpath + '.pdf')
 
