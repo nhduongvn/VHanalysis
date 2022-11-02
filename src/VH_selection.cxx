@@ -710,7 +710,7 @@ void VH_selection::Process(Reader* r) {
     bool ctags[4] = { false, false, false, false };
     for (int i = 0; i < 4; ++i) {
       if (jets4[i].m_deepCSV > 0.3) { btags[i] = true; bIndices.push_back(i); }
-      if (jets4[i].m_deepCvL > 0.3) { ctags[i] = true; cIndices.push_back(i); }
+      if (jets4[i].m_deepCvL > 0.37) { ctags[i] = true; cIndices.push_back(i); }
     }    
 
     // Make sure we have no jets that pass both tags.
