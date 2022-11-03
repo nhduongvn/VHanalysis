@@ -1,0 +1,16 @@
+jet_eta 2.4 float
+jet_pt  30  float
+jet_main_btagWP   deepCSVT string
+lep_eta 2.4 float
+lep_pt0 35 float
+lep_pt1 25 float
+lep_jetOverlap_pt 25 float
+lep_jetOverlap_eta 2.5 float
+muon_iso 0.15 float
+ZMassL 71 float
+ZMassH 111 float
+MET 140 float
+btag_looseWP 0.0508 float
+btag_mediumWP 0.2598 float
+ctag_looseWP 0.327 float
+ctag_mediumWP 0.37 float
