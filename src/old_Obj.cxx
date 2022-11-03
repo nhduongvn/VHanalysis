@@ -291,8 +291,8 @@ class DObj { // Distance Object for mass-matching algorithm
 
     // Variables
     float k = 125.0 / 91.0;
-    float csv_cut = 0.3;// 0.0508;// 0.3;
-    float cvl_cut = 0.37; // 0.37;
+    float csv_cut = 0.05;// 0.0508;// 0.3;
+    float cvl_cut = 0.33; // 0.37;
     int m_hIdx0, m_hIdx1;           // indices for jets selected to Higgs
     int m_zIdx0, m_zIdx1;           // indices for jets selected to Z boson
     std::vector<JetObj> m_jets; // list of jets that we've selected

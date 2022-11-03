@@ -459,7 +459,7 @@ void VH_selection::Process(Reader* r) {
   /****************************************************************************
   * JET ANALYSIS                                                              *
   ****************************************************************************/
-  h_nJet->Fill(selected_jets.size(), evtW);
+  /*h_nJet->Fill(selected_jets.size(), evtW);
   h_nJet_all->Fill(jets.size(), evtW);  
 
   // Check our selected jets against the loose & medium WP.
@@ -510,7 +510,7 @@ void VH_selection::Process(Reader* r) {
   h_nBjet_loose_all->Fill(nB_loose);
   h_nBjet_medium_all->Fill(nB_medium);
   h_nCjet_loose_all->Fill(nC_loose);
-  h_nCjet_medium_all->Fill(nC_medium);
+  h_nCjet_medium_all->Fill(nC_medium);*/
 
   if (selected_jets.size() >= 4) {
 
@@ -543,7 +543,7 @@ void VH_selection::Process(Reader* r) {
     bjets.push_back(jets2[bIdx1]);
     jets2.erase(jets2.begin() + bIdx1);
 
-    if (csv0 > 0.3 && csv1 > 0.3) {
+    if (csv0 > 0.05 && csv1 > 0.05) {
  
       h_evt_tags_cutflow->Fill(2.5, genWeight); // pass b-cuts
       ZObj Z(bjets);
@@ -567,7 +567,7 @@ void VH_selection::Process(Reader* r) {
       cjets.push_back(jets2[cIdx1]);
       jets2.erase(jets2.begin() + cIdx1);
 
-      if (cvl0 > 0.37 && cvl1 > 0.37) {
+      if (cvl0 > 0.33 && cvl1 > 0.33) {
 
         h_evt_tags_cutflow->Fill(3.5, genWeight); // pass c-cuts
         HObj H(cjets);
@@ -709,8 +709,8 @@ void VH_selection::Process(Reader* r) {
     bool btags[4] = { false, false, false, false };
     bool ctags[4] = { false, false, false, false };
     for (int i = 0; i < 4; ++i) {
-      if (jets4[i].m_deepCSV > 0.3) { btags[i] = true; bIndices.push_back(i); }
-      if (jets4[i].m_deepCvL > 0.37) { ctags[i] = true; cIndices.push_back(i); }
+      if (jets4[i].m_deepCSV > 0.05) { btags[i] = true; bIndices.push_back(i); }
+      if (jets4[i].m_deepCvL > 0.33) { ctags[i] = true; cIndices.push_back(i); }
     }    
 
     // Make sure we have no jets that pass both tags.
