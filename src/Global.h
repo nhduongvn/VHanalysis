@@ -45,14 +45,14 @@ namespace glob {
       };
       
       // Get method
-      template<class T> Get(const std::string& name) {
+      template<class T> T Get(const std::string& name) {
       
         // If the name exists within our list, return the proper value.
         if (std::count(parameterNames.begin(), parameterNames.end(), name)) {
         
           if (name == "jet_pt") return jet_pt;
           if (name == "jet_eta") return jet_eta;
-          if (name == "jet_main_btagWP") return jet_main_btagWP;
+          //if (name == "jet_main_btagWP") return jet_main_btagWP;
           
           if (name == "lep_eta") return lep_eta;
           if (name == "lep_pt0") return lep_pt0;
@@ -83,6 +83,21 @@ namespace glob {
         // If somehow we pass both checks, return 0.
         return 0;
       };
+
+      // GetStr method
+      std::string GetStr(const std::string& name) {
+        // If the name exists within our list, get the parameter.
+        if (std::count(parameterNames.begin(), parameterNames.end(), name)) {
+          if (name == "jet_main_btagWP") return jet_main_btagWP;
+        }
+        // Otherwies, return an error message.
+        else {
+          std::cout << "\nThere is no parameter " << name;
+          std::cout << ". Will terminate." << std::endl;
+          exit(1);
+        }
+        // If somehow we pass both checks, return 0.
+      };
       
       // Set method
       template<class T> void Set(const std::string& name, T val) {
@@ -92,7 +107,7 @@ namespace glob {
         
           if (name == "jet_pt") jet_pt = val;
           if (name == "jet_eta") jet_eta = val;
-          if (name == "jet_main_btagWP") jet_main_btagWP = val;
+          //if (name == "jet_main_btagWP") jet_main_btagWP = val;
 
           if (name == "lep_eta") lep_eta = val;
           if (name == "lep_pt0") lep_pt0 = val;
@@ -112,6 +127,18 @@ namespace glob {
         
         }
         // Otherwise, return an "error"/warning message.
+        else {
+          std::cout << "\nCan NOT set value for parameter named: " << name;
+          std::cout << ". Does NOT exist in list of parameters." << std::endl;
+        }
+      };
+
+      // SetStr method
+      void SetStr(const std::string& name, std::string val) {
+        // If the name exists within our list, set the parameter.
+        if (std::count(parameterNames.begin(), parameterNames.end(), name)) {
+          if (name == "jet_main_btagWP") jet_main_btagWP = val;
+        } 
         else {
           std::cout << "\nCan NOT set value for parameter named: " << name;
           std::cout << ". Does NOT exist in list of parameters." << std::endl;

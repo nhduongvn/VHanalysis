@@ -17,21 +17,656 @@
 VH_selection::~VH_selection() { }
 
 ///////////////////////////////////////////////////////////////
+// Custom Methods
+///////////////////////////////////////////////////////////////
+
+// DauIdxs_ZH - get the indices of the MC truth particles
+
+#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
+std::vector<std::vector<int> > VH_selection::DauIdxs_ZH(Reader *r) {
+
+  // Store the indices of the Higgs and Z daughters
+  std::vector<std::vector<int>> dauIdxs;
+  std::vector<int> dauIdxsZ;
+  std::vector<int> dauIdxsH;
+
+  // Loop over the gen particles
+  for (unsigned i = 0; i < *(r->nGenPart); ++i) {
+
+    int mIdx = (r->GenPart_genPartIdxMother)[i]; // mother index 
+    int mID  = (r->GenPart_pdgId)[mIdx];         // mother ID (PDG)
+    int flav = (r->GenPart_pdgId)[i];            // ptcl ID (PDG)
+
+    // b quark check (id = 5, mother ID = 23 [Z])
+    if (abs(flav) == 5 && mIdx > -1 && abs(mID) == 23)
+      dauIdxsZ.push_back(i);
+
+    // c quark check (id = 4, mother ID = 25 [H])
+    if (abs(flav) == 4 && mIdx > -1 && abs(mID) == 25)
+      dauIdxsH.push_back(i);
+  }
+
+  // Push back and return the proper IDs
+  dauIdxs.push_back(dauIdxsZ);
+  dauIdxs.push_back(dauIdxsH);
+
+  return dauIdxs;
+}
+#endif
+
+
+///////////////////////////////////////////////////////////////
 // Slave Begin
 ///////////////////////////////////////////////////////////////
 void VH_selection::SlaveBegin(Reader *r) {
 
-}// end SlaveBegin
+  // Set up all the necessary plots
+  h_evt = new TH1D("Nevt", "", 4, -1.5, 2.5); // bin 1 = total negative w evt
+                                              // bin 2 = total positive w evt
+                                              // bin 3 = total event weight
+                                              // genWeight (=bin2 - bin1)
 
-///////////////////////////////////////////////////////////////
-// Custom Methods
-///////////////////////////////////////////////////////////////
+  // Set up the VHPlot instances
+  h_VH_all = new VHPlots("VbbHcc_all");
+  h_VH_MC = new VHPlots("VbbHcc_MC");
+  h_VH_tags = new VHPlots("VbbHcc_tags");
+  h_VH_algo = new VHPlots("VbbHcc_algo");
+  h_VH_both = new VHPlots("VbbHcc_both");
+  h_VH_duong = new VHPlots("VbbHcc_duong");
+
+  // Set up the JetPlots instances
+  h_VH_jets = new JetPlots("VbbHcc_jets");
+  h_VH_jets_all = new JetPlots("VbbHcc_jets_all");
+
+  // Set up the CutFlows (for events) 
+  h_evt_MC_cutflow = new TH1D("VbbHcc_MC_CutFlow", "", 2, 0, 2);
+  h_evt_MC_cutflow->GetXaxis()->SetBinLabel(1, "Total");
+  h_evt_MC_cutflow->GetXaxis()->SetBinLabel(2, "Passed daughter selection");
+  
+  h_evt_tags_cutflow = new TH1D("VbbHcc_tags_CutFlow", "", 7, 0, 7);
+  h_evt_tags_cutflow->GetXaxis()->SetBinLabel(1, "Total");
+  h_evt_tags_cutflow->GetXaxis()->SetBinLabel(2, "jet cuts");
+  h_evt_tags_cutflow->GetXaxis()->SetBinLabel(3, "b-tags");
+  h_evt_tags_cutflow->GetXaxis()->SetBinLabel(4, "c-tags");
+  h_evt_tags_cutflow->GetXaxis()->SetBinLabel(5, "MET cut");
+  h_evt_tags_cutflow->GetXaxis()->SetBinLabel(6, "pT(Z) cut");
+  h_evt_tags_cutflow->GetXaxis()->SetBinLabel(7, "dPhi cut");
+  
+  h_evt_algo_cutflow = new TH1D("VbbHcc_algo_CutFlow", "", 7, 0, 7);
+  h_evt_algo_cutflow->GetXaxis()->SetBinLabel(1, "Total");
+  h_evt_algo_cutflow->GetXaxis()->SetBinLabel(2, "jet cuts");
+  h_evt_algo_cutflow->GetXaxis()->SetBinLabel(3, "b-tags");
+  h_evt_algo_cutflow->GetXaxis()->SetBinLabel(4, "c-tags");
+  h_evt_algo_cutflow->GetXaxis()->SetBinLabel(5, "MET cut");
+  h_evt_algo_cutflow->GetXaxis()->SetBinLabel(6, "pT(Z) cut");
+  h_evt_algo_cutflow->GetXaxis()->SetBinLabel(7, "dPhi cut");
+  
+  h_evt_both_cutflow = new TH1D("VbbHcc_both_CutFlow", "", 7, 0, 7);
+  h_evt_both_cutflow->GetXaxis()->SetBinLabel(1, "Total");
+  h_evt_both_cutflow->GetXaxis()->SetBinLabel(2, "jet cuts");
+  h_evt_both_cutflow->GetXaxis()->SetBinLabel(3, "b-tags");
+  h_evt_both_cutflow->GetXaxis()->SetBinLabel(4, "c-tags");
+  h_evt_both_cutflow->GetXaxis()->SetBinLabel(5, "MET cut");
+  h_evt_both_cutflow->GetXaxis()->SetBinLabel(6, "pT(Z) cut");
+  h_evt_both_cutflow->GetXaxis()->SetBinLabel(7, "dPhi cut"); 
+
+  // Set up the CutFlows (for obj selections)
+  h_jet_cutflow = new TH1D("VbbHcc_CutFlow_jets", "", 4, 0, 4);
+  h_jet_cutflow->GetXaxis()->SetBinLabel(1, "Total");
+  h_jet_cutflow->GetXaxis()->SetBinLabel(2, "pT cut");
+  h_jet_cutflow->GetXaxis()->SetBinLabel(3, "eta cut");
+  h_jet_cutflow->GetXaxis()->SetBinLabel(4, "iso req");
+  
+  h_elec_cutflow = new TH1D("VbbHcc_CutFlow_elec", "", 5, 0, 5);
+  h_elec_cutflow->GetXaxis()->SetBinLabel(1, "Total");
+  h_elec_cutflow->GetXaxis()->SetBinLabel(2, "pT cut");
+  h_elec_cutflow->GetXaxis()->SetBinLabel(3, "eta cut");
+  h_elec_cutflow->GetXaxis()->SetBinLabel(4, "etaSC cut");
+  h_elec_cutflow->GetXaxis()->SetBinLabel(5, "loose ID cut");
+  
+  h_muon_cutflow = new TH1D("VbbHcc_CutFlow_muon", "", 5, 0, 5);
+  h_muon_cutflow->GetXaxis()->SetBinLabel(1, "Total");
+  h_muon_cutflow->GetXaxis()->SetBinLabel(2, "pT cut");
+  h_muon_cutflow->GetXaxis()->SetBinLabel(3, "eta cut");
+  h_muon_cutflow->GetXaxis()->SetBinLabel(4, "loose ID cut");
+  h_muon_cutflow->GetXaxis()->SetBinLabel(5, "iso cut");
+
+  // Set up miscellaneous histograms
+  // ... to go here...
+
+  // Add them to the return list so we can use them in our analyses.
+  r->GetOutputList()->Add(h_evt);
+
+  std::vector<TH1*> tmp = h_VH_MC->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_tags->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_algo->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_both->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_duong->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_all->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_jets->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_jets_all->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+
+  r->GetOutputList()->Add(h_evt_MC_cutflow);
+  r->GetOutputList()->Add(h_evt_tags_cutflow);
+  r->GetOutputList()->Add(h_evt_algo_cutflow);
+  r->GetOutputList()->Add(h_evt_both_cutflow);
+  r->GetOutputList()->Add(h_jet_cutflow);
+  r->GetOutputList()->Add(h_elec_cutflow);
+  r->GetOutputList()->Add(h_muon_cutflow);  
+
+}// end SlaveBegin
 
 ///////////////////////////////////////////////////////////////
 // Process
 ///////////////////////////////////////////////////////////////
 void VH_selection::Process(Reader* r) { 
 
+  //=================================================================
+  // WEIGHTS & GEN INFORMATION
+  //=================================================================
+
+  float genWeight = 1.;
+  float puSF = 1.;
+  float l1preW = 1.;
+
+#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
+
+  // Determine the generator weights
+  if (*(r->genWeight) < 0) genWeight = -1.;
+  if (*(r->genWeight) == 0) {
+    genWeight = 0;
+    h_evt->Fill(0);
+  }
+  if (*(r->genWeight) < 0) h_evt->Fill(-1);
+  if (*(r->genWeight) > 0) h_evt->Fill(1);
+
+  // Use central general weights to normalize generator weights
+  if (m_centralGenWeight != 0) genWeight *= *(r->genWeight)/m_centralGenWeight;
+  puSF = PileupSF(*(r->Pileup_nTrueInt));
+
+#endif
+
+  h_evt->Fill(2, genWeight); 
+
+#if defined(MC_2016) || defined(MC_2017)
+
+  // Handle the L1 Pre-Firing weight for 2016-2017
+  l1preW = *(r->L1PreFiringWeight_Nom);
+
+  if (m_l1prefiringType == "l1prefiringu") l1preW = *(r->L1PreFiringWeight_Up);
+  if (m_l1prefiringType == "l1prefiringd") l1preW = *(r->L1PreFiringWeight_Dn);
+
+#endif
+
+#if defined(DATA_2016) || defined(DATA_2017) || defined(DATA_2018)
+
+  h_evt->Fill(-1);
+  if (!m_lumiFilter.Pass(*(r->run), *(r->luminosityBlock))) return;
+  h_evt->Fill(1);
+
+#endif
+
+  float evtW = 1.;
+  if (!m_isData) evtW *= genWeight * puSF * l1preW;
+
+  //=================================================================
+  // RECONSTRUCT PHYSICS OBJECTS
+  //=================================================================
+  
+  // ==== JETS (NO KINEMATIC CUTS) ====
+  std::vector<JetObj> jets;
+  for (unsigned int i = 0; i < *(r->nJet); ++i) {
+
+    // Get the flavor of the jets
+    int jetFlav = -1;
+#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
+    jetFlav = (r->Jet_hadronFlavour)[i];
+#endif
+
+    // Reconstruct the jet
+    JetObj jet((r->Jet_pt)[i], (r->Jet_eta)[i], (r->Jet_phi)[i], (r->Jet_mass)[i],
+      jetFlav, (r->Jet_btagDeepFlavB)[i], (r->Jet_puIdDisc)[i]);
+   
+    // Handle getting the c-tag value which is different
+    // depending on the version of NanoAOD.
+#if defined(NANOAODV9)
+    jet.m_deepCvL = (r->Jet_btagDeepFlavCvL)[i];
+#endif
+
+#if defined(NANOAODV7)
+    jet.m_deepCvL = (r->Jet_btagDeepFlavC)[i];
+#endif
+
+
+    // Add the jet to our overall list.
+    jet.SetIdxAll(i);
+    jets.push_back(jet);
+
+  }//end-jets
+   
+  // ==== ELECTRONS ====
+  std::vector<LepObj> elecs;
+  for (unsigned int i = 0; i < *(r->nElectron); ++i) {
+
+    // Produce an electron from the information.
+    h_elec_cutflow->Fill(0.5, genWeight); // all electrons
+
+    float etaSC = (r->Electron_eta)[i] - (r->Electron_deltaEtaSC)[i];
+    LepObj elec((r->Electron_pt)[i], (r->Electron_eta)[i], etaSC,
+           (r->Electron_phi)[i], (r->Electron_mass)[i], i,
+           (r->Electron_charge)[i], 0);
+
+    // Cut based on the pT & eta values
+    if (elec.Pt() < CUTS.Get<float>("lep_pt1")) continue;
+    h_elec_cutflow->Fill(1.5, genWeight); // pass pT cut
+    if (fabs(elec.Eta()) > CUTS.Get<float>("lep_eta")) continue;
+    h_elec_cutflow->Fill(2.5, genWeight); // pass eta cut
+
+    // Cut based on SC value
+    if (fabs(etaSC) < 1.566 && fabs(etaSC) > 1.442) continue;
+    h_elec_cutflow->Fill(3.5, genWeight); // pass SC cut
+
+    // Cut based on the isolation
+    int elecID = r->Electron_cutBased[i];
+    if (elecID < 2) continue; // loose electron ID
+    h_elec_cutflow->Fill(4.5, genWeight); // pass ID cut
+
+    // Add the electrons to the list
+    elecs.push_back(elec);
+
+  }//end-elecs
+
+  // ==== MUONS ====
+  std::vector<LepObj> muons;
+  for (unsigned int i = 0; i < *(r->nMuon); ++i) {
+
+    // Produce a muon from the information
+    h_muon_cutflow->Fill(0.5, genWeight); // all muons
+    LepObj muon((r->Muon_pt)[i], (r->Muon_eta)[i], -1, (r->Muon_phi)[i],
+           (r->Muon_mass)[i], i, (r->Muon_charge)[i],
+           (r->Muon_pfRelIso04_all)[i]);
+
+    // Cut based on the pT & eta values
+    if (muon.Pt() < CUTS.Get<float>("lep_pt1")) continue;
+    h_muon_cutflow->Fill(1.5, genWeight); // pass pT cut
+    if (fabs(muon.Eta()) > CUTS.Get<float>("lep_eta")) continue;
+    h_muon_cutflow->Fill(2.5, genWeight); // pass eta cut
+
+    // Cut based on the loose ID
+    if (r->Muon_looseId[i] <= 0) continue;
+    h_muon_cutflow->Fill(3.5, genWeight); // pass ID cut
+
+    // Cut based on an isolation value
+    if (muon.m_iso > CUTS.Get<float>("muon_iso")) continue;
+    h_muon_cutflow->Fill(4.5, genWeight); // pass iso cut
+
+    // Add the muon to the list.
+    muons.push_back(muon);
+
+  }//end-muons
+
+  //=================================================================
+  // START EVENT SELECTION
+  //=================================================================
+ 
+  // All CutFlows need to show the total events.
+  h_evt_MC_cutflow->Fill(0.5, genWeight);   // MC Truth
+  h_evt_tags_cutflow->Fill(0.5, genWeight); // Tagging Only
+  h_evt_algo_cutflow->Fill(0.5, genWeight); // Matching Prioritized
+  h_evt_both_cutflow->Fill(0.5, genWeight); // Tagging Prioritized
+
+  /****************************************************************************
+  * CASE #1 - MONTE CARLO TRUTH                                               *
+  ****************************************************************************/
+  
+  bool canCompareToMC = false;
+  bool is_VbbHcc_event = false;
+  std::vector<std::vector<int> > dauIdxs;
+
+#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
+
+  canCompareToMC = true;
+
+  // Make sure we have two daughters for each particle of the proper type.
+  int idZ = 0, idH = 1;
+  dauIdxs = DauIdxs_ZH(r);
+  
+  if (dauIdxs[idZ].size() == 2 && dauIdxs[idH].size() == 2) {
+    is_VbbHcc_event = true;
+    h_evt_MC_cutflow->Fill(1.5, genWeight); // pass # daughters
+    int idx1_Z = dauIdxs[idZ][0];
+    int idx2_Z = dauIdxs[idZ][1];
+    int idx1_H = dauIdxs[idH][0];
+    int idx2_H = dauIdxs[idH][1];
+
+    // Reconstruct from the GenPart data.
+    // Two b quarks --> ZObj
+    JetObj b0((r->GenPart_pt)[idx1_Z], (r->GenPart_eta)[idx1_Z],
+      (r->GenPart_phi)[idx1_Z], (r->GenPart_mass)[idx1_Z], 5, 0., 0.);
+    JetObj b1((r->GenPart_pt)[idx2_Z], (r->GenPart_eta)[idx2_Z],
+      (r->GenPart_phi)[idx2_Z], (r->GenPart_mass)[idx2_Z], 5, 0., 0.);
+    std::vector<JetObj> MC_bjets{b0, b1};
+    ZObj MC_Z(MC_bjets);
+
+    // Two c quarks --> HObj
+    JetObj c0((r->GenPart_pt)[idx1_H], (r->GenPart_eta)[idx1_H],
+      (r->GenPart_phi)[idx1_H], (r->GenPart_mass)[idx1_H], 4, 0., 0.);
+    JetObj c1((r->GenPart_pt)[idx2_H], (r->GenPart_eta)[idx2_H],
+      (r->GenPart_phi)[idx2_H], (r->GenPart_mass)[idx2_H], 4, 0., 0.);
+    std::vector<JetObj> MC_cjets{c0, c1};
+    HObj MC_H(MC_cjets);
+
+    // Fill the histograms
+    h_VH_MC->FillVH(MC_Z, MC_H, evtW);
+
+  }//end-MC-truth
+  
+#endif
+
+  /****************************************************************************
+  * JET ANALYSIS                                                              *
+  ****************************************************************************/
+
+  // For the remainder of the selections, we want to only have jets
+  // that meet our criteria. Let's make sure we have enough jets to
+  // meet our requirements:
+  // 1. pT(j) > 30 GeV
+  // 2. |eta| < 2.5
+  // 3. dR(small-R jet, lepton) < 0.4 = discard
+  std::vector<JetObj> analysis_jets;
+  int nJets = 0;
+  for (unsigned int i = 0; i < jets.size(); ++i) {
+
+    h_jet_cutflow->Fill(0.5, genWeight); // all jets
+    TLorentzVector vec = jets[i].m_lvec;
+
+    if (vec.Pt() < CUTS.Get<float>("jet_pt")) continue;
+    h_jet_cutflow->Fill(1.5, genWeight); // passed pT cut
+
+    if (fabs(vec.Eta()) > CUTS.Get<float>("jet_eta")) continue;
+    h_jet_cutflow->Fill(2.5, genWeight); // passed eta cut
+
+    // Check if the electrons & muons overlap with the jets.
+    // If dR(jet, lepton) < 0.4, discard the jet.
+    bool isElectron = jets[i].IsLepton(elecs);
+    bool isMuon     = jets[i].IsLepton(muons);
+    if (isElectron || isMuon) continue;
+    h_jet_cutflow->Fill(3.5, genWeight); // passed iso cut
+
+    // Add jet to our selected jet list
+    jets[i].SetIdx(nJets); nJets++;
+    analysis_jets.push_back(jets.at(i));
+
+  }//end-for-jets
+
+  // Fill the proper jet plots with the jets we're interested in.
+  h_VH_jets->Fill(analysis_jets, evtW);
+  h_VH_jets_all->Fill(jets, evtW);
+
+  if (analysis_jets.size() >= 4) {
+
+    h_evt_tags_cutflow->Fill(1.5, genWeight); // passed jet selection
+    h_evt_algo_cutflow->Fill(1.5, genWeight); 
+    h_evt_both_cutflow->Fill(1.5, genWeight); 
+
+    /**************************************************************************
+    * GET THE PROPER TAGGING CUTS THAT WE WANT TO USE                         *
+    **************************************************************************/
+
+    // We don't want to have to change the working point in several spots,
+    // so we choose here and then we can use these variables wherever needed.
+    float desired_bcut = CUTS.Get<float>("btag_mediumWP");
+    float desired_ccut = CUTS.Get<float>("ctag_mediumWP");
+
+    /**************************************************************************
+    * CASE #2 - TAGGING ONLY                                                  *
+    **************************************************************************/
+
+    // Make an appropriate copy of the jets to use for this analysis.
+    std::vector<JetObj> jets2; jets2 = analysis_jets;
+
+    // Select two jets with the largest btag values and then
+    // check against our working point of interest. (NOTE: when
+    // we sort by btag (descending order), the largest two will
+    // automatically be in the first two indices.)
+    std::sort(jets2.begin(), jets2.end(), JetObj::JetCompBtag());
+    std::vector<JetObj> bjets2 { jets2[0], jets2[1] };
+    jets2.erase(jets2.begin() + 1); jets2.erase(jets2.begin() + 0);
+
+    if (bjets2[0].m_deepCSV > desired_bcut && bjets2[1].m_deepCSV > desired_bcut) {
+
+      // Since we passed the cut, reconstruct the Z boson
+      h_evt_tags_cutflow->Fill(2.5, genWeight); // pass b-cuts
+      ZObj Z(bjets2);
+      
+      // Select two jets with the largest ctag values and then
+      // check against our working point of interest.
+      std::sort(jets2.begin(), jets2.end(), JetObj::JetCompCtag());
+      std::vector<JetObj> cjets2 { jets2[0], jets2[1] };
+      jets2.erase(jets2.begin() + 1); jets2.erase(jets2.begin() + 0);
+
+      if (cjets2[0].m_deepCvL > desired_ccut && cjets2[1].m_deepCvL > desired_ccut) {
+
+        // Since we passed the cut, reconstruct the Higgs
+        h_evt_tags_cutflow->Fill(3.5, genWeight); // pass c-cuts 
+        HObj H(cjets2);
+
+        // Check the remaining kinematic cuts of interest.
+        if (*(r->MET_pt) < 140) {
+          h_evt_tags_cutflow->Fill(4.5, genWeight); // pass MET cut
+          if (Z.Pt() > 50) {
+            h_evt_tags_cutflow->Fill(5.5, genWeight); // pass pT(Z) cut
+            float dPhi = Z.m_lvec.DeltaPhi(H.m_lvec);
+            if (fabs(dPhi) > 2.5) {
+
+              h_evt_tags_cutflow->Fill(6.5, genWeight); // pass dPhi cut
+              h_VH_tags->FillVH(Z, H, evtW);             
+
+            }//end-dPhi
+          }//end-pT(Z)
+        }//end-MET
+
+      }//end-c-cut
+
+    }//end-b-cut
+   
+    /**************************************************************************
+    * CASE #3 - MASS-MATCHING PRIORITIZED                                     *
+    **************************************************************************/
+
+    // Make an appropriate copy of the jets to use for this analysis.
+    std::vector<JetObj> jets3; jets3 = analysis_jets;
+    std::sort(jets3.begin(), jets3.end(), JetObj::JetCompPt());
+    
+    // Create the objects for the distance calculations and make sure we sort
+    // them in ascending order. (All necessary calculations for algorithms
+    // are handled within the DObj class.)
+    DHZObj d0(jets3, 0, 1, 2, 3);          // H(0,1) ; Z(2,3)
+    DHZObj d1(jets3, 0, 2, 1, 3);          // H(0,2) ; Z(1,3)
+    DHZObj d2(jets3, 0, 3, 1, 2);          // H(0,3) ; Z(1,2)
+    std::vector<DHZObj> distances {d0, d1, d2};
+    std::sort(distances.begin(), distances.end());
+
+    // Determine the distance between the closest two. Then, based on this
+    // distance, determine which pair we want to use. If we are outside the
+    // resolution window (30 GeV), we can just choose the closest pair. 
+    // Otherwise, we need to make a logical choice between d0 and d1.
+    float deltaD = fabs(distances[0].m_d - distances[1].m_d);
+    DHZObj chosenPair = distances[0];
+
+    if (deltaD < 30) {
+      float pt0 = distances[0].HPt();
+      float pt1 = distances[1].HPt();
+      int idx = 0;
+      if (pt1 > pt0) idx = 1;
+      chosenPair = distances[idx];
+    }
+
+    // Reconstruct the objects here for various uses.
+    std::vector<JetObj> bjets3;
+    bjets3.push_back(jets3[chosenPair.m_zIdx0]);
+    bjets3.push_back(jets3[chosenPair.m_zIdx1]);
+    ZObj Z3(bjets3);
+
+    std::vector<JetObj> cjets3;
+    cjets3.push_back(jets3[chosenPair.m_hIdx0]);
+    cjets3.push_back(jets3[chosenPair.m_hIdx1]);
+    HObj H3(cjets3);
+
+    // Now check our tagging requirements and other cuts.
+    if (chosenPair.Z_has_bjets(desired_bcut)) {
+      h_evt_algo_cutflow->Fill(2.5, genWeight); // pass b-tag
+      if (chosenPair.H_has_cjets(desired_ccut)) {
+        h_evt_algo_cutflow->Fill(3.5, genWeight); // pass c-tag
+        if (*(r->MET_pt) < 140) {
+          h_evt_algo_cutflow->Fill(4.5, genWeight); // pass MET
+          if (chosenPair.ZPt() > 50) {
+            h_evt_algo_cutflow->Fill(5.5, genWeight); // pass pT(Z)
+            float dPhi = fabs(chosenPair.DPhi());
+            if (dPhi > 2.5) {
+
+              // Fill our histograms appropriately.
+              h_evt_algo_cutflow->Fill(6.5, genWeight); // pass dPhi
+              h_VH_algo->FillVH(Z3, H3, evtW);
+
+            }//end-dPhi
+          }//end-pT(Z)
+        }//end-MET
+      }//end-c-cut
+    }//end-b-cut 
+
+    /**************************************************************************
+    * CASE #4 - TAGGING PRIORITZED                                            *
+    **************************************************************************/
+ 
+    // Make an appropriate copy of the jets to use for this analysis.
+    std::vector<JetObj> jets4; jets4 = analysis_jets;
+    std::sort(jets4.begin(), jets4.end(), JetObj::JetCompPt());
+    
+    // Check to see which jets pass which tagging.
+    std::vector<int> bIdxs, cIdxs;
+    bool btags[4] = { false, false, false, false };
+    bool ctags[4] = { false, false, false, false };
+    for (int i = 0; i < 4; ++i) {
+      if (jets4[i].m_deepCSV > desired_bcut) { btags[i] = true; bIdxs.push_back(i); }
+      if (jets4[i].m_deepCvL > desired_ccut) { ctags[i] = true; cIdxs.push_back(i); }
+    }
+
+    // Make sure we have no jets that pass both tags.
+    bool properly_chosen = true;
+    for (int i = 0; i < 4; ++i) {
+      if (ctags[i] && btags[i]) {
+        properly_chosen = false; break;
+      } 
+    }
+
+    // Make sure we have 2 b-jets and 2 c-jets
+    if (properly_chosen) {
+      if (bIdxs.size() == 2) {
+        h_evt_both_cutflow->Fill(2.5, genWeight); // pass b-tag
+        if (cIdxs.size() == 2) {
+
+          // Get the jets into proper lists.
+          h_evt_both_cutflow->Fill(3.5, genWeight); // pass c-tag
+          std::vector<JetObj> bjets4, cjets4;
+          bjets4.push_back(jets4[bIdxs[0]]);
+          bjets4.push_back(jets4[bIdxs[1]]);
+          cjets4.push_back(jets4[cIdxs[0]]);
+          cjets4.push_back(jets4[cIdxs[1]]);
+          ZObj Z4(bjets4); HObj H4(cjets4);
+
+          // Go trhoguh the rest of the cuts.
+          if (*(r->MET_pt) < 140) {
+            h_evt_both_cutflow->Fill(4.5, genWeight); // pass MET
+            if (Z4.m_lvec.Pt() > 50) {
+              h_evt_both_cutflow->Fill(5.5, genWeight); // pass pT(Z)
+              float dPhi = fabs(Z4.m_lvec.DeltaPhi(H4.m_lvec));
+              if (dPhi > 2.5) {
+
+                // Fill the histograms
+                h_evt_both_cutflow->Fill(6.5, genWeight); // pass dPhi
+                h_VH_both->FillVH(Z4, H4, evtW);
+
+              }//end-dPhi
+            }//end-pt(Z)
+          }//end-MET
+        }//end-ctag
+      }//end-btag
+    }//end-proper
+    // If we don't have properly chosen jets, let's go through the mass
+    // matching algorithm.
+    else {
+
+      // Create the objects for the distance calculations and make sure we sort
+      // them in ascending order. (All necessary calcualtions for algorithms
+      // are handled within the DHZObj class.)
+      DHZObj d0(jets4, 0, 1, 2, 3);          // H(0,1) ; Z(2,3)
+      DHZObj d1(jets4, 0, 2, 1, 3);          // H(0,2) ; Z(1,3)
+      DHZObj d2(jets4, 0, 3, 1, 2);          // H(0,3) ; Z(1,2)
+      std::vector<DHZObj> distances {d0, d1, d2};
+      std::sort(distances.begin(), distances.end());
+ 
+      // Determine the distance between the closest two. Then, based on this
+      // distance, determine which pair we want to use.
+      float deltaD = fabs(distances[0].m_d - distances[1].m_d);
+      DHZObj chosenPair = distances[0];
+
+      if (deltaD < 30) {
+        float pt0 = distances[0].HPt();
+        float pt1 = distances[1].HPt();
+        int idx = 0;
+        if (pt1 > pt0) idx = 1;
+        chosenPair = distances[idx];
+      } 
+
+      // Reconstruct the objects for use.
+      std::vector<JetObj> bjets4;
+      bjets4.push_back(jets4[chosenPair.m_zIdx0]);
+      bjets4.push_back(jets4[chosenPair.m_zIdx1]);
+      ZObj Z4(bjets4);
+
+      std::vector<JetObj> cjets4;
+      cjets4.push_back(jets4[chosenPair.m_hIdx0]);
+      cjets4.push_back(jets4[chosenPair.m_hIdx1]);
+      HObj H4(cjets4);
+
+      // Now, check our tagging requirements and other cuts.
+      if (chosenPair.Z_has_bjets(desired_bcut)) {
+        h_evt_both_cutflow->Fill(2.5, genWeight); // pass b-tag
+        if (chosenPair.H_has_cjets(desired_ccut)) {
+          h_evt_both_cutflow->Fill(3.5, genWeight); // pass c-tag
+          if (*(r->MET_pt) < 140) {
+            h_evt_both_cutflow->Fill(4.5, genWeight); // pass MET
+            if (chosenPair.ZPt() > 50) {
+              h_evt_both_cutflow->Fill(5.5, genWeight); // pass pT(Z)
+              float dPhi = fabs(chosenPair.DPhi());
+              if (dPhi > 2.5) {
+
+                // Fill our histograms appropriately.
+                h_evt_both_cutflow->Fill(6.5, genWeight); // pass dPhi
+                h_VH_both->FillVH(Z4, H4, evtW);
+              
+              }//end-dPhi
+            }//end-pT(Z)
+          }//end-MET
+        }//end-c-cut
+      }//end-b-cut 
+
+    }//end-method-4
+    
+    /**************************************************************************
+    * CASE #4b - Duong's better version of TAGGING_PRIORITIZED                *
+    **************************************************************************/
+
+  }//end-analysis-jets
 }// end Process
 
 ///////////////////////////////////////////////////////////////

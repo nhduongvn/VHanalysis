@@ -51,6 +51,7 @@ public :
 #endif
 
 #if defined(NANOAODV7)
+   TTreeReaderArray<Float_t> Jet_btagDeepFlavC = {fReader, "Jet_btagDeepFlavC"};
    TTreeReaderArray<Float_t> FatJet_btagDDCvB = {fReader, "FatJet_btagDDCvB"};
    TTreeReaderArray<Float_t> FatJet_btagDDCvL = {fReader, "FatJet_btagDDCvL"};
    TTreeReaderArray<Float_t> FatJet_btagDDBvL = {fReader, "FatJet_btagDDBvL"};
