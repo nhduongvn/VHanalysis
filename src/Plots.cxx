@@ -167,6 +167,8 @@ class JetPlots
       h_nB_medium = new TH1D(name + "_nB_medium", "", 10, -0.5, 9.5);
       h_nC_loose = new TH1D(name + "_nC_loose", "", 10, -0.5, 9.5);
       h_nC_medium = new TH1D(name + "_nC_medium", "", 10, -0.5, 9.5);
+      h_nBoth_loose = new TH1D(name + "_nBoth_loose", "", 10, -0.5, 9.5);
+      h_nBoth_medium = new TH1D(name + "_nBoth_medium", "", 10, -0.5, 9.5);
     };
 
     // Methods - Fill all the histograms
@@ -177,7 +179,7 @@ class JetPlots
       // Fill the plots related to ALL jets
       int nBl = 0, nBm = 0;
       int nCl = 0, nCm = 0;
-
+      int nBothL = 0, nBothM = 0;
       for (auto it : jets) {
         h_pt->Fill(it.Pt(), w);
         h_eta->Fill(it.Eta(), w);
@@ -190,10 +192,17 @@ class JetPlots
         if (csv > CUTS.Get<float>("btag_mediumWP")) nBm++;
         if (cvl > CUTS.Get<float>("ctag_looseWP")) nCl++;
         if (cvl > CUTS.Get<float>("ctag_mediumWP")) nCm++;
+
+        if (csv > CUTS.Get<float>("btag_looseWP") &&
+            cvl > CUTS.Get<float>("ctag_looseWP")) nBothL++;
+        if (csv > CUTS.Get<float>("btag_mediumWP") &&
+            cvl > CUTS.Get<float>("ctag_mediumWP")) nBothM++;
+
       }//end-for
 
       h_nB_loose->Fill(nBl, w); h_nB_medium->Fill(nBm, w);
       h_nC_loose->Fill(nCl, w); h_nC_medium->Fill(nCm, w);
+      h_nBoth_loose->Fill(nBothL, w); h_nBoth_medium->Fill(nBothM, w);
 
       // Fill the leading jet plots
       //std::sort(jets.begin(), jets.end(), std::greater<JetObj>());
@@ -238,6 +247,7 @@ class JetPlots
 
       histolist.push_back(h_nB_loose); histolist.push_back(h_nB_medium);
       histolist.push_back(h_nC_loose); histolist.push_back(h_nC_medium);      
+      histolist.push_back(h_nBoth_loose); histolist.push_back(h_nBoth_medium);
 
       return histolist;
     };
@@ -263,6 +273,7 @@ class JetPlots
     // Histograms - Tagging
     TH1D* h_nB_loose; TH1D* h_nB_medium;
     TH1D* h_nC_loose; TH1D* h_nC_medium;
+    TH1D* h_nBoth_loose; TH1D* h_nBoth_medium;
 };
  
 /******************************************************************************
@@ -287,6 +298,7 @@ class VHPlots
       h_dR_HZ = new TH1D(name + "_dR_HZ", "", NBIN_DR, X_DR[0], X_DR[1]);
 
       // Plots related to Mass-Matching
+      h_DHZ = new TH1D(name + "_DHZ", "", NBIN_DH, X_DH[0], X_DH[1]);
       h_DHZ0 = new TH1D(name + "_DHZ0", "", NBIN_DH, X_DH[0], X_DH[1]);
       h_DHZ1 = new TH1D(name + "_DHZ1", "", NBIN_DH, X_DH[0], X_DH[1]);
       h_DHZ2 = new TH1D(name + "_DHZ2", "", NBIN_DH, X_DH[0], X_DH[1]);
@@ -306,6 +318,26 @@ class VHPlots
       h_dR_HZ->Fill(Z.m_lvec.DeltaR(H.m_lvec), w);
 
     };
+
+    // Methods - Fill the histograms related to DHZ algorithm
+    void FillAlgo(std::vector<DHZObj>& dObj, float w=1.) {
+
+      // Fill plots related to all DHZ objects
+      for (auto it : dObj) {
+        h_DHZ->Fill(it.m_d, w); // Distances
+        h_MH_v_MZ->Fill(it.HM(), it.ZM(), w); // Masses 
+      }
+
+      // Fill plots related to the leading pairs
+      h_DHZ0->Fill(dObj[0].m_d, w);
+      if (dObj.size() >= 2) {
+        float dH = abs(dObj[0].m_d - dObj[1].m_d);
+        h_dH->Fill(dH, w);
+        h_DHZ1->Fill(dObj[1].m_d, w);
+      }
+      if (dObj.size() >= 3) h_DHZ2->Fill(dObj[2].m_d, w);
+
+    }
 
     // Methods - Fill the histograms related to MET
     void FillMET(float MET, float w=1.) {
@@ -329,6 +361,7 @@ class VHPlots
       for (size_t i=0; i<Hlist.size();i++) histolist.push_back(Hlist[i]);
       
       // Mass-Matching-Related plots
+      histolist.push_back(h_DHZ);
       histolist.push_back(h_DHZ0); histolist.push_back(h_DHZ1);
       histolist.push_back(h_DHZ2); histolist.push_back(h_dH);
       histolist.push_back(h_MH_v_MZ);
@@ -351,11 +384,155 @@ class VHPlots
     TH1D* h_dR_HZ;
 
     // Mass-Matching Plots
+    TH1D* h_DHZ;     // All D values
     TH1D* h_DHZ0;    // D1 values (closest pair)
     TH1D* h_DHZ1;    // D2 values (middle pair)
     TH1D* h_DHZ2;    // D3 values (farthest pair)
     TH1D* h_dH;      // | D1 - D2 |
     TH2D* h_MH_v_MZ;
+
+};
+
+/******************************************************************************
+* EffPlots - plotes related to efficiency of MC Truth matching                *
+******************************************************************************/
+class EffPlots
+{
+  public:
+
+    // Constructor
+    EffPlots(TString name) : m_name(name) {
+
+      h_evt = new TH1D(name + "_evt", "", 3, 0, 3);
+      h_evt->GetXaxis()->SetBinLabel(1, "VbbHcc");
+      h_evt->GetXaxis()->SetBinLabel(2, "VqqHcc");
+      h_evt->GetXaxis()->SetBinLabel(3, "VqqHcc as VbbHcc");
+
+      // Efficiency plots
+      h_eff = new TH1D(name + "_CutFlow", "", 4, 0, 4);
+      h_eff->GetXaxis()->SetBinLabel(1, "Total");
+      h_eff->GetXaxis()->SetBinLabel(2, "Pass only b-jet");
+      h_eff->GetXaxis()->SetBinLabel(3, "Pass only c-jet");
+      h_eff->GetXaxis()->SetBinLabel(4, "Passed all criteria");
+
+      h_eff_invalid = new TH1D(name + "_invalid_CutFlow" ,"", 4, 0, 4);
+      h_eff_invalid->GetXaxis()->SetBinLabel(1, "Total");
+      h_eff_invalid->GetXaxis()->SetBinLabel(2, "Pass only b-jet");
+      h_eff_invalid->GetXaxis()->SetBinLabel(3, "Pass only c-jet");
+      h_eff_invalid->GetXaxis()->SetBinLabel(4, "Passed all criteria");
+
+      // Comparison Plots
+      h_dR_b = new TH1D(name + "_dR_bjets", "", 100, -0.5, 7.5);
+      h_dR_c = new TH1D(name + "_dR_cjets", "", 100, -0.5, 7.5);
+      h_dR_b_all = new TH1D(name + "_dR_bjets_all", "", 100, -0.5, 7.5);
+      h_dR_c_all = new TH1D(name + "_dR_cjets_all", "", 100, -0.5, 7.5);
+
+      h_pt_bjet = new TH1D(name + "_pt_bjets", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      h_pt_cjet = new TH1D(name + "_pt_cjets", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      h_pt_b = new TH1D(name + "_pt_b", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      h_pt_c = new TH1D(name + "_pt_c", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      h_pt_ratio_bjet = new TH1D(name + "_pt_ratio_cjets", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      h_pt_ratio_cjet = new TH1D(name + "_pt_ratio_bjets", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+    };
+
+    // Fill related to events
+    void FillEvt(bool isValid, float w=1.) {
+      if (isValid) h_evt->Fill(0.5, w);
+      else h_evt->Fill(1.5, w);
+    }; 
+
+    void FillErr(float w=1.) {
+      h_evt->Fill(2.5, w);
+    }
+
+    // Fill all the plots we're interested in.
+    void Fill(ZObj& Z, HObj& H, std::vector<JetObj> cjets, std::vector<JetObj> bjets, bool isValid, float w=1.){
+      // Pull values so we have them for reference
+      std::vector<JetObj> Hjets = H.m_jets;
+      std::vector<JetObj> Zjets = Z.m_jets;    
+
+      // Fill the proper Physics Objects histograms.
+      for (size_t i = 0; i < 2; ++i) {
+        h_pt_cjet->Fill(Hjets[i].Pt(), w);
+        h_pt_c->Fill(cjets[i].Pt(), w);
+        h_pt_bjet->Fill(Zjets[i].Pt(), w);
+        h_pt_b->Fill(bjets[i].Pt(), w);
+      }
+ 
+      // We do not know which b goes to which jet or which c goes to which jet,
+      // so we have to try each combination.
+      bool matches_C = false, matches_B = false;
+      std::vector<std::vector<int>> idxLists {{0,0,1,1}, {0,1,1,0}};
+      for (size_t i = 0; i < idxLists.size(); ++i) {
+
+        // Check the c-quark & c-jet matches
+        std::vector<int> idxs = idxLists[i];
+        float dR0 = Hjets[idxs[0]].m_lvec.DeltaR(cjets[idxs[1]].m_lvec);
+        float dR1 = Hjets[idxs[2]].m_lvec.DeltaR(cjets[idxs[3]].m_lvec);
+        h_dR_c_all->Fill(dR0, w); h_dR_c_all->Fill(dR1, w);
+
+        if (dR0 < dR_cut && dR1 < dR_cut) {
+          h_dR_c->Fill(dR0, w); h_dR_c->Fill(dR1, w);
+          matches_C = true;
+        }
+
+        // Check the b-quark & b-jet matches
+        float dR2 = Zjets[idxs[0]].m_lvec.DeltaR(bjets[idxs[1]].m_lvec);
+        float dR3 = Zjets[idxs[2]].m_lvec.DeltaR(bjets[idxs[3]].m_lvec);
+        h_dR_b_all->Fill(dR2, w); h_dR_b_all->Fill(dR3, w);
+
+        if (dR2 < dR_cut && dR3 < dR_cut) {
+          h_dR_b->Fill(dR2, w); h_dR_b->Fill(dR2, w);
+          matches_B = true;
+        }
+
+      } 
+
+      // Fill the proper cutFlow histogram
+      if (isValid) {
+        h_eff->Fill(0.5, w);
+        if (matches_C && matches_B) h_eff->Fill(3.5, w);
+        else if (matches_B) h_eff->Fill(1.5, w);
+        else if (matches_C) h_eff->Fill(2.5, w);
+      }
+      else {
+        h_eff_invalid->Fill(0.5, w);
+        if (matches_C && matches_B) h_eff_invalid->Fill(3.5, w);
+        else if (matches_B) h_eff_invalid->Fill(1.5, w);
+        else if (matches_C) h_eff_invalid->Fill(2.5, w);
+      }  
+ 
+    };
+
+    // Methods - Return a list of all the histograms.
+    std::vector<TH1*> returnHisto() {
+      std::vector<TH1*> histolist;
+      histolist.push_back(h_eff); histolist.push_back(h_eff_invalid);
+      histolist.push_back(h_dR_b); histolist.push_back(h_dR_c);
+      histolist.push_back(h_dR_b_all); histolist.push_back(h_dR_c_all);
+      histolist.push_back(h_pt_bjet); histolist.push_back(h_pt_b);
+      histolist.push_back(h_pt_cjet); histolist.push_back(h_pt_c);
+      histolist.push_back(h_pt_ratio_cjet);
+      histolist.push_back(h_pt_ratio_bjet);
+      histolist.push_back(h_evt);
+      return histolist;
+    };
+
+  protected:
+
+    // Variables
+    TString m_name;
+    Float_t dR_cut = 1.2;
+
+    // Plots
+    TH1D* h_evt;
+    TH1D* h_eff;     TH1D* h_eff_invalid;
+    TH1D* h_dR_b;    TH1D* h_dR_b_all;
+    TH1D* h_dR_c;    TH1D* h_dR_c_all;
+    TH1D* h_pt_bjet; TH1D* h_pt_b;
+    TH1D* h_pt_cjet; TH1D* h_pt_c;
+    TH1D* h_pt_ratio_cjet;
+    TH1D* h_pt_ratio_bjet;
 
 };
 

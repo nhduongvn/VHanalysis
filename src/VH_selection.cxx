@@ -10,6 +10,8 @@
 #include "Global.h"
 #include "Obj.cxx"
 
+#include <bits/stdc++.h>
+
 /******************************************************************************
 * MAIN SELECTOR METHODS                                                       *
 ******************************************************************************/
@@ -54,6 +56,214 @@ std::vector<std::vector<int> > VH_selection::DauIdxs_ZH(Reader *r) {
 }
 #endif
 
+// SortBySecond - this method lets us sort a list of pairs by the second value
+bool sortbysecond(const std::pair<int,float> &a,
+                  const std::pair<int,float> &b)
+{
+  return a.second > b.second;
+}
+
+// Find Other jets in 2 leading BvL or CvL jets
+// 0 --> 1, 1 --> 0
+int findOtherJet(int i) {
+  if (i == 0) return 1;
+  return 0;
+}
+
+// Find possible combinations given that there may have been overlap
+std::vector<std::vector<int> > findCombos_overlap(std::vector<int> x, std::vector<int> y) {
+
+  // Initialize some variables for use throughout
+  std::vector<std::vector<int>> outs;
+  int b0(x[0]), b1(x[1]), b2(x[2]), b3(x[3]);
+  int c0(y[0]), c1(y[1]), c2(y[2]), c3(x[3]);
+
+  // If We don't have any overlap between the leading pairs,
+  // add it as a possible combination.
+  if (b1 != c1 && b1 != c2) {
+    outs.push_back({b0,b1,c1,c2});
+  }
+  // If there is overlap between b1 & c1,
+  if (b1 == c1) {
+    // Check the other possible options.
+    outs.push_back({b0,b1,c2,c3});
+    if (b2 != c2) {
+      outs.push_back({b0,b2,c1,c2});
+    }  
+    if (b2 == c2) {
+      outs.push_back({b0,b2,c1,c3});
+      outs.push_back({b0,b3,c1,c2});
+    }
+  }
+  // If there is ovelrap between b1 & c2,
+  if (b1 == c2) {
+    // Check the other possible combinations.
+    outs.push_back({b0,b1,c1,c3});
+    if (b2!=c1) {
+      outs.push_back({b0,b2,c1,c2});
+    }
+    if (b2==c1) {
+      outs.push_back({b0,b2,c2,c3});
+      outs.push_back({b0,b3,c1,c2});
+    }
+  }
+  return outs;
+}
+
+// Find_Combos - this method takes lists of jet indices and then lets
+// us determine possible combinations we can use.
+std::vector<std::vector<int> > find_combos(std::vector<int> bIdxs, std::vector<int> cIdxs) {
+
+  // Initialize some vectors to hold onto the combinations
+  int b0(-1), b1(-10), b2(-100), b3(-100);
+  int c0(-2), c1(-20), c2(-200), c3(-200);
+  int b0_idx(-1);
+  int c0_idx(-1);
+
+  // If we have enough jets to check, let's check for possible combinations.
+  // We want to see if we have any possible overlapping pairs.
+  if (bIdxs.size() >= 2 && cIdxs.size() >= 2)
+  { 
+
+    for (int i = 0; i < std::min(2, int(bIdxs.size())); ++i) {
+      for(int j = 0; j < std::min(2, int(cIdxs.size())); ++j) {
+
+        // If we have overlap, break from our loops.
+        if (bIdxs[i] == cIdxs[j]) {
+          b0_idx = i; c0_idx = j; break;
+        }
+      }//end-for-j
+      
+      // We only need the first overlap, so exit here if necessary.
+      if (b0_idx >= 0) break;
+    }//end-for-i
+
+  }//end-check
+
+  // If we've found an overlap, let's try to find initial choices
+  // that work and ignore the overlap.
+  if (b0_idx >= 0) {
+    b0 = bIdxs[b0_idx]; 
+    c0 = cIdxs[c0_idx];
+    b1 = bIdxs[findOtherJet(b0_idx)];
+    c1 = cIdxs[findOtherJet(c0_idx)];
+  }
+  if (bIdxs.size() >= 3) b2 = bIdxs[2];
+  if (bIdxs.size() >= 4) b3 = bIdxs[3];
+  if (cIdxs.size() >= 3) c2 = cIdxs[2];
+  if (cIdxs.size() >= 4) c3 = cIdxs[3];
+
+  // From these starting points, find a combination
+  std::vector<std::vector<int>> outs;
+
+  if (b0_idx >= 0) { // overlap was found
+    
+    // Given that we want two jets from each list, we should
+    // never have to look past the first two additional jets,
+    // i.e. we need 4 jets of each to check.
+    outs = findCombos_overlap({b0,b1,b2,b3},{c0,c1,c2,c3}); 
+
+    // Consider c1 as a c-jet, just swap b and c sets
+    std::vector<std::vector<int>> tmps = findCombos_overlap({c0,c1,c2,c3},{b0,b1,b2,b3});
+    
+    // Now swap b and c positioning again so that we
+    // maintain b first and c second
+    for (auto tmp:tmps) outs.push_back({tmp[2], tmp[3], tmp[0], tmp[1]});
+  }
+  // if no overlap was found, just return the 2 bIdxs and 2 cIdxs
+  else {
+    outs.push_back({b0, b1, c0, c1});
+  }
+
+  // Now remove any dummy combinations which have negative values
+  std::vector<std::vector<int> > outs_final;
+  for (auto tmp : outs) {
+    bool removeIt(false);
+    for(auto i:tmp) {
+      if(i < 0) { removeIt = true; break; }
+    }//end-for-i
+    if (!removeIt) outs_final.push_back(tmp);
+  }//end-for-tmp
+
+  // Return our list of possible combinations
+  return outs_final;
+
+}//end-find_combos
+
+
+// This tells us if a list contains a given value.
+bool list_contains(std::vector<int> list, int value) {
+  return std::count(list.begin(), list.end(), value);
+}//end-list_contains
+
+
+// Check through a list of IDs and check against a list of 
+// already used IDs to get the valid ones.
+std::vector<int> get_valid_ids(std::vector<int> idxs, std::vector<int> invalid_idxs) {
+
+  // Let's check for the top two valid idxs
+  std::vector<int> valid_idxs;  
+  for (int i = 0; i < idxs.size(); ++i) {
+
+    // Check to see if idx #i is not already used.
+    // If it's not used, let's add it to our list.
+    if (!list_contains(invalid_idxs, idxs[i])) valid_idxs.push_back(idxs[i]);
+
+    // If we've already found two valid idxs, let's break out
+    if (valid_idxs.size() >= 2) break;
+
+  }//end-for
+
+  // If we have not found a valid index, return a fail-safe.
+  return valid_idxs;
+
+}
+
+
+std::vector<std::vector<int> > find_valid_combos(std::vector<int> bIdxs, std::vector<int> cIdxs) {
+
+  std::vector<std::vector<int>> outs;
+
+  // Check to make sure we even have enough points to check.
+  if (bIdxs.size() >= 2 && cIdxs.size() >= 2) {
+
+    // Option #1 - choose the top two bIndices
+    int b0(bIdxs[0]), b1(bIdxs[1]);
+    std::vector<int> bs{b0, b1};
+    
+    // Get the top two c indices that are not in the bList.
+    std::vector<int> clist = get_valid_ids(cIdxs, bs);
+
+    // If we have a proper number of cIDs and none of them are -1,
+    // create the proper combination.
+    if (clist.size() >= 2 && !list_contains(clist,-1)) {
+      int c2(clist[0]); int c3(clist[1]);
+      outs.push_back({b0, b1, c2, c3});
+    }
+
+    // Option #2 - choose the top two cIndices
+    int c0(cIdxs[0]), c1(cIdxs[1]);
+    std::vector<int> cs{c0, c1};   
+ 
+    // Only check this way if there's overlap with the indices.
+    if (list_contains(cs, b0) || list_contains(cs, b1)) { 
+
+      // Get the top two b indices that are not in the cList.
+      std::vector<int> blist = get_valid_ids(bIdxs, cs);
+    
+      // If we have a proper number of bIDs and none of them are -1,
+      // create the proper combination.
+      if (blist.size() >= 2 && !list_contains(blist,-1)) {
+        int b2(blist[0]); int b3(blist[1]);
+        outs.push_back({b2, b3, c0, c1});
+      }
+    }
+  }//end-check
+
+  // Return our list.
+  return outs;
+
+}//end-find_valid_combos
 
 ///////////////////////////////////////////////////////////////
 // Slave Begin
@@ -77,6 +287,12 @@ void VH_selection::SlaveBegin(Reader *r) {
   // Set up the JetPlots instances
   h_VH_jets = new JetPlots("VbbHcc_jets");
   h_VH_jets_all = new JetPlots("VbbHcc_jets_all");
+
+  // Set up the EffPlots instances
+  h_eff_tags = new EffPlots("VbbHcc_tags_eff");
+  h_eff_algo = new EffPlots("VbbHcc_algo_eff");
+  h_eff_both = new EffPlots("VbbHcc_both_eff");
+  h_eff_duong = new EffPlots("VbbHcc_duong_eff");
 
   // Set up the CutFlows (for events) 
   h_evt_MC_cutflow = new TH1D("VbbHcc_MC_CutFlow", "", 2, 0, 2);
@@ -109,6 +325,15 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_evt_both_cutflow->GetXaxis()->SetBinLabel(5, "MET cut");
   h_evt_both_cutflow->GetXaxis()->SetBinLabel(6, "pT(Z) cut");
   h_evt_both_cutflow->GetXaxis()->SetBinLabel(7, "dPhi cut"); 
+
+  h_evt_duong_cutflow = new TH1D("VbbHcc_duong_CutFlow", "", 7, 0, 7);
+  h_evt_duong_cutflow->GetXaxis()->SetBinLabel(1, "Total");
+  h_evt_duong_cutflow->GetXaxis()->SetBinLabel(2, "jet cuts");
+  h_evt_duong_cutflow->GetXaxis()->SetBinLabel(3, "b-tags");
+  h_evt_duong_cutflow->GetXaxis()->SetBinLabel(4, "c-tags");
+  h_evt_duong_cutflow->GetXaxis()->SetBinLabel(5, "MET cut");
+  h_evt_duong_cutflow->GetXaxis()->SetBinLabel(6, "pT(Z) cut");
+  h_evt_duong_cutflow->GetXaxis()->SetBinLabel(7, "dPhi cut");
 
   // Set up the CutFlows (for obj selections)
   h_jet_cutflow = new TH1D("VbbHcc_CutFlow_jets", "", 4, 0, 4);
@@ -154,10 +379,21 @@ void VH_selection::SlaveBegin(Reader *r) {
   tmp = h_VH_jets_all->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
 
+  tmp = h_eff_tags->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_eff_algo->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_eff_both->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_eff_duong->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+
   r->GetOutputList()->Add(h_evt_MC_cutflow);
   r->GetOutputList()->Add(h_evt_tags_cutflow);
   r->GetOutputList()->Add(h_evt_algo_cutflow);
   r->GetOutputList()->Add(h_evt_both_cutflow);
+  r->GetOutputList()->Add(h_evt_duong_cutflow);
+
   r->GetOutputList()->Add(h_jet_cutflow);
   r->GetOutputList()->Add(h_elec_cutflow);
   r->GetOutputList()->Add(h_muon_cutflow);  
@@ -322,6 +558,7 @@ void VH_selection::Process(Reader* r) {
   h_evt_tags_cutflow->Fill(0.5, genWeight); // Tagging Only
   h_evt_algo_cutflow->Fill(0.5, genWeight); // Matching Prioritized
   h_evt_both_cutflow->Fill(0.5, genWeight); // Tagging Prioritized
+  h_evt_duong_cutflow->Fill(0.5, genWeight); // Duong's proper Tagging Version
 
   /****************************************************************************
   * CASE #1 - MONTE CARLO TRUTH                                               *
@@ -330,6 +567,8 @@ void VH_selection::Process(Reader* r) {
   bool canCompareToMC = false;
   bool is_VbbHcc_event = false;
   std::vector<std::vector<int> > dauIdxs;
+  std::vector<JetObj> gen_bjets;
+  std::vector<JetObj> gen_cjets;
 
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
 
@@ -354,6 +593,7 @@ void VH_selection::Process(Reader* r) {
     JetObj b1((r->GenPart_pt)[idx2_Z], (r->GenPart_eta)[idx2_Z],
       (r->GenPart_phi)[idx2_Z], (r->GenPart_mass)[idx2_Z], 5, 0., 0.);
     std::vector<JetObj> MC_bjets{b0, b1};
+    gen_bjets.push_back(b0); gen_bjets.push_back(b1);
     ZObj MC_Z(MC_bjets);
 
     // Two c quarks --> HObj
@@ -362,12 +602,18 @@ void VH_selection::Process(Reader* r) {
     JetObj c1((r->GenPart_pt)[idx2_H], (r->GenPart_eta)[idx2_H],
       (r->GenPart_phi)[idx2_H], (r->GenPart_mass)[idx2_H], 4, 0., 0.);
     std::vector<JetObj> MC_cjets{c0, c1};
+    gen_cjets.push_back(c0); gen_cjets.push_back(c1);
     HObj MC_H(MC_cjets);
 
     // Fill the histograms
     h_VH_MC->FillVH(MC_Z, MC_H, evtW);
 
   }//end-MC-truth
+
+  h_eff_tags->FillEvt(is_VbbHcc_event, evtW);
+  h_eff_algo->FillEvt(is_VbbHcc_event, evtW);
+  h_eff_both->FillEvt(is_VbbHcc_event, evtW);
+  h_eff_duong->FillEvt(is_VbbHcc_event, evtW);
   
 #endif
 
@@ -416,6 +662,7 @@ void VH_selection::Process(Reader* r) {
     h_evt_tags_cutflow->Fill(1.5, genWeight); // passed jet selection
     h_evt_algo_cutflow->Fill(1.5, genWeight); 
     h_evt_both_cutflow->Fill(1.5, genWeight); 
+    h_evt_duong_cutflow->Fill(1.5, genWeight);
 
     /**************************************************************************
     * GET THE PROPER TAGGING CUTS THAT WE WANT TO USE                         *
@@ -423,8 +670,8 @@ void VH_selection::Process(Reader* r) {
 
     // We don't want to have to change the working point in several spots,
     // so we choose here and then we can use these variables wherever needed.
-    float desired_bcut = CUTS.Get<float>("btag_mediumWP");
-    float desired_ccut = CUTS.Get<float>("ctag_mediumWP");
+    float desired_bcut = CUTS.Get<float>("btag_looseWP");
+    float desired_ccut = CUTS.Get<float>("ctag_looseWP");
 
     /**************************************************************************
     * CASE #2 - TAGGING ONLY                                                  *
@@ -468,7 +715,14 @@ void VH_selection::Process(Reader* r) {
             if (fabs(dPhi) > 2.5) {
 
               h_evt_tags_cutflow->Fill(6.5, genWeight); // pass dPhi cut
-              h_VH_tags->FillVH(Z, H, evtW);             
+              h_VH_tags->FillVH(Z, H, evtW);       
+
+#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
+              if (is_VbbHcc_event) {
+                h_eff_tags->Fill(Z, H, gen_cjets, gen_bjets, is_VbbHcc_event, evtW);
+              }
+              else h_eff_tags->FillErr(evtW);
+#endif      
 
             }//end-dPhi
           }//end-pT(Z)
@@ -511,6 +765,7 @@ void VH_selection::Process(Reader* r) {
     }
 
     // Reconstruct the objects here for various uses.
+    h_VH_algo->FillAlgo(distances, evtW);
     std::vector<JetObj> bjets3;
     bjets3.push_back(jets3[chosenPair.m_zIdx0]);
     bjets3.push_back(jets3[chosenPair.m_zIdx1]);
@@ -536,6 +791,14 @@ void VH_selection::Process(Reader* r) {
               // Fill our histograms appropriately.
               h_evt_algo_cutflow->Fill(6.5, genWeight); // pass dPhi
               h_VH_algo->FillVH(Z3, H3, evtW);
+
+#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
+              if (is_VbbHcc_event) {
+                h_eff_algo->Fill(Z3, H3, gen_cjets, gen_bjets, is_VbbHcc_event, evtW);
+              }
+              else h_eff_algo->FillErr(evtW);
+#endif
+
 
             }//end-dPhi
           }//end-pT(Z)
@@ -595,6 +858,14 @@ void VH_selection::Process(Reader* r) {
                 h_evt_both_cutflow->Fill(6.5, genWeight); // pass dPhi
                 h_VH_both->FillVH(Z4, H4, evtW);
 
+#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
+              if (is_VbbHcc_event) {
+                h_eff_both->Fill(Z4, H4, gen_cjets, gen_bjets, is_VbbHcc_event, evtW);
+              }
+              else h_eff_both->FillErr(evtW);
+#endif
+
+
               }//end-dPhi
             }//end-pt(Z)
           }//end-MET
@@ -628,6 +899,7 @@ void VH_selection::Process(Reader* r) {
       } 
 
       // Reconstruct the objects for use.
+      h_VH_both->FillAlgo(distances, evtW);
       std::vector<JetObj> bjets4;
       bjets4.push_back(jets4[chosenPair.m_zIdx0]);
       bjets4.push_back(jets4[chosenPair.m_zIdx1]);
@@ -653,7 +925,15 @@ void VH_selection::Process(Reader* r) {
                 // Fill our histograms appropriately.
                 h_evt_both_cutflow->Fill(6.5, genWeight); // pass dPhi
                 h_VH_both->FillVH(Z4, H4, evtW);
-              
+
+#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
+                if (is_VbbHcc_event) {
+                  h_eff_both->Fill(Z4, H4, gen_cjets, gen_bjets, is_VbbHcc_event, evtW);
+                }
+                else h_eff_both->FillErr(evtW);
+#endif
+     
+         
               }//end-dPhi
             }//end-pT(Z)
           }//end-MET
@@ -665,6 +945,127 @@ void VH_selection::Process(Reader* r) {
     /**************************************************************************
     * CASE #4b - Duong's better version of TAGGING_PRIORITIZED                *
     **************************************************************************/
+  
+    // Make an appropriate copy of the jets to use for this analysis.
+    std::vector<JetObj> jets5; jets5 = analysis_jets;
+    
+    // Check our jets and push them to the appropriate lists by 
+    // checking if the tagging scores meet our desired cuts.
+    std::vector<std::pair<int,float> > jets_idx_BvL;
+    std::vector<std::pair<int,float> > jets_idx_CvL;
+    for (int i = 0; i < jets5.size(); ++i) {
+
+      float csv = jets5[i].m_deepCSV;
+      float cvl = jets5[i].m_deepCvL;
+
+      if (csv > desired_bcut) {
+        std::pair<int,float> pair0(i,csv);
+        jets_idx_BvL.push_back(pair0); 
+      }
+      if (cvl > desired_ccut){
+        std::pair<int,float> pair1(i,cvl);
+        jets_idx_CvL.push_back(pair1);
+      }
+    }
+
+    // Sort the jets so that the largest tagging-scores
+    // are at the top of our lists.
+    std::sort(jets_idx_BvL.begin(), jets_idx_BvL.end(), sortbysecond);
+    std::sort(jets_idx_CvL.begin(), jets_idx_CvL.end(), sortbysecond);
+
+    // Create the vectors containing of b- and c-jets indices
+    std::vector<int> bIndices;
+    std::vector<int> cIndices;
+    //std::cout << "\nBvL jets: ";
+    for (auto p : jets_idx_BvL){
+      //std::cout << "\n" << p.first << " " << p.second;
+      bIndices.push_back(p.first);
+    }
+    //std::cout << "\nCvL jets: ";
+    for (auto p : jets_idx_CvL) {
+      //std::cout << "\n" << p.first << " " << p.second;
+      cIndices.push_back(p.first);
+    }
+ 
+    //std::cout << "\nb-jet indices: "; for(auto i : bIndices) std::cout << " " << i;
+    //std::cout << "\nc-jet indices: "; for(auto i : cIndices) std::cout << " " << i;
+
+    // Find appropriate combinations of jets.
+    std::vector<std::vector<int>> combos = find_valid_combos(bIndices, cIndices);
+
+    // If there are possible combos, let's check them.
+    if (combos.size() > 0) {
+
+      h_evt_duong_cutflow->Fill(2.5, genWeight); // passed b-tag
+      h_evt_duong_cutflow->Fill(3.5, genWeight); // passed c-tag
+
+      // From the combos we've found, run the DHZ algorithm and
+      // determine which is the best combination.
+      std::vector<DHZObj> DHZ_values;
+      for (size_t i = 0; i < combos.size(); ++i) {
+
+        std::vector<int> idxs = combos[i];
+
+        // Create a DHZ Object & add it to the list.
+        DHZObj D(jets5, idxs[2], idxs[3], idxs[0], idxs[1]);
+        DHZ_values.push_back(D);
+      }
+
+      // Sort the values by their distance. Then, determine the distance
+      // between the closest two. Based on this distance, determine which
+      // pair we want to use. (NOTE: we might only have one combination.)
+      std::sort(DHZ_values.begin(), DHZ_values.end());
+      DHZObj chosenPair = DHZ_values[0];
+
+      if (DHZ_values.size() >= 2) {
+        float deltaD = fabs(DHZ_values[0].m_d - DHZ_values[1].m_d);
+        if (deltaD < 30) {
+          float pt0 = DHZ_values[0].HPt();
+          float pt1 = DHZ_values[1].HPt();
+          int idx = 0;
+          if (pt1 > pt0) idx = 1;
+          chosenPair = DHZ_values[idx];
+        }
+      }
+
+      // Reconstruct the objects for use.
+      h_VH_duong->FillAlgo(DHZ_values, evtW);
+      std::vector<JetObj> bjets5;
+      bjets5.push_back(jets5[chosenPair.m_zIdx0]);
+      bjets5.push_back(jets5[chosenPair.m_zIdx1]);
+      ZObj Z5(bjets5);
+
+      std::vector<JetObj> cjets5;
+      cjets5.push_back(jets5[chosenPair.m_hIdx0]);
+      cjets5.push_back(jets5[chosenPair.m_hIdx1]);
+      HObj H5(cjets5);
+
+      // Now, check our tagging requirements and other cuts.
+      if (*(r->MET_pt) < 140) {
+        h_evt_duong_cutflow->Fill(4.5, genWeight); // pass MET
+        if (chosenPair.ZPt() > 50) {
+          h_evt_duong_cutflow->Fill(5.5, genWeight); // pass pT(Z)
+          float dPhi = fabs(chosenPair.DPhi());
+          if (dPhi > 2.5) {
+
+            h_evt_duong_cutflow->Fill(6.5, genWeight); // pass dPhi
+
+            // Fill our histograms appropriately.
+            h_VH_duong->FillVH(Z5, H5, evtW);
+
+#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
+            if (is_VbbHcc_event) {
+              h_eff_duong->Fill(Z5, H5, gen_cjets, gen_bjets, is_VbbHcc_event, evtW);
+            }
+            else h_eff_duong->FillErr(evtW);
+#endif
+
+
+          }//end
+        }//end-pT(Z)
+      }//end-MET
+    
+    }//end-tagging
 
   }//end-analysis-jets
 }// end Process

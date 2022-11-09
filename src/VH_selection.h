@@ -25,7 +25,10 @@ class VH_selection : public Selector {
     virtual void Terminate(TList* mergedList, std::string outFileName);
   
     std::vector<std::vector<int> > DauIdxs_ZH(Reader* r);
-   
+    //int findOtherJet(int i);
+    //std::vector<std::vector<int>> findCombos_overlap(std::vector<int> x, std::vector<int> y);
+    //std::vector<std::vector<int>> find_combos(std::vector<int> bIdxs, std::vector<int> cIdxs);   
+
   private:
   
     // Histograms
@@ -43,11 +46,18 @@ class VH_selection : public Selector {
     VHPlots *h_VH_duong; // Tagging Prioritized (Duong version)
     VHPlots *h_VH_all;   // Any plots related to ALL cut types
 
+    // Eff Plots
+    EffPlots *h_eff_tags; 
+    EffPlots *h_eff_algo;
+    EffPlots *h_eff_both;
+    EffPlots *h_eff_duong;
+
     // CutFlows for event selections
     TH1D* h_evt_MC_cutflow;
     TH1D* h_evt_tags_cutflow;
     TH1D* h_evt_algo_cutflow;
     TH1D* h_evt_both_cutflow;
+    TH1D* h_evt_duong_cutflow;
 
     // CutFlows for reconstruction
     TH1D* h_jet_cutflow;
