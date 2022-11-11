@@ -409,11 +409,13 @@ class EffPlots
       h_evt->GetXaxis()->SetBinLabel(3, "VqqHcc as VbbHcc");
 
       // Efficiency plots
-      h_eff = new TH1D(name + "_CutFlow", "", 4, 0, 4);
-      h_eff->GetXaxis()->SetBinLabel(1, "Total");
-      h_eff->GetXaxis()->SetBinLabel(2, "Pass only b-jet");
-      h_eff->GetXaxis()->SetBinLabel(3, "Pass only c-jet");
-      h_eff->GetXaxis()->SetBinLabel(4, "Passed all criteria");
+      h_eff = new TH1D(name + "_CutFlow", "", 6, 0, 6);
+      h_eff->GetXaxis()->SetBinLabel(1, "VbbHcc MC events");
+      h_eff->GetXaxis()->SetBinLabel(2, "Pass jet sel");
+      h_eff->GetXaxis()->SetBinLabel(3, "Pass evt sel");
+      h_eff->GetXaxis()->SetBinLabel(4, "Pass only b-jet");
+      h_eff->GetXaxis()->SetBinLabel(5, "Pass only c-jet");
+      h_eff->GetXaxis()->SetBinLabel(6, "Passed all criteria");
 
       h_eff_invalid = new TH1D(name + "_invalid_CutFlow" ,"", 4, 0, 4);
       h_eff_invalid->GetXaxis()->SetBinLabel(1, "Total");
@@ -435,18 +437,8 @@ class EffPlots
       h_pt_ratio_cjet = new TH1D(name + "_pt_ratio_bjets", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
     };
 
-    // Fill related to events
-    void FillEvt(bool isValid, float w=1.) {
-      if (isValid) h_evt->Fill(0.5, w);
-      else h_evt->Fill(1.5, w);
-    }; 
-
-    void FillErr(float w=1.) {
-      h_evt->Fill(2.5, w);
-    }
-
     // Fill all the plots we're interested in.
-    void Fill(ZObj& Z, HObj& H, std::vector<JetObj> cjets, std::vector<JetObj> bjets, bool isValid, float w=1.){
+    void Fill(ZObj& Z, HObj& H, std::vector<JetObj> cjets, std::vector<JetObj> bjets, float w=1.){
       // Pull values so we have them for reference
       std::vector<JetObj> Hjets = H.m_jets;
       std::vector<JetObj> Zjets = Z.m_jets;    
@@ -489,20 +481,15 @@ class EffPlots
       } 
 
       // Fill the proper cutFlow histogram
-      if (isValid) {
-        h_eff->Fill(0.5, w);
-        if (matches_C && matches_B) h_eff->Fill(3.5, w);
-        else if (matches_B) h_eff->Fill(1.5, w);
-        else if (matches_C) h_eff->Fill(2.5, w);
-      }
-      else {
-        h_eff_invalid->Fill(0.5, w);
-        if (matches_C && matches_B) h_eff_invalid->Fill(3.5, w);
-        else if (matches_B) h_eff_invalid->Fill(1.5, w);
-        else if (matches_C) h_eff_invalid->Fill(2.5, w);
-      }  
- 
+      if (matches_C && matches_B) h_eff->Fill(5.5, w);
+      else if (matches_C) h_eff->Fill(4.5, w);
+      else if (matches_B) h_eff->Fill(3.5, w);
     };
+
+    // Fill CutFlow
+    void FillCutFlow(float val, float w=1.) {
+      h_eff->Fill(val, w);
+    }
 
     // Methods - Return a list of all the histograms.
     std::vector<TH1*> returnHisto() {

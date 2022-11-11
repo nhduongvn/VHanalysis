@@ -608,13 +608,13 @@ void VH_selection::Process(Reader* r) {
     // Fill the histograms
     h_VH_MC->FillVH(MC_Z, MC_H, evtW);
 
+    h_eff_tags->FillCutFlow(0.5, evtW);
+    h_eff_algo->FillCutFlow(0.5, evtW);
+    h_eff_both->FillCutFlow(0.5, evtW);
+    h_eff_duong->FillCutFlow(0.5, evtW);
+
   }//end-MC-truth
 
-  h_eff_tags->FillEvt(is_VbbHcc_event, evtW);
-  h_eff_algo->FillEvt(is_VbbHcc_event, evtW);
-  h_eff_both->FillEvt(is_VbbHcc_event, evtW);
-  h_eff_duong->FillEvt(is_VbbHcc_event, evtW);
-  
 #endif
 
   /****************************************************************************
@@ -657,12 +657,19 @@ void VH_selection::Process(Reader* r) {
   h_VH_jets->Fill(analysis_jets, evtW);
   h_VH_jets_all->Fill(jets, evtW);
 
+  h_VH_all->FillMET(*(r->MET_pt), evtW);
+
   if (analysis_jets.size() >= 4) {
 
     h_evt_tags_cutflow->Fill(1.5, genWeight); // passed jet selection
     h_evt_algo_cutflow->Fill(1.5, genWeight); 
     h_evt_both_cutflow->Fill(1.5, genWeight); 
     h_evt_duong_cutflow->Fill(1.5, genWeight);
+
+    h_eff_tags->FillCutFlow(1.5, evtW);
+    h_eff_algo->FillCutFlow(1.5, evtW);
+    h_eff_both->FillCutFlow(1.5, evtW);
+    h_eff_duong->FillCutFlow(1.5, evtW);
 
     /**************************************************************************
     * GET THE PROPER TAGGING CUTS THAT WE WANT TO USE                         *
@@ -719,9 +726,9 @@ void VH_selection::Process(Reader* r) {
 
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
               if (is_VbbHcc_event) {
-                h_eff_tags->Fill(Z, H, gen_cjets, gen_bjets, is_VbbHcc_event, evtW);
+                h_eff_tags->Fill(Z, H, gen_cjets, gen_bjets, evtW);
+                h_eff_tags->FillCutFlow(2.5, evtW);
               }
-              else h_eff_tags->FillErr(evtW);
 #endif      
 
             }//end-dPhi
@@ -793,10 +800,10 @@ void VH_selection::Process(Reader* r) {
               h_VH_algo->FillVH(Z3, H3, evtW);
 
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
-              if (is_VbbHcc_event) {
-                h_eff_algo->Fill(Z3, H3, gen_cjets, gen_bjets, is_VbbHcc_event, evtW);
+              if (is_VbbHcc_event){ 
+                h_eff_algo->Fill(Z3, H3, gen_cjets, gen_bjets, evtW);
+                h_eff_algo->FillCutFlow(2.5, evtW);
               }
-              else h_eff_algo->FillErr(evtW);
 #endif
 
 
@@ -860,9 +867,9 @@ void VH_selection::Process(Reader* r) {
 
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
               if (is_VbbHcc_event) {
-                h_eff_both->Fill(Z4, H4, gen_cjets, gen_bjets, is_VbbHcc_event, evtW);
+                h_eff_both->Fill(Z4, H4, gen_cjets, gen_bjets, evtW);
+                h_eff_both->FillCutFlow(2.5, evtW);
               }
-              else h_eff_both->FillErr(evtW);
 #endif
 
 
@@ -927,10 +934,10 @@ void VH_selection::Process(Reader* r) {
                 h_VH_both->FillVH(Z4, H4, evtW);
 
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
-                if (is_VbbHcc_event) {
-                  h_eff_both->Fill(Z4, H4, gen_cjets, gen_bjets, is_VbbHcc_event, evtW);
-                }
-                else h_eff_both->FillErr(evtW);
+              if (is_VbbHcc_event) {
+                h_eff_both->Fill(Z4, H4, gen_cjets, gen_bjets, evtW);
+                h_eff_both->FillCutFlow(2.5, evtW);
+              }
 #endif
      
          
@@ -1049,15 +1056,19 @@ void VH_selection::Process(Reader* r) {
           if (dPhi > 2.5) {
 
             h_evt_duong_cutflow->Fill(6.5, genWeight); // pass dPhi
+h_eff_tags->FillCutFlow(0.5, evtW);
+    h_eff_algo->FillCutFlow(0.5, evtW);
+    h_eff_both->FillCutFlow(0.5, evtW);
+    h_eff_duong->FillCutFlow(0.5, evtW);
 
             // Fill our histograms appropriately.
             h_VH_duong->FillVH(Z5, H5, evtW);
 
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
             if (is_VbbHcc_event) {
-              h_eff_duong->Fill(Z5, H5, gen_cjets, gen_bjets, is_VbbHcc_event, evtW);
+              h_eff_duong->Fill(Z5, H5, gen_cjets, gen_bjets, evtW);
+              h_eff_duong->FillCutFlow(2.5, evtW);
             }
-            else h_eff_duong->FillErr(evtW);
 #endif
 
 
