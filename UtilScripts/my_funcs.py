@@ -47,7 +47,8 @@ def getHist(pN, samList, fList, lS, selType, scale=True):
 ## Make Plot Function
 ###############################################################################
 def makePlot(plot, plotName, canvasName, plotDir, xAxisTitle, xAxisRange, 
-  yAxisTitle, rebin, logY, lumi, line_color, fill_color, fill=False, yRange=[]):
+  yAxisTitle, rebin, logY, lumi, line_color, fill_color, fill=False, yRange=[],
+  is2D = False):
   
   ## Make the canvas
   ROOT.gStyle.SetOptStat(0)
@@ -64,7 +65,8 @@ def makePlot(plot, plotName, canvasName, plotDir, xAxisTitle, xAxisRange,
   if fill: plot.SetFillColor(fill_color)
   plot.SetLineColor(line_color)
   plot.Rebin(rebin)
-  plot.Draw("HIST")
+  if is2D: plot.Draw("colz")
+  else: plot.Draw("HIST")
   plot.GetXaxis().SetTitle(xAxisTitle)
   plot.GetYaxis().SetTitle(yAxisTitle)
   
