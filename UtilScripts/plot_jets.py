@@ -1,62 +1,124 @@
-#== IMPORT STATEMENTS =========================================================
+## == IMPORT STATEMENTS =======================================================
 import ROOT
-import os,sys
+import sys,os
+import copy
+import ConfigParser
+import math
+from my_funcs import makePlot, ScaleToLumi1, getHist
+
+ROOT.gROOT.SetBatch(True)
+
+## == USEFUL METHODS ==========================================================
+
+debug = True
+
+## Load the config
+config_file = '../Configs/config_peteryou.ini'
+config = ConfigParser.ConfigParser()
+config.read(config_file)
+#print config.sections()
 
 ###############################################################################
-## Main Code
+## INPUT VARIABLES (Editable)
 ###############################################################################
 
-path_to_file = "../new_condor_results/NONE/ZH_HToCC_ZToQQ_MC_2018.root"
-output_dir = "../mult_plots/"
-logY = False
+## The following are variables that you are allowed to change.
+years = ['16', '17', '18']
 
-plots = [ 
-  "nJet", "nBjet_loose", "nCjet_loose", "nBjet_medium", "nCjet_medium",
-  "bScore", "cScore"
-]
+filepath = '../new_condor_results/NONE/'
+plotFolder = '../produced_plots/mediumWP/'
 
-xAxisTitles = [
-  "n_{jets}", "n_{bjets} (loose)", "n_{cjets} (loose)", 
-  "n_{bjets} (medium)", "n_{cjets} (medium)", "b-tag score",
-  "c-tag score"
-]
+samples = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ']
 
-yAxisTitles = [
-  "Events", "Events", "Events", "Events", "Events",
-  "Events / 0.05", "Events / 0.05"
-]
+###############################################################################
+## Main Code - DO NOT EDIT BELOW HERE UNLESS YOU WANT TO CRY.
+###############################################################################
 
-## Make sure the output directory exists
-outExists = os.path.exists(output_dir)
-if not outExists:
-  print "Warning: output directory", output_dir, " does not exist."
-  os.makedirs(output_dir)
-  print ">>> Directory created."
+print '====================================='
+print 'Plotting Histograms for Jets'
+print '====================================='
 
-## Get the file that we want to use
-ROOT.gStyle.SetOptStat(0)
-f = ROOT.TFile.Open(path_to_file)
 
-## Go through each interested plot
-for i in range(len(plots)):
+subfolder = 'COMBINED'
+if len(samples) == 1:
+  subfolder = samples[0] + '/'
 
-  for region in ["", "all"]:
+## Check to make sure the files are 
+## where we expect them to be.
+filepath_exists = os.path.exists(filepath)
+if not filepath_exists:
+  print 'ERROR: Filepath', filepath, 'does NOT exist. Terminating macro.'
+  exit()
+
+## Check to make sure the output does exist.
+## If not, create the proper directory.
+plotfolder_exists = os.path.exists(plotFolder)
+if not plotfolder_exists:
+  print 'WARNING:', plotFolder, 'directory does NOT exist.'
+  os.makedirs(plotFolder)
+  print '>>> directory created.'
+
+## Get the proper files & scales that we want.
+
+lumi = {}
+for y in years:
+  lumi[y] = float(config.get('General', 'lumi_' + y))
+  
+files = {}
+lumiScales = {}
+if debug: print 'Pulling proper files and lumi...'
+for s in samples:
+  files[s] = {}
+  lumiScales[s] = {}
+  for y in years:
+    fName = config.get(s, 'file_' + y)
+    if debug: print '>>>', filepath + fName
+    files[s][y] = ROOT.TFile.Open(filepath + fName, 'READ')
+    xSec = float(config.get(s, 'xSec_' + y))
+    scale = ScaleToLumi1(filepath + fName, xSec, lumi[y])
+    lumiScales[s][y] = scale
+
+############################################
+## Go through the plots we're interested in.
+############################################
+plot_names = config.get('Plots', 'Jet_plot').split(',')
+for i in range(len(plot_names)):
+  plot_names[i] = plot_names[i].strip()
+
+for pName in plot_names:
+
+  #################################
+  ## Stack the plots for each year.
+  #################################
+  for y in years:
+  
+    if debug: print "plot:", pName
+    plot = getHist(pName, samples, files, lumiScales, "")
+    plot_name = "VbbHcc_" + pName
     
-    ## Get the plot from the file
-    extra_bit = ""
-    if region != "": extra_bit = "_" + region
-    plot_name = "VbbHcc_" + plots[i] + extra_bit
-    plot = f.Get(plot_name)
-
-    c = ROOT.TCanvas(plot_name, plot_name)
-    plot.GetXaxis().SetTitle(xAxisTitles[i])
-    plot.GetYaxis().SetTitle(yAxisTitles[i])
-    plot.Draw("hist")
+    ## Properly stack/overlay the plots
+    xAxisTitle = config.get(pName, 'xAxisTitle')
+    yAxisTitle = config.get(pName, 'yAxisTitle')
+    rebin = int(config.get(pName, 'rebin'))
     
-    if logY: c.SetLogy()
-
-    fullpath = output_dir + plots[i] + extra_bit
-    if logY: fullpath = fullpath + "_logY"
-    c.Print(fullpath + '.png')
-    c.Print(fullpath + '.pdf')
+    xAxisRange = config.get(pName, 'xAxisRange').split(',')
+    for i in range(len(xAxisRange)):
+      xAxisRange[i] = float(xAxisRange[i].strip())
+    
+    if debug:
+      print '>>> xAxisTitle:', xAxisTitle
+      print '>>> yAxisTitle:', yAxisTitle
+      print '>>> rebin:     ', rebin
+      print '>>> xAxisRange:', xAxisRange
+    
+    for logY in [True, False]:
+      
+      ## Get the proper output directory
+      output_dir = plotFolder + subfolder + '/20' + y + '/'
+      
+      ## Make the overlay version
+      makePlot(plot[y], plot_name, pName + '_' + y, output_dir, xAxisTitle, xAxisRange,
+        yAxisTitle, rebin, logY, lumi[y], ROOT.kBlack, ROOT.kBlack) 
+    
+    if debug: print "=========================================================="
 

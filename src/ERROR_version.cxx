@@ -123,7 +123,8 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_cScore_all = new TH1D("VbbHcc_cScore_all", "", 20, 0., 1.);
   h_btag_v_ctag_all = new TH2D("VbbHcc_btag_v_ctag_all", "", 20, 0., 1., 20, 0., 1.);
 
-  // Add histograms to fOutput so they can be saved in Processor::SlaveTerminate
+  // Add histograms to fOutput so they can be saved in Processor::SlaveTermifor(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+nate
   r->GetOutputList()->Add(h_evt);
 
   std::vector<TH1*> tmp = h_VH_MC->returnHisto();
@@ -154,7 +155,8 @@ void VH_selection::SlaveBegin(Reader *r) {
 
   tmp = h_eff_tags->returnHisto();
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_eff_algo->returnHisto();
+  tmp = h_eff_algo->returnHisto();for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_eff_both->returnHisto();
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);

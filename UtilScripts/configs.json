@@ -1,0 +1,47 @@
+{
+  "lumi":{
+    "16":35862,
+    "17":41529,
+    "18":59710
+  },
+  "samples":{
+    "ZH_HToCC_ZToQQ":{
+      "file_16":"ZH_HToCC_ZToQQ_MC_2016.root",
+      "file_17":"ZH_HToCC_ZToQQ_MC_2017.root",
+      "file_18":"ZH_HToCC_ZToQQ_MC_2018.root",
+      "xSec_16":0.01785,
+      "xSec_17":0.01785,
+      "xSec_18":0.01785
+    },
+    "ggZH_HToCC_ZToQQ":{
+      "file_16":"ggZH_HToCC_ZToQQ_MC_2016.root",
+      "file_17":"ggZH_HToCC_ZToQQ_MC_2017.root",
+      "file_18":"ggZH_HToCC_ZToQQ_MC_2018.root",
+      "xSec_16":0.00248,
+      "xSec_17":0.00248,
+      "xSec_18":0.00248
+    }
+  },
+  "variables":{
+    "Z_mass":{
+      "has_MC_truth":true,
+      "x_label":"m_{bb} [GeV]",
+      "y_label":"Events / 2 GeV",
+      "range":[
+        0,
+        300
+      ],
+      "rebin":2
+    },
+    "H_mass":{
+      "has_MC_truth":true,
+      "x_label":"m_{cc} [GeV]",
+      "y_label":"Events / 2 GeV",
+      "range":[
+        0,
+        300
+      ],
+      "rebin":2
+    }
+  }
+}
