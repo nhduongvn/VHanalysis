@@ -10,8 +10,8 @@ ROOT.gROOT.SetBatch(True)
 
 ## == USEFUL METHODS ==========================================================
 def calculate_eff(hist):
-  nTotal = hist.GetBinContent(1)
-  nPassed = hist.GetBinContent(4)
+  nTotal = hist.GetBinContent(3)
+  nPassed = hist.GetBinContent(6)
   return nPassed * 1.0 / nTotal
 
 def scaleToLumi1(fName, xSec, lumi):
