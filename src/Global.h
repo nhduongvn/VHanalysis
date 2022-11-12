@@ -38,10 +38,12 @@ namespace glob {
         parameterNames.push_back("ZMassL");
         parameterNames.push_back("ZMassH");
         parameterNames.push_back("MET");
-        parameterNames.push_back("btag_looseWP");
-        parameterNames.push_back("btag_mediumWP");
-        parameterNames.push_back("ctag_looseWP");
-        parameterNames.push_back("ctag_mediumWP");
+        parameterNames.push_back("BvL_looseWP");
+        parameterNames.push_back("BvL_mediumWP");
+        parameterNames.push_back("CvL_looseWP");
+        parameterNames.push_back("CvL_mediumWP");
+        parameterNames.push_back("CvB_looseWP");
+        parameterNames.push_back("CvB_mediumWP");
       };
       
       // Get method
@@ -65,11 +67,13 @@ namespace glob {
           if (name == "ZMassH") return ZMassH;
           if (name == "MET") return MET;
           
-          if (name == "btag_looseWP") return btag_looseWP;
-          if (name == "btag_mediumWP") return btag_mediumWP;
-          if (name == "ctag_looseWP") return ctag_looseWP;
-          if (name == "ctag_mediumWP") return ctag_mediumWP;
-          
+          if (name == "BvL_looseWP") return BvL_looseWP;
+          if (name == "BvL_mediumWP") return BvL_mediumWP;
+          if (name == "CvL_looseWP") return CvL_looseWP;
+          if (name == "CvL_mediumWP") return CvL_mediumWP;
+          if (name == "CvB_looseWP") return CvB_looseWP;
+          if (name == "CvB_mediumWP") return CvB_mediumWP;          
+
           // If we somehow miss one of the cases, return -1.
           return -1;
         
@@ -120,10 +124,12 @@ namespace glob {
           if (name == "ZMassH") ZMassH = val;
           if (name == "MET") MET = val;
  
-          if (name == "btag_looseWP") btag_looseWP = val; 
-          if (name == "btag_mediumWP") btag_mediumWP = val;
-          if (name == "ctag_looseWP") ctag_looseWP = val;
-          if (name == "ctag_mediumWP") ctag_mediumWP = val;
+          if (name == "BvL_looseWP") BvL_looseWP = val; 
+          if (name == "BvL_mediumWP") BvL_mediumWP = val;
+          if (name == "CvL_looseWP") CvL_looseWP = val;
+          if (name == "CvL_mediumWP") CvL_mediumWP = val;
+          if (name == "CvB_looseWP") CvB_looseWP = val;
+          if (name == "CvB_mediumWP") CvB_mediumWP = val;
         
         }
         // Otherwise, return an "error"/warning message.
@@ -168,11 +174,13 @@ namespace glob {
       float MET;
       
       // Variables - Tagging
-      float btag_looseWP;
-      float btag_mediumWP;
-      float ctag_looseWP;
-      float ctag_mediumWP;
-      
+      float BvL_looseWP;
+      float BvL_mediumWP;
+      float CvL_looseWP;
+      float CvL_mediumWP;
+      float CvB_looseWP;
+      float CvB_mediumWP;      
+
       std::vector<std::string> initializedVars;
       std::vector<std::string> parameterNames;
   };

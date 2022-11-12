@@ -25,8 +25,8 @@ class VH_selection : public Selector {
     virtual void Terminate(TList* mergedList, std::string outFileName);
   
     std::vector<std::vector<int> > DauIdxs_ZH(Reader* r);
-    //bool passes_btag(JetObj& jet, float CSV_cut);
-    //bool passes_ctag(JetObj& jet, float CvL_cut, float CvB_cut);
+    bool passes_btag(JetObj& jet, float CSV_cut);
+    bool passes_ctag(JetObj& jet, float CvL_cut, float CvB_cut);
 
   private:
   
@@ -36,11 +36,9 @@ class VH_selection : public Selector {
     // Jet Plots
     JetPlots *h_VH_jets;     // Selected jets
     JetPlots *h_VH_jets_all; // All jets captured
-    JetPlots *h_VH_MC_jets;
 
     // VH Plots
-    VHPlots *h_VH_MC;    // MC Truth events (GenObj)
-    VHPlots *h_VH_MCjet; // MC Truth events (jets)
+    VHPlots *h_VH_MC;    // MC Truth events
     VHPlots *h_VH_tags;  // Tagging Only
     VHPlots *h_VH_algo;  // Mass-Matching Prioritized
     VHPlots *h_VH_both;  // Tagging Prioritized

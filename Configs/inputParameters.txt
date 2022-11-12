@@ -10,7 +10,9 @@ muon_iso 0.15 float
 ZMassL 71 float
 ZMassH 111 float
 MET 140 float
-btag_looseWP 0.0508 float
-btag_mediumWP 0.2598 float
-ctag_looseWP 0.327 float
-ctag_mediumWP 0.37 float
+BvL_looseWP 0.0508 float
+BvL_mediumWP 0.2598 float
+CvB_looseWP 0.327 float
+CvB_mediumWP 0.37 float
+CvL_looseWP 0.039 float
+CvL_mediumWP 0.098 float

@@ -147,6 +147,7 @@ class JetObj : public GenObj {
     unsigned m_flav;  // jet flavor
     float m_deepCSV;  // b-tagging
     float m_deepCvL;  // c-tagging
+    float m_deepCvB;  // C vs B score
     unsigned m_svIdx; // SV index
     float m_mSV;      // SV mass
     float m_puid;     // PU ID
@@ -274,16 +275,19 @@ class DHZObj {
     float DPhi() { return m_Zvec.DeltaPhi(m_Hvec); }
 
     // Methods - check if the jets pass our criteria
-    bool H_has_cjets(float desired_ccut) {
+    bool H_has_cjets(float desired_CvL, float desired_CvB) {
       float cvl0 = m_jets[m_hIdx0].m_deepCvL;
+      float cvb0 = m_jets[m_hIdx0].m_deepCvB;
       float cvl1 = m_jets[m_hIdx1].m_deepCvL;
-      return (cvl0 > desired_ccut) && (cvl1 > desired_ccut);
+      float cvb1 = m_jets[m_hIdx1].m_deepCvB;
+      return ((cvl0 > desired_CvL) && (cvl1 > desired_CvL) &&
+             (cvb0 > desired_CvB) && (cvb1 > desired_CvB)); 
     };
 
-    bool Z_has_bjets(float desired_bcut) {
+    bool Z_has_bjets(float desired_BvL) {
       float csv0 = m_jets[m_zIdx0].m_deepCSV;
       float csv1 = m_jets[m_zIdx1].m_deepCSV;
-      return (csv0 > desired_bcut) && (csv1 > desired_bcut);
+      return (csv0 > desired_BvL) && (csv1 > desired_BvL);
     };
 
     // Variables

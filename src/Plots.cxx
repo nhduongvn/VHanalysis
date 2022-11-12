@@ -147,6 +147,7 @@ class JetPlots
       h_phi = new TH1D(name + "_phi", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
       h_CSV = new TH1D(name + "_CSV", "", 100, 0, 1);
       h_CvL = new TH1D(name + "_CvL", "", 100, 0, 1);
+      h_CvB = new TH1D(name + "_CvB", "", 100, 0, 1);
 
       // Initialize the leading jet plots
       h_pt_jet0 = new TH1D(name + "_pt_jet0", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
@@ -187,16 +188,17 @@ class JetPlots
   
         float csv = it.m_deepCSV; h_CSV->Fill(csv, w);
         float cvl = it.m_deepCvL; h_CvL->Fill(cvl, w);
-        
-        if (csv > CUTS.Get<float>("btag_looseWP")) nBl++;
-        if (csv > CUTS.Get<float>("btag_mediumWP")) nBm++;
-        if (cvl > CUTS.Get<float>("ctag_looseWP")) nCl++;
-        if (cvl > CUTS.Get<float>("ctag_mediumWP")) nCm++;
+        float cvb = it.m_deepCvB; h_CvB->Fill(cvb, w);
+        int nL = 0, nM = 0;
+        if (csv > CUTS.Get<float>("BvL_looseWP")){ nBl++; nL++; }
+        if (csv > CUTS.Get<float>("BvL_mediumWP")){ nBm++; nM++; }
+        if (cvl > CUTS.Get<float>("CvL_looseWP") &&
+           cvb > CUTS.Get<float>("CvB_looseWP")){ nCl++; nL++; }
+        if (cvl > CUTS.Get<float>("CvL_mediumWP") &&
+           cvb > CUTS.Get<float>("CvB_mediumWP")){ nCm++; nM++; }
 
-        if (csv > CUTS.Get<float>("btag_looseWP") &&
-            cvl > CUTS.Get<float>("ctag_looseWP")) nBothL++;
-        if (csv > CUTS.Get<float>("btag_mediumWP") &&
-            cvl > CUTS.Get<float>("ctag_mediumWP")) nBothM++;
+        if (nL >= 2) nBothL++;
+        if (nM >= 2) nBothM++;
 
       }//end-for
 
@@ -237,6 +239,7 @@ class JetPlots
       histolist.push_back(h_nJet); histolist.push_back(h_pt);
       histolist.push_back(h_eta);  histolist.push_back(h_phi);
       histolist.push_back(h_CSV);  histolist.push_back(h_CvL);
+      histolist.push_back(h_CvB);
 
       histolist.push_back(h_pt_jet0); histolist.push_back(h_pt_jet1);
       histolist.push_back(h_pt_jet2); histolist.push_back(h_pt_jet3);
@@ -264,6 +267,7 @@ class JetPlots
     TH1D* h_phi;
     TH1D* h_CSV;
     TH1D* h_CvL;
+    TH1D* h_CvB;
 
     // Histograms - Leading jets
     TH1D* h_pt_jet0;  TH1D* h_pt_jet1;  TH1D* h_pt_jet2;  TH1D* h_pt_jet3;
@@ -304,6 +308,7 @@ class VHPlots
       h_DHZ2 = new TH1D(name + "_DHZ2", "", NBIN_DH, X_DH[0], X_DH[1]);
       h_dH = new TH1D(name + "_dH", "", NBIN_DH, X_DH[0], X_DH[1]);
       h_MH_v_MZ = new TH2D(name + "_MH_v_MZ", "", 200, 0, 200, 200, 0, 200);
+      h_MH_v_MZ_all = new TH2D(name + "_MH_v_MZ_all", "", 200, 0, 200, 200, 0, 200);
     };
 
     // Methods - Fill the histograms related to Z & H objects
@@ -325,7 +330,7 @@ class VHPlots
       // Fill plots related to all DHZ objects
       for (auto it : dObj) {
         h_DHZ->Fill(it.m_d, w); // Distances
-        h_MH_v_MZ->Fill(it.HM(), it.ZM(), w); // Masses 
+        h_MH_v_MZ_all->Fill(it.HM(), it.ZM(), w); // Masses 
       }
 
       // Fill plots related to the leading pairs
@@ -365,10 +370,11 @@ class VHPlots
       histolist.push_back(h_DHZ0); histolist.push_back(h_DHZ1);
       histolist.push_back(h_DHZ2); histolist.push_back(h_dH);
       histolist.push_back(h_MH_v_MZ);
+      histolist.push_back(h_MH_v_MZ_all);
 
       return histolist;
     };
-
+  
   protected:
 
     // Variables
@@ -390,6 +396,7 @@ class VHPlots
     TH1D* h_DHZ2;    // D3 values (farthest pair)
     TH1D* h_dH;      // | D1 - D2 |
     TH2D* h_MH_v_MZ;
+    TH2D* h_MH_v_MZ_all;
 
 };
 
