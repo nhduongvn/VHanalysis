@@ -485,7 +485,7 @@ void VH_selection::Process(Reader* r) {
   h_evt_both_cutflow->Fill(0.5, genWeight); // Tagging Prioritized
   h_evt_duong_cutflow->Fill(0.5, genWeight); // Duong's proper Tagging Version
 
-  if (*(r->MET_pt) < CUTS.Get<float>("MET")) return;
+  if (*(r->MET_pt) >= CUTS.Get<float>("MET")) return;
 
   // Show that we pass the MET cut.
   h_evt_MC_cutflow->Fill(1.5, genWeight);
@@ -548,8 +548,8 @@ void VH_selection::Process(Reader* r) {
 
 #endif
 
-  if (!is_VbbHcc_event) return;
-  if (jets.size() < 4) return;
+  // if (!is_VbbHcc_event) return;
+  // if (jets.size() < 4) return;
 
   /****************************************************************************
   * CASE #1b - MONTE CARLO TRUTH JETS                                         *
@@ -564,50 +564,51 @@ void VH_selection::Process(Reader* r) {
   std::vector<JetObj> jetlist; jetlist = jets;
 
   // Match jets to the MC b-quark objects
-  for (int i = 0; i < gen_bs.size(); ++i) {
+  if (jetlist.size() >= 4 && is_VbbHcc_event) {
+    for (int i = 0; i < gen_bs.size(); ++i) {
 
-    // Get a separation (dR) between the gen object & the jets
-    std::vector<std::pair<int,float>> jets_idx_dR;
-    for (int j = 0; j < jetlist.size(); ++j) {
-      float dR = fabs(gen_bs[i].m_lvec.DeltaR(jetlist[j].m_lvec)); 
-      jets_idx_dR.push_back(std::make_pair(j, dR));    
-    }
+      // Get a separation (dR) between the gen object & the jets
+      std::vector<std::pair<int,float>> jets_idx_dR;
+      for (int j = 0; j < jetlist.size(); ++j) {
+        float dR = fabs(gen_bs[i].m_lvec.DeltaR(jetlist[j].m_lvec)); 
+        jets_idx_dR.push_back(std::make_pair(j, dR));    
+      }  
 
-    // Get the closest one
-    std::sort(jets_idx_dR.begin(), jets_idx_dR.end(), sort_by_second);
-    std::pair<int,float> proper_pair = jets_idx_dR[0];
+      // Get the closest one
+      std::sort(jets_idx_dR.begin(), jets_idx_dR.end(), sort_by_second);
+      std::pair<int,float> proper_pair = jets_idx_dR[0];
     
-    int idx = proper_pair.first;
-    gen_bjets.push_back(jetlist[idx]);
-    jetlist.erase(jetlist.begin() + idx);
-  }
-
-  // Match jets to the MC c-quark objects
-  for (int i = 0; i < gen_cs.size(); ++i) {
-
-    // Get a separation (dR) between the gen object & the jets
-    std::vector<std::pair<int,float>> jets_idx_dR;
-    for (int j = 0; j < jetlist.size(); ++j) {
-      float dR = fabs(gen_cs[i].m_lvec.DeltaR(jetlist[j].m_lvec));
-      jets_idx_dR.push_back(std::make_pair(j, dR));
+      int idx = proper_pair.first;
+      gen_bjets.push_back(jetlist[idx]);
+      jetlist.erase(jetlist.begin() + idx);
     }
 
-    // Get the closest one
-    std::sort(jets_idx_dR.begin(), jets_idx_dR.end(), sort_by_second);
-    std::pair<int,float> proper_pair = jets_idx_dR[0];
+    // Match jets to the MC c-quark objects
+    for (int i = 0; i < gen_cs.size(); ++i) {
 
-    int idx = proper_pair.first;
-    gen_cjets.push_back(jetlist[idx]);
-    jetlist.erase(jetlist.begin() + idx);
+      // Get a separation (dR) between the gen object & the jets
+      std::vector<std::pair<int,float>> jets_idx_dR;
+      for (int j = 0; j < jetlist.size(); ++j) {
+        float dR = fabs(gen_cs[i].m_lvec.DeltaR(jetlist[j].m_lvec));
+        jets_idx_dR.push_back(std::make_pair(j, dR));
+      }
 
+      // Get the closest one
+      std::sort(jets_idx_dR.begin(), jets_idx_dR.end(), sort_by_second);
+      std::pair<int,float> proper_pair = jets_idx_dR[0];
+
+      int idx = proper_pair.first;
+      gen_cjets.push_back(jetlist[idx]);
+      jetlist.erase(jetlist.begin() + idx);
+
+    }
+
+    ZObj ZMCjet(gen_bjets);
+    HObj HMCjet(gen_cjets);
+    h_VH_MCjet->FillVH(ZMCjet, HMCjet, evtW);
+    h_VH_MC_jets->Fill(gen_bjets, evtW);
+    h_VH_MC_jets->Fill(gen_cjets, evtW); 
   }
-
-  ZObj ZMCjet(gen_bjets);
-  HObj HMCjet(gen_cjets);
-  h_VH_MCjet->FillVH(ZMCjet, HMCjet, evtW);
-  h_VH_MC_jets->Fill(gen_bjets, evtW);
-  h_VH_MC_jets->Fill(gen_cjets, evtW); 
-
 #endif
 
   /****************************************************************************
