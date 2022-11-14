@@ -67,6 +67,10 @@ class VH_selection : public Selector {
 
     // Miscellaneous
     TH1D* h_nCombos;
+    TH1D* h_dR_ccjet;
+    TH1D* h_dR_bbjet;
+    TH1D* h_dPhi_ccjet;
+    TH1D* h_dPhi_bbjet;
 };
 
 #endif

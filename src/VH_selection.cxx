@@ -275,6 +275,10 @@ void VH_selection::SlaveBegin(Reader *r) {
 
   // Set up miscellaneous histograms
   h_nCombos = new TH1D("nCombos", "", 5, -0.5, 4.5);
+  h_dR_ccjet = new TH1D("ccjet_dR", "", 100, 0, 10);
+  h_dPhi_ccjet = new TH1D("ccjet_dPhi", "", 240, 0, 4.0);
+  h_dR_bbjet = new TH1D("bbjet_dR", "", 100, 0, 10);
+  h_dPhi_bbjet = new TH1D("bbjet_dPhi", "", 240, 0, 4.0); 
 
   // Add them to the return list so we can use them in our analyses.
   r->GetOutputList()->Add(h_evt);
@@ -321,6 +325,11 @@ void VH_selection::SlaveBegin(Reader *r) {
   r->GetOutputList()->Add(h_elec_cutflow);
   r->GetOutputList()->Add(h_muon_cutflow);  
   r->GetOutputList()->Add(h_nCombos);
+  r->GetOutputList()->Add(h_dR_ccjet);
+  r->GetOutputList()->Add(h_dPhi_ccjet);
+  r->GetOutputList()->Add(h_dR_bbjet);
+  r->GetOutputList()->Add(h_dPhi_bbjet);
+
 }// end SlaveBegin
 
 ///////////////////////////////////////////////////////////////
@@ -548,69 +557,6 @@ void VH_selection::Process(Reader* r) {
 
 #endif
 
-  // if (!is_VbbHcc_event) return;
-  // if (jets.size() < 4) return;
-
-  /****************************************************************************
-  * CASE #1b - MONTE CARLO TRUTH JETS                                         *
-  ****************************************************************************/
- 
-  std::vector<JetObj> gen_bjets;
-  std::vector<JetObj> gen_cjets;
-
-#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
-
-  // Make a copy of the jets
-  std::vector<JetObj> jetlist; jetlist = jets;
-
-  // Match jets to the MC b-quark objects
-  if (jetlist.size() >= 4 && is_VbbHcc_event) {
-    for (int i = 0; i < gen_bs.size(); ++i) {
-
-      // Get a separation (dR) between the gen object & the jets
-      std::vector<std::pair<int,float>> jets_idx_dR;
-      for (int j = 0; j < jetlist.size(); ++j) {
-        float dR = fabs(gen_bs[i].m_lvec.DeltaR(jetlist[j].m_lvec)); 
-        jets_idx_dR.push_back(std::make_pair(j, dR));    
-      }  
-
-      // Get the closest one
-      std::sort(jets_idx_dR.begin(), jets_idx_dR.end(), sort_by_second);
-      std::pair<int,float> proper_pair = jets_idx_dR[0];
-    
-      int idx = proper_pair.first;
-      gen_bjets.push_back(jetlist[idx]);
-      jetlist.erase(jetlist.begin() + idx);
-    }
-
-    // Match jets to the MC c-quark objects
-    for (int i = 0; i < gen_cs.size(); ++i) {
-
-      // Get a separation (dR) between the gen object & the jets
-      std::vector<std::pair<int,float>> jets_idx_dR;
-      for (int j = 0; j < jetlist.size(); ++j) {
-        float dR = fabs(gen_cs[i].m_lvec.DeltaR(jetlist[j].m_lvec));
-        jets_idx_dR.push_back(std::make_pair(j, dR));
-      }
-
-      // Get the closest one
-      std::sort(jets_idx_dR.begin(), jets_idx_dR.end(), sort_by_second);
-      std::pair<int,float> proper_pair = jets_idx_dR[0];
-
-      int idx = proper_pair.first;
-      gen_cjets.push_back(jetlist[idx]);
-      jetlist.erase(jetlist.begin() + idx);
-
-    }
-
-    ZObj ZMCjet(gen_bjets);
-    HObj HMCjet(gen_cjets);
-    h_VH_MCjet->FillVH(ZMCjet, HMCjet, evtW);
-    h_VH_MC_jets->Fill(gen_bjets, evtW);
-    h_VH_MC_jets->Fill(gen_cjets, evtW); 
-  }
-#endif
-
   /****************************************************************************
   * JET ANALYSIS                                                              *
   ****************************************************************************/
@@ -664,6 +610,76 @@ void VH_selection::Process(Reader* r) {
     h_eff_algo->FillCutFlow(1.5, evtW);
     h_eff_both->FillCutFlow(1.5, evtW);
     h_eff_duong->FillCutFlow(1.5, evtW);
+
+    /**************************************************************************
+    * CASE #1b - MONTE CARLO TRUTH JETS                                       *
+    **************************************************************************/
+
+    std::vector<JetObj> gen_bjets;
+    std::vector<JetObj> gen_cjets;
+
+#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
+
+    // Make a copy of the jets
+    std::vector<JetObj> jetlist; jetlist = analysis_jets;
+ 
+    // Match jets to the MC objects
+    if (jetlist.size() >= 4 && is_VbbHcc_event) {
+
+      // Match jets to the b-quark objects
+      for (int i = 0; i < gen_bs.size(); ++i) {
+
+        // Get a separation (dR) between the gen object & the jets
+        std::vector<std::pair<int,float>> jets_idx_dR;
+        for (int j = 0; j < jetlist.size(); ++j) {
+          float dR = fabs(gen_bs[i].m_lvec.DeltaR(jetlist[j].m_lvec));
+          jets_idx_dR.push_back(std::make_pair(j, dR));
+        }
+
+        // Get the closest one
+        std::sort(jets_idx_dR.begin(), jets_idx_dR.end(), sort_by_second);
+        std::pair<int,float> proper_pair = jets_idx_dR[0];
+        int idx = proper_pair.first;
+        gen_bjets.push_back(jetlist[idx]);
+        jetlist.erase(jetlist.begin() + idx);
+
+        float dR = fabs(gen_bs[i].m_lvec.DeltaR(jetlist[idx].m_lvec));
+        float dPhi = fabs(gen_bs[i].m_lvec.DeltaPhi(jetlist[idx].m_lvec));
+        h_dR_bbjet->Fill(dR, evtW);
+        h_dPhi_bbjet->Fill(dPhi, evtW);
+      }
+
+      // Match jets to the c-quark objects
+      for (int i = 0; i < gen_cs.size(); ++i) {
+
+        // Get a separation (dR) between the gen object & the jets
+        std::vector<std::pair<int,float>> jets_idx_dR;
+        for (int j = 0; j < jetlist.size(); ++j) {
+          float dR = fabs(gen_cs[i].m_lvec.DeltaR(jetlist[j].m_lvec));
+          jets_idx_dR.push_back(std::make_pair(j, dR));
+        }
+   
+        // Get the closest one
+        std::sort(jets_idx_dR.begin(), jets_idx_dR.end(), sort_by_second);
+        std::pair<int,float> proper_pair = jets_idx_dR[0];
+        int idx = proper_pair.first;
+        gen_cjets.push_back(jetlist[idx]);
+        jetlist.erase(jetlist.begin() + idx);
+
+        float dR = fabs(gen_cs[i].m_lvec.DeltaR(jetlist[idx].m_lvec));
+        float dPhi = fabs(gen_cs[i].m_lvec.DeltaPhi(jetlist[idx].m_lvec));
+        h_dR_ccjet->Fill(dR, evtW);
+        h_dPhi_ccjet->Fill(dPhi, evtW);
+      }
+
+      ZObj ZMCjet(gen_bjets);
+      HObj HMCjet(gen_cjets);
+      h_VH_MCjet->FillVH(ZMCjet, HMCjet, evtW);
+      h_VH_MC_jets->Fill(gen_bjets, evtW);
+      h_VH_MC_jets->Fill(gen_cjets, evtW);
+    }
+
+#endif
 
     /**************************************************************************
     * GET THE PROPER TAGGING CUTS THAT WE WANT TO USE                         *
@@ -857,6 +873,20 @@ void VH_selection::Process(Reader* r) {
       // pair we want to use. (NOTE: we might only have one combination.)
       std::sort(DHZ_values.begin(), DHZ_values.end());
       DHZObj chosenPair = DHZ_values[0];
+
+      if (combos.size() >= 2) {
+        std::cout << "b-Indices: "; for (auto i : bIndices) std::cout << i << " ";
+        std::cout << "\nc-Indices: "; for (auto i : cIndices) std::cout << i << " ";
+        std::cout <<"\n=====================================\n";
+        int idx = 0;
+        for (auto d : DHZ_values) {
+          std::cout << "combo #" << idx << ": " << d.m_zIdx0 << " " << d.m_zIdx1 << 
+            " " << d.m_hIdx0 << " " << d.m_hIdx1 << "\n";    
+          idx++;  
+        }
+
+        std::cout << "############################################################\n";
+      }
 
       if (DHZ_values.size() >= 2) {
         float deltaD = fabs(DHZ_values[0].m_d - DHZ_values[1].m_d);

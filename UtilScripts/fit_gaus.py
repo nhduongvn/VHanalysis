@@ -13,7 +13,7 @@ ROOT.gStyle.SetOptStat(0)
 
 filepath = "../new_condor_results/NONE/ZH_HToCC_ZToQQ_MC_2018.root"
 outputdir = "../produced_plots/mediumWP/fits/"
-plot = "VbbHcc_MCjet_H_mass"
+plot = "VbbHcc_tags_H_mass"
 
 # Pull the histogram from the file
 f = ROOT.TFile.Open(filepath)
