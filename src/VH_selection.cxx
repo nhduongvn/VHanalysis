@@ -627,6 +627,7 @@ void VH_selection::Process(Reader* r) {
     if (jetlist.size() >= 4 && is_VbbHcc_event) {
 
       // Match jets to the b-quark objects
+      bool properly_found = true;
       for (int i = 0; i < gen_bs.size(); ++i) {
 
         // Get a separation (dR) between the gen object & the jets
@@ -639,14 +640,18 @@ void VH_selection::Process(Reader* r) {
         // Get the closest one
         std::sort(jets_idx_dR.begin(), jets_idx_dR.end(), sort_by_second);
         std::pair<int,float> proper_pair = jets_idx_dR[0];
-        int idx = proper_pair.first;
-        gen_bjets.push_back(jetlist[idx]);
-        jetlist.erase(jetlist.begin() + idx);
 
-        float dR = fabs(gen_bs[i].m_lvec.DeltaR(jetlist[idx].m_lvec));
-        float dPhi = fabs(gen_bs[i].m_lvec.DeltaPhi(jetlist[idx].m_lvec));
-        h_dR_bbjet->Fill(dR, evtW);
-        h_dPhi_bbjet->Fill(dPhi, evtW);
+        if (proper_pair.second < 0.4) {
+          int idx = proper_pair.first;
+          gen_bjets.push_back(jetlist[idx]);
+          jetlist.erase(jetlist.begin() + idx);
+
+          float dR = proper_pair.second;
+          float dPhi = fabs(gen_bs[i].m_lvec.DeltaPhi(jetlist[idx].m_lvec));
+          h_dR_bbjet->Fill(dR, evtW);
+          h_dPhi_bbjet->Fill(dPhi, evtW);
+        }
+        else properly_found = false;
       }
 
       // Match jets to the c-quark objects
@@ -662,21 +667,27 @@ void VH_selection::Process(Reader* r) {
         // Get the closest one
         std::sort(jets_idx_dR.begin(), jets_idx_dR.end(), sort_by_second);
         std::pair<int,float> proper_pair = jets_idx_dR[0];
-        int idx = proper_pair.first;
-        gen_cjets.push_back(jetlist[idx]);
-        jetlist.erase(jetlist.begin() + idx);
 
-        float dR = fabs(gen_cs[i].m_lvec.DeltaR(jetlist[idx].m_lvec));
-        float dPhi = fabs(gen_cs[i].m_lvec.DeltaPhi(jetlist[idx].m_lvec));
-        h_dR_ccjet->Fill(dR, evtW);
-        h_dPhi_ccjet->Fill(dPhi, evtW);
+        if (proper_pair.second < 0.4) {
+          int idx = proper_pair.first;
+          gen_cjets.push_back(jetlist[idx]);
+          jetlist.erase(jetlist.begin() + idx);
+
+          float dR = proper_pair.second;
+          float dPhi = fabs(gen_cs[i].m_lvec.DeltaPhi(jetlist[idx].m_lvec));
+          h_dR_ccjet->Fill(dR, evtW);
+          h_dPhi_ccjet->Fill(dPhi, evtW);
+        }
+        else properly_found = false;
       }
 
-      ZObj ZMCjet(gen_bjets);
-      HObj HMCjet(gen_cjets);
-      h_VH_MCjet->FillVH(ZMCjet, HMCjet, evtW);
-      h_VH_MC_jets->Fill(gen_bjets, evtW);
-      h_VH_MC_jets->Fill(gen_cjets, evtW);
+      if (properly_found) {
+        ZObj ZMCjet(gen_bjets);
+        HObj HMCjet(gen_cjets);
+        h_VH_MCjet->FillVH(ZMCjet, HMCjet, evtW);
+        h_VH_MC_jets->Fill(gen_bjets, evtW);
+        h_VH_MC_jets->Fill(gen_cjets, evtW);
+      }
     }
 
 #endif
