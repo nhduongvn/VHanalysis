@@ -274,7 +274,7 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_muon_cutflow->GetXaxis()->SetBinLabel(5, "iso cut");
 
   // Set up miscellaneous histograms
-  // ... to go here...
+  h_nCombos = new TH1D("nCombos", "", 5, -0.5, 4.5);
 
   // Add them to the return list so we can use them in our analyses.
   r->GetOutputList()->Add(h_evt);
@@ -320,7 +320,7 @@ void VH_selection::SlaveBegin(Reader *r) {
   r->GetOutputList()->Add(h_jet_cutflow);
   r->GetOutputList()->Add(h_elec_cutflow);
   r->GetOutputList()->Add(h_muon_cutflow);  
-
+  r->GetOutputList()->Add(h_nCombos);
 }// end SlaveBegin
 
 ///////////////////////////////////////////////////////////////
@@ -821,6 +821,19 @@ void VH_selection::Process(Reader* r) {
     // Find appropriate combinations of jets.
     std::vector<std::vector<int>> combos = find_valid_combos(bIndices, cIndices);
 
+    h_nCombos->Fill(combos.size(), evtW);
+    /*for (int i = 0; i < combos.size(); ++i) {
+
+      std::vector<int> combo = combos[i];
+      std::cout << "\n>>> combo #" << (i+1) << ": ";
+      for (int j = 0; j < combo.size(); ++j) {
+        std::cout << combo[j] << " ";
+      }
+      std::cout << ">>>==================================================\n";
+
+    }
+    std::cout << "\n#######################################################################\n";
+    */
     // If there are possible combos, let's check them.
     if (combos.size() > 0) {
 

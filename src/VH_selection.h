@@ -64,6 +64,9 @@ class VH_selection : public Selector {
     TH1D* h_jet_cutflow;
     TH1D* h_elec_cutflow;
     TH1D* h_muon_cutflow;
+
+    // Miscellaneous
+    TH1D* h_nCombos;
 };
 
 #endif
