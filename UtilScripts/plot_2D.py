@@ -25,8 +25,8 @@ config.read(config_file)
 ## The following are variables that you are allowed to change.
 years = ['16', '17', '18']
 
-filepath = '../newest_condor_results/NONE/'
-plotFolder = '../produced_plots/looseWP/'
+filepath = '../new_condor_results/NONE/'
+plotFolder = '../produced_plots/mediumWP/'
 
 samples = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ']
 

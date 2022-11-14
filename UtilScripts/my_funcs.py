@@ -4,8 +4,10 @@ import ROOT
 import sys,os
 
 ## == COLORS ==================================================================
-colors = [ROOT.kBlack, ROOT.kBlue, ROOT.kRed]
-fill_colors = [16, 38, 46]
+#colors = [ROOT.kBlack, ROOT.kBlue, ROOT.kRed]
+#fill_colors = [16, 38, 46]
+colors = [ROOT.kRed, ROOT.kBlack, ROOT.kBlue]
+fill_colors = [46, 16, 38]
 years = ["16", "17", "18"]
 
 ###############################################################################
@@ -94,15 +96,20 @@ def makePlot(plot, plotName, canvasName, plotDir, xAxisTitle, xAxisRange,
 ## Make Overlap Plot Function
 ###############################################################################
 def makeOverlapPlot(plots, plotNames, canvasName, plotDir, xAxisTitle, xAxisRange,
-  yAxisTitle, rebin, logY, lumi, stack=False, normalize=False, fill=False, custom_colors=colors):
+  yAxisTitle, rebin, logY, lumi, stack=False, normalize=False, fill=False, custom_colors=colors, left=False):
   
   ## Make the canvas
   ROOT.gStyle.SetOptStat(0)
   c = ROOT.TCanvas(canvasName, canvasName, 600, 600)
+  c.SetLeftMargin(0.15)
   c.cd()
   
   ## Prepare the legend
-  l = ROOT.TLegend(0.52, 0.55, 0.89, 0.87)
+  x0 = 0.53; x1 = 0.89
+  if left: 
+    x0 = 0.17
+    x1 = 0.42
+  l = ROOT.TLegend(x0, 0.70, x1, 0.87)
   l.SetLineWidth(2)
   l.SetBorderSize(0)
   l.SetTextFont(42)
@@ -110,9 +117,11 @@ def makeOverlapPlot(plots, plotNames, canvasName, plotDir, xAxisTitle, xAxisRang
   
   ## Overlap the plots
   allStack = ROOT.THStack('st', '')
+  
   for i in range(0, len(plots)):
     if fill: plots[i].SetFillColor(fill_colors[i])
-    plots[i].SetLineColor(colors[i])
+    if normalize: plots[i].Scale(1./plots[i].Integral())
+    plots[i].SetLineColor(custom_colors[i])
     plots[i].Rebin(rebin)
     l.AddEntry(plots[i], plotNames[i], 'F')
     allStack.Add(plots[i])
@@ -140,7 +149,9 @@ def makeOverlapPlot(plots, plotNames, canvasName, plotDir, xAxisTitle, xAxisRang
   ## Print out the plot appropriately
   extraName = ''
   if logY: extraName = '_logY'
-  fullpath = plotDir + '/' + canvasName + extraName
+  preBit = ''
+  if normalize: extraName = extraName + '_NORM'
+  fullpath = preBit + plotDir + '/' + canvasName + extraName
   c.Print(fullpath + '.png')
   c.Print(fullpath + '.pdf')
   return c
@@ -204,8 +215,10 @@ def makeRatioPlots(plots, plotNames, canvasName, plotDir, xAxisTitle, xAxisRange
   
   extraName = ''
   if logY: extraName = '_logY'
-  c.Print(plotDir + '/' + cName + extraName + '.png')
-  c.Print(plotDir + '/' + cName + extraName + '.pdf')
+  preBit = ''
+  if normalize: preBit = 'NORM_'
+  c.Print(preBit + plotDir + '/' + cName + extraName + '.png')
+  c.Print(preBit + plotDir + '/' + cName + extraName + '.pdf')
   
   return c
   

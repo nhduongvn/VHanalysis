@@ -25,10 +25,12 @@ config.read(config_file)
 ## The following are variables that you are allowed to change.
 years = ['16', '17', '18']
 
-filepath = '../newest_condor_results/NONE/'
-plotFolder = '../produced_plots/looseWP/'
+filepath = '../new_condor_results/NONE/'
+plotFolder = '../produced_plots/mediumWP/'
 
 samples = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ']
+samples = ['ZH_HToCC_ZToQQ']
+#samples = ['ggZH_HToCC_ZToQQ']
 
 ###############################################################################
 ## Main Code - DO NOT EDIT BELOW HERE UNLESS YOU WANT TO CRY.
@@ -90,12 +92,15 @@ for pName in plot_names:
     print '###########################################################################'
     print 'plot:', pName
   hasMCTruth = int(config.get(pName, 'hasMCTruth')) == 1
+  doLeft = int(config.get(pName, 'legendLeft')) == 1
   if debug: print '>>> hasMCTruth:', hasMCTruth
   
   ## Get the histograms we want.
   if hasMCTruth == True:
     hMC = getHist(pName, samples, files, lumiScales, 'MC')
     if debug: print '>>>MC retrieved.'
+    hMCjet = getHist(pName, samples, files, lumiScales, 'MCjet')
+    if debug: print '>>>MCjet retrieved.'
     
   hTags = getHist(pName, samples, files, lumiScales, 'tags')
   if debug: print '>>>Tags retrieved.'
@@ -112,8 +117,10 @@ for pName in plot_names:
   for y in years:
     
     ## Copy the plots we want to process
-    plot_process = [hTags[y].Clone(), hAlgo[y].Clone(), hBoth[y].Clone()]
-    plotNames_process = ['Tagging Only', 'D_{HZ} Prioritized', 'Tagging Prioritized']
+    #plot_process = [hTags[y].Clone(), hAlgo[y].Clone(), hBoth[y].Clone()]
+    #plotNames_process = ['Tagging Only', 'D_{HZ} Prioritized', 'Tagging Prioritized']
+    plot_process = [hBoth[y].Clone(), hTags[y].Clone(), hAlgo[y].Clone()]
+    plotNames_process = ['Tagging Prioritized', 'Tagging Only', 'D_{HZ} Prioritized']
     
     ## Properly stack/overlay the plots
     xAxisTitle = config.get(pName, 'xAxisTitle')
@@ -131,22 +138,39 @@ for pName in plot_names:
       print '>>> xAxisRange:', xAxisRange
     
     for logY in [True, False]:
-      
-      ## Get the proper output directory
-      output_dir = plotFolder + subfolder + '/20' + y + '/'
-      
-      ## Make the overlay version
-      makeOverlapPlot(plot_process, plotNames_process, pName + '_' + y,
-        output_dir, xAxisTitle, xAxisRange, yAxisTitle, rebin, logY, lumi[y])
-      if debug: print '== Overlap plot created (logY =', logY, ') =='
-      
-      ## If we have a MC truth plot, plot it.
-      if hasMCTruth == True:
-        makeOverlapPlot([hMC[y].Clone()], ["MC Truth"], pName + '_MCTruth_' + y,
-          output_dir, xAxisTitle, xAxisRange, yAxisTitle, rebin, logY, lumi[y])
-        if debug: print '== MC Truth plot created (logY =', logY, ') =='
     
-    if debug: print "=========================================================="
+      for doNormalize in [False]:
+      
+        ## Get the proper output directory
+        output_dir = plotFolder + subfolder + '/20' + y + '/'
+      
+        ## Make the overlay version
+        canvasName = pName + '_' + y
+        canvasName1 = pName + '_MCTruth_' + y
+        canvasName2 = pName + '_MCJets_' + y
+        #if logY: 
+        #  canvasName = canvasName + '_logY'
+        #  canvasName1 = canvasName1 + '_logY'
+        #if doNormalize: 
+        #  canvasName = canvasName + '_NORM'
+        #  canvasName1 = canvasName1 + '_NORM'
+        makeOverlapPlot(plot_process, plotNames_process, canvasName,
+          output_dir, xAxisTitle, xAxisRange, yAxisTitle, rebin, logY, lumi[y],
+          normalize=doNormalize, left=doLeft)
+        if debug: print '== Overlap plot created (logY =', logY, ') =='
+      
+        ## If we have a MC truth plot, plot it.
+        if hasMCTruth == True:
+          #makeOverlapPlot([hMC[y].Clone()], ["MC Truth"], canvasName1,
+          #  output_dir, xAxisTitle, xAxisRange, yAxisTitle, rebin, logY, lumi[y],
+          #  normalize=doNormalize, left=doLeft, custom_colors=[ROOT.kBlack])
+          #if debug: print '== MC Truth plot created (logY =', logY, ') =='
+        
+          makeOverlapPlot([hMCjet[y].Clone()], ["MC Jet Truth"], canvasName2,
+            output_dir, xAxisTitle, xAxisRange, yAxisTitle, rebin, logY, lumi[y],
+            normalize=doNormalize, left=doLeft, custom_colors=[ROOT.kBlack])
+    
+      if debug: print "=========================================================="
     
     
     
