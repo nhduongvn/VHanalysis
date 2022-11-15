@@ -29,7 +29,7 @@ filepath = '../new_condor_results/NONE/'
 plotFolder = '../produced_plots/mediumWP/'
 
 samples = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ']
-samples = ['ZH_HToCC_ZToQQ']
+#samples = ['ZH_HToCC_ZToQQ']
 #samples = ['ggZH_HToCC_ZToQQ']
 
 ###############################################################################
@@ -139,7 +139,7 @@ for pName in plot_names:
     
     for logY in [True, False]:
     
-      for doNormalize in [False]:
+      for doNormalize in [True]:
       
         ## Get the proper output directory
         output_dir = plotFolder + subfolder + '/20' + y + '/'

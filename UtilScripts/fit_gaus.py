@@ -15,7 +15,7 @@ filepath = "../new_condor_results/NONE/ZH_HToCC_ZToQQ_MC_2018.root"
 filepath2 = "../new_condor_results/NONE/ggZH_HToCC_ZToQQ_MC_2018.root"
 
 outputdir = "../produced_plots/mediumWP/fits/"
-plots = ["VbbHcc_MCjet_H_mass", "VbbHcc_MCjet_Z_mass"]
+plots = ["VbbHcc_duong_H_mass", "VbbHcc_duong_Z_mass"]
 xAxis = [ "m(H) [GeV]", "m(Z) [GeV]" ]
 rLow = [100, 70]
 rHigh = [150, 110]
@@ -49,12 +49,12 @@ for i in range(len(plots)):
   p2 = fit1.GetParameter(2)
 
   legend = ROOT.TLegend(0.6,0.7,0.9,0.9)
-  legend.AddEntry(hist, "MC jets", "l")
+  legend.AddEntry(hist, "Tagging Prioritized", "l")
   legend.AddEntry(fit1, "Gaussian fit", "l")
   legend.AddEntry(0, "#chi^{2}/ndf = " + str(chi2), "")
   legend.AddEntry(0, "constant = " + str(p0), "")
   legend.AddEntry(0, "mean = " + str(p1), "")
-  legend.AddEntry(0, "sigam = " + str(p2), "")
+  legend.AddEntry(0, "sigma = " + str(p2), "")
   legend.Draw()
 
   # Update & output everything

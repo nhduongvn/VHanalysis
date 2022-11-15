@@ -6,8 +6,8 @@ import sys,os
 ## == COLORS ==================================================================
 #colors = [ROOT.kBlack, ROOT.kBlue, ROOT.kRed]
 #fill_colors = [16, 38, 46]
-colors = [ROOT.kRed, ROOT.kBlack, ROOT.kBlue]
-fill_colors = [46, 16, 38]
+colors = [ROOT.kRed, ROOT.kBlack, ROOT.kAzure-4] #ROOT.kBlue
+fill_colors = [46, 16, ROOT.kAzure + 1] #38
 years = ["16", "17", "18"]
 
 ###############################################################################
@@ -123,6 +123,7 @@ def makeOverlapPlot(plots, plotNames, canvasName, plotDir, xAxisTitle, xAxisRang
     if normalize: plots[i].Scale(1./plots[i].Integral())
     plots[i].SetLineColor(custom_colors[i])
     plots[i].Rebin(rebin)
+    plots[i].SetLineWidth(2)
     l.AddEntry(plots[i], plotNames[i], 'F')
     allStack.Add(plots[i])
   
