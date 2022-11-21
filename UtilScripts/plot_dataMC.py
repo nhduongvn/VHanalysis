@@ -53,7 +53,7 @@ summary_control_plot_name = 'summary_control_plot_zjet_zHFjet.txt'
 cfg = utl.BetterConfigParser()
 cfg.read('../Configs/config.ini')
 
-plotFolder = '../full_results/tags/'
+plotFolder = '../full_results/both/'
 #plotFolder = '../condor_results/NONE/'
 
 lumiS = {}
@@ -127,9 +127,9 @@ for r in regions:
 
   for plN in plotNames:
     #hN = r + '_' + plN
-    hN = 'VbbHcc_tags_' + plN
-    if plN == 'CutFlow':
-      hN = plN + '_' + r
+    hN = 'VbbHcc_duong_' + plN
+    #if plN == 'CutFlow':
+    #  hN = plN + '_' + r
 
     #print hN, plN # (Histogram Name, Plot Name)
     
