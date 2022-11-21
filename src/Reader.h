@@ -48,6 +48,7 @@ public :
    TTreeReaderArray<Float_t> Jet_puIdDisc = {fReader, "Jet_puIdDisc"};
 #if defined(NANOAODV9) || defined(DATA_2016) || defined(DATA_2017) || defined(DATA_2018)
    TTreeReaderArray<Float_t> Jet_btagDeepFlavCvL = {fReader, "Jet_btagDeepFlavCvL"};
+   TTreeReaderArray<Float_t> Jet_btagDeepFlavCvB = {fReader, "Jet_btagDeepFlavCvB"};
 #endif
 
 #if defined(NANOAODV7)
