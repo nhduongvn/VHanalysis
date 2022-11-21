@@ -101,8 +101,8 @@ outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/new_con
 #outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/QCD_condor_results/' + syst + '/'
 
 #Input data sets
-#dataSet_list = sourceDir+"/Dataset_lists/datasets_JetHT_combined.txt" #data
-dataSet_list = sourceDir+"/Dataset_lists/datasets_NANOAODv9_MC.txt" #all except Hcc
+dataSet_list = sourceDir+"/Dataset_lists/datasets_JetHT_combined.txt" #data
+#dataSet_list = sourceDir+"/Dataset_lists/datasets_NANOAODv9_MC.txt" #all except Hcc
 #dataSet_list = sourceDir+"/Dataset_lists/datasets_HToCC_NANOAODV7_MC.txt" #data
 nFile = 2
 dir_file_list = sourceDir+'/FileLists/'
