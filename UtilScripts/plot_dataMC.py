@@ -46,14 +46,14 @@ years = ['16','17','18']
 
 #regions = ['VbbHcc_boosted_twojets']
 #regions = ['VbbHcc_boosted_select1','VbbHcc_boosted_select2']
-regions = ['VbbHcc']
+regions = ['VbbHcc_other']
 
 summary_control_plot_name = 'summary_control_plot_zjet_zHFjet.txt'
 
 cfg = utl.BetterConfigParser()
 cfg.read('../Configs/config.ini')
 
-plotFolder = '../full_results/both/'
+plotFolder = '../full_results/other/'
 #plotFolder = '../condor_results/NONE/'
 
 lumiS = {}
@@ -127,7 +127,7 @@ for r in regions:
 
   for plN in plotNames:
     #hN = r + '_' + plN
-    hN = 'VbbHcc_duong_' + plN
+    hN = 'VbbHcc_' + plN
     #if plN == 'CutFlow':
     #  hN = plN + '_' + r
 
