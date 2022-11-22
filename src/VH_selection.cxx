@@ -205,6 +205,8 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_VH_jets_all = new JetPlots("VbbHcc_jets_all");
   h_VH_MC_jets = new JetPlots("VbbHcc_MC_jets");
 
+  h_VH_bjets = new JetPlots("VbbHcc_4b");
+
   // Set up the EffPlots instances
   h_eff_tags = new EffPlots("VbbHcc_tags_eff");
   h_eff_algo = new EffPlots("VbbHcc_algo_eff");
@@ -304,6 +306,8 @@ void VH_selection::SlaveBegin(Reader *r) {
   tmp = h_VH_jets_all->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_VH_MC_jets->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_bjets->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
 
   tmp = h_eff_tags->returnHisto();

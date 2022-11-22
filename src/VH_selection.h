@@ -38,6 +38,8 @@ class VH_selection : public Selector {
     JetPlots *h_VH_jets_all; // All jets captured
     JetPlots *h_VH_MC_jets;
 
+    JetPlots *h_VH_bjets;    // Leading b-jets
+
     // VH Plots
     VHPlots *h_VH_MC;    // MC Truth events (GenObj)
     VHPlots *h_VH_MCjet; // MC Truth events (jets)
