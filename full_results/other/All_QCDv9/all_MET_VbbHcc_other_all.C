@@ -1,7 +1,7 @@
 void all_MET_VbbHcc_other_all()
 {
 //=========Macro generated from canvas: all_MET_VbbHcc_other_all/all_MET_VbbHcc_other_all
-//=========  (Tue Nov 22 09:22:16 2022) by ROOT version 6.14/09
+//=========  (Tue Nov 22 09:30:36 2022) by ROOT version 6.14/09
    TCanvas *all_MET_VbbHcc_other_all = new TCanvas("all_MET_VbbHcc_other_all", "all_MET_VbbHcc_other_all",0,0,600,600);
    all_MET_VbbHcc_other_all->SetHighLightColor(2);
    all_MET_VbbHcc_other_all->Range(0,0,1,1);
@@ -16,10 +16,11 @@ void all_MET_VbbHcc_other_all()
    TPad *topPad = new TPad("topPad", "topPad",0,0.3,1,1);
    topPad->Draw();
    topPad->cd();
-   topPad->Range(-45.96762,-1.246802e+07,315.7258,1.245556e+10);
+   topPad->Range(-45.96762,-1.629268,315.7258,24.90061);
    topPad->SetFillColor(0);
    topPad->SetBorderMode(0);
    topPad->SetBorderSize(2);
+   topPad->SetLogy();
    topPad->SetLeftMargin(0.12709);
    topPad->SetRightMargin(0.0434783);
    topPad->SetBottomMargin(0.001);
@@ -30,11 +31,11 @@ void all_MET_VbbHcc_other_all()
    st->SetName("st");
    st->SetTitle("");
    st->SetMinimum(0.3);
-   st->SetMaximum(1.0675e+10);
+   st->SetMaximum(3.270569e+21);
    
    TH1F *st_stack_4 = new TH1F("st_stack_4","",300,0,300);
-   st_stack_4->SetMinimum(0.3);
-   st_stack_4->SetMaximum(1.120875e+10);
+   st_stack_4->SetMinimum(0.024961);
+   st_stack_4->SetMaximum(1.76856e+22);
    st_stack_4->SetDirectory(0);
    st_stack_4->SetStats(0);
 
@@ -5089,7 +5090,7 @@ void all_MET_VbbHcc_other_all()
    gre->SetLineColor(ci);
    
    TH1F *Graph_Graph_from_VbbHcc_all_MET_all1007 = new TH1F("Graph_Graph_from_VbbHcc_all_MET_all1007","",300,0,330);
-   Graph_Graph_from_VbbHcc_all_MET_all1007->SetMinimum(0);
+   Graph_Graph_from_VbbHcc_all_MET_all1007->SetMinimum(5286934);
    Graph_Graph_from_VbbHcc_all_MET_all1007->SetMaximum(5.286934e+09);
    Graph_Graph_from_VbbHcc_all_MET_all1007->SetDirectory(0);
    Graph_Graph_from_VbbHcc_all_MET_all1007->SetStats(0);

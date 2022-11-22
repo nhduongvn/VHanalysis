@@ -1,7 +1,7 @@
 void jets_nJet_VbbHcc_other_all()
 {
 //=========Macro generated from canvas: jets_nJet_VbbHcc_other_all/jets_nJet_VbbHcc_other_all
-//=========  (Tue Nov 22 09:22:17 2022) by ROOT version 6.14/09
+//=========  (Tue Nov 22 09:30:36 2022) by ROOT version 6.14/09
    TCanvas *jets_nJet_VbbHcc_other_all = new TCanvas("jets_nJet_VbbHcc_other_all", "jets_nJet_VbbHcc_other_all",0,0,600,600);
    jets_nJet_VbbHcc_other_all->SetHighLightColor(2);
    jets_nJet_VbbHcc_other_all->Range(0,0,1,1);
@@ -16,10 +16,11 @@ void jets_nJet_VbbHcc_other_all()
    TPad *topPad = new TPad("topPad", "topPad",0,0.3,1,1);
    topPad->Draw();
    topPad->cd();
-   topPad->Range(-2.645156,-2.135001e+08,14.23387,2.132866e+11);
+   topPad->Range(-2.645156,-1.679318,14.23387,27.9987);
    topPad->SetFillColor(0);
    topPad->SetBorderMode(0);
    topPad->SetBorderSize(2);
+   topPad->SetLogy();
    topPad->SetLeftMargin(0.12709);
    topPad->SetRightMargin(0.0434783);
    topPad->SetBottomMargin(0.001);
@@ -30,11 +31,11 @@ void jets_nJet_VbbHcc_other_all()
    st->SetName("st");
    st->SetTitle("");
    st->SetMinimum(0.3);
-   st->SetMaximum(1.827967e+11);
+   st->SetMaximum(1.802842e+24);
    
    TH1F *st_stack_8 = new TH1F("st_stack_8","",14,-0.5,13.5);
-   st_stack_8->SetMinimum(0.3);
-   st_stack_8->SetMaximum(1.919366e+11);
+   st_stack_8->SetMinimum(0.02240575);
+   st_stack_8->SetMaximum(1.073731e+25);
    st_stack_8->SetDirectory(0);
    st_stack_8->SetStats(0);
 
