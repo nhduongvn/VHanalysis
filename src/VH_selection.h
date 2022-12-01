@@ -47,24 +47,16 @@ class VH_selection : public Selector {
     VHPlots *h_VH_tags;  // Tagging Only
     VHPlots *h_VH_algo;  // Mass-Matching Prioritized
     VHPlots *h_VH_both;  // Tagging Prioritized
-    VHPlots *h_VH_duong; // Tagging Prioritized (Duong version)
     VHPlots *h_VH_all;   // Any plots related to ALL cut types
 
     VHPlots *h_VH_alljet; // Using just any jets
     VHPlots *h_VH_seljet; // Using selected jets
-
-    // Eff Plots
-    EffPlots *h_eff_tags; 
-    EffPlots *h_eff_algo;
-    EffPlots *h_eff_both;
-    EffPlots *h_eff_duong;
 
     // CutFlows for event selections
     TH1D* h_evt_MC_cutflow;
     TH1D* h_evt_tags_cutflow;
     TH1D* h_evt_algo_cutflow;
     TH1D* h_evt_both_cutflow;
-    TH1D* h_evt_duong_cutflow;
 
     // CutFlows for reconstruction
     TH1D* h_jet_cutflow;
