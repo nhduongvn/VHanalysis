@@ -200,12 +200,16 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_VH_both = new VHPlots("VbbHcc_both");
   h_VH_duong = new VHPlots("VbbHcc_duong");
 
+  h_VH_alljet = new VHPlots("VbbHcc_alljet");
+  h_VH_seljet = new VHPlots("VbbHcc_seljet");
+
   // Set up the JetPlots instances
   h_VH_jets = new JetPlots("VbbHcc_jets");
   h_VH_jets_all = new JetPlots("VbbHcc_jets_all");
   h_VH_MC_jets = new JetPlots("VbbHcc_MC_jets");
 
-  h_VH_bjets = new JetPlots("VbbHcc_4b");
+  h_VH_4b = new JetPlots("VbbHcc_4b");
+  h_VH_2b2c = new JetPlots("VbbHcc_2b2c");
 
   // Set up the EffPlots instances
   h_eff_tags = new EffPlots("VbbHcc_tags_eff");
@@ -300,6 +304,10 @@ void VH_selection::SlaveBegin(Reader *r) {
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_VH_all->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_alljet->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_seljet->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
 
   tmp = h_VH_jets->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
@@ -307,7 +315,9 @@ void VH_selection::SlaveBegin(Reader *r) {
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_VH_MC_jets->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_VH_bjets->returnHisto();
+  tmp = h_VH_4b->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_2b2c->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
 
   tmp = h_eff_tags->returnHisto();
@@ -498,6 +508,7 @@ void VH_selection::Process(Reader* r) {
   h_evt_both_cutflow->Fill(0.5, genWeight); // Tagging Prioritized
   h_evt_duong_cutflow->Fill(0.5, genWeight); // Duong's proper Tagging Version
 
+  h_VH_all->FillMET(*(r->MET_pt), evtW);
   if (*(r->MET_pt) >= CUTS.Get<float>("MET")) return;
 
   // Show that we pass the MET cut.
@@ -508,7 +519,9 @@ void VH_selection::Process(Reader* r) {
   h_evt_duong_cutflow->Fill(1.5, genWeight);
 
   /****************************************************************************
-  * CASE #1 - MONTE CARLO TRUTH                                               *
+  * MONTE CARLO TRUTH - We want to have the MC truth values to get an idea of *
+  * how well we are selecting events. We should have several delta-like funcs *
+  * in this case.                                                             *
   ****************************************************************************/
   
   bool is_VbbHcc_event = false;
@@ -562,7 +575,8 @@ void VH_selection::Process(Reader* r) {
 #endif
 
   /****************************************************************************
-  * JET ANALYSIS                                                              *
+  * JET ANALYSIS/SELECTION - we want to make sure we only select jets that are*
+  * useful for our analysis.                                                  *
   ****************************************************************************/
 
   // For the remainder of the selections, we want to only have jets
@@ -601,7 +615,28 @@ void VH_selection::Process(Reader* r) {
   h_VH_jets->Fill(analysis_jets, evtW);
   h_VH_jets_all->Fill(jets, evtW);
 
-  h_VH_all->FillMET(*(r->MET_pt), evtW);
+  //h_VH_all->FillMET(*(r->MET_pt), evtW);
+
+  /****************************************************************************
+  * Check what we get for H and Z candidates by just using the leading pT     *
+  * jets before any cuts                                                      *
+  ****************************************************************************/
+  if (jets.size() >= 4) {
+
+    // Sort the jets by pT
+    std::sort(jets.begin(), jets.end(), JetObj::JetCompPt());
+    
+    // Recreate the Higgs boson with the highest two.
+    std::vector<JetObj> cjets { jets[0], jets[1] };
+    HObj H(cjets);
+
+    // Recreate the Z boson with the next two highest.
+    std::vector<JetObj> bjets { jets[2], jets[3] };
+    ZObj Z(bjets);
+
+    // Fill the proper plots
+    h_VH_alljet->FillVH(Z, H, evtW);
+  }
 
   if (analysis_jets.size() >= 4) {
 
@@ -615,8 +650,15 @@ void VH_selection::Process(Reader* r) {
     h_eff_both->FillCutFlow(1.5, evtW);
     h_eff_duong->FillCutFlow(1.5, evtW);
 
+    /****************************************************************************
+    * Check what we get for H and Z candidates by just using the leading pT     *
+    * jets after any cuts                                                      *
+    *****************************************************************************/
+
+
     /**************************************************************************
-    * CASE #1b - MONTE CARLO TRUTH JETS                                       *
+    * MONTE CARLO TRUTH JETS - In the previous MC truth, we only have the     *
+    * quarks. Here, we want to find the jets that match the MC quarks.        *
     **************************************************************************/
 
     std::vector<JetObj> gen_bjets;
@@ -707,7 +749,38 @@ void VH_selection::Process(Reader* r) {
     float desired_CvB = CUTS.Get<float>("CvB_mediumWP");
 
     /**************************************************************************
-    * CASE #2 - TAGGING ONLY                                                  *
+    * JET ANALYSIS - 4B vs 2b2c                                               *
+    **************************************************************************/
+    
+    // Go through the jets and get the distributions
+    // for when we have 4b jets in the final state.
+    std::vector<JetObj> jetsB; jetsB = analysis_jets;
+    std::sort(jetsB.begin(), jetsB.end(), JetObj::JetCompBtag());
+    std::vector<JetObj> bjetsB { jetsB[0], jetsB[1], jetsB[2], jetsB[3] };
+    if (are_bjets(bjetsB, desired_BvL)) {
+      h_VH_4b->Fill(bjetsB, evtW);
+    }
+
+    // Go through the jets and get the distirbutions
+    // for when we have 2b 2c jets in the final state.
+    std::vector<JetObj> jetsBC; jetsBC = analysis_jets;
+    std::sort(jetsBC.begin(), jetsBC.end(), JetObj::JetCompBtag());
+    std::vector<JetObj> bjetsBC { jetsBC[0], jetsBC[1] };
+    jetsBC.erase(jetsBC.begin() + 1); jetsBC.erase(jetsBC.begin() + 0);
+    if (are_bjets(bjetsBC, desired_BvL)) {
+
+      std::sort(jetsBC.begin(), jetsBC.end(), JetObj::JetCompCtag());
+      std::vector<JetObj> cjetsBC { jetsBC[0], jetsBC[1] };
+      jetsBC.erase(jetsBC.begin() + 1); jetsBC.erase(jetsBC.begin() + 0);
+      if (are_cjets(cjetsBC, desired_CvL, desired_CvB)) {
+        h_VH_2b2c->Fill(bjetsBC, evtW);
+        h_VH_2b2c->Fill(cjetsBC, evtW);
+      }
+ 
+    }
+
+    /**************************************************************************
+    * TAGGING ONLY CASE                                                       *
     **************************************************************************/
 
     // Make an appropriate copy of the jets to use for this analysis.
@@ -746,7 +819,7 @@ void VH_selection::Process(Reader* r) {
     }//end-b-cut
    
     /**************************************************************************
-    * CASE #3 - MASS-MATCHING PRIORITIZED                                     *
+    * MASS-MATCHING PRIORITIZED CASE                                          *
     **************************************************************************/
 
     // Make an appropriate copy of the jets to use for this analysis.
@@ -802,7 +875,7 @@ void VH_selection::Process(Reader* r) {
     }//end-b-cut 
 
     /**************************************************************************
-    * CASE #4 - Duong's better version of TAGGING_PRIORITIZED                 *
+    * Duong's better version of TAGGING_PRIORITIZED CASE                      *
     **************************************************************************/
   
     // Make an appropriate copy of the jets to use for this analysis.
@@ -853,18 +926,7 @@ void VH_selection::Process(Reader* r) {
     std::vector<std::vector<int>> combos = find_valid_combos(bIndices, cIndices);
 
     h_nCombos->Fill(combos.size(), evtW);
-    /*for (int i = 0; i < combos.size(); ++i) {
-
-      std::vector<int> combo = combos[i];
-      std::cout << "\n>>> combo #" << (i+1) << ": ";
-      for (int j = 0; j < combo.size(); ++j) {
-        std::cout << combo[j] << " ";
-      }
-      std::cout << ">>>==================================================\n";
-
-    }
-    std::cout << "\n#######################################################################\n";
-    */
+    
     // If there are possible combos, let's check them.
     if (combos.size() > 0) {
 
@@ -888,20 +950,6 @@ void VH_selection::Process(Reader* r) {
       // pair we want to use. (NOTE: we might only have one combination.)
       std::sort(DHZ_values.begin(), DHZ_values.end());
       DHZObj chosenPair = DHZ_values[0];
-
-      if (combos.size() >= 2) {
-        std::cout << "b-Indices: "; for (auto i : bIndices) std::cout << i << " ";
-        std::cout << "\nc-Indices: "; for (auto i : cIndices) std::cout << i << " ";
-        std::cout <<"\n=====================================\n";
-        int idx = 0;
-        for (auto d : DHZ_values) {
-          std::cout << "combo #" << idx << ": " << d.m_zIdx0 << " " << d.m_zIdx1 << 
-            " " << d.m_hIdx0 << " " << d.m_hIdx1 << "\n";    
-          idx++;  
-        }
-
-        std::cout << "############################################################\n";
-      }
 
       if (DHZ_values.size() >= 2) {
         float deltaD = fabs(DHZ_values[0].m_d - DHZ_values[1].m_d);

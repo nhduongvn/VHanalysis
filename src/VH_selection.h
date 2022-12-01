@@ -38,7 +38,8 @@ class VH_selection : public Selector {
     JetPlots *h_VH_jets_all; // All jets captured
     JetPlots *h_VH_MC_jets;
 
-    JetPlots *h_VH_bjets;    // Leading b-jets
+    JetPlots *h_VH_4b;    // Leading b-jets
+    JetPlots *h_VH_2b2c;  // 
 
     // VH Plots
     VHPlots *h_VH_MC;    // MC Truth events (GenObj)
@@ -48,6 +49,9 @@ class VH_selection : public Selector {
     VHPlots *h_VH_both;  // Tagging Prioritized
     VHPlots *h_VH_duong; // Tagging Prioritized (Duong version)
     VHPlots *h_VH_all;   // Any plots related to ALL cut types
+
+    VHPlots *h_VH_alljet; // Using just any jets
+    VHPlots *h_VH_seljet; // Using selected jets
 
     // Eff Plots
     EffPlots *h_eff_tags; 
