@@ -693,10 +693,6 @@ void VH_selection::Process(Reader* r) {
     h_evt_algo_cutflow->Fill(2.5, genWeight); 
     h_evt_both_cutflow->Fill(2.5, genWeight); 
 
-    h_eff_tags->FillCutFlow(1.5, evtW);
-    h_eff_algo->FillCutFlow(1.5, evtW);
-    h_eff_both->FillCutFlow(1.5, evtW);
-
     /***************************************************************************
     * Check what we get for H and Z candidates by just using the leading pT    *
     * jets after any cuts (but before ANY tagging.                             *
@@ -712,7 +708,7 @@ void VH_selection::Process(Reader* r) {
     
     // Reconstruct the Z boson with the next highest two.
     std::vector<JetObj> abjets { afterjets[2], afterjets[3] };
-    HObj Zafter(abjets);
+    ZObj Zafter(abjets);
     
     // Fill the proper plots
     h_VH_seljet->FillVH(Zafter, Hafter, evtW); 
