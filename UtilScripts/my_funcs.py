@@ -7,6 +7,7 @@ import sys,os
 #colors = [ROOT.kBlack, ROOT.kBlue, ROOT.kRed]
 #fill_colors = [16, 38, 46]
 colors = [ROOT.kRed, ROOT.kBlack, ROOT.kAzure-4] #ROOT.kBlue
+colors = [416+1, 632+1, 600+1, 400+1, 840+1, 860+1, 880+1, 900+1, 432+1, 616+1, 616+3, 800+7]
 fill_colors = [46, 16, ROOT.kAzure + 1] #38
 years = ["16", "17", "18"]
 
@@ -220,6 +221,106 @@ def makeRatioPlots(plots, plotNames, canvasName, plotDir, xAxisTitle, xAxisRange
   if normalize: preBit = 'NORM_'
   c.Print(preBit + plotDir + '/' + cName + extraName + '.png')
   c.Print(preBit + plotDir + '/' + cName + extraName + '.pdf')
+  
+  return c
+
+###############################################################################
+## Make Stack Plots
+###############################################################################
+def makeStackPlot(plots, plotNames, cName, plotDir = 'Test/, 
+xAxisTitle = 'Jet M_{SV}[GeV]', xAxisRange = [0,10], uncName = 'MC unc. (stat.)',
+normMC=True, logY=False, normBinWidth = -1, legendOrder = [], minY_forLog = 1.0,
+lumi = '35.9'):
+
+  ## Create the canvas & modify it as necessary
+  c = ROOT.TCanvas(cName, cName, 600, 600)
+  c.SetFillStyle(4000)
+  c.SetFrameFillStyle(1000)
+  c.SetFrameFillColor(0)
+  
+  ## Create the stack plot & the legend
+  allStack = ROOT.THStack('st','')
+  
+  y1_ndc = 0.42
+  y2_ndc = 0.87
+  x1_ndc = 0.58
+  if len(legendOrder) != 0:
+    x1_ndc = 0.42
+    y1_ndc = 0.62
+  
+  l = ROOT.TLegend(x1_ndc, y1_ndc, 0.89, y2_ndc)
+  if len(legendOrder) != 0: l.SetNColumns(2)
+  l.SetLineWidth(2)
+  l.SetBorderSize(0)
+  l.SetFillColor(0)
+  l.SetTextFont(42)
+  l.SetTextSize(0.035)
+  
+  ## Handle the MC plots & calculate scales
+  MC_integral = 0
+  for i in range(9, len(plots)):
+    MC_integral += plots[i].Integral()
+  
+  normScale = 1
+  if MC_integral > 0 and normMC:
+    normScale = plots[0].Integral()/MC_integral
+  else: print 'Scale MC by: ', normScale
+  
+  l.AddEntry(plots[0], plotNames[0], 'p')
+  if len(legendOrder) != 0: l.AddEntry('','','')
+  iColor = 0
+  for i in range(len(plots)-1, 0, -1):
+    plots[i].Scale(normScale)
+    plots[i].SetFillColor(colors[iColor])
+    iColor = iColor +1
+    if len(legendOrder) == 0: l.AddEntry(plots[i], plotNames[i], 'F')
+  
+  for i in legendOrder:
+    l.AddEntry(plots[i], plotNames[i], 'F')
+  
+  
+  ## Fill the stack
+  for i in range(0, len(plots)):
+    allStack.Add(plots[i])
+  
+  #allMC = allStack.GetStack().Last().Clone()
+  #theErrorGraph = ROOT.TGraphErrors(allMC)
+  #theErrorGraph.SetFillColor(ROOT.kGray+3)
+  #theErrorGraph.SetFillStyle(3013)
+  #l.AddEntry(theErrorGraph,uncName,"fl")
+  
+  ## Draw everything to the canvas
+  allStack.Draw("hist")
+  allStack.GetXaxis().SetRangeUser(xAxisRange[0], xAxisRange[1])
+  binW = plots[0].GetBinWidth(1)
+  
+  formatNum = ''
+  aNum = floor(binW*pow(10,3))-floor(binW*pow(10,2))*10
+  if aNum >= 1: formatNum = '0.3f'
+  allStack.GetYaxis().SetTitle('Events/' + format(binW, formatNum))
+  if normBinWidth >= 0:
+    allStack.GetYaxis().SetTitle('Events/' + str(normBinWidth))
+  allStack.GetYaxis().SetTitleSize(0.057)
+  allStack.GetYaxis().SetTitleOffset(1.2)
+  allStack.GetYaxis().SetLabelSize(0.05)
+  scaleTmp = 0.9 - (y2_ndc - y1_ndc)
+  maxScaleFromPlots = ROOT.TMath.Max(plots[0].GetMaximum(), allStack.GetMaximum())
+  maxX = 1./scaleTmp*maxScaleFromPlots
+  if logY and maxScaleFromPlots > 0:
+    maxX = pow(10,1./scaleTmp*log10(maxScaleFromPlots))
+  allStack.SetMaximum(maxX)
+  allStack.SetMinimum(minY_forLog)
+  
+  l.Draw()
+  myText('CMS Work in Progress #sqrt{s} = 13 TeV, '+lumi+' fb^{-1}', 
+    0.5, 0.937775, 1.0)
+  
+  c.cd()
+  
+  ## Output the plots
+  c.Print(plotDir + '/' + cName + '.png')
+  c.Print(plotDir + '/' + cName + '.pdf')
+  c.Print(plotDir + '/' + cName + '.C')
   
   return c
   
