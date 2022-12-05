@@ -2,6 +2,8 @@
 
 import ROOT
 import sys,os
+import math
+from math import *
 
 ## == COLORS ==================================================================
 #colors = [ROOT.kBlack, ROOT.kBlue, ROOT.kRed]
@@ -45,6 +47,19 @@ def getHist(pN, samList, fList, lS, selType, scale=True):
       hOut[y].Add(h)
     
   return hOut
+
+###############################################################################
+## myText Function
+###############################################################################
+def myText(txt="CMS Preliminary", ndcX=0, ndcY=0, size=0.8):
+  ROOT.gPad.Update()
+  text = ROOT.TLatex()
+  text.SetNDC()
+  text.SetTextColor(ROOT.kBlack)
+  text.SetTextSize(text.GetTextSize()*size)
+  text.SetTextFont(42)
+  text.DrawLatex(ndcX, ndcY, txt)
+  return text
 
 ###############################################################################
 ## Make Plot Function
@@ -227,7 +242,7 @@ def makeRatioPlots(plots, plotNames, canvasName, plotDir, xAxisTitle, xAxisRange
 ###############################################################################
 ## Make Stack Plots
 ###############################################################################
-def makeStackPlot(plots, plotNames, cName, plotDir = 'Test/, 
+def makeStackPlot(plots, plotNames, cName, plotDir = 'Test/', 
 xAxisTitle = 'Jet M_{SV}[GeV]', xAxisRange = [0,10], uncName = 'MC unc. (stat.)',
 normMC=True, logY=False, normBinWidth = -1, legendOrder = [], minY_forLog = 1.0,
 lumi = '35.9'):
@@ -318,6 +333,11 @@ lumi = '35.9'):
   c.cd()
   
   ## Output the plots
+  isExist = os.path.exists(plotDir)
+  if not isExist:
+    print "WARNING: output directory did not exist."
+    os.makedirs(plotDir)
+    print ">>> output directory created."
   c.Print(plotDir + '/' + cName + '.png')
   c.Print(plotDir + '/' + cName + '.pdf')
   c.Print(plotDir + '/' + cName + '.C')

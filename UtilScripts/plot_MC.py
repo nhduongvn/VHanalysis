@@ -5,6 +5,7 @@ import sys,os
 import copy
 import math
 import ConfigParser
+from math import *
 
 from my_funcs import makeStackPlot
 
@@ -55,9 +56,9 @@ def getHist(pN, sample_name, fH, lS):
 ## These you can edit / change
 ###############################
 years = ['16', '17', '18']
-regions = ['VbbHcc_other']
+regions = ['tags', 'algo', 'both']
 summary_control_plot_name = 'summary_control_plot_zjet_zHFjet.txt'
-plotFolder = '../full_results/other/'
+plotFolder = '../full_results/'
 
 ss = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ', 'ZH_HToBB_ZToQQ', 'ggZH_HToBB_ZToQQ', 'QCD_HT200to300_v9', 'WJetsToQQ_HT-400to600', 'WJetsToLNu_HT-400to600', 'ZJetsToQQ_HT-400to600', 'TTToHadronic', 'TTToSemiLeptonic', 'TTTo2L2Nu', 'ST_t-channel_antitop', 'ST_t-channel_top', 'ST_tW-channel_antitop', 'ST_tW-channel_top', 'WW', 'WZ', 'ZZ']
 
@@ -110,7 +111,7 @@ for s in ss:
       fHist[s][y].append(ROOT.TFile.Open(fNames[s][y][-1],'READ'))
     
     print xSecTmps
-    for iS in xsecTmps:
+    for iS in xSecTmps:
       if '*' in iS: iS = iS.split('*')
       if len(iS) == 2:
         xSecs[s][y].append(float(iS[0])*float(iS[1]))
@@ -121,7 +122,7 @@ for s in ss:
     for iN in range(len(fNames[s][y])):
       if s not in ['JetHT']:
         print s, y, iN, fNames[s][y][iN]
-        lumiScales[s][y][iN] = scaleToLumi1(fNames[s][y][iN], xSec[s][y][iN], lumi)
+        lumiScales[s][y][iN] = scaleToLumi1(fNames[s][y][iN], xSecs[s][y][iN], lumi)
 
 
 nums = {}
@@ -130,10 +131,10 @@ nums = {}
 for r in regions:
   
   nums[r] = {}
-  plotNames = cfg.get('Plots', r + '_plot').split(',')
+  plotNames = cfg.get('Plots', 'VbbHcc_plot').split(',')
   
   for plN in plotNames:
-    hN = 'VbbHcc_' + plN
+    hN = 'VbbHcc_' + r + '_' + plN
     
     ## Get all the desired plots
     hZHcc = getHist(hN,['ZH_HToCC_ZToQQ'],fHist,lumiScales)
@@ -187,8 +188,8 @@ for r in regions:
       logY = False
       if 'CutFlow' in plN: logY = True
       makeStackPlot(plots_process, plotNames_process, plN + '_' + r + '_all',
-        ploFolder + '/20' + y + '_QCDv9', xA_title, xA_range, 'MC unc. (stat.)',
-        Flase, logY=logY, lumi=lumiS[y])
+        plotFolder + '/20' + y + '_QCDv9' + '/' + r + '/', xA_title, xA_range, 'MC unc. (stat.)',
+        False, logY=logY, lumi=lumiS[y])
       
     ###################################
     ## Plot control plot for all years
@@ -245,5 +246,5 @@ for r in regions:
     logY = False
     if 'CutFlow' in plN: logY=True
     makeStackPlot(plots_process, plotNames_process, plN + '_'+ r + '_all', 
-      plotFolder + 'All_QCDv9', xA_title, xA_range, 'MC. unc. (stat.)',
+      plotFolder + 'All_QCDv9' + '/' + r + '/', xA_title, xA_range, 'MC. unc. (stat.)',
       False, logY=logY, lumi='138', minY_forLog=1.0)
