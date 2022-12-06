@@ -46,7 +46,7 @@ def getHist(pN, sample_name, fH, lS):
           h.Scale(lS[sample_name[iS]][y][fi])
         hOut[y].Add(h)
     
-    return hOut
+  return hOut
 
 ###############################################################################
 ## MAIN CODE
@@ -56,7 +56,7 @@ def getHist(pN, sample_name, fH, lS):
 ## These you can edit / change
 ###############################
 years = ['16', '17', '18']
-regions = ['tags', 'algo', 'both']
+regions = ['tags', 'algo', 'both', 'alljet', 'seljet']
 summary_control_plot_name = 'summary_control_plot_zjet_zHFjet.txt'
 plotFolder = '../full_results/'
 
@@ -106,8 +106,10 @@ for s in ss:
     fNames[s][y] = []
     xSecs[s][y] = []
     fHist[s][y] = []
+    dirpath = '../new_condor_results/NONE/'
     for iN in names:
-      fNames[s][y].append(cfg.get('Paths', 'path') + '/' + iN)
+      #fNames[s][y].append(cfg.get('Paths', 'path') + '/' + iN)
+      fNames[s][y].append(dirpath + '/' + iN)
       fHist[s][y].append(ROOT.TFile.Open(fNames[s][y][-1],'READ'))
     
     print xSecTmps
@@ -149,6 +151,8 @@ for r in regions:
     hWW = getHist(hN,['WW'],fHist,lumiScales)
     hWZ = getHist(hN,['WZ'],fHist,lumiScales)
     hZZ = getHist(hN,['ZZ'],fHist,lumiScales)
+
+    print hQCD
     
     ############################
     # Stack plots for each year
@@ -187,10 +191,11 @@ for r in regions:
       
       logY = False
       if 'CutFlow' in plN: logY = True
-      makeStackPlot(plots_process, plotNames_process, plN + '_' + r + '_all',
+      makeStackPlot(plots_process, plotNames_process, plN + '_' + r + '_' + y,
         plotFolder + '/20' + y + '_QCDv9' + '/' + r + '/', xA_title, xA_range, 'MC unc. (stat.)',
         False, logY=logY, lumi=lumiS[y])
       
+
     ###################################
     ## Plot control plot for all years
     ###################################
@@ -208,7 +213,6 @@ for r in regions:
     hZZA = hZZ['16'].Clone(hZZ['16'].GetName()+'_all')
       
     for y in ['17','18']:
-      hDatA.Add(hDat[y])
       hZHccA.Add(hZHcc[y])
       hZHbbA.Add(hZHbb[y])
       hggZHccA.Add(hggZHcc[y])
