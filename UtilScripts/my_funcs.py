@@ -61,6 +61,9 @@ def myText(txt="CMS Preliminary", ndcX=0, ndcY=0, size=0.8):
   text.DrawLatex(ndcX, ndcY, txt)
   return text
 
+def formStr(value, nDecimals=0):
+  return str(round(value, nDecimals))
+
 ###############################################################################
 ## Make Plot Function
 ###############################################################################
@@ -253,18 +256,24 @@ lumi = '35.9'):
   c.SetFrameFillStyle(1000)
   c.SetFrameFillColor(0)
   
+  c.SetBottomMargin(0.12)
+  c.SetLeftMargin(0.15709)
+  c.SetRightMargin(0.1234783)
+  
   ## Create the stack plot & the legend
   allStack = ROOT.THStack('st','')
   
-  y1_ndc = 0.42
+  y1_ndc = 0.62
   y2_ndc = 0.87
-  x1_ndc = 0.58
+  x1_ndc = 0.48
   if len(legendOrder) != 0:
     x1_ndc = 0.42
     y1_ndc = 0.62
   
-  l = ROOT.TLegend(x1_ndc, y1_ndc, 0.89, y2_ndc)
-  if len(legendOrder) != 0: l.SetNColumns(2)
+  l = ROOT.TLegend(x1_ndc, y1_ndc, 0.85, y2_ndc)
+  #if len(legendOrder) != 0: l.SetNColumns(2)
+  l.SetNColumns(2)
+  l.SetColumnSeparation(0.2)
   l.SetLineWidth(2)
   l.SetBorderSize(0)
   l.SetFillColor(0)
@@ -273,7 +282,7 @@ lumi = '35.9'):
   
   ## Handle the MC plots & calculate scales
   MC_integral = 0
-  for i in range(9, len(plots)):
+  for i in range(0, len(plots)):
     MC_integral += plots[i].Integral()
   
   normScale = 1
@@ -281,14 +290,20 @@ lumi = '35.9'):
     normScale = plots[0].Integral()/MC_integral
   else: print 'Scale MC by: ', normScale
   
-  l.AddEntry(plots[0], plotNames[0], 'p')
+  #l.AddEntry(plots[0], plotNames[0], 'F')
   if len(legendOrder) != 0: l.AddEntry('','','')
   iColor = 0
-  for i in range(len(plots)-1, 0, -1):
+  if "CutFlow" in cName:
+    print "==> ", cName, " <=="
+    print "Sample\t All Events \t MET cut\t Jet cut \t Tag cuts"
+    print "======\t ========== \t =======\t ======= \t ========"
+  for i in range(len(plots)-1, -1, -1):
     plots[i].Scale(normScale)
     plots[i].SetFillColor(colors[iColor])
-    iColor = iColor +1
+    iColor = iColor + 1
     if len(legendOrder) == 0: l.AddEntry(plots[i], plotNames[i], 'F')
+    if "CutFlow" in cName:
+      print plotNames[i] + "\t" + formStr(plots[i].GetBinContent(1)) + "\t" + formStr(plots[i].GetBinContent(2)) + "\t" + formStr(plots[i].GetBinContent(3)) + "\t" + formStr(plots[i].GetBinContent(plots[i].FindLastBinAbove()))
   
   for i in legendOrder:
     l.AddEntry(plots[i], plotNames[i], 'F')
@@ -309,26 +324,54 @@ lumi = '35.9'):
   allStack.GetXaxis().SetRangeUser(xAxisRange[0], xAxisRange[1])
   binW = plots[0].GetBinWidth(1)
   
+  if logY: c.SetLogy()
+  
   formatNum = ''
   aNum = floor(binW*pow(10,3))-floor(binW*pow(10,2))*10
   if aNum >= 1: formatNum = '0.3f'
   allStack.GetYaxis().SetTitle('Events/' + format(binW, formatNum))
   if normBinWidth >= 0:
     allStack.GetYaxis().SetTitle('Events/' + str(normBinWidth))
-  allStack.GetYaxis().SetTitleSize(0.057)
-  allStack.GetYaxis().SetTitleOffset(1.2)
-  allStack.GetYaxis().SetLabelSize(0.05)
+  allStack.GetXaxis().SetTitle(xAxisTitle)
+  allStack.GetYaxis().SetTitleSize(0.037)
+  #allStack.GetYaxis().SetTitleOffset(1.2)
+  allStack.GetYaxis().SetLabelSize(0.035)
+  allStack.GetXaxis().SetLabelSize(0.035)
   scaleTmp = 0.9 - (y2_ndc - y1_ndc)
   maxScaleFromPlots = ROOT.TMath.Max(plots[0].GetMaximum(), allStack.GetMaximum())
   maxX = 1./scaleTmp*maxScaleFromPlots
-  if logY and maxScaleFromPlots > 0:
-    maxX = pow(10,1./scaleTmp*log10(maxScaleFromPlots))
+  #if logY and maxScaleFromPlots > 0:
+  #   maxX = pow(10,1./scaleTmp*log10(maxScaleFromPlots)) 
+  #allStack.SetMaximum(maxX)
+  
+  ## (NOTE: this minimum may be too low and we want an auto adjust. Let's fix
+  ## the scale based on an equation, i.e. if every bin hits a certain min, then
+  ## let's ignore that range.
+  if logY:
+    maxX = pow(10, log10(maxScaleFromPlots) + 2)
+  else:
+    maxX =  maxScaleFromPlots + pow(10, log10(maxScaleFromPlots)) * 0.5
+  
   allStack.SetMaximum(maxX)
-  allStack.SetMinimum(minY_forLog)
+  
+  minY = 100000.0
+  h = allStack.GetStack().Last()
+  for i in range(h.GetNbinsX()):
+    binContent = h.GetBinContent(i)
+    if binContent < 1: continue
+    logBin = log10(binContent)
+    if logBin < minY: minY = logBin
+  
+  if logY:
+    allStack.SetMinimum(pow(10,minY - 3))
+  #allStack.SetMaximum(pow(10,12))
+  #allStack.SetMinimum(pow(10,11))
+  
+  #allStack.SetMinimum(minY_forLog)
   
   l.Draw()
   myText('CMS Work in Progress #sqrt{s} = 13 TeV, '+lumi+' fb^{-1}', 
-    0.5, 0.937775, 1.0)
+    0.25, 0.937775, 0.8)
   
   c.cd()
   
@@ -338,9 +381,13 @@ lumi = '35.9'):
     print "WARNING: output directory did not exist."
     os.makedirs(plotDir)
     print ">>> output directory created."
-  c.Print(plotDir + '/' + cName + '.png')
-  c.Print(plotDir + '/' + cName + '.pdf')
-  c.Print(plotDir + '/' + cName + '.C')
+  
+  extraBit = ""
+  if logY: extraBit = "_logY"
+  
+  c.Print(plotDir + '/' + cName + extraBit + '.png')
+  c.Print(plotDir + '/' + cName + extraBit + '.pdf')
+  c.Print(plotDir + '/' + cName + extraBit + '.C')
   
   return c
   

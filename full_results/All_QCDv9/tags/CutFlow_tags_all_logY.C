@@ -1,0 +1,655 @@
+#ifdef __CLING__
+#pragma cling optimize(0)
+#endif
+void CutFlow_tags_all_logY()
+{
+//=========Macro generated from canvas: CutFlow_tags_all/CutFlow_tags_all
+//=========  (Wed Dec  7 11:48:24 2022) by ROOT version 6.26/06
+   TCanvas *CutFlow_tags_all = new TCanvas("CutFlow_tags_all", "CutFlow_tags_all",0,0,600,600);
+   CutFlow_tags_all->SetHighLightColor(2);
+   CutFlow_tags_all->Range(-1.310117,3.86682,7.029799,14.82137);
+   CutFlow_tags_all->SetFillColor(0);
+   CutFlow_tags_all->SetFillStyle(4000);
+   CutFlow_tags_all->SetBorderMode(0);
+   CutFlow_tags_all->SetBorderSize(2);
+   CutFlow_tags_all->SetLogy();
+   CutFlow_tags_all->SetLeftMargin(0.15709);
+   CutFlow_tags_all->SetRightMargin(0.1234783);
+   CutFlow_tags_all->SetBottomMargin(0.12);
+   CutFlow_tags_all->SetFrameFillStyle(1000);
+   CutFlow_tags_all->SetFrameBorderMode(0);
+   CutFlow_tags_all->SetFrameFillStyle(1000);
+   CutFlow_tags_all->SetFrameBorderMode(0);
+   
+   THStack *st = new THStack();
+   st->SetName("st");
+   st->SetTitle("");
+   st->SetMinimum(719093.7);
+   st->SetMaximum(2.13278e+13);
+   
+   TH1F *st_stack_4 = new TH1F("st_stack_4","",5,0,5);
+   st_stack_4->SetMinimum(151833.1);
+   st_stack_4->SetMaximum(5.320075e+13);
+   st_stack_4->SetDirectory(0);
+   st_stack_4->SetStats(0);
+
+   Int_t ci;      // for color index setting
+   TColor *color; // for color definition with alpha
+   ci = TColor::GetColor("#000099");
+   st_stack_4->SetLineColor(ci);
+   st_stack_4->GetXaxis()->SetTitle(""Cut flow"");
+   st_stack_4->GetXaxis()->SetBinLabel(1,"Total");
+   st_stack_4->GetXaxis()->SetBinLabel(2,"MET cut");
+   st_stack_4->GetXaxis()->SetBinLabel(3,"jet cuts");
+   st_stack_4->GetXaxis()->SetBinLabel(4,"b-tags");
+   st_stack_4->GetXaxis()->SetBinLabel(5,"c-tags");
+   st_stack_4->GetXaxis()->SetRange(1,6);
+   st_stack_4->GetXaxis()->SetLabelFont(42);
+   st_stack_4->GetXaxis()->SetTitleOffset(1);
+   st_stack_4->GetXaxis()->SetTitleFont(42);
+   st_stack_4->GetYaxis()->SetTitle("Events/1.0");
+   st_stack_4->GetYaxis()->SetLabelFont(42);
+   st_stack_4->GetYaxis()->SetTitleSize(0.037);
+   st_stack_4->GetYaxis()->SetTitleFont(42);
+   st_stack_4->GetZaxis()->SetLabelFont(42);
+   st_stack_4->GetZaxis()->SetTitleOffset(1);
+   st_stack_4->GetZaxis()->SetTitleFont(42);
+   st->SetHistogram(st_stack_4);
+   
+   
+   TH1D *VbbHcc_tags_CutFlow_all_stack_1 = new TH1D("VbbHcc_tags_CutFlow_all_stack_1","",5,0,5);
+   VbbHcc_tags_CutFlow_all_stack_1->SetBinContent(1,2.13055e+11);
+   VbbHcc_tags_CutFlow_all_stack_1->SetBinContent(2,2.130363e+11);
+   VbbHcc_tags_CutFlow_all_stack_1->SetBinContent(3,2.095201e+10);
+   VbbHcc_tags_CutFlow_all_stack_1->SetBinContent(4,6.805261e+08);
+   VbbHcc_tags_CutFlow_all_stack_1->SetBinContent(5,5.617117e+07);
+   VbbHcc_tags_CutFlow_all_stack_1->SetBinError(1,1.73296e+07);
+   VbbHcc_tags_CutFlow_all_stack_1->SetBinError(2,1.732886e+07);
+   VbbHcc_tags_CutFlow_all_stack_1->SetBinError(3,5431106);
+   VbbHcc_tags_CutFlow_all_stack_1->SetBinError(4,977920.2);
+   VbbHcc_tags_CutFlow_all_stack_1->SetBinError(5,280391.1);
+   VbbHcc_tags_CutFlow_all_stack_1->SetEntries(3.241897e+08);
+
+   ci = TColor::GetColor("#ff6600");
+   VbbHcc_tags_CutFlow_all_stack_1->SetFillColor(ci);
+
+   ci = TColor::GetColor("#000099");
+   VbbHcc_tags_CutFlow_all_stack_1->SetLineColor(ci);
+   VbbHcc_tags_CutFlow_all_stack_1->GetXaxis()->SetBinLabel(1,"Total");
+   VbbHcc_tags_CutFlow_all_stack_1->GetXaxis()->SetBinLabel(2,"MET cut");
+   VbbHcc_tags_CutFlow_all_stack_1->GetXaxis()->SetBinLabel(3,"jet cuts");
+   VbbHcc_tags_CutFlow_all_stack_1->GetXaxis()->SetBinLabel(4,"b-tags");
+   VbbHcc_tags_CutFlow_all_stack_1->GetXaxis()->SetBinLabel(5,"c-tags");
+   VbbHcc_tags_CutFlow_all_stack_1->GetXaxis()->SetRange(1,5);
+   VbbHcc_tags_CutFlow_all_stack_1->GetXaxis()->SetLabelFont(42);
+   VbbHcc_tags_CutFlow_all_stack_1->GetXaxis()->SetTitleOffset(1);
+   VbbHcc_tags_CutFlow_all_stack_1->GetXaxis()->SetTitleFont(42);
+   VbbHcc_tags_CutFlow_all_stack_1->GetYaxis()->SetLabelFont(42);
+   VbbHcc_tags_CutFlow_all_stack_1->GetYaxis()->SetTitleFont(42);
+   VbbHcc_tags_CutFlow_all_stack_1->GetZaxis()->SetLabelFont(42);
+   VbbHcc_tags_CutFlow_all_stack_1->GetZaxis()->SetTitleOffset(1);
+   VbbHcc_tags_CutFlow_all_stack_1->GetZaxis()->SetTitleFont(42);
+   st->Add(VbbHcc_tags_CutFlow_all_stack_1,"");
+   
+   TH1D *VbbHcc_tags_CutFlow_all_stack_2 = new TH1D("VbbHcc_tags_CutFlow_all_stack_2","",5,0,5);
+   VbbHcc_tags_CutFlow_all_stack_2->SetBinContent(1,3.957695e+07);
+   VbbHcc_tags_CutFlow_all_stack_2->SetBinContent(2,3.876394e+07);
+   VbbHcc_tags_CutFlow_all_stack_2->SetBinContent(3,8988538);
+   VbbHcc_tags_CutFlow_all_stack_2->SetBinContent(4,3052750);
+   VbbHcc_tags_CutFlow_all_stack_2->SetBinContent(5,607485.3);
+   VbbHcc_tags_CutFlow_all_stack_2->SetBinError(1,2165.011);
+   VbbHcc_tags_CutFlow_all_stack_2->SetBinError(2,2128.496);
+   VbbHcc_tags_CutFlow_all_stack_2->SetBinError(3,1220.77);
+   VbbHcc_tags_CutFlow_all_stack_2->SetBinError(4,678.7127);
+   VbbHcc_tags_CutFlow_all_stack_2->SetBinError(5,321.5586);
+   VbbHcc_tags_CutFlow_all_stack_2->SetEntries(1.427163e+09);
+
+   ci = TColor::GetColor("#660066");
+   VbbHcc_tags_CutFlow_all_stack_2->SetFillColor(ci);
+
+   ci = TColor::GetColor("#000099");
+   VbbHcc_tags_CutFlow_all_stack_2->SetLineColor(ci);
+   VbbHcc_tags_CutFlow_all_stack_2->GetXaxis()->SetBinLabel(1,"Total");
+   VbbHcc_tags_CutFlow_all_stack_2->GetXaxis()->SetBinLabel(2,"MET cut");
+   VbbHcc_tags_CutFlow_all_stack_2->GetXaxis()->SetBinLabel(3,"jet cuts");
+   VbbHcc_tags_CutFlow_all_stack_2->GetXaxis()->SetBinLabel(4,"b-tags");
+   VbbHcc_tags_CutFlow_all_stack_2->GetXaxis()->SetBinLabel(5,"c-tags");
+   VbbHcc_tags_CutFlow_all_stack_2->GetXaxis()->SetRange(1,5);
+   VbbHcc_tags_CutFlow_all_stack_2->GetXaxis()->SetLabelFont(42);
+   VbbHcc_tags_CutFlow_all_stack_2->GetXaxis()->SetTitleOffset(1);
+   VbbHcc_tags_CutFlow_all_stack_2->GetXaxis()->SetTitleFont(42);
+   VbbHcc_tags_CutFlow_all_stack_2->GetYaxis()->SetLabelFont(42);
+   VbbHcc_tags_CutFlow_all_stack_2->GetYaxis()->SetTitleFont(42);
+   VbbHcc_tags_CutFlow_all_stack_2->GetZaxis()->SetLabelFont(42);
+   VbbHcc_tags_CutFlow_all_stack_2->GetZaxis()->SetTitleOffset(1);
+   VbbHcc_tags_CutFlow_all_stack_2->GetZaxis()->SetTitleFont(42);
+   st->Add(VbbHcc_tags_CutFlow_all_stack_2,"");
+   
+   TH1D *VbbHcc_tags_CutFlow_all_stack_3 = new TH1D("VbbHcc_tags_CutFlow_all_stack_3","",5,0,5);
+   VbbHcc_tags_CutFlow_all_stack_3->SetBinContent(1,1.139995e+08);
+   VbbHcc_tags_CutFlow_all_stack_3->SetBinContent(2,1.082298e+08);
+   VbbHcc_tags_CutFlow_all_stack_3->SetBinContent(3,6.676418e+07);
+   VbbHcc_tags_CutFlow_all_stack_3->SetBinContent(4,3.404803e+07);
+   VbbHcc_tags_CutFlow_all_stack_3->SetBinContent(5,8836207);
+   VbbHcc_tags_CutFlow_all_stack_3->SetBinError(1,2649.224);
+   VbbHcc_tags_CutFlow_all_stack_3->SetBinError(2,2594.865);
+   VbbHcc_tags_CutFlow_all_stack_3->SetBinError(3,2109.684);
+   VbbHcc_tags_CutFlow_all_stack_3->SetBinError(4,1498.999);
+   VbbHcc_tags_CutFlow_all_stack_3->SetBinError(5,779.0899);
+   VbbHcc_tags_CutFlow_all_stack_3->SetEntries(5.630155e+09);
+
+   ci = TColor::GetColor("#cc00cc");
+   VbbHcc_tags_CutFlow_all_stack_3->SetFillColor(ci);
+
+   ci = TColor::GetColor("#000099");
+   VbbHcc_tags_CutFlow_all_stack_3->SetLineColor(ci);
+   VbbHcc_tags_CutFlow_all_stack_3->GetXaxis()->SetBinLabel(1,"Total");
+   VbbHcc_tags_CutFlow_all_stack_3->GetXaxis()->SetBinLabel(2,"MET cut");
+   VbbHcc_tags_CutFlow_all_stack_3->GetXaxis()->SetBinLabel(3,"jet cuts");
+   VbbHcc_tags_CutFlow_all_stack_3->GetXaxis()->SetBinLabel(4,"b-tags");
+   VbbHcc_tags_CutFlow_all_stack_3->GetXaxis()->SetBinLabel(5,"c-tags");
+   VbbHcc_tags_CutFlow_all_stack_3->GetXaxis()->SetRange(1,5);
+   VbbHcc_tags_CutFlow_all_stack_3->GetXaxis()->SetLabelFont(42);
+   VbbHcc_tags_CutFlow_all_stack_3->GetXaxis()->SetTitleOffset(1);
+   VbbHcc_tags_CutFlow_all_stack_3->GetXaxis()->SetTitleFont(42);
+   VbbHcc_tags_CutFlow_all_stack_3->GetYaxis()->SetLabelFont(42);
+   VbbHcc_tags_CutFlow_all_stack_3->GetYaxis()->SetTitleFont(42);
+   VbbHcc_tags_CutFlow_all_stack_3->GetZaxis()->SetLabelFont(42);
+   VbbHcc_tags_CutFlow_all_stack_3->GetZaxis()->SetTitleOffset(1);
+   VbbHcc_tags_CutFlow_all_stack_3->GetZaxis()->SetTitleFont(42);
+   st->Add(VbbHcc_tags_CutFlow_all_stack_3,"");
+   
+   TH1D *VbbHcc_tags_CutFlow_all_stack_4 = new TH1D("VbbHcc_tags_CutFlow_all_stack_4","",5,0,5);
+   VbbHcc_tags_CutFlow_all_stack_4->SetBinContent(1,1.565693e+07);
+   VbbHcc_tags_CutFlow_all_stack_4->SetBinContent(2,1.563483e+07);
+   VbbHcc_tags_CutFlow_all_stack_4->SetBinContent(3,7925299);
+   VbbHcc_tags_CutFlow_all_stack_4->SetBinContent(4,942628.2);
+   VbbHcc_tags_CutFlow_all_stack_4->SetBinContent(5,146242.8);
+   VbbHcc_tags_CutFlow_all_stack_4->SetBinError(1,2545.091);
+   VbbHcc_tags_CutFlow_all_stack_4->SetBinError(2,2543.254);
+   VbbHcc_tags_CutFlow_all_stack_4->SetBinError(3,1810.456);
+   VbbHcc_tags_CutFlow_all_stack_4->SetBinError(4,627.2896);
+   VbbHcc_tags_CutFlow_all_stack_4->SetBinError(5,246.2938);
+   VbbHcc_tags_CutFlow_all_stack_4->SetEntries(1.02723e+08);
+
+   ci = TColor::GetColor("#00cccc");
+   VbbHcc_tags_CutFlow_all_stack_4->SetFillColor(ci);
+
+   ci = TColor::GetColor("#000099");
+   VbbHcc_tags_CutFlow_all_stack_4->SetLineColor(ci);
+   VbbHcc_tags_CutFlow_all_stack_4->GetXaxis()->SetBinLabel(1,"Total");
+   VbbHcc_tags_CutFlow_all_stack_4->GetXaxis()->SetBinLabel(2,"MET cut");
+   VbbHcc_tags_CutFlow_all_stack_4->GetXaxis()->SetBinLabel(3,"jet cuts");
+   VbbHcc_tags_CutFlow_all_stack_4->GetXaxis()->SetBinLabel(4,"b-tags");
+   VbbHcc_tags_CutFlow_all_stack_4->GetXaxis()->SetBinLabel(5,"c-tags");
+   VbbHcc_tags_CutFlow_all_stack_4->GetXaxis()->SetRange(1,5);
+   VbbHcc_tags_CutFlow_all_stack_4->GetXaxis()->SetLabelFont(42);
+   VbbHcc_tags_CutFlow_all_stack_4->GetXaxis()->SetTitleOffset(1);
+   VbbHcc_tags_CutFlow_all_stack_4->GetXaxis()->SetTitleFont(42);
+   VbbHcc_tags_CutFlow_all_stack_4->GetYaxis()->SetLabelFont(42);
+   VbbHcc_tags_CutFlow_all_stack_4->GetYaxis()->SetTitleFont(42);
+   VbbHcc_tags_CutFlow_all_stack_4->GetZaxis()->SetLabelFont(42);
+   VbbHcc_tags_CutFlow_all_stack_4->GetZaxis()->SetTitleOffset(1);
+   VbbHcc_tags_CutFlow_all_stack_4->GetZaxis()->SetTitleFont(42);
+   st->Add(VbbHcc_tags_CutFlow_all_stack_4,"");
+   
+   TH1D *VbbHcc_tags_CutFlow_all_stack_5 = new TH1D("VbbHcc_tags_CutFlow_all_stack_5","",5,0,5);
+   VbbHcc_tags_CutFlow_all_stack_5->SetBinContent(1,3.790843e+07);
+   VbbHcc_tags_CutFlow_all_stack_5->SetBinContent(2,3.786465e+07);
+   VbbHcc_tags_CutFlow_all_stack_5->SetBinContent(3,1.883444e+07);
+   VbbHcc_tags_CutFlow_all_stack_5->SetBinContent(4,433165.5);
+   VbbHcc_tags_CutFlow_all_stack_5->SetBinContent(5,87249.12);
+   VbbHcc_tags_CutFlow_all_stack_5->SetBinError(1,7746.649);
+   VbbHcc_tags_CutFlow_all_stack_5->SetBinError(2,7742.044);
+   VbbHcc_tags_CutFlow_all_stack_5->SetBinError(3,5458.789);
+   VbbHcc_tags_CutFlow_all_stack_5->SetBinError(4,831.1673);
+   VbbHcc_tags_CutFlow_all_stack_5->SetBinError(5,370.9473);
+   VbbHcc_tags_CutFlow_all_stack_5->SetEntries(6.776201e+07);
+
+   ci = TColor::GetColor("#ff99cc");
+   VbbHcc_tags_CutFlow_all_stack_5->SetFillColor(ci);
+
+   ci = TColor::GetColor("#000099");
+   VbbHcc_tags_CutFlow_all_stack_5->SetLineColor(ci);
+   VbbHcc_tags_CutFlow_all_stack_5->GetXaxis()->SetBinLabel(1,"Total");
+   VbbHcc_tags_CutFlow_all_stack_5->GetXaxis()->SetBinLabel(2,"MET cut");
+   VbbHcc_tags_CutFlow_all_stack_5->GetXaxis()->SetBinLabel(3,"jet cuts");
+   VbbHcc_tags_CutFlow_all_stack_5->GetXaxis()->SetBinLabel(4,"b-tags");
+   VbbHcc_tags_CutFlow_all_stack_5->GetXaxis()->SetBinLabel(5,"c-tags");
+   VbbHcc_tags_CutFlow_all_stack_5->GetXaxis()->SetRange(1,5);
+   VbbHcc_tags_CutFlow_all_stack_5->GetXaxis()->SetLabelFont(42);
+   VbbHcc_tags_CutFlow_all_stack_5->GetXaxis()->SetTitleOffset(1);
+   VbbHcc_tags_CutFlow_all_stack_5->GetXaxis()->SetTitleFont(42);
+   VbbHcc_tags_CutFlow_all_stack_5->GetYaxis()->SetLabelFont(42);
+   VbbHcc_tags_CutFlow_all_stack_5->GetYaxis()->SetTitleFont(42);
+   VbbHcc_tags_CutFlow_all_stack_5->GetZaxis()->SetLabelFont(42);
+   VbbHcc_tags_CutFlow_all_stack_5->GetZaxis()->SetTitleOffset(1);
+   VbbHcc_tags_CutFlow_all_stack_5->GetZaxis()->SetTitleFont(42);
+   st->Add(VbbHcc_tags_CutFlow_all_stack_5,"");
+   
+   TH1D *VbbHcc_tags_CutFlow_all_stack_6 = new TH1D("VbbHcc_tags_CutFlow_all_stack_6","",5,0,5);
+   VbbHcc_tags_CutFlow_all_stack_6->SetBinContent(1,1.040597e+07);
+   VbbHcc_tags_CutFlow_all_stack_6->SetBinContent(2,1.024012e+07);
+   VbbHcc_tags_CutFlow_all_stack_6->SetBinContent(3,802475.9);
+   VbbHcc_tags_CutFlow_all_stack_6->SetBinContent(4,16152.58);
+   VbbHcc_tags_CutFlow_all_stack_6->SetBinContent(5,2749.696);
+   VbbHcc_tags_CutFlow_all_stack_6->SetBinError(1,1506.518);
+   VbbHcc_tags_CutFlow_all_stack_6->SetBinError(2,1494.324);
+   VbbHcc_tags_CutFlow_all_stack_6->SetBinError(3,418.6847);
+   VbbHcc_tags_CutFlow_all_stack_6->SetBinError(4,60.41664);
+   VbbHcc_tags_CutFlow_all_stack_6->SetBinError(5,24.83792);
+   VbbHcc_tags_CutFlow_all_stack_6->SetEntries(1.257811e+08);
+
+   ci = TColor::GetColor("#9933ff");
+   VbbHcc_tags_CutFlow_all_stack_6->SetFillColor(ci);
+
+   ci = TColor::GetColor("#000099");
+   VbbHcc_tags_CutFlow_all_stack_6->SetLineColor(ci);
+   VbbHcc_tags_CutFlow_all_stack_6->GetXaxis()->SetBinLabel(1,"Total");
+   VbbHcc_tags_CutFlow_all_stack_6->GetXaxis()->SetBinLabel(2,"MET cut");
+   VbbHcc_tags_CutFlow_all_stack_6->GetXaxis()->SetBinLabel(3,"jet cuts");
+   VbbHcc_tags_CutFlow_all_stack_6->GetXaxis()->SetBinLabel(4,"b-tags");
+   VbbHcc_tags_CutFlow_all_stack_6->GetXaxis()->SetBinLabel(5,"c-tags");
+   VbbHcc_tags_CutFlow_all_stack_6->GetXaxis()->SetRange(1,5);
+   VbbHcc_tags_CutFlow_all_stack_6->GetXaxis()->SetLabelFont(42);
+   VbbHcc_tags_CutFlow_all_stack_6->GetXaxis()->SetTitleOffset(1);
+   VbbHcc_tags_CutFlow_all_stack_6->GetXaxis()->SetTitleFont(42);
+   VbbHcc_tags_CutFlow_all_stack_6->GetYaxis()->SetLabelFont(42);
+   VbbHcc_tags_CutFlow_all_stack_6->GetYaxis()->SetTitleFont(42);
+   VbbHcc_tags_CutFlow_all_stack_6->GetZaxis()->SetLabelFont(42);
+   VbbHcc_tags_CutFlow_all_stack_6->GetZaxis()->SetTitleOffset(1);
+   VbbHcc_tags_CutFlow_all_stack_6->GetZaxis()->SetTitleFont(42);
+   st->Add(VbbHcc_tags_CutFlow_all_stack_6,"");
+   
+   TH1D *VbbHcc_tags_CutFlow_all_stack_7 = new TH1D("VbbHcc_tags_CutFlow_all_stack_7","",5,0,5);
+   VbbHcc_tags_CutFlow_all_stack_7->SetBinContent(1,3779875);
+   VbbHcc_tags_CutFlow_all_stack_7->SetBinContent(2,3692028);
+   VbbHcc_tags_CutFlow_all_stack_7->SetBinContent(3,337928.7);
+   VbbHcc_tags_CutFlow_all_stack_7->SetBinContent(4,33308.97);
+   VbbHcc_tags_CutFlow_all_stack_7->SetBinContent(5,5123.255);
+   VbbHcc_tags_CutFlow_all_stack_7->SetBinError(1,809.2464);
+   VbbHcc_tags_CutFlow_all_stack_7->SetBinError(2,799.7041);
+   VbbHcc_tags_CutFlow_all_stack_7->SetBinError(3,242.0616);
+   VbbHcc_tags_CutFlow_all_stack_7->SetBinError(4,76.88597);
+   VbbHcc_tags_CutFlow_all_stack_7->SetBinError(5,30.02458);
+   VbbHcc_tags_CutFlow_all_stack_7->SetEntries(5.924148e+07);
+
+   ci = TColor::GetColor("#3399ff");
+   VbbHcc_tags_CutFlow_all_stack_7->SetFillColor(ci);
+
+   ci = TColor::GetColor("#000099");
+   VbbHcc_tags_CutFlow_all_stack_7->SetLineColor(ci);
+   VbbHcc_tags_CutFlow_all_stack_7->GetXaxis()->SetBinLabel(1,"Total");
+   VbbHcc_tags_CutFlow_all_stack_7->GetXaxis()->SetBinLabel(2,"MET cut");
+   VbbHcc_tags_CutFlow_all_stack_7->GetXaxis()->SetBinLabel(3,"jet cuts");
+   VbbHcc_tags_CutFlow_all_stack_7->GetXaxis()->SetBinLabel(4,"b-tags");
+   VbbHcc_tags_CutFlow_all_stack_7->GetXaxis()->SetBinLabel(5,"c-tags");
+   VbbHcc_tags_CutFlow_all_stack_7->GetXaxis()->SetRange(1,5);
+   VbbHcc_tags_CutFlow_all_stack_7->GetXaxis()->SetLabelFont(42);
+   VbbHcc_tags_CutFlow_all_stack_7->GetXaxis()->SetTitleOffset(1);
+   VbbHcc_tags_CutFlow_all_stack_7->GetXaxis()->SetTitleFont(42);
+   VbbHcc_tags_CutFlow_all_stack_7->GetYaxis()->SetLabelFont(42);
+   VbbHcc_tags_CutFlow_all_stack_7->GetYaxis()->SetTitleFont(42);
+   VbbHcc_tags_CutFlow_all_stack_7->GetZaxis()->SetLabelFont(42);
+   VbbHcc_tags_CutFlow_all_stack_7->GetZaxis()->SetTitleOffset(1);
+   VbbHcc_tags_CutFlow_all_stack_7->GetZaxis()->SetTitleFont(42);
+   st->Add(VbbHcc_tags_CutFlow_all_stack_7,"");
+   
+   TH1D *VbbHcc_tags_CutFlow_all_stack_8 = new TH1D("VbbHcc_tags_CutFlow_all_stack_8","",5,0,5);
+   VbbHcc_tags_CutFlow_all_stack_8->SetBinContent(1,1668519);
+   VbbHcc_tags_CutFlow_all_stack_8->SetBinContent(2,1625297);
+   VbbHcc_tags_CutFlow_all_stack_8->SetBinContent(3,164723.8);
+   VbbHcc_tags_CutFlow_all_stack_8->SetBinContent(4,29660.21);
+   VbbHcc_tags_CutFlow_all_stack_8->SetBinContent(5,4813.947);
+   VbbHcc_tags_CutFlow_all_stack_8->SetBinError(1,674.7525);
+   VbbHcc_tags_CutFlow_all_stack_8->SetBinError(2,665.9257);
+   VbbHcc_tags_CutFlow_all_stack_8->SetBinError(3,212.2934);
+   VbbHcc_tags_CutFlow_all_stack_8->SetBinError(4,90.71792);
+   VbbHcc_tags_CutFlow_all_stack_8->SetBinError(5,36.58202);
+   VbbHcc_tags_CutFlow_all_stack_8->SetEntries(1.393926e+07);
+
+   ci = TColor::GetColor("#33ff99");
+   VbbHcc_tags_CutFlow_all_stack_8->SetFillColor(ci);
+
+   ci = TColor::GetColor("#000099");
+   VbbHcc_tags_CutFlow_all_stack_8->SetLineColor(ci);
+   VbbHcc_tags_CutFlow_all_stack_8->GetXaxis()->SetBinLabel(1,"Total");
+   VbbHcc_tags_CutFlow_all_stack_8->GetXaxis()->SetBinLabel(2,"MET cut");
+   VbbHcc_tags_CutFlow_all_stack_8->GetXaxis()->SetBinLabel(3,"jet cuts");
+   VbbHcc_tags_CutFlow_all_stack_8->GetXaxis()->SetBinLabel(4,"b-tags");
+   VbbHcc_tags_CutFlow_all_stack_8->GetXaxis()->SetBinLabel(5,"c-tags");
+   VbbHcc_tags_CutFlow_all_stack_8->GetXaxis()->SetRange(1,5);
+   VbbHcc_tags_CutFlow_all_stack_8->GetXaxis()->SetLabelFont(42);
+   VbbHcc_tags_CutFlow_all_stack_8->GetXaxis()->SetTitleOffset(1);
+   VbbHcc_tags_CutFlow_all_stack_8->GetXaxis()->SetTitleFont(42);
+   VbbHcc_tags_CutFlow_all_stack_8->GetYaxis()->SetLabelFont(42);
+   VbbHcc_tags_CutFlow_all_stack_8->GetYaxis()->SetTitleFont(42);
+   VbbHcc_tags_CutFlow_all_stack_8->GetZaxis()->SetLabelFont(42);
+   VbbHcc_tags_CutFlow_all_stack_8->GetZaxis()->SetTitleOffset(1);
+   VbbHcc_tags_CutFlow_all_stack_8->GetZaxis()->SetTitleFont(42);
+   st->Add(VbbHcc_tags_CutFlow_all_stack_8,"");
+   
+   TH1D *VbbHcc_tags_CutFlow_all_stack_9 = new TH1D("VbbHcc_tags_CutFlow_all_stack_9","",5,0,5);
+   VbbHcc_tags_CutFlow_all_stack_9->SetBinContent(1,49275.47);
+   VbbHcc_tags_CutFlow_all_stack_9->SetBinContent(2,49196.5);
+   VbbHcc_tags_CutFlow_all_stack_9->SetBinContent(3,15630.09);
+   VbbHcc_tags_CutFlow_all_stack_9->SetBinContent(4,9316.677);
+   VbbHcc_tags_CutFlow_all_stack_9->SetBinContent(5,1667.183);
+   VbbHcc_tags_CutFlow_all_stack_9->SetBinError(1,9.899954);
+   VbbHcc_tags_CutFlow_all_stack_9->SetBinError(2,9.892107);
+   VbbHcc_tags_CutFlow_all_stack_9->SetBinError(3,5.472368);
+   VbbHcc_tags_CutFlow_all_stack_9->SetBinError(4,4.24217);
+   VbbHcc_tags_CutFlow_all_stack_9->SetBinError(5,1.789036);
+   VbbHcc_tags_CutFlow_all_stack_9->SetEntries(7.337686e+07);
+
+   ci = TColor::GetColor("#cccc00");
+   VbbHcc_tags_CutFlow_all_stack_9->SetFillColor(ci);
+
+   ci = TColor::GetColor("#000099");
+   VbbHcc_tags_CutFlow_all_stack_9->SetLineColor(ci);
+   VbbHcc_tags_CutFlow_all_stack_9->GetXaxis()->SetBinLabel(1,"Total");
+   VbbHcc_tags_CutFlow_all_stack_9->GetXaxis()->SetBinLabel(2,"MET cut");
+   VbbHcc_tags_CutFlow_all_stack_9->GetXaxis()->SetBinLabel(3,"jet cuts");
+   VbbHcc_tags_CutFlow_all_stack_9->GetXaxis()->SetBinLabel(4,"b-tags");
+   VbbHcc_tags_CutFlow_all_stack_9->GetXaxis()->SetBinLabel(5,"c-tags");
+   VbbHcc_tags_CutFlow_all_stack_9->GetXaxis()->SetRange(1,5);
+   VbbHcc_tags_CutFlow_all_stack_9->GetXaxis()->SetLabelFont(42);
+   VbbHcc_tags_CutFlow_all_stack_9->GetXaxis()->SetTitleOffset(1);
+   VbbHcc_tags_CutFlow_all_stack_9->GetXaxis()->SetTitleFont(42);
+   VbbHcc_tags_CutFlow_all_stack_9->GetYaxis()->SetLabelFont(42);
+   VbbHcc_tags_CutFlow_all_stack_9->GetYaxis()->SetTitleFont(42);
+   VbbHcc_tags_CutFlow_all_stack_9->GetZaxis()->SetLabelFont(42);
+   VbbHcc_tags_CutFlow_all_stack_9->GetZaxis()->SetTitleOffset(1);
+   VbbHcc_tags_CutFlow_all_stack_9->GetZaxis()->SetTitleFont(42);
+   st->Add(VbbHcc_tags_CutFlow_all_stack_9,"");
+   
+   TH1D *VbbHcc_tags_CutFlow_all_stack_10 = new TH1D("VbbHcc_tags_CutFlow_all_stack_10","",5,0,5);
+   VbbHcc_tags_CutFlow_all_stack_10->SetBinContent(1,6844.082);
+   VbbHcc_tags_CutFlow_all_stack_10->SetBinContent(2,6813.466);
+   VbbHcc_tags_CutFlow_all_stack_10->SetBinContent(3,4219.353);
+   VbbHcc_tags_CutFlow_all_stack_10->SetBinContent(4,2368.868);
+   VbbHcc_tags_CutFlow_all_stack_10->SetBinContent(5,497.1062);
+   VbbHcc_tags_CutFlow_all_stack_10->SetBinError(1,1.810386);
+   VbbHcc_tags_CutFlow_all_stack_10->SetBinError(2,1.806333);
+   VbbHcc_tags_CutFlow_all_stack_10->SetBinError(3,1.421467);
+   VbbHcc_tags_CutFlow_all_stack_10->SetBinError(4,1.065085);
+   VbbHcc_tags_CutFlow_all_stack_10->SetBinError(5,0.4879084);
+   VbbHcc_tags_CutFlow_all_stack_10->SetEntries(4.546163e+07);
+
+   ci = TColor::GetColor("#0000cc");
+   VbbHcc_tags_CutFlow_all_stack_10->SetFillColor(ci);
+
+   ci = TColor::GetColor("#000099");
+   VbbHcc_tags_CutFlow_all_stack_10->SetLineColor(ci);
+   VbbHcc_tags_CutFlow_all_stack_10->GetXaxis()->SetBinLabel(1,"Total");
+   VbbHcc_tags_CutFlow_all_stack_10->GetXaxis()->SetBinLabel(2,"MET cut");
+   VbbHcc_tags_CutFlow_all_stack_10->GetXaxis()->SetBinLabel(3,"jet cuts");
+   VbbHcc_tags_CutFlow_all_stack_10->GetXaxis()->SetBinLabel(4,"b-tags");
+   VbbHcc_tags_CutFlow_all_stack_10->GetXaxis()->SetBinLabel(5,"c-tags");
+   VbbHcc_tags_CutFlow_all_stack_10->GetXaxis()->SetRange(1,5);
+   VbbHcc_tags_CutFlow_all_stack_10->GetXaxis()->SetLabelFont(42);
+   VbbHcc_tags_CutFlow_all_stack_10->GetXaxis()->SetTitleOffset(1);
+   VbbHcc_tags_CutFlow_all_stack_10->GetXaxis()->SetTitleFont(42);
+   VbbHcc_tags_CutFlow_all_stack_10->GetYaxis()->SetLabelFont(42);
+   VbbHcc_tags_CutFlow_all_stack_10->GetYaxis()->SetTitleFont(42);
+   VbbHcc_tags_CutFlow_all_stack_10->GetZaxis()->SetLabelFont(42);
+   VbbHcc_tags_CutFlow_all_stack_10->GetZaxis()->SetTitleOffset(1);
+   VbbHcc_tags_CutFlow_all_stack_10->GetZaxis()->SetTitleFont(42);
+   st->Add(VbbHcc_tags_CutFlow_all_stack_10,"");
+   
+   TH1D *VbbHcc_tags_CutFlow_all_stack_11 = new TH1D("VbbHcc_tags_CutFlow_all_stack_11","",5,0,5);
+   VbbHcc_tags_CutFlow_all_stack_11->SetBinContent(1,2447.253);
+   VbbHcc_tags_CutFlow_all_stack_11->SetBinContent(2,2444.728);
+   VbbHcc_tags_CutFlow_all_stack_11->SetBinContent(3,855.7293);
+   VbbHcc_tags_CutFlow_all_stack_11->SetBinContent(4,144.6798);
+   VbbHcc_tags_CutFlow_all_stack_11->SetBinContent(5,29.72259);
+   VbbHcc_tags_CutFlow_all_stack_11->SetBinError(1,2.204878);
+   VbbHcc_tags_CutFlow_all_stack_11->SetBinError(2,2.20377);
+   VbbHcc_tags_CutFlow_all_stack_11->SetBinError(3,1.281492);
+   VbbHcc_tags_CutFlow_all_stack_11->SetBinError(4,0.5262321);
+   VbbHcc_tags_CutFlow_all_stack_11->SetBinError(5,0.2404219);
+   VbbHcc_tags_CutFlow_all_stack_11->SetEntries(3501465);
+
+   ci = TColor::GetColor("#cc0000");
+   VbbHcc_tags_CutFlow_all_stack_11->SetFillColor(ci);
+
+   ci = TColor::GetColor("#000099");
+   VbbHcc_tags_CutFlow_all_stack_11->SetLineColor(ci);
+   VbbHcc_tags_CutFlow_all_stack_11->GetXaxis()->SetBinLabel(1,"Total");
+   VbbHcc_tags_CutFlow_all_stack_11->GetXaxis()->SetBinLabel(2,"MET cut");
+   VbbHcc_tags_CutFlow_all_stack_11->GetXaxis()->SetBinLabel(3,"jet cuts");
+   VbbHcc_tags_CutFlow_all_stack_11->GetXaxis()->SetBinLabel(4,"b-tags");
+   VbbHcc_tags_CutFlow_all_stack_11->GetXaxis()->SetBinLabel(5,"c-tags");
+   VbbHcc_tags_CutFlow_all_stack_11->GetXaxis()->SetRange(1,5);
+   VbbHcc_tags_CutFlow_all_stack_11->GetXaxis()->SetLabelFont(42);
+   VbbHcc_tags_CutFlow_all_stack_11->GetXaxis()->SetTitleOffset(1);
+   VbbHcc_tags_CutFlow_all_stack_11->GetXaxis()->SetTitleFont(42);
+   VbbHcc_tags_CutFlow_all_stack_11->GetYaxis()->SetLabelFont(42);
+   VbbHcc_tags_CutFlow_all_stack_11->GetYaxis()->SetTitleFont(42);
+   VbbHcc_tags_CutFlow_all_stack_11->GetZaxis()->SetLabelFont(42);
+   VbbHcc_tags_CutFlow_all_stack_11->GetZaxis()->SetTitleOffset(1);
+   VbbHcc_tags_CutFlow_all_stack_11->GetZaxis()->SetTitleFont(42);
+   st->Add(VbbHcc_tags_CutFlow_all_stack_11,"");
+   
+   TH1D *VbbHcc_tags_CutFlow_all_stack_12 = new TH1D("VbbHcc_tags_CutFlow_all_stack_12","",5,0,5);
+   VbbHcc_tags_CutFlow_all_stack_12->SetBinContent(1,340.0105);
+   VbbHcc_tags_CutFlow_all_stack_12->SetBinContent(2,339.0652);
+   VbbHcc_tags_CutFlow_all_stack_12->SetBinContent(3,221.9206);
+   VbbHcc_tags_CutFlow_all_stack_12->SetBinContent(4,41.58625);
+   VbbHcc_tags_CutFlow_all_stack_12->SetBinContent(5,9.385635);
+   VbbHcc_tags_CutFlow_all_stack_12->SetBinError(1,0.287642);
+   VbbHcc_tags_CutFlow_all_stack_12->SetBinError(2,0.2872329);
+   VbbHcc_tags_CutFlow_all_stack_12->SetBinError(3,0.2322937);
+   VbbHcc_tags_CutFlow_all_stack_12->SetBinError(4,0.1004389);
+   VbbHcc_tags_CutFlow_all_stack_12->SetBinError(5,0.04789746);
+   VbbHcc_tags_CutFlow_all_stack_12->SetEntries(4086430);
+
+   ci = TColor::GetColor("#00cc00");
+   VbbHcc_tags_CutFlow_all_stack_12->SetFillColor(ci);
+
+   ci = TColor::GetColor("#000099");
+   VbbHcc_tags_CutFlow_all_stack_12->SetLineColor(ci);
+   VbbHcc_tags_CutFlow_all_stack_12->GetXaxis()->SetBinLabel(1,"Total");
+   VbbHcc_tags_CutFlow_all_stack_12->GetXaxis()->SetBinLabel(2,"MET cut");
+   VbbHcc_tags_CutFlow_all_stack_12->GetXaxis()->SetBinLabel(3,"jet cuts");
+   VbbHcc_tags_CutFlow_all_stack_12->GetXaxis()->SetBinLabel(4,"b-tags");
+   VbbHcc_tags_CutFlow_all_stack_12->GetXaxis()->SetBinLabel(5,"c-tags");
+   VbbHcc_tags_CutFlow_all_stack_12->GetXaxis()->SetRange(1,5);
+   VbbHcc_tags_CutFlow_all_stack_12->GetXaxis()->SetLabelFont(42);
+   VbbHcc_tags_CutFlow_all_stack_12->GetXaxis()->SetTitleOffset(1);
+   VbbHcc_tags_CutFlow_all_stack_12->GetXaxis()->SetTitleFont(42);
+   VbbHcc_tags_CutFlow_all_stack_12->GetYaxis()->SetLabelFont(42);
+   VbbHcc_tags_CutFlow_all_stack_12->GetYaxis()->SetTitleFont(42);
+   VbbHcc_tags_CutFlow_all_stack_12->GetZaxis()->SetLabelFont(42);
+   VbbHcc_tags_CutFlow_all_stack_12->GetZaxis()->SetTitleOffset(1);
+   VbbHcc_tags_CutFlow_all_stack_12->GetZaxis()->SetTitleFont(42);
+   st->Add(VbbHcc_tags_CutFlow_all_stack_12,"");
+   st->Draw("hist");
+   
+   TLegend *leg = new TLegend(0.48,0.62,0.85,0.87,NULL,"brNDC");
+   leg->SetBorderSize(0);
+   leg->SetTextSize(0.035);
+   leg->SetLineColor(1);
+   leg->SetLineStyle(1);
+   leg->SetLineWidth(2);
+   leg->SetFillColor(0);
+   leg->SetFillStyle(1001);
+   TLegendEntry *entry=leg->AddEntry("VbbHcc_tags_CutFlow_all_stack_12","ggZHcc","F");
+
+   ci = TColor::GetColor("#00cc00");
+   entry->SetFillColor(ci);
+   entry->SetFillStyle(1001);
+
+   ci = TColor::GetColor("#000099");
+   entry->SetLineColor(ci);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(42);
+   entry=leg->AddEntry("VbbHcc_tags_CutFlow_all_stack_11","ZHcc","F");
+
+   ci = TColor::GetColor("#cc0000");
+   entry->SetFillColor(ci);
+   entry->SetFillStyle(1001);
+
+   ci = TColor::GetColor("#000099");
+   entry->SetLineColor(ci);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(42);
+   entry=leg->AddEntry("VbbHcc_tags_CutFlow_all_stack_10","ggZHbb","F");
+
+   ci = TColor::GetColor("#0000cc");
+   entry->SetFillColor(ci);
+   entry->SetFillStyle(1001);
+
+   ci = TColor::GetColor("#000099");
+   entry->SetLineColor(ci);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(42);
+   entry=leg->AddEntry("VbbHcc_tags_CutFlow_all_stack_9","ZHbb","F");
+
+   ci = TColor::GetColor("#cccc00");
+   entry->SetFillColor(ci);
+   entry->SetFillStyle(1001);
+
+   ci = TColor::GetColor("#000099");
+   entry->SetLineColor(ci);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(42);
+   entry=leg->AddEntry("VbbHcc_tags_CutFlow_all_stack_8","ZZ","F");
+
+   ci = TColor::GetColor("#33ff99");
+   entry->SetFillColor(ci);
+   entry->SetFillStyle(1001);
+
+   ci = TColor::GetColor("#000099");
+   entry->SetLineColor(ci);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(42);
+   entry=leg->AddEntry("VbbHcc_tags_CutFlow_all_stack_7","WZ","F");
+
+   ci = TColor::GetColor("#3399ff");
+   entry->SetFillColor(ci);
+   entry->SetFillStyle(1001);
+
+   ci = TColor::GetColor("#000099");
+   entry->SetLineColor(ci);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(42);
+   entry=leg->AddEntry("VbbHcc_tags_CutFlow_all_stack_6","WW","F");
+
+   ci = TColor::GetColor("#9933ff");
+   entry->SetFillColor(ci);
+   entry->SetFillStyle(1001);
+
+   ci = TColor::GetColor("#000099");
+   entry->SetLineColor(ci);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(42);
+   entry=leg->AddEntry("VbbHcc_tags_CutFlow_all_stack_5","W + jets","F");
+
+   ci = TColor::GetColor("#ff99cc");
+   entry->SetFillColor(ci);
+   entry->SetFillStyle(1001);
+
+   ci = TColor::GetColor("#000099");
+   entry->SetLineColor(ci);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(42);
+   entry=leg->AddEntry("VbbHcc_tags_CutFlow_all_stack_4","Z + jets","F");
+
+   ci = TColor::GetColor("#00cccc");
+   entry->SetFillColor(ci);
+   entry->SetFillStyle(1001);
+
+   ci = TColor::GetColor("#000099");
+   entry->SetLineColor(ci);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(42);
+   entry=leg->AddEntry("VbbHcc_tags_CutFlow_all_stack_3","t#bar{t}","F");
+
+   ci = TColor::GetColor("#cc00cc");
+   entry->SetFillColor(ci);
+   entry->SetFillStyle(1001);
+
+   ci = TColor::GetColor("#000099");
+   entry->SetLineColor(ci);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(42);
+   entry=leg->AddEntry("VbbHcc_tags_CutFlow_all_stack_2","Single Top","F");
+
+   ci = TColor::GetColor("#660066");
+   entry->SetFillColor(ci);
+   entry->SetFillStyle(1001);
+
+   ci = TColor::GetColor("#000099");
+   entry->SetLineColor(ci);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(42);
+   entry=leg->AddEntry("VbbHcc_tags_CutFlow_all_stack_1","QCD","F");
+
+   ci = TColor::GetColor("#ff6600");
+   entry->SetFillColor(ci);
+   entry->SetFillStyle(1001);
+
+   ci = TColor::GetColor("#000099");
+   entry->SetLineColor(ci);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(42);
+   leg->Draw();
+   TLatex *   tex = new TLatex(0.25,0.937775,"CMS Work in Progress #sqrt{s} = 13 TeV, 138 fb^{-1}");
+tex->SetNDC();
+   tex->SetTextFont(42);
+   tex->SetTextSize(0.04);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   CutFlow_tags_all->Modified();
+   CutFlow_tags_all->cd();
+   CutFlow_tags_all->SetSelected(CutFlow_tags_all);
+}

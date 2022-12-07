@@ -57,6 +57,10 @@ def getHist(pN, sample_name, fH, lS):
 ###############################
 years = ['16', '17', '18']
 regions = ['tags', 'algo', 'both', 'alljet', 'seljet']
+regions = ['tags', 'algo', 'both']
+#regions = ['jets', 'jets_all']
+plotCat = 'VbbHcc_all'
+useLogY = False
 summary_control_plot_name = 'summary_control_plot_zjet_zHFjet.txt'
 plotFolder = '../full_results/'
 
@@ -133,7 +137,7 @@ nums = {}
 for r in regions:
   
   nums[r] = {}
-  plotNames = cfg.get('Plots', 'VbbHcc_plot').split(',')
+  plotNames = cfg.get('Plots', plotCat + '_plot').split(',')
   
   for plN in plotNames:
     hN = 'VbbHcc_' + r + '_' + plN
@@ -189,7 +193,7 @@ for r in regions:
         'WW', 'WZ', 'ZZ', 'ZHbb', 'ggZHbb', 'ZHcc', 'ggZHcc'
       ]
       
-      logY = False
+      logY = useLogY
       if 'CutFlow' in plN: logY = True
       makeStackPlot(plots_process, plotNames_process, plN + '_' + r + '_' + y,
         plotFolder + '/20' + y + '_QCDv9' + '/' + r + '/', xA_title, xA_range, 'MC unc. (stat.)',
@@ -247,7 +251,7 @@ for r in regions:
       'WW', 'WZ', 'ZZ', 'ZHbb', 'ggZHbb', 'ZHcc', 'ggZHcc'
     ]
     
-    logY = False
+    logY = useLogY
     if 'CutFlow' in plN: logY=True
     makeStackPlot(plots_process, plotNames_process, plN + '_'+ r + '_all', 
       plotFolder + 'All_QCDv9' + '/' + r + '/', xA_title, xA_range, 'MC. unc. (stat.)',
