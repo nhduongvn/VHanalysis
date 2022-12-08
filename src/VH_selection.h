@@ -69,6 +69,9 @@ class VH_selection : public Selector {
     TH1D* h_dR_bbjet;
     TH1D* h_dPhi_ccjet;
     TH1D* h_dPhi_bbjet;
+
+    TH1D* h_mistag_leading;
+    TH1D* h_mistag_all;
 };
 
 #endif

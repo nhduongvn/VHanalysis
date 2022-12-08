@@ -309,6 +309,23 @@ class VHPlots
       h_dH = new TH1D(name + "_dH", "", NBIN_DH, X_DH[0], X_DH[1]);
       h_MH_v_MZ = new TH2D(name + "_MH_v_MZ", "", 200, 0, 200, 200, 0, 200);
       h_MH_v_MZ_all = new TH2D(name + "_MH_v_MZ_all", "", 200, 0, 200, 200, 0, 200);
+
+      h_MZ_v_flav = new TH2D(name + "_MZ_v_flav", "", 20, 0, 200, 15, 0, 15);
+      h_dR_v_flav = new TH2D(name + "_dR_v_flav", "", 20, 0, 20, 15, 0, 15);
+    };
+
+    // Methods - Fill the histograms related to checking for g->bb
+    void FillGluCheck(ZObj& Z, float w=1.) {
+      
+      // Get the values we're interested in.
+      int sumFlav = Z.getJet(0).m_flav + Z.getJet(1).m_flav;
+      int dR = Z.DeltaR();
+      int mass = Z.M();
+  
+      // Fill the plots
+      h_MZ_v_flav->Fill(mass, sumFlav, w);
+      h_dR_v_flav->Fill(dR, sumFlav, w);
+      
     };
 
     // Methods - Fill the histograms related to Z & H objects
@@ -372,6 +389,9 @@ class VHPlots
       histolist.push_back(h_MH_v_MZ);
       histolist.push_back(h_MH_v_MZ_all);
 
+      histolist.push_back(h_MZ_v_flav);
+      histolist.push_back(h_dR_v_flav);
+
       return histolist;
     };
   
@@ -398,6 +418,8 @@ class VHPlots
     TH2D* h_MH_v_MZ;
     TH2D* h_MH_v_MZ_all;
 
+    TH2D* h_MZ_v_flav;
+    TH2D* h_dR_v_flav;
 };
 
 /******************************************************************************

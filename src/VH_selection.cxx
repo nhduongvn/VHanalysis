@@ -270,6 +270,16 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_dR_bbjet = new TH1D("bbjet_dR", "", 100, 0, 10);
   h_dPhi_bbjet = new TH1D("bbjet_dPhi", "", 240, 0, 4.0); 
 
+  h_mistag_leading = new TH1D("mistag_leading", "", 3, 0, 3);
+  h_mistag_leading->GetXaxis()->SetBinLabel(1, "Total");
+  h_mistag_leading->GetXaxis()->SetBinLabel(2, "mistag");
+  h_mistag_leading->GetXaxis()->SetBinLabel(3, "proper");
+  h_mistag_all = new TH1D("mistag_all", "", 3, 0, 3);
+  h_mistag_all->GetXaxis()->SetBinLabel(1, "Total");
+  h_mistag_all->GetXaxis()->SetBinLabel(2, "mistag");
+  h_mistag_all->GetXaxis()->SetBinLabel(3, "proper");
+
+
   // Add them to the return list so we can use them in our analyses.
   r->GetOutputList()->Add(h_evt);
 
@@ -315,6 +325,9 @@ void VH_selection::SlaveBegin(Reader *r) {
   r->GetOutputList()->Add(h_dPhi_ccjet);
   r->GetOutputList()->Add(h_dR_bbjet);
   r->GetOutputList()->Add(h_dPhi_bbjet);
+
+  r->GetOutputList()->Add(h_mistag_leading);
+  r->GetOutputList()->Add(h_mistag_all);
 
 }// end SlaveBegin
 
@@ -724,6 +737,39 @@ void VH_selection::Process(Reader* r) {
     float desired_CvB = CUTS.Get<float>("CvB_mediumWP");
 
     /**************************************************************************
+    * MISTAG RATE ANALYSIS                                                    *
+    **************************************************************************/
+    
+#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
+    std::vector<JetObj> jetlistCopy; jetlistCopy = analysis_jets;
+    std::sort(jetlistCopy.begin(), jetlistCopy.end(), JetObj::JetCompPt());
+    
+    bool found_leading = false;
+    for (int i = 0; i < jetlistCopy.size(); ++i) {
+
+      // check the leading light jet (if we haven't yet)
+      if (!found_leading) {
+        JetObj leadingJet = jetlistCopy[i];
+        if (leadingJet.m_flav < 4) {
+          found_leading = true;
+          h_mistag_leading->Fill(0.5, evtW);
+          if (leadingJet.m_deepCSV > desired_BvL)
+            h_mistag_leading->Fill(1.5, evtW);
+          else h_mistag_leading->Fill(2.5, evtW);
+        }        
+      }//end-leading
+
+      // Check all the light jets we have
+      if (jetlistCopy[i].m_flav < 4) {
+        h_mistag_all->Fill(0.5, evtW);
+        if (jetlistCopy[i].m_deepCSV > desired_BvL)
+          h_mistag_all->Fill(1.5, evtW);
+        else h_mistag_all->Fill(2.5, evtW);
+      }
+    }
+#endif
+
+    /**************************************************************************
     * JET ANALYSIS - 4B vs 2b2c                                               *
     **************************************************************************/
     
@@ -787,7 +833,11 @@ void VH_selection::Process(Reader* r) {
         h_evt_tags_cutflow->Fill(4.5, genWeight); // pass c-cuts 
         HObj H2(cjets2);
 
-        h_VH_tags->FillVH(Z2, H2, evtW);          
+        h_VH_tags->FillVH(Z2, H2, evtW);         
+
+#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
+        h_VH_tags->FillGluCheck(Z2, evtW);
+#endif 
 
       }//end-c-cut
 
@@ -845,6 +895,11 @@ void VH_selection::Process(Reader* r) {
 
         // Fill our histograms appropriately.
         h_VH_algo->FillVH(Z3, H3, evtW);
+
+#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
+        h_VH_algo->FillGluCheck(Z3, evtW);
+#endif
+
 
       }//end-c-cut
     }//end-b-cut 
@@ -950,6 +1005,10 @@ void VH_selection::Process(Reader* r) {
 
       // Fill our histograms appropriately.
       h_VH_both->FillVH(Z4, H4, evtW);
+
+#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
+        h_VH_both->FillGluCheck(Z4, evtW);
+#endif
 
     }//end-tagging
 
