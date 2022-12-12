@@ -363,7 +363,9 @@ lumi = '35.9'):
     if logBin < minY: minY = logBin
   
   if logY:
-    allStack.SetMinimum(pow(10,minY - 3))
+    if minY <= 3: power = 1
+    else: power = minY - 3
+    allStack.SetMinimum(pow(10,power))
   #allStack.SetMaximum(pow(10,12))
   #allStack.SetMinimum(pow(10,11))
   

@@ -4,7 +4,7 @@
 void Z_dR_both_16()
 {
 //=========Macro generated from canvas: Z_dR_both_16/Z_dR_both_16
-//=========  (Wed Dec  7 11:48:27 2022) by ROOT version 6.26/06
+//=========  (Fri Dec  9 13:00:02 2022) by ROOT version 6.26/06
    TCanvas *Z_dR_both_16 = new TCanvas("Z_dR_both_16", "Z_dR_both_16",0,0,600,600);
    Z_dR_both_16->SetHighLightColor(2);
    Z_dR_both_16->Range(-2.183529,-300789.4,11.71633,2205789);

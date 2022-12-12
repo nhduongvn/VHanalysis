@@ -4,7 +4,7 @@
 void H_pt_both_18()
 {
 //=========Macro generated from canvas: H_pt_both_18/H_pt_both_18
-//=========  (Wed Dec  7 11:48:27 2022) by ROOT version 6.26/06
+//=========  (Fri Dec  9 13:00:02 2022) by ROOT version 6.26/06
    TCanvas *H_pt_both_18 = new TCanvas("H_pt_both_18", "H_pt_both_18",0,0,600,600);
    H_pt_both_18->SetHighLightColor(2);
    H_pt_both_18->Range(37.97653,-3140759,1705.96,2.303223e+07);

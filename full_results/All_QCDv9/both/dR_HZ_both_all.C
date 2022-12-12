@@ -4,7 +4,7 @@
 void dR_HZ_both_all()
 {
 //=========Macro generated from canvas: dR_HZ_both_all/dR_HZ_both_all
-//=========  (Wed Dec  7 11:48:28 2022) by ROOT version 6.26/06
+//=========  (Fri Dec  9 13:00:03 2022) by ROOT version 6.26/06
    TCanvas *dR_HZ_both_all = new TCanvas("dR_HZ_both_all", "dR_HZ_both_all",0,0,600,600);
    dR_HZ_both_all->SetHighLightColor(2);
    dR_HZ_both_all->Range(-2.183529,-1433478,11.71633,1.051218e+07);

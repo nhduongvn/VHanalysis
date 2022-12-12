@@ -4,7 +4,7 @@
 void CutFlow_both_all_logY()
 {
 //=========Macro generated from canvas: CutFlow_both_all/CutFlow_both_all
-//=========  (Wed Dec  7 11:48:27 2022) by ROOT version 6.26/06
+//=========  (Fri Dec  9 13:00:01 2022) by ROOT version 6.26/06
    TCanvas *CutFlow_both_all = new TCanvas("CutFlow_both_all", "CutFlow_both_all",0,0,600,600);
    CutFlow_both_all->SetHighLightColor(2);
    CutFlow_both_all->Range(-1.091764,5.651691,5.858166,14.56269);

@@ -58,13 +58,18 @@ def getHist(pN, sample_name, fH, lS):
 years = ['16', '17', '18']
 regions = ['tags', 'algo', 'both', 'alljet', 'seljet']
 regions = ['tags', 'algo', 'both']
-#regions = ['jets', 'jets_all']
-plotCat = 'VbbHcc_all'
+regions = ['jets', 'jets_all']
+#regions = ['all']
+plotCat = 'VbbHcc_jet'
 useLogY = False
 summary_control_plot_name = 'summary_control_plot_zjet_zHFjet.txt'
 plotFolder = '../full_results/'
 
+## Normal List of Files we want
 ss = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ', 'ZH_HToBB_ZToQQ', 'ggZH_HToBB_ZToQQ', 'QCD_HT200to300_v9', 'WJetsToQQ_HT-400to600', 'WJetsToLNu_HT-400to600', 'ZJetsToQQ_HT-400to600', 'TTToHadronic', 'TTToSemiLeptonic', 'TTTo2L2Nu', 'ST_t-channel_antitop', 'ST_t-channel_top', 'ST_tW-channel_antitop', 'ST_tW-channel_top', 'WW', 'WZ', 'ZZ']
+
+## List with extra QCD files
+ss = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ', 'ZH_HToBB_ZToQQ', 'ggZH_HToBB_ZToQQ', 'QCD_HT200to300_v9', 'QCD_HT300to500_v9','QCD_HT500to700_v9','QCD_HT700to1000_v9','QCD_HT1000to1500_v9','QCD_HT1500to2000_v9','QCD_HT2000toInf_v9', 'WJetsToQQ_HT-400to600', 'WJetsToLNu_HT-400to600', 'ZJetsToQQ_HT-400to600', 'TTToHadronic', 'TTToSemiLeptonic', 'TTTo2L2Nu', 'ST_t-channel_antitop', 'ST_t-channel_top', 'ST_tW-channel_antitop', 'ST_tW-channel_top', 'WW', 'WZ', 'ZZ']
 
 ################################
 ## Do not edit below this point
@@ -140,14 +145,18 @@ for r in regions:
   plotNames = cfg.get('Plots', plotCat + '_plot').split(',')
   
   for plN in plotNames:
-    hN = 'VbbHcc_' + r + '_' + plN
+    if r != '':
+      hN = 'VbbHcc_' + r + '_' + plN
+    else:
+      hN = 'VbbHcc_' + plN
     
     ## Get all the desired plots
     hZHcc = getHist(hN,['ZH_HToCC_ZToQQ'],fHist,lumiScales)
     hZHbb = getHist(hN,['ZH_HToBB_ZToQQ'],fHist,lumiScales)
     hggZHcc = getHist(hN,['ggZH_HToCC_ZToQQ'],fHist,lumiScales)
     hggZHbb = getHist(hN,['ggZH_HToBB_ZToQQ'],fHist,lumiScales)
-    hQCD = getHist(hN, ['QCD_HT200to300_v9'], fHist, lumiScales)
+    #hQCD = getHist(hN, ['QCD_HT200to300_v9'], fHist, lumiScales)
+    hQCD = getHist(hN, ['QCD_HT200to300_v9', 'QCD_HT300to500_v9','QCD_HT500to700_v9','QCD_HT700to1000_v9','QCD_HT1000to1500_v9','QCD_HT1500to2000_v9','QCD_HT2000toInf_v9'], fHist, lumiScales)
     hWJ = getHist(hN, ['WJetsToQQ_HT-400to600'], fHist, lumiScales)
     hZJ = getHist(hN, ['ZJetsToQQ_HT-400to600'], fHist, lumiScales)
     hTT = getHist(hN,['TTToHadronic','TTToSemiLeptonic','TTTo2L2Nu'],fHist,lumiScales)
