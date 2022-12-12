@@ -279,7 +279,6 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_mistag_all->GetXaxis()->SetBinLabel(2, "mistag");
   h_mistag_all->GetXaxis()->SetBinLabel(3, "proper");
 
-
   // Add them to the return list so we can use them in our analyses.
   r->GetOutputList()->Add(h_evt);
 
@@ -768,6 +767,14 @@ void VH_selection::Process(Reader* r) {
       }
     }
 #endif
+
+    /**************************************************************************
+    * LEADING pT ANALYSIS                                                     *
+    **************************************************************************/
+    
+    for (int i = 0; i < jetlistCopy.size(); ++i) {
+
+    }
 
     /**************************************************************************
     * JET ANALYSIS - 4B vs 2b2c                                               *
