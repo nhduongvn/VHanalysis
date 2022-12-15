@@ -109,6 +109,7 @@ def makePlot(plot, plotName, canvasName, plotDir, xAxisTitle, xAxisRange,
   fullpath = plotDir + '/' + canvasName + extraName
   c.Print(fullpath + '.png')
   c.Print(fullpath + '.pdf')
+  c.Print(fullpath + '.C')
   return c
 
 ###############################################################################
@@ -174,6 +175,7 @@ def makeOverlapPlot(plots, plotNames, canvasName, plotDir, xAxisTitle, xAxisRang
   fullpath = preBit + plotDir + '/' + canvasName + extraName
   c.Print(fullpath + '.png')
   c.Print(fullpath + '.pdf')
+  c.Print(fullpath + '.C')
   return c
 
 ###############################################################################
@@ -239,7 +241,7 @@ def makeRatioPlots(plots, plotNames, canvasName, plotDir, xAxisTitle, xAxisRange
   if normalize: preBit = 'NORM_'
   c.Print(preBit + plotDir + '/' + cName + extraName + '.png')
   c.Print(preBit + plotDir + '/' + cName + extraName + '.pdf')
-  
+  c.Print(preBit + plotDir + '/' + cName + extraName + '.C')
   return c
 
 ###############################################################################

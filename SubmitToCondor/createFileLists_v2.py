@@ -6,7 +6,7 @@ import subprocess
 #########################################################
 samples_json = "../Dataset_lists//datasets_NANOAODv9_MC.txt"
 
-outDir = '../FileLists_tmp/'
+outDir = '../FileLists/'
 os.system('mkdir ' + outDir)
 
 samples_input = []

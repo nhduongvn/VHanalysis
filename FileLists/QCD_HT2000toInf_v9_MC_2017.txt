@@ -25,7 +25,7 @@ root:://cmsxrootd.fnal.gov///store/mc/RunIISummer20UL17NanoAODv9/QCD_HT2000toInf
 root:://cmsxrootd.fnal.gov///store/mc/RunIISummer20UL17NanoAODv9/QCD_HT2000toInf_TuneCP5_13TeV-madgraphMLM-pythia8/NANOAODSIM/106X_mc2017_realistic_v9-v1/70000/05D0DEC9-D6ED-4744-A0FE-B6D2D9B4CA72.root
 root:://cmsxrootd.fnal.gov///store/mc/RunIISummer20UL17NanoAODv9/QCD_HT2000toInf_TuneCP5_13TeV-madgraphMLM-pythia8/NANOAODSIM/106X_mc2017_realistic_v9-v1/70000/F9161586-C1DE-D04E-88B3-BDF122CB0776.root
 root:://cmsxrootd.fnal.gov///store/mc/RunIISummer20UL17NanoAODv9/QCD_HT2000toInf_TuneCP5_13TeV-madgraphMLM-pythia8/NANOAODSIM/106X_mc2017_realistic_v9-v1/70000/B833A17D-BDED-7145-9ABD-AE3773FFB5B3.root
-root:://cmsxrootd.fnal.gov///store/mc/RunIISummer20UL17NanoAODv9/QCD_HT2000toInf_TuneCP5_13TeV-madgraphMLM-pythia8/NANOAODSIM/106X_mc2017_realistic_v9-v1/70000/C3762BE3-3A9D-7A4F-9C52-9F9AB556A361.root
-root:://cmsxrootd.fnal.gov///store/mc/RunIISummer20UL17NanoAODv9/QCD_HT2000toInf_TuneCP5_13TeV-madgraphMLM-pythia8/NANOAODSIM/106X_mc2017_realistic_v9-v1/70000/7DCDBC10-6F21-F74A-A56E-CD348EBF08BB.root
-root:://cmsxrootd.fnal.gov///store/mc/RunIISummer20UL17NanoAODv9/QCD_HT2000toInf_TuneCP5_13TeV-madgraphMLM-pythia8/NANOAODSIM/106X_mc2017_realistic_v9-v1/70000/DEA98E55-880C-6E49-AC01-ED2FD65E44A4.root
 root:://cmsxrootd.fnal.gov///store/mc/RunIISummer20UL17NanoAODv9/QCD_HT2000toInf_TuneCP5_13TeV-madgraphMLM-pythia8/NANOAODSIM/106X_mc2017_realistic_v9-v1/70000/8E5AFDBE-F744-294F-BD8C-43F214D3F2BB.root
+root:://cmsxrootd.fnal.gov///store/mc/RunIISummer20UL17NanoAODv9/QCD_HT2000toInf_TuneCP5_13TeV-madgraphMLM-pythia8/NANOAODSIM/106X_mc2017_realistic_v9-v1/70000/C3762BE3-3A9D-7A4F-9C52-9F9AB556A361.root
+root:://cmsxrootd.fnal.gov///store/mc/RunIISummer20UL17NanoAODv9/QCD_HT2000toInf_TuneCP5_13TeV-madgraphMLM-pythia8/NANOAODSIM/106X_mc2017_realistic_v9-v1/70000/DEA98E55-880C-6E49-AC01-ED2FD65E44A4.root
+root:://cmsxrootd.fnal.gov///store/mc/RunIISummer20UL17NanoAODv9/QCD_HT2000toInf_TuneCP5_13TeV-madgraphMLM-pythia8/NANOAODSIM/106X_mc2017_realistic_v9-v1/70000/7DCDBC10-6F21-F74A-A56E-CD348EBF08BB.root

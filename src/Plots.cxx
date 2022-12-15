@@ -39,8 +39,8 @@ const float X_M_JET[2] = {0, 300};
 const unsigned NBIN_M = 400;
 const float X_M[2] = {0, 400};
 
-const unsigned NBIN_DR = 100;
-const float X_DR[2] = {0, 10};
+const unsigned NBIN_DR = 60;
+const float X_DR[2] = {0, 6.0};
 
 const unsigned NBIN_DPHI = 240;
 const float X_DPHI[2] = {0, 4.0};
@@ -63,6 +63,9 @@ class BosonPlots
       h_dR = new TH1D(name + "_dR", "", NBIN_DR, X_DR[0], X_DR[1]);
       h_dPhi = new TH1D(name + "_dPhi", "", NBIN_DPHI, X_DPHI[0], X_DPHI[1]);
 
+      h_dR_Bj0 = new TH1D(name + "_dR_Bj0", "", NBIN_DR, X_DR[0], X_DR[1]);
+      h_dR_Bj1 = new TH1D(name + "_dR_Bj1", "", NBIN_DR, X_DR[0], X_DR[1]);
+
       // Plots related to the jets that reconstruct the object
       h_pt_jet0 = new TH1D(name + "_pt_jet0", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
       h_pt_jet1 = new TH1D(name + "_pt_jet1", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
@@ -82,6 +85,9 @@ class BosonPlots
       h_pt->Fill(B.Pt(), w); h_eta->Fill(B.Eta(), w); h_phi->Fill(B.Phi(), w);
       h_mass->Fill(B.M(), w);
       h_dR->Fill(B.DeltaR(), w); h_dPhi->Fill(B.DPhi(), w);
+
+      h_dR_Bj0->Fill(B.m_lvec.DeltaR(B.getJet(0).m_lvec));
+      h_dR_Bj1->Fill(B.m_lvec.DeltaR(B.getJet(1).m_lvec));
 
       // Fill the plots related to the jets.
       h_pt_jet0->Fill(B.getJet(0).Pt(), w);
@@ -108,6 +114,9 @@ class BosonPlots
       histolist.push_back(h_pt_jet0); histolist.push_back(h_pt_jet1);
       histolist.push_back(h_eta_jet0); histolist.push_back(h_eta_jet1);
       histolist.push_back(h_phi_jet0); histolist.push_back(h_phi_jet1);
+
+      histolist.push_back(h_dR_Bj0); histolist.push_back(h_dR_Bj1);
+
       return histolist;
     }
     
@@ -123,6 +132,8 @@ class BosonPlots
     TH1D* h_mass;
     TH1D* h_dR;
     TH1D* h_dPhi;
+    TH1D* h_dR_Bj0;
+    TH1D* h_dR_Bj1;
 
     // Histograms - Jets used for Reconstruction
     TH1D* h_pt_jet0; TH1D* h_pt_jet1; TH1D* h_pt_jet2;
@@ -170,6 +181,22 @@ class JetPlots
       h_nC_medium = new TH1D(name + "_nC_medium", "", 10, -0.5, 9.5);
       h_nBoth_loose = new TH1D(name + "_nBoth_loose", "", 10, -0.5, 9.5);
       h_nBoth_medium = new TH1D(name + "_nBoth_medium", "", 10, -0.5, 9.5);
+
+      h_pt_ljets = new TH1D(name + "_pt_ljets", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      h_pt_ljet0 = new TH1D(name + "_pt_ljet0", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      h_pt_ljet1 = new TH1D(name + "_pt_ljet1", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      h_pt_ljet2 = new TH1D(name + "_pt_ljet2", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      h_pt_ljet3 = new TH1D(name + "_pt_ljet3", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      h_pt_bjets = new TH1D(name + "_pt_bjets", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      h_pt_bjet0 = new TH1D(name + "_pt_bjet0", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      h_pt_bjet1 = new TH1D(name + "_pt_bjet1", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      h_pt_bjet2 = new TH1D(name + "_pt_bjet2", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      h_pt_bjet3 = new TH1D(name + "_pt_bjet3", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      h_pt_cjets = new TH1D(name + "_pt_cjets", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      h_pt_cjet0 = new TH1D(name + "_pt_cjet0", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      h_pt_cjet1 = new TH1D(name + "_pt_cjet1", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      h_pt_cjet2 = new TH1D(name + "_pt_cjet2", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      h_pt_cjet3 = new TH1D(name + "_pt_cjet3", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
     };
 
     // Methods - Fill all the histograms
@@ -206,6 +233,10 @@ class JetPlots
       h_nC_loose->Fill(nCl, w); h_nC_medium->Fill(nCm, w);
       h_nBoth_loose->Fill(nBothL, w); h_nBoth_medium->Fill(nBothM, w);
 
+      float BvL_CUT = CUTS.Get<float>("BvL_mediumWP");
+      float CvL_CUT = CUTS.Get<float>("CvL_mediumWP");
+      float CvB_CUT = CUTS.Get<float>("CvB_mediumWP");
+
       // Fill the leading jet plots
       //std::sort(jets.begin(), jets.end(), std::greater<JetObj>());
       std::sort(jets.begin(), jets.end(), JetObj::JetCompPt());
@@ -213,21 +244,88 @@ class JetPlots
         h_pt_jet0->Fill(jets[0].Pt(), w);
         h_eta_jet0->Fill(jets[0].Eta(), w);
         h_phi_jet0->Fill(jets[0].Phi(), w);
+        
+        // Check to see which tagging we pass.
+        float bvl = jets[0].m_deepCSV; float cvl = jets[0].m_deepCvL;
+        float cvb = jets[0].m_deepCvB; float jPT = jets[0].Pt();
+        if (bvl > BvL_CUT) {  // b-jet
+          h_pt_bjets->Fill(jPT, w);
+          h_pt_bjet0->Fill(jPT, w);
+        }
+        else if (cvl > CvL_CUT && cvb > CvB_CUT) { // c-jet
+          h_pt_cjets->Fill(jPT, w);
+          h_pt_cjet0->Fill(jPT, w);
+        }
+        else { // l-jet
+          h_pt_ljets->Fill(jPT, w);
+          h_pt_ljet0->Fill(jPT, w);
+        }
       }
       if (jets.size() > 1) {  // Sub-leading jet
         h_pt_jet1->Fill(jets[1].Pt(), w);
         h_eta_jet1->Fill(jets[1].Eta(), w);
         h_phi_jet1->Fill(jets[1].Phi(), w);
+
+        // Check to see which tagging we pass.
+        float bvl = jets[1].m_deepCSV; float cvl = jets[1].m_deepCvL;
+        float cvb = jets[1].m_deepCvB; float jPT = jets[1].Pt();
+        if (bvl > BvL_CUT) {  // b-jet
+          h_pt_bjets->Fill(jPT, w);
+          h_pt_bjet1->Fill(jPT, w);
+        }
+        else if (cvl > CvL_CUT && cvb > CvB_CUT) { // c-jet
+          h_pt_cjets->Fill(jPT, w);
+          h_pt_cjet1->Fill(jPT, w);
+        }
+        else { // l-jet
+          h_pt_ljets->Fill(jPT, w);
+          h_pt_ljet1->Fill(jPT, w);
+        }
+
       }
       if (jets.size() > 2) {  // Sub-sub-leading jet
         h_pt_jet2->Fill(jets[2].Pt(), w);
         h_eta_jet2->Fill(jets[2].Eta(), w);
         h_phi_jet2->Fill(jets[2].Phi(), w);
+
+        // Check to see which tagging we pass.
+        float bvl = jets[2].m_deepCSV; float cvl = jets[2].m_deepCvL;
+        float cvb = jets[2].m_deepCvB; float jPT = jets[2].Pt();
+        if (bvl > BvL_CUT) {  // b-jet
+          h_pt_bjets->Fill(jPT, w);
+          h_pt_bjet2->Fill(jPT, w);
+        }
+        else if (cvl > CvL_CUT && cvb > CvB_CUT) { // c-jet
+          h_pt_cjets->Fill(jPT, w);
+          h_pt_cjet2->Fill(jPT, w);
+        }
+        else { // l-jet
+          h_pt_ljets->Fill(jPT, w);
+          h_pt_ljet2->Fill(jPT, w);
+        }
+
       }
       if (jets.size() > 3) {  // Sub^(3) leading jet
         h_pt_jet3->Fill(jets[3].Pt(), w);
         h_eta_jet3->Fill(jets[3].Eta(), w);
         h_phi_jet3->Fill(jets[3].Phi(), w);
+
+        // Check to see which tagging we pass.
+        float bvl = jets[3].m_deepCSV; float cvl = jets[3].m_deepCvL;
+        float cvb = jets[3].m_deepCvB; float jPT = jets[3].Pt();
+        if (bvl > BvL_CUT) {  // b-jet
+          h_pt_bjets->Fill(jPT, w);
+          h_pt_bjet3->Fill(jPT, w);
+        }
+        else if (cvl > CvL_CUT && cvb > CvB_CUT) { // c-jet
+          h_pt_cjets->Fill(jPT, w);
+          h_pt_cjet3->Fill(jPT, w);
+        }
+        else { // l-jet
+          h_pt_ljets->Fill(jPT, w);
+          h_pt_ljet3->Fill(jPT, w);
+        }
+
       }
 
     };
@@ -251,6 +349,16 @@ class JetPlots
       histolist.push_back(h_nB_loose); histolist.push_back(h_nB_medium);
       histolist.push_back(h_nC_loose); histolist.push_back(h_nC_medium);      
       histolist.push_back(h_nBoth_loose); histolist.push_back(h_nBoth_medium);
+
+      histolist.push_back(h_pt_ljets); histolist.push_back(h_pt_ljet0);
+      histolist.push_back(h_pt_ljet1); histolist.push_back(h_pt_ljet2);
+      histolist.push_back(h_pt_ljet3);
+      histolist.push_back(h_pt_bjets); histolist.push_back(h_pt_bjet0);
+      histolist.push_back(h_pt_bjet1); histolist.push_back(h_pt_bjet2);
+      histolist.push_back(h_pt_bjet3);
+      histolist.push_back(h_pt_cjets); histolist.push_back(h_pt_cjet0);
+      histolist.push_back(h_pt_cjet1); histolist.push_back(h_pt_cjet2);
+      histolist.push_back(h_pt_cjet3);
 
       return histolist;
     };
@@ -278,6 +386,13 @@ class JetPlots
     TH1D* h_nB_loose; TH1D* h_nB_medium;
     TH1D* h_nC_loose; TH1D* h_nC_medium;
     TH1D* h_nBoth_loose; TH1D* h_nBoth_medium;
+
+    // Histograms - pT with tags
+    TH1D* h_pt_ljets; TH1D* h_pt_bjets; TH1D* h_pt_cjets;
+    TH1D* h_pt_ljet0; TH1D* h_pt_bjet0; TH1D* h_pt_cjet0;
+    TH1D* h_pt_ljet1; TH1D* h_pt_bjet1; TH1D* h_pt_cjet1;
+    TH1D* h_pt_ljet2; TH1D* h_pt_bjet2; TH1D* h_pt_cjet2;
+    TH1D* h_pt_ljet3; TH1D* h_pt_bjet3; TH1D* h_pt_cjet3;
 };
  
 /******************************************************************************
