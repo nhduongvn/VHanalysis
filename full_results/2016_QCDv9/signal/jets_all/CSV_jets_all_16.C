@@ -1,10 +1,13 @@
+#ifdef __CLING__
+#pragma cling optimize(0)
+#endif
 void CSV_jets_all_16()
 {
 //=========Macro generated from canvas: CSV_jets_all_16/CSV_jets_all_16
-//=========  (Thu Dec 15 10:04:54 2022) by ROOT version 6.14/09
+//=========  (Mon Dec 19 11:03:48 2022) by ROOT version 6.26/06
    TCanvas *CSV_jets_all_16 = new TCanvas("CSV_jets_all_16", "CSV_jets_all_16",0,0,600,600);
    CSV_jets_all_16->SetHighLightColor(2);
-   CSV_jets_all_16->Range(-0.2183529,-639.0351,1.171633,4686.258);
+   CSV_jets_all_16->Range(-0.2183529,-608.6049,1.171633,4463.102);
    CSV_jets_all_16->SetFillColor(0);
    CSV_jets_all_16->SetFillStyle(4000);
    CSV_jets_all_16->SetBorderMode(0);
@@ -22,33 +25,29 @@ void CSV_jets_all_16()
    st->SetTitle("");
    st->SetMaximum(3955.932);
    
-   TH1F *st_stack_49 = new TH1F("st_stack_49","",20,0,1);
-   st_stack_49->SetMinimum(0);
-   st_stack_49->SetMaximum(4153.728);
-   st_stack_49->SetDirectory(0);
-   st_stack_49->SetStats(0);
+   TH1F *st_stack_109 = new TH1F("st_stack_109","",20,0,1);
+   st_stack_109->SetMinimum(0);
+   st_stack_109->SetMaximum(3955.932);
+   st_stack_109->SetDirectory(0);
+   st_stack_109->SetStats(0);
 
    Int_t ci;      // for color index setting
    TColor *color; // for color definition with alpha
    ci = TColor::GetColor("#000099");
-   st_stack_49->SetLineColor(ci);
-   st_stack_49->GetXaxis()->SetTitle("BvL tagging score");
-   st_stack_49->GetXaxis()->SetRange(1,20);
-   st_stack_49->GetXaxis()->SetLabelFont(42);
-   st_stack_49->GetXaxis()->SetLabelSize(0.035);
-   st_stack_49->GetXaxis()->SetTitleSize(0.035);
-   st_stack_49->GetXaxis()->SetTitleFont(42);
-   st_stack_49->GetYaxis()->SetTitle("Events/0.05");
-   st_stack_49->GetYaxis()->SetLabelFont(42);
-   st_stack_49->GetYaxis()->SetLabelSize(0.035);
-   st_stack_49->GetYaxis()->SetTitleSize(0.037);
-   st_stack_49->GetYaxis()->SetTitleOffset(0);
-   st_stack_49->GetYaxis()->SetTitleFont(42);
-   st_stack_49->GetZaxis()->SetLabelFont(42);
-   st_stack_49->GetZaxis()->SetLabelSize(0.035);
-   st_stack_49->GetZaxis()->SetTitleSize(0.035);
-   st_stack_49->GetZaxis()->SetTitleFont(42);
-   st->SetHistogram(st_stack_49);
+   st_stack_109->SetLineColor(ci);
+   st_stack_109->GetXaxis()->SetTitle("BvL tagging score");
+   st_stack_109->GetXaxis()->SetRange(1,20);
+   st_stack_109->GetXaxis()->SetLabelFont(42);
+   st_stack_109->GetXaxis()->SetTitleOffset(1);
+   st_stack_109->GetXaxis()->SetTitleFont(42);
+   st_stack_109->GetYaxis()->SetTitle("Events/0.05");
+   st_stack_109->GetYaxis()->SetLabelFont(42);
+   st_stack_109->GetYaxis()->SetTitleSize(0.037);
+   st_stack_109->GetYaxis()->SetTitleFont(42);
+   st_stack_109->GetZaxis()->SetLabelFont(42);
+   st_stack_109->GetZaxis()->SetTitleOffset(1);
+   st_stack_109->GetZaxis()->SetTitleFont(42);
+   st->SetHistogram(st_stack_109);
    
    
    TH1D *VbbHcc_jets_all_CSV_stack_1 = new TH1D("VbbHcc_jets_all_CSV_stack_1","",20,0,1);
@@ -101,17 +100,12 @@ void CSV_jets_all_16()
    VbbHcc_jets_all_CSV_stack_1->SetLineColor(ci);
    VbbHcc_jets_all_CSV_stack_1->GetXaxis()->SetRange(1,100);
    VbbHcc_jets_all_CSV_stack_1->GetXaxis()->SetLabelFont(42);
-   VbbHcc_jets_all_CSV_stack_1->GetXaxis()->SetLabelSize(0.035);
-   VbbHcc_jets_all_CSV_stack_1->GetXaxis()->SetTitleSize(0.035);
+   VbbHcc_jets_all_CSV_stack_1->GetXaxis()->SetTitleOffset(1);
    VbbHcc_jets_all_CSV_stack_1->GetXaxis()->SetTitleFont(42);
    VbbHcc_jets_all_CSV_stack_1->GetYaxis()->SetLabelFont(42);
-   VbbHcc_jets_all_CSV_stack_1->GetYaxis()->SetLabelSize(0.035);
-   VbbHcc_jets_all_CSV_stack_1->GetYaxis()->SetTitleSize(0.035);
-   VbbHcc_jets_all_CSV_stack_1->GetYaxis()->SetTitleOffset(0);
    VbbHcc_jets_all_CSV_stack_1->GetYaxis()->SetTitleFont(42);
    VbbHcc_jets_all_CSV_stack_1->GetZaxis()->SetLabelFont(42);
-   VbbHcc_jets_all_CSV_stack_1->GetZaxis()->SetLabelSize(0.035);
-   VbbHcc_jets_all_CSV_stack_1->GetZaxis()->SetTitleSize(0.035);
+   VbbHcc_jets_all_CSV_stack_1->GetZaxis()->SetTitleOffset(1);
    VbbHcc_jets_all_CSV_stack_1->GetZaxis()->SetTitleFont(42);
    st->Add(VbbHcc_jets_all_CSV_stack_1,"");
    
@@ -165,22 +159,17 @@ void CSV_jets_all_16()
    VbbHcc_jets_all_CSV_stack_2->SetLineColor(ci);
    VbbHcc_jets_all_CSV_stack_2->GetXaxis()->SetRange(1,100);
    VbbHcc_jets_all_CSV_stack_2->GetXaxis()->SetLabelFont(42);
-   VbbHcc_jets_all_CSV_stack_2->GetXaxis()->SetLabelSize(0.035);
-   VbbHcc_jets_all_CSV_stack_2->GetXaxis()->SetTitleSize(0.035);
+   VbbHcc_jets_all_CSV_stack_2->GetXaxis()->SetTitleOffset(1);
    VbbHcc_jets_all_CSV_stack_2->GetXaxis()->SetTitleFont(42);
    VbbHcc_jets_all_CSV_stack_2->GetYaxis()->SetLabelFont(42);
-   VbbHcc_jets_all_CSV_stack_2->GetYaxis()->SetLabelSize(0.035);
-   VbbHcc_jets_all_CSV_stack_2->GetYaxis()->SetTitleSize(0.035);
-   VbbHcc_jets_all_CSV_stack_2->GetYaxis()->SetTitleOffset(0);
    VbbHcc_jets_all_CSV_stack_2->GetYaxis()->SetTitleFont(42);
    VbbHcc_jets_all_CSV_stack_2->GetZaxis()->SetLabelFont(42);
-   VbbHcc_jets_all_CSV_stack_2->GetZaxis()->SetLabelSize(0.035);
-   VbbHcc_jets_all_CSV_stack_2->GetZaxis()->SetTitleSize(0.035);
+   VbbHcc_jets_all_CSV_stack_2->GetZaxis()->SetTitleOffset(1);
    VbbHcc_jets_all_CSV_stack_2->GetZaxis()->SetTitleFont(42);
    st->Add(VbbHcc_jets_all_CSV_stack_2,"");
    st->Draw("hist");
    
-   TLegend *leg = new TLegend(0.48,0.62,0.85,0.87,NULL,"brNDC");
+   TLegend *leg = new TLegend(0.48,0.8,0.85,0.87,NULL,"brNDC");
    leg->SetBorderSize(0);
    leg->SetTextSize(0.035);
    leg->SetLineColor(1);

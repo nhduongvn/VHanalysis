@@ -52,16 +52,18 @@ def getHist(pN, sample_name, fH, lS):
 ## MAIN CODE
 ###############################################################################
 
+bckg_colors = [ ROOT.kMagenta + 2, ROOT.kOrange + 7]
+
 ###############################
 ## These you can edit / change
 ###############################
 years = ['16', '17', '18']
 regions = ['tags', 'algo', 'both', 'alljet', 'seljet']
-regions = ['tags', 'algo', 'both']
-regions = ['jets', 'jets_all']
+#regions = ['tags', 'algo', 'both']
+#regions = ['jets', 'jets_all']
 #regions = ['all']
-plotCat = 'VbbHcc_jet'
-useLogY = False
+plotCat = 'VbbHcc'
+useLogY = True
 summary_control_plot_name = 'summary_control_plot_zjet_zHFjet.txt'
 plotFolder = '../full_results/'
 
@@ -210,7 +212,7 @@ for r in regions:
       if 'CutFlow' in plN: logY = True
       makeStackPlot(plots_process, plotNames_process, plN + '_' + r + '_' + y,
         plotFolder + '/20' + y + '_QCDv9' + '/bckg/' + r + '/', xA_title, xA_range, 'MC unc. (stat.)',
-        False, logY=logY, lumi=lumiS[y])
+        False, logY=logY, lumi=lumiS[y],custom_colors=bckg_colors)
       
 
     ###################################
@@ -269,4 +271,4 @@ for r in regions:
     if 'CutFlow' in plN: logY=True
     makeStackPlot(plots_process, plotNames_process, plN + '_'+ r + '_all', 
       plotFolder + 'All_QCDv9' + '/bckg/' + r + '/', xA_title, xA_range, 'MC. unc. (stat.)',
-      False, logY=logY, lumi='138', minY_forLog=1.0)
+      False, logY=logY, lumi='138', minY_forLog=1.0, custom_colors=bckg_colors)

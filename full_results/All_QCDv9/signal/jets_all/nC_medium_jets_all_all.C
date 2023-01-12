@@ -1,10 +1,13 @@
+#ifdef __CLING__
+#pragma cling optimize(0)
+#endif
 void nC_medium_jets_all_all()
 {
 //=========Macro generated from canvas: nC_medium_jets_all_all/nC_medium_jets_all_all
-//=========  (Thu Dec 15 10:04:54 2022) by ROOT version 6.14/09
+//=========  (Mon Dec 19 11:03:49 2022) by ROOT version 6.26/06
    TCanvas *nC_medium_jets_all_all = new TCanvas("nC_medium_jets_all_all", "nC_medium_jets_all_all",0,0,600,600);
    nC_medium_jets_all_all->SetHighLightColor(2);
-   nC_medium_jets_all_all->Range(-2.683529,-228.6457,11.21633,1676.735);
+   nC_medium_jets_all_all->Range(-2.683529,-217.7578,11.21633,1596.89);
    nC_medium_jets_all_all->SetFillColor(0);
    nC_medium_jets_all_all->SetFillStyle(4000);
    nC_medium_jets_all_all->SetBorderMode(0);
@@ -22,33 +25,29 @@ void nC_medium_jets_all_all()
    st->SetTitle("");
    st->SetMaximum(1415.426);
    
-   TH1F *st_stack_68 = new TH1F("st_stack_68","",10,-0.5,9.5);
-   st_stack_68->SetMinimum(0);
-   st_stack_68->SetMaximum(1486.197);
-   st_stack_68->SetDirectory(0);
-   st_stack_68->SetStats(0);
+   TH1F *st_stack_128 = new TH1F("st_stack_128","",10,-0.5,9.5);
+   st_stack_128->SetMinimum(0);
+   st_stack_128->SetMaximum(1415.426);
+   st_stack_128->SetDirectory(0);
+   st_stack_128->SetStats(0);
 
    Int_t ci;      // for color index setting
    TColor *color; // for color definition with alpha
    ci = TColor::GetColor("#000099");
-   st_stack_68->SetLineColor(ci);
-   st_stack_68->GetXaxis()->SetTitle("c-jet multiplicity (medium WP)");
-   st_stack_68->GetXaxis()->SetRange(1,10);
-   st_stack_68->GetXaxis()->SetLabelFont(42);
-   st_stack_68->GetXaxis()->SetLabelSize(0.035);
-   st_stack_68->GetXaxis()->SetTitleSize(0.035);
-   st_stack_68->GetXaxis()->SetTitleFont(42);
-   st_stack_68->GetYaxis()->SetTitle("Events/1.0");
-   st_stack_68->GetYaxis()->SetLabelFont(42);
-   st_stack_68->GetYaxis()->SetLabelSize(0.035);
-   st_stack_68->GetYaxis()->SetTitleSize(0.037);
-   st_stack_68->GetYaxis()->SetTitleOffset(0);
-   st_stack_68->GetYaxis()->SetTitleFont(42);
-   st_stack_68->GetZaxis()->SetLabelFont(42);
-   st_stack_68->GetZaxis()->SetLabelSize(0.035);
-   st_stack_68->GetZaxis()->SetTitleSize(0.035);
-   st_stack_68->GetZaxis()->SetTitleFont(42);
-   st->SetHistogram(st_stack_68);
+   st_stack_128->SetLineColor(ci);
+   st_stack_128->GetXaxis()->SetTitle("c-jet multiplicity (medium WP)");
+   st_stack_128->GetXaxis()->SetRange(1,10);
+   st_stack_128->GetXaxis()->SetLabelFont(42);
+   st_stack_128->GetXaxis()->SetTitleOffset(1);
+   st_stack_128->GetXaxis()->SetTitleFont(42);
+   st_stack_128->GetYaxis()->SetTitle("Events/1.0");
+   st_stack_128->GetYaxis()->SetLabelFont(42);
+   st_stack_128->GetYaxis()->SetTitleSize(0.037);
+   st_stack_128->GetYaxis()->SetTitleFont(42);
+   st_stack_128->GetZaxis()->SetLabelFont(42);
+   st_stack_128->GetZaxis()->SetTitleOffset(1);
+   st_stack_128->GetZaxis()->SetTitleFont(42);
+   st->SetHistogram(st_stack_128);
    
    
    TH1D *VbbHcc_jets_all_nC_medium_all_stack_1 = new TH1D("VbbHcc_jets_all_nC_medium_all_stack_1","",10,-0.5,9.5);
@@ -79,17 +78,12 @@ void nC_medium_jets_all_all()
    VbbHcc_jets_all_nC_medium_all_stack_1->SetLineColor(ci);
    VbbHcc_jets_all_nC_medium_all_stack_1->GetXaxis()->SetRange(1,10);
    VbbHcc_jets_all_nC_medium_all_stack_1->GetXaxis()->SetLabelFont(42);
-   VbbHcc_jets_all_nC_medium_all_stack_1->GetXaxis()->SetLabelSize(0.035);
-   VbbHcc_jets_all_nC_medium_all_stack_1->GetXaxis()->SetTitleSize(0.035);
+   VbbHcc_jets_all_nC_medium_all_stack_1->GetXaxis()->SetTitleOffset(1);
    VbbHcc_jets_all_nC_medium_all_stack_1->GetXaxis()->SetTitleFont(42);
    VbbHcc_jets_all_nC_medium_all_stack_1->GetYaxis()->SetLabelFont(42);
-   VbbHcc_jets_all_nC_medium_all_stack_1->GetYaxis()->SetLabelSize(0.035);
-   VbbHcc_jets_all_nC_medium_all_stack_1->GetYaxis()->SetTitleSize(0.035);
-   VbbHcc_jets_all_nC_medium_all_stack_1->GetYaxis()->SetTitleOffset(0);
    VbbHcc_jets_all_nC_medium_all_stack_1->GetYaxis()->SetTitleFont(42);
    VbbHcc_jets_all_nC_medium_all_stack_1->GetZaxis()->SetLabelFont(42);
-   VbbHcc_jets_all_nC_medium_all_stack_1->GetZaxis()->SetLabelSize(0.035);
-   VbbHcc_jets_all_nC_medium_all_stack_1->GetZaxis()->SetTitleSize(0.035);
+   VbbHcc_jets_all_nC_medium_all_stack_1->GetZaxis()->SetTitleOffset(1);
    VbbHcc_jets_all_nC_medium_all_stack_1->GetZaxis()->SetTitleFont(42);
    st->Add(VbbHcc_jets_all_nC_medium_all_stack_1,"");
    
@@ -119,22 +113,17 @@ void nC_medium_jets_all_all()
    VbbHcc_jets_all_nC_medium_all_stack_2->SetLineColor(ci);
    VbbHcc_jets_all_nC_medium_all_stack_2->GetXaxis()->SetRange(1,10);
    VbbHcc_jets_all_nC_medium_all_stack_2->GetXaxis()->SetLabelFont(42);
-   VbbHcc_jets_all_nC_medium_all_stack_2->GetXaxis()->SetLabelSize(0.035);
-   VbbHcc_jets_all_nC_medium_all_stack_2->GetXaxis()->SetTitleSize(0.035);
+   VbbHcc_jets_all_nC_medium_all_stack_2->GetXaxis()->SetTitleOffset(1);
    VbbHcc_jets_all_nC_medium_all_stack_2->GetXaxis()->SetTitleFont(42);
    VbbHcc_jets_all_nC_medium_all_stack_2->GetYaxis()->SetLabelFont(42);
-   VbbHcc_jets_all_nC_medium_all_stack_2->GetYaxis()->SetLabelSize(0.035);
-   VbbHcc_jets_all_nC_medium_all_stack_2->GetYaxis()->SetTitleSize(0.035);
-   VbbHcc_jets_all_nC_medium_all_stack_2->GetYaxis()->SetTitleOffset(0);
    VbbHcc_jets_all_nC_medium_all_stack_2->GetYaxis()->SetTitleFont(42);
    VbbHcc_jets_all_nC_medium_all_stack_2->GetZaxis()->SetLabelFont(42);
-   VbbHcc_jets_all_nC_medium_all_stack_2->GetZaxis()->SetLabelSize(0.035);
-   VbbHcc_jets_all_nC_medium_all_stack_2->GetZaxis()->SetTitleSize(0.035);
+   VbbHcc_jets_all_nC_medium_all_stack_2->GetZaxis()->SetTitleOffset(1);
    VbbHcc_jets_all_nC_medium_all_stack_2->GetZaxis()->SetTitleFont(42);
    st->Add(VbbHcc_jets_all_nC_medium_all_stack_2,"");
    st->Draw("hist");
    
-   TLegend *leg = new TLegend(0.48,0.62,0.85,0.87,NULL,"brNDC");
+   TLegend *leg = new TLegend(0.48,0.8,0.85,0.87,NULL,"brNDC");
    leg->SetBorderSize(0);
    leg->SetTextSize(0.035);
    leg->SetLineColor(1);

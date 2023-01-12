@@ -57,10 +57,10 @@ def getHist(pN, sample_name, fH, lS):
 ###############################
 years = ['16', '17', '18']
 regions = ['tags', 'algo', 'both', 'alljet', 'seljet']
-regions = ['tags', 'algo', 'both']
-regions = ['jets', 'jets_all']
+#regions = ['tags', 'algo', 'both']
+#regions = ['jets', 'jets_all']
 #regions = ['all']
-plotCat = 'VbbHcc_jet'
+plotCat = 'VbbHcc'
 useLogY = False
 summary_control_plot_name = 'summary_control_plot_zjet_zHFjet.txt'
 plotFolder = '../full_results/'

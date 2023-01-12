@@ -142,7 +142,7 @@ def makeOverlapPlot(plots, plotNames, canvasName, plotDir, xAxisTitle, xAxisRang
     if fill: plots[i].SetFillColor(fill_colors[i])
     if normalize: plots[i].Scale(1./plots[i].Integral())
     plots[i].SetLineColor(custom_colors[i])
-    plots[i].Rebin(rebin)
+    #plots[i].Rebin(rebin)
     plots[i].SetLineWidth(2)
     l.AddEntry(plots[i], plotNames[i], 'F')
     allStack.Add(plots[i])
@@ -250,7 +250,7 @@ def makeRatioPlots(plots, plotNames, canvasName, plotDir, xAxisTitle, xAxisRange
 def makeStackPlot(plots, plotNames, cName, plotDir = 'Test/', 
 xAxisTitle = 'Jet M_{SV}[GeV]', xAxisRange = [0,10], uncName = 'MC unc. (stat.)',
 normMC=True, logY=False, normBinWidth = -1, legendOrder = [], minY_forLog = 1.0,
-lumi = '35.9'):
+lumi = '35.9', custom_colors=colors, useStack=True, useFill=True, forceMin=False):
 
   ## Create the canvas & modify it as necessary
   c = ROOT.TCanvas(cName, cName, 600, 600)
@@ -265,7 +265,7 @@ lumi = '35.9'):
   ## Create the stack plot & the legend
   allStack = ROOT.THStack('st','')
   
-  y1_ndc = 0.62
+  y1_ndc = 0.8
   y2_ndc = 0.87
   x1_ndc = 0.48
   if len(legendOrder) != 0:
@@ -301,7 +301,10 @@ lumi = '35.9'):
     print "======\t ========== \t =======\t ======= \t ========"
   for i in range(len(plots)-1, -1, -1):
     plots[i].Scale(normScale)
-    plots[i].SetFillColor(colors[iColor])
+    if useFill:
+      plots[i].SetFillColor(custom_colors[iColor])
+    else:
+      plots[i].SetLineColor(custom_colors[iColor])
     iColor = iColor + 1
     if len(legendOrder) == 0: l.AddEntry(plots[i], plotNames[i], 'F')
     if "CutFlow" in cName:
@@ -322,7 +325,10 @@ lumi = '35.9'):
   #l.AddEntry(theErrorGraph,uncName,"fl")
   
   ## Draw everything to the canvas
-  allStack.Draw("hist")
+  if useStack:
+    allStack.Draw("hist")
+  else:
+    allStack.Draw("hist,nostack")
   allStack.GetXaxis().SetRangeUser(xAxisRange[0], xAxisRange[1])
   binW = plots[0].GetBinWidth(1)
   
@@ -367,7 +373,14 @@ lumi = '35.9'):
   if logY:
     if minY <= 3: power = 1
     else: power = minY - 3
-    allStack.SetMinimum(pow(10,power))
+    #print "============================="
+    #print "power = ", power
+    #print "============================="
+    power = min(power, 10)
+    if forceMin:
+      allStack.SetMinimum(minY_forLog)
+    else:
+      allStack.SetMinimum(pow(10,power))
   #allStack.SetMaximum(pow(10,12))
   #allStack.SetMinimum(pow(10,11))
   

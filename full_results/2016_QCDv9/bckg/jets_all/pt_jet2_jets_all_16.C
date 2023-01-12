@@ -1,10 +1,13 @@
+#ifdef __CLING__
+#pragma cling optimize(0)
+#endif
 void pt_jet2_jets_all_16()
 {
 //=========Macro generated from canvas: pt_jet2_jets_all_16/pt_jet2_jets_all_16
-//=========  (Thu Dec 15 10:05:13 2022) by ROOT version 6.14/09
+//=========  (Mon Dec 19 11:02:48 2022) by ROOT version 6.26/06
    TCanvas *pt_jet2_jets_all_16 = new TCanvas("pt_jet2_jets_all_16", "pt_jet2_jets_all_16",0,0,600,600);
    pt_jet2_jets_all_16->SetHighLightColor(2);
-   pt_jet2_jets_all_16->Range(-218.3529,-1.207167e+11,1171.633,8.852557e+11);
+   pt_jet2_jets_all_16->Range(-218.3529,-1.149683e+11,1171.633,8.431006e+11);
    pt_jet2_jets_all_16->SetFillColor(0);
    pt_jet2_jets_all_16->SetFillStyle(4000);
    pt_jet2_jets_all_16->SetBorderMode(0);
@@ -22,33 +25,29 @@ void pt_jet2_jets_all_16()
    st->SetTitle("");
    st->SetMaximum(7.472937e+11);
    
-   TH1F *st_stack_81 = new TH1F("st_stack_81","",200,0,2000);
-   st_stack_81->SetMinimum(0);
-   st_stack_81->SetMaximum(7.846584e+11);
-   st_stack_81->SetDirectory(0);
-   st_stack_81->SetStats(0);
+   TH1F *st_stack_141 = new TH1F("st_stack_141","",200,0,2000);
+   st_stack_141->SetMinimum(0);
+   st_stack_141->SetMaximum(7.472937e+11);
+   st_stack_141->SetDirectory(0);
+   st_stack_141->SetStats(0);
 
    Int_t ci;      // for color index setting
    TColor *color; // for color definition with alpha
    ci = TColor::GetColor("#000099");
-   st_stack_81->SetLineColor(ci);
-   st_stack_81->GetXaxis()->SetTitle("Subsubleading jet p_{T} [GeV]");
-   st_stack_81->GetXaxis()->SetRange(1,100);
-   st_stack_81->GetXaxis()->SetLabelFont(42);
-   st_stack_81->GetXaxis()->SetLabelSize(0.035);
-   st_stack_81->GetXaxis()->SetTitleSize(0.035);
-   st_stack_81->GetXaxis()->SetTitleFont(42);
-   st_stack_81->GetYaxis()->SetTitle("Events/10.0");
-   st_stack_81->GetYaxis()->SetLabelFont(42);
-   st_stack_81->GetYaxis()->SetLabelSize(0.035);
-   st_stack_81->GetYaxis()->SetTitleSize(0.037);
-   st_stack_81->GetYaxis()->SetTitleOffset(0);
-   st_stack_81->GetYaxis()->SetTitleFont(42);
-   st_stack_81->GetZaxis()->SetLabelFont(42);
-   st_stack_81->GetZaxis()->SetLabelSize(0.035);
-   st_stack_81->GetZaxis()->SetTitleSize(0.035);
-   st_stack_81->GetZaxis()->SetTitleFont(42);
-   st->SetHistogram(st_stack_81);
+   st_stack_141->SetLineColor(ci);
+   st_stack_141->GetXaxis()->SetTitle("Subsubleading jet p_{T} [GeV]");
+   st_stack_141->GetXaxis()->SetRange(1,100);
+   st_stack_141->GetXaxis()->SetLabelFont(42);
+   st_stack_141->GetXaxis()->SetTitleOffset(1);
+   st_stack_141->GetXaxis()->SetTitleFont(42);
+   st_stack_141->GetYaxis()->SetTitle("Events/10.0");
+   st_stack_141->GetYaxis()->SetLabelFont(42);
+   st_stack_141->GetYaxis()->SetTitleSize(0.037);
+   st_stack_141->GetYaxis()->SetTitleFont(42);
+   st_stack_141->GetZaxis()->SetLabelFont(42);
+   st_stack_141->GetZaxis()->SetTitleOffset(1);
+   st_stack_141->GetZaxis()->SetTitleFont(42);
+   st->SetHistogram(st_stack_141);
    
    
    TH1D *VbbHcc_jets_all_pt_jet2_stack_1 = new TH1D("VbbHcc_jets_all_pt_jet2_stack_1","",200,0,2000);
@@ -360,24 +359,19 @@ void pt_jet2_jets_all_16()
    VbbHcc_jets_all_pt_jet2_stack_1->SetBinError(201,0.2249547);
    VbbHcc_jets_all_pt_jet2_stack_1->SetEntries(2.333824e+08);
 
-   ci = TColor::GetColor("#cc0000");
+   ci = TColor::GetColor("#ff6600");
    VbbHcc_jets_all_pt_jet2_stack_1->SetFillColor(ci);
 
    ci = TColor::GetColor("#000099");
    VbbHcc_jets_all_pt_jet2_stack_1->SetLineColor(ci);
    VbbHcc_jets_all_pt_jet2_stack_1->GetXaxis()->SetRange(1,2000);
    VbbHcc_jets_all_pt_jet2_stack_1->GetXaxis()->SetLabelFont(42);
-   VbbHcc_jets_all_pt_jet2_stack_1->GetXaxis()->SetLabelSize(0.035);
-   VbbHcc_jets_all_pt_jet2_stack_1->GetXaxis()->SetTitleSize(0.035);
+   VbbHcc_jets_all_pt_jet2_stack_1->GetXaxis()->SetTitleOffset(1);
    VbbHcc_jets_all_pt_jet2_stack_1->GetXaxis()->SetTitleFont(42);
    VbbHcc_jets_all_pt_jet2_stack_1->GetYaxis()->SetLabelFont(42);
-   VbbHcc_jets_all_pt_jet2_stack_1->GetYaxis()->SetLabelSize(0.035);
-   VbbHcc_jets_all_pt_jet2_stack_1->GetYaxis()->SetTitleSize(0.035);
-   VbbHcc_jets_all_pt_jet2_stack_1->GetYaxis()->SetTitleOffset(0);
    VbbHcc_jets_all_pt_jet2_stack_1->GetYaxis()->SetTitleFont(42);
    VbbHcc_jets_all_pt_jet2_stack_1->GetZaxis()->SetLabelFont(42);
-   VbbHcc_jets_all_pt_jet2_stack_1->GetZaxis()->SetLabelSize(0.035);
-   VbbHcc_jets_all_pt_jet2_stack_1->GetZaxis()->SetTitleSize(0.035);
+   VbbHcc_jets_all_pt_jet2_stack_1->GetZaxis()->SetTitleOffset(1);
    VbbHcc_jets_all_pt_jet2_stack_1->GetZaxis()->SetTitleFont(42);
    st->Add(VbbHcc_jets_all_pt_jet2_stack_1,"");
    
@@ -622,29 +616,24 @@ void pt_jet2_jets_all_16()
    VbbHcc_jets_all_pt_jet2_stack_2->SetBinError(150,0.09165739);
    VbbHcc_jets_all_pt_jet2_stack_2->SetEntries(4.666458e+08);
 
-   ci = TColor::GetColor("#00cc00");
+   ci = TColor::GetColor("#990099");
    VbbHcc_jets_all_pt_jet2_stack_2->SetFillColor(ci);
 
    ci = TColor::GetColor("#000099");
    VbbHcc_jets_all_pt_jet2_stack_2->SetLineColor(ci);
    VbbHcc_jets_all_pt_jet2_stack_2->GetXaxis()->SetRange(1,2000);
    VbbHcc_jets_all_pt_jet2_stack_2->GetXaxis()->SetLabelFont(42);
-   VbbHcc_jets_all_pt_jet2_stack_2->GetXaxis()->SetLabelSize(0.035);
-   VbbHcc_jets_all_pt_jet2_stack_2->GetXaxis()->SetTitleSize(0.035);
+   VbbHcc_jets_all_pt_jet2_stack_2->GetXaxis()->SetTitleOffset(1);
    VbbHcc_jets_all_pt_jet2_stack_2->GetXaxis()->SetTitleFont(42);
    VbbHcc_jets_all_pt_jet2_stack_2->GetYaxis()->SetLabelFont(42);
-   VbbHcc_jets_all_pt_jet2_stack_2->GetYaxis()->SetLabelSize(0.035);
-   VbbHcc_jets_all_pt_jet2_stack_2->GetYaxis()->SetTitleSize(0.035);
-   VbbHcc_jets_all_pt_jet2_stack_2->GetYaxis()->SetTitleOffset(0);
    VbbHcc_jets_all_pt_jet2_stack_2->GetYaxis()->SetTitleFont(42);
    VbbHcc_jets_all_pt_jet2_stack_2->GetZaxis()->SetLabelFont(42);
-   VbbHcc_jets_all_pt_jet2_stack_2->GetZaxis()->SetLabelSize(0.035);
-   VbbHcc_jets_all_pt_jet2_stack_2->GetZaxis()->SetTitleSize(0.035);
+   VbbHcc_jets_all_pt_jet2_stack_2->GetZaxis()->SetTitleOffset(1);
    VbbHcc_jets_all_pt_jet2_stack_2->GetZaxis()->SetTitleFont(42);
    st->Add(VbbHcc_jets_all_pt_jet2_stack_2,"");
    st->Draw("hist");
    
-   TLegend *leg = new TLegend(0.48,0.62,0.85,0.87,NULL,"brNDC");
+   TLegend *leg = new TLegend(0.48,0.8,0.85,0.87,NULL,"brNDC");
    leg->SetBorderSize(0);
    leg->SetTextSize(0.035);
    leg->SetLineColor(1);
@@ -654,7 +643,7 @@ void pt_jet2_jets_all_16()
    leg->SetFillStyle(1001);
    TLegendEntry *entry=leg->AddEntry("VbbHcc_jets_all_pt_jet2_stack_2","t#bar{t}","F");
 
-   ci = TColor::GetColor("#00cc00");
+   ci = TColor::GetColor("#990099");
    entry->SetFillColor(ci);
    entry->SetFillStyle(1001);
 
@@ -668,7 +657,7 @@ void pt_jet2_jets_all_16()
    entry->SetTextFont(42);
    entry=leg->AddEntry("VbbHcc_jets_all_pt_jet2_stack_1","QCD","F");
 
-   ci = TColor::GetColor("#cc0000");
+   ci = TColor::GetColor("#ff6600");
    entry->SetFillColor(ci);
    entry->SetFillStyle(1001);
 
