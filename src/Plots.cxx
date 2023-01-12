@@ -427,6 +427,9 @@ class VHPlots
 
       h_MZ_v_flav = new TH2D(name + "_MZ_v_flav", "", 20, 0, 200, 15, 0, 15);
       h_dR_v_flav = new TH2D(name + "_dR_v_flav", "", 20, 0, 20, 15, 0, 15);
+
+      h_Sphericity = new TH1D(name + "_Sphericity", "", 100, 0, 1);
+      h_Aplanarity = new TH1D(name + "_Aplanarity", "", 100, 0, 1);
     };
 
     // Methods - Fill the histograms related to checking for g->bb
@@ -454,7 +457,23 @@ class VHPlots
       h_dPhi_HZ->Fill(Z.m_lvec.DeltaPhi(H.m_lvec), w);
       h_dR_HZ->Fill(Z.m_lvec.DeltaR(H.m_lvec), w);
 
+      // Make a list of the jets and determine the sphericity.
+      std::vector<JetObj> jets;
+      jets.push_back(Z.getJet(0)); jets.push_back(Z.getJet(1));
+      jets.push_back(H.getJet(0)); jets.push_back(H.getJet(1));
+      DetermineSphericity(jets, w);
     };
+
+    void DetermineSphericity(std::vector<JetObj>& jets, float w=1.) {
+
+      // Calculate the Sphericity tensor & diagonalize it.
+      // Get the eigenvalues from this result.
+      // Determine the sphericity & aplanarity.
+      // Fill the proper histograms.
+      h_Sphericity->Fill(jets.size() / 8.0, w);
+      h_Aplanarity->Fill(jets.size() / 16.0, w);
+    }
+   
 
     // Methods - Fill the histograms related to DHZ algorithm
     void FillAlgo(std::vector<DHZObj>& dObj, float w=1.) {
@@ -507,6 +526,9 @@ class VHPlots
       histolist.push_back(h_MZ_v_flav);
       histolist.push_back(h_dR_v_flav);
 
+      histolist.push_back(h_Sphericity);
+      histolist.push_back(h_Aplanarity);
+
       return histolist;
     };
   
@@ -535,6 +557,10 @@ class VHPlots
 
     TH2D* h_MZ_v_flav;
     TH2D* h_dR_v_flav;
+
+    // Sphericity Plots
+    TH1D* h_Sphericity;
+    TH1D* h_Aplanarity;
 };
 
 /******************************************************************************
