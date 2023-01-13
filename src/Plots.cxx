@@ -16,6 +16,9 @@
 #include "TMath.h"             // ROOT Math class
 #include "TLorentzVector.h"    // ROOT 4-vector
 #include <TTreeReaderArray.h>  // ROOT Tree reader
+#include "TMatrixD.h"
+#include "TMatrixDEigen.h"
+#include "TVectorD.h"
 
 //== Constants ================================================================
 
@@ -466,12 +469,59 @@ class VHPlots
 
     void DetermineSphericity(std::vector<JetObj>& jets, float w=1.) {
 
-      // Calculate the Sphericity tensor & diagonalize it.
-      // Get the eigenvalues from this result.
+      // Convert the jet information into a useful format
+      // for calculations and analysis.
+      float jetVecs[jets.size()][3]; 
+      float jetMags[jets.size()];
+      for (size_t i = 0; i < jets.size(); i++) {
+        jetVecs[i][0] = jets[i].GetPComp(0);
+        jetVecs[i][1] = jets[i].GetPComp(1);
+        jetVecs[i][2] = jets[i].GetPComp(2);
+        jetMags[i] = jets[i].GetPComp(3);
+      }
+
+      // Calculate the Sphericity tensor.
+      TMatrixD sTensor(3,3); TArrayD data(9);
+      for (Int_t b = 0; b < 3; b++) {
+        for (Int_t a = 0; a < 3; a++) {
+
+          Int_t idx = a + b * 3;
+          float num = 0., denom = 0.;
+
+          // numerator = sum(p_i^a * p_i^b)
+          // denominator = sum(p_i^2) 
+          for (Int_t i = 0; i < jets.size(); i++) {
+            num += jetVecs[i][a] * jetVecs[i][b];
+            denom += jetMags[i] * jetMags[i];
+          } 
+
+          float S_ab = num / denom;
+          data[idx] = S_ab;
+        }
+      }
+      sTensor.SetMatrixArray(data.GetArray());
+
+      // Get the eigenvalues from this result
+      // by diagonalizing the matrix.
+      const TMatrixDEigen eigen(sTensor);
+      const TVectorD eigenVal = eigen.GetEigenValuesRe();
+      Int_t nElements = eigenVal.GetNoElements();
+
+      // NOTE: We need sphericity to be based on the smaller 
+      // two eigenvalues and the aplanarity on the largest.
+      std::vector<float> eigenvalues {eigenVal[0], eigenVal[1], eigenVal[2]};
+      std::sort(eigenvalues.begin(), eigenvalues.end(), std::greater<float>());      
+
+      float eigensum = eigenvalues[0] + eigenvalues[1] + eigenvalues[2];
+      //std::cout << "l1 + l2 + l3 = " << eigensum << std::endl;
+
       // Determine the sphericity & aplanarity.
+      float sphericity = 1.5 * (eigenvalues[1] + eigenvalues[2]);
+      float aplanarity = 1.5 * (eigenvalues[2]);
+
       // Fill the proper histograms.
-      h_Sphericity->Fill(jets.size() / 8.0, w);
-      h_Aplanarity->Fill(jets.size() / 16.0, w);
+      h_Sphericity->Fill(sphericity, w);
+      h_Aplanarity->Fill(aplanarity, w);
     }
    
 

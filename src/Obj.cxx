@@ -137,6 +137,15 @@ class JetObj : public GenObj {
       }
     };
 
+    // GetPComp - get the i'th component of the 3-vector momentum
+    float GetPComp(int idx) {
+      if (idx == 0) return m_lvec.Px();
+      if (idx == 1) return m_lvec.Py();
+      if (idx == 2) return m_lvec.Pz();
+      if (idx == 3) return m_lvec.P();
+      return m_lvec.Pt();
+    }
+
     // SetIdx - set the index within the list
     void SetIdx(int idx) { m_Idx = idx; }
     void SetIdxAll(int idx) { m_IdxAll = idx; }
