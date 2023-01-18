@@ -4,6 +4,7 @@ import ROOT
 import sys,os
 import math
 from math import *
+from array import array
 
 ## == COLORS ==================================================================
 #colors = [ROOT.kBlack, ROOT.kBlue, ROOT.kRed]
@@ -407,4 +408,84 @@ lumi = '35.9', custom_colors=colors, useStack=True, useFill=True, forceMin=False
   c.Print(plotDir + '/' + cName + extraBit + '.C')
   
   return c
+
+###############################################################################
+## Make ROC Curve
+###############################################################################
+def makeROCcurve(plots, plotNames, canvasName, plotDir, colors):
+
+  ## Make sure that our output folder exists
+  dirExists = os.path.exists(plotDir)
+  if not dirExists:
+    print "WARNING: Provided output directory does not exist."
+    os.makedirs(plotDir)
+    print ">>> " + plotDir + " has been created."
   
+  ## First, we want to determine the totals for each type of plot
+  totals = []
+  percentages = []
+  for p in range(len(plots)):
+    totals.append(plots[p].Integral())
+    percents_calculated = []
+  
+    ## We then want to calculate the percentage of events kept
+    ## for each cut we make. NOTE: We will make the cuts by taking
+    ## each bin as a cut point. Thus, we need to get the number
+    ## of bins.
+    nBins = plots[p].GetNbinsX()
+    for i in range(1, nBins + 1):
+      
+      ## Get the total of events below this cut, i.e.
+      ## from the first bin to the i'th bin, get the 
+      ## total number of events.
+      subtotal = 0
+      for j in range(1,i):
+        subtotal += plots[p].GetBinContent(j)
+      
+      ## Calculate the percentage.
+      per = subtotal * 1.0 / totals[p]
+      percents_calculated.append(per)
+    
+    ## Now that we're done, add the percentages
+    ## to our overall list
+    percentages.append(percents_calculated)
+    
+    ##print percents_calculated
+  ##exit()
+  
+  ## Now that we've got the percentages and totals, 
+  ## we want to properly plot the TGraphs.
+  canv = ROOT.TCanvas(canvasName, canvasName, 600, 600)
+  multigraph = ROOT.TMultiGraph("mg", "mg")
+  
+  for i in range(len(plots)/2):
+    
+    xdata_bckg = array('d')#percentages[i*2 + 1]
+    ydata_sgnl = array('d')#percentages[i*2]
+    size = len(percentages[i*2])
+    for j in range(size):
+      xdata_bckg.append(percentages[i*2+1][j])
+      ydata_sgnl.append(percentages[i*2][j])
+    
+    gI = ROOT.TGraph(size, xdata_bckg, ydata_sgnl)
+    gI.SetTitle(plotNames[i])
+    gI.SetMarkerColor(colors[i])
+    gI.SetMarkerStyle(21)	## square style
+    gI.SetLineColor(colors[i])
+    gI.SetFillStyle(0)
+    gI.SetLineWidth(2)
+    
+    multigraph.Add(gI)
+    
+  multigraph.Draw("LP")
+  canv.BuildLegend()
+  canv.Update()
+  ROOT.gPad.Modified()
+  ROOT.gPad.Update()
+  
+  ## Save our plots
+  canv.Print(plotDir + '/' + canvasName + '.png')
+  canv.Print(plotDir + '/' + canvasName + '.pdf')
+  canv.Print(plotDir + '/' + canvasName + '.C')
+
+
