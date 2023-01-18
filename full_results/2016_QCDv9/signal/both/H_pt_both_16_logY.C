@@ -4,10 +4,10 @@
 void H_pt_both_16_logY()
 {
 //=========Macro generated from canvas: H_pt_both_16/H_pt_both_16
-//=========  (Mon Dec 19 11:10:37 2022) by ROOT version 6.26/06
+//=========  (Wed Jan 18 11:42:15 2023) by ROOT version 6.26/06
    TCanvas *H_pt_both_16 = new TCanvas("H_pt_both_16", "H_pt_both_16",0,0,600,600);
    H_pt_both_16->SetHighLightColor(2);
-   H_pt_both_16->Range(37.97653,0.4931858,1705.96,2.765446);
+   H_pt_both_16->Range(37.97653,0.4977456,1705.96,2.74753);
    H_pt_both_16->SetFillColor(0);
    H_pt_both_16->SetFillStyle(4000);
    H_pt_both_16->SetBorderMode(0);
@@ -25,71 +25,71 @@ void H_pt_both_16_logY()
    st->SetName("st");
    st->SetTitle("");
    st->SetMinimum(10);
-   st->SetMaximum(268.5613);
+   st->SetMaximum(259.6376);
    
-   TH1F *st_stack_125 = new TH1F("st_stack_125","",40,0,2000);
-   st_stack_125->SetMinimum(5.83253);
-   st_stack_125->SetMaximum(345.3185);
-   st_stack_125->SetDirectory(0);
-   st_stack_125->SetStats(0);
+   TH1F *st_stack_141 = new TH1F("st_stack_141","",40,0,2000);
+   st_stack_141->SetMinimum(5.8576);
+   st_stack_141->SetMaximum(333.0822);
+   st_stack_141->SetDirectory(0);
+   st_stack_141->SetStats(0);
 
    Int_t ci;      // for color index setting
    TColor *color; // for color definition with alpha
    ci = TColor::GetColor("#000099");
-   st_stack_125->SetLineColor(ci);
-   st_stack_125->GetXaxis()->SetTitle("H p_{T} [GeV]");
-   st_stack_125->GetXaxis()->SetRange(7,30);
-   st_stack_125->GetXaxis()->SetLabelFont(42);
-   st_stack_125->GetXaxis()->SetTitleOffset(1);
-   st_stack_125->GetXaxis()->SetTitleFont(42);
-   st_stack_125->GetYaxis()->SetTitle("Events/50.0");
-   st_stack_125->GetYaxis()->SetLabelFont(42);
-   st_stack_125->GetYaxis()->SetTitleSize(0.037);
-   st_stack_125->GetYaxis()->SetTitleFont(42);
-   st_stack_125->GetZaxis()->SetLabelFont(42);
-   st_stack_125->GetZaxis()->SetTitleOffset(1);
-   st_stack_125->GetZaxis()->SetTitleFont(42);
-   st->SetHistogram(st_stack_125);
+   st_stack_141->SetLineColor(ci);
+   st_stack_141->GetXaxis()->SetTitle("H p_{T} [GeV]");
+   st_stack_141->GetXaxis()->SetRange(7,30);
+   st_stack_141->GetXaxis()->SetLabelFont(42);
+   st_stack_141->GetXaxis()->SetTitleOffset(1);
+   st_stack_141->GetXaxis()->SetTitleFont(42);
+   st_stack_141->GetYaxis()->SetTitle("Events/50.0");
+   st_stack_141->GetYaxis()->SetLabelFont(42);
+   st_stack_141->GetYaxis()->SetTitleSize(0.037);
+   st_stack_141->GetYaxis()->SetTitleFont(42);
+   st_stack_141->GetZaxis()->SetLabelFont(42);
+   st_stack_141->GetZaxis()->SetTitleOffset(1);
+   st_stack_141->GetZaxis()->SetTitleFont(42);
+   st->SetHistogram(st_stack_141);
    
    
    TH1D *VbbHcc_both_H_pt_stack_1 = new TH1D("VbbHcc_both_H_pt_stack_1","",40,0,2000);
-   VbbHcc_both_H_pt_stack_1->SetBinContent(1,1.519258);
-   VbbHcc_both_H_pt_stack_1->SetBinContent(2,2.685613);
-   VbbHcc_both_H_pt_stack_1->SetBinContent(3,1.66055);
-   VbbHcc_both_H_pt_stack_1->SetBinContent(4,0.8301152);
-   VbbHcc_both_H_pt_stack_1->SetBinContent(5,0.3789267);
-   VbbHcc_both_H_pt_stack_1->SetBinContent(6,0.238294);
-   VbbHcc_both_H_pt_stack_1->SetBinContent(7,0.1287429);
-   VbbHcc_both_H_pt_stack_1->SetBinContent(8,0.1077791);
-   VbbHcc_both_H_pt_stack_1->SetBinContent(9,0.04730171);
+   VbbHcc_both_H_pt_stack_1->SetBinContent(1,1.480095);
+   VbbHcc_both_H_pt_stack_1->SetBinContent(2,2.596376);
+   VbbHcc_both_H_pt_stack_1->SetBinContent(3,1.630219);
+   VbbHcc_both_H_pt_stack_1->SetBinContent(4,0.8155663);
+   VbbHcc_both_H_pt_stack_1->SetBinContent(5,0.3599042);
+   VbbHcc_both_H_pt_stack_1->SetBinContent(6,0.2445936);
+   VbbHcc_both_H_pt_stack_1->SetBinContent(7,0.1346588);
+   VbbHcc_both_H_pt_stack_1->SetBinContent(8,0.1129219);
+   VbbHcc_both_H_pt_stack_1->SetBinContent(9,0.04741049);
    VbbHcc_both_H_pt_stack_1->SetBinContent(10,0.02625168);
-   VbbHcc_both_H_pt_stack_1->SetBinContent(11,0.0217422);
+   VbbHcc_both_H_pt_stack_1->SetBinContent(11,0.01865287);
    VbbHcc_both_H_pt_stack_1->SetBinContent(12,0.01364291);
    VbbHcc_both_H_pt_stack_1->SetBinContent(13,0.006156105);
-   VbbHcc_both_H_pt_stack_1->SetBinContent(14,0.002240301);
+   VbbHcc_both_H_pt_stack_1->SetBinContent(14,0.0007261737);
    VbbHcc_both_H_pt_stack_1->SetBinContent(15,0.003027773);
    VbbHcc_both_H_pt_stack_1->SetBinContent(16,0.001503752);
    VbbHcc_both_H_pt_stack_1->SetBinContent(17,0.00152612);
    VbbHcc_both_H_pt_stack_1->SetBinContent(19,0.001250184);
-   VbbHcc_both_H_pt_stack_1->SetBinError(1,0.04888507);
-   VbbHcc_both_H_pt_stack_1->SetBinError(2,0.06471654);
-   VbbHcc_both_H_pt_stack_1->SetBinError(3,0.05086367);
-   VbbHcc_both_H_pt_stack_1->SetBinError(4,0.03584715);
-   VbbHcc_both_H_pt_stack_1->SetBinError(5,0.02420131);
-   VbbHcc_both_H_pt_stack_1->SetBinError(6,0.01894275);
-   VbbHcc_both_H_pt_stack_1->SetBinError(7,0.0139436);
-   VbbHcc_both_H_pt_stack_1->SetBinError(8,0.0128357);
-   VbbHcc_both_H_pt_stack_1->SetBinError(9,0.008493496);
+   VbbHcc_both_H_pt_stack_1->SetBinError(1,0.04827481);
+   VbbHcc_both_H_pt_stack_1->SetBinError(2,0.06360628);
+   VbbHcc_both_H_pt_stack_1->SetBinError(3,0.05043721);
+   VbbHcc_both_H_pt_stack_1->SetBinError(4,0.03550289);
+   VbbHcc_both_H_pt_stack_1->SetBinError(5,0.02361954);
+   VbbHcc_both_H_pt_stack_1->SetBinError(6,0.01920394);
+   VbbHcc_both_H_pt_stack_1->SetBinError(7,0.01426218);
+   VbbHcc_both_H_pt_stack_1->SetBinError(8,0.01317222);
+   VbbHcc_both_H_pt_stack_1->SetBinError(9,0.008494193);
    VbbHcc_both_H_pt_stack_1->SetBinError(10,0.006299319);
-   VbbHcc_both_H_pt_stack_1->SetBinError(11,0.005819246);
+   VbbHcc_both_H_pt_stack_1->SetBinError(11,0.005393601);
    VbbHcc_both_H_pt_stack_1->SetBinError(12,0.004552526);
    VbbHcc_both_H_pt_stack_1->SetBinError(13,0.003078305);
-   VbbHcc_both_H_pt_stack_1->SetBinError(14,0.001679259);
+   VbbHcc_both_H_pt_stack_1->SetBinError(14,0.0007261737);
    VbbHcc_both_H_pt_stack_1->SetBinError(15,0.002140267);
    VbbHcc_both_H_pt_stack_1->SetBinError(16,0.001503752);
    VbbHcc_both_H_pt_stack_1->SetBinError(17,0.00152612);
    VbbHcc_both_H_pt_stack_1->SetBinError(19,0.001250184);
-   VbbHcc_both_H_pt_stack_1->SetEntries(5612);
+   VbbHcc_both_H_pt_stack_1->SetEntries(5476);
 
    ci = TColor::GetColor("#cc0000");
    VbbHcc_both_H_pt_stack_1->SetFillColor(ci);

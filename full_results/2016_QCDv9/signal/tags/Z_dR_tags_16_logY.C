@@ -4,10 +4,10 @@
 void Z_dR_tags_16_logY()
 {
 //=========Macro generated from canvas: Z_dR_tags_16/Z_dR_tags_16
-//=========  (Mon Dec 19 11:10:36 2022) by ROOT version 6.26/06
+//=========  (Wed Jan 18 11:42:13 2023) by ROOT version 6.26/06
    TCanvas *Z_dR_tags_16 = new TCanvas("Z_dR_tags_16", "Z_dR_tags_16",0,0,600,600);
    Z_dR_tags_16->SetHighLightColor(2);
-   Z_dR_tags_16->Range(-1.310117,-0.1403729,7.029799,1.029401);
+   Z_dR_tags_16->Range(-1.310117,-0.1389537,7.029799,1.018994);
    Z_dR_tags_16->SetFillColor(0);
    Z_dR_tags_16->SetFillStyle(4000);
    Z_dR_tags_16->SetBorderMode(0);
@@ -25,11 +25,11 @@ void Z_dR_tags_16_logY()
    st->SetName("st");
    st->SetTitle("");
    st->SetMinimum(1e+10);
-   st->SetMaximum(86.89753);
+   st->SetMaximum(86.01894);
    
    TH1F *st_stack_17 = new TH1F("st_stack_17","",30,0,6);
-   st_stack_17->SetMinimum(-3.29979e+09);
-   st_stack_17->SetMaximum(-53.19854);
+   st_stack_17->SetMinimum(-3.297389e+09);
+   st_stack_17->SetMaximum(-52.7366);
    st_stack_17->SetDirectory(0);
    st_stack_17->SetStats(0);
 
@@ -53,53 +53,53 @@ void Z_dR_tags_16_logY()
    
    
    TH1D *VbbHcc_tags_Z_dR_stack_1 = new TH1D("VbbHcc_tags_Z_dR_stack_1","",30,0,6);
-   VbbHcc_tags_Z_dR_stack_1->SetBinContent(3,0.2208376);
-   VbbHcc_tags_Z_dR_stack_1->SetBinContent(4,0.3885616);
-   VbbHcc_tags_Z_dR_stack_1->SetBinContent(5,0.514985);
-   VbbHcc_tags_Z_dR_stack_1->SetBinContent(6,0.574791);
-   VbbHcc_tags_Z_dR_stack_1->SetBinContent(7,0.5629545);
-   VbbHcc_tags_Z_dR_stack_1->SetBinContent(8,0.5497265);
-   VbbHcc_tags_Z_dR_stack_1->SetBinContent(9,0.4875056);
-   VbbHcc_tags_Z_dR_stack_1->SetBinContent(10,0.3560541);
-   VbbHcc_tags_Z_dR_stack_1->SetBinContent(11,0.3531069);
-   VbbHcc_tags_Z_dR_stack_1->SetBinContent(12,0.4132465);
-   VbbHcc_tags_Z_dR_stack_1->SetBinContent(13,0.4199563);
-   VbbHcc_tags_Z_dR_stack_1->SetBinContent(14,0.399395);
-   VbbHcc_tags_Z_dR_stack_1->SetBinContent(15,0.4358456);
-   VbbHcc_tags_Z_dR_stack_1->SetBinContent(16,0.428929);
-   VbbHcc_tags_Z_dR_stack_1->SetBinContent(17,0.1518291);
-   VbbHcc_tags_Z_dR_stack_1->SetBinContent(18,0.08092789);
-   VbbHcc_tags_Z_dR_stack_1->SetBinContent(19,0.03693236);
+   VbbHcc_tags_Z_dR_stack_1->SetBinContent(3,0.2134041);
+   VbbHcc_tags_Z_dR_stack_1->SetBinContent(4,0.3728125);
+   VbbHcc_tags_Z_dR_stack_1->SetBinContent(5,0.5067703);
+   VbbHcc_tags_Z_dR_stack_1->SetBinContent(6,0.5660051);
+   VbbHcc_tags_Z_dR_stack_1->SetBinContent(7,0.5451205);
+   VbbHcc_tags_Z_dR_stack_1->SetBinContent(8,0.5425041);
+   VbbHcc_tags_Z_dR_stack_1->SetBinContent(9,0.4784714);
+   VbbHcc_tags_Z_dR_stack_1->SetBinContent(10,0.3454873);
+   VbbHcc_tags_Z_dR_stack_1->SetBinContent(11,0.3444041);
+   VbbHcc_tags_Z_dR_stack_1->SetBinContent(12,0.415455);
+   VbbHcc_tags_Z_dR_stack_1->SetBinContent(13,0.4005932);
+   VbbHcc_tags_Z_dR_stack_1->SetBinContent(14,0.3962374);
+   VbbHcc_tags_Z_dR_stack_1->SetBinContent(15,0.4244039);
+   VbbHcc_tags_Z_dR_stack_1->SetBinContent(16,0.4110244);
+   VbbHcc_tags_Z_dR_stack_1->SetBinContent(17,0.1455467);
+   VbbHcc_tags_Z_dR_stack_1->SetBinContent(18,0.07662237);
+   VbbHcc_tags_Z_dR_stack_1->SetBinContent(19,0.03697755);
    VbbHcc_tags_Z_dR_stack_1->SetBinContent(20,0.02587121);
    VbbHcc_tags_Z_dR_stack_1->SetBinContent(21,0.01110998);
-   VbbHcc_tags_Z_dR_stack_1->SetBinContent(22,0.01239377);
+   VbbHcc_tags_Z_dR_stack_1->SetBinContent(22,0.0109225);
    VbbHcc_tags_Z_dR_stack_1->SetBinContent(24,0.003143403);
    VbbHcc_tags_Z_dR_stack_1->SetBinContent(25,0.003014248);
    VbbHcc_tags_Z_dR_stack_1->SetBinContent(26,0.001493284);
-   VbbHcc_tags_Z_dR_stack_1->SetBinError(3,0.018347);
-   VbbHcc_tags_Z_dR_stack_1->SetBinError(4,0.02474896);
-   VbbHcc_tags_Z_dR_stack_1->SetBinError(5,0.028521);
-   VbbHcc_tags_Z_dR_stack_1->SetBinError(6,0.03004896);
-   VbbHcc_tags_Z_dR_stack_1->SetBinError(7,0.02952196);
-   VbbHcc_tags_Z_dR_stack_1->SetBinError(8,0.02912281);
-   VbbHcc_tags_Z_dR_stack_1->SetBinError(9,0.02758286);
-   VbbHcc_tags_Z_dR_stack_1->SetBinError(10,0.02415445);
-   VbbHcc_tags_Z_dR_stack_1->SetBinError(11,0.0232879);
-   VbbHcc_tags_Z_dR_stack_1->SetBinError(12,0.02539801);
-   VbbHcc_tags_Z_dR_stack_1->SetBinError(13,0.02591386);
-   VbbHcc_tags_Z_dR_stack_1->SetBinError(14,0.0247587);
-   VbbHcc_tags_Z_dR_stack_1->SetBinError(15,0.02568372);
-   VbbHcc_tags_Z_dR_stack_1->SetBinError(16,0.02593476);
-   VbbHcc_tags_Z_dR_stack_1->SetBinError(17,0.01547696);
-   VbbHcc_tags_Z_dR_stack_1->SetBinError(18,0.01111404);
-   VbbHcc_tags_Z_dR_stack_1->SetBinError(19,0.007391283);
+   VbbHcc_tags_Z_dR_stack_1->SetBinError(3,0.01804846);
+   VbbHcc_tags_Z_dR_stack_1->SetBinError(4,0.02426685);
+   VbbHcc_tags_Z_dR_stack_1->SetBinError(5,0.02834587);
+   VbbHcc_tags_Z_dR_stack_1->SetBinError(6,0.02983447);
+   VbbHcc_tags_Z_dR_stack_1->SetBinError(7,0.02907028);
+   VbbHcc_tags_Z_dR_stack_1->SetBinError(8,0.02893568);
+   VbbHcc_tags_Z_dR_stack_1->SetBinError(9,0.02733167);
+   VbbHcc_tags_Z_dR_stack_1->SetBinError(10,0.02382345);
+   VbbHcc_tags_Z_dR_stack_1->SetBinError(11,0.0229725);
+   VbbHcc_tags_Z_dR_stack_1->SetBinError(12,0.02537127);
+   VbbHcc_tags_Z_dR_stack_1->SetBinError(13,0.02533629);
+   VbbHcc_tags_Z_dR_stack_1->SetBinError(14,0.02466478);
+   VbbHcc_tags_Z_dR_stack_1->SetBinError(15,0.02537203);
+   VbbHcc_tags_Z_dR_stack_1->SetBinError(16,0.02541716);
+   VbbHcc_tags_Z_dR_stack_1->SetBinError(17,0.01517795);
+   VbbHcc_tags_Z_dR_stack_1->SetBinError(18,0.01083082);
+   VbbHcc_tags_Z_dR_stack_1->SetBinError(19,0.007391421);
    VbbHcc_tags_Z_dR_stack_1->SetBinError(20,0.006294941);
    VbbHcc_tags_Z_dR_stack_1->SetBinError(21,0.004203356);
-   VbbHcc_tags_Z_dR_stack_1->SetBinError(22,0.004176886);
+   VbbHcc_tags_Z_dR_stack_1->SetBinError(22,0.003909185);
    VbbHcc_tags_Z_dR_stack_1->SetBinError(24,0.002227248);
    VbbHcc_tags_Z_dR_stack_1->SetBinError(25,0.002131957);
    VbbHcc_tags_Z_dR_stack_1->SetBinError(26,0.001493284);
-   VbbHcc_tags_Z_dR_stack_1->SetEntries(4703);
+   VbbHcc_tags_Z_dR_stack_1->SetEntries(4581);
 
    ci = TColor::GetColor("#cc0000");
    VbbHcc_tags_Z_dR_stack_1->SetFillColor(ci);

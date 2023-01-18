@@ -4,7 +4,7 @@
 void H_mass_seljet_all_logY()
 {
 //=========Macro generated from canvas: H_mass_seljet_all/H_mass_seljet_all
-//=========  (Mon Dec 19 11:10:38 2022) by ROOT version 6.26/06
+//=========  (Wed Jan 18 11:42:17 2023) by ROOT version 6.26/06
    TCanvas *H_mass_seljet_all = new TCanvas("H_mass_seljet_all", "H_mass_seljet_all",0,0,600,600);
    H_mass_seljet_all->SetHighLightColor(2);
    H_mass_seljet_all->Range(-65.50587,0.1163976,351.4899,4.35552);
@@ -27,29 +27,29 @@ void H_mass_seljet_all_logY()
    st->SetMinimum(10);
    st->SetMaximum(5517.461);
    
-   TH1F *st_stack_232 = new TH1F("st_stack_232","",40,0,400);
-   st_stack_232->SetMinimum(4.217862);
-   st_stack_232->SetMaximum(8542.948);
-   st_stack_232->SetDirectory(0);
-   st_stack_232->SetStats(0);
+   TH1F *st_stack_264 = new TH1F("st_stack_264","",40,0,400);
+   st_stack_264->SetMinimum(4.217862);
+   st_stack_264->SetMaximum(8542.948);
+   st_stack_264->SetDirectory(0);
+   st_stack_264->SetStats(0);
 
    Int_t ci;      // for color index setting
    TColor *color; // for color definition with alpha
    ci = TColor::GetColor("#000099");
-   st_stack_232->SetLineColor(ci);
-   st_stack_232->GetXaxis()->SetTitle("M_{H} [GeV]");
-   st_stack_232->GetXaxis()->SetRange(1,30);
-   st_stack_232->GetXaxis()->SetLabelFont(42);
-   st_stack_232->GetXaxis()->SetTitleOffset(1);
-   st_stack_232->GetXaxis()->SetTitleFont(42);
-   st_stack_232->GetYaxis()->SetTitle("Events/10.0");
-   st_stack_232->GetYaxis()->SetLabelFont(42);
-   st_stack_232->GetYaxis()->SetTitleSize(0.037);
-   st_stack_232->GetYaxis()->SetTitleFont(42);
-   st_stack_232->GetZaxis()->SetLabelFont(42);
-   st_stack_232->GetZaxis()->SetTitleOffset(1);
-   st_stack_232->GetZaxis()->SetTitleFont(42);
-   st->SetHistogram(st_stack_232);
+   st_stack_264->SetLineColor(ci);
+   st_stack_264->GetXaxis()->SetTitle("M_{H} [GeV]");
+   st_stack_264->GetXaxis()->SetRange(1,30);
+   st_stack_264->GetXaxis()->SetLabelFont(42);
+   st_stack_264->GetXaxis()->SetTitleOffset(1);
+   st_stack_264->GetXaxis()->SetTitleFont(42);
+   st_stack_264->GetYaxis()->SetTitle("Events/10.0");
+   st_stack_264->GetYaxis()->SetLabelFont(42);
+   st_stack_264->GetYaxis()->SetTitleSize(0.037);
+   st_stack_264->GetYaxis()->SetTitleFont(42);
+   st_stack_264->GetZaxis()->SetLabelFont(42);
+   st_stack_264->GetZaxis()->SetTitleOffset(1);
+   st_stack_264->GetZaxis()->SetTitleFont(42);
+   st->SetHistogram(st_stack_264);
    
    
    TH1D *VbbHcc_seljet_H_mass_all_stack_1 = new TH1D("VbbHcc_seljet_H_mass_all_stack_1","",40,0,400);

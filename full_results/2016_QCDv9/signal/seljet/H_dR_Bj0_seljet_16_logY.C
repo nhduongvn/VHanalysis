@@ -4,7 +4,7 @@
 void H_dR_Bj0_seljet_16_logY()
 {
 //=========Macro generated from canvas: H_dR_Bj0_seljet_16/H_dR_Bj0_seljet_16
-//=========  (Mon Dec 19 11:10:39 2022) by ROOT version 6.26/06
+//=========  (Wed Jan 18 11:42:17 2023) by ROOT version 6.26/06
    TCanvas *H_dR_Bj0_seljet_16 = new TCanvas("H_dR_Bj0_seljet_16", "H_dR_Bj0_seljet_16",0,0,600,600);
    H_dR_Bj0_seljet_16->SetHighLightColor(2);
    H_dR_Bj0_seljet_16->Range(-1.310117,0.1535523,7.029799,4.189717);
@@ -27,29 +27,29 @@ void H_dR_Bj0_seljet_16_logY()
    st->SetMinimum(10);
    st->SetMaximum(4018.16);
    
-   TH1F *st_stack_265 = new TH1F("st_stack_265","",30,0,6);
-   st_stack_265->SetMinimum(4.344023);
-   st_stack_265->SetMaximum(6110.839);
-   st_stack_265->SetDirectory(0);
-   st_stack_265->SetStats(0);
+   TH1F *st_stack_297 = new TH1F("st_stack_297","",30,0,6);
+   st_stack_297->SetMinimum(4.344023);
+   st_stack_297->SetMaximum(6110.839);
+   st_stack_297->SetDirectory(0);
+   st_stack_297->SetStats(0);
 
    Int_t ci;      // for color index setting
    TColor *color; // for color definition with alpha
    ci = TColor::GetColor("#000099");
-   st_stack_265->SetLineColor(ci);
-   st_stack_265->GetXaxis()->SetTitle("#DeltaR(H,j_{1})");
-   st_stack_265->GetXaxis()->SetRange(1,30);
-   st_stack_265->GetXaxis()->SetLabelFont(42);
-   st_stack_265->GetXaxis()->SetTitleOffset(1);
-   st_stack_265->GetXaxis()->SetTitleFont(42);
-   st_stack_265->GetYaxis()->SetTitle("Events/0.2");
-   st_stack_265->GetYaxis()->SetLabelFont(42);
-   st_stack_265->GetYaxis()->SetTitleSize(0.037);
-   st_stack_265->GetYaxis()->SetTitleFont(42);
-   st_stack_265->GetZaxis()->SetLabelFont(42);
-   st_stack_265->GetZaxis()->SetTitleOffset(1);
-   st_stack_265->GetZaxis()->SetTitleFont(42);
-   st->SetHistogram(st_stack_265);
+   st_stack_297->SetLineColor(ci);
+   st_stack_297->GetXaxis()->SetTitle("#DeltaR(H,j_{1})");
+   st_stack_297->GetXaxis()->SetRange(1,30);
+   st_stack_297->GetXaxis()->SetLabelFont(42);
+   st_stack_297->GetXaxis()->SetTitleOffset(1);
+   st_stack_297->GetXaxis()->SetTitleFont(42);
+   st_stack_297->GetYaxis()->SetTitle("Events/0.2");
+   st_stack_297->GetYaxis()->SetLabelFont(42);
+   st_stack_297->GetYaxis()->SetTitleSize(0.037);
+   st_stack_297->GetYaxis()->SetTitleFont(42);
+   st_stack_297->GetZaxis()->SetLabelFont(42);
+   st_stack_297->GetZaxis()->SetTitleOffset(1);
+   st_stack_297->GetZaxis()->SetTitleFont(42);
+   st->SetHistogram(st_stack_297);
    
    
    TH1D *VbbHcc_seljet_H_dR_Bj0_stack_1 = new TH1D("VbbHcc_seljet_H_dR_Bj0_stack_1","",30,0,6);

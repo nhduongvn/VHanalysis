@@ -4,10 +4,10 @@
 void Z_mass_algo_16()
 {
 //=========Macro generated from canvas: Z_mass_algo_16/Z_mass_algo_16
-//=========  (Mon Dec 19 11:11:22 2022) by ROOT version 6.26/06
+//=========  (Wed Jan 18 11:40:23 2023) by ROOT version 6.26/06
    TCanvas *Z_mass_algo_16 = new TCanvas("Z_mass_algo_16", "Z_mass_algo_16",0,0,600,600);
    Z_mass_algo_16->SetHighLightColor(2);
-   Z_mass_algo_16->Range(-65.50587,-0.1063251,351.4899,0.7797175);
+   Z_mass_algo_16->Range(-65.50587,-0.1057095,351.4899,0.7752027);
    Z_mass_algo_16->SetFillColor(0);
    Z_mass_algo_16->SetFillStyle(4000);
    Z_mass_algo_16->SetBorderMode(0);
@@ -23,31 +23,31 @@ void Z_mass_algo_16()
    THStack *st = new THStack();
    st->SetName("st");
    st->SetTitle("");
-   st->SetMaximum(0.6911132);
+   st->SetMaximum(0.6871115);
    
-   TH1F *st_stack_57 = new TH1F("st_stack_57","",40,0,400);
-   st_stack_57->SetMinimum(0);
-   st_stack_57->SetMaximum(0.6911132);
-   st_stack_57->SetDirectory(0);
-   st_stack_57->SetStats(0);
+   TH1F *st_stack_65 = new TH1F("st_stack_65","",40,0,400);
+   st_stack_65->SetMinimum(0);
+   st_stack_65->SetMaximum(0.6871115);
+   st_stack_65->SetDirectory(0);
+   st_stack_65->SetStats(0);
 
    Int_t ci;      // for color index setting
    TColor *color; // for color definition with alpha
    ci = TColor::GetColor("#000099");
-   st_stack_57->SetLineColor(ci);
-   st_stack_57->GetXaxis()->SetTitle("M_{Z} [GeV]");
-   st_stack_57->GetXaxis()->SetRange(1,30);
-   st_stack_57->GetXaxis()->SetLabelFont(42);
-   st_stack_57->GetXaxis()->SetTitleOffset(1);
-   st_stack_57->GetXaxis()->SetTitleFont(42);
-   st_stack_57->GetYaxis()->SetTitle("Events/10.0");
-   st_stack_57->GetYaxis()->SetLabelFont(42);
-   st_stack_57->GetYaxis()->SetTitleSize(0.037);
-   st_stack_57->GetYaxis()->SetTitleFont(42);
-   st_stack_57->GetZaxis()->SetLabelFont(42);
-   st_stack_57->GetZaxis()->SetTitleOffset(1);
-   st_stack_57->GetZaxis()->SetTitleFont(42);
-   st->SetHistogram(st_stack_57);
+   st_stack_65->SetLineColor(ci);
+   st_stack_65->GetXaxis()->SetTitle("M_{Z} [GeV]");
+   st_stack_65->GetXaxis()->SetRange(1,30);
+   st_stack_65->GetXaxis()->SetLabelFont(42);
+   st_stack_65->GetXaxis()->SetTitleOffset(1);
+   st_stack_65->GetXaxis()->SetTitleFont(42);
+   st_stack_65->GetYaxis()->SetTitle("Events/10.0");
+   st_stack_65->GetYaxis()->SetLabelFont(42);
+   st_stack_65->GetYaxis()->SetTitleSize(0.037);
+   st_stack_65->GetYaxis()->SetTitleFont(42);
+   st_stack_65->GetZaxis()->SetLabelFont(42);
+   st_stack_65->GetZaxis()->SetTitleOffset(1);
+   st_stack_65->GetZaxis()->SetTitleFont(42);
+   st->SetHistogram(st_stack_65);
    
    
    TH1D *VbbHcc_algo_Z_mass_stack_1 = new TH1D("VbbHcc_algo_Z_mass_stack_1","",40,0,400);
@@ -55,18 +55,18 @@ void Z_mass_algo_16()
    VbbHcc_algo_Z_mass_stack_1->SetBinContent(4,0.02102331);
    VbbHcc_algo_Z_mass_stack_1->SetBinContent(5,0.02417014);
    VbbHcc_algo_Z_mass_stack_1->SetBinContent(6,0.06000038);
-   VbbHcc_algo_Z_mass_stack_1->SetBinContent(7,0.1725457);
-   VbbHcc_algo_Z_mass_stack_1->SetBinContent(8,0.2984804);
-   VbbHcc_algo_Z_mass_stack_1->SetBinContent(9,0.360043);
-   VbbHcc_algo_Z_mass_stack_1->SetBinContent(10,0.2716378);
-   VbbHcc_algo_Z_mass_stack_1->SetBinContent(11,0.1101283);
+   VbbHcc_algo_Z_mass_stack_1->SetBinContent(7,0.1710831);
+   VbbHcc_algo_Z_mass_stack_1->SetBinContent(8,0.2972504);
+   VbbHcc_algo_Z_mass_stack_1->SetBinContent(9,0.3573752);
+   VbbHcc_algo_Z_mass_stack_1->SetBinContent(10,0.27334);
+   VbbHcc_algo_Z_mass_stack_1->SetBinContent(11,0.1117072);
    VbbHcc_algo_Z_mass_stack_1->SetBinContent(12,0.03850691);
    VbbHcc_algo_Z_mass_stack_1->SetBinContent(13,0.03180841);
    VbbHcc_algo_Z_mass_stack_1->SetBinContent(14,0.0213143);
    VbbHcc_algo_Z_mass_stack_1->SetBinContent(15,0.01260884);
    VbbHcc_algo_Z_mass_stack_1->SetBinContent(16,0.01152614);
    VbbHcc_algo_Z_mass_stack_1->SetBinContent(17,0.00686575);
-   VbbHcc_algo_Z_mass_stack_1->SetBinContent(18,0.008711115);
+   VbbHcc_algo_Z_mass_stack_1->SetBinContent(18,0.007196988);
    VbbHcc_algo_Z_mass_stack_1->SetBinContent(19,0.006456791);
    VbbHcc_algo_Z_mass_stack_1->SetBinContent(20,0.006006783);
    VbbHcc_algo_Z_mass_stack_1->SetBinContent(21,0.003049543);
@@ -86,18 +86,18 @@ void Z_mass_algo_16()
    VbbHcc_algo_Z_mass_stack_1->SetBinError(4,0.006110779);
    VbbHcc_algo_Z_mass_stack_1->SetBinError(5,0.00604648);
    VbbHcc_algo_Z_mass_stack_1->SetBinError(6,0.009804115);
-   VbbHcc_algo_Z_mass_stack_1->SetBinError(7,0.01673007);
-   VbbHcc_algo_Z_mass_stack_1->SetBinError(8,0.02161197);
-   VbbHcc_algo_Z_mass_stack_1->SetBinError(9,0.02404217);
-   VbbHcc_algo_Z_mass_stack_1->SetBinError(10,0.02052692);
-   VbbHcc_algo_Z_mass_stack_1->SetBinError(11,0.01297185);
+   VbbHcc_algo_Z_mass_stack_1->SetBinError(7,0.01666601);
+   VbbHcc_algo_Z_mass_stack_1->SetBinError(8,0.02157874);
+   VbbHcc_algo_Z_mass_stack_1->SetBinError(9,0.02396715);
+   VbbHcc_algo_Z_mass_stack_1->SetBinError(10,0.0205976);
+   VbbHcc_algo_Z_mass_stack_1->SetBinError(11,0.01306758);
    VbbHcc_algo_Z_mass_stack_1->SetBinError(12,0.007648251);
    VbbHcc_algo_Z_mass_stack_1->SetBinError(13,0.006980914);
    VbbHcc_algo_Z_mass_stack_1->SetBinError(14,0.005648675);
    VbbHcc_algo_Z_mass_stack_1->SetBinError(15,0.004346724);
    VbbHcc_algo_Z_mass_stack_1->SetBinError(16,0.004151296);
    VbbHcc_algo_Z_mass_stack_1->SetBinError(17,0.003168044);
-   VbbHcc_algo_Z_mass_stack_1->SetBinError(18,0.003569833);
+   VbbHcc_algo_Z_mass_stack_1->SetBinError(18,0.00323282);
    VbbHcc_algo_Z_mass_stack_1->SetBinError(19,0.003221743);
    VbbHcc_algo_Z_mass_stack_1->SetBinError(20,0.003006357);
    VbbHcc_algo_Z_mass_stack_1->SetBinError(21,0.002157652);
@@ -113,7 +113,7 @@ void Z_mass_algo_16()
    VbbHcc_algo_Z_mass_stack_1->SetBinError(35,0.001514127);
    VbbHcc_algo_Z_mass_stack_1->SetBinError(38,0.002237414);
    VbbHcc_algo_Z_mass_stack_1->SetBinError(39,0.002175245);
-   VbbHcc_algo_Z_mass_stack_1->SetEntries(1091);
+   VbbHcc_algo_Z_mass_stack_1->SetEntries(1088);
 
    ci = TColor::GetColor("#cc0000");
    VbbHcc_algo_Z_mass_stack_1->SetFillColor(ci);
