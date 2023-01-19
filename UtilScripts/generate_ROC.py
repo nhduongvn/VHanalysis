@@ -189,7 +189,7 @@ for plN in plotNames:
     ]
     
     makeROCcurve(plots_process, plotNames_process, "ROC_" + plN + "_" + y,
-      plotFolder + '/20' + y + '_QCDv9' + '/ROC/', colors)
+      plotFolder + '/20' + y + '_QCDv9' + '/ROC/', colors, lumi=lumiS[y])
   
   
   

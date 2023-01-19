@@ -4,51 +4,26 @@
 void ROC_H_dR_Bj0_17()
 {
 //=========Macro generated from canvas: ROC_H_dR_Bj0_17/ROC_H_dR_Bj0_17
-//=========  (Tue Jan 17 16:04:08 2023) by ROOT version 6.26/06
+//=========  (Thu Jan 19 10:33:19 2023) by ROOT version 6.26/06
    TCanvas *ROC_H_dR_Bj0_17 = new TCanvas("ROC_H_dR_Bj0_17", "ROC_H_dR_Bj0_17",0,0,600,600);
    ROC_H_dR_Bj0_17->SetHighLightColor(2);
-   ROC_H_dR_Bj0_17->Range(0,0,1,1);
+   ROC_H_dR_Bj0_17->Range(-0.2901882,-0.1615229,1.238796,1.184501);
    ROC_H_dR_Bj0_17->SetFillColor(0);
    ROC_H_dR_Bj0_17->SetBorderMode(0);
    ROC_H_dR_Bj0_17->SetBorderSize(2);
+   ROC_H_dR_Bj0_17->SetGridx();
+   ROC_H_dR_Bj0_17->SetGridy();
+   ROC_H_dR_Bj0_17->SetLeftMargin(0.15709);
+   ROC_H_dR_Bj0_17->SetRightMargin(0.1234783);
+   ROC_H_dR_Bj0_17->SetBottomMargin(0.12);
+   ROC_H_dR_Bj0_17->SetFrameBorderMode(0);
    ROC_H_dR_Bj0_17->SetFrameBorderMode(0);
    
    TMultiGraph *multigraph = new TMultiGraph();
-   multigraph->SetName("mg");
-   multigraph->SetTitle("mg");
+   multigraph->SetName("");
+   multigraph->SetTitle("");
    
    Double_t Graph_fx94[30] = {
-   0,
-   0.02476152,
-   0.1289217,
-   0.2461348,
-   0.354644,
-   0.4492419,
-   0.5275221,
-   0.5946567,
-   0.6530142,
-   0.7000174,
-   0.7415027,
-   0.7837843,
-   0.8169751,
-   0.8474461,
-   0.8801318,
-   0.9061498,
-   0.927734,
-   0.9463216,
-   0.9599581,
-   0.9705276,
-   0.9783097,
-   0.9837411,
-   0.9880296,
-   0.9910085,
-   0.9932774,
-   0.9962324,
-   0.9981603,
-   0.998932,
-   0.9995561,
-   0.9999013};
-   Double_t Graph_fy94[30] = {
    0,
    0.02224909,
    0.1339113,
@@ -79,6 +54,37 @@ void ROC_H_dR_Bj0_17()
    0.9999655,
    0.9999828,
    1};
+   Double_t Graph_fy94[30] = {
+   0,
+   0.02476152,
+   0.1289217,
+   0.2461348,
+   0.354644,
+   0.4492419,
+   0.5275221,
+   0.5946567,
+   0.6530142,
+   0.7000174,
+   0.7415027,
+   0.7837843,
+   0.8169751,
+   0.8474461,
+   0.8801318,
+   0.9061498,
+   0.927734,
+   0.9463216,
+   0.9599581,
+   0.9705276,
+   0.9783097,
+   0.9837411,
+   0.9880296,
+   0.9910085,
+   0.9932774,
+   0.9962324,
+   0.9981603,
+   0.998932,
+   0.9995561,
+   0.9999013};
    TGraph *graph = new TGraph(30,Graph_fx94,Graph_fy94);
    graph->SetName("Graph");
    graph->SetTitle("Tagging Only");
@@ -92,11 +98,11 @@ void ROC_H_dR_Bj0_17()
 
    ci = TColor::GetColor("#009900");
    graph->SetMarkerColor(ci);
-   graph->SetMarkerStyle(21);
+   graph->SetMarkerStyle(20);
    
-   TH1F *Graph_Graph94 = new TH1F("Graph_Graph94","Tagging Only",100,0,1.099891);
+   TH1F *Graph_Graph94 = new TH1F("Graph_Graph94","Tagging Only",100,0,1.1);
    Graph_Graph94->SetMinimum(0);
-   Graph_Graph94->SetMaximum(1.1);
+   Graph_Graph94->SetMaximum(1.099891);
    Graph_Graph94->SetDirectory(0);
    Graph_Graph94->SetStats(0);
 
@@ -115,37 +121,6 @@ void ROC_H_dR_Bj0_17()
    multigraph->Add(graph,"");
    
    Double_t Graph_fx95[30] = {
-   0,
-   0.07683783,
-   0.319171,
-   0.5402135,
-   0.7025669,
-   0.7984799,
-   0.870049,
-   0.9132989,
-   0.9363035,
-   0.9602783,
-   0.9799808,
-   0.9842484,
-   0.9881496,
-   0.9901122,
-   0.9914669,
-   0.9929892,
-   0.9953736,
-   0.9957702,
-   0.9993667,
-   0.9994385,
-   0.9996177,
-   0.9998201,
-   0.9998252,
-   0.9998287,
-   0.9998331,
-   0.9998335,
-   0.9998338,
-   0.9998639,
-   0.999864,
-   0.999864};
-   Double_t Graph_fy95[30] = {
    0,
    0.06544744,
    0.329583,
@@ -176,6 +151,37 @@ void ROC_H_dR_Bj0_17()
    1,
    1,
    1};
+   Double_t Graph_fy95[30] = {
+   0,
+   0.07683783,
+   0.319171,
+   0.5402135,
+   0.7025669,
+   0.7984799,
+   0.870049,
+   0.9132989,
+   0.9363035,
+   0.9602783,
+   0.9799808,
+   0.9842484,
+   0.9881496,
+   0.9901122,
+   0.9914669,
+   0.9929892,
+   0.9953736,
+   0.9957702,
+   0.9993667,
+   0.9994385,
+   0.9996177,
+   0.9998201,
+   0.9998252,
+   0.9998287,
+   0.9998331,
+   0.9998335,
+   0.9998338,
+   0.9998639,
+   0.999864,
+   0.999864};
    graph = new TGraph(30,Graph_fx95,Graph_fy95);
    graph->SetName("Graph");
    graph->SetTitle("Mass-Matching Prioritized");
@@ -187,11 +193,11 @@ void ROC_H_dR_Bj0_17()
 
    ci = TColor::GetColor("#0000ff");
    graph->SetMarkerColor(ci);
-   graph->SetMarkerStyle(21);
+   graph->SetMarkerStyle(20);
    
-   TH1F *Graph_Graph95 = new TH1F("Graph_Graph95","Mass-Matching Prioritized",100,0,1.09985);
+   TH1F *Graph_Graph95 = new TH1F("Graph_Graph95","Mass-Matching Prioritized",100,0,1.1);
    Graph_Graph95->SetMinimum(0);
-   Graph_Graph95->SetMaximum(1.1);
+   Graph_Graph95->SetMaximum(1.09985);
    Graph_Graph95->SetDirectory(0);
    Graph_Graph95->SetStats(0);
 
@@ -210,37 +216,6 @@ void ROC_H_dR_Bj0_17()
    multigraph->Add(graph,"");
    
    Double_t Graph_fx96[30] = {
-   0,
-   0.02479929,
-   0.1293486,
-   0.2466649,
-   0.355154,
-   0.4497921,
-   0.5274014,
-   0.5943279,
-   0.6525896,
-   0.6999704,
-   0.7416553,
-   0.7836507,
-   0.8170129,
-   0.8474386,
-   0.8799448,
-   0.9059697,
-   0.9279581,
-   0.9467074,
-   0.9603559,
-   0.970903,
-   0.9786011,
-   0.9840179,
-   0.988256,
-   0.9911951,
-   0.9934296,
-   0.9963307,
-   0.9982158,
-   0.9989548,
-   0.9995671,
-   0.9999034};
-   Double_t Graph_fy96[30] = {
    0,
    0.0226452,
    0.1324966,
@@ -271,6 +246,37 @@ void ROC_H_dR_Bj0_17()
    0.9999704,
    0.9999852,
    1};
+   Double_t Graph_fy96[30] = {
+   0,
+   0.02479929,
+   0.1293486,
+   0.2466649,
+   0.355154,
+   0.4497921,
+   0.5274014,
+   0.5943279,
+   0.6525896,
+   0.6999704,
+   0.7416553,
+   0.7836507,
+   0.8170129,
+   0.8474386,
+   0.8799448,
+   0.9059697,
+   0.9279581,
+   0.9467074,
+   0.9603559,
+   0.970903,
+   0.9786011,
+   0.9840179,
+   0.988256,
+   0.9911951,
+   0.9934296,
+   0.9963307,
+   0.9982158,
+   0.9989548,
+   0.9995671,
+   0.9999034};
    graph = new TGraph(30,Graph_fx96,Graph_fy96);
    graph->SetName("Graph");
    graph->SetTitle("Tagging Prioritized");
@@ -282,11 +288,11 @@ void ROC_H_dR_Bj0_17()
 
    ci = TColor::GetColor("#ff0000");
    graph->SetMarkerColor(ci);
-   graph->SetMarkerStyle(21);
+   graph->SetMarkerStyle(20);
    
-   TH1F *Graph_Graph96 = new TH1F("Graph_Graph96","Tagging Prioritized",100,0,1.099894);
+   TH1F *Graph_Graph96 = new TH1F("Graph_Graph96","Tagging Prioritized",100,0,1.1);
    Graph_Graph96->SetMinimum(0);
-   Graph_Graph96->SetMaximum(1.1);
+   Graph_Graph96->SetMaximum(1.099894);
    Graph_Graph96->SetDirectory(0);
    Graph_Graph96->SetStats(0);
 
@@ -303,15 +309,17 @@ void ROC_H_dR_Bj0_17()
    graph->SetHistogram(Graph_Graph96);
    
    multigraph->Add(graph,"");
-   multigraph->Draw("LP");
-   multigraph->GetXaxis()->SetLimits(-0.04999517, 1.049899);
+   multigraph->Draw("ALP");
+   multigraph->GetXaxis()->SetLimits(-0.05, 1.05);
+   multigraph->GetXaxis()->SetTitle("False Signal Rate (Bckg)");
    multigraph->GetXaxis()->SetLabelFont(42);
    multigraph->GetXaxis()->SetTitleOffset(1);
    multigraph->GetXaxis()->SetTitleFont(42);
+   multigraph->GetYaxis()->SetTitle("True Signal Rate");
    multigraph->GetYaxis()->SetLabelFont(42);
    multigraph->GetYaxis()->SetTitleFont(42);
    
-   TLegend *leg = new TLegend(0,0.3508772,0.3,0.5608772,NULL,"brNDC");
+   TLegend *leg = new TLegend(0.55,0.15,0.85,0.3,NULL,"brNDC");
    leg->SetBorderSize(1);
    leg->SetLineColor(1);
    leg->SetLineStyle(1);
@@ -327,7 +335,7 @@ void ROC_H_dR_Bj0_17()
 
    ci = TColor::GetColor("#009900");
    entry->SetMarkerColor(ci);
-   entry->SetMarkerStyle(21);
+   entry->SetMarkerStyle(20);
    entry->SetMarkerSize(1);
    entry->SetTextFont(42);
    entry=leg->AddEntry("Graph","Mass-Matching Prioritized","lpf");
@@ -339,7 +347,7 @@ void ROC_H_dR_Bj0_17()
 
    ci = TColor::GetColor("#0000ff");
    entry->SetMarkerColor(ci);
-   entry->SetMarkerStyle(21);
+   entry->SetMarkerStyle(20);
    entry->SetMarkerSize(1);
    entry->SetTextFont(42);
    entry=leg->AddEntry("Graph","Tagging Prioritized","lpf");
@@ -351,10 +359,16 @@ void ROC_H_dR_Bj0_17()
 
    ci = TColor::GetColor("#ff0000");
    entry->SetMarkerColor(ci);
-   entry->SetMarkerStyle(21);
+   entry->SetMarkerStyle(20);
    entry->SetMarkerSize(1);
    entry->SetTextFont(42);
    leg->Draw();
+   TLatex *   tex = new TLatex(0.35,0.927775,"CMS Work in Progress #sqrt{s} = 13 TeV, 41.5 fb^{-1}");
+tex->SetNDC();
+   tex->SetTextFont(42);
+   tex->SetTextSize(0.03);
+   tex->SetLineWidth(2);
+   tex->Draw();
    ROC_H_dR_Bj0_17->Modified();
    ROC_H_dR_Bj0_17->cd();
    ROC_H_dR_Bj0_17->SetSelected(ROC_H_dR_Bj0_17);

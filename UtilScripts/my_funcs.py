@@ -50,7 +50,7 @@ def getHist(pN, samList, fList, lS, selType, scale=True):
   return hOut
 
 ###############################################################################
-## myText Function
+## My Text Function
 ###############################################################################
 def myText(txt="CMS Preliminary", ndcX=0, ndcY=0, size=0.8):
   ROOT.gPad.Update()
@@ -251,7 +251,8 @@ def makeRatioPlots(plots, plotNames, canvasName, plotDir, xAxisTitle, xAxisRange
 def makeStackPlot(plots, plotNames, cName, plotDir = 'Test/', 
 xAxisTitle = 'Jet M_{SV}[GeV]', xAxisRange = [0,10], uncName = 'MC unc. (stat.)',
 normMC=True, logY=False, normBinWidth = -1, legendOrder = [], minY_forLog = 1.0,
-lumi = '35.9', custom_colors=colors, useStack=True, useFill=True, forceMin=False):
+lumi = '35.9', custom_colors=colors, useStack=True, 
+useFill=True, forceMin=False):
 
   ## Create the canvas & modify it as necessary
   c = ROOT.TCanvas(cName, cName, 600, 600)
@@ -412,7 +413,7 @@ lumi = '35.9', custom_colors=colors, useStack=True, useFill=True, forceMin=False
 ###############################################################################
 ## Make ROC Curve
 ###############################################################################
-def makeROCcurve(plots, plotNames, canvasName, plotDir, colors):
+def makeROCcurve(plots, plotNames, canvasName, plotDir, colors, lumi='35.9'):
 
   ## Make sure that our output folder exists
   dirExists = os.path.exists(plotDir)
@@ -445,6 +446,8 @@ def makeROCcurve(plots, plotNames, canvasName, plotDir, colors):
       ## Calculate the percentage.
       per = subtotal * 1.0 / totals[p]
       percents_calculated.append(per)
+      
+      #print(str(subtotal) + " | " + str(totals[p]))
     
     ## Now that we're done, add the percentages
     ## to our overall list
@@ -456,29 +459,47 @@ def makeROCcurve(plots, plotNames, canvasName, plotDir, colors):
   ## Now that we've got the percentages and totals, 
   ## we want to properly plot the TGraphs.
   canv = ROOT.TCanvas(canvasName, canvasName, 600, 600)
-  multigraph = ROOT.TMultiGraph("mg", "mg")
+  canv.SetBottomMargin(0.12)
+  canv.SetLeftMargin(0.15709)
+  canv.SetRightMargin(0.1234783)
   
-  for i in range(len(plots)/2):
+  multigraph = ROOT.TMultiGraph("","")
+  graphs = []
+  for i in range(len(plotNames)):
     
-    xdata_bckg = array('d')#percentages[i*2 + 1]
-    ydata_sgnl = array('d')#percentages[i*2]
+    ydata_bckg = array('d')#percentages[i*2 + 1]
+    xdata_sgnl = array('d')#percentages[i*2]
     size = len(percentages[i*2])
     for j in range(size):
-      xdata_bckg.append(percentages[i*2+1][j])
-      ydata_sgnl.append(percentages[i*2][j])
+      ydata_bckg.append(percentages[i*2+1][j])
+      xdata_sgnl.append(percentages[i*2][j])
     
-    gI = ROOT.TGraph(size, xdata_bckg, ydata_sgnl)
+    gI = ROOT.TGraph(size, xdata_sgnl, ydata_bckg)
     gI.SetTitle(plotNames[i])
     gI.SetMarkerColor(colors[i])
-    gI.SetMarkerStyle(21)	## square style
+    gI.SetMarkerStyle(20)	## 21 = square style
     gI.SetLineColor(colors[i])
     gI.SetFillStyle(0)
     gI.SetLineWidth(2)
     
-    multigraph.Add(gI)
+    graphs.append(gI)
+  
+  for i in range(len(plotNames)):
+    multigraph.Add(graphs[i])
     
-  multigraph.Draw("LP")
-  canv.BuildLegend()
+  multigraph.Draw("ALP")
+  multigraph.GetXaxis().SetTitle("False Signal Rate (Bckg)")
+  multigraph.GetXaxis().SetLabelSize(0.035)
+  multigraph.GetYaxis().SetTitle("True Signal Rate")
+  multigraph.GetYaxis().SetLabelSize(0.035)
+  
+  if len(plotNames) > 1:  
+    canv.BuildLegend(0.55, 0.15, 0.85, 0.3)
+  
+  myText('CMS Work in Progress #sqrt{s} = 13 TeV, ' + lumi + ' fb^{-1}',
+    0.35, 0.927775, 0.6)
+  canv.cd()
+  canv.SetGrid()
   canv.Update()
   ROOT.gPad.Modified()
   ROOT.gPad.Update()

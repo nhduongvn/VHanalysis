@@ -55,16 +55,16 @@ years = ['16', '17', '18']
 
 filepath = '../new_condor_results/NONE/'
 plotFolder = '../full_results/'
-useLogY = False
+useLogY = True
 
 ## List with just Signal Samples
 ss = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ']
 
 ## List with just Background Samples
-ss = [ 'QCD_HT100to200_v9', 'QCD_HT200to300_v9', 'QCD_HT300to500_v9','QCD_HT500to700_v9','QCD_HT700to1000_v9','QCD_HT1000to1500_v9','QCD_HT1500to2000_v9','QCD_HT2000toInf_v9', 'TTToHadronic', 'TTToSemiLeptonic', 'TTTo2L2Nu']
+#ss = [ 'QCD_HT100to200_v9', 'QCD_HT200to300_v9', 'QCD_HT300to500_v9','QCD_HT500to700_v9','QCD_HT700to1000_v9','QCD_HT1000to1500_v9','QCD_HT1500to2000_v9','QCD_HT2000toInf_v9', 'TTToHadronic', 'TTToSemiLeptonic', 'TTTo2L2Nu']
 
 sample_type = 'signal'
-sample_type = 'bckg'
+#sample_type = 'bckg'
 
 line_colors = [ROOT.kGreen + 2, ROOT.kBlue, ROOT.kRed]
 
@@ -192,7 +192,7 @@ for i in range(len(varList)):
     makeStackPlot(plots_process, plotNames_process, canvasName,
       output_dir, xA_title, xA_range, logY=logY,lumi=lumiS[y],
       custom_colors=line_colors, useStack=False, useFill=False,
-      minY_forLog = 1.0, forceMin=True)
+      minY_forLog = 0.01, forceMin=True)
   
   continue
   ###################################
@@ -225,7 +225,7 @@ for i in range(len(varList)):
   makeStackPlot(plots_process, plotNames_process, canvasName,
     output_dir, xA_title, xA_range, logY=logY,lumi=lumiS[y],
     custom_colors=line_colors, useStack=False, useFill=False,
-    minY_forLog = 1.0)
+    minY_forLog = 0.1)
 
 
 

@@ -4,10 +4,10 @@
 void overlap_pt_jets_lead_logY()
 {
 //=========Macro generated from canvas: overlap_pt_jets_lead/overlap_pt_jets_lead
-//=========  (Wed Jan 11 11:30:59 2023) by ROOT version 6.26/06
+//=========  (Wed Jan 18 12:16:22 2023) by ROOT version 6.26/06
    TCanvas *overlap_pt_jets_lead = new TCanvas("overlap_pt_jets_lead", "overlap_pt_jets_lead",0,0,600,600);
    overlap_pt_jets_lead->SetHighLightColor(2);
-   overlap_pt_jets_lead->Range(-436.7058,-0.4845281,2343.266,3.553206);
+   overlap_pt_jets_lead->Range(-436.7058,-2.79222,2343.266,3.809616);
    overlap_pt_jets_lead->SetFillColor(0);
    overlap_pt_jets_lead->SetFillStyle(4000);
    overlap_pt_jets_lead->SetBorderMode(0);
@@ -24,11 +24,11 @@ void overlap_pt_jets_lead_logY()
    THStack *st = new THStack();
    st->SetName("st");
    st->SetTitle("");
-   st->SetMinimum(1);
+   st->SetMinimum(0.01);
    st->SetMaximum(1410.694);
    
    TH1F *st_stack_6 = new TH1F("st_stack_6","",1000,0,2000);
-   st_stack_6->SetMinimum(1);
+   st_stack_6->SetMinimum(0.01);
    st_stack_6->SetMaximum(1410.694);
    st_stack_6->SetDirectory(0);
    st_stack_6->SetStats(0);
