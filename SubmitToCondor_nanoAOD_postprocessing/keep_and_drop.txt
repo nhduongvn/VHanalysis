@@ -1,0 +1,8 @@
+# this is a comment
+#keep *
+drop Tau_*
+drop boostedTau_*
+drop Photon_*
+drop FsrPhoton_*
+drop L1_*
+drop IsoTrack_*
