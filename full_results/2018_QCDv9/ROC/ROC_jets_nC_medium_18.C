@@ -4,7 +4,7 @@
 void ROC_jets_nC_medium_18()
 {
 //=========Macro generated from canvas: ROC_jets_nC_medium_18/ROC_jets_nC_medium_18
-//=========  (Thu Jan 19 11:07:05 2023) by ROOT version 6.26/06
+//=========  (Tue Jan 24 10:54:38 2023) by ROOT version 6.26/06
    TCanvas *ROC_jets_nC_medium_18 = new TCanvas("ROC_jets_nC_medium_18", "ROC_jets_nC_medium_18",0,0,600,600);
    ROC_jets_nC_medium_18->SetHighLightColor(2);
    ROC_jets_nC_medium_18->Range(-0.2901882,-0.1615385,1.238796,1.184615);
@@ -23,7 +23,7 @@ void ROC_jets_nC_medium_18()
    multigraph->SetName("");
    multigraph->SetTitle("");
    
-   Double_t Graph_fx21[10] = {
+   Double_t Graph_fx743[10] = {
    0,
    0.2739133,
    0.6729824,
@@ -34,7 +34,7 @@ void ROC_jets_nC_medium_18()
    0.9999993,
    1,
    1};
-   Double_t Graph_fy21[10] = {
+   Double_t Graph_fy743[10] = {
    0,
    0.7363382,
    0.970862,
@@ -45,7 +45,7 @@ void ROC_jets_nC_medium_18()
    1,
    1,
    1};
-   TGraph *graph = new TGraph(10,Graph_fx21,Graph_fy21);
+   TGraph *graph = new TGraph(10,Graph_fx743,Graph_fy743);
    graph->SetName("Graph");
    graph->SetTitle("");
    graph->SetFillStyle(0);
@@ -60,24 +60,74 @@ void ROC_jets_nC_medium_18()
    graph->SetMarkerColor(ci);
    graph->SetMarkerStyle(20);
    
-   TH1F *Graph_Graph21 = new TH1F("Graph_Graph21","",100,0,1.1);
-   Graph_Graph21->SetMinimum(0);
-   Graph_Graph21->SetMaximum(1.1);
-   Graph_Graph21->SetDirectory(0);
-   Graph_Graph21->SetStats(0);
+   TH1F *Graph_Graph743 = new TH1F("Graph_Graph743","",100,0,1.1);
+   Graph_Graph743->SetMinimum(0);
+   Graph_Graph743->SetMaximum(1.1);
+   Graph_Graph743->SetDirectory(0);
+   Graph_Graph743->SetStats(0);
 
    ci = TColor::GetColor("#000099");
-   Graph_Graph21->SetLineColor(ci);
-   Graph_Graph21->GetXaxis()->SetLabelFont(42);
-   Graph_Graph21->GetXaxis()->SetTitleOffset(1);
-   Graph_Graph21->GetXaxis()->SetTitleFont(42);
-   Graph_Graph21->GetYaxis()->SetLabelFont(42);
-   Graph_Graph21->GetYaxis()->SetTitleFont(42);
-   Graph_Graph21->GetZaxis()->SetLabelFont(42);
-   Graph_Graph21->GetZaxis()->SetTitleOffset(1);
-   Graph_Graph21->GetZaxis()->SetTitleFont(42);
-   graph->SetHistogram(Graph_Graph21);
+   Graph_Graph743->SetLineColor(ci);
+   Graph_Graph743->GetXaxis()->SetLabelFont(42);
+   Graph_Graph743->GetXaxis()->SetTitleOffset(1);
+   Graph_Graph743->GetXaxis()->SetTitleFont(42);
+   Graph_Graph743->GetYaxis()->SetLabelFont(42);
+   Graph_Graph743->GetYaxis()->SetTitleFont(42);
+   Graph_Graph743->GetZaxis()->SetLabelFont(42);
+   Graph_Graph743->GetZaxis()->SetTitleOffset(1);
+   Graph_Graph743->GetZaxis()->SetTitleFont(42);
+   graph->SetHistogram(Graph_Graph743);
    
+   TLatex *   tex = new TLatex(0,0.06,"0.0");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(744);
+      tex = new TLatex(0.2739133,0.7963382,"1.0");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(745);
+      tex = new TLatex(0.6729824,1.030862,"2.0");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(746);
+      tex = new TLatex(0.9166644,1.058392,"3.0");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(747);
+      tex = new TLatex(0.9884121,1.059917,"4.0");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(748);
+      tex = new TLatex(0.9992629,1.059996,"5.0");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(749);
+      tex = new TLatex(0.9999795,1.06,"6.0");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(750);
+      tex = new TLatex(0.9999993,1.06,"7.0");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(751);
+      tex = new TLatex(1,1.06,"8.0");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(752);
+      tex = new TLatex(1,1.06,"9.0");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(753);
    multigraph->Add(graph,"");
    multigraph->Draw("ALP");
    multigraph->GetXaxis()->SetLimits(-0.05, 1.05);
@@ -88,7 +138,7 @@ void ROC_jets_nC_medium_18()
    multigraph->GetYaxis()->SetTitle("True Signal Rate");
    multigraph->GetYaxis()->SetLabelFont(42);
    multigraph->GetYaxis()->SetTitleFont(42);
-   TLatex *   tex = new TLatex(0.35,0.927775,"CMS Work in Progress #sqrt{s} = 13 TeV, 59.7 fb^{-1}");
+      tex = new TLatex(0.35,0.927775,"CMS Work in Progress #sqrt{s} = 13 TeV, 59.7 fb^{-1}");
 tex->SetNDC();
    tex->SetTextFont(42);
    tex->SetTextSize(0.03);

@@ -7,7 +7,7 @@ import math
 import ConfigParser
 from math import *
 
-from my_funcs import makeROCcurve
+from my_funcs import makeROCcurve, makeROCinterval
 
 ROOT.gROOT.SetBatch(True)
 
@@ -58,8 +58,8 @@ colors = [ ROOT.kMagenta + 2 ]
 ## These you can edit / change
 ###############################
 years = ['16', '17', '18']
-regions = ['MET','jet']
-region_names = ['all', 'jets']
+regions = ['MET']#,'jet']
+region_names = ['all']#, 'jets']
 plotCat = 'VbbHcc'
 useLogY = True
 summary_control_plot_name = 'summary_control_plot_zjet_zHFjet.txt'
@@ -169,16 +169,16 @@ for r in range(len(regions)):
       yA_title = "True Signal Rate"
       nRebin = int(cfg.get(plN,'rebin'))
     
-      plots_process = [
-        hSignal[y].Clone().Rebin(nRebin),
-        hBckg[y].Clone().Rebin(nRebin)
-      ]
+      signal_plots = [hSignal[y].Clone().Rebin(nRebin)]
+      bckg_plots = [hBckg[y].Clone().Rebin(nRebin)]
     
       plotNames_process = [
         ""
       ]
     
-      makeROCcurve(plots_process, plotNames_process, "ROC_" + region_names[r] + "_" + plN + "_" + y,
+      ## This is the standard one-sided cut
+      makeROCcurve(signal_plots, bckg_plots, plotNames_process, plN,
+       "ROC_" + region_names[r] + "_" + plN + "_" + y,
         plotFolder + '/20' + y + '_QCDv9' + '/ROC/', colors, lumi=lumiS[y])
   
   

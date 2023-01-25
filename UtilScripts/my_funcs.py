@@ -413,51 +413,66 @@ useFill=True, forceMin=False):
 ###############################################################################
 ## Make ROC Curve
 ###############################################################################
-def makeROCcurve(plots, plotNames, canvasName, plotDir, colors, lumi='35.9'):
-
-  ## Make sure that our output folder exists
+def makeROCcurve(signal_plots, bckg_plots, plotNames, plotVar, canvasName,
+  plotDir, colors, lumi='35.9'):
+  
+  ## Make sure that the output folder exists.
   dirExists = os.path.exists(plotDir)
   if not dirExists:
     print "WARNING: Provided output directory does not exist."
     os.makedirs(plotDir)
     print ">>> " + plotDir + " has been created."
   
-  ## First, we want to determine the totals for each type of plot
-  totals = []
-  percentages = []
-  for p in range(len(plots)):
-    totals.append(plots[p].Integral())
-    percents_calculated = []
+  ## Get the cut values (which are based on the bin centers)
+  cut_values = []
+  bins = signal_plots[0].GetNbinsX()
+  for i in range(1, bins + 1):
+    cut_values.append(signal_plots[0].GetBinCenter(i))
   
-    ## We then want to calculate the percentage of events kept
-    ## for each cut we make. NOTE: We will make the cuts by taking
-    ## each bin as a cut point. Thus, we need to get the number
-    ## of bins.
-    nBins = plots[p].GetNbinsX()
-    for i in range(1, nBins + 1):
-      
-      ## Get the total of events below this cut, i.e.
-      ## from the first bin to the i'th bin, get the 
-      ## total number of events.
-      subtotal = 0
-      for j in range(1,i):
-        subtotal += plots[p].GetBinContent(j)
-      
-      ## Calculate the percentage.
-      per = subtotal * 1.0 / totals[p]
-      percents_calculated.append(per)
-      
-      #print(str(subtotal) + " | " + str(totals[p]))
-    
-    ## Now that we're done, add the percentages
-    ## to our overall list
-    percentages.append(percents_calculated)
-    
-    ##print percents_calculated
-  ##exit()
+  #print(cut_values)
+  #print("===============")
   
-  ## Now that we've got the percentages and totals, 
-  ## we want to properly plot the TGraphs.
+  ## Get the totals for each type of plot & calculate the percentages
+  eff_signal = []
+  eff_bckg = []
+  
+  for p in range(len(signal_plots)):
+  
+    sEff = array('d')
+    bEff = array('d')
+    
+    for b in range(len(cut_values)):
+    
+      total = 0.0
+      selected = 0.0
+      for i in range(1, bins + 1):
+        center = signal_plots[p].GetBinCenter(i)
+        content = signal_plots[p].GetBinContent(i)
+        if center < cut_values[b]:
+          selected += content
+        total += content
+    
+      sEff.append(selected * 1.0 / total)
+    
+      total = 0.0
+      selected = 0.0
+      for i in range(1, bins + 1):
+        center = bckg_plots[p].GetBinCenter(i)
+        content = bckg_plots[p].GetBinContent(i)
+        if center < cut_values[b]:
+          selected += content
+        total += content
+    
+      bEff.append(selected * 1.0 / total)
+    
+    eff_signal.append(sEff)
+    eff_bckg.append(bEff)
+  
+  #print(eff_signal)
+  #print(eff_bckg)
+  
+  ## Now that we've got the percentages, we want
+  ## to properly plot the TGraphs
   canv = ROOT.TCanvas(canvasName, canvasName, 600, 600)
   canv.SetBottomMargin(0.12)
   canv.SetLeftMargin(0.15709)
@@ -466,35 +481,43 @@ def makeROCcurve(plots, plotNames, canvasName, plotDir, colors, lumi='35.9'):
   multigraph = ROOT.TMultiGraph("","")
   graphs = []
   for i in range(len(plotNames)):
-    
-    ydata_bckg = array('d')#percentages[i*2 + 1]
-    xdata_sgnl = array('d')#percentages[i*2]
-    size = len(percentages[i*2])
-    for j in range(size):
-      ydata_bckg.append(percentages[i*2+1][j])
-      xdata_sgnl.append(percentages[i*2][j])
-    
-    gI = ROOT.TGraph(size, xdata_sgnl, ydata_bckg)
+    size = len(eff_signal[i])
+    gI = ROOT.TGraph(size, eff_bckg[i], eff_signal[i])
     gI.SetTitle(plotNames[i])
     gI.SetMarkerColor(colors[i])
-    gI.SetMarkerStyle(20)	## 21 = square style
+    gI.SetMarkerStyle(20)
     gI.SetLineColor(colors[i])
     gI.SetFillStyle(0)
     gI.SetLineWidth(2)
     
     graphs.append(gI)
   
+  ## Add the cut labels to the plots before
+  ## we put the plots together.
+  for i in range(len(cut_values)):
+    bckg_percent = eff_bckg[0][i]
+    if bckg_percent < 0.05 or bckg_percent >= 0.8:
+      continue
+    y = graphs[0].GetY()[i] + 0.06
+    x = graphs[0].GetX()[i]
+    lt = ROOT.TLatex(x, y, str(cut_values[i]))
+    lt.SetTextSize(0.02)
+    graphs[0].GetListOfFunctions().Add(lt)
+  
   for i in range(len(plotNames)):
     multigraph.Add(graphs[i])
-    
+  
   multigraph.Draw("ALP")
   multigraph.GetXaxis().SetTitle("False Signal Rate (Bckg)")
   multigraph.GetXaxis().SetLabelSize(0.035)
   multigraph.GetYaxis().SetTitle("True Signal Rate")
   multigraph.GetYaxis().SetLabelSize(0.035)
   
-  if len(plotNames) > 1:  
-    canv.BuildLegend(0.55, 0.15, 0.85, 0.3)
+  if len(plotNames) > 1:
+    if "pt" in plotVar:
+      canv.BuildLegend(0.2, 0.7, 0.5, 0.85)
+    else:
+      canv.BuildLegend(0.55, 0.15, 0.85, 0.3)
   
   myText('CMS Work in Progress #sqrt{s} = 13 TeV, ' + lumi + ' fb^{-1}',
     0.35, 0.927775, 0.6)
@@ -509,4 +532,147 @@ def makeROCcurve(plots, plotNames, canvasName, plotDir, colors, lumi='35.9'):
   canv.Print(plotDir + '/' + canvasName + '.pdf')
   canv.Print(plotDir + '/' + canvasName + '.C')
 
+###############################################################################
+## Make ROC interval
+###############################################################################
+
+def makeROCinterval(signal_plots, bckg_plots, plotNames, plotVar, canvasName,
+  plotDir, colors, lumi='35.9'):
+  
+  ## Make sure that the output folder exists.
+  dirExists = os.path.exists(plotDir)
+  if not dirExists:
+    print "WARNING: Provided output directory does not exist."
+    os.makedirs(plotDir)
+    print ">>> " + plotDir + " has been created."
+  
+  ## Handle this algorithm for each plot combination we have.
+  binMaxima = []
+  binCenterMaxima = []
+  binWidths = []
+  eff_signal = []
+  eff_bckg = []
+  
+  for p in range(len(signal_plots)):
+    
+    ## What we need to do is record the size for each bin and 
+    ## the peak value in the algorithm. NOTE: If the signals
+    ## are not properly handled, this might not appear where 
+    ## you expect, e.g. peak of m_Z ~ 91 GeV might differ slightly.
+    binMax = signal_plots[p].GetMaximumBin()
+    binCenterMax = signal_plots[p].GetBinCenter(binMax) 
+    binWidth = signal_plots[p].GetBinCenter(binMax) - signal_plots[p].GetBinCenter(binMax-1)
+    
+    binMaxima.append(binMax)
+    binCenterMaxima.append(binCenterMax)
+    binWidths.append(binWidth)
+    
+    ## We now want to determine how many possible intervals we can have.
+    ## We will have a total of N bins, with x bins to the left and 
+    ## N - x - 1 bins to the right. We probably only want to go for 
+    ## which ever is smaller = min(x, N - x - 1). We could allow for 
+    ## asymmetric intervals, but let's go with symmetric for now.
+    nBins = signal_plots[p].GetNbinsX()
+    x = binMax - 1
+    N_x_1 = nBins - x - 1
+    n_intervals = min(x, N_x_1)
+    
+    ## Now that we know how many intervals we can take, we want to 
+    ## determine the amount of events kept in each interval.
+    sEff = array('d')
+    bEff = array('d')
+    
+    ## Step 1 - get the signal total
+    total = 0.0
+    for i in range(1, nBins + 1):
+      total += signal_plots[p].GetBinContent(i)
+    
+    ## Step 2 - get the percentage for each interval for signal
+    for i in range(n_intervals):
+      selected = 0.0
+      for j in range(-i,i + 1):
+        selected += signal_plots[p].GetBinContent(binMax + j)
+      sEff.append(selected * 1.0 / total)
+    
+    ## Step 3 - get the bckg total
+    total = 0.0
+    for i in range(1, nBins + 1):
+      total += bckg_plots[p].GetBinContent(i)
+    
+    ## Step 4 - get the percentage for each interval for bckg
+    for i in range(n_intervals):
+      selected = 0.0
+      for j in range(-i,i + 1):
+        selected += bckg_plots[p].GetBinContent(binMax + j)
+      bEff.append(selected * 1.0 / total)
+    
+    eff_signal.append(sEff)
+    eff_bckg.append(bEff)
+  
+  ## Now that we've got the data, let's properly build the graphs,
+  ## legends, canvases, and so on.
+  canv = ROOT.TCanvas(canvasName, canvasName, 600, 600)
+  canv.SetBottomMargin(0.12)
+  canv.SetLeftMargin(0.15709)
+  canv.SetRightMargin(0.1234783)
+  
+  multigraph = ROOT.TMultiGraph("","")
+  graphs = []
+  for i in range(len(plotNames)):
+    size = len(eff_signal[i])
+    gI = ROOT.TGraph(size, eff_bckg[i], eff_signal[i])
+    gI.SetTitle(plotNames[i])
+    gI.SetMarkerColor(colors[i])
+    gI.SetMarkerStyle(20)
+    gI.SetLineColor(colors[i])
+    gI.SetFillStyle(0)
+    gI.SetLineWidth(2)
+    
+    graphs.append(gI)
+  
+  ## Add the labels
+  for i in range(len(eff_bckg[1])):
+    bckg_percent = eff_bckg[1][i]
+    if bckg_percent >= 0.8:
+      continue
+    y = graphs[1].GetY()[i] + 0.04
+    x = graphs[1].GetX()[i]
+    lt = ROOT.TLatex(x, y, "#pm" + str(i))
+    lt.SetTextSize(0.02)
+    graphs[0].GetListOfFunctions().Add(lt)
+  
+  for i in range(len(plotNames)):
+    multigraph.Add(graphs[i])
+  
+  multigraph.Draw("ALP")
+  multigraph.GetXaxis().SetTitle("False Signal Rate (Bckg)")
+  multigraph.GetXaxis().SetLabelSize(0.035)
+  multigraph.GetYaxis().SetTitle("True Signal Rate")
+  multigraph.GetYaxis().SetLabelSize(0.035)
+  
+  if len(plotNames) > 1:
+    leg = canv.BuildLegend(0.50, 0.15, 0.85, 0.3)
+    centerVal = binCenterMaxima[0]
+    binSize = binWidths[0]
+    addl_info = "Intervals centered around " + str(centerVal)
+    if "pt" in plotVar or "mass" in plotVar:
+      addl_info += " GeV"
+    addl_info2 = "bin size = " + str(binSize)
+    if "pt" in plotVar or "mass" in plotVar:
+      addl_info2 += " GeV"
+    leg.AddEntry("l", addl_info)
+    leg.AddEntry("l", addl_info2)
+  
+  myText('CMS Work in Progress #sqrt{s} = 13 TeV, ' + lumi + ' fb^{-1}',
+    0.35, 0.927775, 0.6)
+  canv.cd()
+  canv.SetGrid()
+  canv.Update()
+  ROOT.gPad.Modified()
+  ROOT.gPad.Update()
+  
+  ## Save our plots
+  canv.Print(plotDir + '/' + canvasName + '.png')
+  canv.Print(plotDir + '/' + canvasName + '.pdf')
+  canv.Print(plotDir + '/' + canvasName + '.C')
 

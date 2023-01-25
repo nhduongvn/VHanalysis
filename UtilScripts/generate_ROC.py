@@ -7,7 +7,7 @@ import math
 import ConfigParser
 from math import *
 
-from my_funcs import makeROCcurve
+from my_funcs import makeROCcurve, makeROCinterval
 
 ROOT.gROOT.SetBatch(True)
 
@@ -173,12 +173,15 @@ for plN in plotNames:
     yA_title = "True Signal Rate"
     nRebin = int(cfg.get(plN,'rebin'))
     
-    plots_process = [
+    signal_plots = [
       hSignal_tags[y].Clone().Rebin(nRebin),
-      hBckg_tags[y].Clone().Rebin(nRebin),
       hSignal_algo[y].Clone().Rebin(nRebin),
-      hBckg_algo[y].Clone().Rebin(nRebin),
       hSignal_both[y].Clone().Rebin(nRebin),
+    ]
+    
+    bckg_plots = [
+      hBckg_tags[y].Clone().Rebin(nRebin),
+      hBckg_algo[y].Clone().Rebin(nRebin),
       hBckg_both[y].Clone().Rebin(nRebin)
     ]
     
@@ -188,8 +191,11 @@ for plN in plotNames:
       "Tagging Prioritized"
     ]
     
-    makeROCcurve(plots_process, plotNames_process, "ROC_" + plN + "_" + y,
-      plotFolder + '/20' + y + '_QCDv9' + '/ROC/', colors, lumi=lumiS[y])
+    ## This is a typical one-sided cut.
+    makeROCcurve(signal_plots, bckg_plots, plotNames_process, plN,
+      "ROC_" + plN + "_" + y, plotFolder + '/20' + y + '_QCDv9' + '/ROC/', 
+      colors, lumi=lumiS[y])
+  
   
   
   

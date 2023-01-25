@@ -4,7 +4,7 @@
 void ROC_dPhi_HZ_17()
 {
 //=========Macro generated from canvas: ROC_dPhi_HZ_17/ROC_dPhi_HZ_17
-//=========  (Thu Jan 19 10:33:18 2023) by ROOT version 6.26/06
+//=========  (Tue Jan 24 15:01:30 2023) by ROOT version 6.26/06
    TCanvas *ROC_dPhi_HZ_17 = new TCanvas("ROC_dPhi_HZ_17", "ROC_dPhi_HZ_17",0,0,600,600);
    ROC_dPhi_HZ_17->SetHighLightColor(2);
    ROC_dPhi_HZ_17->Range(-0.2901882,-0.1615385,1.238796,1.184615);
@@ -23,488 +23,7 @@ void ROC_dPhi_HZ_17()
    multigraph->SetName("");
    multigraph->SetTitle("");
    
-   Double_t Graph_fx76[480] = {
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0,
-   0.01032441,
-   0.03018981,
-   0.04938488,
-   0.0709295,
-   0.09042532,
-   0.1070505,
-   0.1259117,
-   0.1407606,
-   0.15406,
-   0.1669092,
-   0.1792274,
-   0.1897734,
-   0.20028,
-   0.2104743,
-   0.2219039,
-   0.2319089,
-   0.242132,
-   0.2491604,
-   0.2568425,
-   0.2649934,
-   0.2719356,
-   0.2797636,
-   0.2863868,
-   0.2936753,
-   0.2992064,
-   0.3060408,
-   0.3117281,
-   0.3161041,
-   0.3195937,
-   0.3246412,
-   0.3294758,
-   0.3323491,
-   0.3365604,
-   0.3417963,
-   0.3465128,
-   0.3500548,
-   0.3537155,
-   0.3563988,
-   0.3608817,
-   0.3636549,
-   0.3662571,
-   0.3694058,
-   0.3729472,
-   0.3763796,
-   0.379419,
-   0.3816206,
-   0.384449,
-   0.38667,
-   0.3894213,
-   0.3917831,
-   0.3943968,
-   0.3963518,
-   0.3981766,
-   0.4003087,
-   0.402318,
-   0.4042765,
-   0.4053396,
-   0.4075733,
-   0.4094879,
-   0.4104862,
-   0.4114784,
-   0.4136153,
-   0.4148539,
-   0.4161112,
-   0.4174608,
-   0.4185985,
-   0.4205979,
-   0.4224012,
-   0.4238241,
-   0.4253079,
-   0.42629,
-   0.4274395,
-   0.4281318,
-   0.4296445,
-   0.4314007,
-   0.4328217,
-   0.4343883,
-   0.4356935,
-   0.4366649,
-   0.4370108,
-   0.4378642,
-   0.4389209,
-   0.439774,
-   0.4403383,
-   0.4420422,
-   0.4432725,
-   0.4440921,
-   0.4446728,
-   0.4460034,
-   0.4476256,
-   0.4486449,
-   0.4498781,
-   0.4508808,
-   0.4520556,
-   0.4529521,
-   0.4545038,
-   0.4556362,
-   0.4559517,
-   0.4568922,
-   0.4576754,
-   0.4583976,
-   0.4589464,
-   0.4603909,
-   0.4612782,
-   0.4619055,
-   0.4625432,
-   0.4629278,
-   0.463085,
-   0.4640725,
-   0.4645925,
-   0.4649445,
-   0.4655587,
-   0.4660992,
-   0.4664369,
-   0.4670466,
-   0.4674198,
-   0.468251,
-   0.4687144,
-   0.4695637,
-   0.4702553,
-   0.4705037,
-   0.471668,
-   0.4722723,
-   0.4727178,
-   0.4731797,
-   0.4737226,
-   0.4743278,
-   0.4744544,
-   0.4750967,
-   0.4751985,
-   0.4755883,
-   0.4758905,
-   0.476231,
-   0.4771452,
-   0.4776694,
-   0.478074,
-   0.4787456,
-   0.4800198,
-   0.4801503,
-   0.480546,
-   0.4813962,
-   0.4818778,
-   0.4822808,
-   0.4825555,
-   0.4829019,
-   0.4835459,
-   0.4841589,
-   0.4849281,
-   0.4856392,
-   0.4858377,
-   0.4863945,
-   0.4870255,
-   0.4873007,
-   0.4878879,
-   0.4882496,
-   0.4890106,
-   0.4894302,
-   0.4899878,
-   0.4904948,
-   0.4912767,
-   0.4918815,
-   0.4925888,
-   0.4928964,
-   0.4932365,
-   0.4934625,
-   0.4937246,
-   0.4941647,
-   0.4947197,
-   0.494807,
-   0.4953604,
-   0.4958896,
-   0.4959233,
-   0.496788,
-   0.4976124,
-   0.4978735,
-   0.4979514,
-   0.4982415,
-   0.4989388,
-   0.4996467,
-   0.4996699,
-   0.4999492,
-   0.5004727,
-   0.5007372,
-   0.5012236,
-   0.5016135,
-   0.5020487,
-   0.5021888,
-   0.5025865,
-   0.5030087,
-   0.503461,
-   0.5035284,
-   0.5043109,
-   0.5046608,
-   0.5052687,
-   0.5061155,
-   0.506257,
-   0.5068244,
-   0.5080872,
-   0.5083225,
-   0.5088023,
-   0.5093601,
-   0.5097387,
-   0.5098246,
-   0.5105603,
-   0.5106366,
-   0.5109219,
-   0.5111211,
-   0.511485,
-   0.5118454,
-   0.5122631,
-   0.5122467,
-   0.51275,
-   0.513326,
-   0.5139379,
-   0.5141183,
-   0.5142474,
-   0.5149438,
-   0.5153127,
-   0.5155293,
-   0.5159733,
-   0.5165372,
-   0.5166238,
-   0.5169456,
-   0.5174946,
-   0.5181784,
-   0.5184481,
-   0.5187503,
-   0.5194605,
-   0.5204574,
-   0.5209776,
-   0.521513,
-   0.5221659,
-   0.5223639,
-   0.5226725,
-   0.5230546,
-   0.5242236,
-   0.5248168,
-   0.5250506,
-   0.5256682,
-   0.5262945,
-   0.5268004,
-   0.5272505,
-   0.5276762,
-   0.5281509,
-   0.5287641,
-   0.5291291,
-   0.5298137,
-   0.530371,
-   0.5310158,
-   0.5313945,
-   0.5319855,
-   0.5327038,
-   0.5333092,
-   0.5341946,
-   0.5348528,
-   0.5357884,
-   0.5364486,
-   0.5366968,
-   0.5374664,
-   0.5379345,
-   0.5386129,
-   0.5389879,
-   0.5395754,
-   0.5399214,
-   0.5401868,
-   0.5403312,
-   0.540921,
-   0.5413318,
-   0.5418204,
-   0.5420404,
-   0.5425185,
-   0.5435055,
-   0.5444961,
-   0.5449466,
-   0.5453928,
-   0.5462181,
-   0.54727,
-   0.5483175,
-   0.5488141,
-   0.5502842,
-   0.5512707,
-   0.5516547,
-   0.5531185,
-   0.5538954,
-   0.5548933,
-   0.5563955,
-   0.5576476,
-   0.5583484,
-   0.5593263,
-   0.5603838,
-   0.5615963,
-   0.5628434,
-   0.563611,
-   0.5648799,
-   0.5666446,
-   0.5673383,
-   0.5682779,
-   0.5688825,
-   0.5700201,
-   0.5710264,
-   0.5723165,
-   0.5729991,
-   0.5737572,
-   0.574534,
-   0.5760415,
-   0.5765665,
-   0.5778369,
-   0.5795854,
-   0.5810332,
-   0.5824389,
-   0.583979,
-   0.5853964,
-   0.5869547,
-   0.5886517,
-   0.5906783,
-   0.5921642,
-   0.5942605,
-   0.5962535,
-   0.598088,
-   0.5998566,
-   0.6020958,
-   0.6036939,
-   0.6054747,
-   0.6077924,
-   0.6095755,
-   0.6120741,
-   0.6142328,
-   0.6162386,
-   0.6185239,
-   0.6213847,
-   0.6233262,
-   0.625026,
-   0.6275307,
-   0.6309131,
-   0.6331456,
-   0.6355688,
-   0.6379006,
-   0.6401021,
-   0.6434099,
-   0.6478319,
-   0.650613,
-   0.6550262,
-   0.6584592,
-   0.6621311,
-   0.6664332,
-   0.6722757,
-   0.6762435,
-   0.6809661,
-   0.6855905,
-   0.6915516,
-   0.6953786,
-   0.701644,
-   0.7075166,
-   0.7137631,
-   0.7197188,
-   0.7258374,
-   0.7323006,
-   0.7382628,
-   0.7456204,
-   0.7526532,
-   0.7604835,
-   0.7679326,
-   0.7791845,
-   0.7883128,
-   0.7996749,
-   0.8132877,
-   0.8250974,
-   0.8372402,
-   0.8501199,
-   0.8626382,
-   0.8783462,
-   0.8951509,
-   0.9099628,
-   0.9279282,
-   0.9482574,
-   0.9686249,
-   0.9901387,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1};
-   Double_t Graph_fy76[480] = {
+   Double_t Graph_fx1135[480] = {
    0,
    0,
    0,
@@ -985,42 +504,7 @@ void ROC_dPhi_HZ_17()
    1,
    1,
    1};
-   TGraph *graph = new TGraph(480,Graph_fx76,Graph_fy76);
-   graph->SetName("Graph");
-   graph->SetTitle("Tagging Only");
-   graph->SetFillStyle(0);
-
-   Int_t ci;      // for color index setting
-   TColor *color; // for color definition with alpha
-   ci = TColor::GetColor("#009900");
-   graph->SetLineColor(ci);
-   graph->SetLineWidth(2);
-
-   ci = TColor::GetColor("#009900");
-   graph->SetMarkerColor(ci);
-   graph->SetMarkerStyle(20);
-   
-   TH1F *Graph_Graph76 = new TH1F("Graph_Graph76","Tagging Only",480,0,1.1);
-   Graph_Graph76->SetMinimum(0);
-   Graph_Graph76->SetMaximum(1.1);
-   Graph_Graph76->SetDirectory(0);
-   Graph_Graph76->SetStats(0);
-
-   ci = TColor::GetColor("#000099");
-   Graph_Graph76->SetLineColor(ci);
-   Graph_Graph76->GetXaxis()->SetLabelFont(42);
-   Graph_Graph76->GetXaxis()->SetTitleOffset(1);
-   Graph_Graph76->GetXaxis()->SetTitleFont(42);
-   Graph_Graph76->GetYaxis()->SetLabelFont(42);
-   Graph_Graph76->GetYaxis()->SetTitleFont(42);
-   Graph_Graph76->GetZaxis()->SetLabelFont(42);
-   Graph_Graph76->GetZaxis()->SetTitleOffset(1);
-   Graph_Graph76->GetZaxis()->SetTitleFont(42);
-   graph->SetHistogram(Graph_Graph76);
-   
-   multigraph->Add(graph,"");
-   
-   Double_t Graph_fx77[480] = {
+   Double_t Graph_fy1135[480] = {
    0,
    0,
    0,
@@ -1073,383 +557,383 @@ void ROC_dPhi_HZ_17()
    0,
    0,
    0,
-   0.01662618,
-   0.05293562,
-   0.09049654,
-   0.1265813,
-   0.1568445,
-   0.1871033,
-   0.2219314,
-   0.2453656,
-   0.2679046,
-   0.2860088,
-   0.3033721,
-   0.3175371,
-   0.3349576,
-   0.3456326,
-   0.3590323,
-   0.371065,
-   0.3851695,
-   0.3906483,
-   0.3984208,
-   0.4085667,
-   0.413323,
-   0.4183262,
-   0.4241114,
-   0.4295594,
-   0.4376977,
-   0.4469988,
-   0.449653,
-   0.4513104,
-   0.4538805,
-   0.4563684,
-   0.458199,
-   0.4617014,
-   0.4628362,
-   0.4646083,
-   0.4672715,
-   0.4695845,
-   0.4705938,
-   0.4723307,
-   0.4727942,
-   0.4733805,
-   0.4755824,
-   0.4778508,
-   0.4782216,
-   0.4786529,
-   0.4797975,
-   0.4806713,
-   0.4814175,
-   0.4817878,
-   0.482549,
-   0.4827406,
-   0.4834675,
-   0.4849415,
-   0.4858132,
-   0.4859784,
-   0.488062,
-   0.4889679,
-   0.4897194,
-   0.4898993,
-   0.4904088,
-   0.4909006,
-   0.4915675,
-   0.4938012,
-   0.4945156,
-   0.4951013,
-   0.4954112,
-   0.4954919,
-   0.4954919,
-   0.4956753,
-   0.4957604,
-   0.4959943,
-   0.4966566,
-   0.4970539,
-   0.4976804,
-   0.4977018,
-   0.4983181,
-   0.4983851,
-   0.4989644,
-   0.4990056,
-   0.4990771,
-   0.4990771,
-   0.4990771,
-   0.4998489,
-   0.4999102,
-   0.5003331,
-   0.5003331,
-   0.5003331,
-   0.500598,
-   0.500598,
-   0.501269,
-   0.501269,
-   0.501269,
-   0.501269,
-   0.5013266,
-   0.501786,
-   0.5018379,
-   0.5018379,
-   0.5024882,
-   0.5024882,
-   0.5024882,
-   0.5024882,
-   0.5024882,
-   0.5024954,
-   0.5024954,
-   0.5024954,
-   0.5024954,
-   0.5024954,
-   0.5024954,
-   0.5024954,
-   0.5025721,
-   0.5025721,
-   0.5025721,
-   0.502645,
-   0.502645,
-   0.502645,
-   0.502645,
-   0.502645,
-   0.502645,
-   0.502645,
-   0.5027122,
-   0.503982,
-   0.503982,
-   0.5043807,
-   0.5043807,
-   0.5043807,
-   0.5043807,
-   0.5043807,
-   0.5044624,
-   0.5044624,
-   0.5044624,
-   0.5044624,
-   0.5044624,
-   0.5044624,
-   0.5044624,
-   0.5044624,
-   0.5044624,
-   0.5044624,
-   0.5044624,
-   0.5045675,
-   0.5045675,
-   0.5046535,
-   0.5046535,
-   0.5046535,
-   0.5046535,
-   0.5046535,
-   0.5046535,
-   0.504746,
-   0.504746,
-   0.5054211,
-   0.5054211,
-   0.5054211,
-   0.5054211,
-   0.5054211,
-   0.5054988,
-   0.5067601,
-   0.5067601,
-   0.5067601,
-   0.5067601,
-   0.5067601,
-   0.5067601,
-   0.5067601,
-   0.5067601,
-   0.5067601,
-   0.5067601,
-   0.5067601,
-   0.5067601,
-   0.5067601,
-   0.5067601,
-   0.5067601,
-   0.5067601,
-   0.5067601,
-   0.5067601,
-   0.5067601,
-   0.5067601,
-   0.5067989,
-   0.5067989,
-   0.5067989,
-   0.5067989,
-   0.5067989,
-   0.5067989,
-   0.5067989,
-   0.5067989,
-   0.5067989,
-   0.5067989,
-   0.5068928,
-   0.5068928,
-   0.5068928,
-   0.5068928,
-   0.5068928,
-   0.5073758,
-   0.5073758,
-   0.5073758,
-   0.5073758,
-   0.5073758,
-   0.5073758,
-   0.5073758,
-   0.5073758,
-   0.5073758,
-   0.5074311,
-   0.5074311,
-   0.5074311,
-   0.5079457,
-   0.5086165,
-   0.5086165,
-   0.5086165,
-   0.5086165,
-   0.5086165,
-   0.5086165,
-   0.5086165,
-   0.5086165,
-   0.5092916,
-   0.5092916,
-   0.5092916,
-   0.5094025,
-   0.5094025,
-   0.5094025,
-   0.5094025,
-   0.5094025,
-   0.5094061,
-   0.5094061,
-   0.5094061,
-   0.5094061,
-   0.5094061,
-   0.5094061,
-   0.5094061,
-   0.5100615,
-   0.5101548,
-   0.5101548,
-   0.5109073,
-   0.5109073,
-   0.5109073,
-   0.5109073,
-   0.5115217,
-   0.5115535,
-   0.5115535,
-   0.5115535,
-   0.5116184,
-   0.5116184,
-   0.5116184,
-   0.5116184,
-   0.5116184,
-   0.5116184,
-   0.5116483,
-   0.5116911,
-   0.5116911,
-   0.5116911,
-   0.5116911,
-   0.5116911,
-   0.5123884,
-   0.5123884,
-   0.5124702,
-   0.5124702,
-   0.5124702,
-   0.5124702,
-   0.5124702,
-   0.5124702,
-   0.5130579,
-   0.5136106,
-   0.5136106,
-   0.5136106,
-   0.5136687,
-   0.5136687,
-   0.5136687,
-   0.5136687,
-   0.5136687,
-   0.5136687,
-   0.5136759,
-   0.5136759,
-   0.5136759,
-   0.5141354,
-   0.5141354,
-   0.5141393,
-   0.5141393,
-   0.5141393,
-   0.5141393,
-   0.5141393,
-   0.5147569,
-   0.5147569,
-   0.5154311,
-   0.5154311,
-   0.5159379,
-   0.5166513,
-   0.5167785,
-   0.5167785,
-   0.5167785,
-   0.5167785,
-   0.5175142,
-   0.5179713,
-   0.5179713,
-   0.518427,
-   0.518427,
-   0.518427,
-   0.518427,
-   0.51844,
-   0.51844,
-   0.51844,
-   0.51844,
-   0.51844,
-   0.51844,
-   0.5184972,
-   0.5185024,
-   0.5185024,
-   0.5186119,
-   0.5186673,
-   0.5191936,
-   0.5197848,
-   0.5206736,
-   0.5207265,
-   0.521473,
-   0.5215039,
-   0.5222261,
-   0.5222261,
-   0.5224123,
-   0.5231744,
-   0.5231792,
-   0.5231792,
-   0.5232597,
-   0.5232597,
-   0.524653,
-   0.5252176,
-   0.5261926,
-   0.5267236,
-   0.5273113,
-   0.5273827,
-   0.5276192,
-   0.5277501,
-   0.5289893,
-   0.5301683,
-   0.5309512,
-   0.5330125,
-   0.5342816,
-   0.53434,
-   0.5349489,
-   0.5371572,
-   0.5378811,
-   0.5393211,
-   0.5413931,
-   0.5442833,
-   0.5446481,
-   0.5459796,
-   0.546307,
-   0.5466714,
-   0.5508729,
-   0.5536186,
-   0.5548835,
-   0.5557591,
-   0.5609516,
-   0.5626703,
-   0.5668068,
-   0.5694877,
-   0.5731512,
-   0.575095,
-   0.5773856,
-   0.5807343,
-   0.5852251,
-   0.5892969,
-   0.5972317,
-   0.6020223,
-   0.6086362,
-   0.615565,
-   0.6194813,
-   0.6293412,
-   0.6385735,
-   0.6526227,
-   0.6622051,
-   0.6784294,
-   0.6918366,
-   0.7063665,
-   0.7258894,
-   0.7480541,
-   0.7689183,
-   0.7912345,
-   0.8156549,
-   0.8435423,
-   0.8743371,
-   0.9102263,
-   0.9456946,
-   0.979416,
+   0.01032441,
+   0.03018981,
+   0.04938488,
+   0.0709295,
+   0.09042532,
+   0.1070505,
+   0.1259117,
+   0.1407606,
+   0.15406,
+   0.1669092,
+   0.1792274,
+   0.1897734,
+   0.20028,
+   0.2104743,
+   0.2219039,
+   0.2319089,
+   0.242132,
+   0.2491604,
+   0.2568425,
+   0.2649934,
+   0.2719356,
+   0.2797636,
+   0.2863868,
+   0.2936753,
+   0.2992064,
+   0.3060408,
+   0.3117281,
+   0.3161041,
+   0.3195937,
+   0.3246412,
+   0.3294758,
+   0.3323491,
+   0.3365604,
+   0.3417963,
+   0.3465128,
+   0.3500548,
+   0.3537155,
+   0.3563988,
+   0.3608817,
+   0.3636549,
+   0.3662571,
+   0.3694058,
+   0.3729472,
+   0.3763796,
+   0.379419,
+   0.3816206,
+   0.384449,
+   0.38667,
+   0.3894213,
+   0.3917831,
+   0.3943968,
+   0.3963518,
+   0.3981766,
+   0.4003087,
+   0.402318,
+   0.4042765,
+   0.4053396,
+   0.4075733,
+   0.4094879,
+   0.4104862,
+   0.4114784,
+   0.4136153,
+   0.4148539,
+   0.4161112,
+   0.4174608,
+   0.4185985,
+   0.4205979,
+   0.4224012,
+   0.4238241,
+   0.4253079,
+   0.42629,
+   0.4274395,
+   0.4281318,
+   0.4296445,
+   0.4314007,
+   0.4328217,
+   0.4343883,
+   0.4356935,
+   0.4366649,
+   0.4370108,
+   0.4378642,
+   0.4389209,
+   0.439774,
+   0.4403383,
+   0.4420422,
+   0.4432725,
+   0.4440921,
+   0.4446728,
+   0.4460034,
+   0.4476256,
+   0.4486449,
+   0.4498781,
+   0.4508808,
+   0.4520556,
+   0.4529521,
+   0.4545038,
+   0.4556362,
+   0.4559517,
+   0.4568922,
+   0.4576754,
+   0.4583976,
+   0.4589464,
+   0.4603909,
+   0.4612782,
+   0.4619055,
+   0.4625432,
+   0.4629278,
+   0.463085,
+   0.4640725,
+   0.4645925,
+   0.4649445,
+   0.4655587,
+   0.4660992,
+   0.4664369,
+   0.4670466,
+   0.4674198,
+   0.468251,
+   0.4687144,
+   0.4695637,
+   0.4702553,
+   0.4705037,
+   0.471668,
+   0.4722723,
+   0.4727178,
+   0.4731797,
+   0.4737226,
+   0.4743278,
+   0.4744544,
+   0.4750967,
+   0.4751985,
+   0.4755883,
+   0.4758905,
+   0.476231,
+   0.4771452,
+   0.4776694,
+   0.478074,
+   0.4787456,
+   0.4800198,
+   0.4801503,
+   0.480546,
+   0.4813962,
+   0.4818778,
+   0.4822808,
+   0.4825555,
+   0.4829019,
+   0.4835459,
+   0.4841589,
+   0.4849281,
+   0.4856392,
+   0.4858377,
+   0.4863945,
+   0.4870255,
+   0.4873007,
+   0.4878879,
+   0.4882496,
+   0.4890106,
+   0.4894302,
+   0.4899878,
+   0.4904948,
+   0.4912767,
+   0.4918815,
+   0.4925888,
+   0.4928964,
+   0.4932365,
+   0.4934625,
+   0.4937246,
+   0.4941647,
+   0.4947197,
+   0.494807,
+   0.4953604,
+   0.4958896,
+   0.4959233,
+   0.496788,
+   0.4976124,
+   0.4978735,
+   0.4979514,
+   0.4982415,
+   0.4989388,
+   0.4996467,
+   0.4996699,
+   0.4999492,
+   0.5004727,
+   0.5007372,
+   0.5012236,
+   0.5016135,
+   0.5020487,
+   0.5021888,
+   0.5025865,
+   0.5030087,
+   0.503461,
+   0.5035284,
+   0.5043109,
+   0.5046608,
+   0.5052687,
+   0.5061155,
+   0.506257,
+   0.5068244,
+   0.5080872,
+   0.5083225,
+   0.5088023,
+   0.5093601,
+   0.5097387,
+   0.5098246,
+   0.5105603,
+   0.5106366,
+   0.5109219,
+   0.5111211,
+   0.511485,
+   0.5118454,
+   0.5122631,
+   0.5122467,
+   0.51275,
+   0.513326,
+   0.5139379,
+   0.5141183,
+   0.5142474,
+   0.5149438,
+   0.5153127,
+   0.5155293,
+   0.5159733,
+   0.5165372,
+   0.5166238,
+   0.5169456,
+   0.5174946,
+   0.5181784,
+   0.5184481,
+   0.5187503,
+   0.5194605,
+   0.5204574,
+   0.5209776,
+   0.521513,
+   0.5221659,
+   0.5223639,
+   0.5226725,
+   0.5230546,
+   0.5242236,
+   0.5248168,
+   0.5250506,
+   0.5256682,
+   0.5262945,
+   0.5268004,
+   0.5272505,
+   0.5276762,
+   0.5281509,
+   0.5287641,
+   0.5291291,
+   0.5298137,
+   0.530371,
+   0.5310158,
+   0.5313945,
+   0.5319855,
+   0.5327038,
+   0.5333092,
+   0.5341946,
+   0.5348528,
+   0.5357884,
+   0.5364486,
+   0.5366968,
+   0.5374664,
+   0.5379345,
+   0.5386129,
+   0.5389879,
+   0.5395754,
+   0.5399214,
+   0.5401868,
+   0.5403312,
+   0.540921,
+   0.5413318,
+   0.5418204,
+   0.5420404,
+   0.5425185,
+   0.5435055,
+   0.5444961,
+   0.5449466,
+   0.5453928,
+   0.5462181,
+   0.54727,
+   0.5483175,
+   0.5488141,
+   0.5502842,
+   0.5512707,
+   0.5516547,
+   0.5531185,
+   0.5538954,
+   0.5548933,
+   0.5563955,
+   0.5576476,
+   0.5583484,
+   0.5593263,
+   0.5603838,
+   0.5615963,
+   0.5628434,
+   0.563611,
+   0.5648799,
+   0.5666446,
+   0.5673383,
+   0.5682779,
+   0.5688825,
+   0.5700201,
+   0.5710264,
+   0.5723165,
+   0.5729991,
+   0.5737572,
+   0.574534,
+   0.5760415,
+   0.5765665,
+   0.5778369,
+   0.5795854,
+   0.5810332,
+   0.5824389,
+   0.583979,
+   0.5853964,
+   0.5869547,
+   0.5886517,
+   0.5906783,
+   0.5921642,
+   0.5942605,
+   0.5962535,
+   0.598088,
+   0.5998566,
+   0.6020958,
+   0.6036939,
+   0.6054747,
+   0.6077924,
+   0.6095755,
+   0.6120741,
+   0.6142328,
+   0.6162386,
+   0.6185239,
+   0.6213847,
+   0.6233262,
+   0.625026,
+   0.6275307,
+   0.6309131,
+   0.6331456,
+   0.6355688,
+   0.6379006,
+   0.6401021,
+   0.6434099,
+   0.6478319,
+   0.650613,
+   0.6550262,
+   0.6584592,
+   0.6621311,
+   0.6664332,
+   0.6722757,
+   0.6762435,
+   0.6809661,
+   0.6855905,
+   0.6915516,
+   0.6953786,
+   0.701644,
+   0.7075166,
+   0.7137631,
+   0.7197188,
+   0.7258374,
+   0.7323006,
+   0.7382628,
+   0.7456204,
+   0.7526532,
+   0.7604835,
+   0.7679326,
+   0.7791845,
+   0.7883128,
+   0.7996749,
+   0.8132877,
+   0.8250974,
+   0.8372402,
+   0.8501199,
+   0.8626382,
+   0.8783462,
+   0.8951509,
+   0.9099628,
+   0.9279282,
+   0.9482574,
+   0.9686249,
+   0.9901387,
    1,
    1,
    1,
@@ -1501,7 +985,1808 @@ void ROC_dPhi_HZ_17()
    1,
    1,
    1};
-   Double_t Graph_fy77[480] = {
+   TGraph *graph = new TGraph(480,Graph_fx1135,Graph_fy1135);
+   graph->SetName("Graph");
+   graph->SetTitle("Tagging Only");
+   graph->SetFillStyle(0);
+
+   Int_t ci;      // for color index setting
+   TColor *color; // for color definition with alpha
+   ci = TColor::GetColor("#009900");
+   graph->SetLineColor(ci);
+   graph->SetLineWidth(2);
+
+   ci = TColor::GetColor("#009900");
+   graph->SetMarkerColor(ci);
+   graph->SetMarkerStyle(20);
+   
+   TH1F *Graph_Graph1135 = new TH1F("Graph_Graph1135","Tagging Only",480,0,1.1);
+   Graph_Graph1135->SetMinimum(0);
+   Graph_Graph1135->SetMaximum(1.1);
+   Graph_Graph1135->SetDirectory(0);
+   Graph_Graph1135->SetStats(0);
+
+   ci = TColor::GetColor("#000099");
+   Graph_Graph1135->SetLineColor(ci);
+   Graph_Graph1135->GetXaxis()->SetLabelFont(42);
+   Graph_Graph1135->GetXaxis()->SetTitleOffset(1);
+   Graph_Graph1135->GetXaxis()->SetTitleFont(42);
+   Graph_Graph1135->GetYaxis()->SetLabelFont(42);
+   Graph_Graph1135->GetYaxis()->SetTitleFont(42);
+   Graph_Graph1135->GetZaxis()->SetLabelFont(42);
+   Graph_Graph1135->GetZaxis()->SetTitleOffset(1);
+   Graph_Graph1135->GetZaxis()->SetTitleFont(42);
+   graph->SetHistogram(Graph_Graph1135);
+   
+   TLatex *   tex = new TLatex(0.05957702,0.1504253,"-3.05833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1136);
+      tex = new TLatex(0.07070483,0.1670505,"-3.04166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1137);
+      tex = new TLatex(0.08362956,0.1859117,"-3.025");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1138);
+      tex = new TLatex(0.09450547,0.2007606,"-3.00833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1139);
+      tex = new TLatex(0.1033788,0.21406,"-2.99166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1140);
+      tex = new TLatex(0.112682,0.2269092,"-2.975");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1141);
+      tex = new TLatex(0.1264767,0.2392274,"-2.95833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1142);
+      tex = new TLatex(0.1355321,0.2497734,"-2.94166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1143);
+      tex = new TLatex(0.1435192,0.26028,"-2.925");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1144);
+      tex = new TLatex(0.1531529,0.2704743,"-2.90833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1145);
+      tex = new TLatex(0.1616973,0.2819039,"-2.89166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1146);
+      tex = new TLatex(0.1685902,0.2919089,"-2.875");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1147);
+      tex = new TLatex(0.1760511,0.302132,"-2.85833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1148);
+      tex = new TLatex(0.1835335,0.3091604,"-2.84166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1149);
+      tex = new TLatex(0.1905064,0.3168425,"-2.825");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1150);
+      tex = new TLatex(0.1959067,0.3249934,"-2.80833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1151);
+      tex = new TLatex(0.2025973,0.3319356,"-2.79166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1152);
+      tex = new TLatex(0.2080208,0.3397636,"-2.775");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1153);
+      tex = new TLatex(0.2147065,0.3463868,"-2.75833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1154);
+      tex = new TLatex(0.2214133,0.3536753,"-2.74166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1155);
+      tex = new TLatex(0.2278522,0.3592064,"-2.725");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1156);
+      tex = new TLatex(0.2322021,0.3660408,"-2.70833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1157);
+      tex = new TLatex(0.2368837,0.3717281,"-2.69166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1158);
+      tex = new TLatex(0.2409982,0.3761041,"-2.675");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1159);
+      tex = new TLatex(0.2465739,0.3795937,"-2.65833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1160);
+      tex = new TLatex(0.2502441,0.3846412,"-2.64166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1161);
+      tex = new TLatex(0.2547896,0.3894758,"-2.625");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1162);
+      tex = new TLatex(0.2596346,0.3923491,"-2.60833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1163);
+      tex = new TLatex(0.2645692,0.3965604,"-2.59166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1164);
+      tex = new TLatex(0.2686105,0.4017963,"-2.575");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1165);
+      tex = new TLatex(0.272857,0.4065128,"-2.55833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1166);
+      tex = new TLatex(0.2766475,0.4100548,"-2.54166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1167);
+      tex = new TLatex(0.2807936,0.4137155,"-2.525");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1168);
+      tex = new TLatex(0.2849959,0.4163988,"-2.50833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1169);
+      tex = new TLatex(0.2890685,0.4208817,"-2.49166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1170);
+      tex = new TLatex(0.2929505,0.4236549,"-2.475");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1171);
+      tex = new TLatex(0.2971976,0.4262571,"-2.45833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1172);
+      tex = new TLatex(0.3008967,0.4294058,"-2.44166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1173);
+      tex = new TLatex(0.3036351,0.4329472,"-2.425");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1174);
+      tex = new TLatex(0.305805,0.4363796,"-2.40833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1175);
+      tex = new TLatex(0.3085412,0.439419,"-2.39166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1176);
+      tex = new TLatex(0.3119289,0.4416206,"-2.375");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1177);
+      tex = new TLatex(0.314358,0.444449,"-2.35833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1178);
+      tex = new TLatex(0.3169899,0.44667,"-2.34166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1179);
+      tex = new TLatex(0.3204498,0.4494213,"-2.325");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1180);
+      tex = new TLatex(0.323165,0.4517831,"-2.30833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1181);
+      tex = new TLatex(0.325341,0.4543968,"-2.29166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1182);
+      tex = new TLatex(0.328296,0.4563518,"-2.275");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1183);
+      tex = new TLatex(0.3319019,0.4581766,"-2.25833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1184);
+      tex = new TLatex(0.3350742,0.4603087,"-2.24166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1185);
+      tex = new TLatex(0.3381261,0.462318,"-2.225");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1186);
+      tex = new TLatex(0.3400171,0.4642765,"-2.20833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1187);
+      tex = new TLatex(0.3432957,0.4653396,"-2.19166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1188);
+      tex = new TLatex(0.3456285,0.4675733,"-2.175");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1189);
+      tex = new TLatex(0.3477055,0.4694879,"-2.15833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1190);
+      tex = new TLatex(0.3496456,0.4704862,"-2.14166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1191);
+      tex = new TLatex(0.3520287,0.4714784,"-2.125");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1192);
+      tex = new TLatex(0.3543203,0.4736153,"-2.10833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1193);
+      tex = new TLatex(0.3566447,0.4748539,"-2.09166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1194);
+      tex = new TLatex(0.3584116,0.4761112,"-2.075");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1195);
+      tex = new TLatex(0.3602531,0.4774608,"-2.05833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1196);
+      tex = new TLatex(0.3622996,0.4785985,"-2.04166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1197);
+      tex = new TLatex(0.3643658,0.4805979,"-2.025");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1198);
+      tex = new TLatex(0.3669824,0.4824012,"-2.00833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1199);
+      tex = new TLatex(0.3693889,0.4838241,"-1.99166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1200);
+      tex = new TLatex(0.3710592,0.4853079,"-1.975");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1201);
+      tex = new TLatex(0.373217,0.48629,"-1.95833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1202);
+      tex = new TLatex(0.3757669,0.4874395,"-1.94166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1203);
+      tex = new TLatex(0.3776454,0.4881318,"-1.925");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1204);
+      tex = new TLatex(0.3787334,0.4896445,"-1.90833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1205);
+      tex = new TLatex(0.3801667,0.4914007,"-1.89166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1206);
+      tex = new TLatex(0.3815626,0.4928217,"-1.875");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1207);
+      tex = new TLatex(0.3837404,0.4943883,"-1.85833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1208);
+      tex = new TLatex(0.3853169,0.4956935,"-1.84166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1209);
+      tex = new TLatex(0.3869052,0.4966649,"-1.825");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1210);
+      tex = new TLatex(0.3878473,0.4970108,"-1.80833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1211);
+      tex = new TLatex(0.3893985,0.4978642,"-1.79166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1212);
+      tex = new TLatex(0.3906909,0.4989209,"-1.775");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1213);
+      tex = new TLatex(0.3928596,0.499774,"-1.75833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1214);
+      tex = new TLatex(0.3948826,0.5003383,"-1.74166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1215);
+      tex = new TLatex(0.3964662,0.5020422,"-1.725");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1216);
+      tex = new TLatex(0.3977421,0.5032725,"-1.70833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1217);
+      tex = new TLatex(0.3986648,0.5040921,"-1.69166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1218);
+      tex = new TLatex(0.4002744,0.5046728,"-1.675");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1219);
+      tex = new TLatex(0.4013449,0.5060034,"-1.65833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1220);
+      tex = new TLatex(0.4025113,0.5076256,"-1.64166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1221);
+      tex = new TLatex(0.4042476,0.5086449,"-1.625");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1222);
+      tex = new TLatex(0.4057485,0.5098781,"-1.60833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1223);
+      tex = new TLatex(0.4077069,0.5108808,"-1.59166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1224);
+      tex = new TLatex(0.4087153,0.5120556,"-1.575");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1225);
+      tex = new TLatex(0.4097868,0.5129521,"-1.55833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1226);
+      tex = new TLatex(0.4109016,0.5145038,"-1.54166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1227);
+      tex = new TLatex(0.4119444,0.5156362,"-1.525");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1228);
+      tex = new TLatex(0.4132572,0.5159517,"-1.50833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1229);
+      tex = new TLatex(0.414636,0.5168922,"-1.49166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1230);
+      tex = new TLatex(0.4159639,0.5176754,"-1.475");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1231);
+      tex = new TLatex(0.4171339,0.5183976,"-1.45833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1232);
+      tex = new TLatex(0.4181601,0.5189464,"-1.44166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1233);
+      tex = new TLatex(0.4195611,0.5203909,"-1.425");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1234);
+      tex = new TLatex(0.4206633,0.5212782,"-1.40833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1235);
+      tex = new TLatex(0.4221593,0.5219055,"-1.39166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1236);
+      tex = new TLatex(0.4233378,0.5225432,"-1.375");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1237);
+      tex = new TLatex(0.4250092,0.5229278,"-1.35833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1238);
+      tex = new TLatex(0.4261542,0.523085,"-1.34166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1239);
+      tex = new TLatex(0.427073,0.5240725,"-1.325");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1240);
+      tex = new TLatex(0.4280067,0.5245925,"-1.30833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1241);
+      tex = new TLatex(0.4288634,0.5249445,"-1.29166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1242);
+      tex = new TLatex(0.4298839,0.5255587,"-1.275");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1243);
+      tex = new TLatex(0.4308988,0.5260992,"-1.25833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1244);
+      tex = new TLatex(0.4322666,0.5264369,"-1.24166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1245);
+      tex = new TLatex(0.4337813,0.5270466,"-1.225");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1246);
+      tex = new TLatex(0.4346537,0.5274198,"-1.20833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1247);
+      tex = new TLatex(0.4359745,0.528251,"-1.19166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1248);
+      tex = new TLatex(0.4370756,0.5287144,"-1.175");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1249);
+      tex = new TLatex(0.4380056,0.5295637,"-1.15833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1250);
+      tex = new TLatex(0.4392938,0.5302553,"-1.14166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1251);
+      tex = new TLatex(0.4403346,0.5305037,"-1.125");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1252);
+      tex = new TLatex(0.4415314,0.531668,"-1.10833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1253);
+      tex = new TLatex(0.4425111,0.5322723,"-1.09166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1254);
+      tex = new TLatex(0.4431714,0.5327178,"-1.075");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1255);
+      tex = new TLatex(0.4442366,0.5331797,"-1.05833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1256);
+      tex = new TLatex(0.4451005,0.5337226,"-1.04166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1257);
+      tex = new TLatex(0.4469227,0.5343278,"-1.025");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1258);
+      tex = new TLatex(0.4477351,0.5344544,"-1.00833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1259);
+      tex = new TLatex(0.4487194,0.5350967,"-0.991666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1260);
+      tex = new TLatex(0.449443,0.5351985,"-0.975");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1261);
+      tex = new TLatex(0.4505566,0.5355883,"-0.958333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1262);
+      tex = new TLatex(0.4519402,0.5358905,"-0.941666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1263);
+      tex = new TLatex(0.4526872,0.536231,"-0.925");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1264);
+      tex = new TLatex(0.4536017,0.5371452,"-0.908333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1265);
+      tex = new TLatex(0.4542699,0.5376694,"-0.891666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1266);
+      tex = new TLatex(0.4559153,0.538074,"-0.875");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1267);
+      tex = new TLatex(0.457175,0.5387456,"-0.858333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1268);
+      tex = new TLatex(0.4576315,0.5400198,"-0.841666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1269);
+      tex = new TLatex(0.4583074,0.5401503,"-0.825");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1270);
+      tex = new TLatex(0.4590639,0.540546,"-0.808333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1271);
+      tex = new TLatex(0.4595767,0.5413962,"-0.791666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1272);
+      tex = new TLatex(0.4606464,0.5418778,"-0.775");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1273);
+      tex = new TLatex(0.461133,0.5422808,"-0.758333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1274);
+      tex = new TLatex(0.4621387,0.5425555,"-0.741666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1275);
+      tex = new TLatex(0.4629087,0.5429019,"-0.725");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1276);
+      tex = new TLatex(0.4637568,0.5435459,"-0.708333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1277);
+      tex = new TLatex(0.4648172,0.5441589,"-0.691666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1278);
+      tex = new TLatex(0.4658664,0.5449281,"-0.675");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1279);
+      tex = new TLatex(0.4664198,0.5456392,"-0.658333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1280);
+      tex = new TLatex(0.4669026,0.5458377,"-0.641666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1281);
+      tex = new TLatex(0.4680036,0.5463945,"-0.625");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1282);
+      tex = new TLatex(0.4684532,0.5470255,"-0.608333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1283);
+      tex = new TLatex(0.4697228,0.5473007,"-0.591666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1284);
+      tex = new TLatex(0.4701462,0.5478879,"-0.575");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1285);
+      tex = new TLatex(0.4714559,0.5482496,"-0.558333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1286);
+      tex = new TLatex(0.4719696,0.5490106,"-0.541666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1287);
+      tex = new TLatex(0.4732494,0.5494302,"-0.525");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1288);
+      tex = new TLatex(0.4744925,0.5499878,"-0.508333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1289);
+      tex = new TLatex(0.4754311,0.5504948,"-0.491666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1290);
+      tex = new TLatex(0.4762488,0.5512767,"-0.475");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1291);
+      tex = new TLatex(0.4767041,0.5518815,"-0.458333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1292);
+      tex = new TLatex(0.4771932,0.5525888,"-0.441666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1293);
+      tex = new TLatex(0.4776788,0.5528964,"-0.425");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1294);
+      tex = new TLatex(0.4786181,0.5532365,"-0.408333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1295);
+      tex = new TLatex(0.4799045,0.5534625,"-0.391666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1296);
+      tex = new TLatex(0.4808306,0.5537246,"-0.375");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1297);
+      tex = new TLatex(0.4818197,0.5541647,"-0.358333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1298);
+      tex = new TLatex(0.4827952,0.5547197,"-0.341666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1299);
+      tex = new TLatex(0.4836685,0.554807,"-0.325");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1300);
+      tex = new TLatex(0.4846266,0.5553604,"-0.308333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1301);
+      tex = new TLatex(0.485279,0.5558896,"-0.291666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1302);
+      tex = new TLatex(0.4863111,0.5559233,"-0.275");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1303);
+      tex = new TLatex(0.4871179,0.556788,"-0.258333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1304);
+      tex = new TLatex(0.4878991,0.5576124,"-0.241666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1305);
+      tex = new TLatex(0.4885964,0.5578735,"-0.225");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1306);
+      tex = new TLatex(0.4896061,0.5579514,"-0.208333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1307);
+      tex = new TLatex(0.4903489,0.5582415,"-0.191666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1308);
+      tex = new TLatex(0.4913998,0.5589388,"-0.175");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1309);
+      tex = new TLatex(0.4918284,0.5596467,"-0.158333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1310);
+      tex = new TLatex(0.49269,0.5596699,"-0.141666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1311);
+      tex = new TLatex(0.4939682,0.5599492,"-0.125");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1312);
+      tex = new TLatex(0.4944598,0.5604727,"-0.108333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1313);
+      tex = new TLatex(0.49533,0.5607372,"-0.0916666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1314);
+      tex = new TLatex(0.4963632,0.5612236,"-0.075");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1315);
+      tex = new TLatex(0.4971152,0.5616135,"-0.0583333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1316);
+      tex = new TLatex(0.4979015,0.5620487,"-0.0416666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1317);
+      tex = new TLatex(0.4986814,0.5621888,"-0.025");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1318);
+      tex = new TLatex(0.4992811,0.5625865,"-0.00833333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1319);
+      tex = new TLatex(0.4999721,0.5630087,"0.00833333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1320);
+      tex = new TLatex(0.5006908,0.563461,"0.025");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1321);
+      tex = new TLatex(0.501287,0.5635284,"0.0416666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1322);
+      tex = new TLatex(0.5025065,0.5643109,"0.0583333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1323);
+      tex = new TLatex(0.5035633,0.5646608,"0.075");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1324);
+      tex = new TLatex(0.5039064,0.5652687,"0.0916666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1325);
+      tex = new TLatex(0.5054346,0.5661155,"0.108333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1326);
+      tex = new TLatex(0.5066859,0.566257,"0.125");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1327);
+      tex = new TLatex(0.5070794,0.5668244,"0.141666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1328);
+      tex = new TLatex(0.5077367,0.5680872,"0.158333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1329);
+      tex = new TLatex(0.508319,0.5683225,"0.175");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1330);
+      tex = new TLatex(0.5090936,0.5688023,"0.191666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1331);
+      tex = new TLatex(0.5102286,0.5693601,"0.208333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1332);
+      tex = new TLatex(0.5105901,0.5697387,"0.225");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1333);
+      tex = new TLatex(0.5112907,0.5698246,"0.241666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1334);
+      tex = new TLatex(0.5125319,0.5705603,"0.258333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1335);
+      tex = new TLatex(0.5133719,0.5706366,"0.275");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1336);
+      tex = new TLatex(0.5140436,0.5709219,"0.291666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1337);
+      tex = new TLatex(0.514801,0.5711211,"0.308333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1338);
+      tex = new TLatex(0.5153814,0.571485,"0.325");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1339);
+      tex = new TLatex(0.5164208,0.5718454,"0.341666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1340);
+      tex = new TLatex(0.5172112,0.5722631,"0.358333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1341);
+      tex = new TLatex(0.517739,0.5722467,"0.375");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1342);
+      tex = new TLatex(0.5185843,0.57275,"0.391666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1343);
+      tex = new TLatex(0.5192619,0.573326,"0.408333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1344);
+      tex = new TLatex(0.5200577,0.5739379,"0.425");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1345);
+      tex = new TLatex(0.5208006,0.5741183,"0.441666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1346);
+      tex = new TLatex(0.5214665,0.5742474,"0.458333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1347);
+      tex = new TLatex(0.5224362,0.5749438,"0.475");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1348);
+      tex = new TLatex(0.5229601,0.5753127,"0.491666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1349);
+      tex = new TLatex(0.5239022,0.5755293,"0.508333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1350);
+      tex = new TLatex(0.5246391,0.5759733,"0.525");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1351);
+      tex = new TLatex(0.5257204,0.5765372,"0.541666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1352);
+      tex = new TLatex(0.5262303,0.5766238,"0.558333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1353);
+      tex = new TLatex(0.5270789,0.5769456,"0.575");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1354);
+      tex = new TLatex(0.5283836,0.5774946,"0.591666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1355);
+      tex = new TLatex(0.5295064,0.5781784,"0.608333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1356);
+      tex = new TLatex(0.5302677,0.5784481,"0.625");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1357);
+      tex = new TLatex(0.5311741,0.5787503,"0.641666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1358);
+      tex = new TLatex(0.5317311,0.5794605,"0.658333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1359);
+      tex = new TLatex(0.5329168,0.5804574,"0.675");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1360);
+      tex = new TLatex(0.5335875,0.5809776,"0.691666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1361);
+      tex = new TLatex(0.5344118,0.581513,"0.708333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1362);
+      tex = new TLatex(0.5350884,0.5821659,"0.725");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1363);
+      tex = new TLatex(0.536037,0.5823639,"0.741666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1364);
+      tex = new TLatex(0.5367005,0.5826725,"0.758333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1365);
+      tex = new TLatex(0.5374219,0.5830546,"0.775");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1366);
+      tex = new TLatex(0.5380522,0.5842236,"0.791666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1367);
+      tex = new TLatex(0.5388207,0.5848168,"0.808333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1368);
+      tex = new TLatex(0.5396165,0.5850506,"0.825");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1369);
+      tex = new TLatex(0.5400526,0.5856682,"0.841666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1370);
+      tex = new TLatex(0.5407746,0.5862945,"0.858333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1371);
+      tex = new TLatex(0.5427524,0.5868004,"0.875");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1372);
+      tex = new TLatex(0.543707,0.5872505,"0.891666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1373);
+      tex = new TLatex(0.5445567,0.5876762,"0.908333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1374);
+      tex = new TLatex(0.5452089,0.5881509,"0.925");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1375);
+      tex = new TLatex(0.5459853,0.5887641,"0.941666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1376);
+      tex = new TLatex(0.5470352,0.5891291,"0.958333333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1377);
+      tex = new TLatex(0.547972,0.5898137,"0.975");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1378);
+      tex = new TLatex(0.549229,0.590371,"0.991666666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1379);
+      tex = new TLatex(0.5501637,0.5910158,"1.00833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1380);
+      tex = new TLatex(0.5515485,0.5913945,"1.025");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1381);
+      tex = new TLatex(0.5523668,0.5919855,"1.04166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1382);
+      tex = new TLatex(0.5533944,0.5927038,"1.05833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1383);
+      tex = new TLatex(0.554163,0.5933092,"1.075");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1384);
+      tex = new TLatex(0.5550377,0.5941946,"1.09166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1385);
+      tex = new TLatex(0.5561511,0.5948528,"1.10833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1386);
+      tex = new TLatex(0.557621,0.5957884,"1.125");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1387);
+      tex = new TLatex(0.5587282,0.5964486,"1.14166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1388);
+      tex = new TLatex(0.5601232,0.5966968,"1.15833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1389);
+      tex = new TLatex(0.5610225,0.5974664,"1.175");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1390);
+      tex = new TLatex(0.5618982,0.5979345,"1.19166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1391);
+      tex = new TLatex(0.5630575,0.5986129,"1.20833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1392);
+      tex = new TLatex(0.5640745,0.5989879,"1.225");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1393);
+      tex = new TLatex(0.5652981,0.5995754,"1.24166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1394);
+      tex = new TLatex(0.5658335,0.5999214,"1.25833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1395);
+      tex = new TLatex(0.5669866,0.6001868,"1.275");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1396);
+      tex = new TLatex(0.5680726,0.6003312,"1.29166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1397);
+      tex = new TLatex(0.5693835,0.600921,"1.30833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1398);
+      tex = new TLatex(0.570491,0.6013318,"1.325");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1399);
+      tex = new TLatex(0.571085,0.6018204,"1.34166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1400);
+      tex = new TLatex(0.5721685,0.6020404,"1.35833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1401);
+      tex = new TLatex(0.5736882,0.6025185,"1.375");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1402);
+      tex = new TLatex(0.5747403,0.6035055,"1.39166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1403);
+      tex = new TLatex(0.5754024,0.6044961,"1.40833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1404);
+      tex = new TLatex(0.5761193,0.6049466,"1.425");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1405);
+      tex = new TLatex(0.5778411,0.6053928,"1.44166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1406);
+      tex = new TLatex(0.5789125,0.6062181,"1.45833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1407);
+      tex = new TLatex(0.5800359,0.60727,"1.475");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1408);
+      tex = new TLatex(0.5816446,0.6083175,"1.49166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1409);
+      tex = new TLatex(0.5834624,0.6088141,"1.50833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1410);
+      tex = new TLatex(0.5850001,0.6102842,"1.525");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1411);
+      tex = new TLatex(0.5863936,0.6112707,"1.54166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1412);
+      tex = new TLatex(0.5875523,0.6116547,"1.55833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1413);
+      tex = new TLatex(0.5886256,0.6131185,"1.575");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1414);
+      tex = new TLatex(0.5906891,0.6138954,"1.59166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1415);
+      tex = new TLatex(0.5918911,0.6148933,"1.60833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1416);
+      tex = new TLatex(0.5933438,0.6163955,"1.625");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1417);
+      tex = new TLatex(0.5942347,0.6176476,"1.64166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1418);
+      tex = new TLatex(0.5971916,0.6183484,"1.65833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1419);
+      tex = new TLatex(0.5992313,0.6193263,"1.675");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1420);
+      tex = new TLatex(0.600375,0.6203838,"1.69166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1421);
+      tex = new TLatex(0.601826,0.6215963,"1.70833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1422);
+      tex = new TLatex(0.6037892,0.6228434,"1.725");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1423);
+      tex = new TLatex(0.6050021,0.623611,"1.74166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1424);
+      tex = new TLatex(0.6065683,0.6248799,"1.75833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1425);
+      tex = new TLatex(0.6084035,0.6266446,"1.775");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1426);
+      tex = new TLatex(0.6100331,0.6273383,"1.79166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1427);
+      tex = new TLatex(0.6112112,0.6282779,"1.80833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1428);
+      tex = new TLatex(0.6131027,0.6288825,"1.825");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1429);
+      tex = new TLatex(0.6148761,0.6300201,"1.84166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1430);
+      tex = new TLatex(0.6164854,0.6310264,"1.85833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1431);
+      tex = new TLatex(0.6178603,0.6323165,"1.875");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1432);
+      tex = new TLatex(0.6193992,0.6329991,"1.89166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1433);
+      tex = new TLatex(0.6214625,0.6337572,"1.90833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1434);
+      tex = new TLatex(0.6236768,0.634534,"1.925");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1435);
+      tex = new TLatex(0.6250704,0.6360415,"1.94166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1436);
+      tex = new TLatex(0.6266049,0.6365665,"1.95833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1437);
+      tex = new TLatex(0.628025,0.6378369,"1.975");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1438);
+      tex = new TLatex(0.6304686,0.6395854,"1.99166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1439);
+      tex = new TLatex(0.6320455,0.6410332,"2.00833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1440);
+      tex = new TLatex(0.6338133,0.6424389,"2.025");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1441);
+      tex = new TLatex(0.6357685,0.643979,"2.04166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1442);
+      tex = new TLatex(0.6375978,0.6453964,"2.05833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1443);
+      tex = new TLatex(0.6395521,0.6469547,"2.075");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1444);
+      tex = new TLatex(0.641284,0.6486517,"2.09166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1445);
+      tex = new TLatex(0.6431556,0.6506783,"2.10833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1446);
+      tex = new TLatex(0.6444849,0.6521642,"2.125");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1447);
+      tex = new TLatex(0.6471606,0.6542605,"2.14166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1448);
+      tex = new TLatex(0.6491134,0.6562535,"2.15833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1449);
+      tex = new TLatex(0.6518206,0.658088,"2.175");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1450);
+      tex = new TLatex(0.6534601,0.6598566,"2.19166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1451);
+      tex = new TLatex(0.6566471,0.6620958,"2.20833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1452);
+      tex = new TLatex(0.6590589,0.6636939,"2.225");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1453);
+      tex = new TLatex(0.6616542,0.6654747,"2.24166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1454);
+      tex = new TLatex(0.6640879,0.6677924,"2.25833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1455);
+      tex = new TLatex(0.6664202,0.6695755,"2.275");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1456);
+      tex = new TLatex(0.6691825,0.6720741,"2.29166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1457);
+      tex = new TLatex(0.6724709,0.6742328,"2.30833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1458);
+      tex = new TLatex(0.6754834,0.6762386,"2.325");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1459);
+      tex = new TLatex(0.6784832,0.6785239,"2.34166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1460);
+      tex = new TLatex(0.6817637,0.6813847,"2.35833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1461);
+      tex = new TLatex(0.6844935,0.6833262,"2.375");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1462);
+      tex = new TLatex(0.6869195,0.685026,"2.39166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1463);
+      tex = new TLatex(0.6895676,0.6875307,"2.40833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1464);
+      tex = new TLatex(0.6920105,0.6909131,"2.425");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1465);
+      tex = new TLatex(0.6959912,0.6931456,"2.44166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1466);
+      tex = new TLatex(0.698987,0.6955688,"2.45833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1467);
+      tex = new TLatex(0.7019913,0.6979006,"2.475");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1468);
+      tex = new TLatex(0.705957,0.7001021,"2.49166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1469);
+      tex = new TLatex(0.7095796,0.7034099,"2.50833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1470);
+      tex = new TLatex(0.7131336,0.7078319,"2.525");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1471);
+      tex = new TLatex(0.7164874,0.710613,"2.54166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1472);
+      tex = new TLatex(0.7202456,0.7150262,"2.55833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1473);
+      tex = new TLatex(0.7246735,0.7184592,"2.575");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1474);
+      tex = new TLatex(0.7277787,0.7221311,"2.59166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1475);
+      tex = new TLatex(0.7329224,0.7264332,"2.60833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1476);
+      tex = new TLatex(0.7374644,0.7322757,"2.625");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1477);
+      tex = new TLatex(0.7410066,0.7362435,"2.64166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1478);
+      tex = new TLatex(0.7475258,0.7409661,"2.65833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1479);
+      tex = new TLatex(0.7530927,0.7455905,"2.675");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1480);
+      tex = new TLatex(0.7575128,0.7515516,"2.69166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1481);
+      tex = new TLatex(0.7627943,0.7553786,"2.70833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1482);
+      tex = new TLatex(0.7689353,0.761644,"2.725");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1483);
+      tex = new TLatex(0.7747273,0.7675166,"2.74166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1484);
+      tex = new TLatex(0.7807517,0.7737631,"2.75833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1485);
+      tex = new TLatex(0.7858228,0.7797188,"2.775");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1486);
+      tex = new TLatex(0.7922454,0.7858374,"2.79166666667");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1487);
+      tex = new TLatex(0.7994444,0.7923006,"2.80833333333");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1488);
+   graph->Draw("6
+");
+   
+   Double_t Graph_fx1489[480] = {
    0,
    0,
    0,
@@ -1982,40 +3267,7 @@ void ROC_dPhi_HZ_17()
    1,
    1,
    1};
-   graph = new TGraph(480,Graph_fx77,Graph_fy77);
-   graph->SetName("Graph");
-   graph->SetTitle("Mass-Matching Prioritized");
-   graph->SetFillStyle(0);
-
-   ci = TColor::GetColor("#0000ff");
-   graph->SetLineColor(ci);
-   graph->SetLineWidth(2);
-
-   ci = TColor::GetColor("#0000ff");
-   graph->SetMarkerColor(ci);
-   graph->SetMarkerStyle(20);
-   
-   TH1F *Graph_Graph77 = new TH1F("Graph_Graph77","Mass-Matching Prioritized",480,0,1.1);
-   Graph_Graph77->SetMinimum(0);
-   Graph_Graph77->SetMaximum(1.1);
-   Graph_Graph77->SetDirectory(0);
-   Graph_Graph77->SetStats(0);
-
-   ci = TColor::GetColor("#000099");
-   Graph_Graph77->SetLineColor(ci);
-   Graph_Graph77->GetXaxis()->SetLabelFont(42);
-   Graph_Graph77->GetXaxis()->SetTitleOffset(1);
-   Graph_Graph77->GetXaxis()->SetTitleFont(42);
-   Graph_Graph77->GetYaxis()->SetLabelFont(42);
-   Graph_Graph77->GetYaxis()->SetTitleFont(42);
-   Graph_Graph77->GetZaxis()->SetLabelFont(42);
-   Graph_Graph77->GetZaxis()->SetTitleOffset(1);
-   Graph_Graph77->GetZaxis()->SetTitleFont(42);
-   graph->SetHistogram(Graph_Graph77);
-   
-   multigraph->Add(graph,"");
-   
-   Double_t Graph_fx78[480] = {
+   Double_t Graph_fy1489[480] = {
    0,
    0,
    0,
@@ -2068,383 +3320,383 @@ void ROC_dPhi_HZ_17()
    0,
    0,
    0,
-   0.009582972,
-   0.02793544,
-   0.04549546,
-   0.06605635,
-   0.08475289,
-   0.1008106,
-   0.1186671,
-   0.1334368,
-   0.1462698,
-   0.1589182,
-   0.1707597,
-   0.1811794,
-   0.1913813,
-   0.2015272,
-   0.2124752,
-   0.2217213,
-   0.2311387,
-   0.2379455,
-   0.2458932,
-   0.2541021,
-   0.26131,
-   0.2690497,
-   0.2754743,
-   0.2825592,
-   0.2881673,
-   0.29464,
-   0.3004111,
-   0.3049702,
-   0.3088187,
-   0.3140991,
-   0.3191102,
-   0.3220252,
-   0.3258752,
-   0.3312018,
-   0.3360828,
-   0.340358,
-   0.344198,
-   0.34739,
-   0.3515559,
-   0.3545314,
-   0.3576701,
-   0.3609198,
-   0.3641286,
-   0.3674398,
-   0.3710618,
-   0.373721,
-   0.3772261,
-   0.3797023,
-   0.3824624,
-   0.3849861,
-   0.3876884,
-   0.3900981,
-   0.3916841,
-   0.3937726,
-   0.3957144,
-   0.3978354,
-   0.3988879,
-   0.4007685,
-   0.4028153,
-   0.4039135,
-   0.4049815,
-   0.4069876,
-   0.4081869,
-   0.4096894,
-   0.4116044,
-   0.4127952,
-   0.4146214,
-   0.416516,
-   0.418192,
-   0.4198717,
-   0.420899,
-   0.4220325,
-   0.4228644,
-   0.4241866,
-   0.4260526,
-   0.4274599,
-   0.4290528,
-   0.4303493,
-   0.4314427,
-   0.4318847,
-   0.4330461,
-   0.4342602,
-   0.4351509,
-   0.4357347,
-   0.4372018,
-   0.4386438,
-   0.4393472,
-   0.4400669,
-   0.4413693,
-   0.4430059,
-   0.4446322,
-   0.4461247,
-   0.4472621,
-   0.4484185,
-   0.4494085,
-   0.4509095,
-   0.4521032,
-   0.4525123,
-   0.4534697,
-   0.454156,
-   0.4549609,
-   0.4554964,
-   0.4568159,
-   0.4578212,
-   0.4583832,
-   0.4589099,
-   0.4592823,
-   0.4597041,
-   0.4609395,
-   0.4615578,
-   0.4620542,
-   0.46276,
-   0.4632606,
-   0.4637094,
-   0.4642497,
-   0.4644908,
-   0.4652326,
-   0.4657707,
-   0.4665208,
-   0.4671143,
-   0.4675083,
-   0.4686422,
-   0.4693459,
-   0.4700885,
-   0.470643,
-   0.4712025,
-   0.4720322,
-   0.4723098,
-   0.4730196,
-   0.4731389,
-   0.4734199,
-   0.4737218,
-   0.4741895,
-   0.4751089,
-   0.4755804,
-   0.4760654,
-   0.4769027,
-   0.4780679,
-   0.4782274,
-   0.4788163,
-   0.4797603,
-   0.4803614,
-   0.4807678,
-   0.4812549,
-   0.4815664,
-   0.4824556,
-   0.4829999,
-   0.4836601,
-   0.4843212,
-   0.4845558,
-   0.4850737,
-   0.4856562,
-   0.4860932,
-   0.486617,
-   0.4874256,
-   0.4882844,
-   0.4886743,
-   0.48905,
-   0.4895178,
-   0.490205,
-   0.4908871,
-   0.4916703,
-   0.4919409,
-   0.4924898,
-   0.4928591,
-   0.4931049,
-   0.4937803,
-   0.4944072,
-   0.4946472,
-   0.495248,
-   0.4959942,
-   0.4963498,
-   0.497235,
-   0.497979,
-   0.4983786,
-   0.4985529,
-   0.4988106,
-   0.49947,
-   0.5002694,
-   0.5003224,
-   0.5006252,
-   0.501273,
-   0.501645,
-   0.5021016,
-   0.5024736,
-   0.5031935,
-   0.5034112,
-   0.5037949,
-   0.5042137,
-   0.5046307,
-   0.5047086,
-   0.505393,
-   0.5058929,
-   0.5064516,
-   0.5071864,
-   0.507335,
-   0.507884,
-   0.5090026,
-   0.5094873,
-   0.509899,
-   0.510396,
-   0.5107498,
-   0.5109663,
-   0.5116887,
-   0.5117732,
-   0.5122653,
-   0.5124897,
-   0.51284,
-   0.5131631,
-   0.5136575,
-   0.5136613,
-   0.5140932,
-   0.5146354,
-   0.5153248,
-   0.5157277,
-   0.5158494,
-   0.5167886,
-   0.5171144,
-   0.5173027,
-   0.5180162,
-   0.5184897,
-   0.5187372,
-   0.5191605,
-   0.5197731,
-   0.5203734,
-   0.520642,
-   0.5210448,
-   0.521762,
-   0.5226432,
-   0.5233531,
-   0.5239499,
-   0.5248112,
-   0.5251437,
-   0.525531,
-   0.52588,
-   0.5269447,
-   0.5274537,
-   0.5276722,
-   0.5284968,
-   0.5291045,
-   0.5295845,
-   0.5300072,
-   0.5306442,
-   0.5312191,
-   0.5322311,
-   0.5330413,
-   0.5336451,
-   0.5341782,
-   0.5347939,
-   0.5352761,
-   0.5357642,
-   0.5364002,
-   0.5372678,
-   0.5383259,
-   0.538902,
-   0.5398214,
-   0.5404555,
-   0.5407371,
-   0.5414543,
-   0.5419465,
-   0.5426849,
-   0.5431062,
-   0.5438231,
-   0.5441799,
-   0.5445246,
-   0.544659,
-   0.5451951,
-   0.5457491,
-   0.5463471,
-   0.5465989,
-   0.5473195,
-   0.5483282,
-   0.5493259,
-   0.5497355,
-   0.5503876,
-   0.5511558,
-   0.5522553,
-   0.5530711,
-   0.5536613,
-   0.5552313,
-   0.5560117,
-   0.5566507,
-   0.5579711,
-   0.5587766,
-   0.5598344,
-   0.5609889,
-   0.5622143,
-   0.562992,
-   0.5639788,
-   0.565289,
-   0.5663859,
-   0.5675029,
-   0.568297,
-   0.5695628,
-   0.5713349,
-   0.5723053,
-   0.5735541,
-   0.5741274,
-   0.5754815,
-   0.5765451,
-   0.5778117,
-   0.578555,
-   0.5794133,
-   0.5806668,
-   0.5820499,
-   0.5825595,
-   0.5839951,
-   0.5858381,
-   0.5873884,
-   0.5889872,
-   0.5903253,
-   0.5917203,
-   0.5936096,
-   0.5951871,
-   0.5975446,
-   0.5994255,
-   0.6013274,
-   0.6033389,
-   0.6049603,
-   0.6068908,
-   0.6091402,
-   0.6110537,
-   0.6131801,
-   0.615877,
-   0.6176032,
-   0.6206532,
-   0.6227397,
-   0.6248167,
-   0.6279526,
-   0.6306459,
-   0.6327415,
-   0.6343145,
-   0.6368027,
-   0.639872,
-   0.642324,
-   0.6449273,
-   0.6475679,
-   0.6502813,
-   0.6539055,
-   0.657845,
-   0.6614921,
-   0.6659091,
-   0.6689808,
-   0.6728838,
-   0.6768216,
-   0.6817445,
-   0.6858316,
-   0.6903901,
-   0.694986,
-   0.7010299,
-   0.7053115,
-   0.7114299,
-   0.7170317,
-   0.7238085,
-   0.7299121,
-   0.7366217,
-   0.7432262,
-   0.7491377,
-   0.756222,
-   0.7632241,
-   0.7708027,
-   0.7785683,
-   0.7890643,
-   0.7980018,
-   0.8089016,
-   0.8219451,
-   0.8335323,
-   0.844609,
-   0.8568113,
-   0.8688442,
-   0.8852605,
-   0.9007448,
-   0.9148125,
-   0.9322614,
-   0.9517448,
-   0.9706475,
-   0.991113,
+   0.01662618,
+   0.05293562,
+   0.09049654,
+   0.1265813,
+   0.1568445,
+   0.1871033,
+   0.2219314,
+   0.2453656,
+   0.2679046,
+   0.2860088,
+   0.3033721,
+   0.3175371,
+   0.3349576,
+   0.3456326,
+   0.3590323,
+   0.371065,
+   0.3851695,
+   0.3906483,
+   0.3984208,
+   0.4085667,
+   0.413323,
+   0.4183262,
+   0.4241114,
+   0.4295594,
+   0.4376977,
+   0.4469988,
+   0.449653,
+   0.4513104,
+   0.4538805,
+   0.4563684,
+   0.458199,
+   0.4617014,
+   0.4628362,
+   0.4646083,
+   0.4672715,
+   0.4695845,
+   0.4705938,
+   0.4723307,
+   0.4727942,
+   0.4733805,
+   0.4755824,
+   0.4778508,
+   0.4782216,
+   0.4786529,
+   0.4797975,
+   0.4806713,
+   0.4814175,
+   0.4817878,
+   0.482549,
+   0.4827406,
+   0.4834675,
+   0.4849415,
+   0.4858132,
+   0.4859784,
+   0.488062,
+   0.4889679,
+   0.4897194,
+   0.4898993,
+   0.4904088,
+   0.4909006,
+   0.4915675,
+   0.4938012,
+   0.4945156,
+   0.4951013,
+   0.4954112,
+   0.4954919,
+   0.4954919,
+   0.4956753,
+   0.4957604,
+   0.4959943,
+   0.4966566,
+   0.4970539,
+   0.4976804,
+   0.4977018,
+   0.4983181,
+   0.4983851,
+   0.4989644,
+   0.4990056,
+   0.4990771,
+   0.4990771,
+   0.4990771,
+   0.4998489,
+   0.4999102,
+   0.5003331,
+   0.5003331,
+   0.5003331,
+   0.500598,
+   0.500598,
+   0.501269,
+   0.501269,
+   0.501269,
+   0.501269,
+   0.5013266,
+   0.501786,
+   0.5018379,
+   0.5018379,
+   0.5024882,
+   0.5024882,
+   0.5024882,
+   0.5024882,
+   0.5024882,
+   0.5024954,
+   0.5024954,
+   0.5024954,
+   0.5024954,
+   0.5024954,
+   0.5024954,
+   0.5024954,
+   0.5025721,
+   0.5025721,
+   0.5025721,
+   0.502645,
+   0.502645,
+   0.502645,
+   0.502645,
+   0.502645,
+   0.502645,
+   0.502645,
+   0.5027122,
+   0.503982,
+   0.503982,
+   0.5043807,
+   0.5043807,
+   0.5043807,
+   0.5043807,
+   0.5043807,
+   0.5044624,
+   0.5044624,
+   0.5044624,
+   0.5044624,
+   0.5044624,
+   0.5044624,
+   0.5044624,
+   0.5044624,
+   0.5044624,
+   0.5044624,
+   0.5044624,
+   0.5045675,
+   0.5045675,
+   0.5046535,
+   0.5046535,
+   0.5046535,
+   0.5046535,
+   0.5046535,
+   0.5046535,
+   0.504746,
+   0.504746,
+   0.5054211,
+   0.5054211,
+   0.5054211,
+   0.5054211,
+   0.5054211,
+   0.5054988,
+   0.5067601,
+   0.5067601,
+   0.5067601,
+   0.5067601,
+   0.5067601,
+   0.5067601,
+   0.5067601,
+   0.5067601,
+   0.5067601,
+   0.5067601,
+   0.5067601,
+   0.5067601,
+   0.5067601,
+   0.5067601,
+   0.5067601,
+   0.5067601,
+   0.5067601,
+   0.5067601,
+   0.5067601,
+   0.5067601,
+   0.5067989,
+   0.5067989,
+   0.5067989,
+   0.5067989,
+   0.5067989,
+   0.5067989,
+   0.5067989,
+   0.5067989,
+   0.5067989,
+   0.5067989,
+   0.5068928,
+   0.5068928,
+   0.5068928,
+   0.5068928,
+   0.5068928,
+   0.5073758,
+   0.5073758,
+   0.5073758,
+   0.5073758,
+   0.5073758,
+   0.5073758,
+   0.5073758,
+   0.5073758,
+   0.5073758,
+   0.5074311,
+   0.5074311,
+   0.5074311,
+   0.5079457,
+   0.5086165,
+   0.5086165,
+   0.5086165,
+   0.5086165,
+   0.5086165,
+   0.5086165,
+   0.5086165,
+   0.5086165,
+   0.5092916,
+   0.5092916,
+   0.5092916,
+   0.5094025,
+   0.5094025,
+   0.5094025,
+   0.5094025,
+   0.5094025,
+   0.5094061,
+   0.5094061,
+   0.5094061,
+   0.5094061,
+   0.5094061,
+   0.5094061,
+   0.5094061,
+   0.5100615,
+   0.5101548,
+   0.5101548,
+   0.5109073,
+   0.5109073,
+   0.5109073,
+   0.5109073,
+   0.5115217,
+   0.5115535,
+   0.5115535,
+   0.5115535,
+   0.5116184,
+   0.5116184,
+   0.5116184,
+   0.5116184,
+   0.5116184,
+   0.5116184,
+   0.5116483,
+   0.5116911,
+   0.5116911,
+   0.5116911,
+   0.5116911,
+   0.5116911,
+   0.5123884,
+   0.5123884,
+   0.5124702,
+   0.5124702,
+   0.5124702,
+   0.5124702,
+   0.5124702,
+   0.5124702,
+   0.5130579,
+   0.5136106,
+   0.5136106,
+   0.5136106,
+   0.5136687,
+   0.5136687,
+   0.5136687,
+   0.5136687,
+   0.5136687,
+   0.5136687,
+   0.5136759,
+   0.5136759,
+   0.5136759,
+   0.5141354,
+   0.5141354,
+   0.5141393,
+   0.5141393,
+   0.5141393,
+   0.5141393,
+   0.5141393,
+   0.5147569,
+   0.5147569,
+   0.5154311,
+   0.5154311,
+   0.5159379,
+   0.5166513,
+   0.5167785,
+   0.5167785,
+   0.5167785,
+   0.5167785,
+   0.5175142,
+   0.5179713,
+   0.5179713,
+   0.518427,
+   0.518427,
+   0.518427,
+   0.518427,
+   0.51844,
+   0.51844,
+   0.51844,
+   0.51844,
+   0.51844,
+   0.51844,
+   0.5184972,
+   0.5185024,
+   0.5185024,
+   0.5186119,
+   0.5186673,
+   0.5191936,
+   0.5197848,
+   0.5206736,
+   0.5207265,
+   0.521473,
+   0.5215039,
+   0.5222261,
+   0.5222261,
+   0.5224123,
+   0.5231744,
+   0.5231792,
+   0.5231792,
+   0.5232597,
+   0.5232597,
+   0.524653,
+   0.5252176,
+   0.5261926,
+   0.5267236,
+   0.5273113,
+   0.5273827,
+   0.5276192,
+   0.5277501,
+   0.5289893,
+   0.5301683,
+   0.5309512,
+   0.5330125,
+   0.5342816,
+   0.53434,
+   0.5349489,
+   0.5371572,
+   0.5378811,
+   0.5393211,
+   0.5413931,
+   0.5442833,
+   0.5446481,
+   0.5459796,
+   0.546307,
+   0.5466714,
+   0.5508729,
+   0.5536186,
+   0.5548835,
+   0.5557591,
+   0.5609516,
+   0.5626703,
+   0.5668068,
+   0.5694877,
+   0.5731512,
+   0.575095,
+   0.5773856,
+   0.5807343,
+   0.5852251,
+   0.5892969,
+   0.5972317,
+   0.6020223,
+   0.6086362,
+   0.615565,
+   0.6194813,
+   0.6293412,
+   0.6385735,
+   0.6526227,
+   0.6622051,
+   0.6784294,
+   0.6918366,
+   0.7063665,
+   0.7258894,
+   0.7480541,
+   0.7689183,
+   0.7912345,
+   0.8156549,
+   0.8435423,
+   0.8743371,
+   0.9102263,
+   0.9456946,
+   0.979416,
    1,
    1,
    1,
@@ -2496,7 +3748,40 @@ void ROC_dPhi_HZ_17()
    1,
    1,
    1};
-   Double_t Graph_fy78[480] = {
+   graph = new TGraph(480,Graph_fx1489,Graph_fy1489);
+   graph->SetName("Graph");
+   graph->SetTitle("Mass-Matching Prioritized");
+   graph->SetFillStyle(0);
+
+   ci = TColor::GetColor("#0000ff");
+   graph->SetLineColor(ci);
+   graph->SetLineWidth(2);
+
+   ci = TColor::GetColor("#0000ff");
+   graph->SetMarkerColor(ci);
+   graph->SetMarkerStyle(20);
+   
+   TH1F *Graph_Graph1489 = new TH1F("Graph_Graph1489","Mass-Matching Prioritized",480,0,1.1);
+   Graph_Graph1489->SetMinimum(0);
+   Graph_Graph1489->SetMaximum(1.1);
+   Graph_Graph1489->SetDirectory(0);
+   Graph_Graph1489->SetStats(0);
+
+   ci = TColor::GetColor("#000099");
+   Graph_Graph1489->SetLineColor(ci);
+   Graph_Graph1489->GetXaxis()->SetLabelFont(42);
+   Graph_Graph1489->GetXaxis()->SetTitleOffset(1);
+   Graph_Graph1489->GetXaxis()->SetTitleFont(42);
+   Graph_Graph1489->GetYaxis()->SetLabelFont(42);
+   Graph_Graph1489->GetYaxis()->SetTitleFont(42);
+   Graph_Graph1489->GetZaxis()->SetLabelFont(42);
+   Graph_Graph1489->GetZaxis()->SetTitleOffset(1);
+   Graph_Graph1489->GetZaxis()->SetTitleFont(42);
+   graph->SetHistogram(Graph_Graph1489);
+   
+   multigraph->Add(graph,"");
+   
+   Double_t Graph_fx1490[480] = {
    0,
    0,
    0,
@@ -2977,7 +4262,488 @@ void ROC_dPhi_HZ_17()
    1,
    1,
    1};
-   graph = new TGraph(480,Graph_fx78,Graph_fy78);
+   Double_t Graph_fy1490[480] = {
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0.009582972,
+   0.02793544,
+   0.04549546,
+   0.06605635,
+   0.08475289,
+   0.1008106,
+   0.1186671,
+   0.1334368,
+   0.1462698,
+   0.1589182,
+   0.1707597,
+   0.1811794,
+   0.1913813,
+   0.2015272,
+   0.2124752,
+   0.2217213,
+   0.2311387,
+   0.2379455,
+   0.2458932,
+   0.2541021,
+   0.26131,
+   0.2690497,
+   0.2754743,
+   0.2825592,
+   0.2881673,
+   0.29464,
+   0.3004111,
+   0.3049702,
+   0.3088187,
+   0.3140991,
+   0.3191102,
+   0.3220252,
+   0.3258752,
+   0.3312018,
+   0.3360828,
+   0.340358,
+   0.344198,
+   0.34739,
+   0.3515559,
+   0.3545314,
+   0.3576701,
+   0.3609198,
+   0.3641286,
+   0.3674398,
+   0.3710618,
+   0.373721,
+   0.3772261,
+   0.3797023,
+   0.3824624,
+   0.3849861,
+   0.3876884,
+   0.3900981,
+   0.3916841,
+   0.3937726,
+   0.3957144,
+   0.3978354,
+   0.3988879,
+   0.4007685,
+   0.4028153,
+   0.4039135,
+   0.4049815,
+   0.4069876,
+   0.4081869,
+   0.4096894,
+   0.4116044,
+   0.4127952,
+   0.4146214,
+   0.416516,
+   0.418192,
+   0.4198717,
+   0.420899,
+   0.4220325,
+   0.4228644,
+   0.4241866,
+   0.4260526,
+   0.4274599,
+   0.4290528,
+   0.4303493,
+   0.4314427,
+   0.4318847,
+   0.4330461,
+   0.4342602,
+   0.4351509,
+   0.4357347,
+   0.4372018,
+   0.4386438,
+   0.4393472,
+   0.4400669,
+   0.4413693,
+   0.4430059,
+   0.4446322,
+   0.4461247,
+   0.4472621,
+   0.4484185,
+   0.4494085,
+   0.4509095,
+   0.4521032,
+   0.4525123,
+   0.4534697,
+   0.454156,
+   0.4549609,
+   0.4554964,
+   0.4568159,
+   0.4578212,
+   0.4583832,
+   0.4589099,
+   0.4592823,
+   0.4597041,
+   0.4609395,
+   0.4615578,
+   0.4620542,
+   0.46276,
+   0.4632606,
+   0.4637094,
+   0.4642497,
+   0.4644908,
+   0.4652326,
+   0.4657707,
+   0.4665208,
+   0.4671143,
+   0.4675083,
+   0.4686422,
+   0.4693459,
+   0.4700885,
+   0.470643,
+   0.4712025,
+   0.4720322,
+   0.4723098,
+   0.4730196,
+   0.4731389,
+   0.4734199,
+   0.4737218,
+   0.4741895,
+   0.4751089,
+   0.4755804,
+   0.4760654,
+   0.4769027,
+   0.4780679,
+   0.4782274,
+   0.4788163,
+   0.4797603,
+   0.4803614,
+   0.4807678,
+   0.4812549,
+   0.4815664,
+   0.4824556,
+   0.4829999,
+   0.4836601,
+   0.4843212,
+   0.4845558,
+   0.4850737,
+   0.4856562,
+   0.4860932,
+   0.486617,
+   0.4874256,
+   0.4882844,
+   0.4886743,
+   0.48905,
+   0.4895178,
+   0.490205,
+   0.4908871,
+   0.4916703,
+   0.4919409,
+   0.4924898,
+   0.4928591,
+   0.4931049,
+   0.4937803,
+   0.4944072,
+   0.4946472,
+   0.495248,
+   0.4959942,
+   0.4963498,
+   0.497235,
+   0.497979,
+   0.4983786,
+   0.4985529,
+   0.4988106,
+   0.49947,
+   0.5002694,
+   0.5003224,
+   0.5006252,
+   0.501273,
+   0.501645,
+   0.5021016,
+   0.5024736,
+   0.5031935,
+   0.5034112,
+   0.5037949,
+   0.5042137,
+   0.5046307,
+   0.5047086,
+   0.505393,
+   0.5058929,
+   0.5064516,
+   0.5071864,
+   0.507335,
+   0.507884,
+   0.5090026,
+   0.5094873,
+   0.509899,
+   0.510396,
+   0.5107498,
+   0.5109663,
+   0.5116887,
+   0.5117732,
+   0.5122653,
+   0.5124897,
+   0.51284,
+   0.5131631,
+   0.5136575,
+   0.5136613,
+   0.5140932,
+   0.5146354,
+   0.5153248,
+   0.5157277,
+   0.5158494,
+   0.5167886,
+   0.5171144,
+   0.5173027,
+   0.5180162,
+   0.5184897,
+   0.5187372,
+   0.5191605,
+   0.5197731,
+   0.5203734,
+   0.520642,
+   0.5210448,
+   0.521762,
+   0.5226432,
+   0.5233531,
+   0.5239499,
+   0.5248112,
+   0.5251437,
+   0.525531,
+   0.52588,
+   0.5269447,
+   0.5274537,
+   0.5276722,
+   0.5284968,
+   0.5291045,
+   0.5295845,
+   0.5300072,
+   0.5306442,
+   0.5312191,
+   0.5322311,
+   0.5330413,
+   0.5336451,
+   0.5341782,
+   0.5347939,
+   0.5352761,
+   0.5357642,
+   0.5364002,
+   0.5372678,
+   0.5383259,
+   0.538902,
+   0.5398214,
+   0.5404555,
+   0.5407371,
+   0.5414543,
+   0.5419465,
+   0.5426849,
+   0.5431062,
+   0.5438231,
+   0.5441799,
+   0.5445246,
+   0.544659,
+   0.5451951,
+   0.5457491,
+   0.5463471,
+   0.5465989,
+   0.5473195,
+   0.5483282,
+   0.5493259,
+   0.5497355,
+   0.5503876,
+   0.5511558,
+   0.5522553,
+   0.5530711,
+   0.5536613,
+   0.5552313,
+   0.5560117,
+   0.5566507,
+   0.5579711,
+   0.5587766,
+   0.5598344,
+   0.5609889,
+   0.5622143,
+   0.562992,
+   0.5639788,
+   0.565289,
+   0.5663859,
+   0.5675029,
+   0.568297,
+   0.5695628,
+   0.5713349,
+   0.5723053,
+   0.5735541,
+   0.5741274,
+   0.5754815,
+   0.5765451,
+   0.5778117,
+   0.578555,
+   0.5794133,
+   0.5806668,
+   0.5820499,
+   0.5825595,
+   0.5839951,
+   0.5858381,
+   0.5873884,
+   0.5889872,
+   0.5903253,
+   0.5917203,
+   0.5936096,
+   0.5951871,
+   0.5975446,
+   0.5994255,
+   0.6013274,
+   0.6033389,
+   0.6049603,
+   0.6068908,
+   0.6091402,
+   0.6110537,
+   0.6131801,
+   0.615877,
+   0.6176032,
+   0.6206532,
+   0.6227397,
+   0.6248167,
+   0.6279526,
+   0.6306459,
+   0.6327415,
+   0.6343145,
+   0.6368027,
+   0.639872,
+   0.642324,
+   0.6449273,
+   0.6475679,
+   0.6502813,
+   0.6539055,
+   0.657845,
+   0.6614921,
+   0.6659091,
+   0.6689808,
+   0.6728838,
+   0.6768216,
+   0.6817445,
+   0.6858316,
+   0.6903901,
+   0.694986,
+   0.7010299,
+   0.7053115,
+   0.7114299,
+   0.7170317,
+   0.7238085,
+   0.7299121,
+   0.7366217,
+   0.7432262,
+   0.7491377,
+   0.756222,
+   0.7632241,
+   0.7708027,
+   0.7785683,
+   0.7890643,
+   0.7980018,
+   0.8089016,
+   0.8219451,
+   0.8335323,
+   0.844609,
+   0.8568113,
+   0.8688442,
+   0.8852605,
+   0.9007448,
+   0.9148125,
+   0.9322614,
+   0.9517448,
+   0.9706475,
+   0.991113,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1};
+   graph = new TGraph(480,Graph_fx1490,Graph_fy1490);
    graph->SetName("Graph");
    graph->SetTitle("Tagging Prioritized");
    graph->SetFillStyle(0);
@@ -2990,23 +4756,23 @@ void ROC_dPhi_HZ_17()
    graph->SetMarkerColor(ci);
    graph->SetMarkerStyle(20);
    
-   TH1F *Graph_Graph78 = new TH1F("Graph_Graph78","Tagging Prioritized",480,0,1.1);
-   Graph_Graph78->SetMinimum(0);
-   Graph_Graph78->SetMaximum(1.1);
-   Graph_Graph78->SetDirectory(0);
-   Graph_Graph78->SetStats(0);
+   TH1F *Graph_Graph1490 = new TH1F("Graph_Graph1490","Tagging Prioritized",480,0,1.1);
+   Graph_Graph1490->SetMinimum(0);
+   Graph_Graph1490->SetMaximum(1.1);
+   Graph_Graph1490->SetDirectory(0);
+   Graph_Graph1490->SetStats(0);
 
    ci = TColor::GetColor("#000099");
-   Graph_Graph78->SetLineColor(ci);
-   Graph_Graph78->GetXaxis()->SetLabelFont(42);
-   Graph_Graph78->GetXaxis()->SetTitleOffset(1);
-   Graph_Graph78->GetXaxis()->SetTitleFont(42);
-   Graph_Graph78->GetYaxis()->SetLabelFont(42);
-   Graph_Graph78->GetYaxis()->SetTitleFont(42);
-   Graph_Graph78->GetZaxis()->SetLabelFont(42);
-   Graph_Graph78->GetZaxis()->SetTitleOffset(1);
-   Graph_Graph78->GetZaxis()->SetTitleFont(42);
-   graph->SetHistogram(Graph_Graph78);
+   Graph_Graph1490->SetLineColor(ci);
+   Graph_Graph1490->GetXaxis()->SetLabelFont(42);
+   Graph_Graph1490->GetXaxis()->SetTitleOffset(1);
+   Graph_Graph1490->GetXaxis()->SetTitleFont(42);
+   Graph_Graph1490->GetYaxis()->SetLabelFont(42);
+   Graph_Graph1490->GetYaxis()->SetTitleFont(42);
+   Graph_Graph1490->GetZaxis()->SetLabelFont(42);
+   Graph_Graph1490->GetZaxis()->SetTitleOffset(1);
+   Graph_Graph1490->GetZaxis()->SetTitleFont(42);
+   graph->SetHistogram(Graph_Graph1490);
    
    multigraph->Add(graph,"");
    multigraph->Draw("ALP");
@@ -3063,7 +4829,7 @@ void ROC_dPhi_HZ_17()
    entry->SetMarkerSize(1);
    entry->SetTextFont(42);
    leg->Draw();
-   TLatex *   tex = new TLatex(0.35,0.927775,"CMS Work in Progress #sqrt{s} = 13 TeV, 41.5 fb^{-1}");
+      tex = new TLatex(0.35,0.927775,"CMS Work in Progress #sqrt{s} = 13 TeV, 41.5 fb^{-1}");
 tex->SetNDC();
    tex->SetTextFont(42);
    tex->SetTextSize(0.03);

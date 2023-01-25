@@ -4,7 +4,7 @@
 void ROC_H_dR_Bj0_18()
 {
 //=========Macro generated from canvas: ROC_H_dR_Bj0_18/ROC_H_dR_Bj0_18
-//=========  (Thu Jan 19 10:33:19 2023) by ROOT version 6.26/06
+//=========  (Tue Jan 24 15:01:32 2023) by ROOT version 6.26/06
    TCanvas *ROC_H_dR_Bj0_18 = new TCanvas("ROC_H_dR_Bj0_18", "ROC_H_dR_Bj0_18",0,0,600,600);
    ROC_H_dR_Bj0_18->SetHighLightColor(2);
    ROC_H_dR_Bj0_18->Range(-0.2901882,-0.1615385,1.238796,1.184615);
@@ -23,38 +23,7 @@ void ROC_H_dR_Bj0_18()
    multigraph->SetName("");
    multigraph->SetTitle("");
    
-   Double_t Graph_fx97[30] = {
-   0,
-   0.02836251,
-   0.1484075,
-   0.2960867,
-   0.4294303,
-   0.5388187,
-   0.6284106,
-   0.6965336,
-   0.7563619,
-   0.8020347,
-   0.8332612,
-   0.86323,
-   0.8888965,
-   0.9117662,
-   0.9327347,
-   0.9517928,
-   0.9686449,
-   0.9789505,
-   0.9853159,
-   0.9906568,
-   0.9939348,
-   0.9960836,
-   0.9977703,
-   0.9988661,
-   0.9991853,
-   0.9994092,
-   0.9997951,
-   0.9997951,
-   0.9999619,
-   0.9999809};
-   Double_t Graph_fy97[30] = {
+   Double_t Graph_fx1975[30] = {
    0,
    0.0265606,
    0.1334601,
@@ -85,7 +54,38 @@ void ROC_H_dR_Bj0_18()
    0.999292,
    0.9997681,
    0.9999302};
-   TGraph *graph = new TGraph(30,Graph_fx97,Graph_fy97);
+   Double_t Graph_fy1975[30] = {
+   0,
+   0.02836251,
+   0.1484075,
+   0.2960867,
+   0.4294303,
+   0.5388187,
+   0.6284106,
+   0.6965336,
+   0.7563619,
+   0.8020347,
+   0.8332612,
+   0.86323,
+   0.8888965,
+   0.9117662,
+   0.9327347,
+   0.9517928,
+   0.9686449,
+   0.9789505,
+   0.9853159,
+   0.9906568,
+   0.9939348,
+   0.9960836,
+   0.9977703,
+   0.9988661,
+   0.9991853,
+   0.9994092,
+   0.9997951,
+   0.9997951,
+   0.9999619,
+   0.9999809};
+   TGraph *graph = new TGraph(30,Graph_fx1975,Graph_fy1975);
    graph->SetName("Graph");
    graph->SetTitle("Tagging Only");
    graph->SetFillStyle(0);
@@ -100,58 +100,77 @@ void ROC_H_dR_Bj0_18()
    graph->SetMarkerColor(ci);
    graph->SetMarkerStyle(20);
    
-   TH1F *Graph_Graph97 = new TH1F("Graph_Graph97","Tagging Only",100,0,1.099979);
-   Graph_Graph97->SetMinimum(0);
-   Graph_Graph97->SetMaximum(1.099923);
-   Graph_Graph97->SetDirectory(0);
-   Graph_Graph97->SetStats(0);
+   TH1F *Graph_Graph1975 = new TH1F("Graph_Graph1975","Tagging Only",100,0,1.099923);
+   Graph_Graph1975->SetMinimum(0);
+   Graph_Graph1975->SetMaximum(1.099979);
+   Graph_Graph1975->SetDirectory(0);
+   Graph_Graph1975->SetStats(0);
 
    ci = TColor::GetColor("#000099");
-   Graph_Graph97->SetLineColor(ci);
-   Graph_Graph97->GetXaxis()->SetLabelFont(42);
-   Graph_Graph97->GetXaxis()->SetTitleOffset(1);
-   Graph_Graph97->GetXaxis()->SetTitleFont(42);
-   Graph_Graph97->GetYaxis()->SetLabelFont(42);
-   Graph_Graph97->GetYaxis()->SetTitleFont(42);
-   Graph_Graph97->GetZaxis()->SetLabelFont(42);
-   Graph_Graph97->GetZaxis()->SetTitleOffset(1);
-   Graph_Graph97->GetZaxis()->SetTitleFont(42);
-   graph->SetHistogram(Graph_Graph97);
+   Graph_Graph1975->SetLineColor(ci);
+   Graph_Graph1975->GetXaxis()->SetLabelFont(42);
+   Graph_Graph1975->GetXaxis()->SetTitleOffset(1);
+   Graph_Graph1975->GetXaxis()->SetTitleFont(42);
+   Graph_Graph1975->GetYaxis()->SetLabelFont(42);
+   Graph_Graph1975->GetYaxis()->SetTitleFont(42);
+   Graph_Graph1975->GetZaxis()->SetLabelFont(42);
+   Graph_Graph1975->GetZaxis()->SetTitleOffset(1);
+   Graph_Graph1975->GetZaxis()->SetTitleFont(42);
+   graph->SetHistogram(Graph_Graph1975);
    
+   TLatex *   tex = new TLatex(0.1334601,0.2084075,"0.5");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1976);
+      tex = new TLatex(0.2527171,0.3560867,"0.7");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1977);
+      tex = new TLatex(0.363221,0.4894303,"0.9");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1978);
+      tex = new TLatex(0.4546781,0.5988187,"1.1");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1979);
+      tex = new TLatex(0.5299268,0.6884106,"1.3");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1980);
+      tex = new TLatex(0.590674,0.7565336,"1.5");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1981);
+      tex = new TLatex(0.6530855,0.8163619,"1.7");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1982);
+      tex = new TLatex(0.7031865,0.8620347,"1.9");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1983);
+      tex = new TLatex(0.7481403,0.8932612,"2.1");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1984);
+      tex = new TLatex(0.7881532,0.92323,"2.3");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(1985);
    multigraph->Add(graph,"");
    
-   Double_t Graph_fx98[30] = {
-   0,
-   0.07620567,
-   0.3392782,
-   0.6075592,
-   0.8024321,
-   0.8939742,
-   0.9429561,
-   0.9651374,
-   0.9817687,
-   0.9875824,
-   0.9908843,
-   0.9928493,
-   0.996921,
-   0.998967,
-   0.999757,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1,
-   1};
-   Double_t Graph_fy98[30] = {
+   Double_t Graph_fx1986[30] = {
    0,
    0.08936199,
    0.3248766,
@@ -182,7 +201,38 @@ void ROC_H_dR_Bj0_18()
    0.9999998,
    0.9999998,
    0.9999999};
-   graph = new TGraph(30,Graph_fx98,Graph_fy98);
+   Double_t Graph_fy1986[30] = {
+   0,
+   0.07620567,
+   0.3392782,
+   0.6075592,
+   0.8024321,
+   0.8939742,
+   0.9429561,
+   0.9651374,
+   0.9817687,
+   0.9875824,
+   0.9908843,
+   0.9928493,
+   0.996921,
+   0.998967,
+   0.999757,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1};
+   graph = new TGraph(30,Graph_fx1986,Graph_fy1986);
    graph->SetName("Graph");
    graph->SetTitle("Mass-Matching Prioritized");
    graph->SetFillStyle(0);
@@ -195,58 +245,27 @@ void ROC_H_dR_Bj0_18()
    graph->SetMarkerColor(ci);
    graph->SetMarkerStyle(20);
    
-   TH1F *Graph_Graph98 = new TH1F("Graph_Graph98","Mass-Matching Prioritized",100,0,1.1);
-   Graph_Graph98->SetMinimum(0);
-   Graph_Graph98->SetMaximum(1.1);
-   Graph_Graph98->SetDirectory(0);
-   Graph_Graph98->SetStats(0);
+   TH1F *Graph_Graph1986 = new TH1F("Graph_Graph1986","Mass-Matching Prioritized",100,0,1.1);
+   Graph_Graph1986->SetMinimum(0);
+   Graph_Graph1986->SetMaximum(1.1);
+   Graph_Graph1986->SetDirectory(0);
+   Graph_Graph1986->SetStats(0);
 
    ci = TColor::GetColor("#000099");
-   Graph_Graph98->SetLineColor(ci);
-   Graph_Graph98->GetXaxis()->SetLabelFont(42);
-   Graph_Graph98->GetXaxis()->SetTitleOffset(1);
-   Graph_Graph98->GetXaxis()->SetTitleFont(42);
-   Graph_Graph98->GetYaxis()->SetLabelFont(42);
-   Graph_Graph98->GetYaxis()->SetTitleFont(42);
-   Graph_Graph98->GetZaxis()->SetLabelFont(42);
-   Graph_Graph98->GetZaxis()->SetTitleOffset(1);
-   Graph_Graph98->GetZaxis()->SetTitleFont(42);
-   graph->SetHistogram(Graph_Graph98);
+   Graph_Graph1986->SetLineColor(ci);
+   Graph_Graph1986->GetXaxis()->SetLabelFont(42);
+   Graph_Graph1986->GetXaxis()->SetTitleOffset(1);
+   Graph_Graph1986->GetXaxis()->SetTitleFont(42);
+   Graph_Graph1986->GetYaxis()->SetLabelFont(42);
+   Graph_Graph1986->GetYaxis()->SetTitleFont(42);
+   Graph_Graph1986->GetZaxis()->SetLabelFont(42);
+   Graph_Graph1986->GetZaxis()->SetTitleOffset(1);
+   Graph_Graph1986->GetZaxis()->SetTitleFont(42);
+   graph->SetHistogram(Graph_Graph1986);
    
    multigraph->Add(graph,"");
    
-   Double_t Graph_fx99[30] = {
-   0,
-   0.02858731,
-   0.1465659,
-   0.2915086,
-   0.4235205,
-   0.5315194,
-   0.6204386,
-   0.6888682,
-   0.7492249,
-   0.7942057,
-   0.8284224,
-   0.8588811,
-   0.8849957,
-   0.9084946,
-   0.9309682,
-   0.9507382,
-   0.9677629,
-   0.978171,
-   0.9846619,
-   0.9905879,
-   0.9937309,
-   0.9957983,
-   0.9976522,
-   0.9988575,
-   0.9992676,
-   0.9994643,
-   0.99982,
-   0.99982,
-   0.9999665,
-   0.9999833};
-   Double_t Graph_fy99[30] = {
+   Double_t Graph_fx1987[30] = {
    0,
    0.02680676,
    0.1339386,
@@ -277,7 +296,38 @@ void ROC_H_dR_Bj0_18()
    0.9992838,
    0.9997474,
    0.9999274};
-   graph = new TGraph(30,Graph_fx99,Graph_fy99);
+   Double_t Graph_fy1987[30] = {
+   0,
+   0.02858731,
+   0.1465659,
+   0.2915086,
+   0.4235205,
+   0.5315194,
+   0.6204386,
+   0.6888682,
+   0.7492249,
+   0.7942057,
+   0.8284224,
+   0.8588811,
+   0.8849957,
+   0.9084946,
+   0.9309682,
+   0.9507382,
+   0.9677629,
+   0.978171,
+   0.9846619,
+   0.9905879,
+   0.9937309,
+   0.9957983,
+   0.9976522,
+   0.9988575,
+   0.9992676,
+   0.9994643,
+   0.99982,
+   0.99982,
+   0.9999665,
+   0.9999833};
+   graph = new TGraph(30,Graph_fx1987,Graph_fy1987);
    graph->SetName("Graph");
    graph->SetTitle("Tagging Prioritized");
    graph->SetFillStyle(0);
@@ -290,23 +340,23 @@ void ROC_H_dR_Bj0_18()
    graph->SetMarkerColor(ci);
    graph->SetMarkerStyle(20);
    
-   TH1F *Graph_Graph99 = new TH1F("Graph_Graph99","Tagging Prioritized",100,0,1.099982);
-   Graph_Graph99->SetMinimum(0);
-   Graph_Graph99->SetMaximum(1.09992);
-   Graph_Graph99->SetDirectory(0);
-   Graph_Graph99->SetStats(0);
+   TH1F *Graph_Graph1987 = new TH1F("Graph_Graph1987","Tagging Prioritized",100,0,1.09992);
+   Graph_Graph1987->SetMinimum(0);
+   Graph_Graph1987->SetMaximum(1.099982);
+   Graph_Graph1987->SetDirectory(0);
+   Graph_Graph1987->SetStats(0);
 
    ci = TColor::GetColor("#000099");
-   Graph_Graph99->SetLineColor(ci);
-   Graph_Graph99->GetXaxis()->SetLabelFont(42);
-   Graph_Graph99->GetXaxis()->SetTitleOffset(1);
-   Graph_Graph99->GetXaxis()->SetTitleFont(42);
-   Graph_Graph99->GetYaxis()->SetLabelFont(42);
-   Graph_Graph99->GetYaxis()->SetTitleFont(42);
-   Graph_Graph99->GetZaxis()->SetLabelFont(42);
-   Graph_Graph99->GetZaxis()->SetTitleOffset(1);
-   Graph_Graph99->GetZaxis()->SetTitleFont(42);
-   graph->SetHistogram(Graph_Graph99);
+   Graph_Graph1987->SetLineColor(ci);
+   Graph_Graph1987->GetXaxis()->SetLabelFont(42);
+   Graph_Graph1987->GetXaxis()->SetTitleOffset(1);
+   Graph_Graph1987->GetXaxis()->SetTitleFont(42);
+   Graph_Graph1987->GetYaxis()->SetLabelFont(42);
+   Graph_Graph1987->GetYaxis()->SetTitleFont(42);
+   Graph_Graph1987->GetZaxis()->SetLabelFont(42);
+   Graph_Graph1987->GetZaxis()->SetTitleOffset(1);
+   Graph_Graph1987->GetZaxis()->SetTitleFont(42);
+   graph->SetHistogram(Graph_Graph1987);
    
    multigraph->Add(graph,"");
    multigraph->Draw("ALP");
@@ -363,7 +413,7 @@ void ROC_H_dR_Bj0_18()
    entry->SetMarkerSize(1);
    entry->SetTextFont(42);
    leg->Draw();
-   TLatex *   tex = new TLatex(0.35,0.927775,"CMS Work in Progress #sqrt{s} = 13 TeV, 59.7 fb^{-1}");
+      tex = new TLatex(0.35,0.927775,"CMS Work in Progress #sqrt{s} = 13 TeV, 59.7 fb^{-1}");
 tex->SetNDC();
    tex->SetTextFont(42);
    tex->SetTextSize(0.03);
