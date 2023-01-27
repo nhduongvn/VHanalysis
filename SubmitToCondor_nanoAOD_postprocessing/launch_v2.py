@@ -80,16 +80,15 @@ submit = True# for executing submission
 
 debug = False 
 
-dataSet_list = "../Dataset_lists/test.txt"
+dataSet_list = "../Dataset_lists/datasets_JetHT.json"
 #dataSet_list = "tmp_json_DY.txt"
 #dataSet_list = "test_json.txt"
 
-nFile = 10
+nFile = 5
 
 dir_file_list = '/uscms_data/d3/duong/VH_working/Ana/FileLists/'
 
 outputDir_eos = '/store/user/lpcphys/duong/NanoAOD_postProcessing/'
-outputDir_scratch = '/uscmst1b_scratch/lpc1/lpctrig/duong//Output_VH/NanoAOD_postProcessing/' 
  
 sourceDir = '/uscms_data/d3/duong/VH_working/Ana/SubmitToCondor_nanoAOD_postprocessing/' #directory for source code + file lists
 condorRunDir = '/uscmst1b_scratch/lpc1/lpctrig/duong//Output_VH/condor_run_NanoAOD_postProcessing/' #directory to contain files to run jobs
@@ -100,7 +99,6 @@ print 'Sample list file (list of input samples):                   ', dataSet_li
 print 'Sample list folder (location of input file lists):          ', dir_file_list
 print 'Number of file per jobs:                                    ', nFile
 print 'Output location eos:                                        ', outputDir_eos 
-print 'Output location scratch:                                    ', outputDir_scratch
 
 
 #sys.exit()
@@ -134,7 +132,6 @@ for line in lines:
   
   #create output directories on eos
   dir_final_rootFile = outputDir_eos + '/' + data_name
-  #dir_final_rootFile_scratch = outputDir_scratch + '/' + data_name
 
 #####################################################
   if runMode == 0:
@@ -172,9 +169,9 @@ for line in lines:
     #prepare condor job configuration
     write_condor_config(work_dir, dir_final_rootFile, data_name,nJob, debug)
     
-    os.system('cp ' + sourceDir + '/keep_and_drop_1.txt ' + work_dir)
+    os.system('cp ' + sourceDir + '/keep_and_drop.txt ' + work_dir)
 
-    os.system('tar -cf input.tar nano_postproc.py keep_and_drop_1.txt sampleList_*.sh')
+    os.system('tar -cf input.tar nano_postproc.py keep_and_drop.txt sampleList_*.sh')
     
     #submit jobs
     if submit: 
