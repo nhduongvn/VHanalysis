@@ -414,7 +414,7 @@ useFill=True, forceMin=False):
 ## Make ROC Curve
 ###############################################################################
 def makeROCcurve(signal_plots, bckg_plots, plotNames, plotVar, canvasName,
-  plotDir, colors, lumi='35.9'):
+  plotDir, colors, lumi='35.9', useLessThan=True, lowerLegend=True):
   
   ## Make sure that the output folder exists.
   dirExists = os.path.exists(plotDir)
@@ -426,11 +426,13 @@ def makeROCcurve(signal_plots, bckg_plots, plotNames, plotVar, canvasName,
   ## Get the cut values (which are based on the bin centers)
   cut_values = []
   bins = signal_plots[0].GetNbinsX()
-  for i in range(1, bins + 1):
-    cut_values.append(signal_plots[0].GetBinCenter(i))
   
-  #print(cut_values)
-  #print("===============")
+  if useLessThan: # We want to get the cuts in ascending order (if <)
+    for i in range(1, bins + 1):
+      cut_values.append(signal_plots[0].GetBinCenter(i))
+  else:
+    for i in range(bins, -1, -1):
+      cut_values.append(signal_plots[0].GetBinCenter(i))
   
   ## Get the totals for each type of plot & calculate the percentages
   eff_signal = []
@@ -448,7 +450,9 @@ def makeROCcurve(signal_plots, bckg_plots, plotNames, plotVar, canvasName,
       for i in range(1, bins + 1):
         center = signal_plots[p].GetBinCenter(i)
         content = signal_plots[p].GetBinContent(i)
-        if center < cut_values[b]:
+        if center < cut_values[b] and useLessThan:
+          selected += content
+        elif center > cut_values[b] and not useLessThan:
           selected += content
         total += content
     
@@ -459,7 +463,9 @@ def makeROCcurve(signal_plots, bckg_plots, plotNames, plotVar, canvasName,
       for i in range(1, bins + 1):
         center = bckg_plots[p].GetBinCenter(i)
         content = bckg_plots[p].GetBinContent(i)
-        if center < cut_values[b]:
+        if center < cut_values[b] and useLessThan:
+          selected += content
+        elif center > cut_values[b] and not useLessThan:
           selected += content
         total += content
     
@@ -495,11 +501,26 @@ def makeROCcurve(signal_plots, bckg_plots, plotNames, plotVar, canvasName,
   ## Add the cut labels to the plots before
   ## we put the plots together.
   for i in range(len(cut_values)):
-    bckg_percent = eff_bckg[0][i]
-    if bckg_percent < 0.05 or bckg_percent >= 0.8:
+    ytmp = -100
+    idx = 0
+    for j in range(len(graphs)):
+      ybit = graphs[j].GetY()[i]
+      #print ybit
+      if ybit > ytmp: 
+        ytmp = ybit
+        idx = j
+    #print "chose: " + str(idx)
+    #print "=========="
+    
+    ybit = graphs[idx].GetY()[i]
+    yoffset = 0.04 if ybit > 0.8 else 0.1
+    y = ybit + yoffset
+    x = graphs[idx].GetX()[i]
+    
+    bckg_percent = eff_bckg[idx][i]
+    if bckg_percent < 0.15 or bckg_percent >= 0.85:
       continue
-    y = graphs[0].GetY()[i] + 0.06
-    x = graphs[0].GetX()[i]
+    
     lt = ROOT.TLatex(x, y, str(cut_values[i]))
     lt.SetTextSize(0.02)
     graphs[0].GetListOfFunctions().Add(lt)
@@ -514,7 +535,7 @@ def makeROCcurve(signal_plots, bckg_plots, plotNames, plotVar, canvasName,
   multigraph.GetYaxis().SetLabelSize(0.035)
   
   if len(plotNames) > 1:
-    if "pt" in plotVar:
+    if not lowerLegend:
       canv.BuildLegend(0.2, 0.7, 0.5, 0.85)
     else:
       canv.BuildLegend(0.55, 0.15, 0.85, 0.3)
@@ -618,8 +639,10 @@ def makeROCinterval(signal_plots, bckg_plots, plotNames, plotVar, canvasName,
   
   multigraph = ROOT.TMultiGraph("","")
   graphs = []
+  sizes = []
   for i in range(len(plotNames)):
     size = len(eff_signal[i])
+    sizes.append(size)
     gI = ROOT.TGraph(size, eff_bckg[i], eff_signal[i])
     gI.SetTitle(plotNames[i])
     gI.SetMarkerColor(colors[i])
@@ -631,13 +654,30 @@ def makeROCinterval(signal_plots, bckg_plots, plotNames, plotVar, canvasName,
     graphs.append(gI)
   
   ## Add the labels
-  for i in range(len(eff_bckg[1])):
-    bckg_percent = eff_bckg[1][i]
-    if bckg_percent >= 0.8:
+  bin_size = binWidths[0]
+  for i in range(n_intervals):
+    ytmp = -100
+    idx = 0
+    for j in range(len(graphs)):
+      if i >= sizes[j]: continue
+      ybit = graphs[j].GetY()[i]
+      #print ybit
+      if ybit > ytmp: 
+        ytmp = ybit
+        idx = j
+    #print "chose: " + str(idx)
+    #print "=========="
+    
+    ybit = graphs[idx].GetY()[i]
+    yoffset = 0.04 if ybit > 0.8 else 0.1
+    y = ybit + yoffset
+    x = graphs[idx].GetX()[i]
+    
+    bckg_percent = eff_bckg[idx][i]
+    if bckg_percent < 0.15 or bckg_percent >= 0.85:
       continue
-    y = graphs[1].GetY()[i] + 0.04
-    x = graphs[1].GetX()[i]
-    lt = ROOT.TLatex(x, y, "#pm" + str(i))
+    
+    lt = ROOT.TLatex(x, y, "#pm" + str(i*bin_size))
     lt.SetTextSize(0.02)
     graphs[0].GetListOfFunctions().Add(lt)
   
@@ -661,7 +701,7 @@ def makeROCinterval(signal_plots, bckg_plots, plotNames, plotVar, canvasName,
     if "pt" in plotVar or "mass" in plotVar:
       addl_info2 += " GeV"
     leg.AddEntry("l", addl_info)
-    leg.AddEntry("l", addl_info2)
+    #leg.AddEntry("l", addl_info2)
   
   myText('CMS Work in Progress #sqrt{s} = 13 TeV, ' + lumi + ' fb^{-1}',
     0.35, 0.927775, 0.6)

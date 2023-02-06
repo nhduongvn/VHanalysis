@@ -4,7 +4,7 @@
 void ROC_all_MET_18()
 {
 //=========Macro generated from canvas: ROC_all_MET_18/ROC_all_MET_18
-//=========  (Tue Jan 24 13:43:24 2023) by ROOT version 6.26/06
+//=========  (Fri Jan 27 13:05:59 2023) by ROOT version 6.26/06
    TCanvas *ROC_all_MET_18 = new TCanvas("ROC_all_MET_18", "ROC_all_MET_18",0,0,600,600);
    ROC_all_MET_18->SetHighLightColor(2);
    ROC_all_MET_18->Range(-0.2901882,-0.1615385,1.238796,1.184615);
@@ -23,7 +23,7 @@ void ROC_all_MET_18()
    multigraph->SetName("");
    multigraph->SetTitle("");
    
-   Double_t Graph_fx37[150] = {
+   Double_t Graph_fx567[150] = {
    0,
    0.004266199,
    0.01686214,
@@ -174,7 +174,7 @@ void ROC_all_MET_18()
    0.9999999,
    0.9999999,
    1};
-   Double_t Graph_fy37[150] = {
+   Double_t Graph_fy567[150] = {
    0,
    0.002961343,
    0.01198524,
@@ -325,7 +325,7 @@ void ROC_all_MET_18()
    0.9999992,
    0.9999996,
    1};
-   TGraph *graph = new TGraph(150,Graph_fx37,Graph_fy37);
+   TGraph *graph = new TGraph(150,Graph_fx567,Graph_fy567);
    graph->SetName("Graph");
    graph->SetTitle("");
    graph->SetFillStyle(0);
@@ -340,114 +340,109 @@ void ROC_all_MET_18()
    graph->SetMarkerColor(ci);
    graph->SetMarkerStyle(20);
    
-   TH1F *Graph_Graph37 = new TH1F("Graph_Graph37","",150,0,1.1);
-   Graph_Graph37->SetMinimum(0);
-   Graph_Graph37->SetMaximum(1.1);
-   Graph_Graph37->SetDirectory(0);
-   Graph_Graph37->SetStats(0);
+   TH1F *Graph_Graph567 = new TH1F("Graph_Graph567","",150,0,1.1);
+   Graph_Graph567->SetMinimum(0);
+   Graph_Graph567->SetMaximum(1.1);
+   Graph_Graph567->SetDirectory(0);
+   Graph_Graph567->SetStats(0);
 
    ci = TColor::GetColor("#000099");
-   Graph_Graph37->SetLineColor(ci);
-   Graph_Graph37->GetXaxis()->SetLabelFont(42);
-   Graph_Graph37->GetXaxis()->SetTitleOffset(1);
-   Graph_Graph37->GetXaxis()->SetTitleFont(42);
-   Graph_Graph37->GetYaxis()->SetLabelFont(42);
-   Graph_Graph37->GetYaxis()->SetTitleFont(42);
-   Graph_Graph37->GetZaxis()->SetLabelFont(42);
-   Graph_Graph37->GetZaxis()->SetTitleOffset(1);
-   Graph_Graph37->GetZaxis()->SetTitleFont(42);
-   graph->SetHistogram(Graph_Graph37);
+   Graph_Graph567->SetLineColor(ci);
+   Graph_Graph567->GetXaxis()->SetLabelFont(42);
+   Graph_Graph567->GetXaxis()->SetTitleOffset(1);
+   Graph_Graph567->GetXaxis()->SetTitleFont(42);
+   Graph_Graph567->GetYaxis()->SetLabelFont(42);
+   Graph_Graph567->GetYaxis()->SetTitleFont(42);
+   Graph_Graph567->GetZaxis()->SetLabelFont(42);
+   Graph_Graph567->GetZaxis()->SetTitleOffset(1);
+   Graph_Graph567->GetZaxis()->SetTitleFont(42);
+   graph->SetHistogram(Graph_Graph567);
    
-   TLatex *   tex = new TLatex(0.06481234,0.1068718,"9.0");
+   TLatex *   tex = new TLatex(0.181316,0.2340406,"15.0");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
-   graph->GetListOfFunctions()->Add(38);
-      tex = new TLatex(0.09860902,0.1317785,"11.0");
+   graph->GetListOfFunctions()->Add(568);
+      tex = new TLatex(0.2281545,0.2709463,"17.0");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
-   graph->GetListOfFunctions()->Add(39);
-      tex = new TLatex(0.1378271,0.1610001,"13.0");
+   graph->GetListOfFunctions()->Add(569);
+      tex = new TLatex(0.2771774,0.3101504,"19.0");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
-   graph->GetListOfFunctions()->Add(40);
-      tex = new TLatex(0.181316,0.1940406,"15.0");
+   graph->GetListOfFunctions()->Add(570);
+      tex = new TLatex(0.3275128,0.3516336,"21.0");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
-   graph->GetListOfFunctions()->Add(41);
-      tex = new TLatex(0.2281545,0.2309463,"17.0");
+   graph->GetListOfFunctions()->Add(571);
+      tex = new TLatex(0.3782005,0.3938677,"23.0");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
-   graph->GetListOfFunctions()->Add(42);
-      tex = new TLatex(0.2771774,0.2701504,"19.0");
+   graph->GetListOfFunctions()->Add(572);
+      tex = new TLatex(0.4285047,0.4364546,"25.0");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
-   graph->GetListOfFunctions()->Add(43);
-      tex = new TLatex(0.3275128,0.3116336,"21.0");
+   graph->GetListOfFunctions()->Add(573);
+      tex = new TLatex(0.4777544,0.4797215,"27.0");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
-   graph->GetListOfFunctions()->Add(44);
-      tex = new TLatex(0.3782005,0.3538677,"23.0");
+   graph->GetListOfFunctions()->Add(574);
+      tex = new TLatex(0.5253248,0.5231546,"29.0");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
-   graph->GetListOfFunctions()->Add(45);
-      tex = new TLatex(0.4285047,0.3964546,"25.0");
+   graph->GetListOfFunctions()->Add(575);
+      tex = new TLatex(0.5708007,0.5659475,"31.0");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
-   graph->GetListOfFunctions()->Add(46);
-      tex = new TLatex(0.4777544,0.4397215,"27.0");
+   graph->GetListOfFunctions()->Add(576);
+      tex = new TLatex(0.6138689,0.6077901,"33.0");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
-   graph->GetListOfFunctions()->Add(47);
-      tex = new TLatex(0.5253248,0.4831546,"29.0");
+   graph->GetListOfFunctions()->Add(577);
+      tex = new TLatex(0.6542758,0.6474989,"35.0");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
-   graph->GetListOfFunctions()->Add(48);
-      tex = new TLatex(0.5708007,0.5259475,"31.0");
+   graph->GetListOfFunctions()->Add(578);
+      tex = new TLatex(0.6918379,0.6856637,"37.0");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
-   graph->GetListOfFunctions()->Add(49);
-      tex = new TLatex(0.6138689,0.5677901,"33.0");
+   graph->GetListOfFunctions()->Add(579);
+      tex = new TLatex(0.726524,0.7223157,"39.0");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
-   graph->GetListOfFunctions()->Add(50);
-      tex = new TLatex(0.6542758,0.6074989,"35.0");
+   graph->GetListOfFunctions()->Add(580);
+      tex = new TLatex(0.7583345,0.7565613,"41.0");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
-   graph->GetListOfFunctions()->Add(51);
-      tex = new TLatex(0.6918379,0.6456637,"37.0");
+   graph->GetListOfFunctions()->Add(581);
+      tex = new TLatex(0.7872978,0.7887046,"43.0");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
-   graph->GetListOfFunctions()->Add(52);
-      tex = new TLatex(0.726524,0.6823157,"39.0");
+   graph->GetListOfFunctions()->Add(582);
+      tex = new TLatex(0.8135308,0.8191256,"45.0");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
-   graph->GetListOfFunctions()->Add(53);
-      tex = new TLatex(0.7583345,0.7165613,"41.0");
+   graph->GetListOfFunctions()->Add(583);
+      tex = new TLatex(0.837115,0.8470822,"47.0");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
-   graph->GetListOfFunctions()->Add(54);
-      tex = new TLatex(0.7872978,0.7487046,"43.0");
-   tex->SetTextSize(0.02);
-   tex->SetLineWidth(2);
-   tex->Draw();
-   graph->GetListOfFunctions()->Add(55);
+   graph->GetListOfFunctions()->Add(584);
    multigraph->Add(graph,"");
    multigraph->Draw("ALP");
    multigraph->GetXaxis()->SetLimits(-0.05, 1.05);
