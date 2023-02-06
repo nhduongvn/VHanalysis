@@ -652,7 +652,8 @@ void VH_selection::Process(Reader* r) {
     TLorentzVector vec = jets[i].m_lvec;
 
     if (vec.Pt() < CUTS.Get<float>("jet_pt")) continue;
-    h_jet_cutflow->Fill(1.5, genWeight); // passed pT cut
+    if (i == 0 and vec.Pt() < CUTS.Get<float>("jet_pt0")) continue;
+    h_jet_cutflow->Fill(1.5, genWeight); // passed pT cut(s)
 
     if (fabs(vec.Eta()) > CUTS.Get<float>("jet_eta")) continue;
     h_jet_cutflow->Fill(2.5, genWeight); // passed eta cut
@@ -731,9 +732,9 @@ void VH_selection::Process(Reader* r) {
 
     // We don't want to have to change the working point in several spots,
     // so we choose here and then we can use these variables wherever needed.
-    float desired_BvL = CUTS.Get<float>("BvL_mediumWP");
-    float desired_CvL = CUTS.Get<float>("CvL_mediumWP");
-    float desired_CvB = CUTS.Get<float>("CvB_mediumWP");
+    float desired_BvL = CUTS.Get<float>("BvL_mediumWP_deepJet");
+    float desired_CvL = CUTS.Get<float>("CvL_mediumWP_deepJet");
+    float desired_CvB = CUTS.Get<float>("CvB_mediumWP_deepJet");
 
     /**************************************************************************
     * MISTAG RATE ANALYSIS                                                    *

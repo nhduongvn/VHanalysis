@@ -27,6 +27,7 @@ namespace glob {
       Parameters() {
         // Add to the list any parameters we want to have.
         parameterNames.push_back("jet_pt");
+        parameterNames.push_back("jet_pt0");
         parameterNames.push_back("jet_eta");
         parameterNames.push_back("jet_main_btagWP");
         parameterNames.push_back("lep_eta");
@@ -38,12 +39,19 @@ namespace glob {
         parameterNames.push_back("ZMassL");
         parameterNames.push_back("ZMassH");
         parameterNames.push_back("MET");
-        parameterNames.push_back("BvL_looseWP");
-        parameterNames.push_back("BvL_mediumWP");
-        parameterNames.push_back("CvL_looseWP");
-        parameterNames.push_back("CvL_mediumWP");
-        parameterNames.push_back("CvB_looseWP");
-        parameterNames.push_back("CvB_mediumWP");
+        parameterNames.push_back("BvL_looseWP_deepCSV");
+        parameterNames.push_back("BvL_mediumWP_deepCSV");
+        parameterNames.push_back("CvL_looseWP_deepCSV");
+        parameterNames.push_back("CvL_mediumWP_deepCSV");
+        parameterNames.push_back("CvB_looseWP_deepCSV");
+        parameterNames.push_back("CvB_mediumWP_deepCSV");
+        //parameterNames.push_back("BvL_looseWP_deepJet");
+        parameterNames.push_back("BvL_mediumWP_deepJet");
+        //parameterNames.push_back("CvL_looseWP_deepJet");
+        parameterNames.push_back("CvL_mediumWP_deepJet");
+        //parameterNames.push_back("CvB_looseWP_deepJet");
+        parameterNames.push_back("CvB_mediumWP_deepJet");
+
       };
       
       // Get method
@@ -53,6 +61,7 @@ namespace glob {
         if (std::count(parameterNames.begin(), parameterNames.end(), name)) {
         
           if (name == "jet_pt") return jet_pt;
+          if (name == "jet_pt0") return jet_pt0;
           if (name == "jet_eta") return jet_eta;
           //if (name == "jet_main_btagWP") return jet_main_btagWP;
           
@@ -67,12 +76,16 @@ namespace glob {
           if (name == "ZMassH") return ZMassH;
           if (name == "MET") return MET;
           
-          if (name == "BvL_looseWP") return BvL_looseWP;
-          if (name == "BvL_mediumWP") return BvL_mediumWP;
-          if (name == "CvL_looseWP") return CvL_looseWP;
-          if (name == "CvL_mediumWP") return CvL_mediumWP;
-          if (name == "CvB_looseWP") return CvB_looseWP;
-          if (name == "CvB_mediumWP") return CvB_mediumWP;          
+          if (name == "BvL_looseWP_deepCSV") return BvL_looseWP_deepCSV;
+          if (name == "BvL_mediumWP_deepCSV") return BvL_mediumWP_deepCSV;
+          if (name == "CvL_looseWP_deepCSV") return CvL_looseWP_deepCSV;
+          if (name == "CvL_mediumWP_deepCSV") return CvL_mediumWP_deepCSV;
+          if (name == "CvB_looseWP_deepCSV") return CvB_looseWP_deepCSV;
+          if (name == "CvB_mediumWP_deepCSV") return CvB_mediumWP_deepCSV;          
+
+          if (name == "BvL_mediumWP_deepJet") return BvL_mediumWP_deepJet;
+          if (name == "CvL_mediumWP_deepJet") return CvL_mediumWP_deepJet;
+          if (name == "CvB_mediumWP_deepJet") return CvB_mediumWP_deepJet;
 
           // If we somehow miss one of the cases, return -1.
           return -1;
@@ -110,6 +123,7 @@ namespace glob {
         if (std::count(parameterNames.begin(), parameterNames.end(), name)) {
         
           if (name == "jet_pt") jet_pt = val;
+          if (name == "jet_pt0") jet_pt0 = val;
           if (name == "jet_eta") jet_eta = val;
           //if (name == "jet_main_btagWP") jet_main_btagWP = val;
 
@@ -124,13 +138,16 @@ namespace glob {
           if (name == "ZMassH") ZMassH = val;
           if (name == "MET") MET = val;
  
-          if (name == "BvL_looseWP") BvL_looseWP = val; 
-          if (name == "BvL_mediumWP") BvL_mediumWP = val;
-          if (name == "CvL_looseWP") CvL_looseWP = val;
-          if (name == "CvL_mediumWP") CvL_mediumWP = val;
-          if (name == "CvB_looseWP") CvB_looseWP = val;
-          if (name == "CvB_mediumWP") CvB_mediumWP = val;
+          if (name == "BvL_looseWP_deepCSV") BvL_looseWP_deepCSV = val; 
+          if (name == "BvL_mediumWP_deepCSV") BvL_mediumWP_deepCSV = val;
+          if (name == "CvL_looseWP_deepCSV") CvL_looseWP_deepCSV = val;
+          if (name == "CvL_mediumWP_deepCSV") CvL_mediumWP_deepCSV = val;
+          if (name == "CvB_looseWP_deepCSV") CvB_looseWP_deepCSV = val;
+          if (name == "CvB_mediumWP_deepCSV") CvB_mediumWP_deepCSV = val;
         
+          if (name == "BvL_mediumWP_deepJet") BvL_mediumWP_deepJet = val;
+          if (name == "CvB_mediumWP_deepJet") CvB_mediumWP_deepJet = val;
+          if (name == "CvL_mediumWP_deepJet") CvL_mediumWP_deepJet = val;
         }
         // Otherwise, return an "error"/warning message.
         else {
@@ -155,6 +172,7 @@ namespace glob {
     
       // Variables - Jets
       float jet_pt;
+      float jet_pt0;
       float jet_eta;
       std::string jet_main_btagWP;
       
@@ -174,12 +192,16 @@ namespace glob {
       float MET;
       
       // Variables - Tagging
-      float BvL_looseWP;
-      float BvL_mediumWP;
-      float CvL_looseWP;
-      float CvL_mediumWP;
-      float CvB_looseWP;
-      float CvB_mediumWP;      
+      float BvL_looseWP_deepCSV;
+      float BvL_mediumWP_deepCSV;
+      float CvL_looseWP_deepCSV;
+      float CvL_mediumWP_deepCSV;
+      float CvB_looseWP_deepCSV;
+      float CvB_mediumWP_deepCSV;
+ 
+      float BvL_mediumWP_deepJet;
+      float CvB_mediumWP_deepJet;
+      float CvL_mediumWP_deepJet;      
 
       std::vector<std::string> initializedVars;
       std::vector<std::string> parameterNames;
