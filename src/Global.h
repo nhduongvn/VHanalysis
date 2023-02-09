@@ -45,11 +45,11 @@ namespace glob {
         parameterNames.push_back("CvL_mediumWP_deepCSV");
         parameterNames.push_back("CvB_looseWP_deepCSV");
         parameterNames.push_back("CvB_mediumWP_deepCSV");
-        //parameterNames.push_back("BvL_looseWP_deepJet");
+        parameterNames.push_back("BvL_looseWP_deepJet");
         parameterNames.push_back("BvL_mediumWP_deepJet");
-        //parameterNames.push_back("CvL_looseWP_deepJet");
+        parameterNames.push_back("CvL_looseWP_deepJet");
         parameterNames.push_back("CvL_mediumWP_deepJet");
-        //parameterNames.push_back("CvB_looseWP_deepJet");
+        parameterNames.push_back("CvB_looseWP_deepJet");
         parameterNames.push_back("CvB_mediumWP_deepJet");
 
       };
@@ -83,8 +83,11 @@ namespace glob {
           if (name == "CvB_looseWP_deepCSV") return CvB_looseWP_deepCSV;
           if (name == "CvB_mediumWP_deepCSV") return CvB_mediumWP_deepCSV;          
 
+          if (name == "BvL_looseWP_deepJet") return BvL_looseWP_deepJet;
           if (name == "BvL_mediumWP_deepJet") return BvL_mediumWP_deepJet;
+          if (name == "CvL_looseWP_deepJet") return CvL_looseWP_deepJet;
           if (name == "CvL_mediumWP_deepJet") return CvL_mediumWP_deepJet;
+          if (name == "CvB_looseWP_deepJet") return CvL_looseWP_deepJet;
           if (name == "CvB_mediumWP_deepJet") return CvB_mediumWP_deepJet;
 
           // If we somehow miss one of the cases, return -1.
@@ -145,8 +148,11 @@ namespace glob {
           if (name == "CvB_looseWP_deepCSV") CvB_looseWP_deepCSV = val;
           if (name == "CvB_mediumWP_deepCSV") CvB_mediumWP_deepCSV = val;
         
+          if (name == "BvL_looseWP_deepJet") BvL_looseWP_deepJet = val;
           if (name == "BvL_mediumWP_deepJet") BvL_mediumWP_deepJet = val;
+          if (name == "CvB_looseWP_deepJet") CvB_looseWP_deepJet = val;
           if (name == "CvB_mediumWP_deepJet") CvB_mediumWP_deepJet = val;
+          if (name == "CvL_looseWP_deepJet") CvL_looseWP_deepJet = val;
           if (name == "CvL_mediumWP_deepJet") CvL_mediumWP_deepJet = val;
         }
         // Otherwise, return an "error"/warning message.
@@ -199,8 +205,11 @@ namespace glob {
       float CvB_looseWP_deepCSV;
       float CvB_mediumWP_deepCSV;
  
+      float BvL_looseWP_deepJet;
       float BvL_mediumWP_deepJet;
+      float CvB_looseWP_deepJet;
       float CvB_mediumWP_deepJet;
+      float CvL_looseWP_deepJet;
       float CvL_mediumWP_deepJet;      
 
       std::vector<std::string> initializedVars;

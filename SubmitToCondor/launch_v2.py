@@ -102,7 +102,8 @@ outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/new_con
 
 #Input data sets
 #dataSet_list = sourceDir+"/Dataset_lists/datasets_JetHT_combined.txt" #data
-dataSet_list = sourceDir+"/Dataset_lists/datasets_NANOAODv9_MC.txt" #all except Hcc
+dataSet_list = sourceDir+"/Dataset_lists/datasets_major_signal_bckg.txt" #signal + QCD/ttbar
+#dataSet_list = sourceDir+"/Dataset_lists/datasets_NANOAODv9_MC.txt" #all except Hcc
 #dataSet_list = sourceDir+"/Dataset_lists/datasets_HToCC_NANOAODV7_MC.txt" #data
 nFile = 2
 dir_file_list = sourceDir+'/FileLists/'
@@ -151,8 +152,8 @@ for line in lines:
 
   sample_format = data_name.split('_')[-2] + '_' + data_name.split('_')[-1]
   nanoaod_format='NANOAODV9'
-  if 'HToCC' in data_name:
-    nanoaod_format='NANOAODV7'
+  #if 'HToCC' in data_name:
+  #  nanoaod_format='NANOAODV7'
   
   #create output directories on eos
   dir_final_rootFile = outputDir_eos + '/' + data_name

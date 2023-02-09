@@ -4,7 +4,7 @@ import time
 import subprocess
 
 #########################################################
-samples_json = "../Dataset_lists//datasets_NANOAODv9_MC.txt"
+samples_json = "../Dataset_lists/datasets_NANOAODv9_MC.txt"
 
 outDir = '../FileLists/'
 os.system('mkdir ' + outDir)

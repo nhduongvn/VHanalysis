@@ -220,12 +220,12 @@ class JetPlots
         float cvl = it.m_deepCvL; h_CvL->Fill(cvl, w);
         float cvb = it.m_deepCvB; h_CvB->Fill(cvb, w);
         int nL = 0, nM = 0;
-        if (csv > CUTS.Get<float>("BvL_looseWP")){ nBl++; nL++; }
-        if (csv > CUTS.Get<float>("BvL_mediumWP")){ nBm++; nM++; }
-        if (cvl > CUTS.Get<float>("CvL_looseWP") &&
-           cvb > CUTS.Get<float>("CvB_looseWP")){ nCl++; nL++; }
-        if (cvl > CUTS.Get<float>("CvL_mediumWP") &&
-           cvb > CUTS.Get<float>("CvB_mediumWP")){ nCm++; nM++; }
+        if (csv > CUTS.Get<float>("BvL_looseWP_deepJet")){ nBl++; nL++; }
+        if (csv > CUTS.Get<float>("BvL_mediumWP_deepJet")){ nBm++; nM++; }
+        if (cvl > CUTS.Get<float>("CvL_looseWP_deepJet") &&
+           cvb > CUTS.Get<float>("CvB_looseWP_deepJet")){ nCl++; nL++; }
+        if (cvl > CUTS.Get<float>("CvL_mediumWP_deepJet") &&
+           cvb > CUTS.Get<float>("CvB_mediumWP_deepJet")){ nCm++; nM++; }
 
         if (nL >= 2) nBothL++;
         if (nM >= 2) nBothM++;
@@ -236,9 +236,9 @@ class JetPlots
       h_nC_loose->Fill(nCl, w); h_nC_medium->Fill(nCm, w);
       h_nBoth_loose->Fill(nBothL, w); h_nBoth_medium->Fill(nBothM, w);
 
-      float BvL_CUT = CUTS.Get<float>("BvL_mediumWP");
-      float CvL_CUT = CUTS.Get<float>("CvL_mediumWP");
-      float CvB_CUT = CUTS.Get<float>("CvB_mediumWP");
+      float BvL_CUT = CUTS.Get<float>("BvL_mediumWP_deepJet");
+      float CvL_CUT = CUTS.Get<float>("CvL_mediumWP_deepJet");
+      float CvB_CUT = CUTS.Get<float>("CvB_mediumWP_deepJet");
 
       // Fill the leading jet plots
       //std::sort(jets.begin(), jets.end(), std::greater<JetObj>());
