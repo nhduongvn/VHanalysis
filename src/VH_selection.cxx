@@ -399,7 +399,7 @@ void VH_selection::Process(Reader* r) {
 
     // Reconstruct the jet
     JetObj jet((r->Jet_pt)[i], (r->Jet_eta)[i], (r->Jet_phi)[i], (r->Jet_mass)[i],
-      jetFlav, (r->Jet_btagDeepFlavB)[i], (r->Jet_puIdDisc)[i]);
+      jetFlav, (r->Jet_btagDeepFlavB)[i], (r->Jet_puId)[i]);
    
     // Handle getting the c-tag value which is different
     // depending on the version of NanoAOD.
@@ -657,6 +657,20 @@ void VH_selection::Process(Reader* r) {
 
     if (fabs(vec.Eta()) > CUTS.Get<float>("jet_eta")) continue;
     h_jet_cutflow->Fill(2.5, genWeight); // passed eta cut
+
+    // NEW: Make sure they pass the pileup ID requirement
+    // if the jet pT < 50 GeV. NOTE: There will be different
+    // values for 2016 vs. 2017-2018. In either case, we're
+    // checking if it passes the medium WP.
+    if (vec.Pt() < 50.0) {
+#if defined(MC_2016) || defined(DATA_2016)
+      if (jets[i].m_puid != 3) continue;
+#endif 
+
+#if defined(MC_2017) || defined(MC_2018) || defined(DATA_2017) || defined(DATA_2018)
+      if (jets[i].m_puid != 6) continue;
+#endif
+    }
 
     // Check if the electrons & muons overlap with the jets.
     // If dR(jet, lepton) < 0.4, discard the jet.

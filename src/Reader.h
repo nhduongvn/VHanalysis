@@ -45,6 +45,7 @@ public :
    TTreeReaderArray<Float_t> Jet_mass = {fReader, "Jet_mass"};
    TTreeReaderArray<Float_t> Jet_btagDeepB = {fReader, "Jet_btagDeepB"};
    TTreeReaderArray<Float_t> Jet_btagDeepFlavB = {fReader, "Jet_btagDeepFlavB"};
+   TTreeReaderArray<Int_t> Jet_puId = {fReader, "Jet_puId"};
    TTreeReaderArray<Float_t> Jet_puIdDisc = {fReader, "Jet_puIdDisc"};
 #if defined(NANOAODV9) || defined(DATA_2016) || defined(DATA_2017) || defined(DATA_2018)
    TTreeReaderArray<Float_t> Jet_btagDeepFlavCvL = {fReader, "Jet_btagDeepFlavCvL"};
