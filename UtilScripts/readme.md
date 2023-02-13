@@ -30,6 +30,10 @@ The following macros are contained within this folder and are useful for the fol
 
   This plots the sample distributions we're interested in for MC signal samples.
 
+- **plot_overlap.py** 
+
+  This gets the shapes of background and signal distributions and overlays them so we can see where the best cuts would lie between two variables.
+
 - **plot_pt_jetFlavor.py**
 
   We have three different jet flavors and want to know how the distributions for different flavors compare. This macro will create overlays of the distributions for each jet flavor (light vs. b vs. c).
