@@ -13,6 +13,7 @@
 #include "TH2F.h"
 
 #include "TRandom3.h"
+#include <math.h>
 
 //Base class for all selectors
 class Selector
@@ -65,6 +66,11 @@ class Selector
   };
 
   virtual void SetModelUnc(std::string modelUncType) {m_modelUncType=modelUncType; };
+  
+  virtual float DH(float mH,float mZ) {
+    float k(125./91);
+    return fabs(mH-k*mZ)/sqrt(1+k*k);
+  }
 
   double m_centralGenWeight;
 

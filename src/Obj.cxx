@@ -79,11 +79,12 @@ class JetObjBoosted: public JetObj {
   
   public:
   
-    JetObjBoosted(float pt, float eta, float phi, float mass, unsigned flav, float DDCvB, float DDCvL, float DDBvL, float DT_ZHccvsQCD, float DT_ZbbvsQCD, float PN_HccvsQCD, float n2b1, float PUjetID):
+    JetObjBoosted(float pt, float eta, float phi, float mass, unsigned flav, float DDCvB, float DDCvL, float DDBvL, float DT_ZHccvsQCD, float DT_ZbbvsQCD, float PN_Xcc, float PN_Xbb, float n2b1, float PUjetID):
     JetObj(pt, eta, phi, mass, flav, -1, PUjetID), 
     m_DDCvB(DDCvB), m_DDCvL(DDCvL), m_DDBvL(DDBvL), 
     m_DT_ZHccvsQCD(DT_ZHccvsQCD), m_DT_ZbbvsQCD(DT_ZbbvsQCD),
-    m_PN_HccvsQCD(PN_HccvsQCD),
+    m_PN_Xcc(PN_Xcc),
+    m_PN_Xbb(PN_Xbb),
     m_n2b1(n2b1) {
       m_rho = -10;
       if(pt>0 && mass>0) m_rho = 2*log(mass/pt);
@@ -94,7 +95,8 @@ class JetObjBoosted: public JetObj {
     float m_DDBvL;       // DeepDoubBvsL value
     float m_DT_ZHccvsQCD;//FatJet_deepTagMD_ZHccvsQCD
     float m_DT_ZbbvsQCD;//FatJet_deepTagMD_ZbbvsQCD
-    float m_PN_HccvsQCD;//FatJet_particleNet_HccvsQCD
+    float m_PN_Xbb;//XbbVsQCD: FatJet_particleNetMD_Xbb/(FatJet_particleNetMD_Xbb+FatJet_particleNetMD_QCD)
+    float m_PN_Xcc;//XccVsQCD: FatJet_particleNetMD_Xcc/(FatJet_particleNetMD_Xcc+FatJet_particleNetMD_QCD)
     float m_n2b1;
     float m_rho;
 } ;
@@ -108,12 +110,14 @@ class ZObj { // Z Boson
     ZObj(std::vector<JetObj> jetlist) : m_jets(jetlist) {
       for (int idx = 0; idx < jetlist.size(); ++idx) {
         m_lvec += jetlist.at(idx).m_lvec;
+        m_flav += jetlist.at(idx).m_flav;
       }
     }
 
     ZObj(JetObj jet) {
       m_jets.push_back(jet);
       m_lvec = jet.m_lvec;
+      m_flav = jet.m_flav;
     }
 
   
@@ -143,6 +147,7 @@ class ZObj { // Z Boson
     // Variables
     TLorentzVector m_lvec;      // 4-vector
     std::vector<JetObj> m_jets; // list of jets that compose Z boson
+    int m_flav; //sum of flavor of jets that compose Z boson
 
 } ;
 
@@ -155,12 +160,14 @@ class HObj { // Higgs boson
     HObj(std::vector<JetObj> jetlist) : m_jets(jetlist) {
       for (int idx = 0; idx < jetlist.size(); ++idx) {
         m_lvec += jetlist.at(idx).m_lvec;
+        m_flav += jetlist.at(idx).m_flav;
       }
     }
 
     HObj(JetObj jet) {
       m_jets.push_back(jet);
       m_lvec = jet.m_lvec;
+      m_flav = jet.m_flav;
     }
 
     virtual ~HObj() {} ;
@@ -190,6 +197,7 @@ class HObj { // Higgs boson
     // Variables
     TLorentzVector m_lvec;      // 4-vector
     std::vector<JetObj> m_jets; // list of jets that compose Higgs boson
+    int m_flav; //sum of flavor of jets that compose Higgs boson
 } ;
 
 

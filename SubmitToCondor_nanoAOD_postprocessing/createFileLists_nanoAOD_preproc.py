@@ -3,12 +3,8 @@ import json
 import subprocess
 import time
 #########################################################
-#samples_json = "../datasets_Nano25Oct2019_DY_madgraph_json.txt"
-#samples_json = "../datasets_Nano02Apr2020_json_postPrep.txt"
-
-#samples_json = "../datasets_Nano02Apr2020_data_json.txt"
-#samples_json = "../datasets_Nano02Apr2020_json_MC.txt"
-samples_json = "../datasets_Nano02Apr2020_data_json.txt" 
+#samples_json = "../Dataset_lists/datasets_NANOAODv9_MC.txt" 
+samples_json = "../Dataset_lists/datasets_JetHT.json" 
 
 outDir = '../FileLists_tmp/'
 os.system('mkdir ' + outDir)
@@ -33,7 +29,7 @@ else:
 #    '/eos/uscms/store/user/peteryou/Output_ZplusB/NanoAOD_postProcessing',
 #    '/eos/uscms/store/user/hhsia/NanoAOD_postProcessing',
 #    '/eos/uscms/store/user/lpcphys/noreplica/NanoAOD_postProcessing_st_fromAvto']
-ss = ['/eos/uscms/store/user/lpcphys/duong/NanoAOD_postProcessing_secondRound'] #important, should not have '/' at the end
+ss = ['/eos/uscms/store/user/lpcphys/duong/NanoAOD_postProcessing'] #important, should not have '/' at the end
 
 for k in samples_used:
   print k
@@ -41,7 +37,6 @@ for k in samples_used:
   os.system('rm '+ fOutN)
   fOut = open(fOutN,'w')
   for s in ss:
-    if k in ['DY_1J_amcatnlo_MC_2018','DY_2J_amcatnlo_MC_2018'] and 'hhsia' in s: continue
     os.system('rm tmp.txt')
     time.sleep(0.2)
     os.system('ls ' + s + '/' + k + '/*>tmp.txt')

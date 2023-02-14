@@ -150,8 +150,8 @@ namespace {
 0
     };
     static const char* includePaths[] = {
-"/cvmfs/cms.cern.ch/slc7_amd64_gcc820/lcg/root/6.14.09/include",
-"/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/",
+"/cvmfs/cms.cern.ch/slc7_amd64_gcc700/lcg/root/6.12.07-gnimlf5/include",
+"/uscms_data/d3/duong/VH_working/Ana/",
 0
     };
     static const char* fwdDeclCode = R"DICTFWDDCLS(
@@ -182,7 +182,7 @@ nullptr};
     if (!isInitialized) {
       TROOT::RegisterModule("Reader_dict",
         headers, includePaths, payloadCode, fwdDeclCode,
-        TriggerDictionaryInitialization_Reader_dict_Impl, {}, classesHeaders, /*has no C++ module*/false);
+        TriggerDictionaryInitialization_Reader_dict_Impl, {}, classesHeaders);
       isInitialized = true;
     }
   }

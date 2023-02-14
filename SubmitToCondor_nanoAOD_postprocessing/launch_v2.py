@@ -80,11 +80,15 @@ submit = True# for executing submission
 
 debug = False 
 
-dataSet_list = "../Dataset_lists/datasets_JetHT.json"
+#dataSet_list = "../Dataset_lists/datasets_JetHT.json"
+dataSet_list = "../Dataset_lists/datasets_NANOAODv9_MC.txt"
 #dataSet_list = "tmp_json_DY.txt"
 #dataSet_list = "test_json.txt"
 
-nFile = 5
+#this is used to reprocess whole selected dataset
+selectedDataSets = ["QCD_HT300to500_v9_MC_2016","QCD_HT2000toInf_v9_MC_2016","QCD_bEnriched_HT200to300_MC_2018","QCD_bEnriched_HT2000toInf_MC_2017","TTTo2L2Nu_MC_2018","TTTo2L2Nu_MC_2017","QCD_bEnriched_HT1500to2000_MC_2017","QCD_bEnriched_HT500to700_MC_2017","QCD_HT200to300_v9_MC_2016","ZH_HToCC_ZToQQ_MC_2017","ZH_HToCC_ZToQQ_MC_2016","ggZH_HToCC_ZToQQ_MC_2018","ggZH_HToCC_ZToQQ_MC_2017","ggZH_HToCC_ZToQQ_MC_2016","WJetsToLNu_HT-1200to2500_MC_2018","QCD_HT200to300_BGenFilter_MC_2018","QCD_bEnriched_HT700to1000_MC_2018","QCD_HT1000to1500_v9_MC_2016","ST_t-channel_top_MC_2018","ST_t-channel_antitop_MC_2017","QCD_HT700to1000_v9_MC_2017","ZJetsToQQ_HT-400to600_MC_2018","QCD_HT700to1000_BGenFilter_MC_2017","TTToSemiLeptonic_MC_2016","QCD_HT1500to2000_BGenFilter_MC_2017","ZZ_MC_2017","ZZ_MC_2018","QCD_bEnriched_HT500to700_MC_2018","QCD_HT1000to1500_BGenFilter_MC_2018","QCD_HT500to700_v9_MC_2016","QCD_bEnriched_HT300to500_MC_2016","TTToHadronic_MC_2016","TTToHadronic_MC_2017","TTToHadronic_MC_2018"]
+selectedDataSets = []
+nFile = 1
 
 dir_file_list = '/uscms_data/d3/duong/VH_working/Ana/FileLists/'
 
@@ -120,11 +124,13 @@ dir_affix = 'test'
 
 for line in lines:
   if len(samples_input) > 0 and line not in samples_input: continue
+  if len(selectedDataSets) > 0 and line not in selectedDataSets: continue
   #TEMP
   print '========================='
   print 'Processing sample: ', line
   
   data_name = line
+
 
   work_dir = condorRunDir+ '/' + data_name + '_' + dir_affix
 

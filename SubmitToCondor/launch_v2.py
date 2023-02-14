@@ -77,7 +77,7 @@ def make_input_file_list(nFile, outDir_file_list, file_list_name):
 
 
 #///////////////////////////////////////////////////////////////////
-runMode = 1 #0: submit, 1: check output and hadd output file
+runMode = 0 #0: submit, 1: check output and hadd output file
 submit = True# for testing setup or executing submission 
 debug = False   # just run on 10000 
 
@@ -95,14 +95,21 @@ outputDir_scratch = '/uscmst1b_scratch/lpc1/lpctrig/duong//Output_VH/'+syst+'/'
 #Input data sets
 #dataSet_list = sourceDir+"/Dataset_lists/datasets_JetHT_combined.txt" #data
 #dataSet_list = sourceDir+"/Dataset_lists/datasets_NANOAODv9_MC.txt" #all except Hcc
-dataSet_list = sourceDir+"/Dataset_lists/datasets_HToCC_NANOAODv7_MC.txt" #data
+#dataSet_list = sourceDir+"/Dataset_lists/datasets_HToCC_NANOAODv7_MC.txt" #data
+dataSet_lists = [sourceDir+"/Dataset_lists/datasets_JetHT_combined.txt",
+                 sourceDir+"/Dataset_lists/datasets_NANOAODv9_MC.txt",
+                 sourceDir+"/Dataset_lists/datasets_HToCC_NANOAODv7_MC.txt"]
+
+
 nFile = 2
 dir_file_list = sourceDir+'/FileLists/'
 
 #Print setting
 print '============================='
 print 'Systematic:                                                 ', syst
-print 'Sample list file (list of input samples):                   ', dataSet_list
+print 'Sample list file (list of input samples):                   '
+for dataSet_list in dataSet_lists:
+  print '    ', dataSet_list
 print 'Sample list folder (location of input file lists):          ', dir_file_list
 print 'Number of file per jobs:                                    ', nFile
 print 'Source dir:                                                 ', sourceDir
@@ -119,11 +126,17 @@ if len(sys.argv) > 2:
   samples_input = sys.argv[2].split(',') #all, or DY_2J_amcatnlo_MC_2018
 
 
-json_file = open(dataSet_list)
+#add all samples together
+lines = []
+for dataSet_list in dataSet_lists:
+  json_file = open(dataSet_list)
+  samples = json.load(json_file)
+  #lines = samples.keys()
+  lines = lines + samples.keys()
 
-samples = json.load(json_file)
-
-lines = samples.keys() 
+#for line in lines:
+#  print line
+#sys.exit()
 
 sample_format = ''
 nanoaod_format= ''
@@ -132,6 +145,8 @@ dir_affix = 'test'
 
 
 for line in lines:
+  #TEMP
+  #if "BGenFilter" not in line and "bEnriched" not in line: continue
   if len(samples_input) > 0 and line not in samples_input: continue
   print '========================='
   print 'Processing sample: ', line
@@ -186,6 +201,7 @@ for line in lines:
     os.system('cp -r '+sourceDir+'/Configs/ ' + work_dir)
     os.system('cp -r '+sourceDir+'/CalibData/ ' + work_dir)
     os.system('cp -r '+sourceDir+'/yaml-cpp/ ' + work_dir)
+    time.sleep(1)
 
     os.system('tar -cf input.tar Makefile *.cxx *.hpp src/ Configs/ CalibData/ yaml-cpp/ sampleList_*.txt')
     

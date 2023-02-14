@@ -7,6 +7,7 @@ import ConfigParser
 import myutils.util_funcs as utl_func
 import myutils as utl
 
+
 ROOT.gROOT.Macro(os.path.expanduser('~/rootLogOn_forPyROOT.C' ))
 ROOT.gROOT.SetBatch(True)
 
@@ -28,21 +29,61 @@ def getHist(pN,samName,fH,lS): #samName = ['Electron'],['DY_0J','DY_1J','DY_2J']
       
   return hOut
 
+def getHistIntegral(h,v1=-1,v2=-1):
+  tmp = [0,0]
+  bBin = 0 #include underflow bin
+  eBin = h.GetNbinsX()+1 #include overflow bin
+  if v1 != -1: bBin = h.GetXaxis().FindFixBin(v1)
+  if v2 != -1: eBin = h.GetXaxis().FindFixBin(v2)
+  for iB in range(v1,v2+1):
+    tmp[0] += h.GetBinContent(iB)
+    tmp[1] += h.GetBinError(iB)*h.GetBinError(iB)
+  tmp[1] = math.sqrt(tmp[1])
+  return tmp
+
+def addBkgr(n,proc,procs,regions):
+  for r in regions:
+    for y in ['16','17','18','All']:
+      s = 0
+      s_err = 0
+      for p in procs:
+        s += nums[r][y][p][0]
+        s_err += nums[r][y][p][1]*nums[r][y][p][1]
+      n[r][y][proc] = [s,math.sqrt(s_err)]
+
 ##########################
 #Main
 ##########################
 
 years = ['16','17','18']
 
-#regions = ['VbbHcc_boosted_twojets']
-regions = ['VbbHcc_boosted_select1','VbbHcc_boosted_select2']
+doBlindData = True
+blindRange = [75,140]
 
-summary_control_plot_name = 'summary_control_plot_zjet_zHFjet.txt'
+#regions = ['VbbHcc_boosted_twojets']
+regions = ['VbbHcc_boosted_select3','VbbHcc_boosted_select4','VbbHcc_boosted_qcd','VbbHcc_boosted_qcd_1','VbbHcc_boosted_qcd_2','VbbHcc_boosted_qcd_3']
+
+summary_eventCount_name = 'summary_eventCount_VH.txt'
 
 cfg = utl.BetterConfigParser()
 cfg.read('../Configs/config.ini')
 
+use_bEnriched_BGenFilter = False 
+
+#create directory to store plots
 plotFolder = '../Test/'
+if use_bEnriched_BGenFilter: plotFolder = '../Test_bEnriched_BGenFilter/'
+plotFolders = {}
+for y in years:
+  plotFolders[y] = plotFolder+'/20'+y
+  os.system('mkdir -p '+plotFolders[y])
+plotFolders['All'] = plotFolder+'/All'
+os.system('mkdir -p '+plotFolders['All'])
+
+#file to store cross check plots
+fCheck = ROOT.TFile(plotFolder+"/check.root","RECREATE") 
+#file to store histograms for limit settings
+fOut = ROOT.TFile(plotFolder+"/qcd_estimate.root","RECREATE") 
 
 lumiS = {}
 for y in years:
@@ -52,12 +93,16 @@ for y in years:
 print lumiS 
 
 #ss = ['JetHT','ZH_HToCC_ZToQQ','ggZH_HToCC_ZToQQ','ZH_HToBB_ZToQQ','ggZH_HToBB_ZToQQ','QCD_HT500to700','QCD_HT700to1000','QCD_HT1000to1500','QCD_HT1500to2000','QCD_HT2000toInf']
-ss = ['JetHT','ZH_HToCC_ZToQQ','ggZH_HToCC_ZToQQ','ZH_HToBB_ZToQQ','ggZH_HToBB_ZToQQ','QCD_HT300to500_v9','QCD_HT500to700_v9','QCD_HT700to1000_v9','QCD_HT1000to1500_v9','QCD_HT1500to2000_v9','QCD_HT2000toInf_v9','WJetsToQQ_HT-400to600','WJetsToQQ_HT-600to800','WJetsToQQ_HT-800toInf','WJetsToLNu_HT-400to600','WJetsToLNu_HT-600to800','WJetsToLNu_HT-800to1200','WJetsToLNu_HT-1200to2500','WJetsToLNu_HT-2500toInf','ZJetsToQQ_HT-400to600','ZJetsToQQ_HT-600to800','ZJetsToQQ_HT-800toInf','TTToHadronic','TTToSemiLeptonic','TTTo2L2Nu','ST_t-channel_antitop','ST_t-channel_top','ST_tW-channel_antitop','ST_tW-channel_top','WW','WZ','ZZ']
+ss = ['JetHT','ZH_HToCC_ZToQQ','ggZH_HToCC_ZToQQ','ZH_HToBB_ZToQQ','ggZH_HToBB_ZToQQ','QCD_HT300to500_v9','QCD_HT500to700_v9','QCD_HT700to1000_v9','QCD_HT1000to1500_v9','QCD_HT1500to2000_v9','QCD_HT2000toInf_v9','QCD_bEnriched_HT300to500','QCD_bEnriched_HT500to700','QCD_bEnriched_HT700to1000','QCD_bEnriched_HT1000to1500','QCD_bEnriched_HT1500to2000','QCD_bEnriched_HT2000toInf','QCD_HT300to500_BGenFilter','QCD_HT500to700_BGenFilter','QCD_HT700to1000_BGenFilter','QCD_HT1000to1500_BGenFilter','QCD_HT1500to2000_BGenFilter','QCD_HT2000toInf_BGenFilter','WJetsToQQ_HT-400to600','WJetsToQQ_HT-600to800','WJetsToQQ_HT-800toInf','WJetsToLNu_HT-400to600','WJetsToLNu_HT-600to800','WJetsToLNu_HT-800to1200','WJetsToLNu_HT-1200to2500','WJetsToLNu_HT-2500toInf','ZJetsToQQ_HT-400to600','ZJetsToQQ_HT-600to800','ZJetsToQQ_HT-800toInf','TTToHadronic','TTToSemiLeptonic','TTTo2L2Nu','ST_t-channel_antitop','ST_t-channel_top','ST_tW-channel_antitop','ST_tW-channel_top','WW','WZ','ZZ']
+
+if use_bEnriched_BGenFilter: 
+  ss = ['JetHT','ZH_HToCC_ZToQQ','ggZH_HToCC_ZToQQ','ZH_HToBB_ZToQQ','ggZH_HToBB_ZToQQ','QCD_bEnriched_HT300to500','QCD_bEnriched_HT500to700','QCD_bEnriched_HT700to1000','QCD_bEnriched_HT1000to1500','QCD_bEnriched_HT1500to2000','QCD_bEnriched_HT2000toInf','QCD_HT300to500_BGenFilter','QCD_HT500to700_BGenFilter','QCD_HT700to1000_BGenFilter','QCD_HT1000to1500_BGenFilter','QCD_HT1500to2000_BGenFilter','QCD_HT2000toInf_BGenFilter','WJetsToQQ_HT-400to600','WJetsToQQ_HT-600to800','WJetsToQQ_HT-800toInf','WJetsToLNu_HT-400to600','WJetsToLNu_HT-600to800','WJetsToLNu_HT-800to1200','WJetsToLNu_HT-1200to2500','WJetsToLNu_HT-2500toInf','ZJetsToQQ_HT-400to600','ZJetsToQQ_HT-600to800','ZJetsToQQ_HT-800toInf','TTToHadronic','TTToSemiLeptonic','TTTo2L2Nu','ST_t-channel_antitop','ST_t-channel_top','ST_tW-channel_antitop','ST_tW-channel_top','WW','WZ','ZZ']
 
 fNames = {}
 xSecs = {}
 lumiScales = {}
 fHist = {}
+
 
 for s in ss:
 
@@ -65,7 +110,7 @@ for s in ss:
   xSecs[s] = {}
   lumiScales[s] = {}
   fHist[s] = {}
-  
+
   for y in years:
     lumi = float(cfg.get('General','lumi_'+y))
     names = cfg.get(s,'file_'+y).split(',') #multiple names is possible, for example: Single top = t-channels, s-channels ...
@@ -111,16 +156,26 @@ for r in regions:
     hN = r + '_' + plN
     if plN == 'CutFlow':
       hN = plN + '_' + r
-    
+     
     print hN, plN
     
+    if 'qcd' in r and 'CutFlow' in plN: continue
+
     hDat = getHist(hN,['JetHT'],fHist,lumiScales)
     hZHcc = getHist(hN,['ZH_HToCC_ZToQQ'],fHist,lumiScales)
     hZHbb = getHist(hN,['ZH_HToBB_ZToQQ'],fHist,lumiScales)
     hggZHcc = getHist(hN,['ggZH_HToCC_ZToQQ'],fHist,lumiScales)
     hggZHbb = getHist(hN,['ggZH_HToBB_ZToQQ'],fHist,lumiScales)
     #hQCD = getHist(hN,['QCD_HT500to700','QCD_HT700to1000','QCD_HT1000to1500','QCD_HT1500to2000','QCD_HT2000toInf'],fHist,lumiScales)
-    hQCD = getHist(hN,['QCD_HT300to500_v9','QCD_HT500to700_v9','QCD_HT700to1000_v9','QCD_HT1000to1500_v9','QCD_HT1500to2000_v9','QCD_HT2000toInf_v9'],fHist,lumiScales)
+    if not use_bEnriched_BGenFilter:
+      hQCD = getHist(hN,['QCD_HT300to500_v9','QCD_HT500to700_v9','QCD_HT700to1000_v9','QCD_HT1000to1500_v9','QCD_HT1500to2000_v9','QCD_HT2000toInf_v9'],fHist,lumiScales)
+    else:
+      hQCD = getHist(hN,['QCD_bEnriched_HT300to500','QCD_bEnriched_HT500to700','QCD_bEnriched_HT700to1000','QCD_bEnriched_HT1000to1500','QCD_bEnriched_HT1500to2000','QCD_bEnriched_HT2000toInf'],fHist,lumiScales)
+      hQCD_BGenFilter = getHist(hN,['QCD_HT300to500_BGenFilter','QCD_HT500to700_BGenFilter','QCD_HT700to1000_BGenFilter','QCD_HT1000to1500_BGenFilter','QCD_HT1500to2000_BGenFilter','QCD_HT2000toInf_BGenFilter'],fHist,lumiScales)
+      #hQCD = getHist(hN,['QCD_HT300to500_BGenFilter','QCD_HT500to700_BGenFilter','QCD_HT700to1000_BGenFilter','QCD_HT1000to1500_BGenFilter','QCD_HT1500to2000_BGenFilter','QCD_HT2000toInf_BGenFilter'],fHist,lumiScales)
+      for y in years:
+        hQCD[y].Add(hQCD_BGenFilter[y])
+    
     hWJ = getHist(hN,['WJetsToQQ_HT-400to600','WJetsToQQ_HT-600to800','WJetsToQQ_HT-800toInf','WJetsToLNu_HT-400to600','WJetsToLNu_HT-600to800','WJetsToLNu_HT-800to1200','WJetsToLNu_HT-1200to2500','WJetsToLNu_HT-2500toInf'],fHist,lumiScales)
     hZJ = getHist(hN,['ZJetsToQQ_HT-400to600','ZJetsToQQ_HT-600to800','ZJetsToQQ_HT-800toInf'],fHist,lumiScales)
     hTT = getHist(hN,['TTToHadronic','TTToSemiLeptonic','TTTo2L2Nu'],fHist,lumiScales)
@@ -134,6 +189,25 @@ for r in regions:
     ##########################
 
     for y in years:
+      #get number of events
+      if 'HMass' in plN:
+        nums[r][y] = {}
+        lowM = 50
+        highM = 200
+        nums[r][y]['JetHT'] = getHistIntegral(hDat[y],lowM,highM)
+        nums[r][y]['ZH_HToCC_ZToQQ'] = getHistIntegral(hZHcc[y],lowM,highM)
+        nums[r][y]['ZH_HToBB_ZToQQ'] = getHistIntegral(hZHbb[y],lowM,highM)
+        nums[r][y]['ggZH_HToCC_ZToQQ'] = getHistIntegral(hggZHcc[y],lowM,highM)
+        nums[r][y]['ggZH_HToBB_ZToQQ'] = getHistIntegral(hggZHbb[y],lowM,highM)
+        nums[r][y]['QCD'] = getHistIntegral(hQCD[y],lowM,highM)
+        nums[r][y]['WJ'] = getHistIntegral(hWJ[y],lowM,highM)
+        nums[r][y]['ZJ'] = getHistIntegral(hZJ[y],lowM,highM)
+        nums[r][y]['TT'] = getHistIntegral(hTT[y],lowM,highM)
+        nums[r][y]['ST'] = getHistIntegral(hST[y],lowM,highM)
+        nums[r][y]['WW'] = getHistIntegral(hWW[y],lowM,highM)
+        nums[r][y]['WZ'] = getHistIntegral(hWZ[y],lowM,highM)
+        nums[r][y]['ZZ'] = getHistIntegral(hZZ[y],lowM,highM)
+
       #for y in ['17']:
       tmps = cfg.get(plN,'xAxisRange').split(',')
       xA_range = []
@@ -145,7 +219,15 @@ for r in regions:
       xA_title = cfg.get(plN,'xAxisTitle')
       nRebin = int(cfg.get(plN,'rebin'))
       
-      plots_process = [hDat[y].Clone().Rebin(nRebin),hQCD[y].Clone().Rebin(nRebin),hST[y].Clone().Rebin(nRebin),hTT[y].Clone().Rebin(nRebin),hZJ[y].Clone().Rebin(nRebin),hWJ[y].Clone().Rebin(nRebin),hWW[y].Clone().Rebin(nRebin),hWZ[y].Clone().Rebin(nRebin),hZZ[y].Clone().Rebin(nRebin),hZHbb[y].Clone().Rebin(nRebin),hggZHbb[y].Clone().Rebin(nRebin),hZHcc[y].Clone().Rebin(nRebin),hggZHcc[y].Clone().Rebin(nRebin)]
+      hData_clone = hDat[y].Clone(hDat[y].GetName()+"clone").Rebin(nRebin)
+      if doBlindData and "HMass" in plN and ('select4' in r or 'select3' in r):
+        nBin1 = hData_clone.GetXaxis().FindFixBin(blindRange[0])
+        nBin2 = hData_clone.GetXaxis().FindFixBin(blindRange[1])
+        for i in range(nBin1,nBin2+1):
+          hData_clone.SetBinContent(i,-1)
+          hData_clone.SetBinError(i,0)
+      
+      plots_process = [hData_clone,hQCD[y].Clone().Rebin(nRebin),hST[y].Clone().Rebin(nRebin),hTT[y].Clone().Rebin(nRebin),hZJ[y].Clone().Rebin(nRebin),hWJ[y].Clone().Rebin(nRebin),hWW[y].Clone().Rebin(nRebin),hWZ[y].Clone().Rebin(nRebin),hZZ[y].Clone().Rebin(nRebin),hZHbb[y].Clone().Rebin(nRebin),hggZHbb[y].Clone().Rebin(nRebin),hZHcc[y].Clone().Rebin(nRebin),hggZHcc[y].Clone().Rebin(nRebin)]
       #plots_process = [hDat[y].Clone().Rebin(nRebin),hZHbb[y].Clone().Rebin(nRebin),hggZHbb[y].Clone().Rebin(nRebin),hZHcc[y].Clone().Rebin(nRebin),hggZHcc[y].Clone().Rebin(nRebin)]
       
       plotNames_process = []
@@ -156,7 +238,12 @@ for r in regions:
       #utl_func.makeStackPlot(plots_process, plotNames_process, plN + '_' + r +'_'+y, plotFolder + '/20'+y, xA_title, xA_range, 'MC unc. (stat.)', False, lumi=lumiS[y])
       logY=False
       if 'CutFlow' in plN: logY=True
-      utl_func.makeStackPlot(plots_process, plotNames_process, plN + '_' + r +'_'+y, plotFolder + '/20'+y+'_QCDv9', xA_title, xA_range, 'MC unc. (stat.)', False, logY=logY, lumi=lumiS[y])
+      #utl_func.makeStackPlot(plots_process, plotNames_process, plN + '_' + r +'_'+y, plotFolder + '/20'+y+'_QCDv9', xA_title, xA_range, 'MC unc. (stat.)', False, logY=logY, lumi=lumiS[y])
+      utl_func.makeStackPlot(plots_process, plotNames_process, plN + '_' + r +'_'+y, plotFolders[y], xA_title, xA_range, 'MC unc. (stat.)', False, logY=logY, lumi=lumiS[y])
+
+      #save check histograms
+      fCheck.cd()
+      hQCD[y].Write()
     
     ############################
     #Plot control plot for all years
@@ -177,8 +264,9 @@ for r in regions:
     hWWA = hWW['16'].Clone(hWW['16'].GetName()+'_all')
     hWZA = hWZ['16'].Clone(hWZ['16'].GetName()+'_all')
     hZZA = hZZ['16'].Clone(hZZ['16'].GetName()+'_all')
-
-    for y in ['16','17']:
+    
+    #sum up all years
+    for y in ['17','18']:
       hDatA.Add(hDat[y])
       hZHccA.Add(hZHcc[y])
       hZHbbA.Add(hZHbb[y])
@@ -192,9 +280,64 @@ for r in regions:
       hWWA.Add(hWW[y])
       hWZA.Add(hWZ[y])
       hZZA.Add(hZZ[y])
+    #save HMass MC QCD histograms used to estimate QCD
+    if "HMass" in plN and ("select4" in r or "qcd" in r):
+      print("\n I will save histograms for QCD background estimation")
+      qcdName = ""
+      dataName = ""
+      otherName = ""
+      #signal region
+      if "select4" in r:
+        qcdName = "QCD_SR"
+        dataName = "Data_SR"
+        otherName = "Other_SR"
+      if "qcd" in r:
+        qcdName = "QCD_CR_"+r
+        dataName = "Data_CR_"+r
+        otherName = "Other_CR_"+r
+      
+      #save contributions from other processes to do subtraction
+      hOther = hTTA.Clone(otherName)
+      hOther.Add(hSTA)
+      hOther.Add(hZJA)
+      hOther.Add(hWJA)
+      hOther.Add(hWWA)
+      hOther.Add(hWZA)
+      hOther.Add(hZZA)
 
+      fOut.cd()
+      hQCDA_clone = hQCDA.Clone(qcdName)
+      hQCDA_clone.Write()
+      hDatA_clone = hDatA.Clone(dataName)
+      hDatA_clone.Write()
+      hOther.Write()
+
+    if 'HMass' in plN:
+        nums[r]['All'] = {}
+        nums[r]['All']['JetHT'] = getHistIntegral(hDatA,lowM,highM)
+        nums[r]['All']['ZH_HToCC_ZToQQ'] = getHistIntegral(hZHccA,lowM,highM)
+        nums[r]['All']['ZH_HToBB_ZToQQ'] = getHistIntegral(hZHbbA,lowM,highM)
+        nums[r]['All']['ggZH_HToCC_ZToQQ'] = getHistIntegral(hggZHccA,lowM,highM)
+        nums[r]['All']['ggZH_HToBB_ZToQQ'] = getHistIntegral(hggZHbbA,lowM,highM)
+        nums[r]['All']['QCD'] = getHistIntegral(hQCDA,lowM,highM)
+        nums[r]['All']['WJ'] = getHistIntegral(hWJA,lowM,highM)
+        nums[r]['All']['ZJ'] = getHistIntegral(hZJA,lowM,highM)
+        nums[r]['All']['TT'] = getHistIntegral(hTTA,lowM,highM)
+        nums[r]['All']['ST'] = getHistIntegral(hSTA,lowM,highM)
+        nums[r]['All']['WW'] = getHistIntegral(hWWA,lowM,highM)
+        nums[r]['All']['WZ'] = getHistIntegral(hWZA,lowM,highM)
+        nums[r]['All']['ZZ'] = getHistIntegral(hZZA,lowM,highM)
     
-    plots_process = [hDatA.Clone().Rebin(nRebin),
+    hData_clone = hDatA.Clone(hDatA.GetName()+"clone").Rebin(nRebin)
+    if doBlindData and "HMass" in plN and ('select4' in r or 'select3' in r):
+        nBin1 = hData_clone.GetXaxis().FindFixBin(blindRange[0])
+        nBin2 = hData_clone.GetXaxis().FindFixBin(blindRange[1])
+        for i in range(nBin1,nBin2+1):
+          hData_clone.SetBinContent(i,-1)
+          hData_clone.SetBinError(i,0)
+
+
+    plots_process = [hData_clone,
         hQCDA.Clone().Rebin(nRebin),
         hSTA.Clone().Rebin(nRebin),
         hTTA.Clone().Rebin(nRebin),
@@ -216,4 +359,58 @@ for r in regions:
 
     logY=False
     if 'CutFlow' in plN: logY=True
-    utl_func.makeStackPlot(plots_process, plotNames_process, plN + '_' + r +'_all', plotFolder + 'All_QCDv9', xA_title, xA_range, 'MC unc. (stat.)', False, logY=logY, lumi='138',minY_forLog = 0.3)
+    utl_func.makeStackPlot(plots_process, plotNames_process, plN + '_' + r +'_all', plotFolders['All'], xA_title, xA_range, 'MC unc. (stat.)', False, logY=logY, lumi='138',minY_forLog = 0.3)
+
+    #save histograms to check
+    fCheck.cd()
+    hQCDA.Write()
+
+#adding process together
+addBkgr(nums,'WWWZ',['WW','WZ'],regions)
+addBkgr(nums,'ZHBB',['ggZH_HToBB_ZToQQ','ZH_HToBB_ZToQQ'],regions)
+addBkgr(nums,'ZHCC',['ggZH_HToCC_ZToQQ','ZH_HToCC_ZToQQ'],regions)
+addBkgr(nums,'Bkgr',['QCD','WJ','ZJ','TT','ST','WW','WZ','ZZ','ggZH_HToBB_ZToQQ','ZH_HToBB_ZToQQ'],regions)
+
+
+for r in regions:
+  for y in ['16','17','18','All']:
+    nums[r][y]['S/sqrt(B)'] = [nums[r][y]['ZHCC'][0]/math.sqrt(nums[r][y]['Bkgr'][0]),0]
+
+print(nums)
+
+#print number of events
+fLatex = open(plotFolder+'/'+summary_eventCount_name,'w')
+fLatex.write('\documentclass[12pt]{article}\n')
+fLatex.write('\usepackage{graphicx}\n')
+fLatex.write('\\title{Control plots}\n')
+fLatex.write('\\begin{document}\n')
+
+labels = ['QCD','WJ','ZJ','TT','ST','WWWZ','ZZ','ZHBB','Bkgr','ggZH_HToCC_ZToQQ','ZH_HToCC_ZToQQ','S/sqrt(B)','JetHT']
+label_translate = {'QCD':'QCD','WJ':'W+jets','ZJ':'Z+jets','TT':'t$\\bar{t}$','ST':'Single top','WWWZ':'VV (other)','ZZ':'ZZ','ZHBB':'ZH(H$\\rightarrow$bb)','Bkgr':'Total background','ggZH_HToCC_ZToQQ':'ggZH(H$\\rightarrow$cc)','ZH_HToCC_ZToQQ':'ZH(H$\\rightarrow$cc)','S/sqrt(B)':'S/$\sqrt{B}$','JetHT':'Data'}
+
+for r in regions:
+  #print nums
+  fLatex.write('\n')
+  fLatex.write('\\begin{table}[h]\n')
+  fLatex.write('  \\caption{'+r.replace('_','\_')+'}\n')
+  fLatex.write('  \\label{tab:}\n')
+  fLatex.write('  \\centering\n')
+  fLatex.write('  \\begin{tabular}{lcccc}\n')
+  fLatex.write('  \\hline\n')
+  fLatex.write('  \\hline\n')
+  l = ['', '2016','2017','2018','Run 2']
+  st = utl_func.makeLatexLine(l)
+  fLatex.write(st)
+  fLatex.write('  \\hline\n')
+
+  for label in labels:
+    l = [label_translate[label], "{0:.2f}".format(nums[r]['16'][label][0]), "{0:.2f}".format(nums[r]['17'][label][0]),"{0:.2f}".format(nums[r]['18'][label][0]), "{0:.2f}".format(nums[r]['All'][label][0])]
+    st = utl_func.makeLatexLine(l)
+    fLatex.write(st)
+
+  fLatex.write('  \\hline\n')
+  fLatex.write('  \\hline\n')
+  fLatex.write('\\end{tabular}\n')
+  fLatex.write('\\end{table}\n')
+
+fLatex.write('\\end{document}\n')

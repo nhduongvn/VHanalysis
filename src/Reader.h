@@ -63,6 +63,10 @@ public :
    TTreeReaderArray<Float_t> FatJet_btagDDCvB = {fReader, "FatJet_btagDDCvBV2"};
    TTreeReaderArray<Float_t> FatJet_btagDDCvL = {fReader, "FatJet_btagDDCvLV2"};
    TTreeReaderArray<Float_t> FatJet_btagDDBvL = {fReader, "FatJet_btagDDBvLV2"};
+   TTreeReaderArray<Float_t> FatJet_particleNetMD_QCD = {fReader, "FatJet_particleNetMD_QCD"};
+   TTreeReaderArray<Float_t> FatJet_particleNetMD_Xbb = {fReader, "FatJet_particleNetMD_Xbb"};
+   TTreeReaderArray<Float_t> FatJet_particleNetMD_Xcc = {fReader, "FatJet_particleNetMD_Xcc"};
+   TTreeReaderArray<Float_t> FatJet_particleNetMD_Xqq = {fReader, "FatJet_particleNetMD_Xqq"};
 #endif
    TTreeReaderArray<Float_t> FatJet_deepTagMD_ZHccvsQCD = {fReader, "FatJet_deepTagMD_ZHccvsQCD"};
    TTreeReaderArray<Float_t> FatJet_deepTagMD_ZbbvsQCD = {fReader, "FatJet_deepTagMD_ZbbvsQCD"};
@@ -72,6 +76,14 @@ public :
    TTreeReaderValue<Float_t> Pileup_nTrueInt = {fReader, "Pileup_nTrueInt"};
    TTreeReaderValue<Float_t> genWeight = {fReader, "genWeight"};
    TTreeReaderArray<Int_t> Jet_hadronFlavour = {fReader, "Jet_hadronFlavour"};
+   TTreeReaderArray<Int_t> FatJet_hadronFlavour = {fReader, "FatJet_hadronFlavour"};
+   TTreeReaderValue<UInt_t> nGenPart = {fReader, "nGenPart"};
+   TTreeReaderArray<Float_t> GenPart_eta = {fReader, "GenPart_eta"};
+   TTreeReaderArray<Float_t> GenPart_mass = {fReader, "GenPart_mass"};
+   TTreeReaderArray<Float_t> GenPart_phi = {fReader, "GenPart_phi"};
+   TTreeReaderArray<Float_t> GenPart_pt = {fReader, "GenPart_pt"};
+   TTreeReaderArray<Int_t> GenPart_genPartIdxMother = {fReader, "GenPart_genPartIdxMother"};
+   TTreeReaderArray<Int_t> GenPart_pdgId = {fReader, "GenPart_pdgId"};
 #endif
 
    // Electron

@@ -24,8 +24,11 @@ else:
   samples_used = samples.keys()
 
 for k in samples_used:
+  #########################################################
+  #if "BGenFilter" not in k and "bEnriched" not in k: continue
   #if samples_name != 'all' and k != sample_name 
   #print k
+  if "HToCC_ZToQQ" not in k: continue
   fOutName = outDir + '/' + k + '.txt'
   os.system('rm ' + fOutName)
   i = 0
