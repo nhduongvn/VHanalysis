@@ -664,11 +664,11 @@ void VH_selection::Process(Reader* r) {
     // checking if it passes the medium WP.
     if (vec.Pt() < 50.0) {
 #if defined(MC_2016) || defined(DATA_2016)
-      if (jets[i].m_puid != 3) continue;
+      if (jets[i].m_puid < 1) continue;
 #endif 
 
 #if defined(MC_2017) || defined(MC_2018) || defined(DATA_2017) || defined(DATA_2018)
-      if (jets[i].m_puid != 6) continue;
+      if (jets[i].m_puid < 4) continue;
 #endif
     }
 
