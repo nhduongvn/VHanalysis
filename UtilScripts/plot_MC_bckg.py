@@ -142,6 +142,10 @@ for s in ss:
 
 
 nums = {}
+
+###############################################################################
+## Plot Type #1 - Everything but MET
+###############################################################################
     
 ## Go through each region of interest
 for r in regions:
@@ -272,3 +276,39 @@ for r in regions:
     makeStackPlot(plots_process, plotNames_process, plN + '_'+ r + '_all', 
       plotFolder + 'All_QCDv9' + '/bckg/' + r + '/', xA_title, xA_range, 'MC. unc. (stat.)',
       False, logY=logY, lumi='138', minY_forLog=1.0, custom_colors=bckg_colors)
+
+###############################################################################
+## Plot Type #2 - MET
+###############################################################################
+
+## Get all the desired plots
+hZHcc = getHist("VbbHcc_all_MET", ss,fHist,lumiScales)
+hggZHcc = getHist("VbbHcc_all_MET", ss,fHist,lumiScales)
+
+for y in years:
+  tmps = cfg.get("MET",'xAxisRange').split(',')
+  xA_range = []
+  if 'Pi' not in tmps[1]:
+    xA_range = [float(tmps[0]), float(tmps[1])]
+  else:
+    xA_range = [0, ROOT.TMath.Pi()]
+  xA_title = cfg.get("MET", 'xAxisTitle')
+  nRebin = int(cfg.get("MET", 'rebin'))
+  
+  plots_process = [
+    hZHcc[y].Clone().Rebin(nRebin),
+    hggZHcc[y].Clone().Rebin(nRebin)
+  ]
+
+  plotNames_process = [ 'QCD', 't#bar{t}' ]
+      
+  logY = useLogY
+  if 'CutFlow' in plN: logY = True
+  makeStackPlot(plots_process, plotNames_process, "MET" + y,
+    plotFolder + '/20' + y + '_QCDv9' + '/bckg/all/', xA_title, xA_range, 'MC unc. (stat.)',
+    False, logY=logY, lumi=lumiS[y], minY_forLog=1.0, custom_colors=bckg_colors)
+
+
+
+
+

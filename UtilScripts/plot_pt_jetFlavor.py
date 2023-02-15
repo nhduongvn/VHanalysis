@@ -55,7 +55,7 @@ years = ['16', '17', '18']
 
 filepath = '../new_condor_results/NONE/'
 plotFolder = '../full_results/'
-useLogY = True
+useLogY = False
 
 ## List with just Signal Samples
 ss = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ']

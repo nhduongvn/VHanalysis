@@ -4,7 +4,7 @@
 void Z_mass_seljet_all_logY()
 {
 //=========Macro generated from canvas: Z_mass_seljet_all/Z_mass_seljet_all
-//=========  (Tue Feb 14 10:43:10 2023) by ROOT version 6.26/06
+//=========  (Tue Feb 14 16:07:58 2023) by ROOT version 6.26/06
    TCanvas *Z_mass_seljet_all = new TCanvas("Z_mass_seljet_all", "Z_mass_seljet_all",0,0,600,600);
    Z_mass_seljet_all->SetHighLightColor(2);
    Z_mass_seljet_all->Range(-65.50587,0.03523518,351.4899,4.723951);

@@ -70,9 +70,9 @@ years = ['16', '17', '18']
 plotFolder = '../full_results/'
 useLogY = True
 
-produceOneSidedROCs = False
-produceJetROCs = False
-produceGeneralROCs = False
+produceOneSidedROCs = True
+produceJetROCs = True
+produceGeneralROCs = True
 produceIntervalROCs = True
 
 ## signal samples

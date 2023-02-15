@@ -4,7 +4,7 @@
 void dR_HZ_algo_all_logY()
 {
 //=========Macro generated from canvas: dR_HZ_algo_all/dR_HZ_algo_all
-//=========  (Tue Feb 14 10:43:07 2023) by ROOT version 6.26/06
+//=========  (Tue Feb 14 16:07:56 2023) by ROOT version 6.26/06
    TCanvas *dR_HZ_algo_all = new TCanvas("dR_HZ_algo_all", "dR_HZ_algo_all",0,0,600,600);
    dR_HZ_algo_all->SetHighLightColor(2);
    dR_HZ_algo_all->Range(-1.331953,0.4519491,7.146962,2.929002);

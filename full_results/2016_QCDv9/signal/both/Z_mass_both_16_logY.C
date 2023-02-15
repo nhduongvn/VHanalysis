@@ -4,7 +4,7 @@
 void Z_mass_both_16_logY()
 {
 //=========Macro generated from canvas: Z_mass_both_16/Z_mass_both_16
-//=========  (Tue Feb 14 10:43:07 2023) by ROOT version 6.26/06
+//=========  (Tue Feb 14 16:07:56 2023) by ROOT version 6.26/06
    TCanvas *Z_mass_both_16 = new TCanvas("Z_mass_both_16", "Z_mass_both_16",0,0,600,600);
    Z_mass_both_16->SetHighLightColor(2);
    Z_mass_both_16->Range(-65.50587,0.4904466,351.4899,2.776225);

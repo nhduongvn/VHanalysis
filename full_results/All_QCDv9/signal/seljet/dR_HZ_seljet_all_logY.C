@@ -4,7 +4,7 @@
 void dR_HZ_seljet_all_logY()
 {
 //=========Macro generated from canvas: dR_HZ_seljet_all/dR_HZ_seljet_all
-//=========  (Tue Feb 14 10:43:11 2023) by ROOT version 6.26/06
+//=========  (Tue Feb 14 16:07:59 2023) by ROOT version 6.26/06
    TCanvas *dR_HZ_seljet_all = new TCanvas("dR_HZ_seljet_all", "dR_HZ_seljet_all",0,0,600,600);
    dR_HZ_seljet_all->SetHighLightColor(2);
    dR_HZ_seljet_all->Range(-1.331953,0.02697378,7.146962,4.761921);

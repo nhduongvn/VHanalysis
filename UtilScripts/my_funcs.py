@@ -179,6 +179,88 @@ def makeOverlapPlot(plots, plotNames, canvasName, plotDir, xAxisTitle, xAxisRang
   c.Print(fullpath + '.C')
   return c
 
+
+###############################################################################
+## Make Overlay Plots Function
+###############################################################################
+def makeOverlayPlots(signal_plots, bckg_plots, signal_names, bckg_names, 
+  canvasName, plotDir, xAxis_title, xAxis_range, custom_colors, lumi='138', logY=True):
+  
+  ## Make the canvas
+  ROOT.gStyle.SetOptStat(0)
+  c = ROOT.TCanvas(canvasName, canvasName, 600, 600)
+  c.SetLeftMargin(0.15)
+  c.cd()
+  
+  ## Prepare the legend
+  #x0 = 0.4; x1 = 0.89
+  x0 = 0.4; x1 = 0.89
+  #if left: 
+  #  x0 = 0.17
+  #  x1 = 0.42
+  l = ROOT.TLegend(x0, 0.70, x1, 0.87)
+  l.SetLineWidth(2)
+  l.SetBorderSize(0)
+  l.SetTextFont(42)
+  l.SetTextSize(0.025)
+  
+  ## Overlap the plots
+  allStack = ROOT.THStack('st', '')
+  
+  for i in range(0, len(signal_plots)):
+    signal_plots[i].SetLineColor(custom_colors[i])
+    bckg_plots[i].SetLineColor(custom_colors[i])
+    signal_plots[i].SetLineWidth(2)
+    bckg_plots[i].SetLineWidth(2)
+    signal_plots[i].SetLineStyle(ROOT.kSolid)
+    bckg_plots[i].SetLineStyle(ROOT.kDashed)
+    
+    l.AddEntry(signal_plots[i], signal_names[i], 'L')
+    l.AddEntry(bckg_plots[i], bckg_names[i], 'L')
+    allStack.Add(signal_plots[i])
+    allStack.Add(bckg_plots[i])
+  
+  ## Draw the plots (and legend) & modify the axes
+  #if stack: allStack.Draw("HIST")
+  #else: allStack.Draw("nostack,HIST")
+  allStack.Draw("nostack,HIST")
+  
+  allStack.GetXaxis().SetTitle(xAxis_title)
+  #allStack.GetYaxis().SetTitle(yAxisTitle)
+  l.Draw()
+  myText('CMS Work in Progress #sqrt{s} = 13 TeV, '+lumi+' fb^{-1}', 
+    0.25, 0.937775, 0.8)
+  
+  ## Update the canvas & modify the y-axis if appropriate
+  c.Update()
+  if logY: c.SetLogy() 
+  
+    
+  binW = signal_plots[0].GetBinWidth(1)
+  formatNum = ''
+  aNum = floor(binW*pow(10,3))-floor(binW*pow(10,2))*10
+  if aNum >= 1: formatNum = '0.3f'
+  allStack.GetYaxis().SetTitle('Events/' + format(binW, formatNum))
+  
+  ## Check to make sure the directory exists &
+  ## then print the proper files to the output
+  dirExists = os.path.exists(plotDir)
+  if not dirExists:
+    print "Warning: output directory does not exist."
+    os.makedirs(plotDir)
+    print ">>> directory created."
+  
+  ## Print out the plot appropriately
+  extraName = ''
+  if logY: extraName = '_logY'
+  preBit = ''
+  #if normalize: extraName = extraName + '_NORM'
+  fullpath = preBit + plotDir + '/' + canvasName + extraName
+  c.Print(fullpath + '.png')
+  c.Print(fullpath + '.pdf')
+  c.Print(fullpath + '.C')
+  return c
+
 ###############################################################################
 ## Make Ratio Plots
 ###############################################################################

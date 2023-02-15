@@ -4,7 +4,7 @@
 void Z_pt_both_18_logY()
 {
 //=========Macro generated from canvas: Z_pt_both_18/Z_pt_both_18
-//=========  (Tue Feb 14 10:43:08 2023) by ROOT version 6.26/06
+//=========  (Tue Feb 14 16:07:56 2023) by ROOT version 6.26/06
    TCanvas *Z_pt_both_18 = new TCanvas("Z_pt_both_18", "Z_pt_both_18",0,0,600,600);
    Z_pt_both_18->SetHighLightColor(2);
    Z_pt_both_18->Range(37.97653,0.3487368,1705.96,3.350145);

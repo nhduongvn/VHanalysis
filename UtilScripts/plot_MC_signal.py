@@ -140,6 +140,10 @@ for s in ss:
 
 
 nums = {}
+
+###############################################################################
+## Plot Type #1 - Everything but MET
+###############################################################################
     
 ## Go through each region of interest
 for r in regions:
@@ -155,20 +159,7 @@ for r in regions:
     
     ## Get all the desired plots
     hZHcc = getHist(hN,['ZH_HToCC_ZToQQ'],fHist,lumiScales)
-    #hZHbb = getHist(hN,['ZH_HToBB_ZToQQ'],fHist,lumiScales)
     hggZHcc = getHist(hN,['ggZH_HToCC_ZToQQ'],fHist,lumiScales)
-    #hggZHbb = getHist(hN,['ggZH_HToBB_ZToQQ'],fHist,lumiScales)
-    #hQCD = getHist(hN, ['QCD_HT200to300_v9'], fHist, lumiScales)
-    #hQCD = getHist(hN, ['QCD_HT200to300_v9', 'QCD_HT300to500_v9','QCD_HT500to700_v9','QCD_HT700to1000_v9','QCD_HT1000to1500_v9','QCD_HT1500to2000_v9','QCD_HT2000toInf_v9'], fHist, lumiScales)
-    #hWJ = getHist(hN, ['WJetsToQQ_HT-400to600'], fHist, lumiScales)
-    #hZJ = getHist(hN, ['ZJetsToQQ_HT-400to600'], fHist, lumiScales)
-    #hTT = getHist(hN,['TTToHadronic','TTToSemiLeptonic','TTTo2L2Nu'],fHist,lumiScales)
-    #hST = getHist(hN,['ST_t-channel_antitop','ST_t-channel_top','ST_tW-channel_antitop','ST_tW-channel_top'],fHist,lumiScales)
-    #hWW = getHist(hN,['WW'],fHist,lumiScales)
-    #hWZ = getHist(hN,['WZ'],fHist,lumiScales)
-    #hZZ = getHist(hN,['ZZ'],fHist,lumiScales)
-
-    #print hQCD
     
     ############################
     # Stack plots for each year
@@ -185,25 +176,10 @@ for r in regions:
       nRebin = int(cfg.get(plN, 'rebin'))
       
       plots_process = [
-        #hQCD[y].Clone().Rebin(nRebin),
-        #hST[y].Clone().Rebin(nRebin),
-        #hTT[y].Clone().Rebin(nRebin),
-        #hZJ[y].Clone().Rebin(nRebin),
-        #hWJ[y].Clone().Rebin(nRebin),
-        #hWW[y].Clone().Rebin(nRebin),
-        #hWZ[y].Clone().Rebin(nRebin),
-        #hZZ[y].Clone().Rebin(nRebin),
-        #hZHbb[y].Clone().Rebin(nRebin),
-        #hggZHbb[y].Clone().Rebin(nRebin),
         hZHcc[y].Clone().Rebin(nRebin),
         hggZHcc[y].Clone().Rebin(nRebin)
       ]
       
-      plotNames_process = []
-      plotNames_process = [
-        'QCD', 'Single Top', 't#bar{t}', 'Z + jets', 'W + jets',
-        'WW', 'WZ', 'ZZ', 'ZHbb', 'ggZHbb', 'ZHcc', 'ggZHcc'
-      ]
       plotNames_process = [ 'ZHcc', 'ggZHcc' ]
       
       logY = useLogY
@@ -217,52 +193,17 @@ for r in regions:
     ## Plot control plot for all years
     ###################################
     hZHccA = hZHcc['16'].Clone(hZHcc['16'].GetName()+'_all')
-    #hZHbbA = hZHbb['16'].Clone(hZHbb['16'].GetName()+'_all')
     hggZHccA = hggZHcc['16'].Clone(hggZHcc['16'].GetName()+'_all')
-    #hggZHbbA = hggZHbb['16'].Clone(hggZHbb['16'].GetName()+'_all')
-    #hQCDA = hQCD['16'].Clone(hQCD['16'].GetName()+'_all')
-    #hSTA = hST['16'].Clone(hST['16'].GetName()+'_all')
-    #hTTA = hTT['16'].Clone(hTT['16'].GetName()+'_all')
-    #hZJA = hZJ['16'].Clone(hZJ['16'].GetName()+'_all')
-    #hWJA = hWJ['16'].Clone(hWJ['16'].GetName()+'_all')
-    #hWWA = hWW['16'].Clone(hWW['16'].GetName()+'_all')
-    #hWZA = hWZ['16'].Clone(hWZ['16'].GetName()+'_all')
-    #hZZA = hZZ['16'].Clone(hZZ['16'].GetName()+'_all')
       
     for y in ['17','18']:
       hZHccA.Add(hZHcc[y])
-      #hZHbbA.Add(hZHbb[y])
       hggZHccA.Add(hggZHcc[y])
-      #hggZHbbA.Add(hggZHbb[y])
-      #hQCDA.Add(hQCD[y])
-      #hSTA.Add(hST[y])
-      #hTTA.Add(hTT[y])
-      #hZJA.Add(hZJ[y])
-      #hWJA.Add(hWJ[y])
-      #hWWA.Add(hWW[y])
-      #hWZA.Add(hWZ[y])
-      #hZZA.Add(hZZ[y])
 
     plots_process = [
-      #hQCDA.Clone().Rebin(nRebin),
-      #hSTA.Clone().Rebin(nRebin),
-      #hTTA.Clone().Rebin(nRebin),
-      #hZJA.Clone().Rebin(nRebin),
-      #hWJA.Clone().Rebin(nRebin),
-      #hWWA.Clone().Rebin(nRebin),
-      #hWZA.Clone().Rebin(nRebin),
-      #hZZA.Clone().Rebin(nRebin),
-      #hZHbbA.Clone().Rebin(nRebin),
-      #hggZHbbA.Clone().Rebin(nRebin),
       hZHccA.Clone().Rebin(nRebin),
       hggZHccA.Clone().Rebin(nRebin)
     ]
     
-    plotNames_process = []
-    plotNames_process = [
-      'QCD', 'Single Top', 't#bar{t}', 'Z + jets', 'W + jets',
-      'WW', 'WZ', 'ZZ', 'ZHbb', 'ggZHbb', 'ZHcc', 'ggZHcc'
-    ]
     plotNames_process = [ 'ZHcc', 'ggZHcc' ]
     
     logY = useLogY
@@ -270,3 +211,37 @@ for r in regions:
     makeStackPlot(plots_process, plotNames_process, plN + '_'+ r + '_all', 
       plotFolder + 'All_QCDv9' + '/signal/' + r + '/', xA_title, xA_range, 'MC. unc. (stat.)',
       False, logY=logY, lumi='138', minY_forLog=1.0)
+      
+###############################################################################
+## Plot Type #2 - MET
+###############################################################################
+
+## Get all the desired plots
+hZHcc = getHist("VbbHcc_all_MET",['ZH_HToCC_ZToQQ'],fHist,lumiScales)
+hggZHcc = getHist("VbbHcc_all_MET",['ggZH_HToCC_ZToQQ'],fHist,lumiScales)
+
+for y in years:
+  tmps = cfg.get("MET",'xAxisRange').split(',')
+  xA_range = []
+  if 'Pi' not in tmps[1]:
+    xA_range = [float(tmps[0]), float(tmps[1])]
+  else:
+    xA_range = [0, ROOT.TMath.Pi()]
+  xA_title = cfg.get("MET", 'xAxisTitle')
+  nRebin = int(cfg.get("MET", 'rebin'))
+  
+  plots_process = [
+    hZHcc[y].Clone().Rebin(nRebin),
+    hggZHcc[y].Clone().Rebin(nRebin)
+  ]
+
+  plotNames_process = [ 'ZHcc', 'ggZHcc' ]
+      
+  logY = useLogY
+  if 'CutFlow' in plN: logY = True
+  makeStackPlot(plots_process, plotNames_process, "MET" + y,
+    plotFolder + '/20' + y + '_QCDv9' + '/signal/all/', xA_title, xA_range, 'MC unc. (stat.)',
+    False, logY=logY, lumi=lumiS[y])
+
+
+

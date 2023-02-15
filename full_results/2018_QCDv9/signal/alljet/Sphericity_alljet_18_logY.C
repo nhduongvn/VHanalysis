@@ -4,7 +4,7 @@
 void Sphericity_alljet_18_logY()
 {
 //=========Macro generated from canvas: Sphericity_alljet_18/Sphericity_alljet_18
-//=========  (Tue Feb 14 10:43:10 2023) by ROOT version 6.26/06
+//=========  (Tue Feb 14 16:07:58 2023) by ROOT version 6.26/06
    TCanvas *Sphericity_alljet_18 = new TCanvas("Sphericity_alljet_18", "Sphericity_alljet_18",0,0,600,600);
    Sphericity_alljet_18->SetHighLightColor(2);
    Sphericity_alljet_18->Range(-0.2183529,-0.006841344,1.171633,4.918216);
