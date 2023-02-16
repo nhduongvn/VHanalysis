@@ -431,6 +431,9 @@ class VHPlots
       h_MZ_v_flav = new TH2D(name + "_MZ_v_flav", "", 20, 0, 200, 15, 0, 15);
       h_dR_v_flav = new TH2D(name + "_dR_v_flav", "", 20, 0, 20, 15, 0, 15);
 
+      h_MH_v_dR = new TH2D(name + "_MH_v_dR", "", 20, 0, 200, 60, 0, 6);
+      h_MZ_v_dR = new TH2D(name + "_MZ_v_dR", "", 20, 0, 200, 60, 0, 6);
+
       h_Sphericity = new TH1D(name + "_Sphericity", "", 100, 0, 1);
       h_Aplanarity = new TH1D(name + "_Aplanarity", "", 100, 0, 1);
     };
@@ -446,7 +449,7 @@ class VHPlots
       // Fill the plots
       h_MZ_v_flav->Fill(mass, sumFlav, w);
       h_dR_v_flav->Fill(dR, sumFlav, w);
-      
+        
     };
 
     // Methods - Fill the histograms related to Z & H objects
@@ -459,6 +462,9 @@ class VHPlots
       h_Z->Fill(Z, w); h_H->Fill(H, w);
       h_dPhi_HZ->Fill(Z.m_lvec.DeltaPhi(H.m_lvec), w);
       h_dR_HZ->Fill(Z.m_lvec.DeltaR(H.m_lvec), w);
+
+      h_MZ_v_dR->Fill(Z.M(), Z.DeltaR(), w);
+      h_MH_v_dR->Fill(H.M(), H.DeltaR(), w);
 
       // Make a list of the jets and determine the sphericity.
       std::vector<JetObj> jets;
@@ -576,6 +582,9 @@ class VHPlots
       histolist.push_back(h_MZ_v_flav);
       histolist.push_back(h_dR_v_flav);
 
+      histolist.push_back(h_MH_v_dR);
+      histolist.push_back(h_MZ_v_dR);
+
       histolist.push_back(h_Sphericity);
       histolist.push_back(h_Aplanarity);
 
@@ -607,6 +616,8 @@ class VHPlots
 
     TH2D* h_MZ_v_flav;
     TH2D* h_dR_v_flav;
+    TH2D* h_MZ_v_dR;
+    TH2D* h_MH_v_dR;
 
     // Sphericity Plots
     TH1D* h_Sphericity;
