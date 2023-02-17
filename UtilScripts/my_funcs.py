@@ -334,7 +334,7 @@ def makeStackPlot(plots, plotNames, cName, plotDir = 'Test/',
 xAxisTitle = 'Jet M_{SV}[GeV]', xAxisRange = [0,10], uncName = 'MC unc. (stat.)',
 normMC=True, logY=False, normBinWidth = -1, legendOrder = [], minY_forLog = 1.0,
 lumi = '35.9', custom_colors=colors, useStack=True, 
-useFill=True, forceMin=False):
+useFill=True, forceMin=False, modMaxX = True):
 
   ## Create the canvas & modify it as necessary
   c = ROOT.TCanvas(cName, cName, 600, 600)
@@ -439,12 +439,13 @@ useFill=True, forceMin=False):
   ## (NOTE: this minimum may be too low and we want an auto adjust. Let's fix
   ## the scale based on an equation, i.e. if every bin hits a certain min, then
   ## let's ignore that range.
-  if logY:
-    maxX = pow(10, log10(maxScaleFromPlots) + 2)
-  else:
-    maxX =  maxScaleFromPlots + pow(10, log10(maxScaleFromPlots)) * 0.5
-  
-  allStack.SetMaximum(maxX)
+  if modMaxX:
+    if logY:
+      maxX = pow(10, log10(maxScaleFromPlots) + 2)
+    else:
+      maxX =  maxScaleFromPlots + pow(10, log10(maxScaleFromPlots)) * 0.5
+    
+    allStack.SetMaximum(maxX)
   
   minY = 100000.0
   h = allStack.GetStack().Last()

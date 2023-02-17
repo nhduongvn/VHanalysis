@@ -63,7 +63,7 @@ regions = ['tags', 'algo', 'both', 'alljet', 'seljet']
 #regions = ['jets', 'jets_all']
 #regions = ['all']
 plotCat = 'VbbHcc'
-useLogY = False
+useLogY = True
 summary_control_plot_name = 'summary_control_plot_zjet_zHFjet.txt'
 plotFolder = '../full_results/'
 

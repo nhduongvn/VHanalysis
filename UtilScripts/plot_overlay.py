@@ -54,7 +54,7 @@ def getHist(pN, sample_name, fH, lS):
 debug = True
 years = ['16','17','18']
 plotFolder = '../full_results/'
-useLogY = False
+useLogY = True
 
 produceSelectionTypes = True
 

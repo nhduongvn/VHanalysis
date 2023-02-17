@@ -4,7 +4,7 @@
 void Aplanarity_alljet_all_logY()
 {
 //=========Macro generated from canvas: Aplanarity_alljet_all/Aplanarity_alljet_all
-//=========  (Tue Feb 14 16:07:58 2023) by ROOT version 6.26/06
+//=========  (Thu Feb 16 10:37:21 2023) by ROOT version 6.26/06
    TCanvas *Aplanarity_alljet_all = new TCanvas("Aplanarity_alljet_all", "Aplanarity_alljet_all",0,0,600,600);
    Aplanarity_alljet_all->SetHighLightColor(2);
    Aplanarity_alljet_all->Range(-0.2183529,-0.2586288,1.171633,6.123748);
