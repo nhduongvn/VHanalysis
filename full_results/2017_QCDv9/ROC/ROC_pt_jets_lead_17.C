@@ -4,7 +4,7 @@
 void ROC_pt_jets_lead_17()
 {
 //=========Macro generated from canvas: ROC_pt_jets_lead_17/ROC_pt_jets_lead_17
-//=========  (Thu Feb 16 10:46:11 2023) by ROOT version 6.26/06
+//=========  (Sun Feb 19 15:09:45 2023) by ROOT version 6.26/06
    TCanvas *ROC_pt_jets_lead_17 = new TCanvas("ROC_pt_jets_lead_17", "ROC_pt_jets_lead_17",0,0,600,600);
    ROC_pt_jets_lead_17->SetHighLightColor(2);
    ROC_pt_jets_lead_17->Range(-0.2901882,-0.1615385,1.238796,1.184615);
@@ -23,7 +23,7 @@ void ROC_pt_jets_lead_17()
    multigraph->SetName("");
    multigraph->SetTitle("");
    
-   Double_t Graph_fx391[1001] = {
+   Double_t Graph_fx366[1001] = {
    0,
    3.950263e-12,
    1.259807e-11,
@@ -1025,7 +1025,7 @@ void ROC_pt_jets_lead_17()
    1,
    1,
    1};
-   Double_t Graph_fy391[1001] = {
+   Double_t Graph_fy366[1001] = {
    0,
    0,
    0,
@@ -2027,7 +2027,7 @@ void ROC_pt_jets_lead_17()
    1,
    1,
    1};
-   TGraph *graph = new TGraph(1001,Graph_fx391,Graph_fy391);
+   TGraph *graph = new TGraph(1001,Graph_fx366,Graph_fy366);
    graph->SetName("Graph");
    graph->SetTitle("l-jets");
    graph->SetFillStyle(0);
@@ -2042,112 +2042,112 @@ void ROC_pt_jets_lead_17()
    graph->SetMarkerColor(ci);
    graph->SetMarkerStyle(20);
    
-   TH1F *Graph_Graph391 = new TH1F("Graph_Graph391","l-jets",1001,0,1.1);
-   Graph_Graph391->SetMinimum(0);
-   Graph_Graph391->SetMaximum(1.1);
-   Graph_Graph391->SetDirectory(0);
-   Graph_Graph391->SetStats(0);
+   TH1F *Graph_Graph366 = new TH1F("Graph_Graph366","l-jets",1001,0,1.1);
+   Graph_Graph366->SetMinimum(0);
+   Graph_Graph366->SetMaximum(1.1);
+   Graph_Graph366->SetDirectory(0);
+   Graph_Graph366->SetStats(0);
 
    ci = TColor::GetColor("#000099");
-   Graph_Graph391->SetLineColor(ci);
-   Graph_Graph391->GetXaxis()->SetLabelFont(42);
-   Graph_Graph391->GetXaxis()->SetTitleOffset(1);
-   Graph_Graph391->GetXaxis()->SetTitleFont(42);
-   Graph_Graph391->GetYaxis()->SetLabelFont(42);
-   Graph_Graph391->GetYaxis()->SetTitleFont(42);
-   Graph_Graph391->GetZaxis()->SetLabelFont(42);
-   Graph_Graph391->GetZaxis()->SetTitleOffset(1);
-   Graph_Graph391->GetZaxis()->SetTitleFont(42);
-   graph->SetHistogram(Graph_Graph391);
+   Graph_Graph366->SetLineColor(ci);
+   Graph_Graph366->GetXaxis()->SetLabelFont(42);
+   Graph_Graph366->GetXaxis()->SetTitleOffset(1);
+   Graph_Graph366->GetXaxis()->SetTitleFont(42);
+   Graph_Graph366->GetYaxis()->SetLabelFont(42);
+   Graph_Graph366->GetYaxis()->SetTitleFont(42);
+   Graph_Graph366->GetZaxis()->SetLabelFont(42);
+   Graph_Graph366->GetZaxis()->SetTitleOffset(1);
+   Graph_Graph366->GetZaxis()->SetTitleFont(42);
+   graph->SetHistogram(Graph_Graph366);
    
    TLatex *   tex = new TLatex(0.1504716,0.672147,"85.0");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
-   graph->GetListOfFunctions()->Add(392);
+   graph->GetListOfFunctions()->Add(367);
       tex = new TLatex(0.1652451,0.6942165,"83.0");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
-   graph->GetListOfFunctions()->Add(393);
+   graph->GetListOfFunctions()->Add(368);
       tex = new TLatex(0.1818482,0.7170341,"81.0");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
-   graph->GetListOfFunctions()->Add(394);
+   graph->GetListOfFunctions()->Add(369);
       tex = new TLatex(0.200546,0.7408298,"79.0");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
-   graph->GetListOfFunctions()->Add(395);
+   graph->GetListOfFunctions()->Add(370);
       tex = new TLatex(0.221645,0.7655728,"77.0");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
-   graph->GetListOfFunctions()->Add(396);
+   graph->GetListOfFunctions()->Add(371);
       tex = new TLatex(0.2454927,0.7902107,"75.0");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
-   graph->GetListOfFunctions()->Add(397);
+   graph->GetListOfFunctions()->Add(372);
       tex = new TLatex(0.2724114,0.8159995,"73.0");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
-   graph->GetListOfFunctions()->Add(398);
+   graph->GetListOfFunctions()->Add(373);
       tex = new TLatex(0.3026722,0.8412681,"71.0");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
-   graph->GetListOfFunctions()->Add(399);
+   graph->GetListOfFunctions()->Add(374);
       tex = new TLatex(0.3369169,0.8669017,"69.0");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
-   graph->GetListOfFunctions()->Add(400);
+   graph->GetListOfFunctions()->Add(375);
       tex = new TLatex(0.3755258,0.8925161,"67.0");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
-   graph->GetListOfFunctions()->Add(401);
+   graph->GetListOfFunctions()->Add(376);
       tex = new TLatex(0.4188087,0.8578947,"65.0");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
-   graph->GetListOfFunctions()->Add(402);
+   graph->GetListOfFunctions()->Add(377);
       tex = new TLatex(0.4663485,0.8822132,"63.0");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
-   graph->GetListOfFunctions()->Add(403);
+   graph->GetListOfFunctions()->Add(378);
       tex = new TLatex(0.5206784,0.9066747,"61.0");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
-   graph->GetListOfFunctions()->Add(404);
+   graph->GetListOfFunctions()->Add(379);
       tex = new TLatex(0.5802204,0.9302191,"59.0");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
-   graph->GetListOfFunctions()->Add(405);
+   graph->GetListOfFunctions()->Add(380);
       tex = new TLatex(0.6453515,0.9519523,"57.0");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
-   graph->GetListOfFunctions()->Add(406);
+   graph->GetListOfFunctions()->Add(381);
       tex = new TLatex(0.7158833,0.9721234,"55.0");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
-   graph->GetListOfFunctions()->Add(407);
+   graph->GetListOfFunctions()->Add(382);
       tex = new TLatex(0.7914993,0.991765,"53.0");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
-   graph->GetListOfFunctions()->Add(408);
+   graph->GetListOfFunctions()->Add(383);
    multigraph->Add(graph,"");
    
-   Double_t Graph_fx409[1001] = {
+   Double_t Graph_fx384[1001] = {
    0,
    1.315033e-10,
    2.939215e-10,
@@ -3149,7 +3149,7 @@ void ROC_pt_jets_lead_17()
    1,
    1,
    1};
-   Double_t Graph_fy409[1001] = {
+   Double_t Graph_fy384[1001] = {
    0,
    0,
    0,
@@ -4151,7 +4151,7 @@ void ROC_pt_jets_lead_17()
    1,
    1,
    1};
-   graph = new TGraph(1001,Graph_fx409,Graph_fy409);
+   graph = new TGraph(1001,Graph_fx384,Graph_fy384);
    graph->SetName("Graph");
    graph->SetTitle("b-jets");
    graph->SetFillStyle(0);
@@ -4164,27 +4164,27 @@ void ROC_pt_jets_lead_17()
    graph->SetMarkerColor(ci);
    graph->SetMarkerStyle(20);
    
-   TH1F *Graph_Graph409 = new TH1F("Graph_Graph409","b-jets",1001,0,1.1);
-   Graph_Graph409->SetMinimum(0);
-   Graph_Graph409->SetMaximum(1.1);
-   Graph_Graph409->SetDirectory(0);
-   Graph_Graph409->SetStats(0);
+   TH1F *Graph_Graph384 = new TH1F("Graph_Graph384","b-jets",1001,0,1.1);
+   Graph_Graph384->SetMinimum(0);
+   Graph_Graph384->SetMaximum(1.1);
+   Graph_Graph384->SetDirectory(0);
+   Graph_Graph384->SetStats(0);
 
    ci = TColor::GetColor("#000099");
-   Graph_Graph409->SetLineColor(ci);
-   Graph_Graph409->GetXaxis()->SetLabelFont(42);
-   Graph_Graph409->GetXaxis()->SetTitleOffset(1);
-   Graph_Graph409->GetXaxis()->SetTitleFont(42);
-   Graph_Graph409->GetYaxis()->SetLabelFont(42);
-   Graph_Graph409->GetYaxis()->SetTitleFont(42);
-   Graph_Graph409->GetZaxis()->SetLabelFont(42);
-   Graph_Graph409->GetZaxis()->SetTitleOffset(1);
-   Graph_Graph409->GetZaxis()->SetTitleFont(42);
-   graph->SetHistogram(Graph_Graph409);
+   Graph_Graph384->SetLineColor(ci);
+   Graph_Graph384->GetXaxis()->SetLabelFont(42);
+   Graph_Graph384->GetXaxis()->SetTitleOffset(1);
+   Graph_Graph384->GetXaxis()->SetTitleFont(42);
+   Graph_Graph384->GetYaxis()->SetLabelFont(42);
+   Graph_Graph384->GetYaxis()->SetTitleFont(42);
+   Graph_Graph384->GetZaxis()->SetLabelFont(42);
+   Graph_Graph384->GetZaxis()->SetTitleOffset(1);
+   Graph_Graph384->GetZaxis()->SetTitleFont(42);
+   graph->SetHistogram(Graph_Graph384);
    
    multigraph->Add(graph,"");
    
-   Double_t Graph_fx410[1001] = {
+   Double_t Graph_fx385[1001] = {
    0,
    1.484947e-10,
    2.807581e-10,
@@ -5186,7 +5186,7 @@ void ROC_pt_jets_lead_17()
    1,
    1,
    1};
-   Double_t Graph_fy410[1001] = {
+   Double_t Graph_fy385[1001] = {
    0,
    0,
    0,
@@ -6188,7 +6188,7 @@ void ROC_pt_jets_lead_17()
    1,
    1,
    1};
-   graph = new TGraph(1001,Graph_fx410,Graph_fy410);
+   graph = new TGraph(1001,Graph_fx385,Graph_fy385);
    graph->SetName("Graph");
    graph->SetTitle("c-jets");
    graph->SetFillStyle(0);
@@ -6201,23 +6201,23 @@ void ROC_pt_jets_lead_17()
    graph->SetMarkerColor(ci);
    graph->SetMarkerStyle(20);
    
-   TH1F *Graph_Graph410 = new TH1F("Graph_Graph410","c-jets",1001,0,1.1);
-   Graph_Graph410->SetMinimum(0);
-   Graph_Graph410->SetMaximum(1.1);
-   Graph_Graph410->SetDirectory(0);
-   Graph_Graph410->SetStats(0);
+   TH1F *Graph_Graph385 = new TH1F("Graph_Graph385","c-jets",1001,0,1.1);
+   Graph_Graph385->SetMinimum(0);
+   Graph_Graph385->SetMaximum(1.1);
+   Graph_Graph385->SetDirectory(0);
+   Graph_Graph385->SetStats(0);
 
    ci = TColor::GetColor("#000099");
-   Graph_Graph410->SetLineColor(ci);
-   Graph_Graph410->GetXaxis()->SetLabelFont(42);
-   Graph_Graph410->GetXaxis()->SetTitleOffset(1);
-   Graph_Graph410->GetXaxis()->SetTitleFont(42);
-   Graph_Graph410->GetYaxis()->SetLabelFont(42);
-   Graph_Graph410->GetYaxis()->SetTitleFont(42);
-   Graph_Graph410->GetZaxis()->SetLabelFont(42);
-   Graph_Graph410->GetZaxis()->SetTitleOffset(1);
-   Graph_Graph410->GetZaxis()->SetTitleFont(42);
-   graph->SetHistogram(Graph_Graph410);
+   Graph_Graph385->SetLineColor(ci);
+   Graph_Graph385->GetXaxis()->SetLabelFont(42);
+   Graph_Graph385->GetXaxis()->SetTitleOffset(1);
+   Graph_Graph385->GetXaxis()->SetTitleFont(42);
+   Graph_Graph385->GetYaxis()->SetLabelFont(42);
+   Graph_Graph385->GetYaxis()->SetTitleFont(42);
+   Graph_Graph385->GetZaxis()->SetLabelFont(42);
+   Graph_Graph385->GetZaxis()->SetTitleOffset(1);
+   Graph_Graph385->GetZaxis()->SetTitleFont(42);
+   graph->SetHistogram(Graph_Graph385);
    
    multigraph->Add(graph,"");
    multigraph->Draw("ALP");
