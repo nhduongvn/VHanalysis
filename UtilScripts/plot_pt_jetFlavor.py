@@ -61,10 +61,10 @@ useLogY = True
 ss = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ']
 
 ## List with just Background Samples
-#ss = [ 'QCD_HT100to200_v9', 'QCD_HT200to300_v9', 'QCD_HT300to500_v9','QCD_HT500to700_v9','QCD_HT700to1000_v9','QCD_HT1000to1500_v9','QCD_HT1500to2000_v9','QCD_HT2000toInf_v9', 'TTToHadronic', 'TTToSemiLeptonic', 'TTTo2L2Nu']
+ss = [ 'QCD_HT100to200_v9', 'QCD_HT200to300_v9', 'QCD_HT300to500_v9','QCD_HT500to700_v9','QCD_HT700to1000_v9','QCD_HT1000to1500_v9','QCD_HT1500to2000_v9','QCD_HT2000toInf_v9', 'TTToHadronic', 'TTToSemiLeptonic', 'TTTo2L2Nu']
 
 sample_type = 'signal'
-#sample_type = 'bckg'
+sample_type = 'bckg'
 
 line_colors = [ROOT.kGreen + 2, ROOT.kBlue, ROOT.kRed]
 
