@@ -633,125 +633,141 @@ class EffPlots
 
     // Constructor
     EffPlots(TString name) : m_name(name) {
+    
+      // Efficiency plot
+      h_eff_cutflow = new TH1D(name + "_eff_CutFlow", "", 5, 0, 5);
+      h_eff_cutflow->GetXaxis()->SetBinLabel(1, "Total");
+      h_eff_cutflow->GetXaxis()->SetBinLabel(2, "b-match #1");
+      h_eff_cutflow->GetXaxis()->SetBinLabel(3, "b-match #2");
+      h_eff_cutflow->GetXaxis()->SetBinLabel(4, "c-match #1");
+      h_eff_cutflow->GetXaxis()->SetBinLabel(5, "c-match #2");
 
-      h_evt = new TH1D(name + "_evt", "", 3, 0, 3);
-      h_evt->GetXaxis()->SetBinLabel(1, "VbbHcc");
-      h_evt->GetXaxis()->SetBinLabel(2, "VqqHcc");
-      h_evt->GetXaxis()->SetBinLabel(3, "VqqHcc as VbbHcc");
+      // Comparison plots
+      h_dR_b = new TH1D(name + "_dR_bjets", "", 80, -0.5, 7.5);
+      h_dR_c = new TH1D(name + "_dR_cjets", "", 80, -0.5, 7.5);
+      //h_dR_c_all = new TH1D(name + "_dR_cjets_allCombo", 80, -0.5, 7.5);
+      //h_dR_b_all = new TH1D(name + "_dR_bjets_allCombo", 80, -0.5, 7.5);
+    }
 
-      // Efficiency plots
-      h_eff = new TH1D(name + "_CutFlow", "", 6, 0, 6);
-      h_eff->GetXaxis()->SetBinLabel(1, "VbbHcc MC events");
-      h_eff->GetXaxis()->SetBinLabel(2, "Pass jet sel");
-      h_eff->GetXaxis()->SetBinLabel(3, "Pass evt sel");
-      h_eff->GetXaxis()->SetBinLabel(4, "Pass only b-jet");
-      h_eff->GetXaxis()->SetBinLabel(5, "Pass only c-jet");
-      h_eff->GetXaxis()->SetBinLabel(6, "Passed all criteria");
+    void Fill(ZObj& Z, HObj& H, std::vector<JetObj> bjets, std::vector<JetObj> cjets, float w=1.) {
 
-      h_eff_invalid = new TH1D(name + "_invalid_CutFlow" ,"", 4, 0, 4);
-      h_eff_invalid->GetXaxis()->SetBinLabel(1, "Total");
-      h_eff_invalid->GetXaxis()->SetBinLabel(2, "Pass only b-jet");
-      h_eff_invalid->GetXaxis()->SetBinLabel(3, "Pass only c-jet");
-      h_eff_invalid->GetXaxis()->SetBinLabel(4, "Passed all criteria");
+      h_eff_cutflow->Fill(0.5, w);
 
-      // Comparison Plots
-      h_dR_b = new TH1D(name + "_dR_bjets", "", 100, -0.5, 7.5);
-      h_dR_c = new TH1D(name + "_dR_cjets", "", 100, -0.5, 7.5);
-      h_dR_b_all = new TH1D(name + "_dR_bjets_all", "", 100, -0.5, 7.5);
-      h_dR_c_all = new TH1D(name + "_dR_cjets_all", "", 100, -0.5, 7.5);
-
-      h_pt_bjet = new TH1D(name + "_pt_bjets", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
-      h_pt_cjet = new TH1D(name + "_pt_cjets", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
-      h_pt_b = new TH1D(name + "_pt_b", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
-      h_pt_c = new TH1D(name + "_pt_c", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
-      h_pt_ratio_bjet = new TH1D(name + "_pt_ratio_cjets", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
-      h_pt_ratio_cjet = new TH1D(name + "_pt_ratio_bjets", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
-    };
-
-    // Fill all the plots we're interested in.
-    void Fill(ZObj& Z, HObj& H, std::vector<JetObj> cjets, std::vector<JetObj> bjets, float w=1.){
       // Pull values so we have them for reference
       std::vector<JetObj> Hjets = H.m_jets;
-      std::vector<JetObj> Zjets = Z.m_jets;    
-
-      // Fill the proper Physics Objects histograms.
-      for (size_t i = 0; i < 2; ++i) {
-        h_pt_cjet->Fill(Hjets[i].Pt(), w);
-        h_pt_c->Fill(cjets[i].Pt(), w);
-        h_pt_bjet->Fill(Zjets[i].Pt(), w);
-        h_pt_b->Fill(bjets[i].Pt(), w);
-      }
+      std::vector<JetObj> Zjets = Z.m_jets;
  
-      // We do not know which b goes to which jet or which c goes to which jet,
-      // so we have to try each combination.
-      bool matches_C = false, matches_B = false;
-      std::vector<std::vector<int>> idxLists {{0,0,1,1}, {0,1,1,0}};
-      for (size_t i = 0; i < idxLists.size(); ++i) {
+      // Fill the proper physics object histograms.
+      // == General Jet Plots can go here ==
 
-        // Check the c-quark & c-jet matches
-        std::vector<int> idxs = idxLists[i];
-        float dR0 = Hjets[idxs[0]].m_lvec.DeltaR(cjets[idxs[1]].m_lvec);
-        float dR1 = Hjets[idxs[2]].m_lvec.DeltaR(cjets[idxs[3]].m_lvec);
-        h_dR_c_all->Fill(dR0, w); h_dR_c_all->Fill(dR1, w);
+      // We do not know which b goes to which jet or which c goes to 
+      // which jet, so we have to try each combination.    
+      std::sort(Hjets.begin(), Hjets.end(), JetObj::JetCompPt());
+      std::sort(Zjets.begin(), Zjets.end(), JetObj::JetCompPt());
 
-        if (dR0 < dR_cut && dR1 < dR_cut) {
-          h_dR_c->Fill(dR0, w); h_dR_c->Fill(dR1, w);
-          matches_C = true;
+      bool foundMatches_b[] = { false, false };
+      bool foundMatches_c[] = { false, false };
+
+      int idMatches_b[] = { -1, -1 };
+      int idMatches_c[] = { -1, -1 };
+
+      float separations_b[] = { 99999.0, 99999.0 };
+      float separations_c[] = { 99999.0, 99999.0 };
+
+      float lowestSep_b[] = { 99999.0, 99999.0 };
+      float lowestSep_c[] = { 99999.0, 99999.0 };
+
+      for (int i = 0; i < 2; ++i) {
+ 
+        // get the i'th Z jet & compare it to both MC jets
+        for (int j = 0; j < 2; ++j) {
+
+          float dR = Zjets[i].m_lvec.DeltaR(bjets[j].m_lvec);
+
+          // If our jets are separated by less than our cut and 
+          // we have not found a match (OR it is closer than the
+          // jet we already found), mark it as a match.
+          if (dR < dR_cut) {
+            if (!foundMatches_b[i] || dR < separations_b[i]) {
+              idMatches_b[i] = j;
+              separations_b[i] = dR;
+              foundMatches_b[i] = true;
+            }
+          }
+          if (dR < lowestSep_b[i]) lowestSep_b[i] = dR;
+
+        }//end-j
+
+        // Get the i'th H jet & compare it to both MC jets
+        for (int j = 0; j < 2; ++j) {
+        
+          float dR = Hjets[i].m_lvec.DeltaR(cjets[j].m_lvec);
+
+          // If our jets are separated by less than our cut and
+          // we have not found a match (OR it is closer than the
+          // jet we already found), mark it as a match.
+          if (dR < dR_cut) {
+            if (!foundMatches_c[i] || dR < separations_c[i]) {
+              idMatches_c[i] = j;
+              separations_c[i] = dR;
+              foundMatches_c[i] = true;
+            } 
+          }
+          if (dR < lowestSep_c[i]) lowestSep_c[i] = dR;
+
+        }   
+
+      }//end-i
+
+      for (int i = 0; i < 2; ++i) {
+        h_dR_b->Fill(lowestSep_b[i], w);
+        h_dR_c->Fill(lowestSep_c[i], w);
+      }
+
+      // Use these values to say whether or not we've actually passed
+      // the proper jet matches.
+      if (foundMatches_b[0]) {
+        
+        h_eff_cutflow->Fill(1.5, w); // passed b-match #1
+        
+        // For the second jet, make sure we're not matching to the same jet.
+        if (foundMatches_b[1] && idMatches_b[0] != idMatches_b[1]) {
+          h_eff_cutflow->Fill(2.5, w); // passed b-match #2
+        }        
+      }
+
+      if (foundMatches_c[0]) {
+       
+        h_eff_cutflow->Fill(3.5, w); // passed c-match #1
+        
+        // For the second jet, make sure we're not matching to the same jet.
+        if (foundMatches_c[1] && idMatches_c[0] != idMatches_c[1]) {
+          h_eff_cutflow->Fill(4.5, w); // passed c-match #2
         }
 
-        // Check the b-quark & b-jet matches
-        float dR2 = Zjets[idxs[0]].m_lvec.DeltaR(bjets[idxs[1]].m_lvec);
-        float dR3 = Zjets[idxs[2]].m_lvec.DeltaR(bjets[idxs[3]].m_lvec);
-        h_dR_b_all->Fill(dR2, w); h_dR_b_all->Fill(dR3, w);
+      }
 
-        if (dR2 < dR_cut && dR3 < dR_cut) {
-          h_dR_b->Fill(dR2, w); h_dR_b->Fill(dR2, w);
-          matches_B = true;
-        }
-
-      } 
-
-      // Fill the proper cutFlow histogram
-      if (matches_C && matches_B) h_eff->Fill(5.5, w);
-      else if (matches_C) h_eff->Fill(4.5, w);
-      else if (matches_B) h_eff->Fill(3.5, w);
-    };
-
-    // Fill CutFlow
-    void FillCutFlow(float val, float w=1.) {
-      h_eff->Fill(val, w);
-    }
+    }//end-Fill
 
     // Methods - Return a list of all the histograms.
     std::vector<TH1*> returnHisto() {
       std::vector<TH1*> histolist;
-      histolist.push_back(h_eff); histolist.push_back(h_eff_invalid);
-      histolist.push_back(h_dR_b); histolist.push_back(h_dR_c);
-      histolist.push_back(h_dR_b_all); histolist.push_back(h_dR_c_all);
-      histolist.push_back(h_pt_bjet); histolist.push_back(h_pt_b);
-      histolist.push_back(h_pt_cjet); histolist.push_back(h_pt_c);
-      histolist.push_back(h_pt_ratio_cjet);
-      histolist.push_back(h_pt_ratio_bjet);
-      histolist.push_back(h_evt);
+      histolist.push_back(h_eff_cutflow);
+      histolist.push_back(h_dR_b);
+      histolist.push_back(h_dR_c); 
       return histolist;
     };
 
-  protected:
 
+  protected:
+    
     // Variables
     TString m_name;
-    Float_t dR_cut = 1.2;
+    Float_t dR_cut = 0.5;
 
     // Plots
-    TH1D* h_evt;
-    TH1D* h_eff;     TH1D* h_eff_invalid;
-    TH1D* h_dR_b;    TH1D* h_dR_b_all;
-    TH1D* h_dR_c;    TH1D* h_dR_c_all;
-    TH1D* h_pt_bjet; TH1D* h_pt_b;
-    TH1D* h_pt_cjet; TH1D* h_pt_c;
-    TH1D* h_pt_ratio_cjet;
-    TH1D* h_pt_ratio_bjet;
-
+    TH1D* h_eff_cutflow;
+    TH1D* h_dR_b;
+    TH1D* h_dR_c;
 };
-
 #endif

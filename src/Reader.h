@@ -102,6 +102,14 @@ TTreeReaderArray<Float_t> GenPart_pt = {fReader, "GenPart_pt"};
 TTreeReaderArray<Int_t> GenPart_genPartIdxMother = {fReader, "GenPart_genPartIdxMother"};
 TTreeReaderArray<Int_t> GenPart_pdgId = {fReader, "GenPart_pdgId"};
 TTreeReaderArray<Int_t> GenPart_status = {fReader, "GenPart_status"};
+
+TTreeReaderValue<UInt_t> nGenJet = {fReader, "nGenJet"};
+TTreeReaderArray<Float_t> GenJet_eta = {fReader, "GenJet_eta"};
+TTreeReaderArray<Float_t> GenJet_mass = {fReader, "GenJet_mass"};
+TTreeReaderArray<Float_t> GenJet_phi = {fReader, "GenJet_phi"};
+TTreeReaderArray<Float_t> GenJet_pt = {fReader, "GenJet_pt"};
+TTreeReaderArray<Int_t> GenJet_partonFlavour = {fReader, "GenJet_partonFlavour"};
+TTreeReaderArray<UChar_t> GenJet_hadronFlavour = {fReader, "GenJet_hadronFlavour"};
 #endif
 
    Reader(TTree * /*tree*/ =0) {}

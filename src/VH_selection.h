@@ -53,6 +53,7 @@ class VH_selection : public Selector {
     VHPlots *h_VH_seljet; // Using selected jets
 
     // CutFlows for event selections
+    TH1D* h_evt_VbbHcc;
     TH1D* h_evt_MC_cutflow;
     TH1D* h_evt_tags_cutflow;
     TH1D* h_evt_algo_cutflow;

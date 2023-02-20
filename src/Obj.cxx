@@ -284,19 +284,38 @@ class DHZObj {
     float DPhi() { return m_Zvec.DeltaPhi(m_Hvec); }
 
     // Methods - check if the jets pass our criteria
-    bool H_has_cjets(float desired_CvL, float desired_CvB) {
+    bool H_has_cjet0(float desired_CvL, float desired_CvB) {
       float cvl0 = m_jets[m_hIdx0].m_deepCvL;
       float cvb0 = m_jets[m_hIdx0].m_deepCvB;
+      return (cvl0 > desired_CvL && cvb0 > desired_CvB);
+    }
+
+    bool H_has_cjet1(float desired_CvL, float desired_CvB) {
       float cvl1 = m_jets[m_hIdx1].m_deepCvL;
       float cvb1 = m_jets[m_hIdx1].m_deepCvB;
-      return ((cvl0 > desired_CvL) && (cvl1 > desired_CvL) &&
-             (cvb0 > desired_CvB) && (cvb1 > desired_CvB)); 
+      return (cvl1 > desired_CvL && cvb1 > desired_CvB);
+    }
+ 
+    bool H_has_cjets(float desired_CvL, float desired_CvB) {
+      bool pass0 = H_has_cjet0(desired_CvL, desired_CvB);
+      bool pass1 = H_has_cjet1(desired_CvL, desired_CvB);
+      return pass0 && pass1;
     };
 
-    bool Z_has_bjets(float desired_BvL) {
+    bool Z_has_bjet0(float desired_BvL) {
       float csv0 = m_jets[m_zIdx0].m_deepCSV;
+      return (csv0 > desired_BvL);
+    }
+    
+    bool Z_has_bjet1(float desired_BvL) {
       float csv1 = m_jets[m_zIdx1].m_deepCSV;
-      return (csv0 > desired_BvL) && (csv1 > desired_BvL);
+      return (csv1 > desired_BvL);
+    }
+
+    bool Z_has_bjets(float desired_BvL) {
+      bool pass0 = Z_has_bjet0(desired_BvL);
+      bool pass1 = Z_has_bjet1(desired_BvL);
+      return pass0 && pass1;
     };
 
     // Variables
