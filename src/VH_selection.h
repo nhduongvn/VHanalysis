@@ -73,6 +73,12 @@ class VH_selection : public Selector {
 
     TH1D* h_mistag_leading;
     TH1D* h_mistag_all;
+
+    TH1D* h_nGenJet;
+    TH1D* h_nGenL;
+    TH1D* h_nGenC;
+    TH1D* h_nGenB;
+    TH1D* h_nGenGlu;
 };
 
 #endif

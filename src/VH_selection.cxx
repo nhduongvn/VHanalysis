@@ -50,8 +50,8 @@ std::vector<std::vector<int> > VH_selection::DauIdxs_ZH(Reader *r) {
     if (abs(flav) == 4 && mIdx > -1 && abs(mID) == 25)
       dauIdxsH.push_back(i);
 
-    if (mIdx > -1 && abs(mID) == 23)
-      std::cout << "from Z, we get flav = " << flav << std::endl;
+    //if (mIdx > -1 && abs(mID) == 23)
+    //  std::cout << "from Z, we get flav = " << flav << std::endl;
   }
 
   // Push back and return the proper IDs
@@ -291,6 +291,12 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_mistag_all->GetXaxis()->SetBinLabel(2, "mistag");
   h_mistag_all->GetXaxis()->SetBinLabel(3, "proper");
 
+  h_nGenJet = new TH1D("nGenJet", "", 15, -0.5, 14.5);
+  h_nGenL   = new TH1D("nGenL", "", 10, -0.5, 9.5);
+  h_nGenB   = new TH1D("nGenB", "", 10, -0.5, 9.5);
+  h_nGenC   = new TH1D("nGenC", "", 10, -0.5, 9.5);
+  h_nGenGlu = new TH1D("nGenGlu", "", 10, -0.5, 9.5);
+
   // Add them to the return list so we can use them in our analyses.
   r->GetOutputList()->Add(h_evt);
 
@@ -340,6 +346,12 @@ void VH_selection::SlaveBegin(Reader *r) {
 
   r->GetOutputList()->Add(h_mistag_leading);
   r->GetOutputList()->Add(h_mistag_all);
+
+  r->GetOutputList()->Add(h_nGenJet);
+  r->GetOutputList()->Add(h_nGenL);
+  r->GetOutputList()->Add(h_nGenC);
+  r->GetOutputList()->Add(h_nGenB);
+  r->GetOutputList()->Add(h_nGenGlu);
 
 }// end SlaveBegin
 
@@ -576,23 +588,101 @@ void VH_selection::Process(Reader* r) {
 
   std::vector<JetObj> gen_bjets;
   std::vector<JetObj> gen_cjets;
+  bool found_MCjets = false;
 
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
 
-  // Make a copy of the jets
-  std::vector<JetObj> jetlist; jetlist = jets;
-  std::vector<JetObj> genJet_list;  
+  if (is_VbbHcc_event) {
+    
+    // Make a copy of the jets
+    std::vector<JetObj> jetlist; jetlist = jets;
+    std::vector<JetObj> genJet_list;  
+    std::vector<JetObj> genCjet_list;
+    std::vector<JetObj> genBjet_list;
 
-  // Make a list of the GenJets
-  for (unsigned int i = 0; i < *(r->nGenJet); ++i) {
+    // Make a list of the GenJets
+    int nL = 0, nC = 0, nB = 0, nGlu = 0;
+    for (unsigned int i = 0; i < *(r->nGenJet); ++i) {
   
-    // Build a jet from the information
-    JetObj gjet((r->GenJet_pt)[i], (r->GenJet_eta)[i], (r->GenJet_phi)[i], 
-      (r->GenJet_mass)[i], (r->GenJet_partonFlavour)[i], 0, 0);
+      // Build a jet from the information
+      Int_t flavor = (r->GenJet_partonFlavour)[i];
+      JetObj gjet((r->GenJet_pt)[i], (r->GenJet_eta)[i], (r->GenJet_phi)[i], 
+        (r->GenJet_mass)[i], flavor, 0, 0);
 
-    std::cout << "genJet #" << i << ": flavour = " << (r->GenJet_partonFlavour)[i] << "\n";
-  }
+      genJet_list.push_back(gjet);
+      if (abs(flavor) <= 3) nL++;
+      else if (abs(flavor) == 4){ 
+        genCjet_list.push_back(gjet); nC++;
+      }
+      else if (abs(flavor) == 5){
+        genBjet_list.push_back(gjet); nB++;
+      }
+      else if (abs(flavor) == 21) nGlu++;
+      //std::cout << "genJet #" << i << ": flavour = " << (r->GenJet_partonFlavour)[i] << "\n";
+    }
+    h_nGenJet->Fill(*(r->nGenJet), evtW);
+    h_nGenL->Fill(nL, evtW);
+    h_nGenC->Fill(nC, evtW);
+    h_nGenB->Fill(nB, evtW);
+    h_nGenGlu->Fill(nGlu, evtW);
 
+    // Get the c-jets
+    if (genCjet_list.size() >= 2 && genBjet_list.size() >= 2) {      
+
+      found_MCjets = true;
+      
+      // Find how the b-jets match the b-quarks.
+      std::vector<std::pair<int,float>> jets_idx_dR;
+      for (int i = 0; i < gen_bs.size(); ++i) {
+        for (int j = 0; j < genBjet_list.size(); ++j) {
+          float dR = fabs(gen_bs[i].m_lvec.DeltaR(genBjet_list[j].m_lvec));
+          //std::cout << "b[" << i << "] | bjet[" << j << "] = " << dR << "\n";
+          jets_idx_dR.push_back(std::make_pair(j,dR));
+        }
+
+        // Get the closest one
+        std::sort(jets_idx_dR.begin(), jets_idx_dR.end(), sort_by_second);
+        std::pair<int, float> proper_pair = jets_idx_dR[0];
+
+        int idx = proper_pair.first;
+        gen_bjets.push_back(genBjet_list[idx]);
+        genBjet_list.erase(genBjet_list.begin() + idx);
+
+      }//end-i
+      //std::cout << "===================================\n";
+
+      // Find how the c-jets match the c-quarks.
+      std::vector<std::pair<int,float>> jets_idx_dR2;
+      for (int i = 0; i < gen_cs.size(); ++i) {
+        for (int j = 0; j < genCjet_list.size(); ++j) {
+          float dR = fabs(gen_cs[i].m_lvec.DeltaR(genCjet_list[j].m_lvec));
+          //std::cout << "c[" << i << "] | cjet[" << j << "] = " << dR << "\n";
+          jets_idx_dR2.push_back(std::make_pair(j,dR));
+        }//end-j
+
+        // Get the closest one
+        std::sort(jets_idx_dR2.begin(), jets_idx_dR2.end(), sort_by_second);
+        std::pair<int, float> proper_pair = jets_idx_dR2[0];
+
+        int idx2 = proper_pair.first;
+        gen_cjets.push_back(genCjet_list[idx2]);
+        genCjet_list.erase(genCjet_list.begin() + idx2);
+      }//end-i
+      //std::cout << "===================================\n";
+
+      h_evt_VbbHcc->Fill(2.5, evtW);
+
+    }//end-found-jets
+    
+    if (genCjet_list.size() == 1) {
+      std::cout << "only ONE cjet found" << std::endl;
+      std::cout << ">>> pt = " << genCjet_list[0].Pt() << "\n";
+    }
+    if (genBjet_list.size() == 1) {
+      std::cout << "only ONE bjet found" << std::endl;
+      std::cout << ">>> pt = " << genBjet_list[0].Pt() << "\n";
+    }
+  }//end-VbbHcc-check
 #endif
 
   /****************************************************************************
