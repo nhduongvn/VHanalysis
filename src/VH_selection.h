@@ -79,6 +79,8 @@ class VH_selection : public Selector {
     TH1D* h_nGenC;
     TH1D* h_nGenB;
     TH1D* h_nGenGlu;
+    TH1D* h_pt_genJet;
+    TH1D* h_eta_genJet;
 };
 
 #endif

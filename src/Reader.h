@@ -110,6 +110,7 @@ TTreeReaderArray<Float_t> GenJet_phi = {fReader, "GenJet_phi"};
 TTreeReaderArray<Float_t> GenJet_pt = {fReader, "GenJet_pt"};
 TTreeReaderArray<Int_t> GenJet_partonFlavour = {fReader, "GenJet_partonFlavour"};
 TTreeReaderArray<UChar_t> GenJet_hadronFlavour = {fReader, "GenJet_hadronFlavour"};
+TTreeReaderArray<Int_t> Jet_genJetIdx = {fReader, "Jet_genJetIdx"};
 #endif
 
    Reader(TTree * /*tree*/ =0) {}

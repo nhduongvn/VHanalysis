@@ -496,7 +496,7 @@ class VHPlots
 
           // numerator = sum(p_i^a * p_i^b)
           // denominator = sum(p_i^2) 
-          for (Int_t i = 0; i < jets.size(); i++) {
+          for (size_t i = 0; i < jets.size(); i++) {
             num += jetVecs[i][a] * jetVecs[i][b];
             denom += jetMags[i] * jetMags[i];
           } 
@@ -511,14 +511,16 @@ class VHPlots
       // by diagonalizing the matrix.
       const TMatrixDEigen eigen(sTensor);
       const TVectorD eigenVal = eigen.GetEigenValuesRe();
-      Int_t nElements = eigenVal.GetNoElements();
+      //Int_t nElements = eigenVal.GetNoElements();
 
       // NOTE: We need sphericity to be based on the smaller 
       // two eigenvalues and the aplanarity on the largest.
-      std::vector<float> eigenvalues {eigenVal[0], eigenVal[1], eigenVal[2]};
+      std::vector<float> eigenvalues {
+        (float)eigenVal[0], (float)eigenVal[1], (float)eigenVal[2]
+      };
       std::sort(eigenvalues.begin(), eigenvalues.end(), std::greater<float>());      
 
-      float eigensum = eigenvalues[0] + eigenvalues[1] + eigenvalues[2];
+      //float eigensum = eigenvalues[0] + eigenvalues[1] + eigenvalues[2];
       //std::cout << "l1 + l2 + l3 = " << eigensum << std::endl;
 
       // Determine the sphericity & aplanarity.

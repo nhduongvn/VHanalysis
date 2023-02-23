@@ -89,7 +89,7 @@ std::vector<int> get_valid_ids(std::vector<int> idxs, std::vector<int> invalid_i
 
   // Let's check for the top two valid idxs
   std::vector<int> valid_idxs;  
-  for (int i = 0; i < idxs.size(); ++i) {
+  for (size_t i = 0; i < idxs.size(); ++i) {
 
     // Check to see if idx #i is not already used.
     // If it's not used, let's add it to our list.
@@ -297,6 +297,9 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_nGenC   = new TH1D("nGenC", "", 10, -0.5, 9.5);
   h_nGenGlu = new TH1D("nGenGlu", "", 10, -0.5, 9.5);
 
+  h_pt_genJet = new TH1D("GenJet_pt", "", 200, 0, 200);
+  h_eta_genJet = new TH1D("GenJet_eta", "", 80, -4, 4);
+
   // Add them to the return list so we can use them in our analyses.
   r->GetOutputList()->Add(h_evt);
 
@@ -352,6 +355,9 @@ void VH_selection::SlaveBegin(Reader *r) {
   r->GetOutputList()->Add(h_nGenC);
   r->GetOutputList()->Add(h_nGenB);
   r->GetOutputList()->Add(h_nGenGlu);
+
+  r->GetOutputList()->Add(h_pt_genJet);
+  r->GetOutputList()->Add(h_eta_genJet);
 
 }// end SlaveBegin
 
@@ -609,6 +615,9 @@ void VH_selection::Process(Reader* r) {
       JetObj gjet((r->GenJet_pt)[i], (r->GenJet_eta)[i], (r->GenJet_phi)[i], 
         (r->GenJet_mass)[i], flavor, 0, 0);
 
+      h_pt_genJet->Fill((r->GenJet_pt)[i], evtW);
+      h_eta_genJet->Fill((r->GenJet_eta)[i], evtW);
+
       genJet_list.push_back(gjet);
       if (abs(flavor) <= 3) nL++;
       else if (abs(flavor) == 4){ 
@@ -633,8 +642,8 @@ void VH_selection::Process(Reader* r) {
       
       // Find how the b-jets match the b-quarks.
       std::vector<std::pair<int,float>> jets_idx_dR;
-      for (int i = 0; i < gen_bs.size(); ++i) {
-        for (int j = 0; j < genBjet_list.size(); ++j) {
+      for (size_t i = 0; i < gen_bs.size(); ++i) {
+        for (size_t j = 0; j < genBjet_list.size(); ++j) {
           float dR = fabs(gen_bs[i].m_lvec.DeltaR(genBjet_list[j].m_lvec));
           //std::cout << "b[" << i << "] | bjet[" << j << "] = " << dR << "\n";
           jets_idx_dR.push_back(std::make_pair(j,dR));
@@ -653,8 +662,8 @@ void VH_selection::Process(Reader* r) {
 
       // Find how the c-jets match the c-quarks.
       std::vector<std::pair<int,float>> jets_idx_dR2;
-      for (int i = 0; i < gen_cs.size(); ++i) {
-        for (int j = 0; j < genCjet_list.size(); ++j) {
+      for (size_t i = 0; i < gen_cs.size(); ++i) {
+        for (size_t j = 0; j < genCjet_list.size(); ++j) {
           float dR = fabs(gen_cs[i].m_lvec.DeltaR(genCjet_list[j].m_lvec));
           //std::cout << "c[" << i << "] | cjet[" << j << "] = " << dR << "\n";
           jets_idx_dR2.push_back(std::make_pair(j,dR));
@@ -834,7 +843,7 @@ bool are_cjets(std::vector<JetObj>& jets, float CvL_cut, float CvB_cut) {
     std::sort(jetlistCopy.begin(), jetlistCopy.end(), JetObj::JetCompPt());
     
     bool found_leading = false;
-    for (int i = 0; i < jetlistCopy.size(); ++i) {
+    for (size_t i = 0; i < jetlistCopy.size(); ++i) {
 
       // check the leading light jet (if we haven't yet)
       if (!found_leading) {
@@ -857,14 +866,6 @@ bool are_cjets(std::vector<JetObj>& jets, float CvL_cut, float CvB_cut) {
       }
     }
 #endif
-
-    /**************************************************************************
-    * LEADING pT ANALYSIS                                                     *
-    **************************************************************************/
-    
-    for (int i = 0; i < jetlistCopy.size(); ++i) {
-
-    }
 
     /**************************************************************************
     * JET ANALYSIS - 4B vs 2b2c                                               *
@@ -1025,7 +1026,7 @@ bool are_cjets(std::vector<JetObj>& jets, float CvL_cut, float CvB_cut) {
     // checking if the tagging scores meet our desired cuts.
     std::vector<std::pair<int,float> > jets_idx_BvL;
     std::vector<std::pair<int,float> > jets_idx_CvL;
-    for (int i = 0; i < jets4.size(); ++i) {
+    for (size_t i = 0; i < jets4.size(); ++i) {
 
       float csv = jets4[i].m_deepCSV;
       float cvl = jets4[i].m_deepCvL;
