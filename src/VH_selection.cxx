@@ -12,16 +12,11 @@
 
 #include <bits/stdc++.h>
 
-/******************************************************************************
-* MAIN SELECTOR METHODS                                                       *
-******************************************************************************/
+//== Deconstructor ============================================================
 
 VH_selection::~VH_selection() { }
 
-///////////////////////////////////////////////////////////////
-// Custom Methods
-///////////////////////////////////////////////////////////////
-
+//== Custom Methods ===========================================================
 
 //=========================================================
 // DauIdxs_ZH - get the indices of the MC truth particles
@@ -63,7 +58,7 @@ std::vector<std::vector<int> > VH_selection::DauIdxs_ZH(Reader *r) {
 #endif
 
 //=========================================================
-// Sort a pair by the second option.
+// sort_by_second - Sort a pair by the second option.
 //=========================================================
 bool sort_by_second(const std::pair<int,float> &a,
                     const std::pair<int,float> &b)
@@ -74,7 +69,8 @@ bool sort_by_second_descend(const std::pair<int,float> &a,
 { return a.second > b.second; } 
 
 //=========================================================
-// This tells us if a list contains a given value.
+// list_contains - This tells us if a list contains a 
+// given value.
 //=========================================================
 bool list_contains(std::vector<int> list, int value) {
   return std::count(list.begin(), list.end(), value);
@@ -82,9 +78,11 @@ bool list_contains(std::vector<int> list, int value) {
 
 
 //=========================================================
-// Check through a list of IDs and check against a list of 
-// already used IDs to get the valid ones.
+// get_valid_ids - Check through a list of IDs and check 
+// against a list of already used IDs to get the valid 
+// ones.
 //=========================================================
+
 std::vector<int> get_valid_ids(std::vector<int> idxs, std::vector<int> invalid_idxs) {
 
   // Let's check for the top two valid idxs
@@ -105,11 +103,12 @@ std::vector<int> get_valid_ids(std::vector<int> idxs, std::vector<int> invalid_i
 
 }
 
-
 //=========================================================
-// Check for all valid combinations of the given jets 
+// find_valid_combos - Check for all valid combinations 
+// of the given jets 
 //=========================================================
-std::vector<std::vector<int> > find_valid_combos(std::vector<int> bIdxs, std::vector<int> cIdxs) {
+std::vector<std::vector<int> > find_valid_combos(std::vector<int> bIdxs,
+  std::vector<int> cIdxs) {
 
   std::vector<std::vector<int>> outs;
 
@@ -155,13 +154,17 @@ std::vector<std::vector<int> > find_valid_combos(std::vector<int> bIdxs, std::ve
 }//end-find_valid_combos
 
 //=========================================================
-// The following methods are for checking that all jets 
-// pass the appropriate tagging requirements.
+// passes_btag - checks that a jet is b-tagged
 //=========================================================
 
 bool passes_btag(JetObj& jet, float CSV_cut) {
   return jet.m_deepCSV > CSV_cut;
 }
+
+//=========================================================
+// are_bjets - takes a list of jets and checks that they're
+// all b-jets (given a certain cut).
+//=========================================================
 
 bool are_bjets(std::vector<JetObj>& jets, float CSV_cut) {
   for (auto it : jets) {
@@ -170,12 +173,19 @@ bool are_bjets(std::vector<JetObj>& jets, float CSV_cut) {
   return true;
 }
 
+//=========================================================
+// passes_ctag - checks that a jet is c-tagged
+//========================================================= 
 bool passes_ctag(JetObj& jet, float CvL_cut, float CvB_cut) {
   bool passes_CvL = jet.m_deepCvL > CvL_cut;
   bool passes_CvB = jet.m_deepCvB > CvB_cut;
   return passes_CvL && passes_CvB;
 }
 
+//=========================================================
+// are_cjets - takes a list of jets and checks that they're
+// all c-jets (given a certain cut).
+//=========================================================
 bool are_cjets(std::vector<JetObj>& jets, float CvL_cut, float CvB_cut) {
   for (auto it : jets) {
     if (!passes_ctag(it, CvL_cut, CvB_cut)) return false;
@@ -183,9 +193,14 @@ bool are_cjets(std::vector<JetObj>& jets, float CvL_cut, float CvB_cut) {
   return true;
 }
 
-///////////////////////////////////////////////////////////////
-// Slave Begin
-///////////////////////////////////////////////////////////////
+// == SlaveBegin ==============================================================
+
+/*
+ * This section is where we initialize all necessary plots
+ * and then add all the plots to the output so we can use
+ * them for analyses.
+*/
+
 void VH_selection::SlaveBegin(Reader *r) {
 
   // Set up all the necessary plots
@@ -210,6 +225,11 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_VH_alljet = new VHPlots("VbbHcc_alljet");
   h_VH_seljet = new VHPlots("VbbHcc_seljet");
 
+  // Set up the EffPlot instances
+  h_eff_tags = new EffPlots("VbbHcc_eff_tags");
+  h_eff_algo = new EffPlots("VbbHcc_eff_algo");
+  h_eff_both = new EffPlots("VbbHcc_eff_both");
+
   // Set up the JetPlots instances
   h_VH_jets = new JetPlots("VbbHcc_jets");
   h_VH_jets_all = new JetPlots("VbbHcc_jets_all");
@@ -231,8 +251,6 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_evt_tags_cutflow->GetXaxis()->SetBinLabel(5, "b-tag #2");
   h_evt_tags_cutflow->GetXaxis()->SetBinLabel(6, "c-tag #1");
   h_evt_tags_cutflow->GetXaxis()->SetBinLabel(7, "c-tag #2");
-  //h_evt_tags_cutflow->GetXaxis()->SetBinLabel(6, "pT(Z) cut");
-  //h_evt_tags_cutflow->GetXaxis()->SetBinLabel(7, "dPhi cut");
   
   h_evt_algo_cutflow = new TH1D("VbbHcc_algo_CutFlow", "", 7, 0, 7);
   h_evt_algo_cutflow->GetXaxis()->SetBinLabel(1, "Total");
@@ -242,17 +260,12 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_evt_algo_cutflow->GetXaxis()->SetBinLabel(5, "b-tag #2");
   h_evt_algo_cutflow->GetXaxis()->SetBinLabel(6, "c-tag #1");
   h_evt_algo_cutflow->GetXaxis()->SetBinLabel(7, "c-tag #2");
-  //h_evt_algo_cutflow->GetXaxis()->SetBinLabel(6, "pT(Z) cut");
-  //h_evt_algo_cutflow->GetXaxis()->SetBinLabel(7, "dPhi cut");
   
   h_evt_both_cutflow = new TH1D("VbbHcc_both_CutFlow", "", 4, 0, 4);
   h_evt_both_cutflow->GetXaxis()->SetBinLabel(1, "Total");
   h_evt_both_cutflow->GetXaxis()->SetBinLabel(2, "MET cut");
   h_evt_both_cutflow->GetXaxis()->SetBinLabel(3, "jet cuts");
   h_evt_both_cutflow->GetXaxis()->SetBinLabel(4, "tags cut");
-  //h_evt_both_cutflow->GetXaxis()->SetBinLabel(5, "c-tags");
-  //h_evt_both_cutflow->GetXaxis()->SetBinLabel(6, "pT(Z) cut");
-  //h_evt_both_cutflow->GetXaxis()->SetBinLabel(7, "dPhi cut"); 
 
   // Set up the CutFlows (for obj selections)
   h_jet_cutflow = new TH1D("VbbHcc_CutFlow_jets", "", 4, 0, 4);
@@ -332,6 +345,13 @@ void VH_selection::SlaveBegin(Reader *r) {
   tmp = h_VH_2b2c->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
 
+  tmp = h_eff_tags->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_eff_algo->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_eff_both->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+
   r->GetOutputList()->Add(h_evt_VbbHcc);
   r->GetOutputList()->Add(h_evt_MC_cutflow);
   r->GetOutputList()->Add(h_evt_tags_cutflow);
@@ -361,9 +381,18 @@ void VH_selection::SlaveBegin(Reader *r) {
 
 }// end SlaveBegin
 
-///////////////////////////////////////////////////////////////
-// Process
-///////////////////////////////////////////////////////////////
+// == Process =================================================================
+
+/*
+ * This is where we do the actual analysis. We need to do the 
+ * following steps for each event:
+ *
+ * 1. determine the events for the weight
+ * 2. reconstruct the Physics objects
+ * 3. analyze them as desired
+ * 4. pray that nothing fails
+*/
+
 void VH_selection::Process(Reader* r) { 
 
   //=================================================================
@@ -444,6 +473,11 @@ void VH_selection::Process(Reader* r) {
     jet.m_deepCvB = (r->FatJet_btagDDCvB)[i];
 #endif
 
+    // If we're in a MC file, let's note which gen jet
+    // is associated with thsi reco jet.
+#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
+    jet.m_genJetIdx = (r->Jet_genJetIdx)[i];
+#endif
 
     // Add the jet to our overall list.
     jet.SetIdxAll(i);
@@ -531,11 +565,12 @@ void VH_selection::Process(Reader* r) {
   h_evt_algo_cutflow->Fill(1.5, genWeight);
   h_evt_both_cutflow->Fill(1.5, genWeight);
 
-  /****************************************************************************
-  * MONTE CARLO TRUTH - We want to have the MC truth values to get an idea of *
-  * how well we are selecting events. We should have several delta-like funcs *
-  * in this case.                                                             *
-  ****************************************************************************/
+  /********************************************************
+  * MONTE CARLO TRUTH - we want to have the MC truth      *
+  * values to get an idea of how well we are selecting    *
+  * events. We should have several delta-like functions   *
+  * in this case (mass specifically).                     *
+  ********************************************************/
   
   bool is_VbbHcc_event = false;
   std::vector<std::vector<int> > dauIdxs;
@@ -587,10 +622,11 @@ void VH_selection::Process(Reader* r) {
 
 #endif
 
-  /****************************************************************************
-  * MONTE CARLO TRUTH JETS - In the previous MC truth, we only have the       *
-  * quarks. Here, we want to find the jets that match the MC quarks.          *    
-  ****************************************************************************/
+  /********************************************************
+  * MONTE CARLO TRUTH JETS - In the previous MC truth, we *
+  * only have the quarks. Here, we want to find the jets  *
+  * that match the MC quarks.                             *    
+  ********************************************************/
 
   std::vector<JetObj> gen_bjets;
   std::vector<JetObj> gen_cjets;
@@ -627,7 +663,6 @@ void VH_selection::Process(Reader* r) {
         genBjet_list.push_back(gjet); nB++;
       }
       else if (abs(flavor) == 21) nGlu++;
-      //std::cout << "genJet #" << i << ": flavour = " << (r->GenJet_partonFlavour)[i] << "\n";
     }
     h_nGenJet->Fill(*(r->nGenJet), evtW);
     h_nGenL->Fill(nL, evtW);
@@ -658,8 +693,7 @@ void VH_selection::Process(Reader* r) {
         genBjet_list.erase(genBjet_list.begin() + idx);
 
       }//end-i
-      //std::cout << "===================================\n";
-
+      
       // Find how the c-jets match the c-quarks.
       std::vector<std::pair<int,float>> jets_idx_dR2;
       for (size_t i = 0; i < gen_cs.size(); ++i) {
@@ -677,8 +711,7 @@ void VH_selection::Process(Reader* r) {
         gen_cjets.push_back(genCjet_list[idx2]);
         genCjet_list.erase(genCjet_list.begin() + idx2);
       }//end-i
-      //std::cout << "===================================\n";
-
+      
       h_evt_VbbHcc->Fill(2.5, evtW);
 
     }//end-found-jets
@@ -686,25 +719,24 @@ void VH_selection::Process(Reader* r) {
     if (genCjet_list.size() == 1) {
       std::cout << "only ONE cjet found" << std::endl;
       std::cout << ">>> pt = " << genCjet_list[0].Pt() << "\n";
+      std::cout << ">>> m  = " << genCjet_list[0].M() << "\n";
     }
     if (genBjet_list.size() == 1) {
       std::cout << "only ONE bjet found" << std::endl;
       std::cout << ">>> pt = " << genBjet_list[0].Pt() << "\n";
+      std::cout << ">>> m  = " << genBjet_list[0].M() << "\n";
     }
   }//end-VbbHcc-check
 #endif
 
-  /****************************************************************************
-  * JET ANALYSIS/SELECTION - we want to make sure we only select jets that are*
-  * useful for our analysis.                                                  *
-  ****************************************************************************/
+  /********************************************************
+  * JET ANALYSIS/SELECTION - we want to make sure we only *
+  * select jets that are  useful for our analysis.        *
+  ********************************************************/
 
   // For the remainder of the selections, we want to only have jets
   // that meet our criteria. Let's make sure we have enough jets to
-  // meet our requirements:
-  // 1. pT(j) > 30 GeV
-  // 2. |eta| < 2.5
-  // 3. dR(small-R jet, lepton) < 0.4 = discard
+  // meet our requirements.
   std::vector<JetObj> analysis_jets;
   int nJets = 0;
   for (unsigned int i = 0; i < jets.size(); ++i) {
@@ -712,12 +744,15 @@ void VH_selection::Process(Reader* r) {
     h_jet_cutflow->Fill(0.5, genWeight); // all jets
     TLorentzVector vec = jets[i].m_lvec;
 
+    // Check to make sure that the jet pass our pT cuts.
+    // NOTE: we have an extra cut for the leading jet.
     if (vec.Pt() < CUTS.Get<float>("jet_pt")) continue;
     if (i == 0 and vec.Pt() < CUTS.Get<float>("jet_pt0")) continue;
-    h_jet_cutflow->Fill(1.5, genWeight); // passed pT cut(s)
+    h_jet_cutflow->Fill(1.5, genWeight); 
 
+    // Check to make sure our jets are in the eta region we want.
     if (fabs(vec.Eta()) > CUTS.Get<float>("jet_eta")) continue;
-    h_jet_cutflow->Fill(2.5, genWeight); // passed eta cut
+    h_jet_cutflow->Fill(2.5, genWeight); 
 
     // NEW: Make sure they pass the pileup ID requirement
     // if the jet pT < 50 GeV. NOTE: There will be different
@@ -750,27 +785,6 @@ void VH_selection::Process(Reader* r) {
   h_VH_jets->Fill(analysis_jets, evtW);
   h_VH_jets_all->Fill(jets, evtW);
 
-  /****************************************************************************
-  * Check what we get for H and Z candidates by just using the leading pT     *
-  * jets before any cuts                                                      *
-  ****************************************************************************/
-  if (jets.size() >= 4) {
-
-    // Sort the jets by pT
-    std::sort(jets.begin(), jets.end(), JetObj::JetCompPt());
-    
-    // Reconstruct the Higgs boson with the highest two.
-    std::vector<JetObj> cjets { jets[0], jets[1] };
-    HObj H(cjets);
-
-    // Reconstruct the Z boson with the next two highest.
-    std::vector<JetObj> bjets { jets[2], jets[3] };
-    ZObj Z(bjets);
-
-    // Fill the proper plots
-    h_VH_alljet->FillVH(Z, H, evtW);
-  }
-
   //===========================================================================
   // Any analysis after this point should be using only our selected jets which
   // pass our selection criteria. There should be at least four of them.
@@ -784,30 +798,7 @@ void VH_selection::Process(Reader* r) {
     /***************************************************************************
     * Check what we get for H and Z candidates by just using the leading pT    *
     * jets after any cuts (but before ANY tagging.                             *
-   bool passes_btag(JetObj& jet, float CSV_cut) {
-  return jet.m_deepCSV > CSV_cut;
-}
-
-bool are_bjets(std::vector<JetObj>& jets, float CSV_cut) {
-  for (auto it : jets) {
-    if (!passes_btag(it, CSV_cut)) return false;
-  }
-  return true;
-}
-
-bool passes_ctag(JetObj& jet, float CvL_cut, float CvB_cut) {
-  bool passes_CvL = jet.m_deepCvL > CvL_cut;
-  bool passes_CvB = jet.m_deepCvB > CvB_cut;
-  return passes_CvL && passes_CvB;
-}
-
-bool are_cjets(std::vector<JetObj>& jets, float CvL_cut, float CvB_cut) {
-  for (auto it : jets) {
-    if (!passes_ctag(it, CvL_cut, CvB_cut)) return false;
-  }
-  return true;
-}
- ***************************************************************************/
+    ***************************************************************************/
      
     // Make a copy of the jets and select/sort by pT.
     std::vector<JetObj> afterjets; afterjets = analysis_jets;
@@ -899,7 +890,7 @@ bool are_cjets(std::vector<JetObj>& jets, float CvL_cut, float CvB_cut) {
     }
 
     /**************************************************************************
-    * TAGGING ONLY CASE                                                       *
+    * Selection Method #1 - TAGGING ONLY                                      *
     **************************************************************************/
 
     // Make an appropriate copy of the jets to use for this analysis.
@@ -949,7 +940,7 @@ bool are_cjets(std::vector<JetObj>& jets, float CvL_cut, float CvB_cut) {
     }//end-b-cut-1
    
     /**************************************************************************
-    * MASS-MATCHING PRIORITIZED CASE                                          *
+    * Selection Method #2 -  MASS-MATCHING PRIORITIZED                        *
     **************************************************************************/
 
     // Make an appropriate copy of the jets to use for this analysis.
@@ -1016,7 +1007,7 @@ bool are_cjets(std::vector<JetObj>& jets, float CvL_cut, float CvB_cut) {
     }//end-b-cut-1 
 
     /**************************************************************************
-    * Duong's better version of TAGGING_PRIORITIZED CASE                      *
+    * Selection Method #3 - TAGGING PRIORITIZED                               *
     **************************************************************************/
   
     // Make an appropriate copy of the jets to use for this analysis.
@@ -1049,23 +1040,12 @@ bool are_cjets(std::vector<JetObj>& jets, float CvL_cut, float CvB_cut) {
     // Create the vectors containing of b- and c-jets indices
     std::vector<int> bIndices;
     std::vector<int> cIndices;
-    //std::cout << "\nBvL jets: ";
-    for (auto p : jets_idx_BvL){
-      //std::cout << "\n" << p.first << " " << p.second;
-      bIndices.push_back(p.first);
-    }
-    //std::cout << "\nCvL jets: ";
-    for (auto p : jets_idx_CvL) {
-      //std::cout << "\n" << p.first << " " << p.second;
-      cIndices.push_back(p.first);
-    }
- 
-    //std::cout << "\nb-jet indices: "; for(auto i : bIndices) std::cout << " " << i;
-    //std::cout << "\nc-jet indices: "; for(auto i : cIndices) std::cout << " " << i;
 
+    for (auto p : jets_idx_BvL){ bIndices.push_back(p.first); }
+    for (auto p : jets_idx_CvL){ cIndices.push_back(p.first); }
+ 
     // Find appropriate combinations of jets.
     std::vector<std::vector<int>> combos = find_valid_combos(bIndices, cIndices);
-
     h_nCombos->Fill(combos.size(), evtW);
     
     // If there are possible combos, let's check them.
@@ -1126,12 +1106,9 @@ bool are_cjets(std::vector<JetObj>& jets, float CvL_cut, float CvB_cut) {
   }//end-analysis-jets
 }// end Process
 
-///////////////////////////////////////////////////////////////
-// Terminate
-///////////////////////////////////////////////////////////////
-void VH_selection::Terminate(TList* mergedList, std::string outFileName) {
+//== TERMINATE ================================================================
 
-}
+void VH_selection::Terminate(TList* mergedList, std::string outFileName) { }
 
 //== END OF FILE ==============================================================
 

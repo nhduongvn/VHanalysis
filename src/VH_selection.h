@@ -52,6 +52,11 @@ class VH_selection : public Selector {
     VHPlots *h_VH_alljet; // Using just any jets
     VHPlots *h_VH_seljet; // Using selected jets
 
+    // Efficiency Plots
+    EffPlots *h_eff_tags; // Efficiencies for Tagging Only
+    EffPlots *h_eff_algo; // Efficiencies for Mass-Matching Prioritized
+    EffPlots *h_eff_both; // Efficiencies for Tagging Prioritized
+
     // CutFlows for event selections
     TH1D* h_evt_VbbHcc;
     TH1D* h_evt_MC_cutflow;

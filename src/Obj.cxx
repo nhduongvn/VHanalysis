@@ -162,6 +162,7 @@ class JetObj : public GenObj {
     float m_puid;     // PU ID
     int m_Idx;        // index within list
     int m_IdxAll;     // index within event list
+    int m_genJetIdx;  // index for gen jet associated with this jet
 };
 
 /******************************************************************************
@@ -247,8 +248,10 @@ class DHZObj {
   public:
 
     // Constructor & Deconstructor
-    DHZObj(std::vector<JetObj> jets, int h0, int h1, int z0, int z1) : m_jets(jets),
-    m_hIdx0(h0), m_hIdx1(h1), m_zIdx0(z0), m_zIdx1(z1) {
+    DHZObj(std::vector<JetObj> jets, int h0, int h1, int z0, int z1) {
+      m_jets = jets;
+      m_hIdx0 = h0;  m_hIdx1 = h1;
+      m_zIdx0 = z0;  m_zIdx1 = z1;
       calculate_d();
     };
     virtual ~DHZObj() {}

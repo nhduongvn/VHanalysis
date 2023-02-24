@@ -651,6 +651,15 @@ class EffPlots
       //h_dR_b_all = new TH1D(name + "_dR_bjets_allCombo", 80, -0.5, 7.5);
     }
 
+    std::pair<bool,float> jetMatchesAtLeastOne(JetObj j0, std::vector<JetObj> jets) {
+
+      
+      for (size_t i = 0; i < jets.size(); i++) {
+        float dR = j0.m_lvec.DeltaR(jets[i].m_lvec);
+      }//end-i
+
+    }
+
     void Fill(ZObj& Z, HObj& H, std::vector<JetObj> bjets, std::vector<JetObj> cjets, float w=1.) {
 
       h_eff_cutflow->Fill(0.5, w);
