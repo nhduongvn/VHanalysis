@@ -20,6 +20,9 @@
 #include "TMatrixDEigen.h"
 #include "TVectorD.h"
 
+#include <bits/stdc++.h>
+//#include <utility>
+
 //== Constants ================================================================
 
 // These constants define the number of bins and
@@ -632,37 +635,77 @@ class VHPlots
 class EffPlots
 {
   public:
-
+    
     // Constructor
     EffPlots(TString name) : m_name(name) {
     
       // Efficiency plot
-      h_eff_cutflow = new TH1D(name + "_eff_CutFlow", "", 5, 0, 5);
+      h_eff_cutflow = new TH1D(name + "_CutFlow", "", 6, 0, 6);
       h_eff_cutflow->GetXaxis()->SetBinLabel(1, "Total");
       h_eff_cutflow->GetXaxis()->SetBinLabel(2, "b-match #1");
       h_eff_cutflow->GetXaxis()->SetBinLabel(3, "b-match #2");
       h_eff_cutflow->GetXaxis()->SetBinLabel(4, "c-match #1");
       h_eff_cutflow->GetXaxis()->SetBinLabel(5, "c-match #2");
+      h_eff_cutflow->GetXaxis()->SetBinLabel(6, "matched all");
+
+      h_eff_cutflow_truth = new TH1D(name + "_CutFlow_truth", "", 6, 0, 6);
+      h_eff_cutflow_truth->GetXaxis()->SetBinLabel(1, "Total");
+      h_eff_cutflow_truth->GetXaxis()->SetBinLabel(2, "b-match #1");
+      h_eff_cutflow_truth->GetXaxis()->SetBinLabel(3, "b-match #2");
+      h_eff_cutflow_truth->GetXaxis()->SetBinLabel(4, "c-match #1");
+      h_eff_cutflow_truth->GetXaxis()->SetBinLabel(5, "c-match #2");
+      h_eff_cutflow_truth->GetXaxis()->SetBinLabel(6, "matched all");
 
       // Comparison plots
-      h_dR_b = new TH1D(name + "_dR_bjets", "", 80, -0.5, 7.5);
-      h_dR_c = new TH1D(name + "_dR_cjets", "", 80, -0.5, 7.5);
-      //h_dR_c_all = new TH1D(name + "_dR_cjets_allCombo", 80, -0.5, 7.5);
-      //h_dR_b_all = new TH1D(name + "_dR_bjets_allCombo", 80, -0.5, 7.5);
-    }
-
-    std::pair<bool,float> jetMatchesAtLeastOne(JetObj j0, std::vector<JetObj> jets) {
-
+      h_dR_b = new TH1D(name + "_dR_bjets", "", NBIN_DR, X_DR[0], X_DR[1]);
+      h_dR_c = new TH1D(name + "_dR_cjets", "", NBIN_DR, X_DR[0], X_DR[1]);
+      h_dR_b_truth = new TH1D(name + "_dR_bjets_truth", "", NBIN_DR, X_DR[0], X_DR[1]);
+      h_dR_c_truth = new TH1D(name + "_dR_cjets_truth", "", NBIN_DR, X_DR[0], X_DR[1]);
       
-      for (size_t i = 0; i < jets.size(); i++) {
-        float dR = j0.m_lvec.DeltaR(jets[i].m_lvec);
-      }//end-i
+      h_nMatches = new TH1D(name + "_nMatches", "", 8, -0.5, 7.5);
+      h_nMatches_truth = new TH1D(name + "_nMatches_truth", "", 8, -0.5, 7.5);
 
+      h_dR_v_dR_b = new TH2D(name + "_dR_v_dR_b", 
+               "", NBIN_DR, X_DR[0], X_DR[1], NBIN_DR, X_DR[0], X_DR[1]);
+      h_dR_v_dR_c = new TH2D(name + "_dR_v_dR_c",
+               "", NBIN_DR, X_DR[0], X_DR[1], NBIN_DR, X_DR[0], X_DR[1]);
+      h_dR_v_dR_b_truth = new TH2D(name + "_dR_v_dR_b_truth",
+               "", NBIN_DR, X_DR[0], X_DR[1], NBIN_DR, X_DR[0], X_DR[1]);
+      h_dR_v_dR_c_truth = new TH2D(name + "_dR_v_dR_c_truth",
+               "", NBIN_DR, X_DR[0], X_DR[1], NBIN_DR, X_DR[0], X_DR[1]);
+
+      h_dRb_v_dRc = new TH2D(name + "_dRb_v_dRc",
+               "", NBIN_DR, X_DR[0], X_DR[1], NBIN_DR, X_DR[0], X_DR[1]);
+      h_dRb_v_dRc_truth = new TH2D(name + "_dRb_v_dRc_truth",
+               "", NBIN_DR, X_DR[0], X_DR[1], NBIN_DR, X_DR[0], X_DR[1]);
+
+      h_id_v_id_b = new TH2D(name + "_id_v_id_b", "", 4, 0, 4, 4, 0, 4);
+      h_id_v_id_c = new TH2D(name + "_id_v_id_c", "", 4, 0, 4, 4, 0, 4);
+      h_id_v_id_b_truth = new TH2D(name + "_id_v_id_b_truth", "", 4, 0, 4, 4, 0, 4);
+      h_id_v_id_c_truth = new TH2D(name + "_id_v_id_c_truth", "", 4, 0, 4, 4, 0, 4);
     }
 
-    void Fill(ZObj& Z, HObj& H, std::vector<JetObj> bjets, std::vector<JetObj> cjets, float w=1.) {
+    std::pair<int,float> get_closest(JetObj j0, std::vector<JetObj> obj_list) {
 
-      h_eff_cutflow->Fill(0.5, w);
+      // compare the jet object to each object in the list.
+      int closest_idx = -1; float closest_dR = 999999.0;
+      for (size_t i = 0; i < obj_list.size(); ++i) {
+
+        float dR = j0.m_lvec.DeltaR(obj_list[i].m_lvec);  
+        if (dR < closest_dR) {
+          closest_idx = i;
+          closest_dR = dR;
+        }    
+      }
+
+      auto pair = std::make_pair(closest_idx, closest_dR);
+      return pair;
+    }   
+
+    void Fill(ZObj& Z, HObj& H, std::vector<JetObj> bjets, std::vector<JetObj> cjets, bool isMCtruth = true, float w=1.) {
+
+      if (isMCtruth) h_eff_cutflow_truth->Fill(0.5, w);
+      else h_eff_cutflow->Fill(0.5, w);
 
       // Pull values so we have them for reference
       std::vector<JetObj> Hjets = H.m_jets;
@@ -682,80 +725,101 @@ class EffPlots
       int idMatches_b[] = { -1, -1 };
       int idMatches_c[] = { -1, -1 };
 
-      float separations_b[] = { 99999.0, 99999.0 };
-      float separations_c[] = { 99999.0, 99999.0 };
-
       float lowestSep_b[] = { 99999.0, 99999.0 };
       float lowestSep_c[] = { 99999.0, 99999.0 };
 
       for (int i = 0; i < 2; ++i) {
+
+        // Get the jet closest for each b-quark
+        std::pair<int,float> iMatch_b = get_closest(Zjets[i], bjets);
+        idMatches_b[i] = iMatch_b.first;
+        lowestSep_b[i] = iMatch_b.second;
  
-        // get the i'th Z jet & compare it to both MC jets
-        for (int j = 0; j < 2; ++j) {
+        // Get the jet closest for each c-quark
+        std::pair<int,float> iMatch_c = get_closest(Hjets[i], cjets);
+        idMatches_c[i] = iMatch_c.first;
+        lowestSep_c[i] = iMatch_c.second;
+      }
 
-          float dR = Zjets[i].m_lvec.DeltaR(bjets[j].m_lvec);
+      float dRb = lowestSep_b[0] + lowestSep_b[1];
+      float dRc = lowestSep_c[0] + lowestSep_c[1];
+      if (isMCtruth){
+        h_dR_v_dR_b_truth->Fill(lowestSep_b[0], lowestSep_b[1], w);
+        h_dR_v_dR_c_truth->Fill(lowestSep_c[0], lowestSep_c[1], w);
+        h_dRb_v_dRc_truth->Fill(dRb, dRc, w);
 
-          // If our jets are separated by less than our cut and 
-          // we have not found a match (OR it is closer than the
-          // jet we already found), mark it as a match.
-          if (dR < dR_cut) {
-            if (!foundMatches_b[i] || dR < separations_b[i]) {
-              idMatches_b[i] = j;
-              separations_b[i] = dR;
-              foundMatches_b[i] = true;
-            }
-          }
-          if (dR < lowestSep_b[i]) lowestSep_b[i] = dR;
+        h_id_v_id_b_truth->Fill(idMatches_b[0], idMatches_b[1], w);
+        h_id_v_id_c_truth->Fill(idMatches_c[0], idMatches_c[1], w);
+      }
+      else{
+        h_dR_v_dR_b->Fill(lowestSep_b[0], lowestSep_b[1], w);
+        h_dR_v_dR_c->Fill(lowestSep_c[0], lowestSep_c[1], w);
+        h_dRb_v_dRc->Fill(dRb, dRc, w);
 
-        }//end-j
-
-        // Get the i'th H jet & compare it to both MC jets
-        for (int j = 0; j < 2; ++j) {
-        
-          float dR = Hjets[i].m_lvec.DeltaR(cjets[j].m_lvec);
-
-          // If our jets are separated by less than our cut and
-          // we have not found a match (OR it is closer than the
-          // jet we already found), mark it as a match.
-          if (dR < dR_cut) {
-            if (!foundMatches_c[i] || dR < separations_c[i]) {
-              idMatches_c[i] = j;
-              separations_c[i] = dR;
-              foundMatches_c[i] = true;
-            } 
-          }
-          if (dR < lowestSep_c[i]) lowestSep_c[i] = dR;
-
-        }   
-
-      }//end-i
+        h_id_v_id_b->Fill(idMatches_b[0], idMatches_b[1], w);
+        h_id_v_id_c->Fill(idMatches_c[0], idMatches_c[1], w);
+      }
 
       for (int i = 0; i < 2; ++i) {
-        h_dR_b->Fill(lowestSep_b[i], w);
-        h_dR_c->Fill(lowestSep_c[i], w);
+        if (isMCtruth) h_dR_b_truth->Fill(lowestSep_b[i], w);
+        else h_dR_b->Fill(lowestSep_b[i], w);
+
+        if (isMCtruth) h_dR_c_truth->Fill(lowestSep_c[i], w);
+        else h_dR_c->Fill(lowestSep_c[i], w);
+      }
+
+      // Check to see if our determined criteria match what we want, i.e.
+      // make sure that the separations are less than our desired cut
+      // AND the jets are not being matched to the same object
+      for (int i = 0; i < 2; ++i) {
+        if (lowestSep_b[i] < dR_cut) foundMatches_b[i] = true;
+        if (lowestSep_c[i] < dR_cut) foundMatches_c[i] = true;
       }
 
       // Use these values to say whether or not we've actually passed
       // the proper jet matches.
+      bool foundBoth_b = false, foundBoth_c = false;
+      int nMatches = 0;
       if (foundMatches_b[0]) {
-        
-        h_eff_cutflow->Fill(1.5, w); // passed b-match #1
+       
+        if (isMCtruth) h_eff_cutflow_truth->Fill(1.5, w); 
+        else h_eff_cutflow->Fill(1.5, w); // passed b-match #1
+        nMatches++;
         
         // For the second jet, make sure we're not matching to the same jet.
         if (foundMatches_b[1] && idMatches_b[0] != idMatches_b[1]) {
-          h_eff_cutflow->Fill(2.5, w); // passed b-match #2
+          
+          foundBoth_b = true;
+          nMatches++;
+          if (isMCtruth) h_eff_cutflow_truth->Fill(2.5, w);
+          else h_eff_cutflow->Fill(2.5, w); // passed b-match #2
         }        
       }
 
       if (foundMatches_c[0]) {
        
-        h_eff_cutflow->Fill(3.5, w); // passed c-match #1
-        
+        if (isMCtruth) h_eff_cutflow_truth->Fill(3.5, w);
+        else h_eff_cutflow->Fill(3.5, w); // passed c-match #1
+        nMatches++;      
+  
         // For the second jet, make sure we're not matching to the same jet.
         if (foundMatches_c[1] && idMatches_c[0] != idMatches_c[1]) {
-          h_eff_cutflow->Fill(4.5, w); // passed c-match #2
+          
+          foundBoth_c = true;
+          nMatches++;
+          if (isMCtruth) h_eff_cutflow_truth->Fill(4.5, w);
+          else h_eff_cutflow->Fill(4.5, w); // passed c-match #2
         }
 
+      }
+
+      // Mark down if we've found all four matches.
+      if (isMCtruth) h_nMatches_truth->Fill(nMatches, w);
+      else h_nMatches->Fill(nMatches, w);
+     
+      if (foundBoth_b && foundBoth_c) {
+        if (isMCtruth) h_eff_cutflow_truth->Fill(5.5, w);
+        else h_eff_cutflow->Fill(5.5, w);
       }
 
     }//end-Fill
@@ -763,9 +827,15 @@ class EffPlots
     // Methods - Return a list of all the histograms.
     std::vector<TH1*> returnHisto() {
       std::vector<TH1*> histolist;
-      histolist.push_back(h_eff_cutflow);
-      histolist.push_back(h_dR_b);
-      histolist.push_back(h_dR_c); 
+      histolist.push_back(h_eff_cutflow); histolist.push_back(h_eff_cutflow_truth);
+      histolist.push_back(h_dR_b);        histolist.push_back(h_dR_b_truth);
+      histolist.push_back(h_dR_c);        histolist.push_back(h_dR_c_truth);
+      histolist.push_back(h_nMatches);    histolist.push_back(h_nMatches_truth);
+      histolist.push_back(h_dR_v_dR_b);   histolist.push_back(h_dR_v_dR_b_truth);
+      histolist.push_back(h_dR_v_dR_c);   histolist.push_back(h_dR_v_dR_c_truth);
+      histolist.push_back(h_dRb_v_dRc);   histolist.push_back(h_dRb_v_dRc_truth);
+      histolist.push_back(h_id_v_id_b);   histolist.push_back(h_id_v_id_b_truth);
+      histolist.push_back(h_id_v_id_c);   histolist.push_back(h_id_v_id_c_truth);
       return histolist;
     };
 
@@ -774,11 +844,19 @@ class EffPlots
     
     // Variables
     TString m_name;
-    Float_t dR_cut = 0.5;
+    Float_t dR_cut = 0.8;
 
     // Plots
+    TH1D* h_eff_cutflow_truth;
     TH1D* h_eff_cutflow;
-    TH1D* h_dR_b;
-    TH1D* h_dR_c;
+    TH1D* h_dR_b; TH1D* h_dR_b_truth;
+    TH1D* h_dR_c; TH1D* h_dR_c_truth;
+    TH1D* h_nMatches; TH1D* h_nMatches_truth;
+
+    TH2D* h_dR_v_dR_b; TH2D* h_dR_v_dR_b_truth;
+    TH2D* h_dR_v_dR_c; TH2D* h_dR_v_dR_c_truth;
+    TH2D* h_dRb_v_dRc; TH2D* h_dRb_v_dRc_truth;
+    TH2D* h_id_v_id_b; TH2D* h_id_v_id_b_truth;
+    TH2D* h_id_v_id_c; TH2D* h_id_v_id_c_truth;
 };
 #endif

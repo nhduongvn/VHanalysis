@@ -716,7 +716,7 @@ void VH_selection::Process(Reader* r) {
 
     }//end-found-jets
     
-    if (genCjet_list.size() == 1) {
+    /*if (genCjet_list.size() == 1) {
       std::cout << "only ONE cjet found" << std::endl;
       std::cout << ">>> pt = " << genCjet_list[0].Pt() << "\n";
       std::cout << ">>> m  = " << genCjet_list[0].M() << "\n";
@@ -725,7 +725,7 @@ void VH_selection::Process(Reader* r) {
       std::cout << "only ONE bjet found" << std::endl;
       std::cout << ">>> pt = " << genBjet_list[0].Pt() << "\n";
       std::cout << ">>> m  = " << genBjet_list[0].M() << "\n";
-    }
+    }*/
   }//end-VbbHcc-check
 #endif
 
@@ -932,6 +932,12 @@ void VH_selection::Process(Reader* r) {
 
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
             h_VH_tags->FillGluCheck(Z2, evtW);
+            
+            // If we have a proper VbbHcc event and we've found the 
+            // proper MC truth objects, check the efficiency.
+            if (is_VbbHcc_event) {
+              h_eff_tags->Fill(Z2, H2, gen_bs, gen_cs, true, evtW);
+            }
 #endif 
 
           }//end-c-cut-2
@@ -999,6 +1005,12 @@ void VH_selection::Process(Reader* r) {
 
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
             h_VH_algo->FillGluCheck(Z3, evtW);
+
+            // If we have a proper VbbHcc event and we've found the 
+            // proper MC truth objects, check the efficiency.
+            if (is_VbbHcc_event) {
+              h_eff_algo->Fill(Z3, H3, gen_bs, gen_cs, true, evtW);
+            }
 #endif
 
           }//end-c-cut-2
@@ -1099,6 +1111,12 @@ void VH_selection::Process(Reader* r) {
 
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
         h_VH_both->FillGluCheck(Z4, evtW);
+
+        // If we have a proper VbbHcc event and we've found the 
+        // proper MC truth objects, check the efficiency.
+        if (is_VbbHcc_event) {
+          h_eff_both->Fill(Z4, H4, gen_bs, gen_cs, true, evtW);
+        }
 #endif
 
     }//end-tagging
