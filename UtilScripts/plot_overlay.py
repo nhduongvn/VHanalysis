@@ -54,7 +54,7 @@ def getHist(pN, sample_name, fH, lS):
 debug = True
 years = ['16','17','18']
 plotFolder = '../full_results/'
-useLogY = True
+useLogY = False
 
 produceSelectionTypes = True
 
@@ -290,6 +290,59 @@ if debug:
         bckgPlot_names, "overlay_jets_" + canvName + "_" + y,
         plotFolder + "/20" + y + "_QCDv9" + "/overlay/",
         xA_title, xA_range, jet_colors, lumi=lumiS[y], logY=useLogY)
+
+###############################################################################
+## Type #2b - Other Jet Variables
+###############################################################################
+
+if debug:
+  print "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+  print "STEP 2b: Producing for other Jet variables"
+  print "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+
+regions = ['jets']
+plotNames = ['nJet']
+colors = [ ROOT.kRed, ROOT.kBlue ]
+
+for r in regions:
+  
+  for plN in plotNames:
+    if r != '':
+      hN = 'VbbHcc_' + r + '_' + plN
+    else:
+      hN = 'VbbHcc_' + r + '_' + plN
+    
+    hSignal = getHist(hN, ss_signal, fHist, lumiScales)
+    hBckg   = getHist(hN, ss_bckg,   fHist, lumiScales)
+    
+    ############################
+    # Stack plots for each year
+    ############################
+    
+    for y in years:
+      tmps = cfg.get(plN,'xAxisRange').split(',')
+      xA_range = []
+      if 'Pi' not in tmps[1]:
+        xA_range = [float(tmps[0]), float(tmps[1])]
+      else:
+        xA_range = [0, ROOT.TMath.Pi()]
+      xA_title = cfg.get(plN, 'xAxisTitle')
+      nRebin = int(cfg.get(plN, 'rebin'))
+      
+      signal_plots = [hSignal[y].Clone().Rebin(nRebin)]
+      for plot in signal_plots:
+        plot.Scale(1./plot.Integral())
+      bckg_plots = [hBckg[y].Clone().Rebin(nRebin)]
+      for plot in bckg_plots:
+        plot.Scale(1./plot.Integral())
+      
+      signal_names = [plN + " (signal)"]
+      bckg_names = [plN + " (bckg)"]
+      
+      makeOverlayPlots(signal_plots, bckg_plots, signal_names,
+        bckg_names, "overlay_" + r + "_" + plN + "_" + y,
+        plotFolder + "/20" + y + "_QCDv9" + "/overlay/",
+        xA_title, xA_range, colors, lumi=lumiS[y], logY=useLogY)
 
 ###############################################################################
 ## Type #3 - MET

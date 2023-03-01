@@ -195,6 +195,8 @@ def makeOverlayPlots(signal_plots, bckg_plots, signal_names, bckg_names,
   ## Prepare the legend
   #x0 = 0.4; x1 = 0.89
   x0 = 0.4; x1 = 0.89
+  if "jet" in canvasName:
+    x0 = 0.6
   #if left: 
   #  x0 = 0.17
   #  x1 = 0.42

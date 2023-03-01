@@ -18,6 +18,10 @@ The following macros are contained within this folder and are useful for the fol
 
   This macro produces 2D plots for the mass distributions comparing m(H) and m(Z).
 
+- **plot_jet_variables.py**
+
+  This plots variables related to the jets, such as their DeepJet tagging scores, multiplicity, etc.
+
 - **plot_MC.py**
 
   This takes all the possible background samples for our analysis and creates a plot that combines them all. This needs to be updated to include the proper samples.
