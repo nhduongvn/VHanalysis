@@ -70,10 +70,10 @@ years = ['16', '17', '18']
 plotFolder = '../full_results/'
 useLogY = True
 
-produceOneSidedROCs = True
+produceOneSidedROCs = False
 produceJetROCs = True
 produceGeneralROCs = True
-produceIntervalROCs = True
+produceIntervalROCs = False
 
 ## signal samples
 ss_signal = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ']
@@ -294,6 +294,53 @@ if produceJetROCs:
         "ROC_pt_jets_" + canvName + "_" + y,
         plotFolder + "/20" + y + "_QCDv9" + "/ROC/", jet_colors,
         lumi=lumiS[y], useLessThan=False, lowerLegend=True)
+
+###############################################################################
+## ROC Curves Type #2b - related to other jet variables
+###############################################################################
+
+if produceJetROCs:
+  if debug: 
+    print "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+    print "STEP b2: Producing ROC curves for other jet variables"
+    print "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+    
+  regions = ["jets"]
+  plotNames = ["nJet", "CSV", "CvL", "CvB"]
+  lessThan = [ "False", "False", "False", "False"]
+  
+  for r in regions:
+    
+    for plN in plotNames:
+      
+      ## Get the plots for the signal and background
+      hSignal = getHist("VbbHcc_" + r + "_" + plN, ss_signal, fHist, lumiScales)
+      hBckg   = getHist("VbbHcc_" + r + "_" + plN, ss_bckg,   fHist, lumiScales)
+      
+      #############################
+      ## Stack plots for each year
+      #############################
+      for y in years:
+        
+        xAxis_title = "False Signal Rate (Bckg)"
+        xAxis_title = "True Signal Rate"
+        nRebin = int(cfg.get(plN,"rebin"))
+          
+        signal_plots = [
+          hSignal[y].Clone().Rebin(nRebin)
+        ]
+    
+      bckg_plots = [
+        hBckg[y].Clone().Rebin(nRebin)
+      ]
+
+      plot_names = [ plN ]
+      
+      makeROCcurve(signal_plots, bckg_plots, plot_names, plN,
+        "ROC_" + r + "_" + plN + "_" + y,
+        plotFolder + "/20" + y + "_QCDv9" + "/ROC/", [ROOT.kMagenta + 2],
+        lumi=lumiS[y], useLessThan=True, lowerLegend=False)
+
 
 ###############################################################################
 ## ROC Curves Type #3 - related to regions of general variables we want.
