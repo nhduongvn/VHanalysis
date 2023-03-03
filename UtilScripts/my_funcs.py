@@ -418,7 +418,8 @@ useFill=True, forceMin=False, modMaxX = True):
     allStack.Draw("hist")
   else:
     allStack.Draw("hist,nostack")
-  allStack.GetXaxis().SetRangeUser(xAxisRange[0], xAxisRange[1])
+  if len(xAxisRange) >= 2:
+    allStack.GetXaxis().SetRangeUser(xAxisRange[0], xAxisRange[1])
   binW = plots[0].GetBinWidth(1)
   
   if logY: c.SetLogy()

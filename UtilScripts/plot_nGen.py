@@ -1,50 +1,244 @@
-## == IMPORT STATEMENTS ==========================================
+## == IMPORT STATEMENTS =======================================================
 
 import ROOT
-import os,sys
+import sys,os
+import copy
+import math
+import ConfigParser
+from math import *
+
+from my_funcs import makeStackPlot
 
 ROOT.gROOT.SetBatch(True)
 
-##################################################################
+## == Useful Methods ==========================================================
+
+##############################################
+## Scale a histogram to the proper luminosity
+##############################################
+def scaleToLumi1(fName, xSec, lumi):
+  f = ROOT.TFile.Open(fName, 'read')
+  hTmp = f.Get('Nevt')
+  nP = hTmp.GetBinContent(3)
+  nN = hTmp.GetBinContent(1)
+  return lumi*xSec/(nP-nN)
+
+####################################################
+## Get the histograms for a given sample & variable
+####################################################
+def getHist(pN, sample_name, fH, lS):
+  hOut = {}
+  
+  ## Go through each year we're interested in.
+  for y in years:
+    ## Get the first sample
+    print sample_name[0], pN, y
+    hOut[y] = fH[sample_name[0]][y][0].Get(pN).Clone()
+    if sample_name[0] not in ['JetHT']:
+      hOut[y].Scale(lS[sample_name[0]][y][0])
+    
+    ## Add the other samples 
+    for iS in range(len(sample_name)):
+      for fi in range(len(fH[sample_name[iS]][y])):
+        if iS == 0 and fi == 0: continue
+        h = fH[sample_name[iS]][y][fi].Get(pN).Clone()
+        if sample_name[iS] not in ['JetHT']:
+          h.Scale(lS[sample_name[iS]][y][fi])
+        hOut[y].Add(h)
+    
+  return hOut
+
+###############################################################################
 ## MAIN CODE
-##################################################################
+###############################################################################
 
-f = ROOT.TFile.Open("../test.root", "READ")
+bckg_colors = [ ROOT.kMagenta + 2, ROOT.kOrange + 7]
 
-#hN = f.Get("nGenJet")
-#hN.SetLineColor(ROOT.kRed)
-#hN.SetLineWidth(2)
+###############################
+## These you can edit / change
+###############################
+debug = True
+regions = ['']
+years = ['16', '17', '18']
+plotCat = 'VbbHcc'
+useLogY = False
+summary_control_plot_name = 'summary_control_plot_zjet_zHFjet.txt'
+plotFolder = '../full_results/'
 
-hL = f.Get("nGenL")
-hL.SetLineColor(ROOT.kRed)
-hL.SetLineWidth(2)
+## signal samples
+ss_signal = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ']
 
-hC = f.Get("nGenC")
-hC.SetLineColor(ROOT.kGreen+2)
-hC.SetLineWidth(2)
+## simplified background samples - QCD and ttbar
+ss_bckg = [ 'QCD_HT100to200_v9', 'QCD_HT200to300_v9', 'QCD_HT300to500_v9','QCD_HT500to700_v9','QCD_HT700to1000_v9','QCD_HT1000to1500_v9','QCD_HT1500to2000_v9','QCD_HT2000toInf_v9', 'TTToHadronic', 'TTToSemiLeptonic', 'TTTo2L2Nu']
 
-hB = f.Get("nGenB")
-hB.SetLineColor(ROOT.kBlue)
-hB.SetLineWidth(2)
+## combined list containing both signal & background samples
+ss = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ', 'QCD_HT100to200_v9', 'QCD_HT200to300_v9', 'QCD_HT300to500_v9','QCD_HT500to700_v9','QCD_HT700to1000_v9','QCD_HT1000to1500_v9','QCD_HT1500to2000_v9','QCD_HT2000toInf_v9', 'TTToHadronic', 'TTToSemiLeptonic', 'TTTo2L2Nu']
 
-hGlu = f.Get("nGenGlu")
-hGlu.SetLineColor(ROOT.kMagenta + 2)
-hGlu.SetLineWidth(2)
+##################################################
+## Do not edit below this point (without caution)
+##################################################
 
-canvas = ROOT.TCanvas("", "")
-canvas.cd()
+## Load the config file
+if debug: print "STEP 0: Loading necessary elements..."
+if debug: print ">>>>>>> loading config files..."
+config_file = '../Configs/config.ini'
+cfg = ConfigParser.ConfigParser()
+cfg.read(config_file)
 
-hStack = ROOT.THStack("stack", "stack")
-#hStack.Add(hN)
-hStack.Add(hL)
-hStack.Add(hC)
-hStack.Add(hB)
-hStack.Add(hGlu)
+## Get the lumi scales
+if debug: print ">>>>>>> loading luminosities..."
+lumiS = {}
+for y in years:
+  lumiTmp = float(cfg.get('General','lumi_'+y))/1000.
+  lumiTmp = format("%.1f" % lumiTmp)
+  lumiS[y] = str(lumiTmp)
+print "lumi scales = ", lumiS
 
-hStack.Draw("nohist,HIST")
+## Retrieve necessary information
+## from the desired samples
+if debug: print ">>>>>>> loading cross-sections..."
+if debug: print ">>>>>>> loading appropriate files..."
 
-canvas.BuildLegend()
-canvas.Update()
-canvas.Show()
+fNames = {}
+xSecs = {}
+lumiScales = {}
+fHist = {}
 
-canvas.Print("temp_plots/genJet_multiplicity.png")
+for s in ss:
+  
+  fNames[s] = {}
+  xSecs[s] = {}
+  lumiScales[s] = {}
+  fHist[s] = {}
+  
+  for y in years:
+    
+    lumi = float(cfg.get('General', 'lumi_'+y))
+    names = cfg.get(s, 'file_'+y).split(',')
+    print '>>>>>>>>>: ', len(names)
+    xSecTmps = ['1']*len(names)
+    kfactor = ['1']*len(names)
+    if s not in ['JetHT']:
+      xSecTmps = cfg.get(s, 'xSec_'+y).split(',')
+    
+    fNames[s][y] = []
+    xSecs[s][y] = []
+    fHist[s][y] = []
+    dirpath = '../new_condor_results/NONE/'
+    for iN in names:
+      #fNames[s][y].append(cfg.get('Paths', 'path') + '/' + iN)
+      fNames[s][y].append(dirpath + '/' + iN)
+      fHist[s][y].append(ROOT.TFile.Open(fNames[s][y][-1],'READ'))
+    
+    print xSecTmps
+    for iS in xSecTmps:
+      if '*' in iS: iS = iS.split('*')
+      if len(iS) == 2:
+        xSecs[s][y].append(float(iS[0])*float(iS[1]))
+      else:
+        xSecs[s][y].append(float(iS))
+        
+    lumiScales[s][y] = [1]*len(names)
+    for iN in range(len(fNames[s][y])):
+      if s not in ['JetHT']:
+        print s, y, iN, fNames[s][y][iN]
+        lumiScales[s][y][iN] = scaleToLumi1(fNames[s][y][iN], xSecs[s][y][iN], lumi)
+
+nums = {}
+###########################
+## Produce all the plots
+###########################
+
+## Go through each region of interest
+for r in regions:
+
+  print "///////////////////////////////////////////////////////////////////////////////"
+  print " region = ", r
+  print "///////////////////////////////////////////////////////////////////////////////"
+  
+  nums[r] = {}
+  plotNames = [ "nGenJet", "nGenL", "nGenB", "nGenC", "nGenGlu" ]
+  xAxes = [
+    "Gen Jet multiplicity", "Gen l-jet multiplicity", 
+    "Gen b-jet multiplicity", "Gen c-jet multiplicity",
+    "Gen gluon jet multiplicity"]
+  
+  for i in range(len(plotNames)):
+    plN = plotNames[i]
+    hN = plN
+    
+    ## Get the desired plots (Signal)
+    hZHcc = getHist(hN, ['ZH_HToCC_ZToQQ'], fHist, lumiScales)
+    hggZHcc = getHist(hN, ['ggZH_HToCC_ZToQQ'], fHist, lumiScales)
+    
+    ## Get the desired plots (Background)
+    hQCD = getHist(hN, ['QCD_HT100to200_v9','QCD_HT200to300_v9', 'QCD_HT300to500_v9','QCD_HT500to700_v9','QCD_HT700to1000_v9','QCD_HT1000to1500_v9','QCD_HT1500to2000_v9','QCD_HT2000toInf_v9'], fHist, lumiScales)
+    hTT = getHist(hN,['TTToHadronic','TTToSemiLeptonic','TTTo2L2Nu'],fHist,lumiScales)
+    
+    ############################
+    # Stack plots for each year
+    ############################
+    
+    for y in years:
+      xA_range = []
+      xA_title = xAxes[i]# cfg.get(plN, 'xAxisTitle')
+      nRebin = 1
+      
+      ## Plot for the signal samples
+      signal_plots = [
+        hZHcc[y].Clone().Rebin(nRebin),
+        hggZHcc[y].Clone().Rebin(nRebin)
+      ]
+      signal_names = [ 'ZHcc', 'ggZHcc' ]
+      
+      logY = useLogY
+      if 'CutFlow' in plN: logY = True
+      makeStackPlot(signal_plots, signal_names, plN + '_' + r + '_signal_' + y,
+        plotFolder + '/20' + y + '_QCDv9/signal/genJet/', xA_title,
+        xA_range, 'MC unc. (stat.)', False, logY=logY, lumi=lumiS[y],modMaxX=False)
+      
+      ## Plot for the background samples
+      bckg_plots = [
+        hQCD[y].Clone().Rebin(nRebin),
+        hTT[y].Clone().Rebin(nRebin)
+      ]
+      bckg_names = [ 'QCD', 't#bar{t}' ]
+      
+      logY = useLogY
+      if 'CutFlow' in plN: logY = True
+      makeStackPlot(bckg_plots, bckg_names, plN + '_' + r + '_bckg_' + y,
+        plotFolder + '/20' + y + '_QCDv9/bckg/genJet/', xA_title,
+        xA_range, 'MC unc. (stat.)', False, logY=logY, lumi=lumiS[y],
+        custom_colors=bckg_colors, modMaxX=False)
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
