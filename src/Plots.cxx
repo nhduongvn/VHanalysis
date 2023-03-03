@@ -181,6 +181,8 @@ class JetPlots
       h_phi_jet3 = new TH1D(name + "_phi_jet3", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
 
       // Initialize the tagging plots
+      //h_nL_loose = new TH1D(name + "_nL_loose", "", 10, -0.5, 9.5);
+      //h_nL_medium = new TH1D(name + "_nL_medium", "", 10, -0.5, 9.5);
       h_nB_loose = new TH1D(name + "_nB_loose", "", 10, -0.5, 9.5);
       h_nB_medium = new TH1D(name + "_nB_medium", "", 10, -0.5, 9.5);
       h_nC_loose = new TH1D(name + "_nC_loose", "", 10, -0.5, 9.5);
@@ -665,6 +667,13 @@ class EffPlots
       h_nMatches = new TH1D(name + "_nMatches", "", 8, -0.5, 7.5);
       h_nMatches_truth = new TH1D(name + "_nMatches_truth", "", 8, -0.5, 7.5);
 
+      h_pt_b = new TH1D(name + "_pt_b", "", 2000, 0, 2000);
+      h_pt_c = new TH1D(name + "_pt_c", "", 2000, 0, 2000);
+      h_pt_b_truth = new TH1D(name + "_pt_b_truth", "", 2000, 0, 2000);
+      h_pt_c_truth = new TH1D(name + "_pt_c_truth", "", 2000, 0, 2000);
+      h_pt_bjet = new TH1D(name + "_pt_bjet", "", 2000, 0, 2000);
+      h_pt_cjet = new TH1D(name + "_pt_cjet", "", 2000, 0, 2000);
+
       h_dR_v_dR_b = new TH2D(name + "_dR_v_dR_b", 
                "", NBIN_DR, X_DR[0], X_DR[1], NBIN_DR, X_DR[0], X_DR[1]);
       h_dR_v_dR_c = new TH2D(name + "_dR_v_dR_c",
@@ -712,7 +721,23 @@ class EffPlots
       std::vector<JetObj> Zjets = Z.m_jets;
  
       // Fill the proper physics object histograms.
-      // == General Jet Plots can go here ==
+      if (isMCtrutH) {
+        h_pt_b_truth->Fill(bjets[0].Pt(), w);
+        h_pt_b_truth->Fill(bjets[1].Pt(), w);
+        h_pt_bjets->Fill(Zjets[0].Pt(), w);
+        h_pt_bjets->Fill(Zjets[1].Pt(), w);
+
+        h_pt_c_truth->Fill(cjets[0].Pt(), w);
+        h_pt_c_truth->Fill(cjets[1].Pt(), w);
+        h_pt_cjets->Fill(Hjets[0].Pt(), w);
+        h_pt_cjets->Fill(Hjets[1].Pt(), w);
+      }
+      else {
+        h_pt_b->Fill(bjets[0].Pt(), w);
+        h_pt_b->Fill(bjets[1].Pt(), w);
+        h_pt_c->Fill(cjets[0].Pt(), w);
+        h_pt_c->Fill(cjets[1].Pt(), w);
+      }
 
       // We do not know which b goes to which jet or which c goes to 
       // which jet, so we have to try each combination.    
@@ -831,6 +856,11 @@ class EffPlots
       histolist.push_back(h_dR_b);        histolist.push_back(h_dR_b_truth);
       histolist.push_back(h_dR_c);        histolist.push_back(h_dR_c_truth);
       histolist.push_back(h_nMatches);    histolist.push_back(h_nMatches_truth);
+
+      histolist.push_back(h_pt_b);        histolist.push_back(h_pt_b_truth);
+      histolist.push_back(h_pt_c);        histolist.push_back(h_pt_c_truth);
+      histolist.push_back(h_pt_bjet);     histolist.push_back(h_pt_cjet);
+
       histolist.push_back(h_dR_v_dR_b);   histolist.push_back(h_dR_v_dR_b_truth);
       histolist.push_back(h_dR_v_dR_c);   histolist.push_back(h_dR_v_dR_c_truth);
       histolist.push_back(h_dRb_v_dRc);   histolist.push_back(h_dRb_v_dRc_truth);
@@ -852,6 +882,10 @@ class EffPlots
     TH1D* h_dR_b; TH1D* h_dR_b_truth;
     TH1D* h_dR_c; TH1D* h_dR_c_truth;
     TH1D* h_nMatches; TH1D* h_nMatches_truth;
+
+    TH1D* h_pt_b; TH1D* h_pt_b_truth;
+    TH1D* h_pt_c; TH1D* h_pt_c_truth;
+    TH1D* h_pt_bjet; TH1D* h_pt_cjet;
 
     TH2D* h_dR_v_dR_b; TH2D* h_dR_v_dR_b_truth;
     TH2D* h_dR_v_dR_c; TH2D* h_dR_v_dR_c_truth;
