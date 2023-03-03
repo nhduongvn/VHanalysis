@@ -86,7 +86,10 @@ def makePlot(plot, plotName, canvasName, plotDir, xAxisTitle, xAxisRange,
   ## Appropriately modify the plot
   if fill: plot.SetFillColor(fill_color)
   plot.SetLineColor(line_color)
-  plot.Rebin(rebin)
+  if is2D:
+    plot.RebinX(rebin)
+    plot.RebinY(rebin)
+  else: plot.Rebin(rebin)
   if is2D: plot.Draw("colz")
   else: plot.Draw("HIST")
   plot.GetXaxis().SetTitle(xAxisTitle)
@@ -94,7 +97,7 @@ def makePlot(plot, plotName, canvasName, plotDir, xAxisTitle, xAxisRange,
   
   ## Update the canvas & modify the y-axis if appropriate
   c.Update()
-  if logY: c.SetLogy()
+  if logY and not is2D: c.SetLogy()
   
   ## Check to make sure the directory exists &
   ## then print the proper files to the output
@@ -499,7 +502,7 @@ useFill=True, forceMin=False, modMaxX = True):
 ## Make ROC Curve
 ###############################################################################
 def makeROCcurve(signal_plots, bckg_plots, plotNames, plotVar, canvasName,
-  plotDir, colors, lumi='35.9', useLessThan=True, lowerLegend=True):
+  plotDir, colors, lumi='35.9', useLessThan=True, lowerLegend=True, useAllLabels=False):
   
   ## Make sure that the output folder exists.
   dirExists = os.path.exists(plotDir)
@@ -603,7 +606,7 @@ def makeROCcurve(signal_plots, bckg_plots, plotNames, plotVar, canvasName,
     x = graphs[idx].GetX()[i]
     
     bckg_percent = eff_bckg[idx][i]
-    if bckg_percent < 0.15 or bckg_percent >= 0.85:
+    if (bckg_percent < 0.15 or bckg_percent >= 0.85) and not useAllLabels:
       continue
     
     lt = ROOT.TLatex(x, y, str(cut_values[i]))

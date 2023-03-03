@@ -4,7 +4,7 @@
 void ROC_H_dR_Bj1_16()
 {
 //=========Macro generated from canvas: ROC_H_dR_Bj1_16/ROC_H_dR_Bj1_16
-//=========  (Sun Feb 19 15:09:24 2023) by ROOT version 6.26/06
+//=========  (Wed Mar  1 15:31:58 2023) by ROOT version 6.26/06
    TCanvas *ROC_H_dR_Bj1_16 = new TCanvas("ROC_H_dR_Bj1_16", "ROC_H_dR_Bj1_16",0,0,600,600);
    ROC_H_dR_Bj1_16->SetHighLightColor(2);
    ROC_H_dR_Bj1_16->Range(-0.2901881,-0.1615385,1.238796,1.184615);
@@ -25,35 +25,35 @@ void ROC_H_dR_Bj1_16()
    
    Double_t Graph_fx66[30] = {
    0,
-   0.03187356,
-   0.1514222,
-   0.2769826,
-   0.3797261,
-   0.4703139,
-   0.542572,
-   0.6077229,
-   0.6611709,
-   0.7069522,
-   0.7459022,
-   0.7831256,
-   0.8174039,
-   0.8482465,
-   0.876331,
-   0.9078344,
-   0.9300072,
-   0.9492227,
-   0.9668722,
-   0.9765884,
-   0.9834324,
-   0.9886096,
-   0.9929057,
-   0.9957724,
-   0.9973286,
-   0.9984263,
-   0.9991231,
-   0.9995935,
-   0.999774,
-   0.9999635};
+   0.03171843,
+   0.1530178,
+   0.277991,
+   0.3797319,
+   0.4691231,
+   0.5408565,
+   0.6089405,
+   0.6616423,
+   0.7084733,
+   0.747901,
+   0.7853817,
+   0.8200266,
+   0.8497818,
+   0.8770558,
+   0.9086346,
+   0.9306988,
+   0.9501095,
+   0.9670547,
+   0.9765007,
+   0.9833166,
+   0.9884903,
+   0.9927904,
+   0.9954498,
+   0.9972834,
+   0.9983848,
+   0.9990696,
+   0.9995623,
+   0.999739,
+   0.9999175};
    Double_t Graph_fy66[30] = {
    0,
    0.03312082,
@@ -100,7 +100,7 @@ void ROC_H_dR_Bj1_16()
    graph->SetMarkerColor(ci);
    graph->SetMarkerStyle(20);
    
-   TH1F *Graph_Graph66 = new TH1F("Graph_Graph66","Tagging Only",100,0,1.09996);
+   TH1F *Graph_Graph66 = new TH1F("Graph_Graph66","Tagging Only",100,0,1.099909);
    Graph_Graph66->SetMinimum(0);
    Graph_Graph66->SetMaximum(1.1);
    Graph_Graph66->SetDirectory(0);
@@ -118,62 +118,62 @@ void ROC_H_dR_Bj1_16()
    Graph_Graph66->GetZaxis()->SetTitleFont(42);
    graph->SetHistogram(Graph_Graph66);
    
-   TLatex *   tex = new TLatex(0.1515788,0.2680878,"0.5");
+   TLatex *   tex = new TLatex(0.153076,0.2680878,"0.5");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
    graph->GetListOfFunctions()->Add(67);
-      tex = new TLatex(0.2774076,0.4321303,"0.7");
+      tex = new TLatex(0.2784298,0.4321303,"0.7");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
    graph->GetListOfFunctions()->Add(68);
-      tex = new TLatex(0.3806054,0.5884194,"0.9");
+      tex = new TLatex(0.3808656,0.5884194,"0.9");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
    graph->GetListOfFunctions()->Add(69);
-      tex = new TLatex(0.4708725,0.7144442,"1.1");
+      tex = new TLatex(0.4699418,0.7144442,"1.1");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
    graph->GetListOfFunctions()->Add(70);
-      tex = new TLatex(0.4171459,0.8642775,"1.3");
+      tex = new TLatex(0.4191972,0.8642775,"1.3");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
    graph->GetListOfFunctions()->Add(71);
-      tex = new TLatex(0.5142115,0.8763432,"1.5");
+      tex = new TLatex(0.5161503,0.8763432,"1.5");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
    graph->GetListOfFunctions()->Add(72);
-      tex = new TLatex(0.5766439,0.918645,"1.7");
+      tex = new TLatex(0.5791583,0.918645,"1.7");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
    graph->GetListOfFunctions()->Add(73);
-      tex = new TLatex(0.6352198,0.9488847,"1.9");
+      tex = new TLatex(0.6349512,0.9488847,"1.9");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
    graph->GetListOfFunctions()->Add(74);
-      tex = new TLatex(0.6869197,0.9628597,"2.1");
+      tex = new TLatex(0.687891,0.9628597,"2.1");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
    graph->GetListOfFunctions()->Add(75);
-      tex = new TLatex(0.7294478,0.9825735,"2.3");
+      tex = new TLatex(0.7333385,0.9825735,"2.3");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
    graph->GetListOfFunctions()->Add(76);
-      tex = new TLatex(0.7768039,0.9926236,"2.5");
+      tex = new TLatex(0.7828832,0.9926236,"2.5");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
    graph->GetListOfFunctions()->Add(77);
-      tex = new TLatex(0.8198641,1.004587,"2.7");
+      tex = new TLatex(0.8237691,1.004587,"2.7");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
@@ -182,34 +182,34 @@ void ROC_H_dR_Bj1_16()
    
    Double_t Graph_fx79[30] = {
    0,
-   7.283633e-07,
-   0.06666788,
-   0.1599242,
-   0.2478494,
-   0.3218253,
-   0.4171459,
-   0.5142115,
-   0.5766439,
-   0.6352198,
-   0.6869197,
-   0.7294478,
-   0.7768039,
-   0.8198641,
-   0.8611782,
-   0.8991338,
-   0.9329357,
-   0.9579128,
-   0.9729116,
-   0.9800562,
-   0.9850949,
-   0.9884831,
-   0.9933904,
-   0.9965958,
-   0.9989418,
-   0.9994896,
-   0.999561,
-   0.9996134,
-   0.9999987,
+   6.115403e-07,
+   0.06885169,
+   0.1661292,
+   0.2525198,
+   0.327016,
+   0.4191972,
+   0.5161503,
+   0.5791583,
+   0.6349512,
+   0.687891,
+   0.7333385,
+   0.7828832,
+   0.8237691,
+   0.8634812,
+   0.9006666,
+   0.9350144,
+   0.9591944,
+   0.973679,
+   0.9805842,
+   0.986255,
+   0.9898829,
+   0.9942715,
+   0.9970115,
+   0.9989659,
+   0.999519,
+   0.9995872,
+   0.9996366,
+   0.9999986,
    0.9999996};
    Double_t Graph_fy79[30] = {
    0,
@@ -277,35 +277,35 @@ void ROC_H_dR_Bj1_16()
    
    Double_t Graph_fx80[30] = {
    0,
-   0.03208554,
-   0.1515788,
-   0.2774076,
-   0.3806054,
-   0.4708725,
-   0.5426944,
-   0.6078548,
-   0.6612951,
-   0.7072155,
-   0.7462186,
-   0.7833091,
-   0.8178114,
-   0.848671,
-   0.8766453,
-   0.9079225,
-   0.9300861,
-   0.9494158,
-   0.966906,
-   0.9767817,
-   0.9835616,
-   0.9886715,
-   0.9929208,
-   0.9957591,
-   0.997295,
-   0.9983828,
-   0.9990835,
-   0.9995983,
-   0.9997773,
-   0.9999641};
+   0.03189819,
+   0.153076,
+   0.2784298,
+   0.3808656,
+   0.4699418,
+   0.5412279,
+   0.6094595,
+   0.6620755,
+   0.7089791,
+   0.7484134,
+   0.7857379,
+   0.8205132,
+   0.850292,
+   0.8774549,
+   0.9088026,
+   0.9308359,
+   0.9503376,
+   0.9671451,
+   0.9767071,
+   0.9834542,
+   0.9885626,
+   0.9928161,
+   0.9954485,
+   0.9972559,
+   0.998347,
+   0.9990344,
+   0.9995679,
+   0.9997431,
+   0.999919};
    Double_t Graph_fy80[30] = {
    0,
    0.03382514,
@@ -350,7 +350,7 @@ void ROC_H_dR_Bj1_16()
    graph->SetMarkerColor(ci);
    graph->SetMarkerStyle(20);
    
-   TH1F *Graph_Graph80 = new TH1F("Graph_Graph80","Tagging Prioritized",100,0,1.09996);
+   TH1F *Graph_Graph80 = new TH1F("Graph_Graph80","Tagging Prioritized",100,0,1.099911);
    Graph_Graph80->SetMinimum(0);
    Graph_Graph80->SetMaximum(1.1);
    Graph_Graph80->SetDirectory(0);

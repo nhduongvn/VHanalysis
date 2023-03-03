@@ -4,7 +4,7 @@
 void ROC_H_dR_Bj1_17()
 {
 //=========Macro generated from canvas: ROC_H_dR_Bj1_17/ROC_H_dR_Bj1_17
-//=========  (Sun Feb 19 15:09:24 2023) by ROOT version 6.26/06
+//=========  (Wed Mar  1 15:31:58 2023) by ROOT version 6.26/06
    TCanvas *ROC_H_dR_Bj1_17 = new TCanvas("ROC_H_dR_Bj1_17", "ROC_H_dR_Bj1_17",0,0,600,600);
    ROC_H_dR_Bj1_17->SetHighLightColor(2);
    ROC_H_dR_Bj1_17->Range(-0.290188,-0.1615385,1.238796,1.184615);
@@ -25,35 +25,35 @@ void ROC_H_dR_Bj1_17()
    
    Double_t Graph_fx81[30] = {
    0,
-   0.02911195,
-   0.1448614,
-   0.2692787,
-   0.3778182,
-   0.4761457,
-   0.5515417,
-   0.6178565,
-   0.6745988,
-   0.7152407,
-   0.7543881,
-   0.7926635,
-   0.8259763,
-   0.8546506,
-   0.8799273,
-   0.9066339,
-   0.9315499,
-   0.9477556,
-   0.9633059,
-   0.9720764,
-   0.978857,
-   0.9837744,
-   0.99113,
-   0.9934943,
-   0.9952712,
-   0.9987241,
-   0.9993686,
-   0.9997524,
-   0.9999206,
-   0.9999528};
+   0.02913028,
+   0.1443362,
+   0.268015,
+   0.3795386,
+   0.4763543,
+   0.5509308,
+   0.6171162,
+   0.6735323,
+   0.7147413,
+   0.7537385,
+   0.7914287,
+   0.8250064,
+   0.8540775,
+   0.879744,
+   0.9061972,
+   0.930788,
+   0.9473429,
+   0.9642232,
+   0.9729528,
+   0.9796203,
+   0.9844357,
+   0.9914055,
+   0.9937289,
+   0.9954613,
+   0.9987246,
+   0.9993718,
+   0.9997536,
+   0.9999207,
+   0.9999526};
    Double_t Graph_fy81[30] = {
    0,
    0.03120356,
@@ -118,62 +118,62 @@ void ROC_H_dR_Bj1_17()
    Graph_Graph81->GetZaxis()->SetTitleFont(42);
    graph->SetHistogram(Graph_Graph81);
    
-   TLatex *   tex = new TLatex(0.2696874,0.4469091,"0.7");
+   TLatex *   tex = new TLatex(0.2684286,0.4469091,"0.7");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
    graph->GetListOfFunctions()->Add(82);
-      tex = new TLatex(0.3783227,0.6010529,"0.9");
+      tex = new TLatex(0.3799741,0.6010529,"0.9");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
    graph->GetListOfFunctions()->Add(83);
-      tex = new TLatex(0.4768893,0.7158258,"1.1");
+      tex = new TLatex(0.477021,0.7158258,"1.1");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
    graph->GetListOfFunctions()->Add(84);
-      tex = new TLatex(0.4102819,0.8486302,"1.3");
+      tex = new TLatex(0.4149291,0.8486302,"1.3");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
    graph->GetListOfFunctions()->Add(85);
-      tex = new TLatex(0.4876106,0.8669075,"1.5");
+      tex = new TLatex(0.4896204,0.8669075,"1.5");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
    graph->GetListOfFunctions()->Add(86);
-      tex = new TLatex(0.5609728,0.9111293,"1.7");
+      tex = new TLatex(0.5613283,0.9111293,"1.7");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
    graph->GetListOfFunctions()->Add(87);
-      tex = new TLatex(0.6123527,0.9355806,"1.9");
+      tex = new TLatex(0.6135231,0.9355806,"1.9");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
    graph->GetListOfFunctions()->Add(88);
-      tex = new TLatex(0.6754446,0.9594824,"2.1");
+      tex = new TLatex(0.6770108,0.9594824,"2.1");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
    graph->GetListOfFunctions()->Add(89);
-      tex = new TLatex(0.7153941,0.9753932,"2.3");
+      tex = new TLatex(0.717013,0.9753932,"2.3");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
    graph->GetListOfFunctions()->Add(90);
-      tex = new TLatex(0.7589856,0.9927107,"2.5");
+      tex = new TLatex(0.7637997,0.9927107,"2.5");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
    graph->GetListOfFunctions()->Add(91);
-      tex = new TLatex(0.7982617,1.006281,"2.7");
+      tex = new TLatex(0.8033334,1.006281,"2.7");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
    graph->GetListOfFunctions()->Add(92);
-      tex = new TLatex(0.8357088,1.019255,"2.9");
+      tex = new TLatex(0.83992,1.019255,"2.9");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
@@ -182,33 +182,33 @@ void ROC_H_dR_Bj1_17()
    
    Double_t Graph_fx94[30] = {
    0,
-   8.285866e-07,
-   0.06103152,
-   0.14802,
-   0.2337656,
-   0.3131547,
-   0.4102819,
-   0.4876106,
-   0.5609728,
-   0.6123527,
-   0.6754446,
-   0.7153941,
-   0.7589856,
-   0.7982617,
-   0.8357088,
-   0.8912662,
-   0.9235088,
-   0.9459018,
-   0.9722519,
-   0.9826333,
-   0.9916766,
-   0.9961873,
-   0.9976862,
-   0.9984873,
-   0.9986206,
-   0.9998787,
-   0.9999698,
-   0.9999895,
+   8.190635e-07,
+   0.05918759,
+   0.1447868,
+   0.2306945,
+   0.3210856,
+   0.4149291,
+   0.4896204,
+   0.5613283,
+   0.6135231,
+   0.6770108,
+   0.717013,
+   0.7637997,
+   0.8033334,
+   0.83992,
+   0.8933404,
+   0.9250604,
+   0.9481325,
+   0.9730799,
+   0.983126,
+   0.99198,
+   0.9962845,
+   0.9977646,
+   0.9985667,
+   0.9987055,
+   0.9998811,
+   0.9999708,
+   0.9999901,
    0.9999983,
    0.9999995};
    Double_t Graph_fy94[30] = {
@@ -277,35 +277,35 @@ void ROC_H_dR_Bj1_17()
    
    Double_t Graph_fx95[30] = {
    0,
-   0.02926527,
-   0.1448102,
-   0.2696874,
-   0.3783227,
-   0.4768893,
-   0.5523347,
-   0.6181627,
-   0.6749641,
-   0.7157619,
-   0.7548779,
-   0.7932949,
-   0.826275,
-   0.855338,
-   0.8806045,
-   0.9073091,
-   0.9320963,
-   0.94802,
-   0.9635181,
-   0.9722465,
-   0.9790374,
-   0.9839813,
-   0.99123,
-   0.9935736,
-   0.9953347,
-   0.9987349,
-   0.9993716,
-   0.9997516,
-   0.9999211,
-   0.9999535};
+   0.02928192,
+   0.1442935,
+   0.2684286,
+   0.3799741,
+   0.477021,
+   0.5517801,
+   0.6174982,
+   0.6739557,
+   0.7152984,
+   0.7542709,
+   0.7920988,
+   0.825352,
+   0.854766,
+   0.8804151,
+   0.906866,
+   0.9313351,
+   0.9476146,
+   0.9644211,
+   0.9731085,
+   0.9797881,
+   0.9846317,
+   0.991501,
+   0.9938042,
+   0.9955213,
+   0.9987355,
+   0.9993748,
+   0.9997529,
+   0.9999213,
+   0.9999533};
    Double_t Graph_fy95[30] = {
    0,
    0.03128407,
@@ -370,7 +370,7 @@ void ROC_H_dR_Bj1_17()
    
    multigraph->Add(graph,"");
    multigraph->Draw("ALP");
-   multigraph->GetXaxis()->SetLimits(-0.04999998, 1.049999);
+   multigraph->GetXaxis()->SetLimits(-0.04999997, 1.049999);
    multigraph->GetXaxis()->SetTitle("False Signal Rate (Bckg)");
    multigraph->GetXaxis()->SetLabelFont(42);
    multigraph->GetXaxis()->SetTitleOffset(1);

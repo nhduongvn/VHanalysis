@@ -302,16 +302,21 @@ if produceJetROCs:
 if produceJetROCs:
   if debug: 
     print "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-    print "STEP b2: Producing ROC curves for other jet variables"
+    print "STEP 2b: Producing ROC curves for other jet variables"
     print "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
     
   regions = ["jets"]
   plotNames = ["nJet", "CSV", "CvL", "CvB"]
-  lessThan = [ "False", "False", "False", "False"]
+  lessThan = [ False, False, False, False ]
+  allLabels = [ True, True, False, False ]
   
-  for r in regions:
+  for i in range(len(regions)):
     
-    for plN in plotNames:
+    r = regions[i]
+    
+    for j in range(len(plotNames)):
+      
+      plN = plotNames[j]
       
       ## Get the plots for the signal and background
       hSignal = getHist("VbbHcc_" + r + "_" + plN, ss_signal, fHist, lumiScales)
@@ -330,16 +335,17 @@ if produceJetROCs:
           hSignal[y].Clone().Rebin(nRebin)
         ]
     
-      bckg_plots = [
-        hBckg[y].Clone().Rebin(nRebin)
-      ]
+        bckg_plots = [
+          hBckg[y].Clone().Rebin(nRebin)
+        ]
 
-      plot_names = [ plN ]
+        plot_names = [ plN ]
       
-      makeROCcurve(signal_plots, bckg_plots, plot_names, plN,
-        "ROC_" + r + "_" + plN + "_" + y,
-        plotFolder + "/20" + y + "_QCDv9" + "/ROC/", [ROOT.kMagenta + 2],
-        lumi=lumiS[y], useLessThan=True, lowerLegend=False)
+        makeROCcurve(signal_plots, bckg_plots, plot_names, plN,
+          "ROC_" + r + "_" + plN + "_" + y,
+          plotFolder + "/20" + y + "_QCDv9" + "/ROC/", [ROOT.kMagenta + 2],
+          lumi=lumiS[y], useLessThan=lessThan[j], lowerLegend=False,
+          useAllLabels=allLabels[j])
 
 
 ###############################################################################

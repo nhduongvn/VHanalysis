@@ -4,10 +4,10 @@
 void ROC_Z_dR_Bj1_18()
 {
 //=========Macro generated from canvas: ROC_Z_dR_Bj1_18/ROC_Z_dR_Bj1_18
-//=========  (Sun Feb 19 15:09:24 2023) by ROOT version 6.26/06
+//=========  (Wed Mar  1 15:31:58 2023) by ROOT version 6.26/06
    TCanvas *ROC_Z_dR_Bj1_18 = new TCanvas("ROC_Z_dR_Bj1_18", "ROC_Z_dR_Bj1_18",0,0,600,600);
    ROC_Z_dR_Bj1_18->SetHighLightColor(2);
-   ROC_Z_dR_Bj1_18->Range(-0.2901854,-0.1615385,1.238785,1.184615);
+   ROC_Z_dR_Bj1_18->Range(-0.2901855,-0.1615385,1.238785,1.184615);
    ROC_Z_dR_Bj1_18->SetFillColor(0);
    ROC_Z_dR_Bj1_18->SetBorderMode(0);
    ROC_Z_dR_Bj1_18->SetBorderSize(2);
@@ -25,35 +25,35 @@ void ROC_Z_dR_Bj1_18()
    
    Double_t Graph_fx192[30] = {
    0,
-   0.03751606,
-   0.2043692,
-   0.3447578,
-   0.4576028,
-   0.5502595,
-   0.6224792,
-   0.6903422,
-   0.7398257,
-   0.778598,
-   0.8145448,
-   0.8469252,
-   0.874135,
-   0.900119,
-   0.923687,
-   0.9418772,
-   0.9589689,
-   0.971558,
-   0.9838667,
-   0.9888705,
-   0.9929173,
-   0.9952699,
-   0.9968377,
-   0.9977357,
-   0.9984502,
-   0.9990696,
-   0.9994085,
-   0.9996897,
-   0.9999106,
-   0.9999573};
+   0.03745516,
+   0.2051684,
+   0.3452818,
+   0.4583496,
+   0.5515509,
+   0.6243264,
+   0.6918859,
+   0.7407486,
+   0.779952,
+   0.816043,
+   0.848848,
+   0.8759432,
+   0.9021228,
+   0.9258543,
+   0.9440802,
+   0.9608747,
+   0.9734313,
+   0.9840701,
+   0.9890484,
+   0.9929837,
+   0.9953085,
+   0.996879,
+   0.9978459,
+   0.9985256,
+   0.9990999,
+   0.9994202,
+   0.9997136,
+   0.9999152,
+   0.9999595};
    Double_t Graph_fy192[30] = {
    0,
    0.05148711,
@@ -100,7 +100,7 @@ void ROC_Z_dR_Bj1_18()
    graph->SetMarkerColor(ci);
    graph->SetMarkerStyle(20);
    
-   TH1F *Graph_Graph192 = new TH1F("Graph_Graph192","Tagging Only",100,0,1.099953);
+   TH1F *Graph_Graph192 = new TH1F("Graph_Graph192","Tagging Only",100,0,1.099955);
    Graph_Graph192->SetMinimum(0);
    Graph_Graph192->SetMaximum(1.1);
    Graph_Graph192->SetDirectory(0);
@@ -118,37 +118,37 @@ void ROC_Z_dR_Bj1_18()
    Graph_Graph192->GetZaxis()->SetTitleFont(42);
    graph->SetHistogram(Graph_Graph192);
    
-   TLatex *   tex = new TLatex(0.2039541,0.3640934,"0.5");
+   TLatex *   tex = new TLatex(0.204761,0.3640934,"0.5");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
    graph->GetListOfFunctions()->Add(193);
-      tex = new TLatex(0.3415738,0.6299353,"0.7");
+      tex = new TLatex(0.3447508,0.6299353,"0.7");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
    graph->GetListOfFunctions()->Add(194);
-      tex = new TLatex(0.4855022,0.872293,"0.9");
+      tex = new TLatex(0.4897234,0.872293,"0.9");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
    graph->GetListOfFunctions()->Add(195);
-      tex = new TLatex(0.5860186,0.9232285,"1.1");
+      tex = new TLatex(0.5885564,0.9232285,"1.1");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
    graph->GetListOfFunctions()->Add(196);
-      tex = new TLatex(0.6560246,0.9569063,"1.3");
+      tex = new TLatex(0.6585832,0.9569063,"1.3");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
    graph->GetListOfFunctions()->Add(197);
-      tex = new TLatex(0.7615962,0.9775585,"1.5");
+      tex = new TLatex(0.762864,0.9775585,"1.5");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
    graph->GetListOfFunctions()->Add(198);
-      tex = new TLatex(0.8223015,0.9936217,"1.7");
+      tex = new TLatex(0.822483,0.9936217,"1.7");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
@@ -157,35 +157,35 @@ void ROC_Z_dR_Bj1_18()
    
    Double_t Graph_fx200[30] = {
    0,
-   7.771e-05,
-   0.1795503,
-   0.3415738,
-   0.4855022,
-   0.5860186,
-   0.6560246,
-   0.7615962,
-   0.8223015,
-   0.8613406,
-   0.8889731,
-   0.9124522,
-   0.9270931,
-   0.9449929,
-   0.9576574,
-   0.9712044,
-   0.9822359,
-   0.9869343,
-   0.9914336,
-   0.9935547,
-   0.9946049,
-   0.9963489,
-   0.9974164,
-   0.9975278,
-   0.9996325,
-   0.9996762,
-   0.9999507,
-   0.9999762,
-   0.9999797,
-   0.9999904};
+   7.656427e-05,
+   0.1809991,
+   0.3447508,
+   0.4897234,
+   0.5885564,
+   0.6585832,
+   0.762864,
+   0.822483,
+   0.860269,
+   0.8883934,
+   0.9115993,
+   0.9296388,
+   0.9469934,
+   0.9593471,
+   0.972227,
+   0.9825349,
+   0.9872139,
+   0.9914475,
+   0.9939255,
+   0.9949441,
+   0.996599,
+   0.9976059,
+   0.9977235,
+   0.999651,
+   0.9996935,
+   0.9999515,
+   0.9999768,
+   0.9999803,
+   0.9999907};
    Double_t Graph_fy200[30] = {
    0,
    0,
@@ -230,7 +230,7 @@ void ROC_Z_dR_Bj1_18()
    graph->SetMarkerColor(ci);
    graph->SetMarkerStyle(20);
    
-   TH1F *Graph_Graph200 = new TH1F("Graph_Graph200","Mass-Matching Prioritized",100,0,1.099989);
+   TH1F *Graph_Graph200 = new TH1F("Graph_Graph200","Mass-Matching Prioritized",100,0,1.09999);
    Graph_Graph200->SetMinimum(0);
    Graph_Graph200->SetMaximum(1.1);
    Graph_Graph200->SetDirectory(0);
@@ -252,35 +252,35 @@ void ROC_Z_dR_Bj1_18()
    
    Double_t Graph_fx201[30] = {
    0,
-   0.03745708,
-   0.2039541,
-   0.3447366,
-   0.4579381,
-   0.550889,
-   0.6225672,
-   0.6902828,
-   0.7396762,
-   0.7785272,
-   0.8145093,
-   0.8470113,
-   0.8742542,
-   0.9001383,
-   0.9237695,
-   0.9420681,
-   0.9591232,
-   0.9717299,
-   0.9839371,
-   0.9889016,
-   0.9928708,
-   0.9952437,
-   0.9968401,
-   0.9977312,
-   0.9984722,
-   0.9990818,
-   0.9994154,
-   0.9996946,
-   0.9999119,
-   0.9999579};
+   0.03739992,
+   0.204761,
+   0.3452131,
+   0.4585176,
+   0.5519859,
+   0.6242064,
+   0.6916511,
+   0.7405677,
+   0.7798797,
+   0.8160389,
+   0.8489913,
+   0.8761035,
+   0.9021978,
+   0.92594,
+   0.9442573,
+   0.9610124,
+   0.9735782,
+   0.984141,
+   0.9890809,
+   0.9929415,
+   0.9952855,
+   0.996882,
+   0.9978422,
+   0.9985466,
+   0.9991117,
+   0.999427,
+   0.9997182,
+   0.9999164,
+   0.9999602};
    Double_t Graph_fy201[30] = {
    0,
    0.05221175,
@@ -325,7 +325,7 @@ void ROC_Z_dR_Bj1_18()
    graph->SetMarkerColor(ci);
    graph->SetMarkerStyle(20);
    
-   TH1F *Graph_Graph201 = new TH1F("Graph_Graph201","Tagging Prioritized",100,0,1.099954);
+   TH1F *Graph_Graph201 = new TH1F("Graph_Graph201","Tagging Prioritized",100,0,1.099956);
    Graph_Graph201->SetMinimum(0);
    Graph_Graph201->SetMaximum(1.1);
    Graph_Graph201->SetDirectory(0);
@@ -345,7 +345,7 @@ void ROC_Z_dR_Bj1_18()
    
    multigraph->Add(graph,"");
    multigraph->Draw("ALP");
-   multigraph->GetXaxis()->SetLimits(-0.04999952, 1.04999);
+   multigraph->GetXaxis()->SetLimits(-0.04999954, 1.04999);
    multigraph->GetXaxis()->SetTitle("False Signal Rate (Bckg)");
    multigraph->GetXaxis()->SetLabelFont(42);
    multigraph->GetXaxis()->SetTitleOffset(1);
