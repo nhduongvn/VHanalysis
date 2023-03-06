@@ -304,6 +304,12 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_mistag_all->GetXaxis()->SetBinLabel(2, "mistag");
   h_mistag_all->GetXaxis()->SetBinLabel(3, "proper");
 
+  h_nGenJet_all = new TH1D("nGenJet_all", "", 15, -0.5, 14.5);
+  h_nGenL_all   = new TH1D("nGenL_all", "", 15, -0.5, 14.5);
+  h_nGenB_all   = new TH1D("nGenB_all", "", 15, -0.5, 14.5);
+  h_nGenC_all   = new TH1D("nGenC_all", "", 15, -0.5, 14.5);
+  h_nGenGlu_all = new TH1D("nGenGlu_all", "", 15, -0.5, 14.5);
+
   h_nGenJet = new TH1D("nGenJet", "", 15, -0.5, 14.5);
   h_nGenL   = new TH1D("nGenL", "", 10, -0.5, 9.5);
   h_nGenB   = new TH1D("nGenB", "", 10, -0.5, 9.5);
@@ -371,10 +377,15 @@ void VH_selection::SlaveBegin(Reader *r) {
   r->GetOutputList()->Add(h_mistag_all);
 
   r->GetOutputList()->Add(h_nGenJet);
+  r->GetOutputList()->Add(h_nGenJet_all);
   r->GetOutputList()->Add(h_nGenL);
+  r->GetOutputList()->Add(h_nGenL_all);
   r->GetOutputList()->Add(h_nGenC);
+  r->GetOutputList()->Add(h_nGenC_all);
   r->GetOutputList()->Add(h_nGenB);
+  r->GetOutputList()->Add(h_nGenB_all);
   r->GetOutputList()->Add(h_nGenGlu);
+  r->GetOutputList()->Add(h_nGenGlu_all);
 
   r->GetOutputList()->Add(h_pt_genJet);
   r->GetOutputList()->Add(h_eta_genJet);
@@ -633,6 +644,20 @@ void VH_selection::Process(Reader* r) {
   bool found_MCjets = false;
 
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
+
+  int nLA = 0, nCA = 0, nBA = 0, nGluA = 0;
+  for (unsigned int i = 0; i < *(r->nGenJet); ++i) {
+    Int_t flavor = (r->GenJet_partonFlavour)[i];
+    if (abs(flavor) <= 3) nLA++;
+    else if (abs(flavor) == 4) nCA++;
+    else if (abs(flavor) == 5) nBA++; 
+    else if (abs(flavor) == 21) nGluA++;
+  }
+  h_nGenJet_all->Fill(*(r->nGenJet), evtW);
+  h_nGenL_all->Fill(nLA, evtW);
+  h_nGenB_all->Fill(nBA, evtW);
+  h_nGenC_all->Fill(nCA, evtW);
+  h_nGenGlu_all->Fill(nGluA, evtW);
 
   if (is_VbbHcc_event) {
     

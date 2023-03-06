@@ -721,16 +721,16 @@ class EffPlots
       std::vector<JetObj> Zjets = Z.m_jets;
  
       // Fill the proper physics object histograms.
-      if (isMCtrutH) {
+      if (isMCtruth) {
         h_pt_b_truth->Fill(bjets[0].Pt(), w);
         h_pt_b_truth->Fill(bjets[1].Pt(), w);
-        h_pt_bjets->Fill(Zjets[0].Pt(), w);
-        h_pt_bjets->Fill(Zjets[1].Pt(), w);
+        h_pt_bjet->Fill(Zjets[0].Pt(), w);
+        h_pt_bjet->Fill(Zjets[1].Pt(), w);
 
         h_pt_c_truth->Fill(cjets[0].Pt(), w);
         h_pt_c_truth->Fill(cjets[1].Pt(), w);
-        h_pt_cjets->Fill(Hjets[0].Pt(), w);
-        h_pt_cjets->Fill(Hjets[1].Pt(), w);
+        h_pt_cjet->Fill(Hjets[0].Pt(), w);
+        h_pt_cjet->Fill(Hjets[1].Pt(), w);
       }
       else {
         h_pt_b->Fill(bjets[0].Pt(), w);
