@@ -61,7 +61,7 @@ debug = True
 regions = ['']
 years = ['16', '17', '18']
 plotCat = 'VbbHcc'
-useLogY = False
+useLogY = True
 summary_control_plot_name = 'summary_control_plot_zjet_zHFjet.txt'
 plotFolder = '../full_results/'
 
@@ -164,7 +164,7 @@ for r in regions:
     "Gen gluon jet multiplicity"]
   
   for i in range(len(plotNames)):
-    plN = plotNames[i]
+    plN = plotNames[i] + "_all"
     hN = plN
     
     ## Get the desired plots (Signal)
