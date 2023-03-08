@@ -632,6 +632,90 @@ class VHPlots
 };
 
 /******************************************************************************
+* GenPlots - plots related to gen jets                                        *
+******************************************************************************/
+class GenPlots
+{
+  public:
+  
+    // Constructor
+    GenPlots(TString name) : m_name(name) {
+      
+      // Multiplicity Plots
+      h_nGenJet = new TH1D(name + "_nGenJet", "", 20, -0.5, 19.5);
+      h_nGenL   = new TH1D(name + "_nGenL", "", 20, -0.5, 19.5);
+      h_nGenB   = new TH1D(name + "_nGenB", "", 20, -0.5, 19.5);
+      h_nGenC   = new TH1D(name + "_nGenC", "", 20, -0.5, 19.5);
+      h_nGenGlu = new TH1D(name + "_nGenGlu", "", 20, -0.5, 19.5);
+
+      // Variable Plots
+      h_pt = new TH1D(name + "_pt", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      h_eta = new TH1D(name + "_eta", "", NBIN_ETA, X_ETA[0], X_ETA[1]);
+      h_phi = new TH1D(name + "_phi", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
+
+      h_pt_l = new TH1D(name + "_pt_l", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      h_pt_b = new TH1D(name + "_pt_b", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      h_pt_c = new TH1D(name + "_pt_c", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      h_pt_g = new TH1D(name + "_pt_g", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+    };
+
+    void Fill(std::vector<JetObj> genJets, float w = 1.) {
+
+      int nLA = 0, nCA = 0, nBA = 0, nGluA = 0;
+      for (unsigned int i = 0; i < genJets.size(); ++i) {
+        Int_t flavor = genJets[i].m_flav;
+        if (abs(flavor) <= 3) { nLA++; h_pt_l->Fill(genJets[i].Pt(), w); }
+        else if (abs(flavor) == 4){ nCA++; h_pt_c->Fill(genJets[i].Pt(), w); }
+        else if (abs(flavor) == 5){ nBA++; h_pt_b->Fill(genJets[i].Pt(), w); }
+        else if (abs(flavor) == 21){ nGluA++; h_pt_g->Fill(genJets[i].Pt(), w); }
+
+        h_pt->Fill(genJets[i].Pt(), w);
+        h_eta->Fill(genJets[i].Eta(), w);
+        h_phi->Fill(genJets[i].Phi(), w);
+      }
+       
+      h_nGenJet->Fill(genJets.size(), w);
+      h_nGenL->Fill(nLA, w);
+      h_nGenB->Fill(nBA, w);
+      h_nGenC->Fill(nCA, w);
+      h_nGenGlu->Fill(nGluA, w);
+    };
+
+    std::vector<TH1*> returnHisto() {
+      std::vector<TH1*> histolist;
+      histolist.push_back(h_nGenJet);
+      histolist.push_back(h_nGenL); 
+      histolist.push_back(h_nGenB);
+      histolist.push_back(h_nGenC);
+      histolist.push_back(h_nGenGlu);
+
+      histolist.push_back(h_pt);
+      histolist.push_back(h_eta);
+      histolist.push_back(h_phi);
+ 
+      histolist.push_back(h_pt_l);
+      histolist.push_back(h_pt_b);
+      histolist.push_back(h_pt_c);
+      histolist.push_back(h_pt_g);
+      return histolist;
+    };
+
+  protected:
+    
+    TString m_name;
+    
+    TH1D* h_nGenJet;
+    TH1D* h_nGenL;    TH1D* h_pt_l;
+    TH1D* h_nGenB;    TH1D* h_pt_b;
+    TH1D* h_nGenC;    TH1D* h_pt_c;
+    TH1D* h_nGenGlu;  TH1D* h_pt_g;
+ 
+    TH1D* h_pt;
+    TH1D* h_eta;
+    TH1D* h_phi;
+};
+
+/******************************************************************************
 * EffPlots - plotes related to efficiency of MC Truth matching                *
 ******************************************************************************/
 class EffPlots

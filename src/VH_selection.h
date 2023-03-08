@@ -79,13 +79,9 @@ class VH_selection : public Selector {
     TH1D* h_mistag_leading;
     TH1D* h_mistag_all;
 
-    TH1D* h_nGenJet;     TH1D* h_nGenJet_all;
-    TH1D* h_nGenL;       TH1D* h_nGenL_all;
-    TH1D* h_nGenC;       TH1D* h_nGenC_all;
-    TH1D* h_nGenB;       TH1D* h_nGenB_all;
-    TH1D* h_nGenGlu;     TH1D* h_nGenGlu_all;
-    TH1D* h_pt_genJet;   //TH1D* h_pt_genJet_all;
-    TH1D* h_eta_genJet;  //TH1D* h_eta_genJet_all;
+    GenPlots *h_genJet_all;
+    GenPlots *h_genJet_cuts;
+    GenPlots *h_genJet_VbbHcc;
 };
 
 #endif

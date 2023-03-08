@@ -238,6 +238,11 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_VH_4b = new JetPlots("VbbHcc_4b");
   h_VH_2b2c = new JetPlots("VbbHcc_2b2c");
 
+  // Set up the GenPlots instances
+  h_genJet_all = new GenPlots("GenJet_all");
+  h_genJet_cuts = new GenPlots("GenJet_cuts");
+  h_genJet_VbbHcc = new GenPlots("GenJet_VbbHcc");
+  
   // Set up the CutFlows (for events) 
   h_evt_MC_cutflow = new TH1D("VbbHcc_MC_CutFlow", "", 2, 0, 2);
   h_evt_MC_cutflow->GetXaxis()->SetBinLabel(1, "Total");
@@ -304,21 +309,7 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_mistag_all->GetXaxis()->SetBinLabel(2, "mistag");
   h_mistag_all->GetXaxis()->SetBinLabel(3, "proper");
 
-  h_nGenJet_all = new TH1D("nGenJet_all", "", 15, -0.5, 14.5);
-  h_nGenL_all   = new TH1D("nGenL_all", "", 15, -0.5, 14.5);
-  h_nGenB_all   = new TH1D("nGenB_all", "", 15, -0.5, 14.5);
-  h_nGenC_all   = new TH1D("nGenC_all", "", 15, -0.5, 14.5);
-  h_nGenGlu_all = new TH1D("nGenGlu_all", "", 15, -0.5, 14.5);
-
-  h_nGenJet = new TH1D("nGenJet", "", 15, -0.5, 14.5);
-  h_nGenL   = new TH1D("nGenL", "", 10, -0.5, 9.5);
-  h_nGenB   = new TH1D("nGenB", "", 10, -0.5, 9.5);
-  h_nGenC   = new TH1D("nGenC", "", 10, -0.5, 9.5);
-  h_nGenGlu = new TH1D("nGenGlu", "", 10, -0.5, 9.5);
-
-  h_pt_genJet = new TH1D("GenJet_pt", "", 200, 0, 200);
-  h_eta_genJet = new TH1D("GenJet_eta", "", 80, -4, 4);
-
+  
   // Add them to the return list so we can use them in our analyses.
   r->GetOutputList()->Add(h_evt);
 
@@ -358,6 +349,13 @@ void VH_selection::SlaveBegin(Reader *r) {
   tmp = h_eff_both->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
 
+  tmp = h_genJet_all->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_genJet_cuts->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_genJet_VbbHcc->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+
   r->GetOutputList()->Add(h_evt_VbbHcc);
   r->GetOutputList()->Add(h_evt_MC_cutflow);
   r->GetOutputList()->Add(h_evt_tags_cutflow);
@@ -375,21 +373,6 @@ void VH_selection::SlaveBegin(Reader *r) {
 
   r->GetOutputList()->Add(h_mistag_leading);
   r->GetOutputList()->Add(h_mistag_all);
-
-  r->GetOutputList()->Add(h_nGenJet);
-  r->GetOutputList()->Add(h_nGenJet_all);
-  r->GetOutputList()->Add(h_nGenL);
-  r->GetOutputList()->Add(h_nGenL_all);
-  r->GetOutputList()->Add(h_nGenC);
-  r->GetOutputList()->Add(h_nGenC_all);
-  r->GetOutputList()->Add(h_nGenB);
-  r->GetOutputList()->Add(h_nGenB_all);
-  r->GetOutputList()->Add(h_nGenGlu);
-  r->GetOutputList()->Add(h_nGenGlu_all);
-
-  r->GetOutputList()->Add(h_pt_genJet);
-  r->GetOutputList()->Add(h_eta_genJet);
-
 }// end SlaveBegin
 
 // == Process =================================================================
@@ -645,20 +628,28 @@ void VH_selection::Process(Reader* r) {
 
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
 
-  int nLA = 0, nCA = 0, nBA = 0, nGluA = 0;
+  // Go through all the gen jets
+  std::vector<JetObj> genJet_all;
+  std::vector<JetObj> genJet_cut;
   for (unsigned int i = 0; i < *(r->nGenJet); ++i) {
+    
+    // Build a jet from the information.
     Int_t flavor = (r->GenJet_partonFlavour)[i];
-    if (abs(flavor) <= 3) nLA++;
-    else if (abs(flavor) == 4) nCA++;
-    else if (abs(flavor) == 5) nBA++; 
-    else if (abs(flavor) == 21) nGluA++;
-  }
-  h_nGenJet_all->Fill(*(r->nGenJet), evtW);
-  h_nGenL_all->Fill(nLA, evtW);
-  h_nGenB_all->Fill(nBA, evtW);
-  h_nGenC_all->Fill(nCA, evtW);
-  h_nGenGlu_all->Fill(nGluA, evtW);
+    Float_t eta = (r->GenJet_eta)[i], pt = (r->GenJet_pt)[i];
+    JetObj gjet(pt, eta, (r->GenJet_phi)[i],
+      (r->GenJet_mass)[i], flavor, 0, 0);
 
+    genJet_all.push_back(gjet);
+    
+    // Check the cuts we're interested in for jets.
+    if (pt > CUTS.Get<float>("jet_pt") && fabs(eta) < CUTS.Get<float>("jet_eta")) {
+      genJet_cut.push_back(gjet);
+    }
+  }
+
+  h_genJet_all->Fill(genJet_all, evtW);
+  h_genJet_cuts->Fill(genJet_cut, evtW);
+  
   if (is_VbbHcc_event) {
     
     // Make a copy of the jets
@@ -676,9 +667,6 @@ void VH_selection::Process(Reader* r) {
       JetObj gjet((r->GenJet_pt)[i], (r->GenJet_eta)[i], (r->GenJet_phi)[i], 
         (r->GenJet_mass)[i], flavor, 0, 0);
 
-      h_pt_genJet->Fill((r->GenJet_pt)[i], evtW);
-      h_eta_genJet->Fill((r->GenJet_eta)[i], evtW);
-
       genJet_list.push_back(gjet);
       if (abs(flavor) <= 3) nL++;
       else if (abs(flavor) == 4){ 
@@ -689,11 +677,8 @@ void VH_selection::Process(Reader* r) {
       }
       else if (abs(flavor) == 21) nGlu++;
     }
-    h_nGenJet->Fill(*(r->nGenJet), evtW);
-    h_nGenL->Fill(nL, evtW);
-    h_nGenC->Fill(nC, evtW);
-    h_nGenB->Fill(nB, evtW);
-    h_nGenGlu->Fill(nGlu, evtW);
+    
+    h_genJet_VbbHcc->Fill(genJet_list, evtW);
 
     // Get the c-jets
     if (genCjet_list.size() >= 2 && genBjet_list.size() >= 2) {      
@@ -846,9 +831,9 @@ void VH_selection::Process(Reader* r) {
 
     // We don't want to have to change the working point in several spots,
     // so we choose here and then we can use these variables wherever needed.
-    float desired_BvL = CUTS.Get<float>("BvL_mediumWP_deepJet");
-    float desired_CvL = CUTS.Get<float>("CvL_mediumWP_deepJet");
-    float desired_CvB = CUTS.Get<float>("CvB_mediumWP_deepJet");
+    float desired_BvL = CUTS.Get<float>("BvL_looseWP_deepJet");
+    float desired_CvL = CUTS.Get<float>("CvL_looseWP_deepJet");
+    float desired_CvB = CUTS.Get<float>("CvB_looseWP_deepJet");
 
     /**************************************************************************
     * MISTAG RATE ANALYSIS                                                    *
