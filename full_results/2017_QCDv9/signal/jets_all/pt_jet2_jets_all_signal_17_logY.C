@@ -4,10 +4,10 @@
 void pt_jet2_jets_all_signal_17_logY()
 {
 //=========Macro generated from canvas: pt_jet2_jets_all_signal_17/pt_jet2_jets_all_signal_17
-//=========  (Wed Mar  1 14:06:43 2023) by ROOT version 6.26/06
+//=========  (Thu Mar  9 13:30:15 2023) by ROOT version 6.26/06
    TCanvas *pt_jet2_jets_all_signal_17 = new TCanvas("pt_jet2_jets_all_signal_17", "pt_jet2_jets_all_signal_17",0,0,600,600);
    pt_jet2_jets_all_signal_17->SetHighLightColor(2);
-   pt_jet2_jets_all_signal_17->Range(-218.3529,-0.03534747,1171.633,5.051053);
+   pt_jet2_jets_all_signal_17->Range(-218.3529,0.5015585,1171.633,2.732575);
    pt_jet2_jets_all_signal_17->SetFillColor(0);
    pt_jet2_jets_all_signal_17->SetFillStyle(4000);
    pt_jet2_jets_all_signal_17->SetBorderMode(0);
@@ -25,11 +25,11 @@ void pt_jet2_jets_all_signal_17_logY()
    st->SetName("st");
    st->SetTitle("");
    st->SetMinimum(10);
-   st->SetMaximum(20950.64);
+   st->SetMaximum(252.4174);
    
    TH1F *st_stack_213 = new TH1F("st_stack_213","",200,0,2000);
-   st_stack_213->SetMinimum(3.758553);
-   st_stack_213->SetMaximum(34866.89);
+   st_stack_213->SetMinimum(5.878689);
+   st_stack_213->SetMaximum(323.2013);
    st_stack_213->SetDirectory(0);
    st_stack_213->SetStats(0);
 
@@ -42,7 +42,7 @@ void pt_jet2_jets_all_signal_17_logY()
    st_stack_213->GetXaxis()->SetLabelFont(42);
    st_stack_213->GetXaxis()->SetTitleOffset(1);
    st_stack_213->GetXaxis()->SetTitleFont(42);
-   st_stack_213->GetYaxis()->SetTitle("Events/10.0");
+   st_stack_213->GetYaxis()->SetTitle("Event/10.0 GeV");
    st_stack_213->GetYaxis()->SetLabelFont(42);
    st_stack_213->GetYaxis()->SetTitleSize(0.037);
    st_stack_213->GetYaxis()->SetTitleFont(42);
@@ -359,7 +359,7 @@ void pt_jet2_jets_all_signal_17_logY()
    TLatex *   tex = new TLatex(0.25,0.937775,"CMS Work in Progress #sqrt{s} = 13 TeV, 41.5 fb^{-1}");
 tex->SetNDC();
    tex->SetTextFont(42);
-   tex->SetTextSize(0.04);
+   tex->SetTextSize(0.035);
    tex->SetLineWidth(2);
    tex->Draw();
    pt_jet2_jets_all_signal_17->Modified();

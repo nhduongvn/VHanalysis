@@ -335,13 +335,15 @@ def makeRatioPlots(plots, plotNames, canvasName, plotDir, xAxisTitle, xAxisRange
 ###############################################################################
 ## Make Stack Plots
 ###############################################################################
-def makeStackPlot(plots, plotNames, cName, plotDir = 'Test/', 
-xAxisTitle = 'Jet M_{SV}[GeV]', xAxisRange = [0,10], uncName = 'MC unc. (stat.)',
-normMC=True, logY=False, normBinWidth = -1, legendOrder = [], minY_forLog = 1.0,
-lumi = '35.9', custom_colors=colors, useStack=True, 
-useFill=True, forceMin=False, modMaxX = True):
 
+def makeStackPlot(plots, plotNames, cName, plotDir = 'Test/', 
+xAxisTitle = 'Jet M_{SV}[GeV]', xAxisRange = [0,10], normMC=True, logY=False, 
+normBinWidth = -1, legendOrder = [], minY_forLog = 1.0, lumi = '35.9', 
+custom_colors=colors, useStack=True, useFill=True, forceMin=True, modMaxY = False):
+
+  ## ===========================================
   ## Create the canvas & modify it as necessary
+  ## ===========================================
   c = ROOT.TCanvas(cName, cName, 600, 600)
   c.SetFillStyle(4000)
   c.SetFrameFillStyle(1000)
@@ -351,7 +353,9 @@ useFill=True, forceMin=False, modMaxX = True):
   c.SetLeftMargin(0.15709)
   c.SetRightMargin(0.1234783)
   
+  ## ===================================
   ## Create the stack plot & the legend
+  ## ===================================
   allStack = ROOT.THStack('st','')
   
   y1_ndc = 0.8
@@ -362,7 +366,6 @@ useFill=True, forceMin=False, modMaxX = True):
     y1_ndc = 0.62
   
   l = ROOT.TLegend(x1_ndc, y1_ndc, 0.85, y2_ndc)
-  #if len(legendOrder) != 0: l.SetNColumns(2)
   l.SetNColumns(2)
   l.SetColumnSeparation(0.2)
   l.SetLineWidth(2)
@@ -371,7 +374,9 @@ useFill=True, forceMin=False, modMaxX = True):
   l.SetTextFont(42)
   l.SetTextSize(0.035)
   
+  ## =======================================
   ## Handle the MC plots & calculate scales
+  ## =======================================
   MC_integral = 0
   for i in range(0, len(plots)):
     MC_integral += plots[i].Integral()
@@ -381,7 +386,7 @@ useFill=True, forceMin=False, modMaxX = True):
     normScale = plots[0].Integral()/MC_integral
   else: print 'Scale MC by: ', normScale
   
-  #l.AddEntry(plots[0], plotNames[0], 'F')
+  ## Print out the CutFlow information if necessary if necessary
   if len(legendOrder) != 0: l.AddEntry('','','')
   iColor = 0
   if "CutFlow" in cName:
@@ -392,28 +397,29 @@ useFill=True, forceMin=False, modMaxX = True):
     plots[i].Scale(normScale)
     if useFill:
       plots[i].SetFillColor(custom_colors[iColor])
+      plots[i].SetLineColor(ROOT.kBlack)
     else:
       plots[i].SetLineColor(custom_colors[iColor])
     iColor = iColor + 1
     if len(legendOrder) == 0: l.AddEntry(plots[i], plotNames[i], 'F')
     if "CutFlow" in cName:
-      print plotNames[i] + "\t" + formStr(plots[i].GetBinContent(1)) + "\t" + formStr(plots[i].GetBinContent(2)) + "\t" + formStr(plots[i].GetBinContent(3)) + "\t" + formStr(plots[i].GetBinContent(plots[i].FindLastBinAbove()))
+      print plotNames[i] + "\t" + formStr(plots[i].GetBinContent(1)) + \
+       "\t" + formStr(plots[i].GetBinContent(2)) + "\t" + \
+       formStr(plots[i].GetBinContent(3)) + "\t" + \
+       formStr(plots[i].GetBinContent(plots[i].FindLastBinAbove()))
   
+  ## ===========================================
+  ## Add the plots to the legend & stack itself
+  ## ===========================================
   for i in legendOrder:
     l.AddEntry(plots[i], plotNames[i], 'F')
   
-  
-  ## Fill the stack
   for i in range(0, len(plots)):
     allStack.Add(plots[i])
-  
-  #allMC = allStack.GetStack().Last().Clone()
-  #theErrorGraph = ROOT.TGraphErrors(allMC)
-  #theErrorGraph.SetFillColor(ROOT.kGray+3)
-  #theErrorGraph.SetFillStyle(3013)
-  #l.AddEntry(theErrorGraph,uncName,"fl")
-  
+
+  ## ==============================
   ## Draw everything to the canvas
+  ## ==============================
   if useStack:
     allStack.Draw("hist")
   else:
@@ -424,34 +430,47 @@ useFill=True, forceMin=False, modMaxX = True):
   
   if logY: c.SetLogy()
   
+  ## =================================================================
+  ## Modify the Y axis label & determine a proper scaling for visuals
+  ## =================================================================
+  
   formatNum = ''
   aNum = floor(binW*pow(10,3))-floor(binW*pow(10,2))*10
   if aNum >= 1: formatNum = '0.3f'
-  allStack.GetYaxis().SetTitle('Events/' + format(binW, formatNum))
+  yTitle = "Event/" + format(binW, formatNum)
+  if 'pt' in cName or 'mass' in cName or 'MET' in cName:
+    yTitle += " GeV"
+  
+  allStack.GetYaxis().SetTitle(yTitle)
   if normBinWidth >= 0:
     allStack.GetYaxis().SetTitle('Events/' + str(normBinWidth))
   allStack.GetXaxis().SetTitle(xAxisTitle)
   allStack.GetYaxis().SetTitleSize(0.037)
-  #allStack.GetYaxis().SetTitleOffset(1.2)
   allStack.GetYaxis().SetLabelSize(0.035)
   allStack.GetXaxis().SetLabelSize(0.035)
   scaleTmp = 0.9 - (y2_ndc - y1_ndc)
+  
   maxScaleFromPlots = ROOT.TMath.Max(plots[0].GetMaximum(), allStack.GetMaximum())
-  maxX = 1./scaleTmp*maxScaleFromPlots
-  #if logY and maxScaleFromPlots > 0:
-  #   maxX = pow(10,1./scaleTmp*log10(maxScaleFromPlots)) 
-  #allStack.SetMaximum(maxX)
+  maxY = 1./scaleTmp*maxScaleFromPlots
+  
+  #allStack.SetMaximum(maxY)
   
   ## (NOTE: this minimum may be too low and we want an auto adjust. Let's fix
   ## the scale based on an equation, i.e. if every bin hits a certain min, then
   ## let's ignore that range.
-  if modMaxX:
+  if modMaxY:
     if logY:
-      maxX = pow(10, log10(maxScaleFromPlots) + 2)
+      ## In the LogY format, set the maximum value at 1 factor
+      ## of 10 above the maximum scale needed.
+      maxLog = log10(maxScaleFromPlots)
+      maxY = pow(10, maxLog + 1)
     else:
-      maxX =  maxScaleFromPlots + pow(10, log10(maxScaleFromPlots)) * 0.5
-    
-    allStack.SetMaximum(maxX)
+      ## In the linear scale, set the maximum value at 25% larger
+      ## than the space needed. 
+      maxLog = log(maxScaleFromPlots)
+      maxY =  maxScaleFromPlots + pow(10, maxLog) * 0.5
+     
+  allStack.SetMaximum(maxY)
   
   minY = 100000.0
   h = allStack.GetStack().Last()
@@ -463,23 +482,16 @@ useFill=True, forceMin=False, modMaxX = True):
   
   if logY:
     if minY <= 3: power = 1
-    else: power = minY - 3
-    #print "============================="
-    #print "power = ", power
-    #print "============================="
+    else: power = minY - 2
     power = min(power, 10)
     if forceMin:
-      allStack.SetMinimum(minY_forLog)
-    else:
-      allStack.SetMinimum(pow(10,power))
-  #allStack.SetMaximum(pow(10,12))
-  #allStack.SetMinimum(pow(10,11))
-  
-  #allStack.SetMinimum(minY_forLog)
+      allStack.SetMinimum(pow(10, minY_forLog))
+    #else:
+    #  allStack.SetMinimum(pow(10,power))
   
   l.Draw()
   myText('CMS Work in Progress #sqrt{s} = 13 TeV, '+lumi+' fb^{-1}', 
-    0.25, 0.937775, 0.8)
+    0.25, 0.937775, 0.7)
   
   c.cd()
   
@@ -784,10 +796,10 @@ def makeROCinterval(signal_plots, bckg_plots, plotNames, plotVar, canvasName,
     centerVal = binCenterMaxima[0]
     binSize = binWidths[0]
     addl_info = "Intervals centered around " + str(centerVal)
-    if "pt" in plotVar or "mass" in plotVar:
+    if "pt" in plotVar or "mass" in plotVar or "MET" in plotVar:
       addl_info += " GeV"
     addl_info2 = "bin size = " + str(binSize)
-    if "pt" in plotVar or "mass" in plotVar:
+    if "pt" in plotVar or "mass" in plotVar or "MET" in plotVar:
       addl_info2 += " GeV"
     leg.AddEntry("l", addl_info)
     #leg.AddEntry("l", addl_info2)

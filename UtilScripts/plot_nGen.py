@@ -58,12 +58,16 @@ bckg_colors = [ ROOT.kMagenta + 2, ROOT.kOrange + 7]
 ## These you can edit / change
 ###############################
 debug = True
-regions = ['']
+regions = ['GenJet_all', 'GenJet_cuts', 'GenJet_VbbHcc']
 years = ['16', '17', '18']
 plotCat = 'VbbHcc'
-useLogY = True
+useLogY = False
 summary_control_plot_name = 'summary_control_plot_zjet_zHFjet.txt'
-plotFolder = '../full_results/'
+
+plotFolder = '../full_results/'       ## medium WP
+resultpath = '../new_condor_results/NONE/'
+plotFolder = '../looseWP_results/'    ## loose WP
+resultpath = '../newest_condor_results/NONE/'
 
 ## signal samples
 ss_signal = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ']
@@ -124,7 +128,7 @@ for s in ss:
     fNames[s][y] = []
     xSecs[s][y] = []
     fHist[s][y] = []
-    dirpath = '../new_condor_results/NONE/'
+    dirpath = resultpath
     for iN in names:
       #fNames[s][y].append(cfg.get('Paths', 'path') + '/' + iN)
       fNames[s][y].append(dirpath + '/' + iN)
@@ -157,14 +161,22 @@ for r in regions:
   print "///////////////////////////////////////////////////////////////////////////////"
   
   nums[r] = {}
-  plotNames = [ "nGenJet", "nGenL", "nGenB", "nGenC", "nGenGlu" ]
+  plotNames = [ 
+    "nGenJet", "nGenL", "nGenB", "nGenC", "nGenGlu", 
+    "pt", "eta", "phi", "pt_l", "pt_b", "pt_c", "pt_g"
+  ]
+  nRebins = [ 1, 1, 1 , 1, 1, 2, 2, 2, 2, 2, 2, 2 ]
   xAxes = [
     "Gen Jet multiplicity", "Gen l-jet multiplicity", 
     "Gen b-jet multiplicity", "Gen c-jet multiplicity",
-    "Gen gluon jet multiplicity"]
+    "Gen gluon jet multiplicity", 
+    "pt [GeV]", "#eta", "#phi", "pt (l-jet) [GeV]",
+    "pt (b-jet) [GeV]", "pt (c-jet) [GeV]",
+    "pt (gluon jet) [GeV]"
+  ]
   
   for i in range(len(plotNames)):
-    plN = plotNames[i] + "_all"
+    plN = r + "_" + plotNames[i]
     hN = plN
     
     ## Get the desired plots (Signal)
@@ -182,7 +194,7 @@ for r in regions:
     for y in years:
       xA_range = []
       xA_title = xAxes[i]# cfg.get(plN, 'xAxisTitle')
-      nRebin = 1
+      nRebin = nRebins[i]
       
       ## Plot for the signal samples
       signal_plots = [
@@ -193,9 +205,12 @@ for r in regions:
       
       logY = useLogY
       if 'CutFlow' in plN: logY = True
-      makeStackPlot(signal_plots, signal_names, plN + '_' + r + '_signal_' + y,
-        plotFolder + '/20' + y + '_QCDv9/signal/genJet/', xA_title,
-        xA_range, 'MC unc. (stat.)', False, logY=logY, lumi=lumiS[y],modMaxX=False)
+      makeStackPlot(signal_plots, signal_names,                  ## plots & plot names
+        plN + '_signal_' + y,                          ## canvas name
+        plotFolder + '/20' + y + '_QCDv9/signal/genJet/',        ## output folder
+        xA_title, xA_range,                                      ## x-axis information
+        normMC=False, logY=logY, lumi=lumiS[y], modMaxY=False,
+        forceMin=True, minY_forLog=0.0)   ## modifications
       
       ## Plot for the background samples
       bckg_plots = [
@@ -206,10 +221,13 @@ for r in regions:
       
       logY = useLogY
       if 'CutFlow' in plN: logY = True
-      makeStackPlot(bckg_plots, bckg_names, plN + '_' + r + '_bckg_' + y,
-        plotFolder + '/20' + y + '_QCDv9/bckg/genJet/', xA_title,
-        xA_range, 'MC unc. (stat.)', False, logY=logY, lumi=lumiS[y],
-        custom_colors=bckg_colors, modMaxX=False)
+      makeStackPlot(bckg_plots, bckg_names,               ## plots & plot names
+        plN + '_bckg_' + y,                     ## canvas name
+        plotFolder + '/20' + y + '_QCDv9/bckg/genJet/',   ## output folder  
+        xA_title, xA_range,                               ## x-axis information
+        normMC=False, logY=logY, lumi=lumiS[y],           ## modifications
+        custom_colors=bckg_colors, modMaxY=False, 
+        forceMin=True, minY_forLog=0.0)
       
 
 

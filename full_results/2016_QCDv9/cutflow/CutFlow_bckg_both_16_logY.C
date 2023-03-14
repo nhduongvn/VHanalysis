@@ -4,11 +4,11 @@
 void CutFlow_bckg_both_16_logY()
 {
 //=========Macro generated from canvas: CutFlow_bckg_both_16/CutFlow_bckg_both_16
-//=========  (Thu Feb 16 12:44:09 2023) by ROOT version 6.26/06
+//=========  (Thu Mar  9 13:36:11 2023) by ROOT version 6.26/06
    TCanvas *CutFlow_bckg_both_16 = new TCanvas("CutFlow_bckg_both_16", "CutFlow_bckg_both_16",0,0,600,600);
    gStyle->SetOptStat(0);
    CutFlow_bckg_both_16->SetHighLightColor(2);
-   CutFlow_bckg_both_16->Range(-0.8,5.747518,4.533333,13.03984);
+   CutFlow_bckg_both_16->Range(-0.8,5.749454,4.533333,13.03963);
    CutFlow_bckg_both_16->SetFillColor(0);
    CutFlow_bckg_both_16->SetBorderMode(0);
    CutFlow_bckg_both_16->SetBorderSize(2);
@@ -20,13 +20,13 @@ void CutFlow_bckg_both_16_logY()
    TH1D *VbbHcc_both_CutFlow__6 = new TH1D("VbbHcc_both_CutFlow__6","",4,0,4);
    VbbHcc_both_CutFlow__6->SetBinContent(1,1.0791e+12);
    VbbHcc_both_CutFlow__6->SetBinContent(2,1.07908e+12);
-   VbbHcc_both_CutFlow__6->SetBinContent(3,2.313338e+09);
-   VbbHcc_both_CutFlow__6->SetBinContent(4,5994878);
-   VbbHcc_both_CutFlow__6->SetBinError(1,1.475526e+08);
-   VbbHcc_both_CutFlow__6->SetBinError(2,1.475518e+08);
-   VbbHcc_both_CutFlow__6->SetBinError(3,1996209);
-   VbbHcc_both_CutFlow__6->SetBinError(4,76058.38);
-   VbbHcc_both_CutFlow__6->SetEntries(1.637725e+09);
+   VbbHcc_both_CutFlow__6->SetBinContent(3,2.313198e+09);
+   VbbHcc_both_CutFlow__6->SetBinContent(4,6018682);
+   VbbHcc_both_CutFlow__6->SetBinError(1,1.436993e+08);
+   VbbHcc_both_CutFlow__6->SetBinError(2,1.436985e+08);
+   VbbHcc_both_CutFlow__6->SetBinError(3,1896854);
+   VbbHcc_both_CutFlow__6->SetBinError(4,73954.01);
+   VbbHcc_both_CutFlow__6->SetEntries(1.753454e+09);
 
    Int_t ci;      // for color index setting
    TColor *color; // for color definition with alpha

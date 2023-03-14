@@ -4,10 +4,10 @@
 void Z_dR_tags_17_logY()
 {
 //=========Macro generated from canvas: Z_dR_tags_17/Z_dR_tags_17
-//=========  (Thu Feb 16 10:37:18 2023) by ROOT version 6.26/06
+//=========  (Thu Mar  9 13:08:24 2023) by ROOT version 6.26/06
    TCanvas *Z_dR_tags_17 = new TCanvas("Z_dR_tags_17", "Z_dR_tags_17",0,0,600,600);
    Z_dR_tags_17->SetHighLightColor(2);
-   Z_dR_tags_17->Range(-1.310117,0.5992673,7.029799,2.357609);
+   Z_dR_tags_17->Range(-1.310117,-0.07190734,7.029799,0.2210121);
    Z_dR_tags_17->SetFillColor(0);
    Z_dR_tags_17->SetFillStyle(4000);
    Z_dR_tags_17->SetBorderMode(0);
@@ -24,12 +24,12 @@ void Z_dR_tags_17_logY()
    THStack *st = new THStack();
    st->SetName("st");
    st->SetTitle("");
-   st->SetMinimum(10);
-   st->SetMaximum(124.658);
+   st->SetMinimum(1);
+   st->SetMaximum(1.501903);
    
    TH1F *st_stack_18 = new TH1F("st_stack_18","",30,0,6);
-   st_stack_18->SetMinimum(6.460532);
-   st_stack_18->SetMaximum(151.976);
+   st_stack_18->SetMinimum(0.9188466);
+   st_stack_18->SetMaximum(1.554963);
    st_stack_18->SetDirectory(0);
    st_stack_18->SetStats(0);
 
@@ -42,7 +42,7 @@ void Z_dR_tags_17_logY()
    st_stack_18->GetXaxis()->SetLabelFont(42);
    st_stack_18->GetXaxis()->SetTitleOffset(1);
    st_stack_18->GetXaxis()->SetTitleFont(42);
-   st_stack_18->GetYaxis()->SetTitle("Events/0.2");
+   st_stack_18->GetYaxis()->SetTitle("Event/0.2");
    st_stack_18->GetYaxis()->SetLabelFont(42);
    st_stack_18->GetYaxis()->SetTitleSize(0.037);
    st_stack_18->GetYaxis()->SetTitleFont(42);
@@ -221,7 +221,7 @@ void Z_dR_tags_17_logY()
    TLatex *   tex = new TLatex(0.25,0.937775,"CMS Work in Progress #sqrt{s} = 13 TeV, 41.5 fb^{-1}");
 tex->SetNDC();
    tex->SetTextFont(42);
-   tex->SetTextSize(0.04);
+   tex->SetTextSize(0.035);
    tex->SetLineWidth(2);
    tex->Draw();
    Z_dR_tags_17->Modified();

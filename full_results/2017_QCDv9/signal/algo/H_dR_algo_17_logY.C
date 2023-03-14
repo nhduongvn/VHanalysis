@@ -4,10 +4,10 @@
 void H_dR_algo_17_logY()
 {
 //=========Macro generated from canvas: H_dR_algo_17/H_dR_algo_17
-//=========  (Thu Feb 16 10:37:19 2023) by ROOT version 6.26/06
+//=========  (Thu Mar  9 13:08:25 2023) by ROOT version 6.26/06
    TCanvas *H_dR_algo_17 = new TCanvas("H_dR_algo_17", "H_dR_algo_17",0,0,600,600);
    H_dR_algo_17->SetHighLightColor(2);
-   H_dR_algo_17->Range(-1.310117,-0.05470258,7.029799,0.4011522);
+   H_dR_algo_17->Range(-1.353788,-3.886092,7.264125,-0.03993834);
    H_dR_algo_17->SetFillColor(0);
    H_dR_algo_17->SetFillStyle(4000);
    H_dR_algo_17->SetBorderMode(0);
@@ -24,12 +24,12 @@ void H_dR_algo_17_logY()
    THStack *st = new THStack();
    st->SetName("st");
    st->SetTitle("");
-   st->SetMinimum(1e+10);
-   st->SetMaximum(33.8635);
+   st->SetMinimum(1);
+   st->SetMaximum(0.407994);
    
    TH1F *st_stack_86 = new TH1F("st_stack_86","",30,0,6);
-   st_stack_86->SetMinimum(-3.091062e+09);
-   st_stack_86->SetMaximum(-23.50309);
+   st_stack_86->SetMinimum(1.241732);
+   st_stack_86->SetMaximum(0.3762238);
    st_stack_86->SetDirectory(0);
    st_stack_86->SetStats(0);
 
@@ -42,7 +42,7 @@ void H_dR_algo_17_logY()
    st_stack_86->GetXaxis()->SetLabelFont(42);
    st_stack_86->GetXaxis()->SetTitleOffset(1);
    st_stack_86->GetXaxis()->SetTitleFont(42);
-   st_stack_86->GetYaxis()->SetTitle("Events/0.2");
+   st_stack_86->GetYaxis()->SetTitle("Event/0.2");
    st_stack_86->GetYaxis()->SetLabelFont(42);
    st_stack_86->GetYaxis()->SetTitleSize(0.037);
    st_stack_86->GetYaxis()->SetTitleFont(42);
@@ -211,7 +211,7 @@ void H_dR_algo_17_logY()
    TLatex *   tex = new TLatex(0.25,0.937775,"CMS Work in Progress #sqrt{s} = 13 TeV, 41.5 fb^{-1}");
 tex->SetNDC();
    tex->SetTextFont(42);
-   tex->SetTextSize(0.04);
+   tex->SetTextSize(0.035);
    tex->SetLineWidth(2);
    tex->Draw();
    H_dR_algo_17->Modified();

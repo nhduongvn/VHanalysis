@@ -4,10 +4,10 @@
 void nB_medium_jets_all_signal_18_logY()
 {
 //=========Macro generated from canvas: nB_medium_jets_all_signal_18/nB_medium_jets_all_signal_18
-//=========  (Wed Mar  1 14:06:43 2023) by ROOT version 6.26/06
+//=========  (Thu Mar  9 13:30:14 2023) by ROOT version 6.26/06
    TCanvas *nB_medium_jets_all_signal_18 = new TCanvas("nB_medium_jets_all_signal_18", "nB_medium_jets_all_signal_18",0,0,600,600);
    nB_medium_jets_all_signal_18->SetHighLightColor(2);
-   nB_medium_jets_all_signal_18->Range(-2.683529,-0.1698379,11.21633,5.690567);
+   nB_medium_jets_all_signal_18->Range(-2.683529,0.3406868,11.21633,3.38368);
    nB_medium_jets_all_signal_18->SetFillColor(0);
    nB_medium_jets_all_signal_18->SetFillStyle(4000);
    nB_medium_jets_all_signal_18->SetBorderMode(0);
@@ -25,11 +25,11 @@ void nB_medium_jets_all_signal_18_logY()
    st->SetName("st");
    st->SetTitle("");
    st->SetMinimum(10);
-   st->SetMaximum(71820.18);
+   st->SetMaximum(865.3034);
    
    TH1F *st_stack_185 = new TH1F("st_stack_185","",10,-0.5,9.5);
-   st_stack_185->SetMinimum(3.415157);
-   st_stack_185->SetMaximum(127211.4);
+   st_stack_185->SetMinimum(5.079793);
+   st_stack_185->SetMaximum(1200.551);
    st_stack_185->SetDirectory(0);
    st_stack_185->SetStats(0);
 
@@ -42,7 +42,7 @@ void nB_medium_jets_all_signal_18_logY()
    st_stack_185->GetXaxis()->SetLabelFont(42);
    st_stack_185->GetXaxis()->SetTitleOffset(1);
    st_stack_185->GetXaxis()->SetTitleFont(42);
-   st_stack_185->GetYaxis()->SetTitle("Events/1.0");
+   st_stack_185->GetYaxis()->SetTitle("Event/1.0");
    st_stack_185->GetYaxis()->SetLabelFont(42);
    st_stack_185->GetYaxis()->SetTitleSize(0.037);
    st_stack_185->GetYaxis()->SetTitleFont(42);
@@ -161,7 +161,7 @@ void nB_medium_jets_all_signal_18_logY()
    TLatex *   tex = new TLatex(0.25,0.937775,"CMS Work in Progress #sqrt{s} = 13 TeV, 59.7 fb^{-1}");
 tex->SetNDC();
    tex->SetTextFont(42);
-   tex->SetTextSize(0.04);
+   tex->SetTextSize(0.035);
    tex->SetLineWidth(2);
    tex->Draw();
    nB_medium_jets_all_signal_18->Modified();

@@ -4,10 +4,10 @@
 void nJet_jets_signal_16()
 {
 //=========Macro generated from canvas: nJet_jets_signal_16/nJet_jets_signal_16
-//=========  (Wed Mar  1 14:06:11 2023) by ROOT version 6.26/06
+//=========  (Thu Mar  9 13:30:48 2023) by ROOT version 6.26/06
    TCanvas *nJet_jets_signal_16 = new TCanvas("nJet_jets_signal_16", "nJet_jets_signal_16",0,0,600,600);
    nJet_jets_signal_16->SetHighLightColor(2);
-   nJet_jets_signal_16->Range(-3.556941,-53.67164,15.90286,393.592);
+   nJet_jets_signal_16->Range(-3.556941,-43.10975,15.90286,316.1382);
    nJet_jets_signal_16->SetFillColor(0);
    nJet_jets_signal_16->SetFillStyle(4000);
    nJet_jets_signal_16->SetBorderMode(0);
@@ -23,11 +23,11 @@ void nJet_jets_signal_16()
    THStack *st = new THStack();
    st->SetName("st");
    st->SetTitle("");
-   st->SetMaximum(348.8657);
+   st->SetMaximum(280.2134);
    
    TH1F *st_stack_1 = new TH1F("st_stack_1","",14,-0.5,13.5);
    st_stack_1->SetMinimum(0);
-   st_stack_1->SetMaximum(348.8657);
+   st_stack_1->SetMaximum(280.2134);
    st_stack_1->SetDirectory(0);
    st_stack_1->SetStats(0);
 
@@ -40,7 +40,7 @@ void nJet_jets_signal_16()
    st_stack_1->GetXaxis()->SetLabelFont(42);
    st_stack_1->GetXaxis()->SetTitleOffset(1);
    st_stack_1->GetXaxis()->SetTitleFont(42);
-   st_stack_1->GetYaxis()->SetTitle("Events/1.0");
+   st_stack_1->GetYaxis()->SetTitle("Event/1.0");
    st_stack_1->GetYaxis()->SetLabelFont(42);
    st_stack_1->GetYaxis()->SetTitleSize(0.037);
    st_stack_1->GetYaxis()->SetTitleFont(42);
@@ -175,7 +175,7 @@ void nJet_jets_signal_16()
    TLatex *   tex = new TLatex(0.25,0.937775,"CMS Work in Progress #sqrt{s} = 13 TeV, 35.9 fb^{-1}");
 tex->SetNDC();
    tex->SetTextFont(42);
-   tex->SetTextSize(0.04);
+   tex->SetTextSize(0.035);
    tex->SetLineWidth(2);
    tex->Draw();
    nJet_jets_signal_16->Modified();

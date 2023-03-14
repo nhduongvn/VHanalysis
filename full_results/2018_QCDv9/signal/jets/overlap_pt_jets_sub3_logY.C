@@ -4,10 +4,10 @@
 void overlap_pt_jets_sub3_logY()
 {
 //=========Macro generated from canvas: overlap_pt_jets_sub3/overlap_pt_jets_sub3
-//=========  (Wed Mar  1 14:04:33 2023) by ROOT version 6.26/06
+//=========  (Thu Mar  9 13:23:35 2023) by ROOT version 6.26/06
    TCanvas *overlap_pt_jets_sub3 = new TCanvas("overlap_pt_jets_sub3", "overlap_pt_jets_sub3",0,0,600,600);
    overlap_pt_jets_sub3->SetHighLightColor(2);
-   overlap_pt_jets_sub3->Range(-436.7058,-2.773911,2343.266,3.675347);
+   overlap_pt_jets_sub3->Range(-436.7058,-1.324822,2343.266,1.382028);
    overlap_pt_jets_sub3->SetFillColor(0);
    overlap_pt_jets_sub3->SetFillStyle(4000);
    overlap_pt_jets_sub3->SetBorderMode(0);
@@ -24,12 +24,12 @@ void overlap_pt_jets_sub3_logY()
    THStack *st = new THStack();
    st->SetName("st");
    st->SetTitle("");
-   st->SetMinimum(0.01);
-   st->SetMaximum(1072.559);
+   st->SetMinimum(0.1);
+   st->SetMaximum(12.9224);
    
    TH1F *st_stack_15 = new TH1F("st_stack_15","",1000,0,2000);
-   st_stack_15->SetMinimum(0.01);
-   st_stack_15->SetMaximum(1072.559);
+   st_stack_15->SetMinimum(0.1);
+   st_stack_15->SetMaximum(12.9224);
    st_stack_15->SetDirectory(0);
    st_stack_15->SetStats(0);
 
@@ -42,7 +42,7 @@ void overlap_pt_jets_sub3_logY()
    st_stack_15->GetXaxis()->SetLabelFont(42);
    st_stack_15->GetXaxis()->SetTitleOffset(1);
    st_stack_15->GetXaxis()->SetTitleFont(42);
-   st_stack_15->GetYaxis()->SetTitle("Events/2.0");
+   st_stack_15->GetYaxis()->SetTitle("Event/2.0 GeV");
    st_stack_15->GetYaxis()->SetLabelFont(42);
    st_stack_15->GetYaxis()->SetTitleSize(0.037);
    st_stack_15->GetYaxis()->SetTitleFont(42);
@@ -866,7 +866,7 @@ void overlap_pt_jets_sub3_logY()
    TLatex *   tex = new TLatex(0.25,0.937775,"CMS Work in Progress #sqrt{s} = 13 TeV, 59.7 fb^{-1}");
 tex->SetNDC();
    tex->SetTextFont(42);
-   tex->SetTextSize(0.04);
+   tex->SetTextSize(0.035);
    tex->SetLineWidth(2);
    tex->Draw();
    overlap_pt_jets_sub3->Modified();

@@ -26,13 +26,13 @@ def scaleToLumi1(fName, xSec, lumi):
 ####################################################
 ## Get the histograms for a given sample & variable
 ####################################################
-def getHist(pN, sample_name, fH, lS):
+def getHist(pN, sample_name, fH, lS, printSamples=True):
   hOut = {}
   
   ## Go through each year we're interested in.
   for y in years:
     ## Get the first sample
-    print sample_name[0], pN, y
+    if printSamples: print sample_name[0], pN, y
     hOut[y] = fH[sample_name[0]][y][0].Get(pN).Clone()
     if sample_name[0] not in ['JetHT']:
       hOut[y].Scale(lS[sample_name[0]][y][0])
@@ -45,7 +45,10 @@ def getHist(pN, sample_name, fH, lS):
         if sample_name[iS] not in ['JetHT']:
           h.Scale(lS[sample_name[iS]][y][fi])
         hOut[y].Add(h)
-    
+  
+  if printSamples: 
+    print "==============================================="
+  
   return hOut
 
 ###############################################################################
@@ -58,23 +61,27 @@ bckg_colors = [ ROOT.kMagenta + 2, ROOT.kOrange + 7]
 ## These you can edit / change
 ###############################
 years = ['16', '17', '18']
-regions = ['tags', 'algo', 'both', 'alljet', 'seljet']
-#regions = ['tags', 'algo', 'both']
-#regions = ['jets', 'jets_all']
-#regions = ['all']
+regions = ['tags', 'algo', 'both']##, 'alljet', 'seljet']
 plotCat = 'VbbHcc'
 useLogY = True
-summary_control_plot_name = 'summary_control_plot_zjet_zHFjet.txt'
-plotFolder = '../full_results/'
+
+plotFolder = '../full_results/'      ## mediumWP
+resultpath = '../new_condor_results/' 
+plotFolder = '../looseWP_results/'   ## looseWP
+resultpath = '../newest_condor_results/'
 
 ## Normal List of Files we want
-ss = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ', 'ZH_HToBB_ZToQQ', 'ggZH_HToBB_ZToQQ', 'QCD_HT200to300_v9', 'WJetsToQQ_HT-400to600', 'WJetsToLNu_HT-400to600', 'ZJetsToQQ_HT-400to600', 'TTToHadronic', 'TTToSemiLeptonic', 'TTTo2L2Nu', 'ST_t-channel_antitop', 'ST_t-channel_top', 'ST_tW-channel_antitop', 'ST_tW-channel_top', 'WW', 'WZ', 'ZZ']
-
-## List with extra QCD files
-ss = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ', 'ZH_HToBB_ZToQQ', 'ggZH_HToBB_ZToQQ', 'QCD_HT100to200_v9', 'QCD_HT200to300_v9', 'QCD_HT300to500_v9','QCD_HT500to700_v9','QCD_HT700to1000_v9','QCD_HT1000to1500_v9','QCD_HT1500to2000_v9','QCD_HT2000toInf_v9', 'WJetsToQQ_HT-400to600', 'WJetsToLNu_HT-400to600', 'ZJetsToQQ_HT-400to600', 'TTToHadronic', 'TTToSemiLeptonic', 'TTTo2L2Nu', 'ST_t-channel_antitop', 'ST_t-channel_top', 'ST_tW-channel_antitop', 'ST_tW-channel_top', 'WW', 'WZ', 'ZZ']
+ss = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ', 'ZH_HToBB_ZToQQ', 'ggZH_HToBB_ZToQQ', 
+  'QCD_HT200to300_v9', 'QCD_HT300to500_v9', 'QCD_HT500to700_v9', 'QCD_HT700to1000_v9',
+  'QCD_HT1000to1500_v9', 'QCD_HT1500to2000_v9', 'QCD_HT2000toInf_v9', 'WJetsToQQ_HT-400to600', 
+  'WJetsToLNu_HT-400to600', 'ZJetsToQQ_HT-400to600', 'TTToHadronic', 'TTToSemiLeptonic', 
+  'TTTo2L2Nu', 'ST_t-channel_antitop', 'ST_t-channel_top', 'ST_tW-channel_antitop', 
+  'ST_tW-channel_top', 'WW', 'WZ', 'ZZ']
 
 ## List with just QCD and ttbar files
-ss = [ 'QCD_HT100to200_v9', 'QCD_HT200to300_v9', 'QCD_HT300to500_v9','QCD_HT500to700_v9','QCD_HT700to1000_v9','QCD_HT1000to1500_v9','QCD_HT1500to2000_v9','QCD_HT2000toInf_v9', 'TTToHadronic', 'TTToSemiLeptonic', 'TTTo2L2Nu']
+ss = [ 'QCD_HT100to200_v9', 'QCD_HT200to300_v9', 'QCD_HT300to500_v9', 'QCD_HT500to700_v9',
+  'QCD_HT700to1000_v9', 'QCD_HT1000to1500_v9', 'QCD_HT1500to2000_v9', 'QCD_HT2000toInf_v9', 
+  'TTToHadronic', 'TTToSemiLeptonic', 'TTTo2L2Nu']
 
 ################################
 ## Do not edit below this point
@@ -120,7 +127,7 @@ for s in ss:
     fNames[s][y] = []
     xSecs[s][y] = []
     fHist[s][y] = []
-    dirpath = '../new_condor_results/NONE/'
+    dirpath = resultpath + '/NONE/' 
     for iN in names:
       #fNames[s][y].append(cfg.get('Paths', 'path') + '/' + iN)
       fNames[s][y].append(dirpath + '/' + iN)
@@ -160,21 +167,10 @@ for r in regions:
       hN = 'VbbHcc_' + plN
     
     ## Get all the desired plots
-    #hZHcc = getHist(hN,['ZH_HToCC_ZToQQ'],fHist,lumiScales)
-    #hZHbb = getHist(hN,['ZH_HToBB_ZToQQ'],fHist,lumiScales)
-    #hggZHcc = getHist(hN,['ggZH_HToCC_ZToQQ'],fHist,lumiScales)
-    #hggZHbb = getHist(hN,['ggZH_HToBB_ZToQQ'],fHist,lumiScales)
-    #hQCD = getHist(hN, ['QCD_HT200to300_v9'], fHist, lumiScales)
-    hQCD = getHist(hN, ['QCD_HT100to200_v9','QCD_HT200to300_v9', 'QCD_HT300to500_v9','QCD_HT500to700_v9','QCD_HT700to1000_v9','QCD_HT1000to1500_v9','QCD_HT1500to2000_v9','QCD_HT2000toInf_v9'], fHist, lumiScales)
-    #hWJ = getHist(hN, ['WJetsToQQ_HT-400to600'], fHist, lumiScales)
-    #hZJ = getHist(hN, ['ZJetsToQQ_HT-400to600'], fHist, lumiScales)
-    hTT = getHist(hN,['TTToHadronic','TTToSemiLeptonic','TTTo2L2Nu'],fHist,lumiScales)
-    #hST = getHist(hN,['ST_t-channel_antitop','ST_t-channel_top','ST_tW-channel_antitop','ST_tW-channel_top'],fHist,lumiScales)
-    #hWW = getHist(hN,['WW'],fHist,lumiScales)
-    #hWZ = getHist(hN,['WZ'],fHist,lumiScales)
-    #hZZ = getHist(hN,['ZZ'],fHist,lumiScales)
-
-    #print hQCD
+    hQCD = getHist(hN, ['QCD_HT100to200_v9','QCD_HT200to300_v9', 'QCD_HT300to500_v9', 
+      'QCD_HT500to700_v9', 'QCD_HT700to1000_v9', 'QCD_HT1000to1500_v9', 
+      'QCD_HT1500to2000_v9', 'QCD_HT2000toInf_v9'], fHist, lumiScales)
+    hTT  = getHist(hN,['TTToHadronic','TTToSemiLeptonic','TTTo2L2Nu'],fHist,lumiScales)
     
     ############################
     # Stack plots for each year
@@ -192,17 +188,7 @@ for r in regions:
       
       plots_process = [
         hQCD[y].Clone().Rebin(nRebin),
-        #hST[y].Clone().Rebin(nRebin),
         hTT[y].Clone().Rebin(nRebin),
-        #hZJ[y].Clone().Rebin(nRebin),
-        #hWJ[y].Clone().Rebin(nRebin),
-        #hWW[y].Clone().Rebin(nRebin),
-        #hWZ[y].Clone().Rebin(nRebin),
-        #hZZ[y].Clone().Rebin(nRebin),
-        #hZHbb[y].Clone().Rebin(nRebin),
-        #hggZHbb[y].Clone().Rebin(nRebin),
-        #hZHcc[y].Clone().Rebin(nRebin),
-        #hggZHcc[y].Clone().Rebin(nRebin)
       ]
       
       plotNames_process = []
@@ -212,56 +198,28 @@ for r in regions:
       ]
       plotNames_process = [ 'QCD', 't#bar{t}']
       
-      logY = useLogY
-      if 'CutFlow' in plN: logY = True
-      makeStackPlot(plots_process, plotNames_process, plN + '_' + r + '_' + y,
-        plotFolder + '/20' + y + '_QCDv9' + '/bckg/' + r + '/', xA_title, xA_range, 'MC unc. (stat.)',
-        False, logY=logY, lumi=lumiS[y],custom_colors=bckg_colors)
+      _logY = useLogY
+      if 'CutFlow' in plN: _logY = True
+      makeStackPlot(plots_process, plotNames_process,                       ## plots & plot names
+        plN + '_' + r + '_' + y,                                            ## canvas name
+        plotFolder + '/20' + y + '_QCDv9' + '/bckg/' + r + '/',             ## output folder
+        xA_title, xA_range,                                                 ## x-axis information
+        normMC=False, logY=_logY, lumi=lumiS[y],custom_colors=bckg_colors)  ## modifications
       
 
     ###################################
     ## Plot control plot for all years
     ###################################
-    #hZHccA = hZHcc['16'].Clone(hZHcc['16'].GetName()+'_all')
-    #hZHbbA = hZHbb['16'].Clone(hZHbb['16'].GetName()+'_all')
-    #hggZHccA = hggZHcc['16'].Clone(hggZHcc['16'].GetName()+'_all')
-    #hggZHbbA = hggZHbb['16'].Clone(hggZHbb['16'].GetName()+'_all')
     hQCDA = hQCD['16'].Clone(hQCD['16'].GetName()+'_all')
-    #hSTA = hST['16'].Clone(hST['16'].GetName()+'_all')
     hTTA = hTT['16'].Clone(hTT['16'].GetName()+'_all')
-    #hZJA = hZJ['16'].Clone(hZJ['16'].GetName()+'_all')
-    #hWJA = hWJ['16'].Clone(hWJ['16'].GetName()+'_all')
-    #hWWA = hWW['16'].Clone(hWW['16'].GetName()+'_all')
-    #hWZA = hWZ['16'].Clone(hWZ['16'].GetName()+'_all')
-    #hZZA = hZZ['16'].Clone(hZZ['16'].GetName()+'_all')
       
     for y in ['17','18']:
-      #hZHccA.Add(hZHcc[y])
-      #hZHbbA.Add(hZHbb[y])
-      #hggZHccA.Add(hggZHcc[y])
-      #hggZHbbA.Add(hggZHbb[y])
       hQCDA.Add(hQCD[y])
-      #hSTA.Add(hST[y])
       hTTA.Add(hTT[y])
-      #hZJA.Add(hZJ[y])
-      #hWJA.Add(hWJ[y])
-      #hWWA.Add(hWW[y])
-      #hWZA.Add(hWZ[y])
-      #hZZA.Add(hZZ[y])
 
     plots_process = [
       hQCDA.Clone().Rebin(nRebin),
-      #hSTA.Clone().Rebin(nRebin),
       hTTA.Clone().Rebin(nRebin),
-      #hZJA.Clone().Rebin(nRebin),
-      #hWJA.Clone().Rebin(nRebin),
-      #hWWA.Clone().Rebin(nRebin),
-      #hWZA.Clone().Rebin(nRebin),
-      #hZZA.Clone().Rebin(nRebin),
-      #hZHbbA.Clone().Rebin(nRebin),
-      #hggZHbbA.Clone().Rebin(nRebin),
-      #hZHccA.Clone().Rebin(nRebin),
-      #hggZHccA.Clone().Rebin(nRebin)
     ]
     
     plotNames_process = []
@@ -271,11 +229,13 @@ for r in regions:
     ]
     plotNames_process = [ 'QCD', 't#bar{t}' ]
     
-    logY = useLogY
-    if 'CutFlow' in plN: logY=True
-    makeStackPlot(plots_process, plotNames_process, plN + '_'+ r + '_all', 
-      plotFolder + 'All_QCDv9' + '/bckg/' + r + '/', xA_title, xA_range, 'MC. unc. (stat.)',
-      False, logY=logY, lumi='138', minY_forLog=1.0, custom_colors=bckg_colors)
+    _logY = useLogY
+    if 'CutFlow' in plN: _logY=True
+    makeStackPlot(plots_process, plotNames_process,                                      ## plots & plot names
+      plN + '_'+ r + '_all',                                                             ## canvas name
+      plotFolder + 'All_QCDv9' + '/bckg/' + r + '/',                                     ## output folder
+      xA_title, xA_range,                                                                ## x-axis information
+      normMC=False, logY=_logY, lumi='138', minY_forLog=1.0, custom_colors=bckg_colors)  ## modifications
 
 ###############################################################################
 ## Plot Type #2 - MET
@@ -304,9 +264,11 @@ for y in years:
       
   logY = useLogY
   if 'CutFlow' in plN: logY = True
-  makeStackPlot(plots_process, plotNames_process, "MET" + y,
-    plotFolder + '/20' + y + '_QCDv9' + '/bckg/all/', xA_title, xA_range, 'MC unc. (stat.)',
-    False, logY=logY, lumi=lumiS[y], minY_forLog=1.0, custom_colors=bckg_colors)
+  makeStackPlot(plots_process, plotNames_process,                                  ## plots & plot names
+    "MET_" + y,                                                                    ## canvas name
+    plotFolder + '/20' + y + '_QCDv9' + '/bckg/all/',                              ## output folder
+    xA_title, xA_range,                                                            ## x-axis information
+    False, logY=logY, lumi=lumiS[y], minY_forLog=1.0, custom_colors=bckg_colors)   ## modifications
 
 
 

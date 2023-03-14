@@ -4,10 +4,10 @@
 void H_dR_Bj0_algo_18()
 {
 //=========Macro generated from canvas: H_dR_Bj0_algo_18/H_dR_Bj0_algo_18
-//=========  (Thu Feb 16 10:35:20 2023) by ROOT version 6.26/06
+//=========  (Thu Mar  9 13:09:06 2023) by ROOT version 6.26/06
    TCanvas *H_dR_Bj0_algo_18 = new TCanvas("H_dR_Bj0_algo_18", "H_dR_Bj0_algo_18",0,0,600,600);
    H_dR_Bj0_algo_18->SetHighLightColor(2);
-   H_dR_Bj0_algo_18->Range(-1.310117,-0.2214712,7.029799,1.624122);
+   H_dR_Bj0_algo_18->Range(-1.310117,-0.1778885,7.029799,1.304516);
    H_dR_Bj0_algo_18->SetFillColor(0);
    H_dR_Bj0_algo_18->SetFillStyle(4000);
    H_dR_Bj0_algo_18->SetBorderMode(0);
@@ -23,11 +23,11 @@ void H_dR_Bj0_algo_18()
    THStack *st = new THStack();
    st->SetName("st");
    st->SetTitle("");
-   st->SetMaximum(1.439563);
+   st->SetMaximum(1.156275);
    
    TH1F *st_stack_107 = new TH1F("st_stack_107","",30,0,6);
    st_stack_107->SetMinimum(0);
-   st_stack_107->SetMaximum(1.439563);
+   st_stack_107->SetMaximum(1.156275);
    st_stack_107->SetDirectory(0);
    st_stack_107->SetStats(0);
 
@@ -40,7 +40,7 @@ void H_dR_Bj0_algo_18()
    st_stack_107->GetXaxis()->SetLabelFont(42);
    st_stack_107->GetXaxis()->SetTitleOffset(1);
    st_stack_107->GetXaxis()->SetTitleFont(42);
-   st_stack_107->GetYaxis()->SetTitle("Events/0.2");
+   st_stack_107->GetYaxis()->SetTitle("Event/0.2");
    st_stack_107->GetYaxis()->SetLabelFont(42);
    st_stack_107->GetYaxis()->SetTitleSize(0.037);
    st_stack_107->GetYaxis()->SetTitleFont(42);
@@ -187,7 +187,7 @@ void H_dR_Bj0_algo_18()
    TLatex *   tex = new TLatex(0.25,0.937775,"CMS Work in Progress #sqrt{s} = 13 TeV, 59.7 fb^{-1}");
 tex->SetNDC();
    tex->SetTextFont(42);
-   tex->SetTextSize(0.04);
+   tex->SetTextSize(0.035);
    tex->SetLineWidth(2);
    tex->Draw();
    H_dR_Bj0_algo_18->Modified();

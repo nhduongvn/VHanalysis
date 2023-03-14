@@ -4,10 +4,10 @@
 void Z_mass_algo_17_logY()
 {
 //=========Macro generated from canvas: Z_mass_algo_17/Z_mass_algo_17
-//=========  (Thu Feb 16 10:37:18 2023) by ROOT version 6.26/06
+//=========  (Thu Mar  9 13:08:25 2023) by ROOT version 6.26/06
    TCanvas *Z_mass_algo_17 = new TCanvas("Z_mass_algo_17", "Z_mass_algo_17",0,0,600,600);
    Z_mass_algo_17->SetHighLightColor(2);
-   Z_mass_algo_17->Range(-87.34116,-0.08910112,468.6532,0.6534082);
+   Z_mass_algo_17->Range(-65.50587,-3.654705,351.4899,0.1914494);
    Z_mass_algo_17->SetFillColor(0);
    Z_mass_algo_17->SetFillStyle(4000);
    Z_mass_algo_17->SetBorderMode(0);
@@ -24,12 +24,12 @@ void Z_mass_algo_17_logY()
    THStack *st = new THStack();
    st->SetName("st");
    st->SetTitle("");
-   st->SetMinimum(1e+10);
-   st->SetMaximum(55.15783);
+   st->SetMinimum(1);
+   st->SetMaximum(0.6645522);
    
    TH1F *st_stack_66 = new TH1F("st_stack_66","",40,0,400);
-   st_stack_66->SetMinimum(-3.195709e+09);
-   st_stack_66->SetMaximum(-35.94518);
+   st_stack_66->SetMinimum(1.097376);
+   st_stack_66->SetMaximum(0.6409645);
    st_stack_66->SetDirectory(0);
    st_stack_66->SetStats(0);
 
@@ -42,7 +42,7 @@ void Z_mass_algo_17_logY()
    st_stack_66->GetXaxis()->SetLabelFont(42);
    st_stack_66->GetXaxis()->SetTitleOffset(1);
    st_stack_66->GetXaxis()->SetTitleFont(42);
-   st_stack_66->GetYaxis()->SetTitle("Events/10.0");
+   st_stack_66->GetYaxis()->SetTitle("Event/10.0 GeV");
    st_stack_66->GetYaxis()->SetLabelFont(42);
    st_stack_66->GetYaxis()->SetTitleSize(0.037);
    st_stack_66->GetYaxis()->SetTitleFont(42);
@@ -263,7 +263,7 @@ void Z_mass_algo_17_logY()
    TLatex *   tex = new TLatex(0.25,0.937775,"CMS Work in Progress #sqrt{s} = 13 TeV, 41.5 fb^{-1}");
 tex->SetNDC();
    tex->SetTextFont(42);
-   tex->SetTextSize(0.04);
+   tex->SetTextSize(0.035);
    tex->SetLineWidth(2);
    tex->Draw();
    Z_mass_algo_17->Modified();

@@ -4,10 +4,10 @@
 void pt_jet1_jets_all_signal_17_logY()
 {
 //=========Macro generated from canvas: pt_jet1_jets_all_signal_17/pt_jet1_jets_all_signal_17
-//=========  (Wed Mar  1 14:06:43 2023) by ROOT version 6.26/06
+//=========  (Thu Mar  9 13:30:14 2023) by ROOT version 6.26/06
    TCanvas *pt_jet1_jets_all_signal_17 = new TCanvas("pt_jet1_jets_all_signal_17", "pt_jet1_jets_all_signal_17",0,0,600,600);
    pt_jet1_jets_all_signal_17->SetHighLightColor(2);
-   pt_jet1_jets_all_signal_17->Range(-436.7058,0.0005412755,2343.266,4.883974);
+   pt_jet1_jets_all_signal_17->Range(-436.7058,0.5454545,2343.266,2.562134);
    pt_jet1_jets_all_signal_17->SetFillColor(0);
    pt_jet1_jets_all_signal_17->SetFillStyle(4000);
    pt_jet1_jets_all_signal_17->SetBorderMode(0);
@@ -25,11 +25,11 @@ void pt_jet1_jets_all_signal_17_logY()
    st->SetName("st");
    st->SetTitle("");
    st->SetMinimum(10);
-   st->SetMaximum(15196.87);
+   st->SetMaximum(183.0948);
    
    TH1F *st_stack_207 = new TH1F("st_stack_207","",200,0,2000);
-   st_stack_207->SetMinimum(3.859697);
-   st_stack_207->SetMaximum(24867.41);
+   st_stack_207->SetMinimum(6.129937);
+   st_stack_207->SetMaximum(229.3327);
    st_stack_207->SetDirectory(0);
    st_stack_207->SetStats(0);
 
@@ -42,7 +42,7 @@ void pt_jet1_jets_all_signal_17_logY()
    st_stack_207->GetXaxis()->SetLabelFont(42);
    st_stack_207->GetXaxis()->SetTitleOffset(1);
    st_stack_207->GetXaxis()->SetTitleFont(42);
-   st_stack_207->GetYaxis()->SetTitle("Events/10.0");
+   st_stack_207->GetYaxis()->SetTitle("Event/10.0 GeV");
    st_stack_207->GetYaxis()->SetLabelFont(42);
    st_stack_207->GetYaxis()->SetTitleSize(0.037);
    st_stack_207->GetYaxis()->SetTitleFont(42);
@@ -541,7 +541,7 @@ void pt_jet1_jets_all_signal_17_logY()
    TLatex *   tex = new TLatex(0.25,0.937775,"CMS Work in Progress #sqrt{s} = 13 TeV, 41.5 fb^{-1}");
 tex->SetNDC();
    tex->SetTextFont(42);
-   tex->SetTextSize(0.04);
+   tex->SetTextSize(0.035);
    tex->SetLineWidth(2);
    tex->Draw();
    pt_jet1_jets_all_signal_17->Modified();

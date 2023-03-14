@@ -56,23 +56,25 @@ def getHist(pN, sample_name, fH, lS):
 ## These you can edit / change
 ###############################
 years = ['16', '17', '18']
-regions = ['tags', 'algo', 'both', 'alljet', 'seljet']
-#regions = ['tags', 'algo', 'both']
-#regions = ['jets', 'jets_all']
-#regions = ['all']
+regions = ['tags', 'algo', 'both']#, 'alljet', 'seljet']
 plotCat = 'VbbHcc'
 useLogY = False
-summary_control_plot_name = 'summary_control_plot_zjet_zHFjet.txt'
 plotFolder = '../full_results/'
 
 ## signal samples
 ss_signal = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ']
 
 ## simplified background samples - QCD and ttbar
-ss_bckg = [ 'QCD_HT100to200_v9', 'QCD_HT200to300_v9', 'QCD_HT300to500_v9','QCD_HT500to700_v9','QCD_HT700to1000_v9','QCD_HT1000to1500_v9','QCD_HT1500to2000_v9','QCD_HT2000toInf_v9', 'TTToHadronic', 'TTToSemiLeptonic', 'TTTo2L2Nu']
+ss_bckg = [ 'QCD_HT100to200_v9', 'QCD_HT200to300_v9', 'QCD_HT300to500_v9',
+  'QCD_HT500to700_v9', 'QCD_HT700to1000_v9', 'QCD_HT1000to1500_v9',
+  'QCD_HT1500to2000_v9','QCD_HT2000toInf_v9', 'TTToHadronic', 
+  'TTToSemiLeptonic', 'TTTo2L2Nu']
 
 ## combined list containing both signal & background samples
-ss = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ', 'QCD_HT100to200_v9', 'QCD_HT200to300_v9', 'QCD_HT300to500_v9','QCD_HT500to700_v9','QCD_HT700to1000_v9','QCD_HT1000to1500_v9','QCD_HT1500to2000_v9','QCD_HT2000toInf_v9', 'TTToHadronic', 'TTToSemiLeptonic', 'TTTo2L2Nu']
+ss = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ', 'QCD_HT100to200_v9', 
+  'QCD_HT200to300_v9', 'QCD_HT300to500_v9', 'QCD_HT500to700_v9',
+  'QCD_HT700to1000_v9', 'QCD_HT1000to1500_v9', 'QCD_HT1500to2000_v9',
+  'QCD_HT2000toInf_v9', 'TTToHadronic', 'TTToSemiLeptonic', 'TTTo2L2Nu']
 
 ################################
 ## Do not edit below this point
@@ -151,7 +153,9 @@ for plN in variables:
   var_name = "VbbHcc_MC_" + plN
   hZHcc   = getHist(var_name, ['ZH_HToCC_ZToQQ'],   fHist, lumiScales)
   hggZHcc = getHist(var_name, ['ggZH_HToCC_ZToQQ'], fHist, lumiScales)
-  hQCD = getHist(var_name, ['QCD_HT100to200_v9','QCD_HT200to300_v9', 'QCD_HT300to500_v9','QCD_HT500to700_v9','QCD_HT700to1000_v9','QCD_HT1000to1500_v9','QCD_HT1500to2000_v9','QCD_HT2000toInf_v9'], fHist, lumiScales)
+  hQCD = getHist(var_name, ['QCD_HT100to200_v9','QCD_HT200to300_v9', 'QCD_HT300to500_v9', 
+    'QCD_HT500to700_v9', 'QCD_HT700to1000_v9', 'QCD_HT1000to1500_v9', 
+    'QCD_HT1500to2000_v9','QCD_HT2000toInf_v9'], fHist, lumiScales)
   hTT = getHist(var_name, ['TTToHadronic','TTToSemiLeptonic','TTTo2L2Nu'],fHist,lumiScales)
   
   #############################
@@ -180,13 +184,17 @@ for plN in variables:
     ]
     bckg_names = [ "QCD", 't#bar{t}' ]
 
-    makeStackPlot(signal_plots, signal_names, plN + '_' + y,
-        plotFolder + '/20' + y + '_QCDv9' + '/MC_signal/', xA_title, xA_range, 'MC unc. (stat.)',
-        False, logY=useLogY, lumi=lumiS[y], forceMin=True, modMaxX=False)
+    makeStackPlot(signal_plots, signal_names,              ## plots & plot names
+      plN + '_signal_' + y,                                ## canvas name
+      plotFolder + '/20' + y + '_QCDv9' + '/MC_signal/',   ## output folder
+      xA_title, xA_range,                                  ## x-axis information
+      normMC=False, logY=useLogY, lumi=lumiS[y])           ## modifications
     
-    makeStackPlot(bckg_plots, bckg_names, plN + '_' + y,
-        plotFolder + '/20' + y + '_QCDv9' + '/MC_bckg/', xA_title, xA_range, 'MC unc. (stat.)',
-        False, logY=useLogY, lumi=lumiS[y], forceMin=True, modMaxX=False)
+    makeStackPlot(bckg_plots, bckg_names,                  ## plots & plot names
+      plN + '_bckg_' + y,                                  ## canvas name
+      plotFolder + '/20' + y + '_QCDv9' + '/MC_bckg/',     ## output folder
+      xA_title, xA_range,                                  ## x-axis information
+      normMC=False, logY=useLogY, lumi=lumiS[y])           ## modifications
 
 
 

@@ -4,11 +4,11 @@
 void CutFlow_bckg_tags_16_logY()
 {
 //=========Macro generated from canvas: CutFlow_bckg_tags_16/CutFlow_bckg_tags_16
-//=========  (Thu Feb 16 12:44:09 2023) by ROOT version 6.26/06
+//=========  (Thu Mar  9 13:36:11 2023) by ROOT version 6.26/06
    TCanvas *CutFlow_bckg_tags_16 = new TCanvas("CutFlow_bckg_tags_16", "CutFlow_bckg_tags_16",0,0,600,600);
    gStyle->SetOptStat(0);
    CutFlow_bckg_tags_16->SetHighLightColor(2);
-   CutFlow_bckg_tags_16->Range(-1,5.738417,5.666667,13.04085);
+   CutFlow_bckg_tags_16->Range(-1.4,5.7402,7.933333,13.04066);
    CutFlow_bckg_tags_16->SetFillColor(0);
    CutFlow_bckg_tags_16->SetBorderMode(0);
    CutFlow_bckg_tags_16->SetBorderSize(2);
@@ -17,18 +17,22 @@ void CutFlow_bckg_tags_16_logY()
    CutFlow_bckg_tags_16->SetFrameBorderMode(0);
    CutFlow_bckg_tags_16->SetFrameBorderMode(0);
    
-   TH1D *VbbHcc_tags_CutFlow__2 = new TH1D("VbbHcc_tags_CutFlow__2","",5,0,5);
+   TH1D *VbbHcc_tags_CutFlow__2 = new TH1D("VbbHcc_tags_CutFlow__2","",7,0,7);
    VbbHcc_tags_CutFlow__2->SetBinContent(1,1.0791e+12);
    VbbHcc_tags_CutFlow__2->SetBinContent(2,1.07908e+12);
-   VbbHcc_tags_CutFlow__2->SetBinContent(3,2.313338e+09);
-   VbbHcc_tags_CutFlow__2->SetBinContent(4,7.004506e+07);
-   VbbHcc_tags_CutFlow__2->SetBinContent(5,5884251);
-   VbbHcc_tags_CutFlow__2->SetBinError(1,1.475526e+08);
-   VbbHcc_tags_CutFlow__2->SetBinError(2,1.475518e+08);
-   VbbHcc_tags_CutFlow__2->SetBinError(3,1996209);
-   VbbHcc_tags_CutFlow__2->SetBinError(4,301956);
-   VbbHcc_tags_CutFlow__2->SetBinError(5,75891.21);
-   VbbHcc_tags_CutFlow__2->SetEntries(1.695838e+09);
+   VbbHcc_tags_CutFlow__2->SetBinContent(3,2.313198e+09);
+   VbbHcc_tags_CutFlow__2->SetBinContent(4,3.788824e+08);
+   VbbHcc_tags_CutFlow__2->SetBinContent(5,7.004972e+07);
+   VbbHcc_tags_CutFlow__2->SetBinContent(6,3.096894e+07);
+   VbbHcc_tags_CutFlow__2->SetBinContent(7,5905755);
+   VbbHcc_tags_CutFlow__2->SetBinError(1,1.436993e+08);
+   VbbHcc_tags_CutFlow__2->SetBinError(2,1.436985e+08);
+   VbbHcc_tags_CutFlow__2->SetBinError(3,1896854);
+   VbbHcc_tags_CutFlow__2->SetBinError(4,765906.7);
+   VbbHcc_tags_CutFlow__2->SetBinError(5,284364.4);
+   VbbHcc_tags_CutFlow__2->SetBinError(6,187524.4);
+   VbbHcc_tags_CutFlow__2->SetBinError(7,73781.98);
+   VbbHcc_tags_CutFlow__2->SetEntries(1.988967e+09);
 
    Int_t ci;      // for color index setting
    TColor *color; // for color definition with alpha
@@ -38,9 +42,11 @@ void CutFlow_bckg_tags_16_logY()
    VbbHcc_tags_CutFlow__2->GetXaxis()->SetBinLabel(1,"Total");
    VbbHcc_tags_CutFlow__2->GetXaxis()->SetBinLabel(2,"MET cut");
    VbbHcc_tags_CutFlow__2->GetXaxis()->SetBinLabel(3,"jet cuts");
-   VbbHcc_tags_CutFlow__2->GetXaxis()->SetBinLabel(4,"b-tags");
-   VbbHcc_tags_CutFlow__2->GetXaxis()->SetBinLabel(5,"c-tags");
-   VbbHcc_tags_CutFlow__2->GetXaxis()->SetRange(1,5);
+   VbbHcc_tags_CutFlow__2->GetXaxis()->SetBinLabel(4,"b-tag #1");
+   VbbHcc_tags_CutFlow__2->GetXaxis()->SetBinLabel(5,"b-tag #2");
+   VbbHcc_tags_CutFlow__2->GetXaxis()->SetBinLabel(6,"c-tag #1");
+   VbbHcc_tags_CutFlow__2->GetXaxis()->SetBinLabel(7,"c-tag #2");
+   VbbHcc_tags_CutFlow__2->GetXaxis()->SetRange(1,7);
    VbbHcc_tags_CutFlow__2->GetXaxis()->SetLabelFont(42);
    VbbHcc_tags_CutFlow__2->GetXaxis()->SetTitleOffset(1);
    VbbHcc_tags_CutFlow__2->GetXaxis()->SetTitleFont(42);

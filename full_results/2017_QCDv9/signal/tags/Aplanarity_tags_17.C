@@ -4,10 +4,10 @@
 void Aplanarity_tags_17()
 {
 //=========Macro generated from canvas: Aplanarity_tags_17/Aplanarity_tags_17
-//=========  (Thu Feb 16 10:35:19 2023) by ROOT version 6.26/06
+//=========  (Thu Mar  9 13:09:05 2023) by ROOT version 6.26/06
    TCanvas *Aplanarity_tags_17 = new TCanvas("Aplanarity_tags_17", "Aplanarity_tags_17",0,0,600,600);
    Aplanarity_tags_17->SetHighLightColor(2);
-   Aplanarity_tags_17->Range(-0.2183529,-0.6116271,1.171633,4.485265);
+   Aplanarity_tags_17->Range(-0.2183529,-0.4912667,1.171633,3.602623);
    Aplanarity_tags_17->SetFillColor(0);
    Aplanarity_tags_17->SetFillStyle(4000);
    Aplanarity_tags_17->SetBorderMode(0);
@@ -23,11 +23,11 @@ void Aplanarity_tags_17()
    THStack *st = new THStack();
    st->SetName("st");
    st->SetTitle("");
-   st->SetMaximum(3.975576);
+   st->SetMaximum(3.193234);
    
    TH1F *st_stack_62 = new TH1F("st_stack_62","",50,0,1);
    st_stack_62->SetMinimum(0);
-   st_stack_62->SetMaximum(3.975576);
+   st_stack_62->SetMaximum(3.193234);
    st_stack_62->SetDirectory(0);
    st_stack_62->SetStats(0);
 
@@ -40,7 +40,7 @@ void Aplanarity_tags_17()
    st_stack_62->GetXaxis()->SetLabelFont(42);
    st_stack_62->GetXaxis()->SetTitleOffset(1);
    st_stack_62->GetXaxis()->SetTitleFont(42);
-   st_stack_62->GetYaxis()->SetTitle("Events/0.02");
+   st_stack_62->GetYaxis()->SetTitle("Event/0.02");
    st_stack_62->GetYaxis()->SetLabelFont(42);
    st_stack_62->GetYaxis()->SetTitleSize(0.037);
    st_stack_62->GetYaxis()->SetTitleFont(42);
@@ -209,7 +209,7 @@ void Aplanarity_tags_17()
    TLatex *   tex = new TLatex(0.25,0.937775,"CMS Work in Progress #sqrt{s} = 13 TeV, 41.5 fb^{-1}");
 tex->SetNDC();
    tex->SetTextFont(42);
-   tex->SetTextSize(0.04);
+   tex->SetTextSize(0.035);
    tex->SetLineWidth(2);
    tex->Draw();
    Aplanarity_tags_17->Modified();

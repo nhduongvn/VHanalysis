@@ -4,10 +4,10 @@
 void dPhi_HZ_both_all()
 {
 //=========Macro generated from canvas: dPhi_HZ_both_all/dPhi_HZ_both_all
-//=========  (Thu Feb 16 10:35:21 2023) by ROOT version 6.26/06
+//=========  (Thu Mar  9 13:09:06 2023) by ROOT version 6.26/06
    TCanvas *dPhi_HZ_both_all = new TCanvas("dPhi_HZ_both_all", "dPhi_HZ_both_all",0,0,600,600);
    dPhi_HZ_both_all->SetHighLightColor(2);
-   dPhi_HZ_both_all->Range(-5.746823,-0.1536256,5.373065,1.126588);
+   dPhi_HZ_both_all->Range(-5.746823,-0.1233941,5.373065,0.9048898);
    dPhi_HZ_both_all->SetFillColor(0);
    dPhi_HZ_both_all->SetFillStyle(4000);
    dPhi_HZ_both_all->SetBorderMode(0);
@@ -23,11 +23,11 @@ void dPhi_HZ_both_all()
    THStack *st = new THStack();
    st->SetName("st");
    st->SetTitle("");
-   st->SetMaximum(0.9985665);
+   st->SetMaximum(0.8020614);
    
    TH1F *st_stack_164 = new TH1F("st_stack_164","",480,-4,4);
    st_stack_164->SetMinimum(0);
-   st_stack_164->SetMaximum(0.9985665);
+   st_stack_164->SetMaximum(0.8020614);
    st_stack_164->SetDirectory(0);
    st_stack_164->SetStats(0);
 
@@ -40,7 +40,7 @@ void dPhi_HZ_both_all()
    st_stack_164->GetXaxis()->SetLabelFont(42);
    st_stack_164->GetXaxis()->SetTitleOffset(1);
    st_stack_164->GetXaxis()->SetTitleFont(42);
-   st_stack_164->GetYaxis()->SetTitle("Events/0.017");
+   st_stack_164->GetYaxis()->SetTitle("Event/0.017");
    st_stack_164->GetYaxis()->SetLabelFont(42);
    st_stack_164->GetYaxis()->SetTitleSize(0.037);
    st_stack_164->GetYaxis()->SetTitleFont(42);
@@ -1633,7 +1633,7 @@ void dPhi_HZ_both_all()
    TLatex *   tex = new TLatex(0.25,0.937775,"CMS Work in Progress #sqrt{s} = 13 TeV, 138 fb^{-1}");
 tex->SetNDC();
    tex->SetTextFont(42);
-   tex->SetTextSize(0.04);
+   tex->SetTextSize(0.035);
    tex->SetLineWidth(2);
    tex->Draw();
    dPhi_HZ_both_all->Modified();

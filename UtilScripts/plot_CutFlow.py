@@ -57,8 +57,13 @@ def getHist(pN, sample_name, fH, lS):
 ######################
 debug = True
 years = ['16', '17', '18']
-plotFolder = '../full_results/'
-useLogY = True
+
+plotFolder = '../full_results/'        ## medium WP
+resultpath = '../new_condor_results/NONE/'  
+plotFolder = '../looseWP_results/'     ## loose WP
+resultpath = '../newest_condor_results/NONE/'
+
+useLogY = False
 
 produceOneSidedROCs = True
 produceJetROCs = True
@@ -69,10 +74,16 @@ produceIntervalROCs = True
 ss_signal = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ']
 
 ## simplified background samples - QCD and ttbar
-ss_bckg = [ 'QCD_HT100to200_v9', 'QCD_HT200to300_v9', 'QCD_HT300to500_v9','QCD_HT500to700_v9','QCD_HT700to1000_v9','QCD_HT1000to1500_v9','QCD_HT1500to2000_v9','QCD_HT2000toInf_v9', 'TTToHadronic', 'TTToSemiLeptonic', 'TTTo2L2Nu']
+ss_bckg = [ 'QCD_HT100to200_v9', 'QCD_HT200to300_v9', 'QCD_HT300to500_v9', 
+  'QCD_HT500to700_v9', 'QCD_HT700to1000_v9', 'QCD_HT1000to1500_v9',
+  'QCD_HT1500to2000_v9', 'QCD_HT2000toInf_v9', 'TTToHadronic', 
+  'TTToSemiLeptonic', 'TTTo2L2Nu']
 
 ## combined list containing both signal & background samples
-ss = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ', 'QCD_HT100to200_v9', 'QCD_HT200to300_v9', 'QCD_HT300to500_v9','QCD_HT500to700_v9','QCD_HT700to1000_v9','QCD_HT1000to1500_v9','QCD_HT1500to2000_v9','QCD_HT2000toInf_v9', 'TTToHadronic', 'TTToSemiLeptonic', 'TTTo2L2Nu']
+ss = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ', 'QCD_HT100to200_v9', 
+  'QCD_HT200to300_v9', 'QCD_HT300to500_v9', 'QCD_HT500to700_v9', 'QCD_HT700to1000_v9', 
+  'QCD_HT1000to1500_v9', 'QCD_HT1500to2000_v9', 'QCD_HT2000toInf_v9', 
+  'TTToHadronic', 'TTToSemiLeptonic', 'TTTo2L2Nu']
 
 ##################################################
 ## Do not edit below this point (without caution)
@@ -124,7 +135,7 @@ for s in ss:
     fNames[s][y] = []
     xSecs[s][y] = []
     fHist[s][y] = []
-    dirpath = '../new_condor_results/NONE/'
+    dirpath = resultpath
     for iN in names:
       #fNames[s][y].append(cfg.get('Paths', 'path') + '/' + iN)
       fNames[s][y].append(dirpath + '/' + iN)
@@ -181,17 +192,17 @@ for y in years:
  
   for i in range(3):
     
-    makePlot(signal_plots[i], "CutFlow_" + selection_types[i] + "_" + y,
-      "CutFlow_signal_" + selection_types[i] + "_" + y, 
-      plotFolder + "/20" + y + "_QCDv9/cutflow/",
-      xAxis_title, [], "Events", 1, True, "138", selection_colors[i],
-      selection_colors[i])
+    makePlot(signal_plots[i], "CutFlow_" + selection_types[i] + "_" + y,   ## plots & plot names
+      "CutFlow_signal_" + selection_types[i] + "_" + y,                    ## canvas name
+      plotFolder + "/20" + y + "_QCDv9/cutflow/",                          ## output folder
+      xAxis_title, [], "Events", 1, True, lumiS[y], 	                   ## axes, rebin, logY, lumiS
+      selection_colors[i], selection_colors[i])                            ## colors
     
-    makePlot(bckg_plots[i], "CutFlow_" + selection_types[i] + "_" + y,
-      "CutFlow_bckg_" + selection_types[i] + "_" + y, 
-      plotFolder + "/20" + y + "_QCDv9/cutflow/",
-      xAxis_title, [], "Events", 1, True, "138", selection_colors[i],
-      selection_colors[i])
+    makePlot(bckg_plots[i], "CutFlow_" + selection_types[i] + "_" + y,     ## plots & plot names
+      "CutFlow_bckg_" + selection_types[i] + "_" + y,                      ## canvas name
+      plotFolder + "/20" + y + "_QCDv9/cutflow/",                          ## output folder
+      xAxis_title, [], "Events", 1, True, lumiS[y],                        ## axes, rebin, logY, lumiS
+      selection_colors[i], selection_colors[i])                            ## colors
 
 
 

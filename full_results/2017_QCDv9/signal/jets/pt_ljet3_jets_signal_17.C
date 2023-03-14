@@ -4,10 +4,10 @@
 void pt_ljet3_jets_signal_17()
 {
 //=========Macro generated from canvas: pt_ljet3_jets_signal_17/pt_ljet3_jets_signal_17
-//=========  (Wed Mar  1 14:06:13 2023) by ROOT version 6.26/06
+//=========  (Thu Mar  9 13:30:50 2023) by ROOT version 6.26/06
    TCanvas *pt_ljet3_jets_signal_17 = new TCanvas("pt_ljet3_jets_signal_17", "pt_ljet3_jets_signal_17",0,0,600,600);
    pt_ljet3_jets_signal_17->SetHighLightColor(2);
-   pt_ljet3_jets_signal_17->Range(-436.7058,-1.692353,2343.266,12.41059);
+   pt_ljet3_jets_signal_17->Range(-436.7058,-1.35932,2343.266,9.968346);
    pt_ljet3_jets_signal_17->SetFillColor(0);
    pt_ljet3_jets_signal_17->SetFillStyle(4000);
    pt_ljet3_jets_signal_17->SetBorderMode(0);
@@ -23,11 +23,11 @@ void pt_ljet3_jets_signal_17()
    THStack *st = new THStack();
    st->SetName("st");
    st->SetTitle("");
-   st->SetMaximum(11.0003);
+   st->SetMaximum(8.835579);
    
    TH1F *st_stack_93 = new TH1F("st_stack_93","",1000,0,2000);
    st_stack_93->SetMinimum(0);
-   st_stack_93->SetMaximum(11.0003);
+   st_stack_93->SetMaximum(8.835579);
    st_stack_93->SetDirectory(0);
    st_stack_93->SetStats(0);
 
@@ -40,7 +40,7 @@ void pt_ljet3_jets_signal_17()
    st_stack_93->GetXaxis()->SetLabelFont(42);
    st_stack_93->GetXaxis()->SetTitleOffset(1);
    st_stack_93->GetXaxis()->SetTitleFont(42);
-   st_stack_93->GetYaxis()->SetTitle("Events/2.0");
+   st_stack_93->GetYaxis()->SetTitle("Event/2.0 GeV");
    st_stack_93->GetYaxis()->SetLabelFont(42);
    st_stack_93->GetYaxis()->SetTitleSize(0.037);
    st_stack_93->GetYaxis()->SetTitleFont(42);
@@ -601,7 +601,7 @@ void pt_ljet3_jets_signal_17()
    TLatex *   tex = new TLatex(0.25,0.937775,"CMS Work in Progress #sqrt{s} = 13 TeV, 41.5 fb^{-1}");
 tex->SetNDC();
    tex->SetTextFont(42);
-   tex->SetTextSize(0.04);
+   tex->SetTextSize(0.035);
    tex->SetLineWidth(2);
    tex->Draw();
    pt_ljet3_jets_signal_17->Modified();

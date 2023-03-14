@@ -4,10 +4,10 @@
 void H_dPhi_algo_all_logY()
 {
 //=========Macro generated from canvas: H_dPhi_algo_all/H_dPhi_algo_all
-//=========  (Thu Feb 16 10:37:19 2023) by ROOT version 6.26/06
+//=========  (Thu Mar  9 13:08:26 2023) by ROOT version 6.26/06
    TCanvas *H_dPhi_algo_all = new TCanvas("H_dPhi_algo_all", "H_dPhi_algo_all",0,0,600,600);
    H_dPhi_algo_all->SetHighLightColor(2);
-   H_dPhi_algo_all->Range(-0.8734116,0.9860823,4.686532,1.041972);
+   H_dPhi_algo_all->Range(-0.8734116,-4.431795,4.686532,-0.585641);
    H_dPhi_algo_all->SetFillColor(0);
    H_dPhi_algo_all->SetFillStyle(4000);
    H_dPhi_algo_all->SetBorderMode(0);
@@ -24,12 +24,12 @@ void H_dPhi_algo_all_logY()
    THStack *st = new THStack();
    st->SetName("st");
    st->SetTitle("");
-   st->SetMinimum(10);
-   st->SetMaximum(10.80151);
+   st->SetMinimum(1);
+   st->SetMaximum(0.1301387);
    
    TH1F *st_stack_96 = new TH1F("st_stack_96","",120,0,4);
-   st_stack_96->SetMinimum(9.835334);
-   st_stack_96->SetMaximum(10.87385);
+   st_stack_96->SetMinimum(1.794677);
+   st_stack_96->SetMaximum(0.1070887);
    st_stack_96->SetDirectory(0);
    st_stack_96->SetStats(0);
 
@@ -42,7 +42,7 @@ void H_dPhi_algo_all_logY()
    st_stack_96->GetXaxis()->SetLabelFont(42);
    st_stack_96->GetXaxis()->SetTitleOffset(1);
    st_stack_96->GetXaxis()->SetTitleFont(42);
-   st_stack_96->GetYaxis()->SetTitle("Events/0.033");
+   st_stack_96->GetYaxis()->SetTitle("Event/0.033");
    st_stack_96->GetYaxis()->SetLabelFont(42);
    st_stack_96->GetYaxis()->SetTitleSize(0.037);
    st_stack_96->GetYaxis()->SetTitleFont(42);
@@ -511,7 +511,7 @@ void H_dPhi_algo_all_logY()
    TLatex *   tex = new TLatex(0.25,0.937775,"CMS Work in Progress #sqrt{s} = 13 TeV, 138 fb^{-1}");
 tex->SetNDC();
    tex->SetTextFont(42);
-   tex->SetTextSize(0.04);
+   tex->SetTextSize(0.035);
    tex->SetLineWidth(2);
    tex->Draw();
    H_dPhi_algo_all->Modified();

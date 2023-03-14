@@ -4,7 +4,7 @@
 void eff_id_v_id_b_truth_both_signal_16_logY()
 {
 //=========Macro generated from canvas: eff_id_v_id_b_truth_both_signal_16/eff_id_v_id_b_truth_both_signal_16
-//=========  (Fri Mar  3 10:54:21 2023) by ROOT version 6.26/06
+//=========  (Fri Mar 10 14:23:45 2023) by ROOT version 6.26/06
    TCanvas *eff_id_v_id_b_truth_both_signal_16 = new TCanvas("eff_id_v_id_b_truth_both_signal_16", "eff_id_v_id_b_truth_both_signal_16",0,0,600,600);
    gStyle->SetOptStat(0);
    eff_id_v_id_b_truth_both_signal_16->SetHighLightColor(2);
@@ -17,36 +17,36 @@ void eff_id_v_id_b_truth_both_signal_16_logY()
    eff_id_v_id_b_truth_both_signal_16->SetFrameBorderMode(0);
    
    TH2D *VbbHcc_eff_both_id_v_id_b_truth = new TH2D("VbbHcc_eff_both_id_v_id_b_truth","",4,0,4,4,0,4);
-   VbbHcc_eff_both_id_v_id_b_truth->SetBinContent(7,252.6075);
-   VbbHcc_eff_both_id_v_id_b_truth->SetBinContent(8,1576.837);
-   VbbHcc_eff_both_id_v_id_b_truth->SetBinContent(13,1541.918);
-   VbbHcc_eff_both_id_v_id_b_truth->SetBinContent(14,289.1066);
-   VbbHcc_eff_both_id_v_id_b_truth->SetBinError(7,16.37588);
-   VbbHcc_eff_both_id_v_id_b_truth->SetBinError(8,41.00781);
-   VbbHcc_eff_both_id_v_id_b_truth->SetBinError(13,40.6324);
-   VbbHcc_eff_both_id_v_id_b_truth->SetBinError(14,17.46849);
+   VbbHcc_eff_both_id_v_id_b_truth->SetBinContent(7,325.6996);
+   VbbHcc_eff_both_id_v_id_b_truth->SetBinContent(8,2067.797);
+   VbbHcc_eff_both_id_v_id_b_truth->SetBinContent(13,1984.48);
+   VbbHcc_eff_both_id_v_id_b_truth->SetBinContent(14,376.3215);
+   VbbHcc_eff_both_id_v_id_b_truth->SetBinError(7,18.68064);
+   VbbHcc_eff_both_id_v_id_b_truth->SetBinError(8,47.10002);
+   VbbHcc_eff_both_id_v_id_b_truth->SetBinError(13,46.18118);
+   VbbHcc_eff_both_id_v_id_b_truth->SetBinError(14,20.01971);
    VbbHcc_eff_both_id_v_id_b_truth->SetEntries(4544);
    VbbHcc_eff_both_id_v_id_b_truth->SetContour(20);
    VbbHcc_eff_both_id_v_id_b_truth->SetContourLevel(0,0);
-   VbbHcc_eff_both_id_v_id_b_truth->SetContourLevel(1,78.84185);
-   VbbHcc_eff_both_id_v_id_b_truth->SetContourLevel(2,157.6837);
-   VbbHcc_eff_both_id_v_id_b_truth->SetContourLevel(3,236.5256);
-   VbbHcc_eff_both_id_v_id_b_truth->SetContourLevel(4,315.3674);
-   VbbHcc_eff_both_id_v_id_b_truth->SetContourLevel(5,394.2093);
-   VbbHcc_eff_both_id_v_id_b_truth->SetContourLevel(6,473.0511);
-   VbbHcc_eff_both_id_v_id_b_truth->SetContourLevel(7,551.893);
-   VbbHcc_eff_both_id_v_id_b_truth->SetContourLevel(8,630.7348);
-   VbbHcc_eff_both_id_v_id_b_truth->SetContourLevel(9,709.5767);
-   VbbHcc_eff_both_id_v_id_b_truth->SetContourLevel(10,788.4185);
-   VbbHcc_eff_both_id_v_id_b_truth->SetContourLevel(11,867.2604);
-   VbbHcc_eff_both_id_v_id_b_truth->SetContourLevel(12,946.1023);
-   VbbHcc_eff_both_id_v_id_b_truth->SetContourLevel(13,1024.944);
-   VbbHcc_eff_both_id_v_id_b_truth->SetContourLevel(14,1103.786);
-   VbbHcc_eff_both_id_v_id_b_truth->SetContourLevel(15,1182.628);
-   VbbHcc_eff_both_id_v_id_b_truth->SetContourLevel(16,1261.47);
-   VbbHcc_eff_both_id_v_id_b_truth->SetContourLevel(17,1340.312);
-   VbbHcc_eff_both_id_v_id_b_truth->SetContourLevel(18,1419.153);
-   VbbHcc_eff_both_id_v_id_b_truth->SetContourLevel(19,1497.995);
+   VbbHcc_eff_both_id_v_id_b_truth->SetContourLevel(1,103.3899);
+   VbbHcc_eff_both_id_v_id_b_truth->SetContourLevel(2,206.7797);
+   VbbHcc_eff_both_id_v_id_b_truth->SetContourLevel(3,310.1696);
+   VbbHcc_eff_both_id_v_id_b_truth->SetContourLevel(4,413.5595);
+   VbbHcc_eff_both_id_v_id_b_truth->SetContourLevel(5,516.9494);
+   VbbHcc_eff_both_id_v_id_b_truth->SetContourLevel(6,620.3392);
+   VbbHcc_eff_both_id_v_id_b_truth->SetContourLevel(7,723.7291);
+   VbbHcc_eff_both_id_v_id_b_truth->SetContourLevel(8,827.119);
+   VbbHcc_eff_both_id_v_id_b_truth->SetContourLevel(9,930.5088);
+   VbbHcc_eff_both_id_v_id_b_truth->SetContourLevel(10,1033.899);
+   VbbHcc_eff_both_id_v_id_b_truth->SetContourLevel(11,1137.289);
+   VbbHcc_eff_both_id_v_id_b_truth->SetContourLevel(12,1240.678);
+   VbbHcc_eff_both_id_v_id_b_truth->SetContourLevel(13,1344.068);
+   VbbHcc_eff_both_id_v_id_b_truth->SetContourLevel(14,1447.458);
+   VbbHcc_eff_both_id_v_id_b_truth->SetContourLevel(15,1550.848);
+   VbbHcc_eff_both_id_v_id_b_truth->SetContourLevel(16,1654.238);
+   VbbHcc_eff_both_id_v_id_b_truth->SetContourLevel(17,1757.628);
+   VbbHcc_eff_both_id_v_id_b_truth->SetContourLevel(18,1861.018);
+   VbbHcc_eff_both_id_v_id_b_truth->SetContourLevel(19,1964.408);
    
    TPaletteAxis *palette = new TPaletteAxis(4.026667,0,4.266667,4,VbbHcc_eff_both_id_v_id_b_truth);
    palette->SetLabelColor(1);

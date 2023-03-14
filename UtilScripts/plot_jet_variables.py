@@ -26,13 +26,13 @@ def scaleToLumi1(fName, xSec, lumi):
 ####################################################
 ## Get the histograms for a given sample & variable
 ####################################################
-def getHist(pN, sample_name, fH, lS):
+def getHist(pN, sample_name, fH, lS, printSamples = True):
   hOut = {}
   
   ## Go through each year we're interested in.
   for y in years:
     ## Get the first sample
-    print sample_name[0], pN, y
+    if printSamples: print sample_name[0], pN, y
     hOut[y] = fH[sample_name[0]][y][0].Get(pN).Clone()
     if sample_name[0] not in ['JetHT']:
       hOut[y].Scale(lS[sample_name[0]][y][0])
@@ -62,17 +62,27 @@ years = ['16', '17', '18']
 regions = ['jets', 'jets_all']
 plotCat = 'VbbHcc'
 useLogY = True
-summary_control_plot_name = 'summary_control_plot_zjet_zHFjet.txt'
-plotFolder = '../full_results/'
+
+
+plotFolder = '../full_results/'      ## medium WP
+resultpath = '../new_condor_results/NONE/'
+plotFolder = '../looseWP_results/'   ## loose WP
+resultpath = '../newest_condor_results/NONE/'
 
 ## signal samples
 ss_signal = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ']
 
 ## simplified background samples - QCD and ttbar
-ss_bckg = [ 'QCD_HT100to200_v9', 'QCD_HT200to300_v9', 'QCD_HT300to500_v9','QCD_HT500to700_v9','QCD_HT700to1000_v9','QCD_HT1000to1500_v9','QCD_HT1500to2000_v9','QCD_HT2000toInf_v9', 'TTToHadronic', 'TTToSemiLeptonic', 'TTTo2L2Nu']
+ss_bckg = [ 'QCD_HT100to200_v9', 'QCD_HT200to300_v9', 'QCD_HT300to500_v9', 
+  'QCD_HT500to700_v9', 'QCD_HT700to1000_v9', 'QCD_HT1000to1500_v9',
+  'QCD_HT1500to2000_v9','QCD_HT2000toInf_v9', 'TTToHadronic', 
+  'TTToSemiLeptonic', 'TTTo2L2Nu']
 
 ## combined list containing both signal & background samples
-ss = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ', 'QCD_HT100to200_v9', 'QCD_HT200to300_v9', 'QCD_HT300to500_v9','QCD_HT500to700_v9','QCD_HT700to1000_v9','QCD_HT1000to1500_v9','QCD_HT1500to2000_v9','QCD_HT2000toInf_v9', 'TTToHadronic', 'TTToSemiLeptonic', 'TTTo2L2Nu']
+ss = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ', 'QCD_HT100to200_v9', 'QCD_HT200to300_v9', 
+  'QCD_HT300to500_v9', 'QCD_HT500to700_v9', 'QCD_HT700to1000_v9', 'QCD_HT1000to1500_v9', 
+  'QCD_HT1500to2000_v9','QCD_HT2000toInf_v9', 'TTToHadronic', 'TTToSemiLeptonic', 
+  'TTTo2L2Nu']
 
 ##################################################
 ## Do not edit below this point (without caution)
@@ -124,7 +134,7 @@ for s in ss:
     fNames[s][y] = []
     xSecs[s][y] = []
     fHist[s][y] = []
-    dirpath = '../new_condor_results/NONE/'
+    dirpath = resultpath
     for iN in names:
       #fNames[s][y].append(cfg.get('Paths', 'path') + '/' + iN)
       fNames[s][y].append(dirpath + '/' + iN)
@@ -170,8 +180,10 @@ for r in regions:
     hggZHcc = getHist(hN, ['ggZH_HToCC_ZToQQ'], fHist, lumiScales)
     
     ## Get the desired plots (Background)
-    hQCD = getHist(hN, ['QCD_HT100to200_v9','QCD_HT200to300_v9', 'QCD_HT300to500_v9','QCD_HT500to700_v9','QCD_HT700to1000_v9','QCD_HT1000to1500_v9','QCD_HT1500to2000_v9','QCD_HT2000toInf_v9'], fHist, lumiScales)
-    hTT = getHist(hN,['TTToHadronic','TTToSemiLeptonic','TTTo2L2Nu'],fHist,lumiScales)
+    hQCD = getHist(hN, ['QCD_HT100to200_v9','QCD_HT200to300_v9', 'QCD_HT300to500_v9', 
+      'QCD_HT500to700_v9','QCD_HT700to1000_v9','QCD_HT1000to1500_v9',
+      'QCD_HT1500to2000_v9','QCD_HT2000toInf_v9'], fHist, lumiScales)
+    hTT  = getHist(hN,['TTToHadronic','TTToSemiLeptonic','TTTo2L2Nu'],fHist,lumiScales)
     
     ############################
     # Stack plots for each year
@@ -196,9 +208,11 @@ for r in regions:
       
       logY = useLogY
       if 'CutFlow' in plN: logY = True
-      makeStackPlot(signal_plots, signal_names, plN + '_' + r + '_signal_' + y,
-        plotFolder + '/20' + y + '_QCDv9/signal/' + r + '/', xA_title,
-        xA_range, 'MC unc. (stat.)', False, logY=logY, lumi=lumiS[y])
+      makeStackPlot(signal_plots, signal_names,                ## plots & plot names
+        plN + '_' + r + '_signal_' + y,                        ## canvas name
+        plotFolder + '/20' + y + '_QCDv9/signal/' + r + '/',   ## output folder
+        xA_title, xA_range,                                    ## x-axis information
+        normMC=False, logY=logY, lumi=lumiS[y])                ## modifications
       
       ## Plot for the background samples
       bckg_plots = [
@@ -209,10 +223,11 @@ for r in regions:
       
       logY = useLogY
       if 'CutFlow' in plN: logY = True
-      makeStackPlot(bckg_plots, bckg_names, plN + '_' + r + '_bckg_' + y,
-        plotFolder + '/20' + y + '_QCDv9/bckg/' + r + '/', xA_title,
-        xA_range, 'MC unc. (stat.)', False, logY=logY, lumi=lumiS[y],
-        custom_colors=bckg_colors)
+      makeStackPlot(bckg_plots, bckg_names,                                  ## plots & plot names
+        plN + '_' + r + '_bckg_' + y,                                        ## canvas name
+        plotFolder + '/20' + y + '_QCDv9/bckg/' + r + '/',                   ## output folder
+        xA_title, xA_range,                                                  ## x-axis information
+        normMC=False, logY=logY, lumi=lumiS[y], custom_colors=bckg_colors)   ## modifications
       
 
 

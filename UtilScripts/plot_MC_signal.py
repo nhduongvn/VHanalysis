@@ -26,13 +26,13 @@ def scaleToLumi1(fName, xSec, lumi):
 ####################################################
 ## Get the histograms for a given sample & variable
 ####################################################
-def getHist(pN, sample_name, fH, lS):
+def getHist(pN, sample_name, fH, lS, printSamples=True):
   hOut = {}
   
   ## Go through each year we're interested in.
   for y in years:
     ## Get the first sample
-    print sample_name[0], pN, y
+    if printSamples: print sample_name[0], pN, y
     hOut[y] = fH[sample_name[0]][y][0].Get(pN).Clone()
     if sample_name[0] not in ['JetHT']:
       hOut[y].Scale(lS[sample_name[0]][y][0])
@@ -46,6 +46,9 @@ def getHist(pN, sample_name, fH, lS):
           h.Scale(lS[sample_name[iS]][y][fi])
         hOut[y].Add(h)
     
+  if printSamples: 
+    print "==============================================="
+    
   return hOut
 
 ###############################################################################
@@ -56,20 +59,22 @@ def getHist(pN, sample_name, fH, lS):
 ## These you can edit / change
 ###############################
 years = ['16', '17', '18']
-regions = ['tags', 'algo', 'both', 'alljet', 'seljet']
-#regions = ['tags', 'algo', 'both']
-#regions = ['jets', 'jets_all']
-#regions = ['all']
+regions = ['tags', 'algo', 'both']#, 'alljet', 'seljet']
 plotCat = 'VbbHcc'
 useLogY = True
-summary_control_plot_name = 'summary_control_plot_zjet_zHFjet.txt'
-plotFolder = '../full_results/'
+
+plotFolder = '../full_results/'      ## mediumWP
+resultpath = '../new_condor_results/' 
+plotFolder = '../looseWP_results/'   ## looseWP
+resultpath = '../newest_condor_results/'
 
 ## Normal List of Files we want
-ss = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ', 'ZH_HToBB_ZToQQ', 'ggZH_HToBB_ZToQQ', 'QCD_HT200to300_v9', 'WJetsToQQ_HT-400to600', 'WJetsToLNu_HT-400to600', 'ZJetsToQQ_HT-400to600', 'TTToHadronic', 'TTToSemiLeptonic', 'TTTo2L2Nu', 'ST_t-channel_antitop', 'ST_t-channel_top', 'ST_tW-channel_antitop', 'ST_tW-channel_top', 'WW', 'WZ', 'ZZ']
-
-## List with extra QCD files
-ss = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ', 'ZH_HToBB_ZToQQ', 'ggZH_HToBB_ZToQQ', 'QCD_HT200to300_v9', 'QCD_HT300to500_v9','QCD_HT500to700_v9','QCD_HT700to1000_v9','QCD_HT1000to1500_v9','QCD_HT1500to2000_v9','QCD_HT2000toInf_v9', 'WJetsToQQ_HT-400to600', 'WJetsToLNu_HT-400to600', 'ZJetsToQQ_HT-400to600', 'TTToHadronic', 'TTToSemiLeptonic', 'TTTo2L2Nu', 'ST_t-channel_antitop', 'ST_t-channel_top', 'ST_tW-channel_antitop', 'ST_tW-channel_top', 'WW', 'WZ', 'ZZ']
+ss = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ', 'ZH_HToBB_ZToQQ', 'ggZH_HToBB_ZToQQ', 
+  'QCD_HT200to300_v9', 'QCD_HT300to500_v9', 'QCD_HT500to700_v9', 'QCD_HT700to1000_v9',
+  'QCD_HT1000to1500_v9', 'QCD_HT1500to2000_v9', 'QCD_HT2000toInf_v9', 'WJetsToQQ_HT-400to600', 
+  'WJetsToLNu_HT-400to600', 'ZJetsToQQ_HT-400to600', 'TTToHadronic', 'TTToSemiLeptonic', 
+  'TTTo2L2Nu', 'ST_t-channel_antitop', 'ST_t-channel_top', 'ST_tW-channel_antitop', 
+  'ST_tW-channel_top', 'WW', 'WZ', 'ZZ']
 
 ## List with just Signal
 ss = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ']
@@ -118,7 +123,7 @@ for s in ss:
     fNames[s][y] = []
     xSecs[s][y] = []
     fHist[s][y] = []
-    dirpath = '../new_condor_results/NONE/'
+    dirpath = resultpath + '/NONE/'
     for iN in names:
       #fNames[s][y].append(cfg.get('Paths', 'path') + '/' + iN)
       fNames[s][y].append(dirpath + '/' + iN)
@@ -182,11 +187,13 @@ for r in regions:
       
       plotNames_process = [ 'ZHcc', 'ggZHcc' ]
       
-      logY = useLogY
-      if 'CutFlow' in plN: logY = True
-      makeStackPlot(plots_process, plotNames_process, plN + '_' + r + '_' + y,
-        plotFolder + '/20' + y + '_QCDv9' + '/signal/' + r + '/', xA_title, xA_range, 'MC unc. (stat.)',
-        False, logY=logY, lumi=lumiS[y])
+      _logY = useLogY
+      if 'CutFlow' in plN: _logY = True
+      makeStackPlot(plots_process, plotNames_process,              ## Plots & Plot Names 
+        plN + '_' + r + '_' + y,                                   ## Canvas Name
+        plotFolder + '/20' + y + '_QCDv9' + '/signal/' + r + '/',  ## output folder
+        xA_title, xA_range,                                        ## x-axis information
+        normMC=False, logY=_logY, lumi=lumiS[y], minY_forLog=0.0)  ## modifications
       
 
     ###################################
@@ -206,19 +213,21 @@ for r in regions:
     
     plotNames_process = [ 'ZHcc', 'ggZHcc' ]
     
-    logY = useLogY
-    if 'CutFlow' in plN: logY=True
-    makeStackPlot(plots_process, plotNames_process, plN + '_'+ r + '_all', 
-      plotFolder + 'All_QCDv9' + '/signal/' + r + '/', xA_title, xA_range, 'MC. unc. (stat.)',
-      False, logY=logY, lumi='138', minY_forLog=1.0)
+    _logY = useLogY
+    if 'CutFlow' in plN: _logY=True
+    makeStackPlot(plots_process, plotNames_process,           ## plots & plot names
+      plN + '_'+ r + '_all',                                  ## canvas name
+      plotFolder + 'All_QCDv9' + '/signal/' + r + '/',        ## output folder
+      xA_title, xA_range,                                     ## x-axis information
+      normMC=False, logY=_logY, lumi='138', minY_forLog=0.0)  ## modifications
       
 ###############################################################################
 ## Plot Type #2 - MET
 ###############################################################################
 
 ## Get all the desired plots
-hZHcc = getHist("VbbHcc_all_MET",['ZH_HToCC_ZToQQ'],fHist,lumiScales)
-hggZHcc = getHist("VbbHcc_all_MET",['ggZH_HToCC_ZToQQ'],fHist,lumiScales)
+hZHcc   = getHist("VbbHcc_all_MET", ['ZH_HToCC_ZToQQ'],   fHist, lumiScales)
+hggZHcc = getHist("VbbHcc_all_MET", ['ggZH_HToCC_ZToQQ'], fHist, lumiScales)
 
 for y in years:
   tmps = cfg.get("MET",'xAxisRange').split(',')
@@ -237,11 +246,13 @@ for y in years:
 
   plotNames_process = [ 'ZHcc', 'ggZHcc' ]
       
-  logY = useLogY
-  if 'CutFlow' in plN: logY = True
-  makeStackPlot(plots_process, plotNames_process, "MET" + y,
-    plotFolder + '/20' + y + '_QCDv9' + '/signal/all/', xA_title, xA_range, 'MC unc. (stat.)',
-    False, logY=logY, lumi=lumiS[y])
+  _logY = useLogY
+  if 'CutFlow' in plN: _logY = True
+  makeStackPlot(plots_process, plotNames_process,              ## plots & plot names
+    "MET_" + y,                                                ## canvas name
+    plotFolder + '/20' + y + '_QCDv9' + '/signal/all/',        ## output folder
+    xA_title, xA_range,                                        ## x-axis information
+    normMC=False, logY=_logY, lumi=lumiS[y], minY_forLog=0.0)  ## modifications
 
 
 

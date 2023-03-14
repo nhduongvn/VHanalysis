@@ -4,7 +4,7 @@
 void ROC_jets_CvL_16()
 {
 //=========Macro generated from canvas: ROC_jets_CvL_16/ROC_jets_CvL_16
-//=========  (Thu Mar  2 11:32:56 2023) by ROOT version 6.26/06
+//=========  (Thu Mar  9 13:38:57 2023) by ROOT version 6.26/06
    TCanvas *ROC_jets_CvL_16 = new TCanvas("ROC_jets_CvL_16", "ROC_jets_CvL_16",0,0,600,600);
    ROC_jets_CvL_16->SetHighLightColor(2);
    ROC_jets_CvL_16->Range(-0.2901882,-0.1615385,1.238796,1.184615);
@@ -25,25 +25,25 @@ void ROC_jets_CvL_16()
    
    Double_t Graph_fx368[21] = {
    0,
-   0.0101506,
-   0.01494834,
-   0.01875555,
-   0.02191687,
-   0.02477182,
-   0.02742363,
-   0.02998103,
-   0.03258606,
-   0.03535724,
-   0.03849837,
-   0.04212691,
-   0.046462,
-   0.05199338,
-   0.05970394,
-   0.07116247,
-   0.08981573,
-   0.1271153,
-   0.2259064,
-   0.6009664,
+   0.01015101,
+   0.01494881,
+   0.01875589,
+   0.02191674,
+   0.02477146,
+   0.02742315,
+   0.02998049,
+   0.03258556,
+   0.03535672,
+   0.03849769,
+   0.04212637,
+   0.04646127,
+   0.05199257,
+   0.05970362,
+   0.07116188,
+   0.08981581,
+   0.1271157,
+   0.2259054,
+   0.6009655,
    1};
    Double_t Graph_fy368[21] = {
    0,
@@ -100,12 +100,12 @@ void ROC_jets_CvL_16()
    Graph_Graph368->GetZaxis()->SetTitleFont(42);
    graph->SetHistogram(Graph_Graph368);
    
-   TLatex *   tex = new TLatex(0.2259064,0.6278795,"0.075");
+   TLatex *   tex = new TLatex(0.2259054,0.6278795,"0.075");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
    graph->GetListOfFunctions()->Add(369);
-      tex = new TLatex(0.6009664,0.8581931,"0.025");
+      tex = new TLatex(0.6009655,0.8581931,"0.025");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();

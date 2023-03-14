@@ -4,7 +4,7 @@
 void eff_dRb_v_dRc_truth_tags_bckg_18_logY()
 {
 //=========Macro generated from canvas: eff_dRb_v_dRc_truth_tags_bckg_18/eff_dRb_v_dRc_truth_tags_bckg_18
-//=========  (Fri Mar  3 10:54:20 2023) by ROOT version 6.26/06
+//=========  (Fri Mar 10 14:23:45 2023) by ROOT version 6.26/06
    TCanvas *eff_dRb_v_dRc_truth_tags_bckg_18 = new TCanvas("eff_dRb_v_dRc_truth_tags_bckg_18", "eff_dRb_v_dRc_truth_tags_bckg_18",0,0,600,600);
    gStyle->SetOptStat(0);
    eff_dRb_v_dRc_truth_tags_bckg_18->SetHighLightColor(2);

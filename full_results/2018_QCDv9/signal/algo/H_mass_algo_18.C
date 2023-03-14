@@ -4,10 +4,10 @@
 void H_mass_algo_18()
 {
 //=========Macro generated from canvas: H_mass_algo_18/H_mass_algo_18
-//=========  (Thu Feb 16 10:35:19 2023) by ROOT version 6.26/06
+//=========  (Thu Mar  9 13:09:05 2023) by ROOT version 6.26/06
    TCanvas *H_mass_algo_18 = new TCanvas("H_mass_algo_18", "H_mass_algo_18",0,0,600,600);
    H_mass_algo_18->SetHighLightColor(2);
-   H_mass_algo_18->Range(-65.50587,-0.187209,351.4899,1.372866);
+   H_mass_algo_18->Range(-65.50587,-0.1503687,351.4899,1.102704);
    H_mass_algo_18->SetFillColor(0);
    H_mass_algo_18->SetFillStyle(4000);
    H_mass_algo_18->SetBorderMode(0);
@@ -23,11 +23,11 @@ void H_mass_algo_18()
    THStack *st = new THStack();
    st->SetName("st");
    st->SetTitle("");
-   st->SetMaximum(1.216859);
+   st->SetMaximum(0.9773965);
    
    TH1F *st_stack_71 = new TH1F("st_stack_71","",40,0,400);
    st_stack_71->SetMinimum(0);
-   st_stack_71->SetMaximum(1.216859);
+   st_stack_71->SetMaximum(0.9773965);
    st_stack_71->SetDirectory(0);
    st_stack_71->SetStats(0);
 
@@ -40,7 +40,7 @@ void H_mass_algo_18()
    st_stack_71->GetXaxis()->SetLabelFont(42);
    st_stack_71->GetXaxis()->SetTitleOffset(1);
    st_stack_71->GetXaxis()->SetTitleFont(42);
-   st_stack_71->GetYaxis()->SetTitle("Events/10.0");
+   st_stack_71->GetYaxis()->SetTitle("Event/10.0 GeV");
    st_stack_71->GetYaxis()->SetLabelFont(42);
    st_stack_71->GetYaxis()->SetTitleSize(0.037);
    st_stack_71->GetYaxis()->SetTitleFont(42);
@@ -275,7 +275,7 @@ void H_mass_algo_18()
    TLatex *   tex = new TLatex(0.25,0.937775,"CMS Work in Progress #sqrt{s} = 13 TeV, 59.7 fb^{-1}");
 tex->SetNDC();
    tex->SetTextFont(42);
-   tex->SetTextSize(0.04);
+   tex->SetTextSize(0.035);
    tex->SetLineWidth(2);
    tex->Draw();
    H_mass_algo_18->Modified();

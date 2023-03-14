@@ -53,15 +53,21 @@ def getHist(pN, sample_name, fH, lS):
 ## The following are variables that you are allowed to change.
 years = ['16', '17', '18']
 
-filepath = '../new_condor_results/NONE/'
+filepath = '../new_condor_results/NONE/'  ## Medium WP
 plotFolder = '../full_results/'
-useLogY = True
+filepath = '../newest_condor_results/NONE/' ## Loose WP
+plotFolder = '../looseWP_results/'
+
+useLogY = False
 
 ## List with just Signal Samples
 ss = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ']
 
 ## List with just Background Samples
-#ss = [ 'QCD_HT100to200_v9', 'QCD_HT200to300_v9', 'QCD_HT300to500_v9','QCD_HT500to700_v9','QCD_HT700to1000_v9','QCD_HT1000to1500_v9','QCD_HT1500to2000_v9','QCD_HT2000toInf_v9', 'TTToHadronic', 'TTToSemiLeptonic', 'TTTo2L2Nu']
+#ss = [ 'QCD_HT100to200_v9', 'QCD_HT200to300_v9', 'QCD_HT300to500_v9', 
+#  'QCD_HT500to700_v9', 'QCD_HT700to1000_v9', 'QCD_HT1000to1500_v9', 
+#  'QCD_HT1500to2000_v9','QCD_HT2000toInf_v9', 'TTToHadronic',
+#  'TTToSemiLeptonic', 'TTTo2L2Nu']
 
 sample_type = 'signal'
 #sample_type = 'bckg'
@@ -112,7 +118,7 @@ for s in ss:
     fNames[s][y] = []
     xSecs[s][y] = []
     fHist[s][y] = []
-    dirpath = '../new_condor_results/NONE/'
+    dirpath = filepath
     for iN in names:
       #fNames[s][y].append(cfg.get('Paths', 'path') + '/' + iN)
       fNames[s][y].append(dirpath + '/' + iN)
@@ -187,12 +193,14 @@ for i in range(len(varList)):
     output_dir = plotFolder + '/20' + y + '_QCDv9' + '/' + sample_type + '/jets/'
     yA_title = 'Events/' + str(plots_process[0].GetBinWidth(1)) + 'GeV'
     
-    logY = useLogY
+    _logY = useLogY
     canvasName = 'overlap_pt_jets_' + canvName
-    makeStackPlot(plots_process, plotNames_process, canvasName,
-      output_dir, xA_title, xA_range, logY=logY,lumi=lumiS[y],
-      custom_colors=line_colors, useStack=False, useFill=False,
-      minY_forLog = 0.01, forceMin=True)
+    makeStackPlot(plots_process, plotNames_process,               ## plots & plot names
+      canvasName, output_dir,                                     ## canvas name & output folder
+      xA_title, xA_range,                                         ## x-axis information
+      logY=_logY,lumi=lumiS[y],                                   ## additional info
+      custom_colors=line_colors, useStack=False, useFill=False,   ## modifications - style
+      minY_forLog = -1, forceMin=True)                            ## modifications - y-axis
   
   continue
   ###################################

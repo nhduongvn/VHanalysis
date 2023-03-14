@@ -4,10 +4,10 @@
 void pt_cjet2_jets_all_signal_17_logY()
 {
 //=========Macro generated from canvas: pt_cjet2_jets_all_signal_17/pt_cjet2_jets_all_signal_17
-//=========  (Wed Mar  1 14:06:46 2023) by ROOT version 6.26/06
+//=========  (Thu Mar  9 13:30:17 2023) by ROOT version 6.26/06
    TCanvas *pt_cjet2_jets_all_signal_17 = new TCanvas("pt_cjet2_jets_all_signal_17", "pt_cjet2_jets_all_signal_17",0,0,600,600);
    pt_cjet2_jets_all_signal_17->SetHighLightColor(2);
-   pt_cjet2_jets_all_signal_17->Range(-436.7058,0.2796887,2343.266,3.640913);
+   pt_cjet2_jets_all_signal_17->Range(-436.7058,0.9069029,2343.266,1.288092);
    pt_cjet2_jets_all_signal_17->SetFillColor(0);
    pt_cjet2_jets_all_signal_17->SetFillStyle(4000);
    pt_cjet2_jets_all_signal_17->SetBorderMode(0);
@@ -25,11 +25,11 @@ void pt_cjet2_jets_all_signal_17_logY()
    st->SetName("st");
    st->SetTitle("");
    st->SetMinimum(10);
-   st->SetMaximum(1410.867);
+   st->SetMaximum(16.9984);
    
    TH1F *st_stack_303 = new TH1F("st_stack_303","",1000,0,2000);
-   st_stack_303->SetMinimum(4.819874);
-   st_stack_303->SetMaximum(2017.395);
+   st_stack_303->SetMinimum(8.966969);
+   st_stack_303->SetMaximum(17.78171);
    st_stack_303->SetDirectory(0);
    st_stack_303->SetStats(0);
 
@@ -42,7 +42,7 @@ void pt_cjet2_jets_all_signal_17_logY()
    st_stack_303->GetXaxis()->SetLabelFont(42);
    st_stack_303->GetXaxis()->SetTitleOffset(1);
    st_stack_303->GetXaxis()->SetTitleFont(42);
-   st_stack_303->GetYaxis()->SetTitle("Events/2.0");
+   st_stack_303->GetYaxis()->SetTitle("Event/2.0 GeV");
    st_stack_303->GetYaxis()->SetLabelFont(42);
    st_stack_303->GetYaxis()->SetTitleSize(0.037);
    st_stack_303->GetYaxis()->SetTitleFont(42);
@@ -885,7 +885,7 @@ void pt_cjet2_jets_all_signal_17_logY()
    TLatex *   tex = new TLatex(0.25,0.937775,"CMS Work in Progress #sqrt{s} = 13 TeV, 41.5 fb^{-1}");
 tex->SetNDC();
    tex->SetTextFont(42);
-   tex->SetTextSize(0.04);
+   tex->SetTextSize(0.035);
    tex->SetLineWidth(2);
    tex->Draw();
    pt_cjet2_jets_all_signal_17->Modified();

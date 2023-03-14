@@ -4,7 +4,7 @@
 void ROC_jets_CvB_16()
 {
 //=========Macro generated from canvas: ROC_jets_CvB_16/ROC_jets_CvB_16
-//=========  (Thu Mar  2 11:32:56 2023) by ROOT version 6.26/06
+//=========  (Thu Mar  9 13:38:57 2023) by ROOT version 6.26/06
    TCanvas *ROC_jets_CvB_16 = new TCanvas("ROC_jets_CvB_16", "ROC_jets_CvB_16",0,0,600,600);
    ROC_jets_CvB_16->SetHighLightColor(2);
    ROC_jets_CvB_16->Range(-0.2901882,-0.1615385,1.238796,1.184615);
@@ -25,25 +25,25 @@ void ROC_jets_CvB_16()
    
    Double_t Graph_fx377[21] = {
    0,
-   0.01753233,
-   0.2293599,
-   0.5555156,
-   0.7294581,
-   0.8222984,
-   0.8764966,
-   0.9092439,
-   0.9310249,
-   0.9456311,
-   0.9560901,
-   0.9635471,
-   0.9687573,
-   0.9727023,
-   0.9758866,
-   0.9785422,
-   0.9807971,
-   0.982789,
-   0.9847628,
-   0.9873375,
+   0.01753263,
+   0.2293612,
+   0.5555192,
+   0.7294591,
+   0.8222985,
+   0.8764969,
+   0.9092445,
+   0.9310261,
+   0.9456318,
+   0.9560908,
+   0.9635481,
+   0.968758,
+   0.9727026,
+   0.9758868,
+   0.9785426,
+   0.9807975,
+   0.9827894,
+   0.9847633,
+   0.9873378,
    1};
    Double_t Graph_fy377[21] = {
    0,
@@ -100,22 +100,22 @@ void ROC_jets_CvB_16()
    Graph_Graph377->GetZaxis()->SetTitleFont(42);
    graph->SetHistogram(Graph_Graph377);
    
-   TLatex *   tex = new TLatex(0.2293599,0.3648313,"0.875");
+   TLatex *   tex = new TLatex(0.2293612,0.3648313,"0.875");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
    graph->GetListOfFunctions()->Add(378);
-      tex = new TLatex(0.5555156,0.5777118,"0.825");
+      tex = new TLatex(0.5555192,0.5777118,"0.825");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
    graph->GetListOfFunctions()->Add(379);
-      tex = new TLatex(0.7294581,0.7107738,"0.775");
+      tex = new TLatex(0.7294591,0.7107738,"0.775");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();
    graph->GetListOfFunctions()->Add(380);
-      tex = new TLatex(0.8222984,0.7981514,"0.725");
+      tex = new TLatex(0.8222985,0.7981514,"0.725");
    tex->SetTextSize(0.02);
    tex->SetLineWidth(2);
    tex->Draw();

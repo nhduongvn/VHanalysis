@@ -4,10 +4,10 @@
 void pt_bjets_jets_all_signal_18_logY()
 {
 //=========Macro generated from canvas: pt_bjets_jets_all_signal_18/pt_bjets_jets_all_signal_18
-//=========  (Wed Mar  1 14:06:45 2023) by ROOT version 6.26/06
+//=========  (Thu Mar  9 13:30:16 2023) by ROOT version 6.26/06
    TCanvas *pt_bjets_jets_all_signal_18 = new TCanvas("pt_bjets_jets_all_signal_18", "pt_bjets_jets_all_signal_18",0,0,600,600);
    pt_bjets_jets_all_signal_18->SetHighLightColor(2);
-   pt_bjets_jets_all_signal_18->Range(-436.7058,0.2282175,2343.266,3.862172);
+   pt_bjets_jets_all_signal_18->Range(-436.7058,0.8369331,2343.266,1.515805);
    pt_bjets_jets_all_signal_18->SetFillColor(0);
    pt_bjets_jets_all_signal_18->SetFillStyle(4000);
    pt_bjets_jets_all_signal_18->SetBorderMode(0);
@@ -25,11 +25,11 @@ void pt_bjets_jets_all_signal_18_logY()
    st->SetName("st");
    st->SetTitle("");
    st->SetMinimum(10);
-   st->SetMaximum(2150.278);
+   st->SetMaximum(25.90696);
    
    TH1F *st_stack_257 = new TH1F("st_stack_257","",1000,0,2000);
-   st_stack_257->SetMinimum(4.616278);
-   st_stack_257->SetMaximum(3153.38);
+   st_stack_257->SetMinimum(8.287007);
+   st_stack_257->SetMaximum(28.04903);
    st_stack_257->SetDirectory(0);
    st_stack_257->SetStats(0);
 
@@ -42,7 +42,7 @@ void pt_bjets_jets_all_signal_18_logY()
    st_stack_257->GetXaxis()->SetLabelFont(42);
    st_stack_257->GetXaxis()->SetTitleOffset(1);
    st_stack_257->GetXaxis()->SetTitleFont(42);
-   st_stack_257->GetYaxis()->SetTitle("Events/2.0");
+   st_stack_257->GetYaxis()->SetTitle("Event/2.0 GeV");
    st_stack_257->GetYaxis()->SetLabelFont(42);
    st_stack_257->GetYaxis()->SetTitleSize(0.037);
    st_stack_257->GetYaxis()->SetTitleFont(42);
@@ -1727,7 +1727,7 @@ void pt_bjets_jets_all_signal_18_logY()
    TLatex *   tex = new TLatex(0.25,0.937775,"CMS Work in Progress #sqrt{s} = 13 TeV, 59.7 fb^{-1}");
 tex->SetNDC();
    tex->SetTextFont(42);
-   tex->SetTextSize(0.04);
+   tex->SetTextSize(0.035);
    tex->SetLineWidth(2);
    tex->Draw();
    pt_bjets_jets_all_signal_18->Modified();

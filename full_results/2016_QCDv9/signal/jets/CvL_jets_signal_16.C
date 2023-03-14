@@ -4,10 +4,10 @@
 void CvL_jets_signal_16()
 {
 //=========Macro generated from canvas: CvL_jets_signal_16/CvL_jets_signal_16
-//=========  (Wed Mar  1 14:06:11 2023) by ROOT version 6.26/06
+//=========  (Thu Mar  9 13:30:48 2023) by ROOT version 6.26/06
    TCanvas *CvL_jets_signal_16 = new TCanvas("CvL_jets_signal_16", "CvL_jets_signal_16",0,0,600,600);
    CvL_jets_signal_16->SetHighLightColor(2);
-   CvL_jets_signal_16->Range(-0.2183529,-113.794,1.171633,834.4892);
+   CvL_jets_signal_16->Range(-0.2183529,-91.40079,1.171633,670.2725);
    CvL_jets_signal_16->SetFillColor(0);
    CvL_jets_signal_16->SetFillStyle(4000);
    CvL_jets_signal_16->SetBorderMode(0);
@@ -23,11 +23,11 @@ void CvL_jets_signal_16()
    THStack *st = new THStack();
    st->SetName("st");
    st->SetTitle("");
-   st->SetMaximum(739.6609);
+   st->SetMaximum(594.1051);
    
    TH1F *st_stack_13 = new TH1F("st_stack_13","",20,0,1);
    st_stack_13->SetMinimum(0);
-   st_stack_13->SetMaximum(739.6609);
+   st_stack_13->SetMaximum(594.1051);
    st_stack_13->SetDirectory(0);
    st_stack_13->SetStats(0);
 
@@ -40,7 +40,7 @@ void CvL_jets_signal_16()
    st_stack_13->GetXaxis()->SetLabelFont(42);
    st_stack_13->GetXaxis()->SetTitleOffset(1);
    st_stack_13->GetXaxis()->SetTitleFont(42);
-   st_stack_13->GetYaxis()->SetTitle("Events/0.05");
+   st_stack_13->GetYaxis()->SetTitle("Event/0.05");
    st_stack_13->GetYaxis()->SetLabelFont(42);
    st_stack_13->GetYaxis()->SetTitleSize(0.037);
    st_stack_13->GetYaxis()->SetTitleFont(42);
@@ -209,7 +209,7 @@ void CvL_jets_signal_16()
    TLatex *   tex = new TLatex(0.25,0.937775,"CMS Work in Progress #sqrt{s} = 13 TeV, 35.9 fb^{-1}");
 tex->SetNDC();
    tex->SetTextFont(42);
-   tex->SetTextSize(0.04);
+   tex->SetTextSize(0.035);
    tex->SetLineWidth(2);
    tex->Draw();
    CvL_jets_signal_16->Modified();

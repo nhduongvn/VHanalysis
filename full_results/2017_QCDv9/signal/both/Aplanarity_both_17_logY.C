@@ -4,10 +4,10 @@
 void Aplanarity_both_17_logY()
 {
 //=========Macro generated from canvas: Aplanarity_both_17/Aplanarity_both_17
-//=========  (Thu Feb 16 10:37:20 2023) by ROOT version 6.26/06
+//=========  (Thu Mar  9 13:08:27 2023) by ROOT version 6.26/06
    TCanvas *Aplanarity_both_17 = new TCanvas("Aplanarity_both_17", "Aplanarity_both_17",0,0,600,600);
    Aplanarity_both_17->SetHighLightColor(2);
-   Aplanarity_both_17->Range(-0.2183529,0.4911142,1.171633,2.773597);
+   Aplanarity_both_17->Range(-0.2183529,-0.2011977,1.171633,0.6438529);
    Aplanarity_both_17->SetFillColor(0);
    Aplanarity_both_17->SetFillStyle(4000);
    Aplanarity_both_17->SetBorderMode(0);
@@ -24,12 +24,12 @@ void Aplanarity_both_17_logY()
    THStack *st = new THStack();
    st->SetName("st");
    st->SetTitle("");
-   st->SetMinimum(10);
-   st->SetMaximum(272.7226);
+   st->SetMinimum(1);
+   st->SetMaximum(3.285814);
    
    TH1F *st_stack_190 = new TH1F("st_stack_190","",50,0,1);
-   st_stack_190->SetMinimum(5.821194);
-   st_stack_190->SetMaximum(351.0333);
+   st_stack_190->SetMinimum(0.7947095);
+   st_stack_190->SetMaximum(3.625333);
    st_stack_190->SetDirectory(0);
    st_stack_190->SetStats(0);
 
@@ -42,7 +42,7 @@ void Aplanarity_both_17_logY()
    st_stack_190->GetXaxis()->SetLabelFont(42);
    st_stack_190->GetXaxis()->SetTitleOffset(1);
    st_stack_190->GetXaxis()->SetTitleFont(42);
-   st_stack_190->GetYaxis()->SetTitle("Events/0.02");
+   st_stack_190->GetYaxis()->SetTitle("Event/0.02");
    st_stack_190->GetYaxis()->SetLabelFont(42);
    st_stack_190->GetYaxis()->SetTitleSize(0.037);
    st_stack_190->GetYaxis()->SetTitleFont(42);
@@ -211,7 +211,7 @@ void Aplanarity_both_17_logY()
    TLatex *   tex = new TLatex(0.25,0.937775,"CMS Work in Progress #sqrt{s} = 13 TeV, 41.5 fb^{-1}");
 tex->SetNDC();
    tex->SetTextFont(42);
-   tex->SetTextSize(0.04);
+   tex->SetTextSize(0.035);
    tex->SetLineWidth(2);
    tex->Draw();
    Aplanarity_both_17->Modified();

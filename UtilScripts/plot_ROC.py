@@ -67,7 +67,10 @@ def getHist(pN, sample_name, fH, lS):
 ######################
 debug = True
 years = ['16', '17', '18']
-plotFolder = '../full_results/'
+plotFolder = '../full_results/'        ## medium WP
+resultpath = '../new_condor_results/NONE/'
+plotFolder = '../looseWP_results/'     ## loose WP
+resultpath = '../newest_condor_results/NONE/'
 useLogY = True
 
 produceOneSidedROCs = False
@@ -134,7 +137,7 @@ for s in ss:
     fNames[s][y] = []
     xSecs[s][y] = []
     fHist[s][y] = []
-    dirpath = '../new_condor_results/NONE/'
+    dirpath = resultpath
     for iN in names:
       #fNames[s][y].append(cfg.get('Paths', 'path') + '/' + iN)
       fNames[s][y].append(dirpath + '/' + iN)
