@@ -1,0 +1,134 @@
+#ifdef __CLING__
+#pragma cling optimize(0)
+#endif
+void eff_dR_bjets_truth_algo_signal_17()
+{
+//=========Macro generated from canvas: eff_dR_bjets_truth_algo_signal_17/eff_dR_bjets_truth_algo_signal_17
+//=========  (Fri Mar 10 12:51:53 2023) by ROOT version 6.26/06
+   TCanvas *eff_dR_bjets_truth_algo_signal_17 = new TCanvas("eff_dR_bjets_truth_algo_signal_17", "eff_dR_bjets_truth_algo_signal_17",0,0,600,600);
+   gStyle->SetOptStat(0);
+   eff_dR_bjets_truth_algo_signal_17->SetHighLightColor(2);
+   eff_dR_bjets_truth_algo_signal_17->Range(-1.2,-2685.362,6.8,24168.26);
+   eff_dR_bjets_truth_algo_signal_17->SetFillColor(0);
+   eff_dR_bjets_truth_algo_signal_17->SetBorderMode(0);
+   eff_dR_bjets_truth_algo_signal_17->SetBorderSize(2);
+   eff_dR_bjets_truth_algo_signal_17->SetLeftMargin(0.15);
+   eff_dR_bjets_truth_algo_signal_17->SetFrameBorderMode(0);
+   eff_dR_bjets_truth_algo_signal_17->SetFrameBorderMode(0);
+   
+   TH1D *VbbHcc_eff_algo_dR_bjets_truth__15 = new TH1D("VbbHcc_eff_algo_dR_bjets_truth__15","",60,0,6);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(1,20459.9);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(2,1558.82);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(3,470.1929);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(4,223.4293);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(5,148.1903);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(6,134.9507);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(7,147.0163);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(8,151.0981);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(9,148.06);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(10,146.8242);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(11,171.5827);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(12,212.5497);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(13,236.97);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(14,271.9064);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(15,282.8773);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(16,300.2196);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(17,319.807);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(18,327.0705);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(19,308.6532);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(20,326.0774);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(21,275.1213);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(22,290.6709);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(23,314.6019);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(24,343.9715);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(25,284.8278);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(26,290.7335);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(27,316.5441);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(28,266.9061);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(29,260.0349);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(30,185.0005);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(31,120.802);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(32,52.74915);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(33,52.75831);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(34,35.18855);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(35,27.69124);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(36,16.15672);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(37,7.229559);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(38,15.18779);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(39,14.51204);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(40,4.824498);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(41,2.945073);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(42,2.896741);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(43,5.835805);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(44,1.770832);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(45,2.781158);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(46,1.174771);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinContent(47,0.9482565);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(1,154.8401);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(2,42.96414);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(3,23.62266);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(4,16.05756);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(5,13.16329);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(6,12.42434);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(7,12.94726);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(8,13.36046);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(9,12.93054);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(10,12.99949);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(11,13.9701);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(12,15.74755);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(13,16.38884);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(14,17.70583);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(15,18.08824);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(16,18.63515);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(17,19.53199);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(18,19.04198);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(19,18.93873);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(20,19.45183);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(21,17.63967);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(22,18.38588);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(23,19.09814);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(24,19.83179);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(25,18.2008);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(26,18.37329);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(27,19.06719);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(28,17.52459);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(29,17.46046);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(30,14.44871);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(31,11.76909);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(32,7.851242);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(33,7.724348);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(34,6.430328);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(35,5.756828);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(36,4.285607);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(37,2.652783);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(38,4.171723);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(39,4.084023);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(40,2.446582);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(41,1.727329);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(42,1.715119);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(43,2.71243);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(44,1.252216);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(45,1.848347);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(46,1.174771);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetBinError(47,0.9482565);
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetEntries(26818);
+
+   Int_t ci;      // for color index setting
+   TColor *color; // for color definition with alpha
+   ci = TColor::GetColor("#ff0000");
+   VbbHcc_eff_algo_dR_bjets_truth__15->SetLineColor(ci);
+   VbbHcc_eff_algo_dR_bjets_truth__15->GetXaxis()->SetTitle("#Delta R(b,b-jet)");
+   VbbHcc_eff_algo_dR_bjets_truth__15->GetXaxis()->SetRange(1,60);
+   VbbHcc_eff_algo_dR_bjets_truth__15->GetXaxis()->SetLabelFont(42);
+   VbbHcc_eff_algo_dR_bjets_truth__15->GetXaxis()->SetTitleOffset(1);
+   VbbHcc_eff_algo_dR_bjets_truth__15->GetXaxis()->SetTitleFont(42);
+   VbbHcc_eff_algo_dR_bjets_truth__15->GetYaxis()->SetLabelFont(42);
+   VbbHcc_eff_algo_dR_bjets_truth__15->GetYaxis()->SetTitleFont(42);
+   VbbHcc_eff_algo_dR_bjets_truth__15->GetZaxis()->SetLabelFont(42);
+   VbbHcc_eff_algo_dR_bjets_truth__15->GetZaxis()->SetTitleOffset(1);
+   VbbHcc_eff_algo_dR_bjets_truth__15->GetZaxis()->SetTitleFont(42);
+   VbbHcc_eff_algo_dR_bjets_truth__15->Draw("HIST");
+   eff_dR_bjets_truth_algo_signal_17->Modified();
+   eff_dR_bjets_truth_algo_signal_17->cd();
+   eff_dR_bjets_truth_algo_signal_17->SetSelected(eff_dR_bjets_truth_algo_signal_17);
+}

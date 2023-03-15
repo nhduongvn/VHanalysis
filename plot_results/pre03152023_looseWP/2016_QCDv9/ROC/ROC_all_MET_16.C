@@ -1,0 +1,455 @@
+#ifdef __CLING__
+#pragma cling optimize(0)
+#endif
+void ROC_all_MET_16()
+{
+//=========Macro generated from canvas: ROC_all_MET_16/ROC_all_MET_16
+//=========  (Fri Mar 10 12:27:37 2023) by ROOT version 6.26/06
+   TCanvas *ROC_all_MET_16 = new TCanvas("ROC_all_MET_16", "ROC_all_MET_16",0,0,600,600);
+   ROC_all_MET_16->SetHighLightColor(2);
+   ROC_all_MET_16->Range(-0.2901882,-0.1615385,1.238796,1.184615);
+   ROC_all_MET_16->SetFillColor(0);
+   ROC_all_MET_16->SetBorderMode(0);
+   ROC_all_MET_16->SetBorderSize(2);
+   ROC_all_MET_16->SetGridx();
+   ROC_all_MET_16->SetGridy();
+   ROC_all_MET_16->SetLeftMargin(0.15709);
+   ROC_all_MET_16->SetRightMargin(0.1234783);
+   ROC_all_MET_16->SetBottomMargin(0.12);
+   ROC_all_MET_16->SetFrameBorderMode(0);
+   ROC_all_MET_16->SetFrameBorderMode(0);
+   
+   TMultiGraph *multigraph = new TMultiGraph();
+   multigraph->SetName("");
+   multigraph->SetTitle("");
+   
+   Double_t Graph_fx392[150] = {
+   0,
+   0.005319079,
+   0.02099461,
+   0.04639317,
+   0.08042672,
+   0.1219972,
+   0.1696929,
+   0.222075,
+   0.2777055,
+   0.335097,
+   0.3930072,
+   0.450297,
+   0.5059538,
+   0.5591196,
+   0.6092698,
+   0.6560441,
+   0.699015,
+   0.7381937,
+   0.7735151,
+   0.8051239,
+   0.8331659,
+   0.8578778,
+   0.8794847,
+   0.8982137,
+   0.9144069,
+   0.928307,
+   0.9401618,
+   0.9501954,
+   0.9586979,
+   0.9658551,
+   0.971854,
+   0.9768866,
+   0.9810529,
+   0.9845056,
+   0.9873609,
+   0.98971,
+   0.9916353,
+   0.993218,
+   0.9945114,
+   0.9955638,
+   0.996418,
+   0.9971094,
+   0.9976707,
+   0.9981237,
+   0.9984925,
+   0.9987879,
+   0.9990264,
+   0.9992172,
+   0.9993706,
+   0.9994921,
+   0.9995907,
+   0.9996689,
+   0.9997308,
+   0.9997805,
+   0.9998201,
+   0.9998533,
+   0.999879,
+   0.9998995,
+   0.9999161,
+   0.9999295,
+   0.9999405,
+   0.9999495,
+   0.9999566,
+   0.9999628,
+   0.9999679,
+   0.9999723,
+   0.9999757,
+   0.9999784,
+   0.9999809,
+   0.9999829,
+   0.9999845,
+   0.9999859,
+   0.9999873,
+   0.9999883,
+   0.9999893,
+   0.99999,
+   0.9999908,
+   0.9999914,
+   0.999992,
+   0.9999924,
+   0.9999928,
+   0.9999933,
+   0.9999937,
+   0.999994,
+   0.9999943,
+   0.9999946,
+   0.9999949,
+   0.9999952,
+   0.9999954,
+   0.9999956,
+   0.9999958,
+   0.999996,
+   0.9999961,
+   0.9999962,
+   0.9999964,
+   0.9999965,
+   0.9999967,
+   0.9999968,
+   0.999997,
+   0.9999971,
+   0.9999972,
+   0.9999973,
+   0.9999974,
+   0.9999975,
+   0.9999976,
+   0.9999977,
+   0.9999978,
+   0.9999979,
+   0.999998,
+   0.999998,
+   0.9999981,
+   0.9999982,
+   0.9999984,
+   0.9999985,
+   0.9999985,
+   0.9999985,
+   0.9999987,
+   0.9999987,
+   0.9999987,
+   0.9999988,
+   0.9999989,
+   0.9999989,
+   0.999999,
+   0.999999,
+   0.9999991,
+   0.9999992,
+   0.9999993,
+   0.9999993,
+   0.9999994,
+   0.9999994,
+   0.9999994,
+   0.9999995,
+   0.9999995,
+   0.9999995,
+   0.9999996,
+   0.9999996,
+   0.9999996,
+   0.9999996,
+   0.9999997,
+   0.9999997,
+   0.9999998,
+   0.9999998,
+   0.9999998,
+   0.9999998,
+   0.9999999,
+   0.9999999,
+   0.9999999,
+   0.9999999,
+   0.9999999,
+   1};
+   Double_t Graph_fy392[150] = {
+   0,
+   0.004024814,
+   0.01571897,
+   0.03507168,
+   0.06114036,
+   0.09304672,
+   0.1301979,
+   0.1715248,
+   0.2160486,
+   0.2638205,
+   0.3130253,
+   0.3630254,
+   0.4126659,
+   0.4598885,
+   0.5076543,
+   0.5528925,
+   0.5955116,
+   0.6367122,
+   0.6743074,
+   0.709499,
+   0.7422187,
+   0.7718751,
+   0.7989804,
+   0.8233524,
+   0.8450122,
+   0.863713,
+   0.8811668,
+   0.8964172,
+   0.9096323,
+   0.9212715,
+   0.931876,
+   0.9407918,
+   0.9486896,
+   0.9553838,
+   0.9613009,
+   0.9662202,
+   0.970802,
+   0.9743153,
+   0.9777988,
+   0.9805775,
+   0.9831156,
+   0.9851835,
+   0.9869902,
+   0.9885551,
+   0.9898616,
+   0.9911422,
+   0.9921628,
+   0.9930404,
+   0.9937818,
+   0.9944255,
+   0.9950269,
+   0.9954982,
+   0.9959547,
+   0.9963829,
+   0.9967023,
+   0.9970643,
+   0.9973078,
+   0.9976006,
+   0.9977596,
+   0.9980095,
+   0.9981876,
+   0.9983402,
+   0.9984876,
+   0.9986291,
+   0.9987266,
+   0.9988121,
+   0.9988884,
+   0.9989557,
+   0.9990581,
+   0.999112,
+   0.9991704,
+   0.9992399,
+   0.9992936,
+   0.9993531,
+   0.999418,
+   0.9994527,
+   0.9995037,
+   0.9995675,
+   0.9996048,
+   0.9996276,
+   0.9996598,
+   0.9996924,
+   0.9997042,
+   0.9997189,
+   0.9997346,
+   0.9997368,
+   0.9997539,
+   0.9997787,
+   0.9997992,
+   0.9998066,
+   0.9998186,
+   0.9998251,
+   0.9998385,
+   0.9998405,
+   0.9998457,
+   0.9998594,
+   0.9998728,
+   0.9998875,
+   0.999895,
+   0.9999005,
+   0.9999015,
+   0.9999069,
+   0.9999079,
+   0.9999132,
+   0.9999173,
+   0.9999214,
+   0.9999248,
+   0.9999291,
+   0.9999291,
+   0.9999329,
+   0.9999329,
+   0.9999373,
+   0.9999378,
+   0.9999386,
+   0.999943,
+   0.999951,
+   0.999951,
+   0.9999599,
+   0.9999638,
+   0.9999717,
+   0.9999722,
+   0.9999722,
+   0.9999727,
+   0.9999731,
+   0.9999731,
+   0.9999737,
+   0.9999774,
+   0.9999817,
+   0.9999856,
+   0.9999862,
+   0.9999866,
+   0.9999868,
+   0.9999868,
+   0.9999868,
+   0.9999868,
+   0.9999905,
+   0.9999905,
+   0.999991,
+   0.999991,
+   0.9999915,
+   0.9999915,
+   0.9999924,
+   0.9999924,
+   0.9999924,
+   0.9999924,
+   0.9999924,
+   0.9999924,
+   1,
+   1,
+   1};
+   TGraph *graph = new TGraph(150,Graph_fx392,Graph_fy392);
+   graph->SetName("Graph");
+   graph->SetTitle("");
+   graph->SetFillStyle(0);
+
+   Int_t ci;      // for color index setting
+   TColor *color; // for color definition with alpha
+   ci = TColor::GetColor("#990099");
+   graph->SetLineColor(ci);
+   graph->SetLineWidth(2);
+
+   ci = TColor::GetColor("#990099");
+   graph->SetMarkerColor(ci);
+   graph->SetMarkerStyle(20);
+   
+   TH1F *Graph_Graph392 = new TH1F("Graph_Graph392","",150,0,1.1);
+   Graph_Graph392->SetMinimum(0);
+   Graph_Graph392->SetMaximum(1.1);
+   Graph_Graph392->SetDirectory(0);
+   Graph_Graph392->SetStats(0);
+
+   ci = TColor::GetColor("#000099");
+   Graph_Graph392->SetLineColor(ci);
+   Graph_Graph392->GetXaxis()->SetLabelFont(42);
+   Graph_Graph392->GetXaxis()->SetTitleOffset(1);
+   Graph_Graph392->GetXaxis()->SetTitleFont(42);
+   Graph_Graph392->GetYaxis()->SetLabelFont(42);
+   Graph_Graph392->GetYaxis()->SetTitleFont(42);
+   Graph_Graph392->GetZaxis()->SetLabelFont(42);
+   Graph_Graph392->GetZaxis()->SetTitleOffset(1);
+   Graph_Graph392->GetZaxis()->SetTitleFont(42);
+   graph->SetHistogram(Graph_Graph392);
+   
+   TLatex *   tex = new TLatex(0.1696929,0.2301979,"13.0");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(393);
+      tex = new TLatex(0.222075,0.2715248,"15.0");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(394);
+      tex = new TLatex(0.2777055,0.3160486,"17.0");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(395);
+      tex = new TLatex(0.335097,0.3638205,"19.0");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(396);
+      tex = new TLatex(0.3930072,0.4130253,"21.0");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(397);
+      tex = new TLatex(0.450297,0.4630254,"23.0");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(398);
+      tex = new TLatex(0.5059538,0.5126659,"25.0");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(399);
+      tex = new TLatex(0.5591196,0.5598885,"27.0");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(400);
+      tex = new TLatex(0.6092698,0.6076543,"29.0");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(401);
+      tex = new TLatex(0.6560441,0.6528925,"31.0");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(402);
+      tex = new TLatex(0.699015,0.6955116,"33.0");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(403);
+      tex = new TLatex(0.7381937,0.7367122,"35.0");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(404);
+      tex = new TLatex(0.7735151,0.7743074,"37.0");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(405);
+      tex = new TLatex(0.8051239,0.809499,"39.0");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(406);
+      tex = new TLatex(0.8331659,0.8422187,"41.0");
+   tex->SetTextSize(0.02);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   graph->GetListOfFunctions()->Add(407);
+   multigraph->Add(graph,"");
+   multigraph->Draw("ALP");
+   multigraph->GetXaxis()->SetLimits(-0.05, 1.05);
+   multigraph->GetXaxis()->SetTitle("False Signal Rate (Bckg)");
+   multigraph->GetXaxis()->SetLabelFont(42);
+   multigraph->GetXaxis()->SetTitleOffset(1);
+   multigraph->GetXaxis()->SetTitleFont(42);
+   multigraph->GetYaxis()->SetTitle("True Signal Rate");
+   multigraph->GetYaxis()->SetLabelFont(42);
+   multigraph->GetYaxis()->SetTitleFont(42);
+      tex = new TLatex(0.35,0.927775,"CMS Work in Progress #sqrt{s} = 13 TeV, 35.9 fb^{-1}");
+tex->SetNDC();
+   tex->SetTextFont(42);
+   tex->SetTextSize(0.03);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   ROC_all_MET_16->Modified();
+   ROC_all_MET_16->cd();
+   ROC_all_MET_16->SetSelected(ROC_all_MET_16);
+}

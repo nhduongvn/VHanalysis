@@ -1,0 +1,226 @@
+#ifdef __CLING__
+#pragma cling optimize(0)
+#endif
+void Sphericity_tags_all_logY()
+{
+//=========Macro generated from canvas: Sphericity_tags_all/Sphericity_tags_all
+//=========  (Fri Mar 10 11:27:13 2023) by ROOT version 6.26/06
+   TCanvas *Sphericity_tags_all = new TCanvas("Sphericity_tags_all", "Sphericity_tags_all",0,0,600,600);
+   Sphericity_tags_all->SetHighLightColor(2);
+   Sphericity_tags_all->Range(-0.2183529,-0.4852028,1.171633,1.680835);
+   Sphericity_tags_all->SetFillColor(0);
+   Sphericity_tags_all->SetFillStyle(4000);
+   Sphericity_tags_all->SetBorderMode(0);
+   Sphericity_tags_all->SetBorderSize(2);
+   Sphericity_tags_all->SetLogy();
+   Sphericity_tags_all->SetLeftMargin(0.15709);
+   Sphericity_tags_all->SetRightMargin(0.1234783);
+   Sphericity_tags_all->SetBottomMargin(0.12);
+   Sphericity_tags_all->SetFrameFillStyle(1000);
+   Sphericity_tags_all->SetFrameBorderMode(0);
+   Sphericity_tags_all->SetFrameFillStyle(1000);
+   Sphericity_tags_all->SetFrameBorderMode(0);
+   
+   THStack *st = new THStack();
+   st->SetName("st");
+   st->SetTitle("");
+   st->SetMinimum(1);
+   st->SetMaximum(22.89604);
+   
+   TH1F *st_stack_60 = new TH1F("st_stack_60","",25,0,1);
+   st_stack_60->SetMinimum(0.5952806);
+   st_stack_60->SetMaximum(29.12266);
+   st_stack_60->SetDirectory(0);
+   st_stack_60->SetStats(0);
+
+   Int_t ci;      // for color index setting
+   TColor *color; // for color definition with alpha
+   ci = TColor::GetColor("#000099");
+   st_stack_60->SetLineColor(ci);
+   st_stack_60->GetXaxis()->SetTitle("Sphericity");
+   st_stack_60->GetXaxis()->SetRange(1,25);
+   st_stack_60->GetXaxis()->SetLabelFont(42);
+   st_stack_60->GetXaxis()->SetTitleOffset(1);
+   st_stack_60->GetXaxis()->SetTitleFont(42);
+   st_stack_60->GetYaxis()->SetTitle("Event/0.04");
+   st_stack_60->GetYaxis()->SetLabelFont(42);
+   st_stack_60->GetYaxis()->SetTitleSize(0.037);
+   st_stack_60->GetYaxis()->SetTitleFont(42);
+   st_stack_60->GetZaxis()->SetLabelFont(42);
+   st_stack_60->GetZaxis()->SetTitleOffset(1);
+   st_stack_60->GetZaxis()->SetTitleFont(42);
+   st->SetHistogram(st_stack_60);
+   
+   
+   TH1D *VbbHcc_tags_Sphericity_all_stack_1 = new TH1D("VbbHcc_tags_Sphericity_all_stack_1","",25,0,1);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinContent(1,1.579947);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinContent(2,7.303219);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinContent(3,12.38966);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinContent(4,14.05412);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinContent(5,13.13145);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinContent(6,12.16258);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinContent(7,11.55565);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinContent(8,10.57357);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinContent(9,9.43053);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinContent(10,8.617068);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinContent(11,8.03118);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinContent(12,7.281699);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinContent(13,6.51223);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinContent(14,5.579867);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinContent(15,5.043738);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinContent(16,3.953019);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinContent(17,3.208517);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinContent(18,2.289932);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinContent(19,1.4896);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinContent(20,0.7165935);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinContent(21,0.307281);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinContent(22,0.1053721);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinContent(23,0.02609766);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinContent(24,0.009660138);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinError(1,0.06167661);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinError(2,0.1368385);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinError(3,0.1781418);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinError(4,0.1937498);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinError(5,0.1850019);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinError(6,0.1756714);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinError(7,0.1745726);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinError(8,0.1734128);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinError(9,0.1567809);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinError(10,0.1593443);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinError(11,0.1449152);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinError(12,0.1367838);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinError(13,0.1285153);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinError(14,0.1207315);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinError(15,0.1158813);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinError(16,0.09996108);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinError(17,0.1377727);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinError(18,0.07916526);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinError(19,0.06410717);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinError(20,0.04263832);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinError(21,0.02704273);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinError(22,0.01573964);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinError(23,0.007873213);
+   VbbHcc_tags_Sphericity_all_stack_1->SetBinError(24,0.004928537);
+   VbbHcc_tags_Sphericity_all_stack_1->SetEntries(64807);
+
+   ci = TColor::GetColor("#cc0000");
+   VbbHcc_tags_Sphericity_all_stack_1->SetFillColor(ci);
+   VbbHcc_tags_Sphericity_all_stack_1->GetXaxis()->SetRange(1,100);
+   VbbHcc_tags_Sphericity_all_stack_1->GetXaxis()->SetLabelFont(42);
+   VbbHcc_tags_Sphericity_all_stack_1->GetXaxis()->SetTitleOffset(1);
+   VbbHcc_tags_Sphericity_all_stack_1->GetXaxis()->SetTitleFont(42);
+   VbbHcc_tags_Sphericity_all_stack_1->GetYaxis()->SetLabelFont(42);
+   VbbHcc_tags_Sphericity_all_stack_1->GetYaxis()->SetTitleFont(42);
+   VbbHcc_tags_Sphericity_all_stack_1->GetZaxis()->SetLabelFont(42);
+   VbbHcc_tags_Sphericity_all_stack_1->GetZaxis()->SetTitleOffset(1);
+   VbbHcc_tags_Sphericity_all_stack_1->GetZaxis()->SetTitleFont(42);
+   st->Add(VbbHcc_tags_Sphericity_all_stack_1,"");
+   
+   TH1D *VbbHcc_tags_Sphericity_all_stack_2 = new TH1D("VbbHcc_tags_Sphericity_all_stack_2","",25,0,1);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinContent(1,0.8799931);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinContent(2,3.04363);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinContent(3,4.468478);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinContent(4,4.949586);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinContent(5,4.938002);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinContent(6,4.875713);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinContent(7,4.60684);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinContent(8,4.287257);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinContent(9,4.001049);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinContent(10,3.617153);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinContent(11,3.290559);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinContent(12,2.926865);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinContent(13,2.586387);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinContent(14,2.198819);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinContent(15,1.896168);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinContent(16,1.528129);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinContent(17,1.183209);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinContent(18,0.8731235);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinContent(19,0.4756894);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinContent(20,0.2176079);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinContent(21,0.07300208);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinContent(22,0.01886412);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinContent(23,0.004666426);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinContent(24,0.001921594);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinError(1,0.01698177);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinError(2,0.03196335);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinError(3,0.0386166);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinError(4,0.04066557);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinError(5,0.0403878);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinError(6,0.04064987);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinError(7,0.03899054);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinError(8,0.03796503);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinError(9,0.03611547);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinError(10,0.03468919);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinError(11,0.03321856);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinError(12,0.03103516);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinError(13,0.02949628);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinError(14,0.0269883);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinError(15,0.02541617);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinError(16,0.02689361);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinError(17,0.01995678);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinError(18,0.01790215);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinError(19,0.01243054);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinError(20,0.008379242);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinError(21,0.00492823);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinError(22,0.002402093);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinError(23,0.001279624);
+   VbbHcc_tags_Sphericity_all_stack_2->SetBinError(24,0.0007660486);
+   VbbHcc_tags_Sphericity_all_stack_2->SetEntries(189882);
+
+   ci = TColor::GetColor("#00cc00");
+   VbbHcc_tags_Sphericity_all_stack_2->SetFillColor(ci);
+   VbbHcc_tags_Sphericity_all_stack_2->GetXaxis()->SetRange(1,100);
+   VbbHcc_tags_Sphericity_all_stack_2->GetXaxis()->SetLabelFont(42);
+   VbbHcc_tags_Sphericity_all_stack_2->GetXaxis()->SetTitleOffset(1);
+   VbbHcc_tags_Sphericity_all_stack_2->GetXaxis()->SetTitleFont(42);
+   VbbHcc_tags_Sphericity_all_stack_2->GetYaxis()->SetLabelFont(42);
+   VbbHcc_tags_Sphericity_all_stack_2->GetYaxis()->SetTitleFont(42);
+   VbbHcc_tags_Sphericity_all_stack_2->GetZaxis()->SetLabelFont(42);
+   VbbHcc_tags_Sphericity_all_stack_2->GetZaxis()->SetTitleOffset(1);
+   VbbHcc_tags_Sphericity_all_stack_2->GetZaxis()->SetTitleFont(42);
+   st->Add(VbbHcc_tags_Sphericity_all_stack_2,"");
+   st->Draw("hist");
+   
+   TLegend *leg = new TLegend(0.48,0.8,0.85,0.87,NULL,"brNDC");
+   leg->SetBorderSize(0);
+   leg->SetTextSize(0.035);
+   leg->SetLineColor(1);
+   leg->SetLineStyle(1);
+   leg->SetLineWidth(2);
+   leg->SetFillColor(0);
+   leg->SetFillStyle(1001);
+   TLegendEntry *entry=leg->AddEntry("VbbHcc_tags_Sphericity_all_stack_2","ggZHcc","F");
+
+   ci = TColor::GetColor("#00cc00");
+   entry->SetFillColor(ci);
+   entry->SetFillStyle(1001);
+   entry->SetLineColor(1);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(42);
+   entry=leg->AddEntry("VbbHcc_tags_Sphericity_all_stack_1","ZHcc","F");
+
+   ci = TColor::GetColor("#cc0000");
+   entry->SetFillColor(ci);
+   entry->SetFillStyle(1001);
+   entry->SetLineColor(1);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(42);
+   leg->Draw();
+   TLatex *   tex = new TLatex(0.25,0.937775,"CMS Work in Progress #sqrt{s} = 13 TeV, 138 fb^{-1}");
+tex->SetNDC();
+   tex->SetTextFont(42);
+   tex->SetTextSize(0.035);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   Sphericity_tags_all->Modified();
+   Sphericity_tags_all->cd();
+   Sphericity_tags_all->SetSelected(Sphericity_tags_all);
+}
