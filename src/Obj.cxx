@@ -146,6 +146,30 @@ class JetObj : public GenObj {
       return m_lvec.Pt();
     }
 
+    // StoreRegInfo - store the regression variables
+    void StoreRegInfo(float bRC, float bRR, float cRC, float cRR) {
+      m_bRegCorr = bRC; m_bRegRes = bRR;
+      m_cRegCorr = cRC; m_cRegRes = cRR;
+    }
+
+    // ApplyRegression - applies the corrects given a jet type
+    // abs(flav) = 4 -> c, abs(flav) = 5 -> b
+    void ApplyRegression(float flav) {
+
+      float pt = m_lvec.Pt();    
+      if (abs(flav) == 4) pt *= m_cRegCorr;
+      else if (abs(flav) == 5) pt *= m_bRegCorr;
+
+      // == apply RegRes here ==
+      
+      float phi = m_lvec.Phi();
+      float eta = m_lvec.Eta();
+      float mass = m_lvec.M();
+
+      m_lvec.SetPtEtaPhiM(pt, phi, eta, mass);
+
+    }
+
     // SetIdx - set the index within the list
     void SetIdx(int idx) { m_Idx = idx; }
     void SetIdxAll(int idx) { m_IdxAll = idx; }
@@ -163,6 +187,11 @@ class JetObj : public GenObj {
     int m_Idx;        // index within list
     int m_IdxAll;     // index within event list
     int m_genJetIdx;  // index for gen jet associated with this jet
+
+    float m_bRegCorr; // pt correction for b-jet energy regression
+    float m_cRegCorr; // pt correction for c-jet energy regression
+    float m_bRegRes;  // res on pt corrected with b-jet regression
+    float m_cRegRes;  // res on pt corrected with c-jet regression
 };
 
 /******************************************************************************

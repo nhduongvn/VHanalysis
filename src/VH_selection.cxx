@@ -451,10 +451,19 @@ void VH_selection::Process(Reader* r) {
     jetFlav = (r->Jet_hadronFlavour)[i];
 #endif
 
+    // Make sure to properly correct the jet energy
+    Float_t pt = (r->Jet_pt)[i];
+    Float_t bRegCorr = (r->Jet_bRegCorr)[i];
+    Float_t cRegCorr = (r->Jet_cRegCorr)[i];
+    Float_t bRegRes  = (r->Jet_bRegRes)[i];
+    Float_t cRegRes  = (r->Jet_cRegRes)[i];
+
     // Reconstruct the jet
-    JetObj jet((r->Jet_pt)[i], (r->Jet_eta)[i], (r->Jet_phi)[i], (r->Jet_mass)[i],
+    JetObj jet(pt, (r->Jet_eta)[i], (r->Jet_phi)[i], (r->Jet_mass)[i],
       jetFlav, (r->Jet_btagDeepFlavB)[i], (r->Jet_puId)[i]);
-   
+
+    jet.StoreRegInfo(bRegCorr, bRegRes, cRegCorr, cRegRes);   
+
     // Handle getting the c-tag value which is different
     // depending on the version of NanoAOD.
 #if defined(NANOAODV9)
@@ -831,9 +840,9 @@ void VH_selection::Process(Reader* r) {
 
     // We don't want to have to change the working point in several spots,
     // so we choose here and then we can use these variables wherever needed.
-    float desired_BvL = CUTS.Get<float>("BvL_looseWP_deepJet");
-    float desired_CvL = CUTS.Get<float>("CvL_looseWP_deepJet");
-    float desired_CvB = CUTS.Get<float>("CvB_looseWP_deepJet");
+    float desired_BvL = CUTS.Get<float>("BvL_mediumWP_deepJet");
+    float desired_CvL = CUTS.Get<float>("CvL_mediumWP_deepJet");
+    float desired_CvB = CUTS.Get<float>("CvB_mediumWP_deepJet");
 
     /**************************************************************************
     * MISTAG RATE ANALYSIS                                                    *
@@ -919,8 +928,12 @@ void VH_selection::Process(Reader* r) {
       h_evt_tags_cutflow->Fill(3.5, genWeight); // pass b-cut #1
       if (passes_btag(bjets2[1], desired_BvL)) {
 
-        // Since we passed the cut, reconstruct the Z boson
+        // Since we passed the cut, adjust our jets with the proper
+        // JEC for b-tagged jets and reconstruct the Z boson
         h_evt_tags_cutflow->Fill(4.5, genWeight); // pass b-cut #2
+
+        bjets2[0].ApplyRegression(5); // flav = 5 (b-quark)
+        bjets2[1].ApplyRegression(5);
         ZObj Z2(bjets2);
       
         // Select two jets with the largest ctag values and then
@@ -931,11 +944,15 @@ void VH_selection::Process(Reader* r) {
 
         if (passes_ctag(cjets2[0], desired_CvL, desired_CvB)) {
 
-          // Since we passed the cut, reconstruct the Higgs
           h_evt_tags_cutflow->Fill(5.5, genWeight); // pass c-cut #1
           if (passes_ctag(cjets2[1], desired_CvL, desired_CvB)) {
           
+            // Since we passed the cuts, adjust our jets with the proper
+            // JEC for c-tagged jets and reconstruct the Higgs boson
             h_evt_tags_cutflow->Fill(6.5, genWeight); // pass c-cut #2
+
+            cjets2[0].ApplyRegression(4); // flav = 4 (c-quark)
+            cjets2[1].ApplyRegression(4);
             HObj H2(cjets2);
 
             h_VH_tags->FillVH(Z2, H2, evtW);         
@@ -992,11 +1009,15 @@ void VH_selection::Process(Reader* r) {
     std::vector<JetObj> bjets3;
     bjets3.push_back(jets3[chosenPair.m_zIdx0]);
     bjets3.push_back(jets3[chosenPair.m_zIdx1]);
+    bjets3[0].ApplyRegression(5);
+    bjets3[1].ApplyRegression(5);
     ZObj Z3(bjets3);
 
     std::vector<JetObj> cjets3;
     cjets3.push_back(jets3[chosenPair.m_hIdx0]);
     cjets3.push_back(jets3[chosenPair.m_hIdx1]);
+    cjets3[0].ApplyRegression(4);
+    cjets3[1].ApplyRegression(4);
     HObj H3(cjets3);
 
     // Now check our tagging requirements and other cuts.
@@ -1109,11 +1130,15 @@ void VH_selection::Process(Reader* r) {
       std::vector<JetObj> bjets4;
       bjets4.push_back(jets4[chosenPair.m_zIdx0]);
       bjets4.push_back(jets4[chosenPair.m_zIdx1]);
+      bjets4[0].ApplyRegression(5);
+      bjets4[1].ApplyRegression(5); 
       ZObj Z4(bjets4);
 
       std::vector<JetObj> cjets4;
       cjets4.push_back(jets4[chosenPair.m_hIdx0]);
       cjets4.push_back(jets4[chosenPair.m_hIdx1]);
+      cjets4[0].ApplyRegression(4);
+      cjets4[1].ApplyRegression(4);
       HObj H4(cjets4);
 
       // Fill our histograms appropriately.

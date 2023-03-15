@@ -1,0 +1,135 @@
+#ifdef __CLING__
+#pragma cling optimize(0)
+#endif
+void eff_dR_cjets_truth_tags_signal_17_logY()
+{
+//=========Macro generated from canvas: eff_dR_cjets_truth_tags_signal_17/eff_dR_cjets_truth_tags_signal_17
+//=========  (Fri Mar 10 14:23:44 2023) by ROOT version 6.26/06
+   TCanvas *eff_dR_cjets_truth_tags_signal_17 = new TCanvas("eff_dR_cjets_truth_tags_signal_17", "eff_dR_cjets_truth_tags_signal_17",0,0,600,600);
+   gStyle->SetOptStat(0);
+   eff_dR_cjets_truth_tags_signal_17->SetHighLightColor(2);
+   eff_dR_cjets_truth_tags_signal_17->Range(-1.2,-0.9324423,6.8,5.075509);
+   eff_dR_cjets_truth_tags_signal_17->SetFillColor(0);
+   eff_dR_cjets_truth_tags_signal_17->SetBorderMode(0);
+   eff_dR_cjets_truth_tags_signal_17->SetBorderSize(2);
+   eff_dR_cjets_truth_tags_signal_17->SetLogy();
+   eff_dR_cjets_truth_tags_signal_17->SetLeftMargin(0.15);
+   eff_dR_cjets_truth_tags_signal_17->SetFrameBorderMode(0);
+   eff_dR_cjets_truth_tags_signal_17->SetFrameBorderMode(0);
+   
+   TH1D *VbbHcc_eff_tags_dR_cjets_truth__9 = new TH1D("VbbHcc_eff_tags_dR_cjets_truth__9","",60,0,6);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(1,15745.8);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(2,1335.624);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(3,620.0555);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(4,287.0784);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(5,250.7068);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(6,221.6165);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(7,165.3319);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(8,174.2756);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(9,164.7145);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(10,171.9654);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(11,153.5812);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(12,177.3124);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(13,176.5298);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(14,190.6937);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(15,201.1985);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(16,202.3);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(17,241.1149);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(18,228.65);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(19,259.1075);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(20,304.5339);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(21,280.7815);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(22,309.525);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(23,296.5607);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(24,292.5499);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(25,268.5425);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(26,313.34);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(27,293.2967);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(28,255.3204);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(29,236.8977);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(30,170.1101);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(31,169.8748);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(32,102.1243);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(33,69.56901);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(34,56.18812);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(35,44.3638);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(36,41.33366);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(37,31.81677);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(38,26.11907);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(39,18.62838);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(40,16.50718);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(41,13.85288);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(42,12.92853);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(43,5.672708);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(44,3.31098);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(45,3.375655);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(46,3.414339);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinContent(48,0.931929);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(1,135.8593);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(2,39.60716);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(3,26.93614);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(4,18.28645);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(5,17.17735);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(6,16.12965);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(7,14.14005);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(8,14.25105);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(9,13.76722);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(10,13.95755);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(11,13.45597);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(12,14.39302);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(13,14.30353);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(14,14.95537);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(15,15.26302);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(16,15.22477);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(17,17.00253);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(18,16.23274);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(19,17.14122);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(20,18.75187);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(21,18.08896);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(22,19.11472);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(23,18.4413);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(24,18.61682);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(25,17.53456);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(26,19.25749);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(27,18.44581);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(28,16.99452);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(29,16.75422);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(30,14.24587);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(31,14.07538);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(32,10.77873);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(33,8.84965);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(34,8.099979);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(35,7.082083);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(36,6.876216);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(37,5.936721);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(38,5.325765);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(39,4.449704);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(40,3.987906);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(41,3.900139);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(42,3.781641);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(43,2.329786);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(44,1.921546);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(45,1.736428);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(46,2.030219);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetBinError(48,0.931929);
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetEntries(22268);
+
+   Int_t ci;      // for color index setting
+   TColor *color; // for color definition with alpha
+   ci = TColor::GetColor("#ff0000");
+   VbbHcc_eff_tags_dR_cjets_truth__9->SetLineColor(ci);
+   VbbHcc_eff_tags_dR_cjets_truth__9->GetXaxis()->SetTitle("#Delta R(c,c-jet)");
+   VbbHcc_eff_tags_dR_cjets_truth__9->GetXaxis()->SetRange(1,60);
+   VbbHcc_eff_tags_dR_cjets_truth__9->GetXaxis()->SetLabelFont(42);
+   VbbHcc_eff_tags_dR_cjets_truth__9->GetXaxis()->SetTitleOffset(1);
+   VbbHcc_eff_tags_dR_cjets_truth__9->GetXaxis()->SetTitleFont(42);
+   VbbHcc_eff_tags_dR_cjets_truth__9->GetYaxis()->SetLabelFont(42);
+   VbbHcc_eff_tags_dR_cjets_truth__9->GetYaxis()->SetTitleFont(42);
+   VbbHcc_eff_tags_dR_cjets_truth__9->GetZaxis()->SetLabelFont(42);
+   VbbHcc_eff_tags_dR_cjets_truth__9->GetZaxis()->SetTitleOffset(1);
+   VbbHcc_eff_tags_dR_cjets_truth__9->GetZaxis()->SetTitleFont(42);
+   VbbHcc_eff_tags_dR_cjets_truth__9->Draw("HIST");
+   eff_dR_cjets_truth_tags_signal_17->Modified();
+   eff_dR_cjets_truth_tags_signal_17->cd();
+   eff_dR_cjets_truth_tags_signal_17->SetSelected(eff_dR_cjets_truth_tags_signal_17);
+}

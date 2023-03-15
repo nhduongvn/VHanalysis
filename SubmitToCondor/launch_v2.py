@@ -77,7 +77,7 @@ def make_input_file_list(nFile, outDir_file_list, file_list_name):
 
 
 #///////////////////////////////////////////////////////////////////
-runMode = 1 #0: submit, 1: check output and hadd output file
+runMode = 0 #0: submit, 1: check output and hadd output file
 submit = True # for testing setup or executing submission 
 debug = False   # just run on 10000 
 
@@ -97,8 +97,8 @@ sourceDir = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/'
 condorRunDir = '/uscmst1b_scratch/lpc1/lpcphys/peteryou/Output_VH/new/'
 outputDir_eos = '/store/user/peteryou/Output_VH/new/'+syst+'/' 
 #outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/new_condor_results/' + syst + '/'
-outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/newest_condor_results/' + syst + '/'
-#outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/QCD_condor_results/' + syst + '/'
+#outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/newest_condor_results/' + syst + '/'
+outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/new_condor_results_wJEC/' + syst + '/'
 
 #Input data sets
 #dataSet_list = sourceDir+"/Dataset_lists/datasets_JetHT_combined.txt" #data
