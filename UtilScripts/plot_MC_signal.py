@@ -61,12 +61,12 @@ def getHist(pN, sample_name, fH, lS, printSamples=True):
 years = ['16', '17', '18']
 regions = ['tags', 'algo', 'both']#, 'alljet', 'seljet']
 plotCat = 'VbbHcc'
-useLogY = True
+useLogY = False
 
-plotFolder = '../full_results/'      ## mediumWP
-resultpath = '../new_condor_results/' 
-plotFolder = '../looseWP_results/'   ## looseWP
-resultpath = '../newest_condor_results/'
+plotFolder = '../plot_results/JEC_comp/noJEC/'    ## medium WP no JEC
+resultpath = '../condor_results/mediumWP/'
+#plotFolder = '../plot_results/JEC_comp/JEC/'      ## medium WP w/ JEC
+#resultpath = '../condor_results/mediumWP_wJEC/' 
 
 ## Normal List of Files we want
 ss = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ', 'ZH_HToBB_ZToQQ', 'ggZH_HToBB_ZToQQ', 

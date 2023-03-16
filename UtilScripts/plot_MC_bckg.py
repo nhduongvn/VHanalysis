@@ -66,7 +66,7 @@ plotCat = 'VbbHcc'
 useLogY = True
 
 plotFolder = '../full_results/'      ## mediumWP
-resultpath = '../new_condor_results/' 
+resultpath = '../condor_results/' 
 plotFolder = '../looseWP_results/'   ## looseWP
 resultpath = '../newest_condor_results/'
 
