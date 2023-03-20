@@ -309,9 +309,16 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_mistag_all->GetXaxis()->SetBinLabel(2, "mistag");
   h_mistag_all->GetXaxis()->SetBinLabel(3, "proper");
 
-  
+  h_bRegCorr = new TH1D("bRegCorr", "", 200, 0, 2);
+  h_cRegCorr = new TH1D("cRegCorr", "", 200, 0, 2);
+  h_JetMass = new TH1D("JetMass", "", 300, 0, 300);  
+
   // Add them to the return list so we can use them in our analyses.
   r->GetOutputList()->Add(h_evt);
+
+  r->GetOutputList()->Add(h_bRegCorr);
+  r->GetOutputList()->Add(h_cRegCorr);
+  r->GetOutputList()->Add(h_JetMass);
 
   std::vector<TH1*> tmp = h_VH_MC->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
@@ -453,13 +460,18 @@ void VH_selection::Process(Reader* r) {
 
     // Make sure to properly correct the jet energy
     Float_t pt = (r->Jet_pt)[i];
+    Float_t jet_mass = (r->Jet_mass)[i];
     Float_t bRegCorr = (r->Jet_bRegCorr)[i];
     Float_t cRegCorr = (r->Jet_cRegCorr)[i];
     Float_t bRegRes  = (r->Jet_bRegRes)[i];
     Float_t cRegRes  = (r->Jet_cRegRes)[i];
 
+    h_bRegCorr->Fill(bRegCorr, evtW);
+    h_cRegCorr->Fill(cRegCorr, evtW);
+    h_JetMass->Fill(jet_mass, evtW);
+
     // Reconstruct the jet
-    JetObj jet(pt, (r->Jet_eta)[i], (r->Jet_phi)[i], (r->Jet_mass)[i],
+    JetObj jet(pt, (r->Jet_eta)[i], (r->Jet_phi)[i], jet_mass,
       jetFlav, (r->Jet_btagDeepFlavB)[i], (r->Jet_puId)[i]);
 
     jet.StoreRegInfo(bRegCorr, bRegRes, cRegCorr, cRegRes);   

@@ -79,6 +79,13 @@ class VH_selection : public Selector {
     TH1D* h_mistag_leading;
     TH1D* h_mistag_all;
 
+    TH1D* h_bRegCorr;
+    TH1D* h_cRegCorr;
+    TH1D* h_JetMass;
+
+    TH1D* h_JetMassBefore;
+    TH1D* h_JetMassAfter;
+
     GenPlots *h_genJet_all;
     GenPlots *h_genJet_cuts;
     GenPlots *h_genJet_VbbHcc;

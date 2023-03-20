@@ -84,6 +84,9 @@ class JetObj : public GenObj {
       m_flav = flav;
       m_deepCSV = deepCSV;
       m_puid = PUjetID;
+
+      m_pt = pt;
+      m_mass = mass;
     };
     virtual ~JetObj() {};
 
@@ -157,14 +160,21 @@ class JetObj : public GenObj {
     void ApplyRegression(float flav) {
 
       float pt = m_lvec.Pt();    
+      m_pt = pt;
       if (abs(flav) == 4) pt *= m_cRegCorr;
       else if (abs(flav) == 5) pt *= m_bRegCorr;
+      m_ptJEC = pt;
 
       // == apply RegRes here ==
       
       float phi = m_lvec.Phi();
       float eta = m_lvec.Eta();
       float mass = m_lvec.M();
+
+      m_mass = mass;
+      if (abs(flav) == 4) mass *= m_cRegCorr;
+      else if (abs(flav) == 5) mass *= m_bRegCorr;
+      m_massJEC = mass;
 
       m_lvec.SetPtEtaPhiM(pt, phi, eta, mass);
 
@@ -187,6 +197,11 @@ class JetObj : public GenObj {
     int m_Idx;        // index within list
     int m_IdxAll;     // index within event list
     int m_genJetIdx;  // index for gen jet associated with this jet
+
+    float m_pt;       // pt before correction
+    float m_ptJEC;    // pt after correction
+    float m_mass;     // mass before correction
+    float m_massJEC;  // mass after correction
 
     float m_bRegCorr; // pt correction for b-jet energy regression
     float m_cRegCorr; // pt correction for c-jet energy regression

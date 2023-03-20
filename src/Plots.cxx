@@ -82,6 +82,11 @@ class BosonPlots
       h_phi_jet0 = new TH1D(name + "_phi_jet0", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
       h_phi_jet1 = new TH1D(name + "_phi_jet1", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
       h_phi_jet2 = new TH1D(name + "_phi_jet2", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
+
+      h_jetpt_noJEC = new TH1D(name + "_jetpt_noJEC", "", 300, 0, 300);
+      h_jetpt_JEC = new TH1D(name + "_jetpt_JEC", "", 300, 0, 300);
+      h_jetmass_noJEC = new TH1D(name + "_jetmass_noJEC", "", 300, 0, 300);
+      h_jetmass_JEC = new TH1D(name + "_jetmass_JEC", "", 300, 0, 300);
     };
 
     // Methods - Fill our histograms
@@ -102,6 +107,12 @@ class BosonPlots
       h_eta_jet1->Fill(B.getJet(1).Eta(), w);
       h_phi_jet0->Fill(B.getJet(0).Phi(), w);
       h_phi_jet1->Fill(B.getJet(1).Phi(), w); 
+
+      // Fill the plots related to jet regression.
+      h_jetpt_noJEC->Fill(B.getJet(0).m_pt, w);
+      h_jetpt_JEC->Fill(B.getJet(0).m_ptJEC, w);
+      h_jetmass_noJEC->Fill(B.getJet(0).m_mass, w);
+      h_jetmass_JEC->Fill(B.getJet(0).m_massJEC, w);
     };
 
     // Methods - Return a list of all the histograms
@@ -120,8 +131,10 @@ class BosonPlots
       histolist.push_back(h_pt_jet0); histolist.push_back(h_pt_jet1);
       histolist.push_back(h_eta_jet0); histolist.push_back(h_eta_jet1);
       histolist.push_back(h_phi_jet0); histolist.push_back(h_phi_jet1);
-
       histolist.push_back(h_dR_Bj0); histolist.push_back(h_dR_Bj1);
+
+      histolist.push_back(h_jetpt_noJEC);   histolist.push_back(h_jetpt_JEC);
+      histolist.push_back(h_jetmass_noJEC); histolist.push_back(h_jetmass_JEC);
 
       return histolist;
     }
@@ -145,6 +158,12 @@ class BosonPlots
     TH1D* h_pt_jet0; TH1D* h_pt_jet1; TH1D* h_pt_jet2;
     TH1D* h_eta_jet0; TH1D* h_eta_jet1; TH1D* h_eta_jet2;
     TH1D* h_phi_jet0; TH1D* h_phi_jet1; TH1D* h_phi_jet2;
+
+    // Histograms - Jet Regressions
+    TH1D* h_jetpt_noJEC;
+    TH1D* h_jetpt_JEC;
+    TH1D* h_jetmass_noJEC;
+    TH1D* h_jetmass_JEC;
 };
 
 /******************************************************************************
@@ -205,6 +224,11 @@ class JetPlots
       h_pt_cjet1 = new TH1D(name + "_pt_cjet1", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
       h_pt_cjet2 = new TH1D(name + "_pt_cjet2", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
       h_pt_cjet3 = new TH1D(name + "_pt_cjet3", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+
+      h_bRegCorr = new TH1D(name + "_bRegCorr", "", 200, 0, 2);
+      h_cRegCorr = new TH1D(name + "_cRegCorr", "", 200, 0, 2);
+      h_bRegRes  = new TH1D(name + "_bRegRes", "", 200, 0, 2);
+      h_cRegRes  = new TH1D(name + "_cRegRes", "", 200, 0, 2);
     };
 
     // Methods - Fill all the histograms
@@ -220,7 +244,12 @@ class JetPlots
         h_pt->Fill(it.Pt(), w);
         h_eta->Fill(it.Eta(), w);
         h_phi->Fill(it.Phi(), w);
-  
+
+        h_bRegCorr->Fill(it.m_bRegCorr, w);
+        h_cRegCorr->Fill(it.m_cRegCorr, w);
+        h_bRegRes->Fill(it.m_bRegRes, w);
+        h_cRegRes->Fill(it.m_cRegRes, w);  
+
         float csv = it.m_deepCSV; h_CSV->Fill(csv, w);
         float cvl = it.m_deepCvL; h_CvL->Fill(cvl, w);
         float cvb = it.m_deepCvB; h_CvB->Fill(cvb, w);
@@ -368,6 +397,9 @@ class JetPlots
       histolist.push_back(h_pt_cjet1); histolist.push_back(h_pt_cjet2);
       histolist.push_back(h_pt_cjet3);
 
+      histolist.push_back(h_bRegCorr); histolist.push_back(h_bRegRes);
+      histolist.push_back(h_cRegCorr); histolist.push_back(h_cRegRes);
+
       return histolist;
     };
 
@@ -401,6 +433,10 @@ class JetPlots
     TH1D* h_pt_ljet1; TH1D* h_pt_bjet1; TH1D* h_pt_cjet1;
     TH1D* h_pt_ljet2; TH1D* h_pt_bjet2; TH1D* h_pt_cjet2;
     TH1D* h_pt_ljet3; TH1D* h_pt_bjet3; TH1D* h_pt_cjet3;
+
+    // Histograms - regression
+    TH1D* h_bRegCorr; TH1D* h_bRegRes;
+    TH1D* h_cRegCorr; TH1D* h_cRegRes;
 };
  
 /******************************************************************************
