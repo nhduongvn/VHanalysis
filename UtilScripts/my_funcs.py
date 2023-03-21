@@ -64,6 +64,82 @@ def myText(txt="CMS Preliminary", ndcX=0, ndcY=0, size=0.8):
 
 def formStr(value, nDecimals=0):
   return str(round(value, nDecimals))
+  
+###############################################################################
+## Gauss Fit Plot Function
+###############################################################################
+def makeGausFit(plot, plotName, canvasName, plotDir, fitRange, 
+  xAxisTitle, xAxisRange, lumi, plot_color, fit_color):
+  
+  ## Make the canvas
+  ROOT.gStyle.SetOptStat(0)
+  c = ROOT.TCanvas(canvasName, canvasName, 600, 600)
+  c.SetLeftMargin(0.15)
+  
+  ## Prepare the legend
+  x0 = 0.50; x1 = 0.89
+  l = ROOT.TLegend(x0, 0.70, x1, 0.87)
+  l.SetLineWidth(2)
+  l.SetBorderSize(0)
+  l.SetTextFont(42)
+  l.SetTextSize(0.035)
+  c.cd()
+  
+  ## Make minor modifications to the plot
+  plot.SetLineColor(plot_color)
+  plot.GetXaxis().SetTitle(xAxisTitle)
+  plot.Draw("hist")
+  
+  binW = plot.GetBinWidth(1)
+  formatNum = ''
+  aNum = floor(binW*pow(10,3))-floor(binW*pow(10,2))*10
+  if aNum >= 1: formatNum = '0.3f'
+  yTitle = "Event/" + format(binW, formatNum)
+  if 'pt' in canvasName or 'mass' in canvasName or 'MET' in canvasName:
+    yTitle += " GeV"
+  plot.GetYaxis().SetTitle(yTitle)
+  
+  ## Add the gaussian fit in the region of interest
+  ftot = ROOT.TF1("ftot", "gaus", fitRange[0], fitRange[1])
+  plot.Fit("ftot", "", "", fitRange[0], fitRange[1])
+  ftot.Draw("same")
+  
+  ## Make a legend discussing the information
+  l.AddEntry(plot, plotName, "l")
+  l.AddEntry(ftot, "Gaussian Fit", "l")
+  rangeStr = "range = [" + str(fitRange[0]) + "," + str(fitRange[1]) + "] GeV"
+  l.AddEntry("", rangeStr, "")
+  
+  mean = round(ftot.GetParameter(1),1)
+  meanErr = round(ftot.GetParError(1), 1)
+  meanStr = "#mu = " + str(mean) + "#pm" + str(meanErr) + " GeV"
+  l.AddEntry("", meanStr, "")
+  
+  sigma = round(ftot.GetParameter(2),1)
+  sigmaErr = round(ftot.GetParError(2),1)
+  sigmaStr = "#sigma = " + str(sigma) + "#pm" + str(sigmaErr) + " GeV"
+  l.AddEntry("", sigmaStr, "")
+  l.Draw()
+  
+  ## Update the canvas & modify the y-axis if appropriate
+  myText('CMS Work in Progress #sqrt{s} = 13 TeV, '+lumi+' fb^{-1}', 
+    0.25, 0.937775, 0.8)
+  c.Update()
+  
+  ## Check to make sure the directory exists &
+  ## then print the proper files to the output
+  dirExists = os.path.exists(plotDir)
+  if not dirExists:
+    print "Warning: output directory does not exist."
+    os.makedirs(plotDir)
+    print ">>> directory created."
+  
+  ## Print out the plot appropriately
+  fullpath = plotDir + '/' + canvasName
+  c.Print(fullpath + '.png')
+  c.Print(fullpath + '.pdf')
+  c.Print(fullpath + '.C')
+  return c
 
 ###############################################################################
 ## Make Plot Function
@@ -339,7 +415,8 @@ def makeRatioPlots(plots, plotNames, canvasName, plotDir, xAxisTitle, xAxisRange
 def makeStackPlot(plots, plotNames, cName, plotDir = 'Test/', 
 xAxisTitle = 'Jet M_{SV}[GeV]', xAxisRange = [0,10], normMC=True, logY=False, 
 normBinWidth = -1, legendOrder = [], minY_forLog = 1.0, lumi = '35.9', 
-custom_colors=colors, useStack=True, useFill=True, forceMin=True, modMaxY = False):
+custom_colors=colors, useStack=True, useFill=True, forceMin=True, modMaxY = False,
+forceMaxY = False, forced_maxY = 0.3, legendColumns=2):
 
   ## ===========================================
   ## Create the canvas & modify it as necessary
@@ -363,10 +440,10 @@ custom_colors=colors, useStack=True, useFill=True, forceMin=True, modMaxY = Fals
   x1_ndc = 0.48
   if len(legendOrder) != 0:
     x1_ndc = 0.42
-    y1_ndc = 0.62
+    y1_ndc = 0.5
   
   l = ROOT.TLegend(x1_ndc, y1_ndc, 0.85, y2_ndc)
-  l.SetNColumns(2)
+  l.SetNColumns(legendColumns)
   l.SetColumnSeparation(0.2)
   l.SetLineWidth(2)
   l.SetBorderSize(0)
@@ -469,6 +546,8 @@ custom_colors=colors, useStack=True, useFill=True, forceMin=True, modMaxY = Fals
       ## than the space needed. 
       maxLog = log(maxScaleFromPlots)
       maxY =  maxScaleFromPlots + pow(10, maxLog) * 0.5
+  elif forceMaxY:
+    maxY = forced_maxY
      
   allStack.SetMaximum(maxY)
   
