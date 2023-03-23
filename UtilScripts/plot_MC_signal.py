@@ -69,6 +69,8 @@ plotFolder = '../plot_results/JEC_comp/JEC/'      ## medium WP w/ JEC
 resultpath = '../condor_results/mediumWP_wJEC/' 
 plotFolder = '../plot_results/JEC_comp/massJEC/'  ## medium WP w/ JEC + mass
 resultpath = '../condor_results/mediumWP_wMassJEC/'
+plotFolder = '../plot_results/JEC_comp/updated/'  ## medium WP (updated)
+resultpath = '../condor_results/mediumWP_updated/'
 
 ## Normal List of Files we want
 ss = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ', 'ZH_HToBB_ZToQQ', 'ggZH_HToBB_ZToQQ', 

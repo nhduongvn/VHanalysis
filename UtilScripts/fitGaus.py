@@ -70,6 +70,8 @@ plotFolder = '../plot_results/JEC_comp/JEC/'      ## medium WP w/ JEC
 resultpath = '../condor_results/mediumWP_wJEC/' 
 plotFolder = '../plot_results/JEC_comp/massJEC/'  ## medium WP w/ JEC + mass
 resultpath = '../condor_results/mediumWP_wMassJEC/'
+plotFolder = '../plot_results/JEC_comp/updated/'  ## medium WP (updated)
+resultpath = '../condor_results/mediumWP_updated/'
 
 
 ## List with just Signal

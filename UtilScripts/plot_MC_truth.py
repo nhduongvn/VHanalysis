@@ -59,7 +59,10 @@ years = ['16', '17', '18']
 regions = ['tags', 'algo', 'both']#, 'alljet', 'seljet']
 plotCat = 'VbbHcc'
 useLogY = False
-plotFolder = '../full_results/'
+plotFolder = '../plot_results/JEC_comp/noJEC/'    ## medium WP no JEC
+resultpath = '../condor_results/mediumWP_noJEC/'
+plotFolder = '../plot_results/JEC_comp/updated/'  ## medium WP (updated)
+resultpath = '../condor_results/mediumWP_updated/'
 
 ## signal samples
 ss_signal = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ']
@@ -120,7 +123,7 @@ for s in ss:
     fNames[s][y] = []
     xSecs[s][y] = []
     fHist[s][y] = []
-    dirpath = '../new_condor_results/NONE/'
+    dirpath = resultpath + '/NONE/'
     for iN in names:
       #fNames[s][y].append(cfg.get('Paths', 'path') + '/' + iN)
       fNames[s][y].append(dirpath + '/' + iN)
