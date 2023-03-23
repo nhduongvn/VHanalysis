@@ -444,6 +444,16 @@ void VH_selection::Process(Reader* r) {
   float evtW = 1.;
   if (!m_isData) evtW *= genWeight * puSF * l1preW;
 
+  /***************************************************************************
+  * GET THE PROPER TAGGING CUTS THAT WE WANT TO USE                          *
+  ***************************************************************************/
+
+  // We don't want to have to change the working point in several spots,
+  // so we choose here and then we can use these variables wherever needed.
+  float desired_BvL = CUTS.Get<float>("BvL_mediumWP_deepJet");
+  float desired_CvL = CUTS.Get<float>("CvL_mediumWP_deepJet");
+  float desired_CvB = CUTS.Get<float>("CvB_mediumWP_deepJet");
+
   //=================================================================
   // RECONSTRUCT PHYSICS OBJECTS
   //=================================================================
@@ -493,6 +503,12 @@ void VH_selection::Process(Reader* r) {
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
     jet.m_genJetIdx = (r->Jet_genJetIdx)[i];
 #endif
+
+    // Check the tagging of the jet so we can decide 
+    // which regression to apply to it. Prioritize b-tag.
+    if (jet.m_deepCSV > desired_BvL) jet.ApplyRegression(5);
+    else if (jet.m_deepCvL > desired_CvL && jet.m_deepCvB > desired_CvB)
+      jet.ApplyRegression(4);
 
     // Add the jet to our overall list.
     jet.SetIdxAll(i);
@@ -614,6 +630,8 @@ void VH_selection::Process(Reader* r) {
       (r->GenPart_phi)[idx1_Z], (r->GenPart_mass)[idx1_Z], 5, 0., 0.);
     JetObj b1((r->GenPart_pt)[idx2_Z], (r->GenPart_eta)[idx2_Z],
       (r->GenPart_phi)[idx2_Z], (r->GenPart_mass)[idx2_Z], 5, 0., 0.);
+
+    b0.ApplyRegression(5); b1.ApplyRegression(5);
     std::vector<JetObj> MC_bjets{b0, b1};
     gen_bs.push_back(b0); gen_bs.push_back(b1);
     ZObj MC_Z(MC_bjets);
@@ -623,6 +641,8 @@ void VH_selection::Process(Reader* r) {
       (r->GenPart_phi)[idx1_H], (r->GenPart_mass)[idx1_H], 4, 0., 0.);
     JetObj c1((r->GenPart_pt)[idx2_H], (r->GenPart_eta)[idx2_H],
       (r->GenPart_phi)[idx2_H], (r->GenPart_mass)[idx2_H], 4, 0., 0.);
+
+    c0.ApplyRegression(4); c1.ApplyRegression(4);
     std::vector<JetObj> MC_cjets{c0, c1};
     gen_cs.push_back(c0); gen_cs.push_back(c1);
     HObj MC_H(MC_cjets);
@@ -847,16 +867,6 @@ void VH_selection::Process(Reader* r) {
     h_VH_seljet->FillVH(Zafter, Hafter, evtW); 
 
     /**************************************************************************
-    * GET THE PROPER TAGGING CUTS THAT WE WANT TO USE                         *
-    **************************************************************************/
-
-    // We don't want to have to change the working point in several spots,
-    // so we choose here and then we can use these variables wherever needed.
-    float desired_BvL = CUTS.Get<float>("BvL_mediumWP_deepJet");
-    float desired_CvL = CUTS.Get<float>("CvL_mediumWP_deepJet");
-    float desired_CvB = CUTS.Get<float>("CvB_mediumWP_deepJet");
-
-    /**************************************************************************
     * MISTAG RATE ANALYSIS                                                    *
     **************************************************************************/
     
@@ -943,9 +953,6 @@ void VH_selection::Process(Reader* r) {
         // Since we passed the cut, adjust our jets with the proper
         // JEC for b-tagged jets and reconstruct the Z boson
         h_evt_tags_cutflow->Fill(4.5, genWeight); // pass b-cut #2
-
-        bjets2[0].ApplyRegression(5); // flav = 5 (b-quark)
-        bjets2[1].ApplyRegression(5);
         ZObj Z2(bjets2);
       
         // Select two jets with the largest ctag values and then
@@ -962,9 +969,6 @@ void VH_selection::Process(Reader* r) {
             // Since we passed the cuts, adjust our jets with the proper
             // JEC for c-tagged jets and reconstruct the Higgs boson
             h_evt_tags_cutflow->Fill(6.5, genWeight); // pass c-cut #2
-
-            cjets2[0].ApplyRegression(4); // flav = 4 (c-quark)
-            cjets2[1].ApplyRegression(4);
             HObj H2(cjets2);
 
             h_VH_tags->FillVH(Z2, H2, evtW);         
@@ -1021,15 +1025,11 @@ void VH_selection::Process(Reader* r) {
     std::vector<JetObj> bjets3;
     bjets3.push_back(jets3[chosenPair.m_zIdx0]);
     bjets3.push_back(jets3[chosenPair.m_zIdx1]);
-    bjets3[0].ApplyRegression(5);
-    bjets3[1].ApplyRegression(5);
     ZObj Z3(bjets3);
 
     std::vector<JetObj> cjets3;
     cjets3.push_back(jets3[chosenPair.m_hIdx0]);
     cjets3.push_back(jets3[chosenPair.m_hIdx1]);
-    cjets3[0].ApplyRegression(4);
-    cjets3[1].ApplyRegression(4);
     HObj H3(cjets3);
 
     // Now check our tagging requirements and other cuts.
@@ -1142,15 +1142,11 @@ void VH_selection::Process(Reader* r) {
       std::vector<JetObj> bjets4;
       bjets4.push_back(jets4[chosenPair.m_zIdx0]);
       bjets4.push_back(jets4[chosenPair.m_zIdx1]);
-      bjets4[0].ApplyRegression(5);
-      bjets4[1].ApplyRegression(5); 
       ZObj Z4(bjets4);
 
       std::vector<JetObj> cjets4;
       cjets4.push_back(jets4[chosenPair.m_hIdx0]);
       cjets4.push_back(jets4[chosenPair.m_hIdx1]);
-      cjets4[0].ApplyRegression(4);
-      cjets4[1].ApplyRegression(4);
       HObj H4(cjets4);
 
       // Fill our histograms appropriately.
