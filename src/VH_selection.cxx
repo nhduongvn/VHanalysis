@@ -506,9 +506,14 @@ void VH_selection::Process(Reader* r) {
 
     // Check the tagging of the jet so we can decide 
     // which regression to apply to it. Prioritize b-tag.
+    
+    /* -- OLD VERISON w/ TAGGING --
     if (jet.m_deepCSV > desired_BvL) jet.ApplyRegression(5);
     else if (jet.m_deepCvL > desired_CvL && jet.m_deepCvB > desired_CvB)
-      jet.ApplyRegression(4);
+      jet.ApplyRegression(4);*/
+
+    if (abs(jetFlav) == 5) jet.ApplyRegression(5);
+    else if (abs(jetFlav) == 4) jet.ApplyRegression(4);
 
     // Add the jet to our overall list.
     jet.SetIdxAll(i);
