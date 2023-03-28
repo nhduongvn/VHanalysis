@@ -72,7 +72,8 @@ plotFolder = '../plot_results/JEC_comp/massJEC/'  ## medium WP w/ JEC + mass
 resultpath = '../condor_results/mediumWP_wMassJEC/'
 plotFolder = '../plot_results/JEC_comp/updated/'  ## medium WP (updated)
 resultpath = '../condor_results/mediumWP_updated/'
-
+plotFolder = '../plot_results/JEC_comp/viaFlavor/' ## medium WP (reg via hadron flavor)
+resultpath = '../condor_results/mediumWP_viaFlavor/'
 
 ## List with just Signal
 ss = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ']

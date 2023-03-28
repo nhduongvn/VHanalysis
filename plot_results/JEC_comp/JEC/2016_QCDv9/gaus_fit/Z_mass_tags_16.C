@@ -4,9 +4,8 @@
 void Z_mass_tags_16()
 {
 //=========Macro generated from canvas: Z_mass_tags_16/Z_mass_tags_16
-//=========  (Tue Mar 21 11:49:28 2023) by ROOT version 6.26/06
+//=========  (Mon Mar 27 14:20:42 2023) by ROOT version 6.26/06
    TCanvas *Z_mass_tags_16 = new TCanvas("Z_mass_tags_16", "Z_mass_tags_16",0,0,600,600);
-   gStyle->SetOptStat(0);
    Z_mass_tags_16->SetHighLightColor(2);
    Z_mass_tags_16->Range(-80,-0.02371444,453.3333,0.21343);
    Z_mass_tags_16->SetFillColor(0);
@@ -412,6 +411,25 @@ void Z_mass_tags_16()
    ftot1->SetParLimits(2,0,113.361);
    ftot1->SetParent(VbbHcc_tags_Z_mass__1);
    VbbHcc_tags_Z_mass__1->GetListOfFunctions()->Add(ftot1);
+   
+   TPaveStats *ptstats = new TPaveStats(0.78,0.615,0.98,0.935,"brNDC");
+   ptstats->SetName("stats");
+   ptstats->SetBorderSize(1);
+   ptstats->SetFillColor(0);
+   ptstats->SetTextAlign(12);
+   ptstats->SetTextFont(42);
+   TText *ptstats_LaTex = ptstats->AddText("VbbHcc_tags_Z_mass");
+   ptstats_LaTex->SetTextSize(0.04906667);
+   ptstats_LaTex = ptstats->AddText("Entries = 5676   ");
+   ptstats_LaTex = ptstats->AddText("Mean  =    133 #pm  1.856");
+   ptstats_LaTex = ptstats->AddText("Std Dev   =   80.9 #pm  1.312");
+   ptstats_LaTex = ptstats->AddText("Underflow =      0");
+   ptstats_LaTex = ptstats->AddText("Overflow  =  1.265");
+   ptstats->SetOptStat(112211);
+   ptstats->SetOptFit(0);
+   ptstats->Draw();
+   VbbHcc_tags_Z_mass__1->GetListOfFunctions()->Add(ptstats);
+   ptstats->SetParent(VbbHcc_tags_Z_mass__1);
    VbbHcc_tags_Z_mass__1->GetXaxis()->SetTitle("M_{Z} [GeV]");
    VbbHcc_tags_Z_mass__1->GetXaxis()->SetRange(1,400);
    VbbHcc_tags_Z_mass__1->GetXaxis()->SetLabelFont(42);
@@ -448,7 +466,7 @@ void Z_mass_tags_16()
    ftot2->SetParLimits(2,0,113.361);
    ftot2->Draw("same");
    
-   TLegend *leg = new TLegend(0.5,0.7,0.89,0.87,NULL,"brNDC");
+   TLegend *leg = new TLegend(0.5,0.4,0.89,0.57,NULL,"brNDC");
    leg->SetBorderSize(0);
    leg->SetTextSize(0.035);
    leg->SetLineColor(1);
@@ -489,6 +507,14 @@ void Z_mass_tags_16()
    entry->SetMarkerSize(1);
    entry->SetTextFont(42);
    entry=leg->AddEntry("NULL","#sigma = 12.6#pm0.4 GeV","");
+   entry->SetLineColor(1);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(42);
+   entry=leg->AddEntry("NULL","#sigma/#mu = 0.138","");
    entry->SetLineColor(1);
    entry->SetLineStyle(1);
    entry->SetLineWidth(1);

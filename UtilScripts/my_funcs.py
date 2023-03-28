@@ -72,13 +72,14 @@ def makeGausFit(plot, plotName, canvasName, plotDir, fitRange,
   xAxisTitle, xAxisRange, lumi, plot_color, fit_color):
   
   ## Make the canvas
-  ROOT.gStyle.SetOptStat(0)
+  ROOT.gStyle.SetOptStat("neMRou")
   c = ROOT.TCanvas(canvasName, canvasName, 600, 600)
   c.SetLeftMargin(0.15)
   
   ## Prepare the legend
   x0 = 0.50; x1 = 0.89
-  l = ROOT.TLegend(x0, 0.70, x1, 0.87)
+  #l = ROOT.TLegend(x0, 0.70, x1, 0.87)
+  l = ROOT.TLegend(x0, 0.40, x1, 0.57)
   l.SetLineWidth(2)
   l.SetBorderSize(0)
   l.SetTextFont(42)
@@ -119,6 +120,16 @@ def makeGausFit(plot, plotName, canvasName, plotDir, fitRange,
   sigmaErr = round(ftot.GetParError(2),1)
   sigmaStr = "#sigma = " + str(sigma) + "#pm" + str(sigmaErr) + " GeV"
   l.AddEntry("", sigmaStr, "")
+  
+  s_mu = round(ftot.GetParameter(2) / ftot.GetParameter(1), 3)
+  smu_str = "#sigma/#mu = " + str(s_mu)
+  l.AddEntry("", smu_str, "")
+  
+  #l.AddEntry("","","")
+  #underflow = plot.GetBinContent(0)
+  #overflow = plot.GetBinContent(plot.GetNbinsX() + 1)
+  #l.AddEntry("", "underflow = " + str(round(underflow,1)) + " evt", "")
+  #l.AddEntry("", "overflow = " + str(round(overflow,1)) + " evt", "")
   l.Draw()
   
   ## Update the canvas & modify the y-axis if appropriate

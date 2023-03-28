@@ -4,9 +4,8 @@
 void Z_mass_tags_17()
 {
 //=========Macro generated from canvas: Z_mass_tags_17/Z_mass_tags_17
-//=========  (Tue Mar 21 11:45:48 2023) by ROOT version 6.26/06
+//=========  (Mon Mar 27 14:20:20 2023) by ROOT version 6.26/06
    TCanvas *Z_mass_tags_17 = new TCanvas("Z_mass_tags_17", "Z_mass_tags_17",0,0,600,600);
-   gStyle->SetOptStat(0);
    Z_mass_tags_17->SetHighLightColor(2);
    Z_mass_tags_17->Range(-80,-0.04656613,453.3333,0.4190951);
    Z_mass_tags_17->SetFillColor(0);
@@ -395,43 +394,7 @@ void Z_mass_tags_17()
    VbbHcc_tags_Z_mass__2->SetBinError(201,0.0208197);
    VbbHcc_tags_Z_mass__2->SetEntries(14484);
    
-   TF1 *ftot2 = new TF1("ftot","gaus",65,115, TF1::EAddToList::kNo);
-   ftot2->SetFillColor(19);
-   ftot2->SetFillStyle(0);
-   ftot2->SetLineColor(2);
-   ftot2->SetLineWidth(2);
-   ftot2->SetChisquare(32.91851);
-   ftot2->SetNDF(23);
-   ftot2->GetXaxis()->SetLabelFont(42);
-   ftot2->GetXaxis()->SetTitleOffset(1);
-   ftot2->GetXaxis()->SetTitleFont(42);
-   ftot2->GetYaxis()->SetLabelFont(42);
-   ftot2->GetYaxis()->SetTitleFont(42);
-   ftot2->SetParameter(0,0.3218842);
-   ftot2->SetParError(0,0.007280545);
-   ftot2->SetParLimits(0,0,0);
-   ftot2->SetParameter(1,88.66724);
-   ftot2->SetParError(1,0.2565039);
-   ftot2->SetParLimits(1,0,0);
-   ftot2->SetParameter(2,13.33378);
-   ftot2->SetParError(2,0.273802);
-   ftot2->SetParLimits(2,0,116.2855);
-   ftot2->SetParent(VbbHcc_tags_Z_mass__2);
-   VbbHcc_tags_Z_mass__2->GetListOfFunctions()->Add(ftot2);
-   VbbHcc_tags_Z_mass__2->GetXaxis()->SetTitle("M_{Z} [GeV]");
-   VbbHcc_tags_Z_mass__2->GetXaxis()->SetRange(1,400);
-   VbbHcc_tags_Z_mass__2->GetXaxis()->SetLabelFont(42);
-   VbbHcc_tags_Z_mass__2->GetXaxis()->SetTitleOffset(1);
-   VbbHcc_tags_Z_mass__2->GetXaxis()->SetTitleFont(42);
-   VbbHcc_tags_Z_mass__2->GetYaxis()->SetTitle("Event/2.0 GeV");
-   VbbHcc_tags_Z_mass__2->GetYaxis()->SetLabelFont(42);
-   VbbHcc_tags_Z_mass__2->GetYaxis()->SetTitleFont(42);
-   VbbHcc_tags_Z_mass__2->GetZaxis()->SetLabelFont(42);
-   VbbHcc_tags_Z_mass__2->GetZaxis()->SetTitleOffset(1);
-   VbbHcc_tags_Z_mass__2->GetZaxis()->SetTitleFont(42);
-   VbbHcc_tags_Z_mass__2->Draw("hist");
-   
-   TF1 *ftot3 = new TF1("ftot","gaus",65,115, TF1::EAddToList::kDefault);
+   TF1 *ftot3 = new TF1("ftot","gaus",65,115, TF1::EAddToList::kNo);
    ftot3->SetFillColor(19);
    ftot3->SetFillStyle(0);
    ftot3->SetLineColor(2);
@@ -452,9 +415,64 @@ void Z_mass_tags_17()
    ftot3->SetParameter(2,13.33378);
    ftot3->SetParError(2,0.273802);
    ftot3->SetParLimits(2,0,116.2855);
-   ftot3->Draw("same");
+   ftot3->SetParent(VbbHcc_tags_Z_mass__2);
+   VbbHcc_tags_Z_mass__2->GetListOfFunctions()->Add(ftot3);
    
-   TLegend *leg = new TLegend(0.5,0.7,0.89,0.87,NULL,"brNDC");
+   TPaveStats *ptstats = new TPaveStats(0.78,0.615,0.98,0.935,"brNDC");
+   ptstats->SetName("stats");
+   ptstats->SetBorderSize(1);
+   ptstats->SetFillColor(0);
+   ptstats->SetTextAlign(12);
+   ptstats->SetTextFont(42);
+   TText *ptstats_LaTex = ptstats->AddText("VbbHcc_tags_Z_mass");
+   ptstats_LaTex->SetTextSize(0.04906667);
+   ptstats_LaTex = ptstats->AddText("Entries = 14484  ");
+   ptstats_LaTex = ptstats->AddText("Mean  =  124.7 #pm 0.8761");
+   ptstats_LaTex = ptstats->AddText("Std Dev   =  67.14 #pm 0.6195");
+   ptstats_LaTex = ptstats->AddText("Underflow =      0");
+   ptstats_LaTex = ptstats->AddText("Overflow  = 0.3062");
+   ptstats->SetOptStat(112211);
+   ptstats->SetOptFit(0);
+   ptstats->Draw();
+   VbbHcc_tags_Z_mass__2->GetListOfFunctions()->Add(ptstats);
+   ptstats->SetParent(VbbHcc_tags_Z_mass__2);
+   VbbHcc_tags_Z_mass__2->GetXaxis()->SetTitle("M_{Z} [GeV]");
+   VbbHcc_tags_Z_mass__2->GetXaxis()->SetRange(1,400);
+   VbbHcc_tags_Z_mass__2->GetXaxis()->SetLabelFont(42);
+   VbbHcc_tags_Z_mass__2->GetXaxis()->SetTitleOffset(1);
+   VbbHcc_tags_Z_mass__2->GetXaxis()->SetTitleFont(42);
+   VbbHcc_tags_Z_mass__2->GetYaxis()->SetTitle("Event/2.0 GeV");
+   VbbHcc_tags_Z_mass__2->GetYaxis()->SetLabelFont(42);
+   VbbHcc_tags_Z_mass__2->GetYaxis()->SetTitleFont(42);
+   VbbHcc_tags_Z_mass__2->GetZaxis()->SetLabelFont(42);
+   VbbHcc_tags_Z_mass__2->GetZaxis()->SetTitleOffset(1);
+   VbbHcc_tags_Z_mass__2->GetZaxis()->SetTitleFont(42);
+   VbbHcc_tags_Z_mass__2->Draw("hist");
+   
+   TF1 *ftot4 = new TF1("ftot","gaus",65,115, TF1::EAddToList::kDefault);
+   ftot4->SetFillColor(19);
+   ftot4->SetFillStyle(0);
+   ftot4->SetLineColor(2);
+   ftot4->SetLineWidth(2);
+   ftot4->SetChisquare(32.91851);
+   ftot4->SetNDF(23);
+   ftot4->GetXaxis()->SetLabelFont(42);
+   ftot4->GetXaxis()->SetTitleOffset(1);
+   ftot4->GetXaxis()->SetTitleFont(42);
+   ftot4->GetYaxis()->SetLabelFont(42);
+   ftot4->GetYaxis()->SetTitleFont(42);
+   ftot4->SetParameter(0,0.3218842);
+   ftot4->SetParError(0,0.007280545);
+   ftot4->SetParLimits(0,0,0);
+   ftot4->SetParameter(1,88.66724);
+   ftot4->SetParError(1,0.2565039);
+   ftot4->SetParLimits(1,0,0);
+   ftot4->SetParameter(2,13.33378);
+   ftot4->SetParError(2,0.273802);
+   ftot4->SetParLimits(2,0,116.2855);
+   ftot4->Draw("same");
+   
+   TLegend *leg = new TLegend(0.5,0.4,0.89,0.57,NULL,"brNDC");
    leg->SetBorderSize(0);
    leg->SetTextSize(0.035);
    leg->SetLineColor(1);
@@ -495,6 +513,14 @@ void Z_mass_tags_17()
    entry->SetMarkerSize(1);
    entry->SetTextFont(42);
    entry=leg->AddEntry("NULL","#sigma = 13.3#pm0.3 GeV","");
+   entry->SetLineColor(1);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(42);
+   entry=leg->AddEntry("NULL","#sigma/#mu = 0.15","");
    entry->SetLineColor(1);
    entry->SetLineStyle(1);
    entry->SetLineWidth(1);
