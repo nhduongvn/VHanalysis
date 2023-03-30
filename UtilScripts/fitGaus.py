@@ -61,6 +61,11 @@ def getHist(pN, sample_name, fH, lS, printSamples=True):
 ###############################
 years = ['16', '17', '18']
 regions = ['tags', 'algo', 'both']#, 'alljet', 'seljet']
+regions = [
+  'tags', 'tags_noMassCorr', 'tags_noJEC',
+  'algo', 'algo_noMassCorr', 'algo_noJEC',
+  'both', 'both_noMassCorr', 'both_noJEC'
+]
 plotCat = 'VbbHcc'
 useLogY = False
 
@@ -74,6 +79,8 @@ plotFolder = '../plot_results/JEC_comp/updated/'  ## medium WP (updated)
 resultpath = '../condor_results/mediumWP_updated/'
 plotFolder = '../plot_results/JEC_comp/viaFlavor/' ## medium WP (reg via hadron flavor)
 resultpath = '../condor_results/mediumWP_viaFlavor/'
+plotFolder = '../plot_results/JEC_comp/newest/'  ## medium WP (all in one file)
+resultpath = '../condor_results/mediumWP_newest/'
 
 ## List with just Signal
 ss = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ']

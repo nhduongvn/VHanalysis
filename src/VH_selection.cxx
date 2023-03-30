@@ -1073,10 +1073,12 @@ void VH_selection::Process(Reader* r) {
     std::vector<JetObj> cjets3, cjets32, cjets33; 
     cjets3.push_back(jets3[chosenPair.m_hIdx0]); // full JEC
     cjets3.push_back(jets3[chosenPair.m_hIdx1]);
+    cjets3[0].ApplyRegression(4); cjets3[1].ApplyRegression(4);
     HObj H3(cjets3);
 
     cjets32.push_back(jets3[chosenPair.m_hIdx0]); // no mass correction
-    cjets33.push_back(jets3[chosenPair.m_hIdx1]);
+    cjets32.push_back(jets3[chosenPair.m_hIdx1]);
+    cjets32[0].ApplyRegression(4, false); cjets32[1].ApplyRegression(4,false);
     HObj H32(cjets32);
     
     cjets33.push_back(jets3[chosenPair.m_hIdx0]); // no JEC
