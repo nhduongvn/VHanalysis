@@ -218,9 +218,18 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_VH_all = new VHPlots("VbbHcc_all");
   h_VH_MC = new VHPlots("VbbHcc_MC");
   h_VH_MCjet = new VHPlots("VbbHcc_MCjet");
+
   h_VH_tags = new VHPlots("VbbHcc_tags");
+  h_VH_tags_noMassCorr = new VHPlots("VbbHcc_tags_noMassCorr");
+  h_VH_tags_noJEC = new VHPlots("VbbHcc_tags_noJEC");
+
   h_VH_algo = new VHPlots("VbbHcc_algo");
+  h_VH_algo_noMassCorr = new VHPlots("VbbHcc_algo_noMassCorr");
+  h_VH_algo_noJEC = new VHPlots("VbbHcc_algo_noJEC");
+
   h_VH_both = new VHPlots("VbbHcc_both");
+  h_VH_both_noMassCorr = new VHPlots("VbbHcc_both_noMassCorr");
+  h_VH_both_noJEC = new VHPlots("VbbHcc_both_noJEC");
 
   h_VH_alljet = new VHPlots("VbbHcc_alljet");
   h_VH_seljet = new VHPlots("VbbHcc_seljet");
@@ -327,10 +336,23 @@ void VH_selection::SlaveBegin(Reader *r) {
 
   tmp = h_VH_tags->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_tags_noMassCorr->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_tags_noJEC->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_VH_algo->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_algo_noMassCorr->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_algo_noJEC->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_VH_both->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_both_noMassCorr->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_both_noJEC->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+
   tmp = h_VH_all->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_VH_alljet->returnHisto();
@@ -504,17 +526,6 @@ void VH_selection::Process(Reader* r) {
     jet.m_genJetIdx = (r->Jet_genJetIdx)[i];
 #endif
 
-    // Check the tagging of the jet so we can decide 
-    // which regression to apply to it. Prioritize b-tag.
-    
-    /* -- OLD VERISON w/ TAGGING --
-    if (jet.m_deepCSV > desired_BvL) jet.ApplyRegression(5);
-    else if (jet.m_deepCvL > desired_CvL && jet.m_deepCvB > desired_CvB)
-      jet.ApplyRegression(4);*/
-
-    if (abs(jetFlav) == 5) jet.ApplyRegression(5);
-    else if (abs(jetFlav) == 4) jet.ApplyRegression(4);
-
     // Add the jet to our overall list.
     jet.SetIdxAll(i);
     jets.push_back(jet);
@@ -636,7 +647,7 @@ void VH_selection::Process(Reader* r) {
     JetObj b1((r->GenPart_pt)[idx2_Z], (r->GenPart_eta)[idx2_Z],
       (r->GenPart_phi)[idx2_Z], (r->GenPart_mass)[idx2_Z], 5, 0., 0.);
 
-    b0.ApplyRegression(5); b1.ApplyRegression(5);
+    //b0.ApplyRegression(5); b1.ApplyRegression(5);
     std::vector<JetObj> MC_bjets{b0, b1};
     gen_bs.push_back(b0); gen_bs.push_back(b1);
     ZObj MC_Z(MC_bjets);
@@ -647,7 +658,7 @@ void VH_selection::Process(Reader* r) {
     JetObj c1((r->GenPart_pt)[idx2_H], (r->GenPart_eta)[idx2_H],
       (r->GenPart_phi)[idx2_H], (r->GenPart_mass)[idx2_H], 4, 0., 0.);
 
-    c0.ApplyRegression(4); c1.ApplyRegression(4);
+    //c0.ApplyRegression(4); c1.ApplyRegression(4);
     std::vector<JetObj> MC_cjets{c0, c1};
     gen_cs.push_back(c0); gen_cs.push_back(c1);
     HObj MC_H(MC_cjets);
@@ -948,6 +959,8 @@ void VH_selection::Process(Reader* r) {
     // automatically be in the first two indices.)
     std::sort(jets2.begin(), jets2.end(), JetObj::JetCompBtag());
     std::vector<JetObj> bjets2 { jets2[0], jets2[1] };
+    std::vector<JetObj> bjets22 { jets2[0], jets2[1] };
+    std::vector<JetObj> bjets23 { jets2[0], jets2[1] };
     jets2.erase(jets2.begin() + 1); jets2.erase(jets2.begin() + 0);
 
     if (passes_btag(bjets2[0], desired_BvL)) {
@@ -958,12 +971,19 @@ void VH_selection::Process(Reader* r) {
         // Since we passed the cut, adjust our jets with the proper
         // JEC for b-tagged jets and reconstruct the Z boson
         h_evt_tags_cutflow->Fill(4.5, genWeight); // pass b-cut #2
+
+        bjets2[0].ApplyRegression(5); bjets2[1].ApplyRegression(5); // Full JEC version
         ZObj Z2(bjets2);
+        bjets22[0].ApplyRegression(5, false); bjets22[1].ApplyRegression(5, false); // No mass correction
+        ZObj Z22(bjets22);
+        ZObj Z23(bjets23); // no JEC
       
         // Select two jets with the largest ctag values and then
         // check against our working point of interest.
         std::sort(jets2.begin(), jets2.end(), JetObj::JetCompCtag());
         std::vector<JetObj> cjets2 { jets2[0], jets2[1] };
+        std::vector<JetObj> cjets22 { jets2[0], jets2[1] };
+        std::vector<JetObj> cjets23 { jets2[0], jets2[1] };
         jets2.erase(jets2.begin() + 1); jets2.erase(jets2.begin() + 0);
 
         if (passes_ctag(cjets2[0], desired_CvL, desired_CvB)) {
@@ -974,9 +994,16 @@ void VH_selection::Process(Reader* r) {
             // Since we passed the cuts, adjust our jets with the proper
             // JEC for c-tagged jets and reconstruct the Higgs boson
             h_evt_tags_cutflow->Fill(6.5, genWeight); // pass c-cut #2
-            HObj H2(cjets2);
 
-            h_VH_tags->FillVH(Z2, H2, evtW);         
+            cjets2[0].ApplyRegression(4); cjets2[1].ApplyRegression(4); // Full JEC version
+            HObj H2(cjets2);
+            cjets22[0].ApplyRegression(4,false); cjets22[1].ApplyRegression(4,false); // No mass correction
+            HObj H22(cjets22);
+            HObj H23(cjets23); // no JEC
+
+            h_VH_tags->FillVH(Z2, H2, evtW);
+            h_VH_tags_noMassCorr->FillVH(Z22, H22, evtW);
+            h_VH_tags_noJEC->FillVH(Z23, H23, evtW);         
 
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
             h_VH_tags->FillGluCheck(Z2, evtW);
@@ -1027,15 +1054,34 @@ void VH_selection::Process(Reader* r) {
 
     // Reconstruct the objects here for various uses.
     h_VH_algo->FillAlgo(distances, evtW);
-    std::vector<JetObj> bjets3;
-    bjets3.push_back(jets3[chosenPair.m_zIdx0]);
+    std::vector<JetObj> bjets3, bjets32, bjets33;
+
+    bjets3.push_back(jets3[chosenPair.m_zIdx0]); // full JEC
     bjets3.push_back(jets3[chosenPair.m_zIdx1]);
+    bjets3[0].ApplyRegression(5); bjets3[1].ApplyRegression(5);
     ZObj Z3(bjets3);
 
-    std::vector<JetObj> cjets3;
-    cjets3.push_back(jets3[chosenPair.m_hIdx0]);
+    bjets32.push_back(jets3[chosenPair.m_zIdx0]); // no mass correction
+    bjets32.push_back(jets3[chosenPair.m_zIdx1]); 
+    bjets32[0].ApplyRegression(5,false); bjets32[1].ApplyRegression(5,false);
+    ZObj Z32(bjets32);
+
+    bjets33.push_back(jets3[chosenPair.m_zIdx0]); // no JEC
+    bjets33.push_back(jets3[chosenPair.m_zIdx1]);
+    ZObj Z33(bjets33);
+
+    std::vector<JetObj> cjets3, cjets32, cjets33; 
+    cjets3.push_back(jets3[chosenPair.m_hIdx0]); // full JEC
     cjets3.push_back(jets3[chosenPair.m_hIdx1]);
     HObj H3(cjets3);
+
+    cjets32.push_back(jets3[chosenPair.m_hIdx0]); // no mass correction
+    cjets33.push_back(jets3[chosenPair.m_hIdx1]);
+    HObj H32(cjets32);
+    
+    cjets33.push_back(jets3[chosenPair.m_hIdx0]); // no JEC
+    cjets33.push_back(jets3[chosenPair.m_hIdx1]);
+    HObj H33(cjets33);
 
     // Now check our tagging requirements and other cuts.
     if (chosenPair.Z_has_bjet0(desired_BvL)) {  
@@ -1050,6 +1096,8 @@ void VH_selection::Process(Reader* r) {
             
             // Fill our histograms appropriately.
             h_VH_algo->FillVH(Z3, H3, evtW);
+            h_VH_algo_noMassCorr->FillVH(Z32, H32, evtW);
+            h_VH_algo_noJEC->FillVH(Z33, H33, evtW);
 
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
             h_VH_algo->FillGluCheck(Z3, evtW);
@@ -1144,18 +1192,39 @@ void VH_selection::Process(Reader* r) {
 
       // Reconstruct the objects for use.
       h_VH_both->FillAlgo(DHZ_values, evtW);
-      std::vector<JetObj> bjets4;
-      bjets4.push_back(jets4[chosenPair.m_zIdx0]);
+      std::vector<JetObj> bjets4, bjets42, bjets43;
+
+      bjets4.push_back(jets4[chosenPair.m_zIdx0]); // full JEC
       bjets4.push_back(jets4[chosenPair.m_zIdx1]);
+      bjets4[0].ApplyRegression(5); bjets4[1].ApplyRegression(5);
       ZObj Z4(bjets4);
 
-      std::vector<JetObj> cjets4;
-      cjets4.push_back(jets4[chosenPair.m_hIdx0]);
+      bjets42.push_back(jets4[chosenPair.m_zIdx0]); // no mass correction
+      bjets42.push_back(jets4[chosenPair.m_zIdx1]);
+      bjets42[0].ApplyRegression(5,false); bjets42[1].ApplyRegression(5,false);
+      ZObj Z42(bjets42);
+
+      bjets43.push_back(jets4[chosenPair.m_zIdx0]); // no JEC
+      bjets43.push_back(jets4[chosenPair.m_zIdx1]);
+      ZObj Z43(bjets43);
+
+      std::vector<JetObj> cjets4, cjets42, cjets43;
+      cjets4.push_back(jets4[chosenPair.m_hIdx0]); // full JEC
       cjets4.push_back(jets4[chosenPair.m_hIdx1]);
       HObj H4(cjets4);
 
+      cjets42.push_back(jets4[chosenPair.m_hIdx0]); // no mass correction
+      cjets42.push_back(jets4[chosenPair.m_hIdx1]);
+      HObj H42(cjets42);
+
+      cjets43.push_back(jets4[chosenPair.m_hIdx0]); // no JEC
+      cjets43.push_back(jets4[chosenPair.m_hIdx1]);
+      HObj H43(cjets43);
+
       // Fill our histograms appropriately.
       h_VH_both->FillVH(Z4, H4, evtW);
+      h_VH_both_noMassCorr->FillVH(Z42, H42, evtW);
+      h_VH_both_noJEC->FillVH(Z43, H43, evtW);
 
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
         h_VH_both->FillGluCheck(Z4, evtW);

@@ -157,7 +157,7 @@ class JetObj : public GenObj {
 
     // ApplyRegression - applies the corrects given a jet type
     // abs(flav) = 4 -> c, abs(flav) = 5 -> b
-    void ApplyRegression(float flav) {
+    void ApplyRegression(float flav, bool applyToMass=true) {
 
       float pt = m_lvec.Pt();    
       m_pt = pt;
@@ -171,10 +171,12 @@ class JetObj : public GenObj {
       float eta = m_lvec.Eta();
       float mass = m_lvec.M();
 
-      m_mass = mass;
-      if (abs(flav) == 4) mass *= m_cRegCorr;
-      else if (abs(flav) == 5) mass *= m_bRegCorr;
-      m_massJEC = mass;
+      if (applyToMass) {
+        m_mass = mass;
+        if (abs(flav) == 4) mass *= m_cRegCorr;
+        else if (abs(flav) == 5) mass *= m_bRegCorr;
+        m_massJEC = mass;
+      }
 
       m_lvec.SetPtEtaPhiM(pt, phi, eta, mass);
 

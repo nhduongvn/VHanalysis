@@ -45,8 +45,17 @@ class VH_selection : public Selector {
     VHPlots *h_VH_MC;    // MC Truth events (GenObj)
     VHPlots *h_VH_MCjet; // MC Truth events (jets)
     VHPlots *h_VH_tags;  // Tagging Only
+    VHPlots *h_VH_tags_noMassCorr;
+    VHPlots *h_VH_tags_noJEC;
+
     VHPlots *h_VH_algo;  // Mass-Matching Prioritized
+    VHPlots *h_VH_algo_noMassCorr;
+    VHPlots *h_VH_algo_noJEC;
+
     VHPlots *h_VH_both;  // Tagging Prioritized
+    VHPlots *h_VH_both_noMassCorr;
+    VHPlots *h_VH_both_noJEC;
+
     VHPlots *h_VH_all;   // Any plots related to ALL cut types
 
     VHPlots *h_VH_alljet; // Using just any jets

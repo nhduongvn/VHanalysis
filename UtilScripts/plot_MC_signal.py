@@ -60,11 +60,16 @@ def getHist(pN, sample_name, fH, lS, printSamples=True):
 ###############################
 years = ['16', '17', '18']
 regions = ['tags', 'algo', 'both']#, 'alljet', 'seljet']
+regions = [
+  'tags', 'tags_noMassCorr', 'tags_noJEC',
+  'algo', 'algo_noMassCorr', 'algo_noJEC',
+  'both', 'both_noMassCorr', 'both_noJEC'
+]
 plotCat = 'VbbHcc'
 useLogY = False
 
-plotFolder = '../plot_results/JEC_comp/noJEC/'    ## medium WP no JEC
-resultpath = '../condor_results/mediumWP_noJEC/'
+#plotFolder = '../plot_results/JEC_comp/noJEC/'    ## medium WP no JEC
+#resultpath = '../condor_results/mediumWP_noJEC/'
 #plotFolder = '../plot_results/JEC_comp/JEC/'      ## medium WP w/ JEC
 #resultpath = '../condor_results/mediumWP_wJEC/' 
 #plotFolder = '../plot_results/JEC_comp/massJEC/'  ## medium WP w/ JEC + mass
@@ -73,6 +78,8 @@ resultpath = '../condor_results/mediumWP_noJEC/'
 #resultpath = '../condor_results/mediumWP_updated/'
 #plotFolder = '../plot_results/JEC_comp/viaFlavor/' ## medium WP (reg via hadron flavor)
 #resultpath = '../condor_results/mediumWP_viaFlavor/'
+plotFolder = '../plot_results/JEC_comp/newest/' ## medium WP (all from one file)
+resultpath = '../condor_results/mediumWP_newest/'
 
 ## Normal List of Files we want
 ss = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ', 'ZH_HToBB_ZToQQ', 'ggZH_HToBB_ZToQQ', 

@@ -1,0 +1,195 @@
+void Aplanarity_algo_noMassCorr_18()
+{
+//=========Macro generated from canvas: Aplanarity_algo_noMassCorr_18/Aplanarity_algo_noMassCorr_18
+//=========  (Thu Mar 30 10:44:31 2023) by ROOT version 6.14/09
+   TCanvas *Aplanarity_algo_noMassCorr_18 = new TCanvas("Aplanarity_algo_noMassCorr_18", "Aplanarity_algo_noMassCorr_18",0,0,600,600);
+   Aplanarity_algo_noMassCorr_18->SetHighLightColor(2);
+   Aplanarity_algo_noMassCorr_18->Range(-0.2183529,-0.3893611,1.171633,2.855315);
+   Aplanarity_algo_noMassCorr_18->SetFillColor(0);
+   Aplanarity_algo_noMassCorr_18->SetFillStyle(4000);
+   Aplanarity_algo_noMassCorr_18->SetBorderMode(0);
+   Aplanarity_algo_noMassCorr_18->SetBorderSize(2);
+   Aplanarity_algo_noMassCorr_18->SetLeftMargin(0.15709);
+   Aplanarity_algo_noMassCorr_18->SetRightMargin(0.1234783);
+   Aplanarity_algo_noMassCorr_18->SetBottomMargin(0.12);
+   Aplanarity_algo_noMassCorr_18->SetFrameFillStyle(1000);
+   Aplanarity_algo_noMassCorr_18->SetFrameBorderMode(0);
+   Aplanarity_algo_noMassCorr_18->SetFrameFillStyle(1000);
+   Aplanarity_algo_noMassCorr_18->SetFrameBorderMode(0);
+   
+   THStack *st = new THStack();
+   st->SetName("st");
+   st->SetTitle("");
+   st->SetMaximum(2.410331);
+   
+   TH1F *st_stack_447 = new TH1F("st_stack_447","",50,0,1);
+   st_stack_447->SetMinimum(0);
+   st_stack_447->SetMaximum(2.530847);
+   st_stack_447->SetDirectory(0);
+   st_stack_447->SetStats(0);
+
+   Int_t ci;      // for color index setting
+   TColor *color; // for color definition with alpha
+   ci = TColor::GetColor("#000099");
+   st_stack_447->SetLineColor(ci);
+   st_stack_447->GetXaxis()->SetTitle("Aplanarity");
+   st_stack_447->GetXaxis()->SetRange(1,50);
+   st_stack_447->GetXaxis()->SetLabelFont(42);
+   st_stack_447->GetXaxis()->SetLabelSize(0.035);
+   st_stack_447->GetXaxis()->SetTitleSize(0.035);
+   st_stack_447->GetXaxis()->SetTitleFont(42);
+   st_stack_447->GetYaxis()->SetTitle("Event/0.02");
+   st_stack_447->GetYaxis()->SetLabelFont(42);
+   st_stack_447->GetYaxis()->SetLabelSize(0.035);
+   st_stack_447->GetYaxis()->SetTitleSize(0.037);
+   st_stack_447->GetYaxis()->SetTitleOffset(0);
+   st_stack_447->GetYaxis()->SetTitleFont(42);
+   st_stack_447->GetZaxis()->SetLabelFont(42);
+   st_stack_447->GetZaxis()->SetLabelSize(0.035);
+   st_stack_447->GetZaxis()->SetTitleSize(0.035);
+   st_stack_447->GetZaxis()->SetTitleFont(42);
+   st->SetHistogram(st_stack_447);
+   
+   
+   TH1D *VbbHcc_algo_noMassCorr_Aplanarity_stack_1 = new TH1D("VbbHcc_algo_noMassCorr_Aplanarity_stack_1","",50,0,1);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->SetBinContent(1,1.520617);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->SetBinContent(2,0.3076052);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->SetBinContent(3,0.1440053);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->SetBinContent(4,0.06872733);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->SetBinContent(5,0.05150232);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->SetBinContent(6,0.03009447);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->SetBinContent(7,0.04033599);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->SetBinContent(8,0.01554133);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->SetBinContent(9,0.01022737);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->SetBinContent(10,0.02784586);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->SetBinContent(11,0.002736771);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->SetBinContent(12,0.005064407);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->SetBinContent(13,0.002477707);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->SetBinError(1,0.07547536);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->SetBinError(2,0.02840882);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->SetBinError(3,0.02060629);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->SetBinError(4,0.01362779);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->SetBinError(5,0.01309454);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->SetBinError(6,0.009019453);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->SetBinError(7,0.01108782);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->SetBinError(8,0.007412048);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->SetBinError(9,0.004756337);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->SetBinError(10,0.00892693);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->SetBinError(11,0.002736771);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->SetBinError(12,0.003581076);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->SetBinError(13,0.002477707);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->SetEntries(907);
+
+   ci = TColor::GetColor("#cc0000");
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->SetFillColor(ci);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->GetXaxis()->SetRange(1,100);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->GetXaxis()->SetLabelFont(42);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->GetXaxis()->SetLabelSize(0.035);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->GetXaxis()->SetTitleSize(0.035);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->GetXaxis()->SetTitleFont(42);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->GetYaxis()->SetLabelFont(42);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->GetYaxis()->SetLabelSize(0.035);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->GetYaxis()->SetTitleSize(0.035);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->GetYaxis()->SetTitleOffset(0);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->GetYaxis()->SetTitleFont(42);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->GetZaxis()->SetLabelFont(42);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->GetZaxis()->SetLabelSize(0.035);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->GetZaxis()->SetTitleSize(0.035);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_1->GetZaxis()->SetTitleFont(42);
+   st->Add(VbbHcc_algo_noMassCorr_Aplanarity_stack_1,"");
+   
+   TH1D *VbbHcc_algo_noMassCorr_Aplanarity_stack_2 = new TH1D("VbbHcc_algo_noMassCorr_Aplanarity_stack_2","",50,0,1);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->SetBinContent(1,0.4799571);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->SetBinContent(2,0.1192678);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->SetBinContent(3,0.05728149);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->SetBinContent(4,0.03848525);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->SetBinContent(5,0.02575722);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->SetBinContent(6,0.01735217);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->SetBinContent(7,0.008349556);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->SetBinContent(8,0.006482885);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->SetBinContent(9,0.003476821);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->SetBinContent(10,0.003850448);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->SetBinContent(11,0.001940452);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->SetBinContent(12,0.003459249);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->SetBinContent(13,0.001340482);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->SetBinContent(14,0.0003105083);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->SetBinContent(16,0.0007609456);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->SetBinError(1,0.01386362);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->SetBinError(2,0.006503034);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->SetBinError(3,0.004528686);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->SetBinError(4,0.003700736);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->SetBinError(5,0.003599424);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->SetBinError(6,0.002506374);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->SetBinError(7,0.001712307);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->SetBinError(8,0.001518851);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->SetBinError(9,0.001041741);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->SetBinError(10,0.001168548);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->SetBinError(11,0.000804418);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->SetBinError(12,0.001114339);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->SetBinError(13,0.0006894835);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->SetBinError(14,0.0003105083);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->SetBinError(16,0.000543507);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->SetEntries(2258);
+
+   ci = TColor::GetColor("#00cc00");
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->SetFillColor(ci);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->GetXaxis()->SetRange(1,100);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->GetXaxis()->SetLabelFont(42);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->GetXaxis()->SetLabelSize(0.035);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->GetXaxis()->SetTitleSize(0.035);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->GetXaxis()->SetTitleFont(42);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->GetYaxis()->SetLabelFont(42);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->GetYaxis()->SetLabelSize(0.035);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->GetYaxis()->SetTitleSize(0.035);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->GetYaxis()->SetTitleOffset(0);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->GetYaxis()->SetTitleFont(42);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->GetZaxis()->SetLabelFont(42);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->GetZaxis()->SetLabelSize(0.035);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->GetZaxis()->SetTitleSize(0.035);
+   VbbHcc_algo_noMassCorr_Aplanarity_stack_2->GetZaxis()->SetTitleFont(42);
+   st->Add(VbbHcc_algo_noMassCorr_Aplanarity_stack_2,"");
+   st->Draw("hist");
+   
+   TLegend *leg = new TLegend(0.48,0.8,0.85,0.87,NULL,"brNDC");
+   leg->SetBorderSize(0);
+   leg->SetTextSize(0.035);
+   leg->SetLineColor(1);
+   leg->SetLineStyle(1);
+   leg->SetLineWidth(2);
+   leg->SetFillColor(0);
+   leg->SetFillStyle(1001);
+   TLegendEntry *entry=leg->AddEntry("VbbHcc_algo_noMassCorr_Aplanarity_stack_2","ggZHcc","F");
+
+   ci = TColor::GetColor("#00cc00");
+   entry->SetFillColor(ci);
+   entry->SetFillStyle(1001);
+   entry->SetLineColor(1);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(42);
+   entry=leg->AddEntry("VbbHcc_algo_noMassCorr_Aplanarity_stack_1","ZHcc","F");
+
+   ci = TColor::GetColor("#cc0000");
+   entry->SetFillColor(ci);
+   entry->SetFillStyle(1001);
+   entry->SetLineColor(1);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(42);
+   leg->Draw();
+   TLatex *   tex = new TLatex(0.25,0.937775,"CMS Work in Progress #sqrt{s} = 13 TeV, 59.7 fb^{-1}");
+tex->SetNDC();
+   tex->SetTextFont(42);
+   tex->SetTextSize(0.035);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   Aplanarity_algo_noMassCorr_18->Modified();
+   Aplanarity_algo_noMassCorr_18->cd();
+   Aplanarity_algo_noMassCorr_18->SetSelected(Aplanarity_algo_noMassCorr_18);
+}
