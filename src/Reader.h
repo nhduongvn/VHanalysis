@@ -118,6 +118,22 @@ TTreeReaderArray<UChar_t> GenJet_hadronFlavour = {fReader, "GenJet_hadronFlavour
 TTreeReaderArray<Int_t> Jet_genJetIdx = {fReader, "Jet_genJetIdx"};
 #endif
 
+   // Triggers
+   TTreeReaderValue<Bool_t> HLT_IsoMu24 = {fReader, "HLT_IsoMu24"};
+
+#if defined(MC_2016) || defined(DATA_2016)
+   TTreeReaderValue<Bool_t> HLT_QuadJet45_TripleBTagCSV_p087 = {fReader, "HLT_QuadJet45_TripleBTagCSV_p087"};
+   TTreeReaderValue<Bool_t> HLT_DoubleJet90_Double30_TripleBTagCSV_p087 = {fReader, "HLT_DoubleJet90_Double30_TripleBTagCSV_p087"};
+#endif
+
+#if defined(MC_2017) || defined(DATA_2017)
+   TTreeReaderValue<Bool_t> HLT_PFHT300PT30_QuadPFJet_75_60_45_40 = {fReader, "HLT_PFHT300PT30_QuadPFJet_75_60_45_40"};
+#endif
+
+#if defined(MC_2018) || defined(DATA_2018)
+   TTreeReaderValue<Bool_t> HLT_PFHT330PT30_QuadPFJet_75_60_45_40_TriplePFBTagDeepCSV_4p5 = {fReader, "HLT_PFHT330PT30_QuadPFJet_75_60_45_40_TriplePFBTagDeepCSV_4p5"};
+#endif
+
    Reader(TTree * /*tree*/ =0) {}
 
    virtual ~Reader() { }

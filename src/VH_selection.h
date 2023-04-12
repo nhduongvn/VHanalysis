@@ -61,6 +61,12 @@ class VH_selection : public Selector {
     VHPlots *h_VH_alljet; // Using just any jets
     VHPlots *h_VH_seljet; // Using selected jets
 
+    // Trigger Efficiency Plots
+    TriggerEffPlots *h_2016v1_trigEff;  // trigger eff for first 2016 trigger
+    TriggerEffPlots *h_2016v2_trigEff;  // trigger eff for second 2016 trigger
+    TriggerEffPlots *h_2017_trigEff;    // " " " 2017 trigger
+    TriggerEffPlots *h_2018_trigEff;    // " " " 2018 trigger
+
     // Efficiency Plots
     EffPlots *h_eff_tags; // Efficiencies for Tagging Only
     EffPlots *h_eff_algo; // Efficiencies for Mass-Matching Prioritized

@@ -94,16 +94,17 @@ outputDir_scratch = '/uscmst1b_scratch/lpc1/lpctrig/duong//Output_VH/'+syst+'/'
 
 sourceDir = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/'
 #condorRunDir = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/SubmitToCondor/condor/'
-condorRunDir = '/uscmst1b_scratch/lpc1/lpcphys/peteryou/Output_VH/mediumWP_newest/'
-outputDir_eos = '/store/user/peteryou/Output_VH/mediumWP_newest/'+syst+'/' 
+condorRunDir = '/uscmst1b_scratch/lpc1/lpcphys/peteryou/Output_VH/trigger_efficiency/'
+outputDir_eos = '/store/user/peteryou/Output_VH/trigger_efficiency/'+syst+'/' 
 #outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/new_condor_results/' + syst + '/'
 #outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/newest_condor_results/' + syst + '/'
-outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/mediumWP_newest/' + syst + '/'
+outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/trigger_efficiency/' + syst + '/'
 
 #Input data sets
 #dataSet_list = sourceDir+"/Dataset_lists/datasets_JetHT_combined.txt" #data
 #dataSet_list = sourceDir+"/Dataset_lists/datasets_QCD100to200.txt" 
 dataSet_list = sourceDir+"/Dataset_lists/datasets_major_signal_bckg.txt" #signal + QCD/ttbar
+dataSet_list = sourceDir+"/Dataset_lists/datasets_SingleMuon.txt"
 #dataSet_list = sourceDir+"/Dataset_lists/datasets_NANOAODv9_MC.txt" #all except Hcc
 #dataSet_list = sourceDir+"/Dataset_lists/datasets_HToCC_NANOAODV7_MC.txt" #data
 nFile = 2

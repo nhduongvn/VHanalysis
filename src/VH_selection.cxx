@@ -251,7 +251,13 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_genJet_all = new GenPlots("GenJet_all");
   h_genJet_cuts = new GenPlots("GenJet_cuts");
   h_genJet_VbbHcc = new GenPlots("GenJet_VbbHcc");
-  
+
+  // Set up the Trigger efficiency plots
+  h_2016v1_trigEff = new TriggerEffPlots("2016v1_trigEff");
+  h_2016v2_trigEff = new TriggerEffPlots("2016v2_trigEff");
+  h_2017_trigEff = new TriggerEffPlots("2017_trigEff");
+  h_2018_trigEff = new TriggerEffPlots("2018_trigEff"); 
+ 
   // Set up the CutFlows (for events) 
   h_evt_MC_cutflow = new TH1D("VbbHcc_MC_CutFlow", "", 2, 0, 2);
   h_evt_MC_cutflow->GetXaxis()->SetBinLabel(1, "Total");
@@ -383,6 +389,15 @@ void VH_selection::SlaveBegin(Reader *r) {
   tmp = h_genJet_cuts->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_genJet_VbbHcc->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+
+  tmp = h_2016v1_trigEff->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_2016v2_trigEff->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_2017_trigEff->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_2018_trigEff->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
 
   r->GetOutputList()->Add(h_evt_VbbHcc);
@@ -861,6 +876,54 @@ void VH_selection::Process(Reader* r) {
     h_evt_tags_cutflow->Fill(2.5, genWeight); // passed jet selection
     h_evt_algo_cutflow->Fill(2.5, genWeight); 
     h_evt_both_cutflow->Fill(2.5, genWeight); 
+
+    // ========================================================================
+    // Trigger Efficiency
+    // ========================================================================
+
+    // Reference Trigger - HLT_IsoMu24 
+    // Probe Triggers:
+    // 2016 - HLT_QuadJet45_TripleBTagCSV_p087 OR
+    //        HLT_DoubleJet90_Double30_TripleBTagCSV_p087
+    // 2017 - HLT_PFHT300PT30_QuadPFJet_75_60_45_40_TriplePFBTagCSV_3p0
+    // 2018 - HLT_PFHT330PT30_QuadPFJet_75_60_45_40_TriplePFBTagDeepCSV_4p5
+
+    // Make sure events pass our reference frame.
+    if (*(r->HLT_IsoMu24)) {
+
+      // Add the events to the reference plots
+      h_2016v1_trigEff->Fill(analysis_jets, true, evtW);
+      h_2016v2_trigEff->Fill(analysis_jets, true, evtW);
+      h_2017_trigEff->Fill(analysis_jets, true, evtW);
+      h_2018_trigEff->Fill(analysis_jets, true, evtW);
+
+      // Check each of our triggers after they've passed the reference
+#if defined(MC_2016) || defined(DATA_2016)
+      // 2016 - v1
+      if (*(r->HLT_QuadJet45_TripleBTagCSV_p087)) {
+        h_2016v1_trigEff->Fill(analysis_jets, false, evtW);
+      }
+      // 2016 - v2
+      if (*(r->HLT_DoubleJet90_Double30_TripleBTagCSV_p087)) {
+        h_2016v2_trigEff->Fill(analysis_jets, false, evtW);
+      }
+#endif
+
+#if defined(MC_2017) || defined(DATA_2017)
+      // 2017
+      if (*(r->HLT_PFHT300PT30_QuadPFJet_75_60_45_40)) {
+        h_2017_trigEff->Fill(analysis_jets, false, evtW);
+      }
+#endif
+
+#if defined(MC_2018) || defined(DATA_2018)
+      // 2018
+      if (*(r->HLT_PFHT330PT30_QuadPFJet_75_60_45_40_TriplePFBTagDeepCSV_4p5)) {
+        h_2018_trigEff->Fill(analysis_jets, false, evtW);
+      }
+#endif
+
+    } // END OF TRIGGER EFF 
 
     /***************************************************************************
     * Check what we get for H and Z candidates by just using the leading pT    *

@@ -752,7 +752,111 @@ class GenPlots
 };
 
 /******************************************************************************
-* EffPlots - plotes related to efficiency of MC Truth matching                *
+* TriggerEffPlots - plots related to trigger efficiency                       *
+******************************************************************************/
+class TriggerEffPlots
+{
+  public:
+    
+    // Constructor
+    TriggerEffPlots(TString name) : m_name(name) {
+
+      for (int i = 0; i < 4; ++i) {
+        TString hName = name + "_pt_jet" + std::to_string(i);
+        h_pt_jets[i] = new TH1D(hName, "", 500, 0, 500);
+        h_pt_jets_ref[i] = new TH1D(hName + "_ref", "", 500, 0, 500);   
+      }
+
+      //h_pt_jet0 = new TH1D(name + "_pt_jet0", "", 500, 0, 500);
+      //h_pt_jet0_ref = new TH1D(name + "_pt_jet0_ref", "", 500, 0, 500);
+      //h_pt_jet1 = new TH1D(name + "_pt_jet1", "", 500, 0, 500);
+      //h_pt_jet1_ref = new TH1D(name + "_pt_jet1_ref", "", 500, 0, 500);
+      //h_pt_jet2 = new TH1D(name + "_pt_jet2", "", 500, 0, 500);
+      //h_pt_jet2_ref = new TH1D(name + "_pt_jet2_ref", "", 500, 0, 500);
+      //h_pt_jet3 = new TH1D(name + "_pt_jet3", "", 500, 0, 500);
+      //h_pt_jet3_ref = new TH1D(name + "_pt_jet3_ref", "", 500, 0, 500);
+
+      h_HT = new TH1D(name + "_HT", "", 2000, 0, 2000);
+      h_HT_ref = new TH1D(name + "_HT_ref", "", 2000, 0, 2000);
+
+      h_BvL = new TH1D(name + "_BvL", "", 100, 0, 1);
+      h_BvL_ref = new TH1D(name + "_BvL_ref", "", 100, 0, 1);
+      h_CvL = new TH1D(name + "_CvL", "", 100, 0, 1);
+      h_CvL_ref = new TH1D(name + "_CvL_ref", "", 100, 0, 1);
+      h_CvB = new TH1D(name + "_CvB", "", 100, 0, 1);
+      h_CvB_ref = new TH1D(name + "_CvB_ref", "", 100, 0, 1);
+    };
+
+    // Fill the appropriate histograms
+    void Fill(std::vector<JetObj> jetlist, bool isRef, float w=1.) {
+
+      // Add the pT values to the plots. At the same time,
+      // calculate the HT. Also handle the jet score ones.
+      float HT = 0.;
+      for (int i = 0; i < 4; ++i) {
+        // pT values
+        float pTi = jetlist[i].Pt(); HT += pTi;
+        if (isRef) h_pt_jets_ref[i]->Fill(pTi, w);
+        else h_pt_jets[i]->Fill(pTi, w);
+
+        // DeepJet scores
+        float bvl = jetlist[i].m_deepCSV;
+        float cvl = jetlist[i].m_deepCvL;
+        float cvb = jetlist[i].m_deepCvB;
+
+        if (isRef) {
+          h_BvL_ref->Fill(bvl, w); h_CvL_ref->Fill(cvl, w);
+          h_CvB_ref->Fill(cvb, w);
+        } 
+        else {
+          h_BvL->Fill(bvl, w); h_CvL->Fill(cvl, w);
+          h_CvB->Fill(cvb, w);
+        }
+      } 
+
+      // Add the HT value to the proper histogram.
+      if (isRef) h_HT_ref->Fill(HT, w);
+      else h_HT->Fill(HT, w);
+
+    };
+
+    // Return all the histograms in this class.
+    std::vector<TH1*> returnHisto() {
+      std::vector<TH1*> histolist;
+      for (int i = 0; i < 4; ++i) {
+        histolist.push_back(h_pt_jets[i]);
+        histolist.push_back(h_pt_jets_ref[i]);
+      }
+      //histolist.push_back(h_pt_jet0); histolist.push_back(h_pt_jet0_ref);
+      //histolist.push_back(h_pt_jet1); histolist.push_back(h_pt_jet1_ref);
+      //histolist.push_back(h_pt_jet2); histolist.push_back(h_pt_jet2_ref);
+      //histolist.push_back(h_pt_jet3); histolist.push_back(h_pt_jet3_ref); 
+      histolist.push_back(h_HT);      histolist.push_back(h_HT_ref);
+      histolist.push_back(h_BvL);     histolist.push_back(h_BvL_ref);
+      histolist.push_back(h_CvL);     histolist.push_back(h_CvL_ref);
+      histolist.push_back(h_CvB);     histolist.push_back(h_CvB_ref);
+      return histolist;
+    };
+
+  protected:
+    
+    // Variables
+    TString m_name;
+
+    // Plots
+    TH1D* h_pt_jets[4]; TH1D* h_pt_jets_ref[4];
+    //TH1D* h_pt_jet0; TH1D* h_pt_jet0_ref;
+    //TH1D* h_pt_jet1; TH1D* h_pt_jet1_ref;
+    //TH1D* h_pt_jet2; TH1D* h_pt_jet2_ref;
+    //TH1D* h_pt_jet3; TH1D* h_pt_jet3_ref;
+    TH1D* h_HT;      TH1D* h_HT_ref;
+    TH1D* h_BvL;     TH1D* h_BvL_ref;
+    TH1D* h_CvL;     TH1D* h_CvL_ref;
+    TH1D* h_CvB;     TH1D* h_CvB_ref;
+};
+
+/******************************************************************************
+* EffPlots - plots related to efficiency of MC Truth matching                 *
 ******************************************************************************/
 class EffPlots
 {
