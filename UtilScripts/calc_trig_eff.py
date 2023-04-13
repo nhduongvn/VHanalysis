@@ -34,7 +34,7 @@ def getHist(pN, sample_name, fH, lS, printSamples=True):
     ## Get the first sample
     if printSamples: print sample_name[0], pN, y
     hOut[y] = fH[sample_name[0]][y][0].Get(pN).Clone()
-    if sample_name[0] not in ['JetHT']:
+    if sample_name[0] not in ['JetHT', 'SingleMuon']:
       hOut[y].Scale(lS[sample_name[0]][y][0])
     
     ## Add the other samples 
@@ -70,6 +70,115 @@ useLogY = False
 
 plotFolder = '../plot_results/trig_eff/'
 resultpath = '../condor_results/trigger_efficiency/'
+
+## Samples
+ss = [ "SingleMuon" ]
+
+
+################################
+## Do not edit below this point
+################################
+
+## Load the config
+config_file = '../Configs/config.ini'
+cfg = ConfigParser.ConfigParser()
+cfg.read(config_file)
+
+## Get the lumi scales
+lumiS = {}
+for y in years:
+  lumiTmp = float(cfg.get('General','lumi_'+y))/1000.
+  lumiTmp = format("%.1f" % lumiTmp)
+  lumiS[y] = str(lumiTmp)
+print "lumi scales = ", lumiS
+
+## Retrieve necessary information 
+## from the desired samples
+fNames = {}
+xSecs = {}
+lumiScales = {}
+fHist = {}
+
+for s in ss:
+  
+  fNames[s] = {}
+  xSecs[s] = {}
+  lumiScales[s] = {}
+  fHist[s] = {}
+  
+  for y in years:
+    
+    lumi = float(cfg.get('General', 'lumi_'+y))
+    names = cfg.get(s, 'file_'+y).split(',')
+    print '>>>>>>>>>: ', len(names)
+    xSecTmps = ['1']*len(names)
+    kfactor = ['1']*len(names)
+    if s not in ['JetHT']:
+      xSecTmps = cfg.get(s, 'xSec_'+y).split(',')
+    
+    fNames[s][y] = []
+    xSecs[s][y] = []
+    fHist[s][y] = []
+    dirpath = resultpath + '/NONE/'
+    for iN in names:
+      #fNames[s][y].append(cfg.get('Paths', 'path') + '/' + iN)
+      fNames[s][y].append(dirpath + '/' + iN)
+      fHist[s][y].append(ROOT.TFile.Open(fNames[s][y][-1],'READ'))
+    
+    print xSecTmps
+    for iS in xSecTmps:
+      if '*' in iS: iS = iS.split('*')
+      if len(iS) == 2:
+        xSecs[s][y].append(float(iS[0])*float(iS[1]))
+      else:
+        xSecs[s][y].append(float(iS))
+        
+    lumiScales[s][y] = [1]*len(names)
+    for iN in range(len(fNames[s][y])):
+      if s not in ['JetHT']:
+        print s, y, iN, fNames[s][y][iN]
+        lumiScales[s][y][iN] = scaleToLumi1(fNames[s][y][iN], xSecs[s][y][iN], lumi)
+
+
+nums = {}
+
+##############################################################
+## Go through each variable and year.
+##############################################################
+
+## Go through each plot of interest
+categories = {
+  '16': ["2016v1_trigEff", "2016v2_trigEff"],
+  '17': ["2017_trigEff"],
+  '18': ["2018_trigEff"],
+}
+
+trigger_names = {
+  '16': ["HLT_QuadJet45_TripleBTagCSV_p087", "HLT_DoubleJet90_Double30_TripleBTagCSV_p087"],
+  '17': ["HLT_PFHT300PT30_QuadPFJet_75_60_45_40"],
+  '18': ["HLT_PTHT330PT30_QuadPFJet_75_60_45_40_TriplePFBTagDeepCSV_4p5"],
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
