@@ -128,6 +128,7 @@ TTreeReaderArray<Int_t> Jet_genJetIdx = {fReader, "Jet_genJetIdx"};
 
 #if defined(MC_2017) || defined(DATA_2017)
    TTreeReaderValue<Bool_t> HLT_PFHT300PT30_QuadPFJet_75_60_45_40 = {fReader, "HLT_PFHT300PT30_QuadPFJet_75_60_45_40"};
+   TTreeReaderValue<Bool_t> HLT_PFHT300PT30_QuadPFJet_75_60_45_40_TriplePFBTagCSV_3p0 = {fReader, "HLT_PFHT300PT30_QuadPFJet_75_60_45_40_TriplePFBTagCSV_3p0"};
 #endif
 
 #if defined(MC_2018) || defined(DATA_2018)

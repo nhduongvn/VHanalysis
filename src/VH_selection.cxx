@@ -911,7 +911,7 @@ void VH_selection::Process(Reader* r) {
 
 #if defined(MC_2017) || defined(DATA_2017)
       // 2017
-      if (*(r->HLT_PFHT300PT30_QuadPFJet_75_60_45_40)) {
+      if (*(r->HLT_PFHT300PT30_QuadPFJet_75_60_45_40_TriplePFBTagCSV_3p0)) {
         h_2017_trigEff->Fill(analysis_jets, false, evtW);
       }
 #endif
