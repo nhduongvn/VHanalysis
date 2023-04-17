@@ -216,6 +216,7 @@ void VH_selection::SlaveBegin(Reader *r) {
 
   // Set up the VHPlot instances
   h_VH_all = new VHPlots("VbbHcc_all");
+  h_VH_select = new VHPlots("VbbHcc_select");
   h_VH_MC = new VHPlots("VbbHcc_MC");
   h_VH_MCjet = new VHPlots("VbbHcc_MCjet");
 
@@ -253,10 +254,16 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_genJet_VbbHcc = new GenPlots("GenJet_VbbHcc");
 
   // Set up the Trigger efficiency plots
-  h_2016v1_trigEff = new TriggerEffPlots("2016v1_trigEff");
-  h_2016v2_trigEff = new TriggerEffPlots("2016v2_trigEff");
-  h_2017_trigEff = new TriggerEffPlots("2017_trigEff");
-  h_2018_trigEff = new TriggerEffPlots("2018_trigEff"); 
+  h_2016_QuadJet_TripleTag = new TriggerEffPlots("2016_QuadJet_TripleTag");
+  h_2016_QuadJet_DoubleTag = new TriggerEffPlots("2016_QuadJet_DoubleTag");
+  h_2016_DoubleJet_TripleTag = new TriggerEffPlots("2016_DoubleJet_TripleTag");
+  h_2016_DoubleJet_DoubleTag = new TriggerEffPlots("2016_DoubleJet_DoubleTag");
+
+  h_2017_QuadJet_TripleTag = new TriggerEffPlots("2017_QuadJet_TripleTag");
+  h_2017_QuadJet_noTag = new TriggerEffPlots("2017_QuadJet_noTag");
+
+  h_2018_QuadJet_TripleTag = new TriggerEffPlots("2018_QuadJet_TripleTag");
+  h_2018_QuadJet_noTag = new TriggerEffPlots("2018_QuadJet_noTag"); 
  
   // Set up the CutFlows (for events) 
   h_evt_MC_cutflow = new TH1D("VbbHcc_MC_CutFlow", "", 2, 0, 2);
@@ -361,6 +368,8 @@ void VH_selection::SlaveBegin(Reader *r) {
 
   tmp = h_VH_all->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_select->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_VH_alljet->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_VH_seljet->returnHisto();
@@ -391,14 +400,25 @@ void VH_selection::SlaveBegin(Reader *r) {
   tmp = h_genJet_VbbHcc->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
 
-  tmp = h_2016v1_trigEff->returnHisto();
+  tmp = h_2016_QuadJet_TripleTag->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_2016v2_trigEff->returnHisto();
+  tmp = h_2016_QuadJet_DoubleTag->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_2017_trigEff->returnHisto();
+  tmp = h_2016_DoubleJet_TripleTag->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_2018_trigEff->returnHisto();
+  tmp = h_2016_DoubleJet_DoubleTag->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+
+  tmp = h_2017_QuadJet_TripleTag->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_2017_QuadJet_noTag->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+
+  tmp = h_2018_QuadJet_TripleTag->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_2018_QuadJet_noTag->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);  
+
 
   r->GetOutputList()->Add(h_evt_VbbHcc);
   r->GetOutputList()->Add(h_evt_MC_cutflow);
@@ -590,7 +610,7 @@ void VH_selection::Process(Reader* r) {
            (r->Muon_pfRelIso04_all)[i]);
 
     // Cut based on the pT & eta values
-    if (muon.Pt() < CUTS.Get<float>("lep_pt1")) continue;
+    if (muon.Pt() < CUTS.Get<float>("lep_pt0")) continue;
     h_muon_cutflow->Fill(1.5, genWeight); // pass pT cut
     if (fabs(muon.Eta()) > CUTS.Get<float>("lep_eta")) continue;
     h_muon_cutflow->Fill(2.5, genWeight); // pass eta cut
@@ -877,6 +897,19 @@ void VH_selection::Process(Reader* r) {
     h_evt_algo_cutflow->Fill(2.5, genWeight); 
     h_evt_both_cutflow->Fill(2.5, genWeight); 
 
+    // For our cases where we make it this far,
+    // check what our MET is and check the HT
+    // (both versions - sum pT and sum "all").
+    float HT = 0.;
+    for (size_t i = 0; i < analysis_jets.size(); ++i)
+      HT += analysis_jets[i].m_lvec.Pt();
+    float HTmod = *(r->MET_pt);
+    //for (size_t j = 0; j < muons.size(); ++j)
+    //  HTmod += muons[j].m_lvec.Pt();
+
+    h_VH_select->FillMET(*(r->MET_pt), evtW);
+    h_VH_select->FillHT(HT, HTmod, evtW);
+
     // ========================================================================
     // Trigger Efficiency
     // ========================================================================
@@ -888,42 +921,78 @@ void VH_selection::Process(Reader* r) {
     // 2017 - HLT_PFHT300PT30_QuadPFJet_75_60_45_40_TriplePFBTagCSV_3p0
     // 2018 - HLT_PFHT330PT30_QuadPFJet_75_60_45_40_TriplePFBTagDeepCSV_4p5
 
-    // Make sure events pass our reference frame.
-    if (*(r->HLT_IsoMu24)) {
+    // We need to make sure for sake of the sample that we're using that
+    // we have at least one isolated muon. Luckily, in our code above, 
+    // we check for muons, so all we have to do is make sure our list
+    // contains at least one.
+    if (muons.size() >= 1) {
 
-      // Add the events to the reference plots
-      h_2016v1_trigEff->Fill(analysis_jets, true, evtW);
-      h_2016v2_trigEff->Fill(analysis_jets, true, evtW);
-      h_2017_trigEff->Fill(analysis_jets, true, evtW);
-      h_2018_trigEff->Fill(analysis_jets, true, evtW);
+      // Make sure events pass our reference frame.
+      if (*(r->HLT_IsoMu24)) {
 
-      // Check each of our triggers after they've passed the reference
+        // We want the option to see if HT is being used as just sum(jet pT)
+        // or if it's ALL objects. We need an HT mod that is the sum of the
+        // MET and the muon pT
+        float HTmod = *(r->MET_pt);
+        for (size_t i = 0; i < muons.size(); ++i)
+          HTmod += muons[i].m_lvec.Pt();
+
+        // Add the events to the reference plots (true = isReference)
+        h_2016_QuadJet_TripleTag->Fill(analysis_jets, true, HTmod, evtW);
+        h_2016_QuadJet_DoubleTag->Fill(analysis_jets, true, HTmod, evtW);
+        h_2016_DoubleJet_TripleTag->Fill(analysis_jets, true, HTmod, evtW);
+        h_2016_DoubleJet_DoubleTag->Fill(analysis_jets, true, HTmod, evtW);
+
+        h_2017_QuadJet_TripleTag->Fill(analysis_jets, true, HTmod, evtW);
+        h_2017_QuadJet_noTag->Fill(analysis_jets, true, HTmod, evtW);
+        h_2018_QuadJet_TripleTag->Fill(analysis_jets, true, HTmod, evtW);
+        h_2018_QuadJet_noTag->Fill(analysis_jets, true, HTmod, evtW);
+
+        // Check each of our triggers after they've passed the reference
 #if defined(MC_2016) || defined(DATA_2016)
-      // 2016 - v1
-      if (*(r->HLT_QuadJet45_TripleBTagCSV_p087)) {
-        h_2016v1_trigEff->Fill(analysis_jets, false, evtW);
-      }
-      // 2016 - v2
-      if (*(r->HLT_DoubleJet90_Double30_TripleBTagCSV_p087)) {
-        h_2016v2_trigEff->Fill(analysis_jets, false, evtW);
-      }
+
+        // 2016 - QuadJet (Triple Tag vs Double Tag)
+        if (*(r->HLT_QuadJet45_TripleBTagCSV_p087)) {
+          h_2016_QuadJet_TripleTag->Fill(analysis_jets, false, HTmod, evtW);
+        }
+        if (*(r->HLT_QuadJet45_DoubleBTagCSV_p087) {
+          h_2016_QuadJet_DoubleTag->Fill(analysis_jets, false, HTmod, evtW);
+        }
+
+        // 2016 - DoubleJet (Triple Tag vs Double Tag)
+        if (*(r->HLT_DoubleJet90_Double30_TripleBTagCSV_p087)) {
+          h_2016_DoubleJet_TripleTag->Fill(analysis_jets, false, HTmod, evtW);
+        }
+        if (*(r->HLT_DoubleJet90_Double30_DoubleBTagCSV_p087)) {
+          h_2016_DoubleJet_DoubleTag->Fill(analysis_jets, false, HTmod, evtW);
+        }
+
 #endif
 
 #if defined(MC_2017) || defined(DATA_2017)
-      // 2017
-      if (*(r->HLT_PFHT300PT30_QuadPFJet_75_60_45_40_TriplePFBTagCSV_3p0)) {
-        h_2017_trigEff->Fill(analysis_jets, false, evtW);
-      }
+        
+        // 2017 (Triple Tag vs No Tag)
+        if (*(r->HLT_PFHT300PT30_QuadPFJet_75_60_45_40_TriplePFBTagCSV_3p0)) {
+          h_2017_QuadJet_TripleTag->Fill(analysis_jets, false, HTmod, evtW);
+        }
+        if (*(r->HLT_PFHT300PT30_QuadPFJet_75_60_45_40)) {
+          h_2017_QuadJet_noTag->Fill(analysis_jets, false, HTmod, evtW);
+        }  
 #endif
 
 #if defined(MC_2018) || defined(DATA_2018)
-      // 2018
-      if (*(r->HLT_PFHT330PT30_QuadPFJet_75_60_45_40_TriplePFBTagDeepCSV_4p5)) {
-        h_2018_trigEff->Fill(analysis_jets, false, evtW);
-      }
+        
+        // 2018 (Triple Tag vs No Tag)
+        if (*(r->HLT_PFHT330PT30_QuadPFJet_75_60_45_40_TriplePFBTagDeepCSV_4p5)) {
+          h_2018_QuadJet_TripleTag->Fill(analysis_jets, false, HTmod, evtW);
+        }
+        if (*(r->HLT_PFHT330PT30_QuadPFJet_75_60_45_40)) {
+          h_2018_QuadJet_noTag->Fill(analysis_jets, false, HTmod, evtW);
+        }
 #endif
 
-    } // END OF TRIGGER EFF 
+      } // end ref-trigger
+    }//end # muons
 
     /***************************************************************************
     * Check what we get for H and Z candidates by just using the leading pT    *

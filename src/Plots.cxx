@@ -477,6 +477,9 @@ class VHPlots
 
       h_Sphericity = new TH1D(name + "_Sphericity", "", 100, 0, 1);
       h_Aplanarity = new TH1D(name + "_Aplanarity", "", 100, 0, 1);
+
+      h_HT = new TH1D(name + "_HT", "", 2000, 0, 2000);
+      h_HTmod = new TH1D(name + "_HTmod", "", 2000, 0, 2000);
     };
 
     // Methods - Fill the histograms related to checking for g->bb
@@ -599,12 +602,19 @@ class VHPlots
       h_MET->Fill(MET, w);
     };
 
+    void FillHT(float HT, float HTmod=0., float w=1.) {
+      h_HT->Fill(HT, w);
+      h_HTmod->Fill(HT+HTmod, w);
+    }
+
     // Methods - Return a list of all the histograms.
     std::vector<TH1*> returnHisto() {
       std::vector<TH1*> histolist;
 
       // MET-related plots
       histolist.push_back(h_MET);
+      histolist.push_back(h_HT);
+      histolist.push_back(h_HTmod);
 
       // Jet-related plots
       
@@ -641,6 +651,8 @@ class VHPlots
 
     // MET Plots
     TH1D* h_MET;
+    TH1D* h_HT;
+    TH1D* h_HTmod;
 
     // Reconstructed Boson Plots
     BosonPlots *h_Z;
@@ -778,6 +790,8 @@ class TriggerEffPlots
 
       h_HT = new TH1D(name + "_HT", "", 2000, 0, 2000);
       h_HT_ref = new TH1D(name + "_HT_ref", "", 2000, 0, 2000);
+      h_HTmod = new TH1D(name + "_HTmod", "", 2000, 0, 2000);
+      h_HTmod_ref = new TH1D(name + "_HTmod_ref", "", 2000, 0, 2000);
 
       h_BvL = new TH1D(name + "_BvL", "", 100, 0, 1);
       h_BvL_ref = new TH1D(name + "_BvL_ref", "", 100, 0, 1);
@@ -788,7 +802,7 @@ class TriggerEffPlots
     };
 
     // Fill the appropriate histograms
-    void Fill(std::vector<JetObj> jetlist, bool isRef, float w=1.) {
+    void Fill(std::vector<JetObj> jetlist, bool isRef, float HTmod=0., float w=1.) {
 
       // Add the pT values to the plots. At the same time,
       // calculate the HT. Also handle the jet score ones.
@@ -815,9 +829,14 @@ class TriggerEffPlots
       } 
 
       // Add the HT value to the proper histogram.
-      if (isRef) h_HT_ref->Fill(HT, w);
-      else h_HT->Fill(HT, w);
-
+      if (isRef) {
+        h_HT_ref->Fill(HT, w);
+        h_HTmod_ref->Fill(HT+HTmod, w);
+      }
+      else {
+        h_HT->Fill(HT, w);
+        h_HTmod->Fill(HT+HTmod, w);
+      }
     };
 
     // Return all the histograms in this class.
@@ -832,6 +851,7 @@ class TriggerEffPlots
       //histolist.push_back(h_pt_jet2); histolist.push_back(h_pt_jet2_ref);
       //histolist.push_back(h_pt_jet3); histolist.push_back(h_pt_jet3_ref); 
       histolist.push_back(h_HT);      histolist.push_back(h_HT_ref);
+      histolist.push_back(h_HTmod);   histolist.push_back(h_HTmod_ref);
       histolist.push_back(h_BvL);     histolist.push_back(h_BvL_ref);
       histolist.push_back(h_CvL);     histolist.push_back(h_CvL_ref);
       histolist.push_back(h_CvB);     histolist.push_back(h_CvB_ref);
@@ -850,6 +870,7 @@ class TriggerEffPlots
     //TH1D* h_pt_jet2; TH1D* h_pt_jet2_ref;
     //TH1D* h_pt_jet3; TH1D* h_pt_jet3_ref;
     TH1D* h_HT;      TH1D* h_HT_ref;
+    TH1D* h_HTmod;   TH1D* h_HTmod_ref;
     TH1D* h_BvL;     TH1D* h_BvL_ref;
     TH1D* h_CvL;     TH1D* h_CvL_ref;
     TH1D* h_CvB;     TH1D* h_CvB_ref;

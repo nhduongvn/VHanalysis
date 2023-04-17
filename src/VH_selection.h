@@ -57,15 +57,21 @@ class VH_selection : public Selector {
     VHPlots *h_VH_both_noJEC;
 
     VHPlots *h_VH_all;   // Any plots related to ALL cut types
+    VHPlots *h_VH_select; // Any plots related to ALL selection types (after our MET cut)
 
     VHPlots *h_VH_alljet; // Using just any jets
     VHPlots *h_VH_seljet; // Using selected jets
 
     // Trigger Efficiency Plots
-    TriggerEffPlots *h_2016v1_trigEff;  // trigger eff for first 2016 trigger
-    TriggerEffPlots *h_2016v2_trigEff;  // trigger eff for second 2016 trigger
-    TriggerEffPlots *h_2017_trigEff;    // " " " 2017 trigger
-    TriggerEffPlots *h_2018_trigEff;    // " " " 2018 trigger
+    TriggerEffPlots *h_2016_QuadJet_TripleTag;    // trigger eff for first 2016 trigger
+    TriggerEffPlots *h_2016_DoubleJet_TripleTag;  // trigger eff for second 2016 trigger
+    TriggerEffPlots *h_2017_QuadJet_TripleTag;    // " " " 2017 trigger
+    TriggerEffPlots *h_2018_QuadJet_TripleTag;    // " " " 2018 trigger
+
+    TriggerEffPlots *h_2016_QuadJet_DoubleTag;
+    TriggerEffPlots *h_2016_DoubleJet_DoubleTag;
+    TriggerEffPlots *h_2017_QuadJet_noTag;
+    TriggerEffPlots *h_2018_QuadJet_noTag;
 
     // Efficiency Plots
     EffPlots *h_eff_tags; // Efficiencies for Tagging Only
