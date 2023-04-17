@@ -420,6 +420,60 @@ def makeRatioPlots(plots, plotNames, canvasName, plotDir, xAxisTitle, xAxisRange
   return c
 
 ###############################################################################
+## Make Efficiency Plot Function
+###############################################################################
+def makeEfficiencyPlot(plots, plotNames, canvasName, plotDir, 
+  xAxisTitle, xAxisRange, yAxisTitle):
+  
+  ## ===========================================
+  ## Create the canvas & modify it as necessary
+  ## ===========================================
+  c = ROOT.TCanvas(canvasName, canvasName, 600, 600)
+  c.SetFillStyle(4000)
+  c.SetFrameFillStyle(1000)
+  c.SetFrameFillColor(0)
+  
+  c.SetBottomMargin(0.12)
+  c.SetLeftMargin(0.15709)
+  c.SetRightMargin(0.1234783)
+  
+  ## ============================================
+  ## Divide the plots to get the efficiency plot
+  ## ============================================
+  plots[0].Divide(plots[1])
+  plots[0].Draw("HIST")
+  
+  plots[0].GetXaxis().SetTitle(xAxisTitle)
+  plots[0].GetYaxis().SetTitle(yAxisTitle)
+  
+  ## =====================================================
+  ## Update the canvas & modify the y-axis if appropriate
+  ## =====================================================
+  c.Update()
+  ##if logY and not is2D: c.SetLogy()
+  
+  ## ==========================================
+  ## Check to make sure the directory exists &
+  ## then print the proper files to the output
+  ## ==========================================
+  dirExists = os.path.exists(plotDir)
+  if not dirExists:
+    print "Warning: output directory does not exist."
+    os.makedirs(plotDir)
+    print ">>> directory created."
+  
+  ## =================================
+  ## Print out the plot appropriately
+  ## =================================
+  #extraName = ''
+  #if logY: extraName = '_logY'
+  fullpath = plotDir + '/' + canvasName #+ extraName
+  c.Print(fullpath + '.png')
+  c.Print(fullpath + '.pdf')
+  c.Print(fullpath + '.C')
+  return c
+
+###############################################################################
 ## Make Stack Plots
 ###############################################################################
 
