@@ -7,7 +7,7 @@ import math
 import ConfigParser
 from math import *
 
-from my_funcs import makeStackPlot
+from my_funcs import makeEfficiencyPlot
 
 ROOT.gROOT.SetBatch(True)
 
@@ -42,7 +42,7 @@ def getHist(pN, sample_name, fH, lS, printSamples=True):
       for fi in range(len(fH[sample_name[iS]][y])):
         if iS == 0 and fi == 0: continue
         h = fH[sample_name[iS]][y][fi].Get(pN).Clone()
-        if sample_name[iS] not in ['JetHT']:
+        if sample_name[iS] not in ['JetHT', 'SingleMuon']:
           h.Scale(lS[sample_name[iS]][y][fi])
         hOut[y].Add(h)
     
@@ -113,7 +113,7 @@ for s in ss:
     print '>>>>>>>>>: ', len(names)
     xSecTmps = ['1']*len(names)
     kfactor = ['1']*len(names)
-    if s not in ['JetHT']:
+    if s not in ['JetHT', 'SingleMuon']:
       xSecTmps = cfg.get(s, 'xSec_'+y).split(',')
     
     fNames[s][y] = []
@@ -135,7 +135,7 @@ for s in ss:
         
     lumiScales[s][y] = [1]*len(names)
     for iN in range(len(fNames[s][y])):
-      if s not in ['JetHT']:
+      if s not in ['JetHT', 'SingleMuon']:
         print s, y, iN, fNames[s][y][iN]
         lumiScales[s][y][iN] = scaleToLumi1(fNames[s][y][iN], xSecs[s][y][iN], lumi)
 
@@ -159,10 +159,55 @@ trigger_names = {
   '18': ["HLT_PTHT330PT30_QuadPFJet_75_60_45_40_TriplePFBTagDeepCSV_4p5"],
 }
 
+variables = ["pt_jet0", "pt_jet1", "pt_jet2", "pt_jet3", "HT", "BvL", "CvL", "CvB"]
 
-
-
-
+## Go through each variable of interest
+for v in variables:
+  
+  ## Go through each year
+  for y in years:
+    
+    ## Get the triggers we're interested in.
+    triggers = trigger_names[y]
+    
+    for i in range(len(triggers)):
+      
+      ## Combine the parts to get the histogram name
+      ## and then get the appropriate histograms
+      histName = categories[y][i] + "_" + v
+      histName_ref = histName + "_ref"
+      hProbe = getHist(histName, ss, fHist, lumiScales)
+      hRef   = getHist(histName_ref, ss, fHist, lumiScales)
+      
+      plN = v
+      if v == "BvL":
+        plN = "CSV"
+      
+      ## Get the plot information from the config file
+      tmps = cfg.get(plN, 'xAxisRange').split(',')
+      xA_range = []
+      if 'Pi' not in tmps[1]:
+        xA_range = [float(tmps[0]), float(tmps[1])]
+      else:
+        xA_range = [0, ROOT.TMath.Pi()]
+      
+      xA_title = cfg.get(plN, 'xAxisTitle')
+      nRebin = 10#int(cfg.get(plN, 'rebin'))
+      
+      plots = [
+        hProbe[y].Clone().Rebin(nRebin),
+        hRef[y].Clone().Rebin(nRebin)
+      ]
+      
+      ## Make the canvas name and output directory
+      canvas_name = v + "_" + categories[y][i] + "_" + y
+      outputdir = plotFolder + '/20' + y + '_QCDv9/'
+      
+      print "canvas_name = ", canvas_name
+      print "outputdir   = ", outputdir
+      
+      makeEfficiencyPlot(plots, "", canvas_name,
+        outputdir, xA_title, xA_range, "Efficiency")
 
 
 
