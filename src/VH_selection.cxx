@@ -955,7 +955,7 @@ void VH_selection::Process(Reader* r) {
         if (*(r->HLT_QuadJet45_TripleBTagCSV_p087)) {
           h_2016_QuadJet_TripleTag->Fill(analysis_jets, false, HTmod, evtW);
         }
-        if (*(r->HLT_QuadJet45_DoubleBTagCSV_p087) {
+        if (*(r->HLT_QuadJet45_DoubleBTagCSV_p087)) {
           h_2016_QuadJet_DoubleTag->Fill(analysis_jets, false, HTmod, evtW);
         }
 
