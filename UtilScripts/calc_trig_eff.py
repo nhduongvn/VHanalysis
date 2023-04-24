@@ -7,7 +7,7 @@ import math
 import ConfigParser
 from math import *
 
-from my_funcs import makeEfficiencyPlot
+from my_funcs import makeEfficiencyPlot, makePlot
 
 ROOT.gROOT.SetBatch(True)
 
@@ -59,6 +59,7 @@ def getHist(pN, sample_name, fH, lS, printSamples=True):
 ## These you can edit / change
 ###############################
 years = ['16', '17', '18']
+years = ['18']
 regions = ['tags', 'algo', 'both']#, 'alljet', 'seljet']
 regions = [
   'tags', 'tags_noMassCorr', 'tags_noJEC',
@@ -146,6 +147,8 @@ nums = {}
 ## Go through each variable and year.
 ##############################################################
 
+regions = ["", "_tagged"]
+
 ## Go through each plot of interest
 categories = {
   '16': ["2016_QuadJet_TripleTag", "2016_QuadJet_DoubleTag",
@@ -166,54 +169,66 @@ trigger_names = {
 
 variables = ["pt_jet0", "pt_jet1", "pt_jet2", "pt_jet3", "HT", "HTmod", "BvL", "CvL", "CvB"]
 
-## Go through each variable of interest
-for v in variables:
+for r in regions:
   
-  ## Go through each year
-  for y in years:
+  ## Go through each variable of interest
+  for v in variables:
     
-    ## Get the triggers we're interested in.
-    triggers = trigger_names[y]
-    
-    for i in range(len(triggers)):
+    ## Go through each year
+    for y in years:
       
-      ## Combine the parts to get the histogram name
-      ## and then get the appropriate histograms
-      histName = categories[y][i] + "_" + v
-      histName_ref = histName + "_ref"
-      hProbe = getHist(histName, ss, fHist, lumiScales)
-      hRef   = getHist(histName_ref, ss, fHist, lumiScales)
+      ## Get the triggers we're interested in.
+      triggers = trigger_names[y]
       
-      plN = v
-      if v == "BvL": plN = "CSV"
-      if v == "HTmod": plN = "HT"
+      for i in range(len(triggers)):
+        
+        ## Combine the parts to get the histogram name
+        ## and then get the appropriate histograms
+        histName = categories[y][i] + r + "_" + v
+        histName_ref = histName + "_ref"
+        hProbe = getHist(histName, ss, fHist, lumiScales)
+        hRef   = getHist(histName_ref, ss, fHist, lumiScales)
+        
+        plN = v
+        if v == "BvL": plN = "CSV"
+        if v == "HTmod": plN = "HT"
       
-      ## Get the plot information from the config file
-      tmps = cfg.get(plN, 'xAxisRange').split(',')
-      xA_range = []
-      if 'Pi' not in tmps[1]:
-        xA_range = [float(tmps[0]), float(tmps[1])]
-      else:
-        xA_range = [0, ROOT.TMath.Pi()]
+        ## Get the plot information from the config file
+        tmps = cfg.get(plN, 'xAxisRange').split(',')
+        xA_range = []
+        if 'Pi' not in tmps[1]:
+          xA_range = [float(tmps[0]), float(tmps[1])]
+        else:
+          xA_range = [0, ROOT.TMath.Pi()]
       
-      xA_title = cfg.get(plN, 'xAxisTitle')
-      nRebin = 10#int(cfg.get(plN, 'rebin'))
+        xA_title = cfg.get(plN, 'xAxisTitle')
+        nRebin = 10#int(cfg.get(plN, 'rebin'))
+        
+        plots = [
+          hProbe[y].Clone().Rebin(nRebin),
+          hRef[y].Clone().Rebin(nRebin)
+        ]
       
-      plots = [
-        hProbe[y].Clone().Rebin(nRebin),
-        hRef[y].Clone().Rebin(nRebin)
-      ]
-      
-      ## Make the canvas name and output directory
-      canvas_name = v + "_" + categories[y][i] + "_" + y
-      outputdir = plotFolder + '/20' + y + '_QCDv9/'
-      
-      print "canvas_name = ", canvas_name
-      print "outputdir   = ", outputdir
-      
-      makeEfficiencyPlot(plots, "", canvas_name,
-        outputdir, xA_title, xA_range, "Efficiency")
-
+        ## Make the canvas name and output directory
+        regionName = r if r != "" else "noTag"
+        canvas_name = v + "_" + categories[y][i] + "_" + y
+        outputdir = plotFolder + '/20' + y + '_QCDv9/' + regionName + '/'
+        
+        print "canvas_name = ", canvas_name
+        print "outputdir   = ", outputdir
+        
+        makeEfficiencyPlot(plots, "", canvas_name,
+          outputdir, xA_title, xA_range, "Efficiency")
+        
+        makePlot(hProbe[y].Clone().Rebin(nRebin),
+          "", canvas_name, outputdir + "/solo/",
+          xA_title, xA_range, "Events", 1, True,
+          lumiS[y], ROOT.kBlue, ROOT.kBlue, showStats=True)
+        
+        makePlot(hRef[y].Clone().Rebin(nRebin),
+          "", canvas_name + "_ref", outputdir + "/solo/",
+          xA_title, xA_range, "Events", 1, True,
+          lumiS[y], ROOT.kBlue, ROOT.kBlue, showStats=True)
 
 
 

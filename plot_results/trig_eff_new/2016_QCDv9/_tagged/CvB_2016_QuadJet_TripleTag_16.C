@@ -1,0 +1,72 @@
+#ifdef __CLING__
+#pragma cling optimize(0)
+#endif
+void CvB_2016_QuadJet_TripleTag_16()
+{
+//=========Macro generated from canvas: CvB_2016_QuadJet_TripleTag_16/CvB_2016_QuadJet_TripleTag_16
+//=========  (Mon Apr 24 10:39:21 2023) by ROOT version 6.26/06
+   TCanvas *CvB_2016_QuadJet_TripleTag_16 = new TCanvas("CvB_2016_QuadJet_TripleTag_16", "CvB_2016_QuadJet_TripleTag_16",0,0,600,600);
+   CvB_2016_QuadJet_TripleTag_16->SetHighLightColor(2);
+   CvB_2016_QuadJet_TripleTag_16->Range(-0.2183529,0.3533989,1.171633,0.4197664);
+   CvB_2016_QuadJet_TripleTag_16->SetFillColor(0);
+   CvB_2016_QuadJet_TripleTag_16->SetFillStyle(4000);
+   CvB_2016_QuadJet_TripleTag_16->SetBorderMode(0);
+   CvB_2016_QuadJet_TripleTag_16->SetBorderSize(2);
+   CvB_2016_QuadJet_TripleTag_16->SetLeftMargin(0.15709);
+   CvB_2016_QuadJet_TripleTag_16->SetRightMargin(0.1234783);
+   CvB_2016_QuadJet_TripleTag_16->SetBottomMargin(0.12);
+   CvB_2016_QuadJet_TripleTag_16->SetFrameFillStyle(1000);
+   CvB_2016_QuadJet_TripleTag_16->SetFrameBorderMode(0);
+   CvB_2016_QuadJet_TripleTag_16->SetFrameFillStyle(1000);
+   CvB_2016_QuadJet_TripleTag_16->SetFrameBorderMode(0);
+   
+   TH1D *_QuadJet_TripleTag_tagged_CvB__409 = new TH1D("_QuadJet_TripleTag_tagged_CvB__409","",10,0,1);
+   _QuadJet_TripleTag_tagged_CvB__409->SetBinContent(1,0.3983519);
+   _QuadJet_TripleTag_tagged_CvB__409->SetBinContent(2,0.3849823);
+   _QuadJet_TripleTag_tagged_CvB__409->SetBinContent(3,0.3637107);
+   _QuadJet_TripleTag_tagged_CvB__409->SetBinContent(4,0.3915503);
+   _QuadJet_TripleTag_tagged_CvB__409->SetBinContent(5,0.4061476);
+   _QuadJet_TripleTag_tagged_CvB__409->SetBinContent(6,0.4106645);
+   _QuadJet_TripleTag_tagged_CvB__409->SetBinContent(7,0.4022743);
+   _QuadJet_TripleTag_tagged_CvB__409->SetBinContent(8,0.4069967);
+   _QuadJet_TripleTag_tagged_CvB__409->SetBinContent(9,0.4104332);
+   _QuadJet_TripleTag_tagged_CvB__409->SetBinContent(10,0.3803092);
+   _QuadJet_TripleTag_tagged_CvB__409->SetEntries(3.955421);
+   
+   TPaveStats *ptstats = new TPaveStats(0.78,0.775,0.98,0.935,"brNDC");
+   ptstats->SetName("stats");
+   ptstats->SetBorderSize(1);
+   ptstats->SetFillColor(0);
+   ptstats->SetTextAlign(12);
+   ptstats->SetTextFont(42);
+   TText *ptstats_LaTex = ptstats->AddText("2016_QuadJet_TripleTag_tagged_CvB");
+   ptstats_LaTex->SetTextSize(0.0368);
+   ptstats_LaTex = ptstats->AddText("Entries = 4      ");
+   ptstats_LaTex = ptstats->AddText("Mean  = 0.5034");
+   ptstats_LaTex = ptstats->AddText("Std Dev   = 0.2858");
+   ptstats->SetOptStat(1111);
+   ptstats->SetOptFit(0);
+   ptstats->Draw();
+   _QuadJet_TripleTag_tagged_CvB__409->GetListOfFunctions()->Add(ptstats);
+   ptstats->SetParent(_QuadJet_TripleTag_tagged_CvB__409);
+
+   Int_t ci;      // for color index setting
+   TColor *color; // for color definition with alpha
+   ci = TColor::GetColor("#000099");
+   _QuadJet_TripleTag_tagged_CvB__409->SetLineColor(ci);
+   _QuadJet_TripleTag_tagged_CvB__409->GetXaxis()->SetTitle("CvB tagging score");
+   _QuadJet_TripleTag_tagged_CvB__409->GetXaxis()->SetRange(1,100);
+   _QuadJet_TripleTag_tagged_CvB__409->GetXaxis()->SetLabelFont(42);
+   _QuadJet_TripleTag_tagged_CvB__409->GetXaxis()->SetTitleOffset(1);
+   _QuadJet_TripleTag_tagged_CvB__409->GetXaxis()->SetTitleFont(42);
+   _QuadJet_TripleTag_tagged_CvB__409->GetYaxis()->SetTitle("Efficiency");
+   _QuadJet_TripleTag_tagged_CvB__409->GetYaxis()->SetLabelFont(42);
+   _QuadJet_TripleTag_tagged_CvB__409->GetYaxis()->SetTitleFont(42);
+   _QuadJet_TripleTag_tagged_CvB__409->GetZaxis()->SetLabelFont(42);
+   _QuadJet_TripleTag_tagged_CvB__409->GetZaxis()->SetTitleOffset(1);
+   _QuadJet_TripleTag_tagged_CvB__409->GetZaxis()->SetTitleFont(42);
+   _QuadJet_TripleTag_tagged_CvB__409->Draw("HIST");
+   CvB_2016_QuadJet_TripleTag_16->Modified();
+   CvB_2016_QuadJet_TripleTag_16->cd();
+   CvB_2016_QuadJet_TripleTag_16->SetSelected(CvB_2016_QuadJet_TripleTag_16);
+}

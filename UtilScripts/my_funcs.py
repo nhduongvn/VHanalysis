@@ -157,10 +157,10 @@ def makeGausFit(plot, plotName, canvasName, plotDir, fitRange,
 ###############################################################################
 def makePlot(plot, plotName, canvasName, plotDir, xAxisTitle, xAxisRange, 
   yAxisTitle, rebin, logY, lumi, line_color, fill_color, fill=False, yRange=[],
-  is2D = False):
+  is2D = False, showStats=False):
   
   ## Make the canvas
-  ROOT.gStyle.SetOptStat(0)
+  if not showStats: ROOT.gStyle.SetOptStat(0)
   c = ROOT.TCanvas(canvasName, canvasName, 600, 600)
   c.SetLeftMargin(0.15)
   c.cd()
