@@ -779,15 +779,6 @@ class TriggerEffPlots
         h_pt_jets_ref[i] = new TH1D(hName + "_ref", "", 500, 0, 500);   
       }
 
-      //h_pt_jet0 = new TH1D(name + "_pt_jet0", "", 500, 0, 500);
-      //h_pt_jet0_ref = new TH1D(name + "_pt_jet0_ref", "", 500, 0, 500);
-      //h_pt_jet1 = new TH1D(name + "_pt_jet1", "", 500, 0, 500);
-      //h_pt_jet1_ref = new TH1D(name + "_pt_jet1_ref", "", 500, 0, 500);
-      //h_pt_jet2 = new TH1D(name + "_pt_jet2", "", 500, 0, 500);
-      //h_pt_jet2_ref = new TH1D(name + "_pt_jet2_ref", "", 500, 0, 500);
-      //h_pt_jet3 = new TH1D(name + "_pt_jet3", "", 500, 0, 500);
-      //h_pt_jet3_ref = new TH1D(name + "_pt_jet3_ref", "", 500, 0, 500);
-
       h_HT = new TH1D(name + "_HT", "", 2000, 0, 2000);
       h_HT_ref = new TH1D(name + "_HT_ref", "", 2000, 0, 2000);
       h_HTmod = new TH1D(name + "_HTmod", "", 2000, 0, 2000);
@@ -802,7 +793,8 @@ class TriggerEffPlots
     };
 
     // Fill the appropriate histograms
-    void Fill(std::vector<JetObj> jetlist, bool isRef, float HTmod=0., float w=1.) {
+    void Fill(std::vector<JetObj> jetlist, bool isRef, 
+         float HTmod=0., float w=1.) {
 
       // Add the pT values to the plots. At the same time,
       // calculate the HT. Also handle the jet score ones.

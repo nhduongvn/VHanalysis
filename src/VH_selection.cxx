@@ -258,13 +258,20 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_2016_QuadJet_DoubleTag = new TriggerEffPlots("2016_QuadJet_DoubleTag");
   h_2016_DoubleJet_TripleTag = new TriggerEffPlots("2016_DoubleJet_TripleTag");
   h_2016_DoubleJet_DoubleTag = new TriggerEffPlots("2016_DoubleJet_DoubleTag");
-
   h_2017_QuadJet_TripleTag = new TriggerEffPlots("2017_QuadJet_TripleTag");
   h_2017_QuadJet_noTag = new TriggerEffPlots("2017_QuadJet_noTag");
-
   h_2018_QuadJet_TripleTag = new TriggerEffPlots("2018_QuadJet_TripleTag");
   h_2018_QuadJet_noTag = new TriggerEffPlots("2018_QuadJet_noTag"); 
  
+  h_2016_QuadJet_TripleTag_tagged = new TriggerEffPlots("2016_QuadJet_TripleTag_tagged");
+  h_2016_QuadJet_DoubleTag_tagged = new TriggerEffPlots("2016_QuadJet_DoubleTag_tagged");
+  h_2016_DoubleJet_TripleTag_tagged = new TriggerEffPlots("2016_DoubleJet_TripleTag_tagged");
+  h_2016_DoubleJet_DoubleTag_tagged = new TriggerEffPlots("2016_DoubleJet_DoubleTag_tagged");
+  h_2017_QuadJet_TripleTag_tagged = new TriggerEffPlots("2017_QuadJet_TripleTag_tagged");
+  h_2017_QuadJet_noTag_tagged = new TriggerEffPlots("2017_QuadJet_noTag_tagged");
+  h_2018_QuadJet_TripleTag_tagged = new TriggerEffPlots("2018_QuadJet_TripleTag_tagged");
+  h_2018_QuadJet_noTag_tagged = new TriggerEffPlots("2018_QuadJet_noTag_tagged");
+
   // Set up the CutFlows (for events) 
   h_evt_MC_cutflow = new TH1D("VbbHcc_MC_CutFlow", "", 2, 0, 2);
   h_evt_MC_cutflow->GetXaxis()->SetBinLabel(1, "Total");
@@ -408,17 +415,31 @@ void VH_selection::SlaveBegin(Reader *r) {
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_2016_DoubleJet_DoubleTag->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-
   tmp = h_2017_QuadJet_TripleTag->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_2017_QuadJet_noTag->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-
   tmp = h_2018_QuadJet_TripleTag->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_2018_QuadJet_noTag->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);  
 
+  tmp = h_2016_QuadJet_TripleTag_tagged->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_2016_QuadJet_DoubleTag_tagged->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_2016_DoubleJet_TripleTag_tagged->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_2016_DoubleJet_DoubleTag_tagged->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_2017_QuadJet_TripleTag_tagged->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_2017_QuadJet_noTag_tagged->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_2018_QuadJet_TripleTag_tagged->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_2018_QuadJet_noTag_tagged->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
 
   r->GetOutputList()->Add(h_evt_VbbHcc);
   r->GetOutputList()->Add(h_evt_MC_cutflow);
@@ -904,11 +925,30 @@ void VH_selection::Process(Reader* r) {
     for (size_t i = 0; i < analysis_jets.size(); ++i)
       HT += analysis_jets[i].m_lvec.Pt();
     float HTmod = *(r->MET_pt);
-    //for (size_t j = 0; j < muons.size(); ++j)
-    //  HTmod += muons[j].m_lvec.Pt();
-
+    
     h_VH_select->FillMET(*(r->MET_pt), evtW);
     h_VH_select->FillHT(HT, HTmod, evtW);
+
+    // In these effficiency calculations, we want to know what the flavors are
+    // as a check against our analysis requirements, so we need to tag each 
+    // jet. We will assume that B takes priority over C in terms of double
+    // tagging.
+    bool has_bjets = false, has_cjets = false;
+
+    // Check if the highest two b-tags pass our requirement
+    std::vector<JetObj> copyjets = analysis_jets;
+    std::sort(copyjets.begin(), copyjets.end(), JetObj::JetCompBtag());
+    std::vector<JetObj> bTagged { copyjets[0], copyjets[1] };
+    copyjets.erase(copyjets.begin() + 1); copyjets.erase(copyjets.begin() + 0);
+    has_bjets = are_bjets(bTagged, desired_BvL);
+
+    // Check if the highest two c-tags pass our requirement
+    std::sort(copyjets.begin(), copyjets.end(), JetObj::JetCompCtag());
+    std::vector<JetObj> cTagged { copyjets[0], copyjets[1] };
+    copyjets.erase(copyjets.begin() + 1); copyjets.erase(copyjets.begin() + 0);
+    has_cjets = are_cjets(cTagged, desired_CvL, desired_CvB);
+
+    bool properly_tagged = has_bjets && has_cjets;
 
     // ========================================================================
     // Trigger Efficiency
@@ -942,11 +982,21 @@ void VH_selection::Process(Reader* r) {
         h_2016_QuadJet_DoubleTag->Fill(analysis_jets, true, HTmod, evtW);
         h_2016_DoubleJet_TripleTag->Fill(analysis_jets, true, HTmod, evtW);
         h_2016_DoubleJet_DoubleTag->Fill(analysis_jets, true, HTmod, evtW);
-
         h_2017_QuadJet_TripleTag->Fill(analysis_jets, true, HTmod, evtW);
         h_2017_QuadJet_noTag->Fill(analysis_jets, true, HTmod, evtW);
         h_2018_QuadJet_TripleTag->Fill(analysis_jets, true, HTmod, evtW);
         h_2018_QuadJet_noTag->Fill(analysis_jets, true, HTmod, evtW);
+
+        if (properly_tagged) {
+          h_2016_QuadJet_TripleTag_tagged->Fill(analysis_jets, true, HTmod, evtW);
+          h_2016_QuadJet_DoubleTag_tagged->Fill(analysis_jets, true, HTmod, evtW);
+          h_2016_DoubleJet_TripleTag_tagged->Fill(analysis_jets, true, HTmod, evtW);
+          h_2016_DoubleJet_DoubleTag_tagged->Fill(analysis_jets, true, HTmod, evtW);
+          h_2017_QuadJet_TripleTag_tagged->Fill(analysis_jets, true, HTmod, evtW);
+          h_2017_QuadJet_noTag_tagged->Fill(analysis_jets, true, HTmod, evtW);
+          h_2018_QuadJet_TripleTag_tagged->Fill(analysis_jets, true, HTmod, evtW);
+          h_2018_QuadJet_noTag_tagged->Fill(analysis_jets, true, HTmod, evtW);
+        }
 
         // Check each of our triggers after they've passed the reference
 #if defined(MC_2016) || defined(DATA_2016)
@@ -954,17 +1004,33 @@ void VH_selection::Process(Reader* r) {
         // 2016 - QuadJet (Triple Tag vs Double Tag)
         if (*(r->HLT_QuadJet45_TripleBTagCSV_p087)) {
           h_2016_QuadJet_TripleTag->Fill(analysis_jets, false, HTmod, evtW);
+          if (properly_tagged) {
+            h_2016_QuadJet_TripleTag_tagged->Fill(analysis_jets,
+              false, HTmod, evtW);
+          }
         }
         if (*(r->HLT_QuadJet45_DoubleBTagCSV_p087)) {
           h_2016_QuadJet_DoubleTag->Fill(analysis_jets, false, HTmod, evtW);
+          if (properly_tagged) {
+            h_2016_QuadJet_DoubleTag_tagged->Fill(analysis_jets,
+              false, HTmod, evtW);
+          }
         }
 
         // 2016 - DoubleJet (Triple Tag vs Double Tag)
         if (*(r->HLT_DoubleJet90_Double30_TripleBTagCSV_p087)) {
           h_2016_DoubleJet_TripleTag->Fill(analysis_jets, false, HTmod, evtW);
+          if (properly_tagged) {
+            h_2016_DoubleJet_TripleTag_tagged->Fill(analysis_jets,
+              false, HTmod, evtW);
+          }
         }
         if (*(r->HLT_DoubleJet90_Double30_DoubleBTagCSV_p087)) {
           h_2016_DoubleJet_DoubleTag->Fill(analysis_jets, false, HTmod, evtW);
+          if (properly_tagged) {
+            h_2016_DoubleJet_DoubleTag_tagged->Fill(analysis_jets,
+              false, HTmod, evtW);
+          }
         }
 
 #endif
@@ -974,9 +1040,17 @@ void VH_selection::Process(Reader* r) {
         // 2017 (Triple Tag vs No Tag)
         if (*(r->HLT_PFHT300PT30_QuadPFJet_75_60_45_40_TriplePFBTagCSV_3p0)) {
           h_2017_QuadJet_TripleTag->Fill(analysis_jets, false, HTmod, evtW);
+          if (properly_tagged) {
+            h_2017_QuadJet_TripleTag_tagged->Fill(analysis_jets,
+              false, HTmod, evtW);
+          }
         }
         if (*(r->HLT_PFHT300PT30_QuadPFJet_75_60_45_40)) {
           h_2017_QuadJet_noTag->Fill(analysis_jets, false, HTmod, evtW);
+          if (properly_tagged) {
+            h_2017_QuadJet_noTag_tagged->Fill(analysis_jets,
+              false, HTmod, evtW);
+          }
         }  
 #endif
 
@@ -985,9 +1059,17 @@ void VH_selection::Process(Reader* r) {
         // 2018 (Triple Tag vs No Tag)
         if (*(r->HLT_PFHT330PT30_QuadPFJet_75_60_45_40_TriplePFBTagDeepCSV_4p5)) {
           h_2018_QuadJet_TripleTag->Fill(analysis_jets, false, HTmod, evtW);
+          if (properly_tagged) {
+            h_2018_QuadJet_TripleTag_tagged->Fill(analysis_jets, 
+              false, HTmod, evtW);
+          }
         }
         if (*(r->HLT_PFHT330PT30_QuadPFJet_75_60_45_40)) {
           h_2018_QuadJet_noTag->Fill(analysis_jets, false, HTmod, evtW);
+          if (properly_tagged) {
+            h_2018_QuadJet_noTag_tagged->Fill(analysis_jets,
+              false, HTmod, evtW);
+          }
         }
 #endif
 
