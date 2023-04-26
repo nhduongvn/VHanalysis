@@ -83,6 +83,16 @@ class VH_selection : public Selector {
     TriggerEffPlots *h_2017_QuadJet_noTag_tagged;
     TriggerEffPlots *h_2018_QuadJet_noTag_tagged;
 
+    TriggerEffPlots *h_2016_QuadJet_TripleTag_ideal;
+    TriggerEffPlots *h_2016_DoubleJet_TripleTag_ideal;
+    TriggerEffPlots *h_2017_QuadJet_TripleTag_ideal;
+    TriggerEffPlots *h_2018_QuadJet_TripleTag_ideal;
+
+    TriggerEffPlots *h_2016_QuadJet_DoubleTag_ideal;
+    TriggerEffPlots *h_2016_DoubleJet_DoubleTag_ideal;
+    TriggerEffPlots *h_2017_QuadJet_noTag_ideal;
+    TriggerEffPlots *h_2018_QuadJet_noTag_ideal;
+
     // Efficiency Plots
     EffPlots *h_eff_tags; // Efficiencies for Tagging Only
     EffPlots *h_eff_algo; // Efficiencies for Mass-Matching Prioritized

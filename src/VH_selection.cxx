@@ -272,6 +272,15 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_2018_QuadJet_TripleTag_tagged = new TriggerEffPlots("2018_QuadJet_TripleTag_tagged");
   h_2018_QuadJet_noTag_tagged = new TriggerEffPlots("2018_QuadJet_noTag_tagged");
 
+  h_2016_QuadJet_TripleTag_ideal = new TriggerEffPlots("2016_QuadJet_TripleTag_ideal");
+  h_2016_QuadJet_DoubleTag_ideal = new TriggerEffPlots("2016_QuadJet_DoubleTag_ideal");
+  h_2016_DoubleJet_TripleTag_ideal = new TriggerEffPlots("2016_DoubleJet_TripleTag_ideal");
+  h_2016_DoubleJet_DoubleTag_ideal = new TriggerEffPlots("2016_DoubleJet_DoubleTag_ideal");
+  h_2017_QuadJet_TripleTag_ideal = new TriggerEffPlots("2017_QuadJet_TripleTag_ideal");
+  h_2017_QuadJet_noTag_ideal = new TriggerEffPlots("2017_QuadJet_noTag_ideal");
+  h_2018_QuadJet_TripleTag_ideal = new TriggerEffPlots("2018_QuadJet_TripleTag_ideal");
+  h_2018_QuadJet_noTag_ideal = new TriggerEffPlots("2018_QuadJet_noTag_ideal");
+
   // Set up the CutFlows (for events) 
   h_evt_MC_cutflow = new TH1D("VbbHcc_MC_CutFlow", "", 2, 0, 2);
   h_evt_MC_cutflow->GetXaxis()->SetBinLabel(1, "Total");
@@ -441,6 +450,23 @@ void VH_selection::SlaveBegin(Reader *r) {
   tmp = h_2018_QuadJet_noTag_tagged->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
 
+  tmp = h_2016_QuadJet_TripleTag_ideal->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_2016_QuadJet_DoubleTag_ideal->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_2016_DoubleJet_TripleTag_ideal->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_2016_DoubleJet_DoubleTag_ideal->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_2017_QuadJet_TripleTag_ideal->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_2017_QuadJet_noTag_ideal->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_2018_QuadJet_TripleTag_ideal->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_2018_QuadJet_noTag_ideal->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+
   r->GetOutputList()->Add(h_evt_VbbHcc);
   r->GetOutputList()->Add(h_evt_MC_cutflow);
   r->GetOutputList()->Add(h_evt_tags_cutflow);
@@ -581,6 +607,7 @@ void VH_selection::Process(Reader* r) {
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
     jet.m_genJetIdx = (r->Jet_genJetIdx)[i];
 #endif
+
 
     // Add the jet to our overall list.
     jet.SetIdxAll(i);
@@ -725,7 +752,7 @@ void VH_selection::Process(Reader* r) {
     is_VbbHcc_event = true;
     h_evt_VbbHcc->Fill(1.5, evtW);
 
-  }//end-MC-truth
+  }//end
 
 #endif
 
@@ -950,6 +977,41 @@ void VH_selection::Process(Reader* r) {
 
     bool properly_tagged = has_bjets && has_cjets;
 
+    // For each year, we want to make sure that we pass all the criteria we're
+    // interested in. We've already got a variable to handle tagging. We need
+    // variables (per year) for pT cuts.
+
+#if defined(MC_2016) || defined(DATA_2016)
+    std::vector<JetObj> jets2016 = analysis_jets;
+    std::sort(jets2016.begin(), jets2016.end(), JetObj::JetCompPt());
+
+    // Trigger #1 - make sure all jets have pT > 45 GeV
+    bool pT_criteria_met_2016v1 = true;
+    for (size_t i = 0; i < jets2016.size(); ++i){
+      if (jets2016[i].Pt() <= 45) pT_criteria_met_2016v1 = false;
+    }
+
+    // Trigger #2 - make sure two jets have pT > 90 GeV and two have pT > 30 GeV
+    bool pT_criteria_met_2016v2 = true;
+    for (size_t i = 0; i < 2; ++i) {
+      if (jets2016[i].Pt() <= 90) pT_criteria_met_2016v2 = false;
+      if (jets2016[2+i].Pt() <= 30) pT_criteria_met_2016v2 = false;
+    }
+#endif
+
+#if defined(MC_2017) || defined(DATA_2017) || defined(MC_2018) || defined(DATA_2018)
+    std::vector<JetObj> jets2017_18 = analysis_jets;
+    std::sort(jets2017_18.begin(), jets2017_18.end(), JetObj::JetCompPt());
+
+    // Both triggers for 2017-18 require the following pT cuts:
+    // 1. > 75 GeV, 2. > 60 GeV, 3. > 45 GeV, 4. > 40 GeV
+    float cuts[4] = { 75.0, 60.0, 45.0, 40.0 };
+    bool pT_criteria_met_2017_18 = true;
+    for (size_t i = 0; i < 4; ++i) {
+      if (jets2017_18[i].Pt() <= cuts[i]) pT_criteria_met_2017_18 = false;
+    }
+#endif
+
     // ========================================================================
     // Trigger Efficiency
     // ========================================================================
@@ -998,8 +1060,53 @@ void VH_selection::Process(Reader* r) {
           h_2018_QuadJet_noTag_tagged->Fill(analysis_jets, true, HTmod, evtW);
         }
 
-        // Check each of our triggers after they've passed the reference
 #if defined(MC_2016) || defined(DATA_2016)
+
+        /**********************************************************
+        * First version we wanna try is when we pass proper
+        * tagging and pT requirements associated with the triggers.
+        **********************************************************/
+
+        // 2016 - QuadJet
+        if (properly_tagged && pT_criteria_met_2016v1) {
+
+          // Pass our reference trigger.
+          if (*(r->HLT_IsoMu24)) {
+
+            h_2016_QuadJet_TripleTag_ideal->Fill(analysis_jets, true, HTmod, evtW);
+            h_2016_QuadJet_DoubleTag_ideal->Fill(analysis_jets, true, HTmod, evtW);        
+
+            // Pass our probe triggers.    
+            if (*(r->HLT_QuadJet45_TripleBTagCSV_p087))
+              h_2016_QuadJet_TripleTag_ideal->Fill(analysis_jets, false, HTmod, evtW);
+             if (*(r->HLT_QuadJet45_DoubleBTagCSV_p087))
+              h_2016_QuadJet_DoubleTag_ideal->Fill(analysis_jets, false, HTmod, evtW);
+          }        
+
+        }
+
+        // 2016 - DoubleJet
+        if (properly_tagged && pT_criteria_met_2016v2) {
+
+          // Pass our reference trigger.
+          if (*(r->HLT_IsoMu24)) {
+            
+            h_2016_DoubleJet_TripleTag_ideal->Fill(analysis_jets, true, HTmod, evtW);
+            h_2016_DoubleJet_DoubleTag_ideal->Fill(analysis_jets, true, HTmod, evtW);
+
+            // Pass our probe triggers.
+            if (*(r->HLT_DoubleJet90_Double30_TripleBTagCSV_p087))
+              h_2016_DoubleJet_TripleTag_ideal->Fill(analysis_jets, false, HTmod, evtW);
+            if (*(r->HLT_DoubleJet90_Double30_DoubleBTagCSV_p087))
+              h_2016_DoubleJet_DoubleTag_ideal->Fill(analysis_jets, false, HTmod, evtW);
+          }
+
+        }
+
+        /************************************************************
+        * We wanna look at the versions with none of the requirements
+        * and then just the tagging requirement.
+        ************************************************************/
 
         // 2016 - QuadJet (Triple Tag vs Double Tag)
         if (*(r->HLT_QuadJet45_TripleBTagCSV_p087)) {
@@ -1036,6 +1143,34 @@ void VH_selection::Process(Reader* r) {
 #endif
 
 #if defined(MC_2017) || defined(DATA_2017)
+
+        /**********************************************************
+        * First version we wanna try is when we pass proper
+        * tagging and pT requirements associated with the triggers.
+        **********************************************************/
+        
+        if (properly_tagged && pT_criteria_met_2017_18) {
+
+          // Pass our reference trigger.
+          if (*(r->HLT_IsoMu24)){
+
+            h_2017_QuadJet_TripleTag_ideal->Fill(analysis_jets, true, HTmod, evtW);
+            h_2017_QuadJet_noTag_ideal->Fill(analysis_jets, true, HTmod, evtW);
+
+            // Pass our probe triggers.
+            if (*(r->HLT_PFHT300PT30_QuadPFJet_75_60_45_40_TriplePFBTagCSV_3p0))
+              h_2017_QuadJet_TripleTag_ideal->Fill(analysis_jets, false, HTmod, evtW);
+            if (*(r->HLT_PFHT300PT30_QuadPFJet_75_60_45_40))
+              h_2017_QuadJet_noTag_ideal->Fill(analysis_jets, false, HTmod, evtW);     
+
+          }
+
+        }
+
+        /************************************************************
+        * We wanna look at the versions with none of the requirements
+        * and then just the tagging requirement.
+        ************************************************************/
         
         // 2017 (Triple Tag vs No Tag)
         if (*(r->HLT_PFHT300PT30_QuadPFJet_75_60_45_40_TriplePFBTagCSV_3p0)) {
@@ -1055,7 +1190,35 @@ void VH_selection::Process(Reader* r) {
 #endif
 
 #if defined(MC_2018) || defined(DATA_2018)
-        
+
+        /**********************************************************
+        * First version we wanna try is when we pass proper
+        * tagging and pT requirements associated with the triggers.
+        **********************************************************/
+
+        if (properly_tagged && pT_criteria_met_2017_18) {
+
+          // Pass our reference trigger.
+          if (*(r->HLT_IsoMu24)){
+
+            h_2018_QuadJet_TripleTag_ideal->Fill(analysis_jets, true, HTmod, evtW);
+            h_2018_QuadJet_noTag_ideal->Fill(analysis_jets, true, HTmod, evtW);
+
+            // Pass our probe triggers.
+            if (*(r->HLT_PFHT330PT30_QuadPFJet_75_60_45_40_TriplePFBTagDeepCSV_4p5))
+              h_2018_QuadJet_TripleTag_ideal->Fill(analysis_jets, false, HTmod, evtW);
+            if (*(r->HLT_PFHT330PT30_QuadPFJet_75_60_45_40))
+              h_2018_QuadJet_noTag_ideal->Fill(analysis_jets, false, HTmod, evtW);
+
+          }
+
+        }
+
+        /***********************************************************
+        * We wanna look at the version with none of the requirements
+        * and then just the tagging requirement.
+        ***********************************************************/        
+
         // 2018 (Triple Tag vs No Tag)
         if (*(r->HLT_PFHT330PT30_QuadPFJet_75_60_45_40_TriplePFBTagDeepCSV_4p5)) {
           h_2018_QuadJet_TripleTag->Fill(analysis_jets, false, HTmod, evtW);
