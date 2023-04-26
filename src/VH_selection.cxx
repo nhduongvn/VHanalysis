@@ -1039,6 +1039,10 @@ void VH_selection::Process(Reader* r) {
         for (size_t i = 0; i < muons.size(); ++i)
           HTmod += muons[i].m_lvec.Pt();
 
+        float HT = 0.0;
+        for (size_t i = 0; i < analysis_jets.size(); ++i)
+          HT += analysis_jets[i].Pt();
+
         // Add the events to the reference plots (true = isReference)
         h_2016_QuadJet_TripleTag->Fill(analysis_jets, true, HTmod, evtW);
         h_2016_QuadJet_DoubleTag->Fill(analysis_jets, true, HTmod, evtW);
@@ -1149,7 +1153,7 @@ void VH_selection::Process(Reader* r) {
         * tagging and pT requirements associated with the triggers.
         **********************************************************/
         
-        if (properly_tagged && pT_criteria_met_2017_18) {
+        if (properly_tagged && pT_criteria_met_2017_18 && HT > 300) {
 
           // Pass our reference trigger.
           if (*(r->HLT_IsoMu24)){
@@ -1196,7 +1200,7 @@ void VH_selection::Process(Reader* r) {
         * tagging and pT requirements associated with the triggers.
         **********************************************************/
 
-        if (properly_tagged && pT_criteria_met_2017_18) {
+        if (properly_tagged && pT_criteria_met_2017_18 && HT > 330) {
 
           // Pass our reference trigger.
           if (*(r->HLT_IsoMu24)){
