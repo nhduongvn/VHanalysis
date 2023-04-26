@@ -1,0 +1,141 @@
+#ifdef __CLING__
+#pragma cling optimize(0)
+#endif
+void HT_2016_QuadJet_DoubleTag_16_ideal_logY()
+{
+//=========Macro generated from canvas: HT_2016_QuadJet_DoubleTag_16_ideal/HT_2016_QuadJet_DoubleTag_16_ideal
+//=========  (Tue Apr 25 23:03:09 2023) by ROOT version 6.26/06
+   TCanvas *HT_2016_QuadJet_DoubleTag_16_ideal = new TCanvas("HT_2016_QuadJet_DoubleTag_16_ideal", "HT_2016_QuadJet_DoubleTag_16_ideal",0,0,600,600);
+   HT_2016_QuadJet_DoubleTag_16_ideal->SetHighLightColor(2);
+   HT_2016_QuadJet_DoubleTag_16_ideal->Range(-400,-0.5597726,2266.667,2.027653);
+   HT_2016_QuadJet_DoubleTag_16_ideal->SetFillColor(0);
+   HT_2016_QuadJet_DoubleTag_16_ideal->SetBorderMode(0);
+   HT_2016_QuadJet_DoubleTag_16_ideal->SetBorderSize(2);
+   HT_2016_QuadJet_DoubleTag_16_ideal->SetLogy();
+   HT_2016_QuadJet_DoubleTag_16_ideal->SetLeftMargin(0.15);
+   HT_2016_QuadJet_DoubleTag_16_ideal->SetFrameBorderMode(0);
+   HT_2016_QuadJet_DoubleTag_16_ideal->SetFrameBorderMode(0);
+   
+   TH1D *_QuadJet_DoubleTag_ideal_HT__269 = new TH1D("_QuadJet_DoubleTag_ideal_HT__269","",200,0,2000);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(23,1);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(24,6);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(25,9);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(26,8);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(27,11);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(28,16);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(29,12);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(30,15);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(31,13);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(32,26);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(33,27);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(34,19);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(35,16);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(36,29);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(37,14);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(38,16);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(39,22);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(40,31);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(41,15);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(42,30);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(43,12);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(44,16);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(45,20);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(46,14);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(47,13);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(48,12);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(49,14);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(50,14);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(51,18);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(52,19);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(53,11);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(54,14);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(55,11);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(56,9);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(57,3);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(58,8);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(59,12);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(60,7);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(61,9);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(62,5);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(63,5);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(64,5);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(65,9);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(66,6);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(67,2);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(68,6);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(69,5);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(70,5);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(71,5);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(72,3);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(73,8);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(74,6);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(75,2);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(76,6);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(77,1);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(78,4);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(80,1);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(81,2);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(82,4);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(83,3);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(84,3);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(85,3);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(86,1);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(87,3);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(91,2);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(92,2);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(93,2);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(94,1);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(96,2);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(102,1);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(103,2);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(104,1);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(109,1);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(115,1);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(116,2);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(118,1);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(123,1);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(131,2);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(139,1);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(150,1);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(173,1);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(177,1);
+   _QuadJet_DoubleTag_ideal_HT__269->SetBinContent(201,1);
+   _QuadJet_DoubleTag_ideal_HT__269->SetEntries(701);
+   
+   TPaveStats *ptstats = new TPaveStats(0.78,0.775,0.98,0.935,"brNDC");
+   ptstats->SetName("stats");
+   ptstats->SetBorderSize(1);
+   ptstats->SetFillColor(0);
+   ptstats->SetTextAlign(12);
+   ptstats->SetTextFont(42);
+   TText *ptstats_LaTex = ptstats->AddText("2016_QuadJet_DoubleTag_ideal_HT");
+   ptstats_LaTex->SetTextSize(0.0368);
+   ptstats_LaTex = ptstats->AddText("Entries = 701    ");
+   ptstats_LaTex = ptstats->AddText("Mean  =  479.2");
+   ptstats_LaTex = ptstats->AddText("Std Dev   =  194.8");
+   ptstats->SetOptStat(1111);
+   ptstats->SetOptFit(0);
+   ptstats->Draw();
+   _QuadJet_DoubleTag_ideal_HT__269->GetListOfFunctions()->Add(ptstats);
+   ptstats->SetParent(_QuadJet_DoubleTag_ideal_HT__269);
+
+   Int_t ci;      // for color index setting
+   TColor *color; // for color definition with alpha
+   ci = TColor::GetColor("#0000ff");
+   _QuadJet_DoubleTag_ideal_HT__269->SetLineColor(ci);
+   _QuadJet_DoubleTag_ideal_HT__269->GetXaxis()->SetTitle("H_{T} [GeV]");
+   _QuadJet_DoubleTag_ideal_HT__269->GetXaxis()->SetRange(1,200);
+   _QuadJet_DoubleTag_ideal_HT__269->GetXaxis()->SetLabelFont(42);
+   _QuadJet_DoubleTag_ideal_HT__269->GetXaxis()->SetTitleOffset(1);
+   _QuadJet_DoubleTag_ideal_HT__269->GetXaxis()->SetTitleFont(42);
+   _QuadJet_DoubleTag_ideal_HT__269->GetYaxis()->SetTitle("Events");
+   _QuadJet_DoubleTag_ideal_HT__269->GetYaxis()->SetLabelFont(42);
+   _QuadJet_DoubleTag_ideal_HT__269->GetYaxis()->SetTitleFont(42);
+   _QuadJet_DoubleTag_ideal_HT__269->GetZaxis()->SetLabelFont(42);
+   _QuadJet_DoubleTag_ideal_HT__269->GetZaxis()->SetTitleOffset(1);
+   _QuadJet_DoubleTag_ideal_HT__269->GetZaxis()->SetTitleFont(42);
+   _QuadJet_DoubleTag_ideal_HT__269->Draw("HIST");
+   HT_2016_QuadJet_DoubleTag_16_ideal->Modified();
+   HT_2016_QuadJet_DoubleTag_16_ideal->cd();
+   HT_2016_QuadJet_DoubleTag_16_ideal->SetSelected(HT_2016_QuadJet_DoubleTag_16_ideal);
+}

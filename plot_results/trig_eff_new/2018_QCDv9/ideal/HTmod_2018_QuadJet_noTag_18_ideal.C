@@ -1,0 +1,145 @@
+#ifdef __CLING__
+#pragma cling optimize(0)
+#endif
+void HTmod_2018_QuadJet_noTag_18_ideal()
+{
+//=========Macro generated from canvas: HTmod_2018_QuadJet_noTag_18_ideal/HTmod_2018_QuadJet_noTag_18_ideal
+//=========  (Tue Apr 25 23:01:42 2023) by ROOT version 6.26/06
+   TCanvas *HTmod_2018_QuadJet_noTag_18_ideal = new TCanvas("HTmod_2018_QuadJet_noTag_18_ideal", "HTmod_2018_QuadJet_noTag_18_ideal",0,0,600,600);
+   HTmod_2018_QuadJet_noTag_18_ideal->SetHighLightColor(2);
+   HTmod_2018_QuadJet_noTag_18_ideal->Range(-436.7058,-0.04038462,2343.266,0.2961538);
+   HTmod_2018_QuadJet_noTag_18_ideal->SetFillColor(0);
+   HTmod_2018_QuadJet_noTag_18_ideal->SetFillStyle(4000);
+   HTmod_2018_QuadJet_noTag_18_ideal->SetBorderMode(0);
+   HTmod_2018_QuadJet_noTag_18_ideal->SetBorderSize(2);
+   HTmod_2018_QuadJet_noTag_18_ideal->SetLeftMargin(0.15709);
+   HTmod_2018_QuadJet_noTag_18_ideal->SetRightMargin(0.1234783);
+   HTmod_2018_QuadJet_noTag_18_ideal->SetBottomMargin(0.12);
+   HTmod_2018_QuadJet_noTag_18_ideal->SetFrameFillStyle(1000);
+   HTmod_2018_QuadJet_noTag_18_ideal->SetFrameBorderMode(0);
+   HTmod_2018_QuadJet_noTag_18_ideal->SetFrameFillStyle(1000);
+   HTmod_2018_QuadJet_noTag_18_ideal->SetFrameBorderMode(0);
+   
+   TH1D *_QuadJet_noTag_ideal_HTmod__142 = new TH1D("_QuadJet_noTag_ideal_HTmod__142","",200,0,2000);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(38,0.002836879);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(39,0.001119821);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(40,0.002026342);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(41,0.001746725);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(42,0.0008510638);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(43,0.0007507508);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(44,0.003706449);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(45,0.004441155);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(46,0.001532567);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(47,0.001439885);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(48,0.005943536);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(49,0.002967359);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(50,0.004310345);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(51,0.004395604);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(52,0.00658858);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(53,0.005339436);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(54,0.008333333);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(55,0.007431874);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(56,0.005286344);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(57,0.003679853);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(58,0.006789525);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(59,0.00952381);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(60,0.00591716);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(61,0.001022495);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(62,0.002214839);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(63,0.006711409);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(64,0.007653061);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(65,0.005235602);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(66,0.00390625);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(67,0.002695418);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(68,0.005665722);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(69,0.01438849);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(70,0.007668712);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(71,0.003215434);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(72,0.01030928);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(73,0.005586592);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(74,0.0134357);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(75,0.008097166);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(76,0.006224066);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(77,0.004784689);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(78,0.002257336);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(79,0.01253133);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(80,0.007444169);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(81,0.003076923);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(82,0.002932551);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(83,0.002816901);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(84,0.006622517);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(85,0.006825939);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(86,0.01003344);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(87,0.004149378);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(88,0.007490637);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(89,0.008163265);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(90,0.004424779);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(94,0.01075269);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(95,0.00617284);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(96,0.01169591);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(97,0.005405405);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(98,0.006802721);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(100,0.01408451);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(101,0.0141844);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(102,0.008196721);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(103,0.008196721);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(104,0.01960784);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(106,0.01639344);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(107,0.02941176);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(108,0.009259259);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(109,0.02409639);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(110,0.01123596);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(112,0.01265823);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(113,0.02380952);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(115,0.01388889);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(116,0.0125);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(118,0.01851852);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(120,0.0212766);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(124,0.01818182);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(125,0.02631579);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(132,0.03703704);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(141,0.04761905);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(142,0.03703704);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(146,0.07142857);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(152,0.06666667);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(155,0.09090909);
+   _QuadJet_noTag_ideal_HTmod__142->SetBinContent(181,0.25);
+   _QuadJet_noTag_ideal_HTmod__142->SetEntries(1.227886);
+   
+   TPaveStats *ptstats = new TPaveStats(0.78,0.775,0.98,0.935,"brNDC");
+   ptstats->SetName("stats");
+   ptstats->SetBorderSize(1);
+   ptstats->SetFillColor(0);
+   ptstats->SetTextAlign(12);
+   ptstats->SetTextFont(42);
+   TText *ptstats_LaTex = ptstats->AddText("2018_QuadJet_noTag_ideal_HTmod");
+   ptstats_LaTex->SetTextSize(0.0368);
+   ptstats_LaTex = ptstats->AddText("Entries = 1      ");
+   ptstats_LaTex = ptstats->AddText("Mean  =   1247");
+   ptstats_LaTex = ptstats->AddText("Std Dev   =  409.4");
+   ptstats->SetOptStat(1111);
+   ptstats->SetOptFit(0);
+   ptstats->Draw();
+   _QuadJet_noTag_ideal_HTmod__142->GetListOfFunctions()->Add(ptstats);
+   ptstats->SetParent(_QuadJet_noTag_ideal_HTmod__142);
+
+   Int_t ci;      // for color index setting
+   TColor *color; // for color definition with alpha
+   ci = TColor::GetColor("#000099");
+   _QuadJet_noTag_ideal_HTmod__142->SetLineColor(ci);
+   _QuadJet_noTag_ideal_HTmod__142->GetXaxis()->SetTitle("H_{T} [GeV]");
+   _QuadJet_noTag_ideal_HTmod__142->GetXaxis()->SetRange(1,2000);
+   _QuadJet_noTag_ideal_HTmod__142->GetXaxis()->SetLabelFont(42);
+   _QuadJet_noTag_ideal_HTmod__142->GetXaxis()->SetTitleOffset(1);
+   _QuadJet_noTag_ideal_HTmod__142->GetXaxis()->SetTitleFont(42);
+   _QuadJet_noTag_ideal_HTmod__142->GetYaxis()->SetTitle("Efficiency");
+   _QuadJet_noTag_ideal_HTmod__142->GetYaxis()->SetLabelFont(42);
+   _QuadJet_noTag_ideal_HTmod__142->GetYaxis()->SetTitleFont(42);
+   _QuadJet_noTag_ideal_HTmod__142->GetZaxis()->SetLabelFont(42);
+   _QuadJet_noTag_ideal_HTmod__142->GetZaxis()->SetTitleOffset(1);
+   _QuadJet_noTag_ideal_HTmod__142->GetZaxis()->SetTitleFont(42);
+   _QuadJet_noTag_ideal_HTmod__142->Draw("HIST");
+   HTmod_2018_QuadJet_noTag_18_ideal->Modified();
+   HTmod_2018_QuadJet_noTag_18_ideal->cd();
+   HTmod_2018_QuadJet_noTag_18_ideal->SetSelected(HTmod_2018_QuadJet_noTag_18_ideal);
+}

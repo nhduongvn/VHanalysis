@@ -4,7 +4,7 @@
 void CvB_2016_QuadJet_TripleTag_16_logY()
 {
 //=========Macro generated from canvas: CvB_2016_QuadJet_TripleTag_16/CvB_2016_QuadJet_TripleTag_16
-//=========  (Mon Apr 24 10:39:17 2023) by ROOT version 6.26/06
+//=========  (Tue Apr 25 23:03:07 2023) by ROOT version 6.26/06
    TCanvas *CvB_2016_QuadJet_TripleTag_16 = new TCanvas("CvB_2016_QuadJet_TripleTag_16", "CvB_2016_QuadJet_TripleTag_16",0,0,600,600);
    CvB_2016_QuadJet_TripleTag_16->SetHighLightColor(2);
    CvB_2016_QuadJet_TripleTag_16->Range(-0.2,3.471565,1.133333,5.296717);
@@ -16,18 +16,18 @@ void CvB_2016_QuadJet_TripleTag_16_logY()
    CvB_2016_QuadJet_TripleTag_16->SetFrameBorderMode(0);
    CvB_2016_QuadJet_TripleTag_16->SetFrameBorderMode(0);
    
-   TH1D *_QuadJet_TripleTag_CvB__194 = new TH1D("_QuadJet_TripleTag_CvB__194","",10,0,1);
-   _QuadJet_TripleTag_CvB__194->SetBinContent(1,63407);
-   _QuadJet_TripleTag_CvB__194->SetBinContent(2,11278);
-   _QuadJet_TripleTag_CvB__194->SetBinContent(3,9745);
-   _QuadJet_TripleTag_CvB__194->SetBinContent(4,9018);
-   _QuadJet_TripleTag_CvB__194->SetBinContent(5,10670);
-   _QuadJet_TripleTag_CvB__194->SetBinContent(6,13349);
-   _QuadJet_TripleTag_CvB__194->SetBinContent(7,20483);
-   _QuadJet_TripleTag_CvB__194->SetBinContent(8,36135);
-   _QuadJet_TripleTag_CvB__194->SetBinContent(9,68652);
-   _QuadJet_TripleTag_CvB__194->SetBinContent(10,32059);
-   _QuadJet_TripleTag_CvB__194->SetEntries(274796);
+   TH1D *_QuadJet_TripleTag_CvB__98 = new TH1D("_QuadJet_TripleTag_CvB__98","",10,0,1);
+   _QuadJet_TripleTag_CvB__98->SetBinContent(1,63407);
+   _QuadJet_TripleTag_CvB__98->SetBinContent(2,11278);
+   _QuadJet_TripleTag_CvB__98->SetBinContent(3,9745);
+   _QuadJet_TripleTag_CvB__98->SetBinContent(4,9018);
+   _QuadJet_TripleTag_CvB__98->SetBinContent(5,10670);
+   _QuadJet_TripleTag_CvB__98->SetBinContent(6,13349);
+   _QuadJet_TripleTag_CvB__98->SetBinContent(7,20483);
+   _QuadJet_TripleTag_CvB__98->SetBinContent(8,36135);
+   _QuadJet_TripleTag_CvB__98->SetBinContent(9,68652);
+   _QuadJet_TripleTag_CvB__98->SetBinContent(10,32059);
+   _QuadJet_TripleTag_CvB__98->SetEntries(274796);
    
    TPaveStats *ptstats = new TPaveStats(0.78,0.775,0.98,0.935,"brNDC");
    ptstats->SetName("stats");
@@ -43,25 +43,25 @@ void CvB_2016_QuadJet_TripleTag_16_logY()
    ptstats->SetOptStat(1111);
    ptstats->SetOptFit(0);
    ptstats->Draw();
-   _QuadJet_TripleTag_CvB__194->GetListOfFunctions()->Add(ptstats);
-   ptstats->SetParent(_QuadJet_TripleTag_CvB__194);
+   _QuadJet_TripleTag_CvB__98->GetListOfFunctions()->Add(ptstats);
+   ptstats->SetParent(_QuadJet_TripleTag_CvB__98);
 
    Int_t ci;      // for color index setting
    TColor *color; // for color definition with alpha
    ci = TColor::GetColor("#0000ff");
-   _QuadJet_TripleTag_CvB__194->SetLineColor(ci);
-   _QuadJet_TripleTag_CvB__194->GetXaxis()->SetTitle("CvB tagging score");
-   _QuadJet_TripleTag_CvB__194->GetXaxis()->SetRange(1,10);
-   _QuadJet_TripleTag_CvB__194->GetXaxis()->SetLabelFont(42);
-   _QuadJet_TripleTag_CvB__194->GetXaxis()->SetTitleOffset(1);
-   _QuadJet_TripleTag_CvB__194->GetXaxis()->SetTitleFont(42);
-   _QuadJet_TripleTag_CvB__194->GetYaxis()->SetTitle("Events");
-   _QuadJet_TripleTag_CvB__194->GetYaxis()->SetLabelFont(42);
-   _QuadJet_TripleTag_CvB__194->GetYaxis()->SetTitleFont(42);
-   _QuadJet_TripleTag_CvB__194->GetZaxis()->SetLabelFont(42);
-   _QuadJet_TripleTag_CvB__194->GetZaxis()->SetTitleOffset(1);
-   _QuadJet_TripleTag_CvB__194->GetZaxis()->SetTitleFont(42);
-   _QuadJet_TripleTag_CvB__194->Draw("HIST");
+   _QuadJet_TripleTag_CvB__98->SetLineColor(ci);
+   _QuadJet_TripleTag_CvB__98->GetXaxis()->SetTitle("CvB tagging score");
+   _QuadJet_TripleTag_CvB__98->GetXaxis()->SetRange(1,10);
+   _QuadJet_TripleTag_CvB__98->GetXaxis()->SetLabelFont(42);
+   _QuadJet_TripleTag_CvB__98->GetXaxis()->SetTitleOffset(1);
+   _QuadJet_TripleTag_CvB__98->GetXaxis()->SetTitleFont(42);
+   _QuadJet_TripleTag_CvB__98->GetYaxis()->SetTitle("Events");
+   _QuadJet_TripleTag_CvB__98->GetYaxis()->SetLabelFont(42);
+   _QuadJet_TripleTag_CvB__98->GetYaxis()->SetTitleFont(42);
+   _QuadJet_TripleTag_CvB__98->GetZaxis()->SetLabelFont(42);
+   _QuadJet_TripleTag_CvB__98->GetZaxis()->SetTitleOffset(1);
+   _QuadJet_TripleTag_CvB__98->GetZaxis()->SetTitleFont(42);
+   _QuadJet_TripleTag_CvB__98->Draw("HIST");
    CvB_2016_QuadJet_TripleTag_16->Modified();
    CvB_2016_QuadJet_TripleTag_16->cd();
    CvB_2016_QuadJet_TripleTag_16->SetSelected(CvB_2016_QuadJet_TripleTag_16);

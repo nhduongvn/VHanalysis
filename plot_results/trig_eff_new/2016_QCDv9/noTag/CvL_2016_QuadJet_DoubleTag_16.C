@@ -4,7 +4,7 @@
 void CvL_2016_QuadJet_DoubleTag_16()
 {
 //=========Macro generated from canvas: CvL_2016_QuadJet_DoubleTag_16/CvL_2016_QuadJet_DoubleTag_16
-//=========  (Mon Apr 24 10:39:17 2023) by ROOT version 6.26/06
+//=========  (Tue Apr 25 23:03:07 2023) by ROOT version 6.26/06
    TCanvas *CvL_2016_QuadJet_DoubleTag_16 = new TCanvas("CvL_2016_QuadJet_DoubleTag_16", "CvL_2016_QuadJet_DoubleTag_16",0,0,600,600);
    CvL_2016_QuadJet_DoubleTag_16->SetHighLightColor(2);
    CvL_2016_QuadJet_DoubleTag_16->Range(-0.2183529,0.008335823,1.171633,0.02236561);
@@ -20,18 +20,18 @@ void CvL_2016_QuadJet_DoubleTag_16()
    CvL_2016_QuadJet_DoubleTag_16->SetFrameFillStyle(1000);
    CvL_2016_QuadJet_DoubleTag_16->SetFrameBorderMode(0);
    
-   TH1D *_QuadJet_DoubleTag_CvL__172 = new TH1D("_QuadJet_DoubleTag_CvL__172","",10,0,1);
-   _QuadJet_DoubleTag_CvL__172->SetBinContent(1,0.01051569);
-   _QuadJet_DoubleTag_CvL__172->SetBinContent(2,0.01195884);
-   _QuadJet_DoubleTag_CvL__172->SetBinContent(3,0.01321765);
-   _QuadJet_DoubleTag_CvL__172->SetBinContent(4,0.0143717);
-   _QuadJet_DoubleTag_CvL__172->SetBinContent(5,0.01535513);
-   _QuadJet_DoubleTag_CvL__172->SetBinContent(6,0.01652444);
-   _QuadJet_DoubleTag_CvL__172->SetBinContent(7,0.01790414);
-   _QuadJet_DoubleTag_CvL__172->SetBinContent(8,0.01853419);
-   _QuadJet_DoubleTag_CvL__172->SetBinContent(9,0.02004924);
-   _QuadJet_DoubleTag_CvL__172->SetBinContent(10,0.02044153);
-   _QuadJet_DoubleTag_CvL__172->SetEntries(0.1588725);
+   TH1D *_QuadJet_DoubleTag_CvL__88 = new TH1D("_QuadJet_DoubleTag_CvL__88","",10,0,1);
+   _QuadJet_DoubleTag_CvL__88->SetBinContent(1,0.01051569);
+   _QuadJet_DoubleTag_CvL__88->SetBinContent(2,0.01195884);
+   _QuadJet_DoubleTag_CvL__88->SetBinContent(3,0.01321765);
+   _QuadJet_DoubleTag_CvL__88->SetBinContent(4,0.0143717);
+   _QuadJet_DoubleTag_CvL__88->SetBinContent(5,0.01535513);
+   _QuadJet_DoubleTag_CvL__88->SetBinContent(6,0.01652444);
+   _QuadJet_DoubleTag_CvL__88->SetBinContent(7,0.01790414);
+   _QuadJet_DoubleTag_CvL__88->SetBinContent(8,0.01853419);
+   _QuadJet_DoubleTag_CvL__88->SetBinContent(9,0.02004924);
+   _QuadJet_DoubleTag_CvL__88->SetBinContent(10,0.02044153);
+   _QuadJet_DoubleTag_CvL__88->SetEntries(0.1588725);
    
    TPaveStats *ptstats = new TPaveStats(0.78,0.775,0.98,0.935,"brNDC");
    ptstats->SetName("stats");
@@ -47,25 +47,25 @@ void CvL_2016_QuadJet_DoubleTag_16()
    ptstats->SetOptStat(1111);
    ptstats->SetOptFit(0);
    ptstats->Draw();
-   _QuadJet_DoubleTag_CvL__172->GetListOfFunctions()->Add(ptstats);
-   ptstats->SetParent(_QuadJet_DoubleTag_CvL__172);
+   _QuadJet_DoubleTag_CvL__88->GetListOfFunctions()->Add(ptstats);
+   ptstats->SetParent(_QuadJet_DoubleTag_CvL__88);
 
    Int_t ci;      // for color index setting
    TColor *color; // for color definition with alpha
    ci = TColor::GetColor("#000099");
-   _QuadJet_DoubleTag_CvL__172->SetLineColor(ci);
-   _QuadJet_DoubleTag_CvL__172->GetXaxis()->SetTitle("CvL tagging score");
-   _QuadJet_DoubleTag_CvL__172->GetXaxis()->SetRange(1,100);
-   _QuadJet_DoubleTag_CvL__172->GetXaxis()->SetLabelFont(42);
-   _QuadJet_DoubleTag_CvL__172->GetXaxis()->SetTitleOffset(1);
-   _QuadJet_DoubleTag_CvL__172->GetXaxis()->SetTitleFont(42);
-   _QuadJet_DoubleTag_CvL__172->GetYaxis()->SetTitle("Efficiency");
-   _QuadJet_DoubleTag_CvL__172->GetYaxis()->SetLabelFont(42);
-   _QuadJet_DoubleTag_CvL__172->GetYaxis()->SetTitleFont(42);
-   _QuadJet_DoubleTag_CvL__172->GetZaxis()->SetLabelFont(42);
-   _QuadJet_DoubleTag_CvL__172->GetZaxis()->SetTitleOffset(1);
-   _QuadJet_DoubleTag_CvL__172->GetZaxis()->SetTitleFont(42);
-   _QuadJet_DoubleTag_CvL__172->Draw("HIST");
+   _QuadJet_DoubleTag_CvL__88->SetLineColor(ci);
+   _QuadJet_DoubleTag_CvL__88->GetXaxis()->SetTitle("CvL tagging score");
+   _QuadJet_DoubleTag_CvL__88->GetXaxis()->SetRange(1,100);
+   _QuadJet_DoubleTag_CvL__88->GetXaxis()->SetLabelFont(42);
+   _QuadJet_DoubleTag_CvL__88->GetXaxis()->SetTitleOffset(1);
+   _QuadJet_DoubleTag_CvL__88->GetXaxis()->SetTitleFont(42);
+   _QuadJet_DoubleTag_CvL__88->GetYaxis()->SetTitle("Efficiency");
+   _QuadJet_DoubleTag_CvL__88->GetYaxis()->SetLabelFont(42);
+   _QuadJet_DoubleTag_CvL__88->GetYaxis()->SetTitleFont(42);
+   _QuadJet_DoubleTag_CvL__88->GetZaxis()->SetLabelFont(42);
+   _QuadJet_DoubleTag_CvL__88->GetZaxis()->SetTitleOffset(1);
+   _QuadJet_DoubleTag_CvL__88->GetZaxis()->SetTitleFont(42);
+   _QuadJet_DoubleTag_CvL__88->Draw("HIST");
    CvL_2016_QuadJet_DoubleTag_16->Modified();
    CvL_2016_QuadJet_DoubleTag_16->cd();
    CvL_2016_QuadJet_DoubleTag_16->SetSelected(CvL_2016_QuadJet_DoubleTag_16);

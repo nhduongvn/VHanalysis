@@ -4,7 +4,7 @@
 void pt_jet3_2018_QuadJet_TripleTag_18()
 {
 //=========Macro generated from canvas: pt_jet3_2018_QuadJet_TripleTag_18/pt_jet3_2018_QuadJet_TripleTag_18
-//=========  (Mon Apr 24 10:45:55 2023) by ROOT version 6.26/06
+//=========  (Tue Apr 25 23:01:40 2023) by ROOT version 6.26/06
    TCanvas *pt_jet3_2018_QuadJet_TripleTag_18 = new TCanvas("pt_jet3_2018_QuadJet_TripleTag_18", "pt_jet3_2018_QuadJet_TripleTag_18",0,0,600,600);
    pt_jet3_2018_QuadJet_TripleTag_18->SetHighLightColor(2);
    pt_jet3_2018_QuadJet_TripleTag_18->Range(-109.1764,-0.04038462,585.8166,0.2961538);
@@ -21,24 +21,24 @@ void pt_jet3_2018_QuadJet_TripleTag_18()
    pt_jet3_2018_QuadJet_TripleTag_18->SetFrameBorderMode(0);
    
    TH1D *_QuadJet_TripleTag_pt_jet3__19 = new TH1D("_QuadJet_TripleTag_pt_jet3__19","",50,0,500);
-   _QuadJet_TripleTag_pt_jet3__19->SetBinContent(5,0.02044905);
-   _QuadJet_TripleTag_pt_jet3__19->SetBinContent(6,0.04231721);
-   _QuadJet_TripleTag_pt_jet3__19->SetBinContent(7,0.07445885);
-   _QuadJet_TripleTag_pt_jet3__19->SetBinContent(8,0.1011302);
-   _QuadJet_TripleTag_pt_jet3__19->SetBinContent(9,0.1174823);
-   _QuadJet_TripleTag_pt_jet3__19->SetBinContent(10,0.1269925);
-   _QuadJet_TripleTag_pt_jet3__19->SetBinContent(11,0.1364688);
-   _QuadJet_TripleTag_pt_jet3__19->SetBinContent(12,0.1446138);
-   _QuadJet_TripleTag_pt_jet3__19->SetBinContent(13,0.1536454);
-   _QuadJet_TripleTag_pt_jet3__19->SetBinContent(14,0.149004);
-   _QuadJet_TripleTag_pt_jet3__19->SetBinContent(15,0.1430303);
-   _QuadJet_TripleTag_pt_jet3__19->SetBinContent(16,0.152054);
-   _QuadJet_TripleTag_pt_jet3__19->SetBinContent(17,0.1392734);
-   _QuadJet_TripleTag_pt_jet3__19->SetBinContent(18,0.1373844);
+   _QuadJet_TripleTag_pt_jet3__19->SetBinContent(5,0.02050533);
+   _QuadJet_TripleTag_pt_jet3__19->SetBinContent(6,0.04226872);
+   _QuadJet_TripleTag_pt_jet3__19->SetBinContent(7,0.07438756);
+   _QuadJet_TripleTag_pt_jet3__19->SetBinContent(8,0.1012401);
+   _QuadJet_TripleTag_pt_jet3__19->SetBinContent(9,0.1174989);
+   _QuadJet_TripleTag_pt_jet3__19->SetBinContent(10,0.1267579);
+   _QuadJet_TripleTag_pt_jet3__19->SetBinContent(11,0.1367147);
+   _QuadJet_TripleTag_pt_jet3__19->SetBinContent(12,0.144253);
+   _QuadJet_TripleTag_pt_jet3__19->SetBinContent(13,0.1540602);
+   _QuadJet_TripleTag_pt_jet3__19->SetBinContent(14,0.1480298);
+   _QuadJet_TripleTag_pt_jet3__19->SetBinContent(15,0.1440712);
+   _QuadJet_TripleTag_pt_jet3__19->SetBinContent(16,0.1529484);
+   _QuadJet_TripleTag_pt_jet3__19->SetBinContent(17,0.1403813);
+   _QuadJet_TripleTag_pt_jet3__19->SetBinContent(18,0.1375661);
    _QuadJet_TripleTag_pt_jet3__19->SetBinContent(19,0.1493384);
-   _QuadJet_TripleTag_pt_jet3__19->SetBinContent(20,0.1828571);
+   _QuadJet_TripleTag_pt_jet3__19->SetBinContent(20,0.1805158);
    _QuadJet_TripleTag_pt_jet3__19->SetBinContent(21,0.203252);
-   _QuadJet_TripleTag_pt_jet3__19->SetBinContent(22,0.1302083);
+   _QuadJet_TripleTag_pt_jet3__19->SetBinContent(22,0.1295337);
    _QuadJet_TripleTag_pt_jet3__19->SetBinContent(23,0.0952381);
    _QuadJet_TripleTag_pt_jet3__19->SetBinContent(24,0.1595745);
    _QuadJet_TripleTag_pt_jet3__19->SetBinContent(25,0.1428571);
@@ -55,7 +55,7 @@ void pt_jet3_2018_QuadJet_TripleTag_18()
    _QuadJet_TripleTag_pt_jet3__19->SetBinContent(36,0.1428571);
    _QuadJet_TripleTag_pt_jet3__19->SetBinContent(40,0.1666667);
    _QuadJet_TripleTag_pt_jet3__19->SetBinContent(51,0.25);
-   _QuadJet_TripleTag_pt_jet3__19->SetEntries(4.530988);
+   _QuadJet_TripleTag_pt_jet3__19->SetEntries(4.530351);
    
    TPaveStats *ptstats = new TPaveStats(0.78,0.775,0.98,0.935,"brNDC");
    ptstats->SetName("stats");
@@ -67,7 +67,7 @@ void pt_jet3_2018_QuadJet_TripleTag_18()
    ptstats_LaTex->SetTextSize(0.0368);
    ptstats_LaTex = ptstats->AddText("Entries = 5      ");
    ptstats_LaTex = ptstats->AddText("Mean  =  222.4");
-   ptstats_LaTex = ptstats->AddText("Std Dev   =   92.3");
+   ptstats_LaTex = ptstats->AddText("Std Dev   =  92.32");
    ptstats->SetOptStat(1111);
    ptstats->SetOptFit(0);
    ptstats->Draw();

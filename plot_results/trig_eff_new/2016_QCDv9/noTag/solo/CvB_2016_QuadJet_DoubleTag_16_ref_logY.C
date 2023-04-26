@@ -4,7 +4,7 @@
 void CvB_2016_QuadJet_DoubleTag_16_ref_logY()
 {
 //=========Macro generated from canvas: CvB_2016_QuadJet_DoubleTag_16_ref/CvB_2016_QuadJet_DoubleTag_16_ref
-//=========  (Mon Apr 24 10:39:17 2023) by ROOT version 6.26/06
+//=========  (Tue Apr 25 23:03:07 2023) by ROOT version 6.26/06
    TCanvas *CvB_2016_QuadJet_DoubleTag_16_ref = new TCanvas("CvB_2016_QuadJet_DoubleTag_16_ref", "CvB_2016_QuadJet_DoubleTag_16_ref",0,0,600,600);
    CvB_2016_QuadJet_DoubleTag_16_ref->SetHighLightColor(2);
    CvB_2016_QuadJet_DoubleTag_16_ref->Range(-0.2,4.188143,1.133333,6.359236);
@@ -16,18 +16,18 @@ void CvB_2016_QuadJet_DoubleTag_16_ref_logY()
    CvB_2016_QuadJet_DoubleTag_16_ref->SetFrameBorderMode(0);
    CvB_2016_QuadJet_DoubleTag_16_ref->SetFrameBorderMode(0);
    
-   TH1D *_QuadJet_DoubleTag_CvB_ref__198 = new TH1D("_QuadJet_DoubleTag_CvB_ref__198","",10,0,1);
-   _QuadJet_DoubleTag_CvB_ref__198->SetBinContent(1,309375);
-   _QuadJet_DoubleTag_CvB_ref__198->SetBinContent(2,57547);
-   _QuadJet_DoubleTag_CvB_ref__198->SetBinContent(3,50893);
-   _QuadJet_DoubleTag_CvB_ref__198->SetBinContent(4,50849);
-   _QuadJet_DoubleTag_CvB_ref__198->SetBinContent(5,63339);
-   _QuadJet_DoubleTag_CvB_ref__198->SetBinContent(6,89730);
-   _QuadJet_DoubleTag_CvB_ref__198->SetBinContent(7,154713);
-   _QuadJet_DoubleTag_CvB_ref__198->SetBinContent(8,324073);
-   _QuadJet_DoubleTag_CvB_ref__198->SetBinContent(9,732113);
-   _QuadJet_DoubleTag_CvB_ref__198->SetBinContent(10,348060);
-   _QuadJet_DoubleTag_CvB_ref__198->SetEntries(2180692);
+   TH1D *_QuadJet_DoubleTag_CvB_ref__102 = new TH1D("_QuadJet_DoubleTag_CvB_ref__102","",10,0,1);
+   _QuadJet_DoubleTag_CvB_ref__102->SetBinContent(1,309375);
+   _QuadJet_DoubleTag_CvB_ref__102->SetBinContent(2,57547);
+   _QuadJet_DoubleTag_CvB_ref__102->SetBinContent(3,50893);
+   _QuadJet_DoubleTag_CvB_ref__102->SetBinContent(4,50849);
+   _QuadJet_DoubleTag_CvB_ref__102->SetBinContent(5,63339);
+   _QuadJet_DoubleTag_CvB_ref__102->SetBinContent(6,89730);
+   _QuadJet_DoubleTag_CvB_ref__102->SetBinContent(7,154713);
+   _QuadJet_DoubleTag_CvB_ref__102->SetBinContent(8,324073);
+   _QuadJet_DoubleTag_CvB_ref__102->SetBinContent(9,732113);
+   _QuadJet_DoubleTag_CvB_ref__102->SetBinContent(10,348060);
+   _QuadJet_DoubleTag_CvB_ref__102->SetEntries(2180692);
    
    TPaveStats *ptstats = new TPaveStats(0.78,0.775,0.98,0.935,"brNDC");
    ptstats->SetName("stats");
@@ -43,25 +43,25 @@ void CvB_2016_QuadJet_DoubleTag_16_ref_logY()
    ptstats->SetOptStat(1111);
    ptstats->SetOptFit(0);
    ptstats->Draw();
-   _QuadJet_DoubleTag_CvB_ref__198->GetListOfFunctions()->Add(ptstats);
-   ptstats->SetParent(_QuadJet_DoubleTag_CvB_ref__198);
+   _QuadJet_DoubleTag_CvB_ref__102->GetListOfFunctions()->Add(ptstats);
+   ptstats->SetParent(_QuadJet_DoubleTag_CvB_ref__102);
 
    Int_t ci;      // for color index setting
    TColor *color; // for color definition with alpha
    ci = TColor::GetColor("#0000ff");
-   _QuadJet_DoubleTag_CvB_ref__198->SetLineColor(ci);
-   _QuadJet_DoubleTag_CvB_ref__198->GetXaxis()->SetTitle("CvB tagging score");
-   _QuadJet_DoubleTag_CvB_ref__198->GetXaxis()->SetRange(1,10);
-   _QuadJet_DoubleTag_CvB_ref__198->GetXaxis()->SetLabelFont(42);
-   _QuadJet_DoubleTag_CvB_ref__198->GetXaxis()->SetTitleOffset(1);
-   _QuadJet_DoubleTag_CvB_ref__198->GetXaxis()->SetTitleFont(42);
-   _QuadJet_DoubleTag_CvB_ref__198->GetYaxis()->SetTitle("Events");
-   _QuadJet_DoubleTag_CvB_ref__198->GetYaxis()->SetLabelFont(42);
-   _QuadJet_DoubleTag_CvB_ref__198->GetYaxis()->SetTitleFont(42);
-   _QuadJet_DoubleTag_CvB_ref__198->GetZaxis()->SetLabelFont(42);
-   _QuadJet_DoubleTag_CvB_ref__198->GetZaxis()->SetTitleOffset(1);
-   _QuadJet_DoubleTag_CvB_ref__198->GetZaxis()->SetTitleFont(42);
-   _QuadJet_DoubleTag_CvB_ref__198->Draw("HIST");
+   _QuadJet_DoubleTag_CvB_ref__102->SetLineColor(ci);
+   _QuadJet_DoubleTag_CvB_ref__102->GetXaxis()->SetTitle("CvB tagging score");
+   _QuadJet_DoubleTag_CvB_ref__102->GetXaxis()->SetRange(1,10);
+   _QuadJet_DoubleTag_CvB_ref__102->GetXaxis()->SetLabelFont(42);
+   _QuadJet_DoubleTag_CvB_ref__102->GetXaxis()->SetTitleOffset(1);
+   _QuadJet_DoubleTag_CvB_ref__102->GetXaxis()->SetTitleFont(42);
+   _QuadJet_DoubleTag_CvB_ref__102->GetYaxis()->SetTitle("Events");
+   _QuadJet_DoubleTag_CvB_ref__102->GetYaxis()->SetLabelFont(42);
+   _QuadJet_DoubleTag_CvB_ref__102->GetYaxis()->SetTitleFont(42);
+   _QuadJet_DoubleTag_CvB_ref__102->GetZaxis()->SetLabelFont(42);
+   _QuadJet_DoubleTag_CvB_ref__102->GetZaxis()->SetTitleOffset(1);
+   _QuadJet_DoubleTag_CvB_ref__102->GetZaxis()->SetTitleFont(42);
+   _QuadJet_DoubleTag_CvB_ref__102->Draw("HIST");
    CvB_2016_QuadJet_DoubleTag_16_ref->Modified();
    CvB_2016_QuadJet_DoubleTag_16_ref->cd();
    CvB_2016_QuadJet_DoubleTag_16_ref->SetSelected(CvB_2016_QuadJet_DoubleTag_16_ref);

@@ -59,7 +59,7 @@ def getHist(pN, sample_name, fH, lS, printSamples=True):
 ## These you can edit / change
 ###############################
 years = ['16', '17', '18']
-years = ['18']
+years = ['16']
 regions = ['tags', 'algo', 'both']#, 'alljet', 'seljet']
 regions = [
   'tags', 'tags_noMassCorr', 'tags_noJEC',
@@ -147,7 +147,7 @@ nums = {}
 ## Go through each variable and year.
 ##############################################################
 
-regions = ["", "_tagged"]
+regions = ["", "_tagged", "_ideal"]
 
 ## Go through each plot of interest
 categories = {
@@ -210,8 +210,8 @@ for r in regions:
         ]
       
         ## Make the canvas name and output directory
-        regionName = r if r != "" else "noTag"
-        canvas_name = v + "_" + categories[y][i] + "_" + y
+        regionName = r[1:] if r != "" else "noTag"
+        canvas_name = v + "_" + categories[y][i] + "_" + y + r
         outputdir = plotFolder + '/20' + y + '_QCDv9/' + regionName + '/'
         
         print "canvas_name = ", canvas_name
