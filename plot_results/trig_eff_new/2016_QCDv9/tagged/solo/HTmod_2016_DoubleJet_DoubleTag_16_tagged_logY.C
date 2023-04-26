@@ -4,7 +4,7 @@
 void HTmod_2016_DoubleJet_DoubleTag_16_tagged_logY()
 {
 //=========Macro generated from canvas: HTmod_2016_DoubleJet_DoubleTag_16_tagged/HTmod_2016_DoubleJet_DoubleTag_16_tagged
-//=========  (Tue Apr 25 23:03:08 2023) by ROOT version 6.26/06
+//=========  (Wed Apr 26 16:41:43 2023) by ROOT version 6.26/06
    TCanvas *HTmod_2016_DoubleJet_DoubleTag_16_tagged = new TCanvas("HTmod_2016_DoubleJet_DoubleTag_16_tagged", "HTmod_2016_DoubleJet_DoubleTag_16_tagged",0,0,600,600);
    HTmod_2016_DoubleJet_DoubleTag_16_tagged->SetHighLightColor(2);
    HTmod_2016_DoubleJet_DoubleTag_16_tagged->Range(-400,-0.5359811,2266.667,1.81353);
@@ -22,16 +22,16 @@ void HTmod_2016_DoubleJet_DoubleTag_16_tagged_logY()
    _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(41,2);
    _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(42,2);
    _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(43,4);
-   _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(44,6);
+   _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(44,5);
    _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(45,11);
    _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(46,3);
    _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(47,9);
    _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(48,9);
    _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(49,15);
    _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(50,10);
-   _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(51,13);
+   _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(51,12);
    _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(52,17);
-   _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(53,13);
+   _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(53,12);
    _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(54,10);
    _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(55,11);
    _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(56,20);
@@ -39,7 +39,7 @@ void HTmod_2016_DoubleJet_DoubleTag_16_tagged_logY()
    _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(58,5);
    _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(59,16);
    _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(60,11);
-   _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(61,7);
+   _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(61,6);
    _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(62,14);
    _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(63,7);
    _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(64,10);
@@ -48,8 +48,8 @@ void HTmod_2016_DoubleJet_DoubleTag_16_tagged_logY()
    _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(67,11);
    _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(68,12);
    _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(69,15);
-   _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(70,6);
-   _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(71,5);
+   _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(70,5);
+   _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(71,4);
    _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(72,10);
    _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(73,9);
    _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(74,5);
@@ -87,7 +87,6 @@ void HTmod_2016_DoubleJet_DoubleTag_16_tagged_logY()
    _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(109,2);
    _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(112,2);
    _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(113,3);
-   _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(115,1);
    _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(116,1);
    _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(118,2);
    _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(119,1);
@@ -104,7 +103,7 @@ void HTmod_2016_DoubleJet_DoubleTag_16_tagged_logY()
    _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(186,1);
    _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(198,1);
    _DoubleJet_DoubleTag_tagged_HTmod__179->SetBinContent(201,2);
-   _DoubleJet_DoubleTag_tagged_HTmod__179->SetEntries(479);
+   _DoubleJet_DoubleTag_tagged_HTmod__179->SetEntries(472);
    
    TPaveStats *ptstats = new TPaveStats(0.78,0.775,0.98,0.935,"brNDC");
    ptstats->SetName("stats");
@@ -114,8 +113,8 @@ void HTmod_2016_DoubleJet_DoubleTag_16_tagged_logY()
    ptstats->SetTextFont(42);
    TText *ptstats_LaTex = ptstats->AddText("2016_DoubleJet_DoubleTag_tagged_HTmod");
    ptstats_LaTex->SetTextSize(0.0368);
-   ptstats_LaTex = ptstats->AddText("Entries = 479    ");
-   ptstats_LaTex = ptstats->AddText("Mean  =  685.4");
+   ptstats_LaTex = ptstats->AddText("Entries = 472    ");
+   ptstats_LaTex = ptstats->AddText("Mean  =  685.8");
    ptstats_LaTex = ptstats->AddText("Std Dev   =  216.6");
    ptstats->SetOptStat(1111);
    ptstats->SetOptFit(0);

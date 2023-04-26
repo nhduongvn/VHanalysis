@@ -4,10 +4,10 @@
 void pt_jet2_2017_QuadJet_noTag_17_tagged()
 {
 //=========Macro generated from canvas: pt_jet2_2017_QuadJet_noTag_17_tagged/pt_jet2_2017_QuadJet_noTag_17_tagged
-//=========  (Tue Apr 25 23:02:18 2023) by ROOT version 6.26/06
+//=========  (Wed Apr 26 16:41:50 2023) by ROOT version 6.26/06
    TCanvas *pt_jet2_2017_QuadJet_noTag_17_tagged = new TCanvas("pt_jet2_2017_QuadJet_noTag_17_tagged", "pt_jet2_2017_QuadJet_noTag_17_tagged",0,0,600,600);
    pt_jet2_2017_QuadJet_noTag_17_tagged->SetHighLightColor(2);
-   pt_jet2_2017_QuadJet_noTag_17_tagged->Range(-109.1764,-0.00331361,585.8166,0.0242998);
+   pt_jet2_2017_QuadJet_noTag_17_tagged->Range(-109.1764,-0.003473945,585.8166,0.0254756);
    pt_jet2_2017_QuadJet_noTag_17_tagged->SetFillColor(0);
    pt_jet2_2017_QuadJet_noTag_17_tagged->SetFillStyle(4000);
    pt_jet2_2017_QuadJet_noTag_17_tagged->SetBorderMode(0);
@@ -21,23 +21,23 @@ void pt_jet2_2017_QuadJet_noTag_17_tagged()
    pt_jet2_2017_QuadJet_noTag_17_tagged->SetFrameBorderMode(0);
    
    TH1D *_QuadJet_noTag_tagged_pt_jet2__70 = new TH1D("_QuadJet_noTag_tagged_pt_jet2__70","",50,0,500);
-   _QuadJet_noTag_tagged_pt_jet2__70->SetBinContent(5,0.001175088);
-   _QuadJet_noTag_tagged_pt_jet2__70->SetBinContent(6,0.002777184);
-   _QuadJet_noTag_tagged_pt_jet2__70->SetBinContent(7,0.00390117);
-   _QuadJet_noTag_tagged_pt_jet2__70->SetBinContent(8,0.005208333);
-   _QuadJet_noTag_tagged_pt_jet2__70->SetBinContent(9,0.004692244);
-   _QuadJet_noTag_tagged_pt_jet2__70->SetBinContent(10,0.007188801);
-   _QuadJet_noTag_tagged_pt_jet2__70->SetBinContent(11,0.005923001);
-   _QuadJet_noTag_tagged_pt_jet2__70->SetBinContent(12,0.005574913);
-   _QuadJet_noTag_tagged_pt_jet2__70->SetBinContent(13,0.008137432);
-   _QuadJet_noTag_tagged_pt_jet2__70->SetBinContent(14,0.006451613);
-   _QuadJet_noTag_tagged_pt_jet2__70->SetBinContent(15,0.005357143);
-   _QuadJet_noTag_tagged_pt_jet2__70->SetBinContent(16,0.008438819);
-   _QuadJet_noTag_tagged_pt_jet2__70->SetBinContent(17,0.009615385);
-   _QuadJet_noTag_tagged_pt_jet2__70->SetBinContent(18,0.00921659);
-   _QuadJet_noTag_tagged_pt_jet2__70->SetBinContent(19,0.02051282);
-   _QuadJet_noTag_tagged_pt_jet2__70->SetBinContent(21,0.01);
-   _QuadJet_noTag_tagged_pt_jet2__70->SetEntries(0.1141705);
+   _QuadJet_noTag_tagged_pt_jet2__70->SetBinContent(5,0.001221001);
+   _QuadJet_noTag_tagged_pt_jet2__70->SetBinContent(6,0.00244119);
+   _QuadJet_noTag_tagged_pt_jet2__70->SetBinContent(7,0.003634972);
+   _QuadJet_noTag_tagged_pt_jet2__70->SetBinContent(8,0.004956071);
+   _QuadJet_noTag_tagged_pt_jet2__70->SetBinContent(9,0.005169443);
+   _QuadJet_noTag_tagged_pt_jet2__70->SetBinContent(10,0.007459757);
+   _QuadJet_noTag_tagged_pt_jet2__70->SetBinContent(11,0.006163328);
+   _QuadJet_noTag_tagged_pt_jet2__70->SetBinContent(12,0.005124451);
+   _QuadJet_noTag_tagged_pt_jet2__70->SetBinContent(13,0.008395522);
+   _QuadJet_noTag_tagged_pt_jet2__70->SetBinContent(14,0.006675567);
+   _QuadJet_noTag_tagged_pt_jet2__70->SetBinContent(15,0.005494505);
+   _QuadJet_noTag_tagged_pt_jet2__70->SetBinContent(16,0.006465517);
+   _QuadJet_noTag_tagged_pt_jet2__70->SetBinContent(17,0.01010101);
+   _QuadJet_noTag_tagged_pt_jet2__70->SetBinContent(18,0.009302326);
+   _QuadJet_noTag_tagged_pt_jet2__70->SetBinContent(19,0.02150538);
+   _QuadJet_noTag_tagged_pt_jet2__70->SetBinContent(21,0.01030928);
+   _QuadJet_noTag_tagged_pt_jet2__70->SetEntries(0.1144193);
    
    TPaveStats *ptstats = new TPaveStats(0.78,0.775,0.98,0.935,"brNDC");
    ptstats->SetName("stats");
@@ -48,7 +48,7 @@ void pt_jet2_2017_QuadJet_noTag_17_tagged()
    TText *ptstats_LaTex = ptstats->AddText("2017_QuadJet_noTag_tagged_pt_jet2");
    ptstats_LaTex->SetTextSize(0.0368);
    ptstats_LaTex = ptstats->AddText("Entries = 0      ");
-   ptstats_LaTex = ptstats->AddText("Mean  =    142");
+   ptstats_LaTex = ptstats->AddText("Mean  =  142.6");
    ptstats_LaTex = ptstats->AddText("Std Dev   =  43.77");
    ptstats->SetOptStat(1111);
    ptstats->SetOptFit(0);

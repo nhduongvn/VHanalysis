@@ -4,10 +4,10 @@
 void pt_jet3_2016_DoubleJet_TripleTag_16_tagged_logY()
 {
 //=========Macro generated from canvas: pt_jet3_2016_DoubleJet_TripleTag_16_tagged/pt_jet3_2016_DoubleJet_TripleTag_16_tagged
-//=========  (Tue Apr 25 23:03:07 2023) by ROOT version 6.26/06
+//=========  (Wed Apr 26 16:41:42 2023) by ROOT version 6.26/06
    TCanvas *pt_jet3_2016_DoubleJet_TripleTag_16_tagged = new TCanvas("pt_jet3_2016_DoubleJet_TripleTag_16_tagged", "pt_jet3_2016_DoubleJet_TripleTag_16_tagged",0,0,600,600);
    pt_jet3_2016_DoubleJet_TripleTag_16_tagged->SetHighLightColor(2);
-   pt_jet3_2016_DoubleJet_TripleTag_16_tagged->Range(-100,-0.7787011,566.6667,3.99801);
+   pt_jet3_2016_DoubleJet_TripleTag_16_tagged->Range(-100,-0.7782335,566.6667,3.993802);
    pt_jet3_2016_DoubleJet_TripleTag_16_tagged->SetFillColor(0);
    pt_jet3_2016_DoubleJet_TripleTag_16_tagged->SetBorderMode(0);
    pt_jet3_2016_DoubleJet_TripleTag_16_tagged->SetBorderSize(2);
@@ -17,18 +17,18 @@ void pt_jet3_2016_DoubleJet_TripleTag_16_tagged_logY()
    pt_jet3_2016_DoubleJet_TripleTag_16_tagged->SetFrameBorderMode(0);
    
    TH1D *_DoubleJet_TripleTag_tagged_pt_jet3__152 = new TH1D("_DoubleJet_TripleTag_tagged_pt_jet3__152","",50,0,500);
-   _DoubleJet_TripleTag_tagged_pt_jet3__152->SetBinContent(5,776);
-   _DoubleJet_TripleTag_tagged_pt_jet3__152->SetBinContent(6,1749);
-   _DoubleJet_TripleTag_tagged_pt_jet3__152->SetBinContent(7,1707);
-   _DoubleJet_TripleTag_tagged_pt_jet3__152->SetBinContent(8,1456);
-   _DoubleJet_TripleTag_tagged_pt_jet3__152->SetBinContent(9,1000);
-   _DoubleJet_TripleTag_tagged_pt_jet3__152->SetBinContent(10,704);
-   _DoubleJet_TripleTag_tagged_pt_jet3__152->SetBinContent(11,502);
-   _DoubleJet_TripleTag_tagged_pt_jet3__152->SetBinContent(12,342);
+   _DoubleJet_TripleTag_tagged_pt_jet3__152->SetBinContent(5,771);
+   _DoubleJet_TripleTag_tagged_pt_jet3__152->SetBinContent(6,1734);
+   _DoubleJet_TripleTag_tagged_pt_jet3__152->SetBinContent(7,1695);
+   _DoubleJet_TripleTag_tagged_pt_jet3__152->SetBinContent(8,1448);
+   _DoubleJet_TripleTag_tagged_pt_jet3__152->SetBinContent(9,993);
+   _DoubleJet_TripleTag_tagged_pt_jet3__152->SetBinContent(10,702);
+   _DoubleJet_TripleTag_tagged_pt_jet3__152->SetBinContent(11,498);
+   _DoubleJet_TripleTag_tagged_pt_jet3__152->SetBinContent(12,341);
    _DoubleJet_TripleTag_tagged_pt_jet3__152->SetBinContent(13,201);
    _DoubleJet_TripleTag_tagged_pt_jet3__152->SetBinContent(14,155);
-   _DoubleJet_TripleTag_tagged_pt_jet3__152->SetBinContent(15,77);
-   _DoubleJet_TripleTag_tagged_pt_jet3__152->SetBinContent(16,52);
+   _DoubleJet_TripleTag_tagged_pt_jet3__152->SetBinContent(15,78);
+   _DoubleJet_TripleTag_tagged_pt_jet3__152->SetBinContent(16,51);
    _DoubleJet_TripleTag_tagged_pt_jet3__152->SetBinContent(17,39);
    _DoubleJet_TripleTag_tagged_pt_jet3__152->SetBinContent(18,30);
    _DoubleJet_TripleTag_tagged_pt_jet3__152->SetBinContent(19,24);
@@ -45,7 +45,7 @@ void pt_jet3_2016_DoubleJet_TripleTag_16_tagged_logY()
    _DoubleJet_TripleTag_tagged_pt_jet3__152->SetBinContent(30,4);
    _DoubleJet_TripleTag_tagged_pt_jet3__152->SetBinContent(32,1);
    _DoubleJet_TripleTag_tagged_pt_jet3__152->SetBinContent(33,1);
-   _DoubleJet_TripleTag_tagged_pt_jet3__152->SetEntries(8875);
+   _DoubleJet_TripleTag_tagged_pt_jet3__152->SetEntries(8821);
    
    TPaveStats *ptstats = new TPaveStats(0.78,0.775,0.98,0.935,"brNDC");
    ptstats->SetName("stats");
@@ -55,9 +55,9 @@ void pt_jet3_2016_DoubleJet_TripleTag_16_tagged_logY()
    ptstats->SetTextFont(42);
    TText *ptstats_LaTex = ptstats->AddText("2016_DoubleJet_TripleTag_tagged_pt_jet3");
    ptstats_LaTex->SetTextSize(0.0368);
-   ptstats_LaTex = ptstats->AddText("Entries = 8875   ");
-   ptstats_LaTex = ptstats->AddText("Mean  =   77.9");
-   ptstats_LaTex = ptstats->AddText("Std Dev   =  27.99");
+   ptstats_LaTex = ptstats->AddText("Entries = 8821   ");
+   ptstats_LaTex = ptstats->AddText("Mean  =  77.95");
+   ptstats_LaTex = ptstats->AddText("Std Dev   =  28.04");
    ptstats->SetOptStat(1111);
    ptstats->SetOptFit(0);
    ptstats->Draw();

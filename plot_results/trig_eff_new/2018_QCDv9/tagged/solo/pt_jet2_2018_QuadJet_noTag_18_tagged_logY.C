@@ -4,7 +4,7 @@
 void pt_jet2_2018_QuadJet_noTag_18_tagged_logY()
 {
 //=========Macro generated from canvas: pt_jet2_2018_QuadJet_noTag_18_tagged/pt_jet2_2018_QuadJet_noTag_18_tagged
-//=========  (Tue Apr 25 23:01:41 2023) by ROOT version 6.26/06
+//=========  (Wed Apr 26 16:41:57 2023) by ROOT version 6.26/06
    TCanvas *pt_jet2_2018_QuadJet_noTag_18_tagged = new TCanvas("pt_jet2_2018_QuadJet_noTag_18_tagged", "pt_jet2_2018_QuadJet_noTag_18_tagged",0,0,600,600);
    pt_jet2_2018_QuadJet_noTag_18_tagged->SetHighLightColor(2);
    pt_jet2_2018_QuadJet_noTag_18_tagged->Range(-100,-0.578784,566.6667,2.198756);
@@ -23,12 +23,12 @@ void pt_jet2_2018_QuadJet_noTag_18_tagged_logY()
    _QuadJet_noTag_tagged_pt_jet2__71->SetBinContent(9,44);
    _QuadJet_noTag_tagged_pt_jet2__71->SetBinContent(10,28);
    _QuadJet_noTag_tagged_pt_jet2__71->SetBinContent(11,29);
-   _QuadJet_noTag_tagged_pt_jet2__71->SetBinContent(12,21);
+   _QuadJet_noTag_tagged_pt_jet2__71->SetBinContent(12,22);
    _QuadJet_noTag_tagged_pt_jet2__71->SetBinContent(13,10);
    _QuadJet_noTag_tagged_pt_jet2__71->SetBinContent(14,8);
    _QuadJet_noTag_tagged_pt_jet2__71->SetBinContent(15,10);
    _QuadJet_noTag_tagged_pt_jet2__71->SetBinContent(16,5);
-   _QuadJet_noTag_tagged_pt_jet2__71->SetBinContent(17,5);
+   _QuadJet_noTag_tagged_pt_jet2__71->SetBinContent(17,6);
    _QuadJet_noTag_tagged_pt_jet2__71->SetBinContent(18,3);
    _QuadJet_noTag_tagged_pt_jet2__71->SetBinContent(19,2);
    _QuadJet_noTag_tagged_pt_jet2__71->SetBinContent(20,2);
@@ -37,7 +37,7 @@ void pt_jet2_2018_QuadJet_noTag_18_tagged_logY()
    _QuadJet_noTag_tagged_pt_jet2__71->SetBinContent(26,1);
    _QuadJet_noTag_tagged_pt_jet2__71->SetBinContent(28,2);
    _QuadJet_noTag_tagged_pt_jet2__71->SetBinContent(34,1);
-   _QuadJet_noTag_tagged_pt_jet2__71->SetEntries(251);
+   _QuadJet_noTag_tagged_pt_jet2__71->SetEntries(253);
    
    TPaveStats *ptstats = new TPaveStats(0.78,0.775,0.98,0.935,"brNDC");
    ptstats->SetName("stats");
@@ -47,9 +47,9 @@ void pt_jet2_2018_QuadJet_noTag_18_tagged_logY()
    ptstats->SetTextFont(42);
    TText *ptstats_LaTex = ptstats->AddText("2018_QuadJet_noTag_tagged_pt_jet2");
    ptstats_LaTex->SetTextSize(0.0368);
-   ptstats_LaTex = ptstats->AddText("Entries = 251    ");
-   ptstats_LaTex = ptstats->AddText("Mean  =    102");
-   ptstats_LaTex = ptstats->AddText("Std Dev   =  39.57");
+   ptstats_LaTex = ptstats->AddText("Entries = 253    ");
+   ptstats_LaTex = ptstats->AddText("Mean  =  102.3");
+   ptstats_LaTex = ptstats->AddText("Std Dev   =  39.61");
    ptstats->SetOptStat(1111);
    ptstats->SetOptFit(0);
    ptstats->Draw();

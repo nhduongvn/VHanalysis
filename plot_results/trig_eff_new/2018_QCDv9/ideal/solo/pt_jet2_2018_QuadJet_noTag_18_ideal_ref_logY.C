@@ -4,10 +4,10 @@
 void pt_jet2_2018_QuadJet_noTag_18_ideal_ref_logY()
 {
 //=========Macro generated from canvas: pt_jet2_2018_QuadJet_noTag_18_ideal_ref/pt_jet2_2018_QuadJet_noTag_18_ideal_ref
-//=========  (Tue Apr 25 23:01:42 2023) by ROOT version 6.26/06
+//=========  (Wed Apr 26 16:41:58 2023) by ROOT version 6.26/06
    TCanvas *pt_jet2_2018_QuadJet_noTag_18_ideal_ref = new TCanvas("pt_jet2_2018_QuadJet_noTag_18_ideal_ref", "pt_jet2_2018_QuadJet_noTag_18_ideal_ref",0,0,600,600);
    pt_jet2_2018_QuadJet_noTag_18_ideal_ref->SetHighLightColor(2);
-   pt_jet2_2018_QuadJet_noTag_18_ideal_ref->Range(-100,-0.8682922,566.6667,4.804329);
+   pt_jet2_2018_QuadJet_noTag_18_ideal_ref->Range(-100,-0.8553604,566.6667,4.687943);
    pt_jet2_2018_QuadJet_noTag_18_ideal_ref->SetFillColor(0);
    pt_jet2_2018_QuadJet_noTag_18_ideal_ref->SetBorderMode(0);
    pt_jet2_2018_QuadJet_noTag_18_ideal_ref->SetBorderSize(2);
@@ -17,29 +17,29 @@ void pt_jet2_2018_QuadJet_noTag_18_ideal_ref_logY()
    pt_jet2_2018_QuadJet_noTag_18_ideal_ref->SetFrameBorderMode(0);
    
    TH1D *_QuadJet_noTag_ideal_pt_jet2_ref__126 = new TH1D("_QuadJet_noTag_ideal_pt_jet2_ref__126","",50,0,500);
-   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(5,792);
-   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(6,6146);
-   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(7,9110);
-   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(8,8328);
-   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(9,6468);
-   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(10,4851);
-   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(11,3685);
-   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(12,2636);
-   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(13,1948);
-   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(14,1402);
-   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(15,1013);
-   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(16,756);
-   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(17,626);
-   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(18,441);
-   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(19,322);
-   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(20,229);
-   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(21,203);
-   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(22,169);
+   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(5,249);
+   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(6,2649);
+   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(7,6000);
+   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(8,7179);
+   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(9,6312);
+   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(10,4877);
+   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(11,3715);
+   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(12,2642);
+   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(13,1949);
+   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(14,1410);
+   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(15,1022);
+   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(16,763);
+   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(17,634);
+   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(18,442);
+   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(19,323);
+   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(20,232);
+   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(21,204);
+   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(22,168);
    _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(23,107);
-   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(24,74);
-   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(25,65);
+   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(24,78);
+   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(25,67);
    _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(26,57);
-   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(27,36);
+   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(27,37);
    _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(28,41);
    _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(29,23);
    _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(30,22);
@@ -61,7 +61,7 @@ void pt_jet2_2018_QuadJet_noTag_18_ideal_ref_logY()
    _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(49,1);
    _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(50,1);
    _QuadJet_noTag_ideal_pt_jet2_ref__126->SetBinContent(51,3);
-   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetEntries(49650);
+   _QuadJet_noTag_ideal_pt_jet2_ref__126->SetEntries(41302);
    
    TPaveStats *ptstats = new TPaveStats(0.78,0.775,0.98,0.935,"brNDC");
    ptstats->SetName("stats");
@@ -71,9 +71,9 @@ void pt_jet2_2018_QuadJet_noTag_18_ideal_ref_logY()
    ptstats->SetTextFont(42);
    TText *ptstats_LaTex = ptstats->AddText("2018_QuadJet_noTag_ideal_pt_jet2_ref");
    ptstats_LaTex->SetTextSize(0.0368);
-   ptstats_LaTex = ptstats->AddText("Entries = 49650  ");
-   ptstats_LaTex = ptstats->AddText("Mean  =  90.42");
-   ptstats_LaTex = ptstats->AddText("Std Dev   =  36.32");
+   ptstats_LaTex = ptstats->AddText("Entries = 41302  ");
+   ptstats_LaTex = ptstats->AddText("Mean  =  96.48");
+   ptstats_LaTex = ptstats->AddText("Std Dev   =  37.01");
    ptstats->SetOptStat(1111);
    ptstats->SetOptFit(0);
    ptstats->Draw();

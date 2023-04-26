@@ -4,10 +4,10 @@
 void CvB_2016_QuadJet_TripleTag_16()
 {
 //=========Macro generated from canvas: CvB_2016_QuadJet_TripleTag_16/CvB_2016_QuadJet_TripleTag_16
-//=========  (Tue Apr 25 23:03:07 2023) by ROOT version 6.26/06
+//=========  (Wed Apr 26 16:41:42 2023) by ROOT version 6.26/06
    TCanvas *CvB_2016_QuadJet_TripleTag_16 = new TCanvas("CvB_2016_QuadJet_TripleTag_16", "CvB_2016_QuadJet_TripleTag_16",0,0,600,600);
    CvB_2016_QuadJet_TripleTag_16->SetHighLightColor(2);
-   CvB_2016_QuadJet_TripleTag_16->Range(-0.2183529,0.06732535,1.171633,0.2268263);
+   CvB_2016_QuadJet_TripleTag_16->Range(-0.2183529,0.06748302,1.171633,0.2268118);
    CvB_2016_QuadJet_TripleTag_16->SetFillColor(0);
    CvB_2016_QuadJet_TripleTag_16->SetFillStyle(4000);
    CvB_2016_QuadJet_TripleTag_16->SetBorderMode(0);
@@ -21,17 +21,17 @@ void CvB_2016_QuadJet_TripleTag_16()
    CvB_2016_QuadJet_TripleTag_16->SetFrameBorderMode(0);
    
    TH1D *_QuadJet_TripleTag_CvB__97 = new TH1D("_QuadJet_TripleTag_CvB__97","",10,0,1);
-   _QuadJet_TripleTag_CvB__97->SetBinContent(1,0.2049519);
-   _QuadJet_TripleTag_CvB__97->SetBinContent(2,0.1959789);
-   _QuadJet_TripleTag_CvB__97->SetBinContent(3,0.1914802);
-   _QuadJet_TripleTag_CvB__97->SetBinContent(4,0.1773486);
-   _QuadJet_TripleTag_CvB__97->SetBinContent(5,0.1684586);
-   _QuadJet_TripleTag_CvB__97->SetBinContent(6,0.1487685);
-   _QuadJet_TripleTag_CvB__97->SetBinContent(7,0.1323935);
-   _QuadJet_TripleTag_CvB__97->SetBinContent(8,0.1115027);
-   _QuadJet_TripleTag_CvB__97->SetBinContent(9,0.09377241);
-   _QuadJet_TripleTag_CvB__97->SetBinContent(10,0.09210768);
-   _QuadJet_TripleTag_CvB__97->SetEntries(1.516763);
+   _QuadJet_TripleTag_CvB__97->SetBinContent(1,0.204961);
+   _QuadJet_TripleTag_CvB__97->SetBinContent(2,0.1962839);
+   _QuadJet_TripleTag_CvB__97->SetBinContent(3,0.191358);
+   _QuadJet_TripleTag_CvB__97->SetBinContent(4,0.177358);
+   _QuadJet_TripleTag_CvB__97->SetBinContent(5,0.168794);
+   _QuadJet_TripleTag_CvB__97->SetBinContent(6,0.148951);
+   _QuadJet_TripleTag_CvB__97->SetBinContent(7,0.1324879);
+   _QuadJet_TripleTag_CvB__97->SetBinContent(8,0.1115379);
+   _QuadJet_TripleTag_CvB__97->SetBinContent(9,0.09388672);
+   _QuadJet_TripleTag_CvB__97->SetBinContent(10,0.09223859);
+   _QuadJet_TripleTag_CvB__97->SetEntries(1.517857);
    
    TPaveStats *ptstats = new TPaveStats(0.78,0.775,0.98,0.935,"brNDC");
    ptstats->SetName("stats");
