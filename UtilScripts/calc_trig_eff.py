@@ -69,8 +69,8 @@ regions = [
 plotCat = 'VbbHcc'
 useLogY = False
 
-plotFolder = '../plot_results/trig_eff_new/'
-resultpath = '../condor_results/trigger_efficiency_NEW/'
+plotFolder = '../plot_results/trig_eff_bTags/'
+resultpath = '../condor_results/trigger_efficiency_bTags/'
 
 ## Samples
 ss = [ "SingleMuon" ]
