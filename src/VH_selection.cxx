@@ -970,12 +970,13 @@ void VH_selection::Process(Reader* r) {
     has_bjets = are_bjets(bTagged, desired_BvL);
 
     // Check if the highest two c-tags pass our requirement
-    std::sort(copyjets.begin(), copyjets.end(), JetObj::JetCompCtag());
+    //std::sort(copyjets.begin(), copyjets.end(), JetObj::JetCompCtag());
     std::vector<JetObj> cTagged { copyjets[0], copyjets[1] };
     copyjets.erase(copyjets.begin() + 1); copyjets.erase(copyjets.begin() + 0);
-    has_cjets = are_cjets(cTagged, desired_CvL, desired_CvB);
+    //has_cjets = are_cjets(cTagged, desired_CvL, desired_CvB);
+    bool has_more_bjets = are_bjets(cTagged, desired_BvL);
 
-    bool properly_tagged = has_bjets && has_cjets;
+    bool properly_tagged = has_bjets && has_more_bjets;// has_cjets;
 
     // For each year, we want to make sure that we pass all the criteria we're
     // interested in. We've already got a variable to handle tagging. We need
