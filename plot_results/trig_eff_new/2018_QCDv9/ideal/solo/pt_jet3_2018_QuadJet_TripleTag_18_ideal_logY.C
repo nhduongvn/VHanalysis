@@ -4,10 +4,10 @@
 void pt_jet3_2018_QuadJet_TripleTag_18_ideal_logY()
 {
 //=========Macro generated from canvas: pt_jet3_2018_QuadJet_TripleTag_18_ideal/pt_jet3_2018_QuadJet_TripleTag_18_ideal
-//=========  (Tue Apr 25 23:01:42 2023) by ROOT version 6.26/06
+//=========  (Wed Apr 26 16:41:58 2023) by ROOT version 6.26/06
    TCanvas *pt_jet3_2018_QuadJet_TripleTag_18_ideal = new TCanvas("pt_jet3_2018_QuadJet_TripleTag_18_ideal", "pt_jet3_2018_QuadJet_TripleTag_18_ideal",0,0,600,600);
    pt_jet3_2018_QuadJet_TripleTag_18_ideal->SetHighLightColor(2);
-   pt_jet3_2018_QuadJet_TripleTag_18_ideal->Range(-100,-0.800474,566.6667,4.193966);
+   pt_jet3_2018_QuadJet_TripleTag_18_ideal->Range(-100,-0.8001823,566.6667,4.19134);
    pt_jet3_2018_QuadJet_TripleTag_18_ideal->SetFillColor(0);
    pt_jet3_2018_QuadJet_TripleTag_18_ideal->SetBorderMode(0);
    pt_jet3_2018_QuadJet_TripleTag_18_ideal->SetBorderSize(2);
@@ -17,20 +17,20 @@ void pt_jet3_2018_QuadJet_TripleTag_18_ideal_logY()
    pt_jet3_2018_QuadJet_TripleTag_18_ideal->SetFrameBorderMode(0);
    
    TH1D *_QuadJet_TripleTag_ideal_pt_jet3__128 = new TH1D("_QuadJet_TripleTag_ideal_pt_jet3__128","",50,0,500);
-   _QuadJet_TripleTag_ideal_pt_jet3__128->SetBinContent(5,857);
-   _QuadJet_TripleTag_ideal_pt_jet3__128->SetBinContent(6,2562);
-   _QuadJet_TripleTag_ideal_pt_jet3__128->SetBinContent(7,2612);
-   _QuadJet_TripleTag_ideal_pt_jet3__128->SetBinContent(8,2141);
-   _QuadJet_TripleTag_ideal_pt_jet3__128->SetBinContent(9,1414);
-   _QuadJet_TripleTag_ideal_pt_jet3__128->SetBinContent(10,949);
+   _QuadJet_TripleTag_ideal_pt_jet3__128->SetBinContent(5,780);
+   _QuadJet_TripleTag_ideal_pt_jet3__128->SetBinContent(6,2474);
+   _QuadJet_TripleTag_ideal_pt_jet3__128->SetBinContent(7,2598);
+   _QuadJet_TripleTag_ideal_pt_jet3__128->SetBinContent(8,2151);
+   _QuadJet_TripleTag_ideal_pt_jet3__128->SetBinContent(9,1417);
+   _QuadJet_TripleTag_ideal_pt_jet3__128->SetBinContent(10,955);
    _QuadJet_TripleTag_ideal_pt_jet3__128->SetBinContent(11,640);
-   _QuadJet_TripleTag_ideal_pt_jet3__128->SetBinContent(12,398);
-   _QuadJet_TripleTag_ideal_pt_jet3__128->SetBinContent(13,283);
-   _QuadJet_TripleTag_ideal_pt_jet3__128->SetBinContent(14,195);
-   _QuadJet_TripleTag_ideal_pt_jet3__128->SetBinContent(15,110);
+   _QuadJet_TripleTag_ideal_pt_jet3__128->SetBinContent(12,401);
+   _QuadJet_TripleTag_ideal_pt_jet3__128->SetBinContent(13,285);
+   _QuadJet_TripleTag_ideal_pt_jet3__128->SetBinContent(14,199);
+   _QuadJet_TripleTag_ideal_pt_jet3__128->SetBinContent(15,111);
    _QuadJet_TripleTag_ideal_pt_jet3__128->SetBinContent(16,99);
-   _QuadJet_TripleTag_ideal_pt_jet3__128->SetBinContent(17,50);
-   _QuadJet_TripleTag_ideal_pt_jet3__128->SetBinContent(18,35);
+   _QuadJet_TripleTag_ideal_pt_jet3__128->SetBinContent(17,49);
+   _QuadJet_TripleTag_ideal_pt_jet3__128->SetBinContent(18,38);
    _QuadJet_TripleTag_ideal_pt_jet3__128->SetBinContent(19,24);
    _QuadJet_TripleTag_ideal_pt_jet3__128->SetBinContent(20,25);
    _QuadJet_TripleTag_ideal_pt_jet3__128->SetBinContent(21,23);
@@ -46,7 +46,7 @@ void pt_jet3_2018_QuadJet_TripleTag_18_ideal_logY()
    _QuadJet_TripleTag_ideal_pt_jet3__128->SetBinContent(33,1);
    _QuadJet_TripleTag_ideal_pt_jet3__128->SetBinContent(34,1);
    _QuadJet_TripleTag_ideal_pt_jet3__128->SetBinContent(35,1);
-   _QuadJet_TripleTag_ideal_pt_jet3__128->SetEntries(12447);
+   _QuadJet_TripleTag_ideal_pt_jet3__128->SetEntries(12299);
    
    TPaveStats *ptstats = new TPaveStats(0.78,0.775,0.98,0.935,"brNDC");
    ptstats->SetName("stats");
@@ -56,9 +56,9 @@ void pt_jet3_2018_QuadJet_TripleTag_18_ideal_logY()
    ptstats->SetTextFont(42);
    TText *ptstats_LaTex = ptstats->AddText("2018_QuadJet_TripleTag_ideal_pt_jet3");
    ptstats_LaTex->SetTextSize(0.0368);
-   ptstats_LaTex = ptstats->AddText("Entries = 12447  ");
-   ptstats_LaTex = ptstats->AddText("Mean  =  77.33");
-   ptstats_LaTex = ptstats->AddText("Std Dev   =  26.82");
+   ptstats_LaTex = ptstats->AddText("Entries = 12299  ");
+   ptstats_LaTex = ptstats->AddText("Mean  =  77.76");
+   ptstats_LaTex = ptstats->AddText("Std Dev   =  26.86");
    ptstats->SetOptStat(1111);
    ptstats->SetOptFit(0);
    ptstats->Draw();

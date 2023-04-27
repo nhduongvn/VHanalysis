@@ -4,10 +4,10 @@
 void CvB_2016_QuadJet_DoubleTag_16_ideal_logY()
 {
 //=========Macro generated from canvas: CvB_2016_QuadJet_DoubleTag_16_ideal/CvB_2016_QuadJet_DoubleTag_16_ideal
-//=========  (Tue Apr 25 23:03:10 2023) by ROOT version 6.26/06
+//=========  (Wed Apr 26 16:41:45 2023) by ROOT version 6.26/06
    TCanvas *CvB_2016_QuadJet_DoubleTag_16_ideal = new TCanvas("CvB_2016_QuadJet_DoubleTag_16_ideal", "CvB_2016_QuadJet_DoubleTag_16_ideal",0,0,600,600);
    CvB_2016_QuadJet_DoubleTag_16_ideal->SetHighLightColor(2);
-   CvB_2016_QuadJet_DoubleTag_16_ideal->Range(-0.2,1.521123,1.133333,3.342811);
+   CvB_2016_QuadJet_DoubleTag_16_ideal->Range(-0.2,1.521622,1.133333,3.338314);
    CvB_2016_QuadJet_DoubleTag_16_ideal->SetFillColor(0);
    CvB_2016_QuadJet_DoubleTag_16_ideal->SetBorderMode(0);
    CvB_2016_QuadJet_DoubleTag_16_ideal->SetBorderSize(2);
@@ -17,17 +17,17 @@ void CvB_2016_QuadJet_DoubleTag_16_ideal_logY()
    CvB_2016_QuadJet_DoubleTag_16_ideal->SetFrameBorderMode(0);
    
    TH1D *_QuadJet_DoubleTag_ideal_CvB__317 = new TH1D("_QuadJet_DoubleTag_ideal_CvB__317","",10,0,1);
-   _QuadJet_DoubleTag_ideal_CvB__317->SetBinContent(1,764);
-   _QuadJet_DoubleTag_ideal_CvB__317->SetBinContent(2,125);
+   _QuadJet_DoubleTag_ideal_CvB__317->SetBinContent(1,757);
+   _QuadJet_DoubleTag_ideal_CvB__317->SetBinContent(2,123);
    _QuadJet_DoubleTag_ideal_CvB__317->SetBinContent(3,101);
    _QuadJet_DoubleTag_ideal_CvB__317->SetBinContent(4,121);
    _QuadJet_DoubleTag_ideal_CvB__317->SetBinContent(5,127);
-   _QuadJet_DoubleTag_ideal_CvB__317->SetBinContent(6,163);
-   _QuadJet_DoubleTag_ideal_CvB__317->SetBinContent(7,237);
-   _QuadJet_DoubleTag_ideal_CvB__317->SetBinContent(8,354);
-   _QuadJet_DoubleTag_ideal_CvB__317->SetBinContent(9,502);
-   _QuadJet_DoubleTag_ideal_CvB__317->SetBinContent(10,310);
-   _QuadJet_DoubleTag_ideal_CvB__317->SetEntries(2804);
+   _QuadJet_DoubleTag_ideal_CvB__317->SetBinContent(6,159);
+   _QuadJet_DoubleTag_ideal_CvB__317->SetBinContent(7,236);
+   _QuadJet_DoubleTag_ideal_CvB__317->SetBinContent(8,353);
+   _QuadJet_DoubleTag_ideal_CvB__317->SetBinContent(9,495);
+   _QuadJet_DoubleTag_ideal_CvB__317->SetBinContent(10,308);
+   _QuadJet_DoubleTag_ideal_CvB__317->SetEntries(2780);
    
    TPaveStats *ptstats = new TPaveStats(0.78,0.775,0.98,0.935,"brNDC");
    ptstats->SetName("stats");
@@ -37,9 +37,9 @@ void CvB_2016_QuadJet_DoubleTag_16_ideal_logY()
    ptstats->SetTextFont(42);
    TText *ptstats_LaTex = ptstats->AddText("2016_QuadJet_DoubleTag_ideal_CvB");
    ptstats_LaTex->SetTextSize(0.0368);
-   ptstats_LaTex = ptstats->AddText("Entries = 2804   ");
+   ptstats_LaTex = ptstats->AddText("Entries = 2780   ");
    ptstats_LaTex = ptstats->AddText("Mean  = 0.4943");
-   ptstats_LaTex = ptstats->AddText("Std Dev   = 0.3539");
+   ptstats_LaTex = ptstats->AddText("Std Dev   = 0.3538");
    ptstats->SetOptStat(1111);
    ptstats->SetOptFit(0);
    ptstats->Draw();
