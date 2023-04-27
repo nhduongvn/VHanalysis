@@ -4,7 +4,7 @@
 void HTmod_2016_QuadJet_DoubleTag_16_ideal_logY()
 {
 //=========Macro generated from canvas: HTmod_2016_QuadJet_DoubleTag_16_ideal/HTmod_2016_QuadJet_DoubleTag_16_ideal
-//=========  (Wed Apr 26 16:41:44 2023) by ROOT version 6.26/06
+//=========  (Thu Apr 27 10:18:39 2023) by ROOT version 6.26/06
    TCanvas *HTmod_2016_QuadJet_DoubleTag_16_ideal = new TCanvas("HTmod_2016_QuadJet_DoubleTag_16_ideal", "HTmod_2016_QuadJet_DoubleTag_16_ideal",0,0,600,600);
    HTmod_2016_QuadJet_DoubleTag_16_ideal->SetHighLightColor(2);
    HTmod_2016_QuadJet_DoubleTag_16_ideal->Range(-400,-0.5480949,2266.667,1.922554);

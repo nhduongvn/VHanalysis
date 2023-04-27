@@ -1,0 +1,102 @@
+#ifdef __CLING__
+#pragma cling optimize(0)
+#endif
+void pt_jet0_2018_QuadJet_noTag_18_ideal_ref_logY()
+{
+//=========Macro generated from canvas: pt_jet0_2018_QuadJet_noTag_18_ideal_ref/pt_jet0_2018_QuadJet_noTag_18_ideal_ref
+//=========  (Thu Apr 27 10:20:01 2023) by ROOT version 6.26/06
+   TCanvas *pt_jet0_2018_QuadJet_noTag_18_ideal_ref = new TCanvas("pt_jet0_2018_QuadJet_noTag_18_ideal_ref", "pt_jet0_2018_QuadJet_noTag_18_ideal_ref",0,0,600,600);
+   pt_jet0_2018_QuadJet_noTag_18_ideal_ref->SetHighLightColor(2);
+   pt_jet0_2018_QuadJet_noTag_18_ideal_ref->Range(-100,-0.2959318,566.6667,2.663386);
+   pt_jet0_2018_QuadJet_noTag_18_ideal_ref->SetFillColor(0);
+   pt_jet0_2018_QuadJet_noTag_18_ideal_ref->SetBorderMode(0);
+   pt_jet0_2018_QuadJet_noTag_18_ideal_ref->SetBorderSize(2);
+   pt_jet0_2018_QuadJet_noTag_18_ideal_ref->SetLogy();
+   pt_jet0_2018_QuadJet_noTag_18_ideal_ref->SetLeftMargin(0.15);
+   pt_jet0_2018_QuadJet_noTag_18_ideal_ref->SetFrameBorderMode(0);
+   pt_jet0_2018_QuadJet_noTag_18_ideal_ref->SetFrameBorderMode(0);
+   
+   TH1D *_QuadJet_noTag_ideal_pt_jet0_ref__114 = new TH1D("_QuadJet_noTag_ideal_pt_jet0_ref__114","",50,0,500);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(8,2);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(9,32);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(10,44);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(11,61);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(12,123);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(13,100);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(14,115);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(15,113);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(16,110);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(17,100);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(18,99);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(19,89);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(20,82);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(21,72);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(22,71);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(23,57);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(24,57);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(25,42);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(26,34);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(27,49);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(28,41);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(29,30);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(30,22);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(31,25);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(32,27);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(33,16);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(34,22);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(35,14);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(36,14);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(37,10);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(38,5);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(39,14);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(40,14);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(41,12);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(42,12);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(43,6);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(44,11);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(45,8);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(46,4);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(47,4);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(48,4);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(49,3);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(50,2);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetBinContent(51,46);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetEntries(1818);
+   
+   TPaveStats *ptstats = new TPaveStats(0.78,0.775,0.98,0.935,"brNDC");
+   ptstats->SetName("stats");
+   ptstats->SetBorderSize(1);
+   ptstats->SetFillColor(0);
+   ptstats->SetTextAlign(12);
+   ptstats->SetTextFont(42);
+   TText *ptstats_LaTex = ptstats->AddText("2018_QuadJet_noTag_ideal_pt_jet0_ref");
+   ptstats_LaTex->SetTextSize(0.0368);
+   ptstats_LaTex = ptstats->AddText("Entries = 1818   ");
+   ptstats_LaTex = ptstats->AddText("Mean  =  199.4");
+   ptstats_LaTex = ptstats->AddText("Std Dev   =   83.7");
+   ptstats->SetOptStat(1111);
+   ptstats->SetOptFit(0);
+   ptstats->Draw();
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->GetListOfFunctions()->Add(ptstats);
+   ptstats->SetParent(_QuadJet_noTag_ideal_pt_jet0_ref__114);
+
+   Int_t ci;      // for color index setting
+   TColor *color; // for color definition with alpha
+   ci = TColor::GetColor("#0000ff");
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->SetLineColor(ci);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->GetXaxis()->SetTitle("Leading jet p_{T} [GeV]");
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->GetXaxis()->SetRange(1,50);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->GetXaxis()->SetLabelFont(42);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->GetXaxis()->SetTitleOffset(1);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->GetXaxis()->SetTitleFont(42);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->GetYaxis()->SetTitle("Events");
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->GetYaxis()->SetLabelFont(42);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->GetYaxis()->SetTitleFont(42);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->GetZaxis()->SetLabelFont(42);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->GetZaxis()->SetTitleOffset(1);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->GetZaxis()->SetTitleFont(42);
+   _QuadJet_noTag_ideal_pt_jet0_ref__114->Draw("HIST");
+   pt_jet0_2018_QuadJet_noTag_18_ideal_ref->Modified();
+   pt_jet0_2018_QuadJet_noTag_18_ideal_ref->cd();
+   pt_jet0_2018_QuadJet_noTag_18_ideal_ref->SetSelected(pt_jet0_2018_QuadJet_noTag_18_ideal_ref);
+}

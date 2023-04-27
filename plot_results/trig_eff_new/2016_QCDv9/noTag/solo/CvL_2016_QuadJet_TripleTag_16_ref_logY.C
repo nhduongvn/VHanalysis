@@ -4,7 +4,7 @@
 void CvL_2016_QuadJet_TripleTag_16_ref_logY()
 {
 //=========Macro generated from canvas: CvL_2016_QuadJet_TripleTag_16_ref/CvL_2016_QuadJet_TripleTag_16_ref
-//=========  (Wed Apr 26 16:41:41 2023) by ROOT version 6.26/06
+//=========  (Thu Apr 27 10:18:37 2023) by ROOT version 6.26/06
    TCanvas *CvL_2016_QuadJet_TripleTag_16_ref = new TCanvas("CvL_2016_QuadJet_TripleTag_16_ref", "CvL_2016_QuadJet_TripleTag_16_ref",0,0,600,600);
    CvL_2016_QuadJet_TripleTag_16_ref->SetHighLightColor(2);
    CvL_2016_QuadJet_TripleTag_16_ref->Range(-0.2,4.133919,1.133333,6.560773);

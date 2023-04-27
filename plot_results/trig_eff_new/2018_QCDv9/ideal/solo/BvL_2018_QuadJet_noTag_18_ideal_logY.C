@@ -4,7 +4,7 @@
 void BvL_2018_QuadJet_noTag_18_ideal_logY()
 {
 //=========Macro generated from canvas: BvL_2018_QuadJet_noTag_18_ideal/BvL_2018_QuadJet_noTag_18_ideal
-//=========  (Wed Apr 26 16:41:58 2023) by ROOT version 6.26/06
+//=========  (Thu Apr 27 10:18:11 2023) by ROOT version 6.26/06
    TCanvas *BvL_2018_QuadJet_noTag_18_ideal = new TCanvas("BvL_2018_QuadJet_noTag_18_ideal", "BvL_2018_QuadJet_noTag_18_ideal",0,0,600,600);
    BvL_2018_QuadJet_noTag_18_ideal->SetHighLightColor(2);
    BvL_2018_QuadJet_noTag_18_ideal->Range(-0.2,0.8065651,1.133333,3.154841);

@@ -4,7 +4,7 @@
 void HTmod_2017_QuadJet_noTag_17_ideal_ref_logY()
 {
 //=========Macro generated from canvas: HTmod_2017_QuadJet_noTag_17_ideal_ref/HTmod_2017_QuadJet_noTag_17_ideal_ref
-//=========  (Wed Apr 26 16:41:51 2023) by ROOT version 6.26/06
+//=========  (Thu Apr 27 10:18:24 2023) by ROOT version 6.26/06
    TCanvas *HTmod_2017_QuadJet_noTag_17_ideal_ref = new TCanvas("HTmod_2017_QuadJet_noTag_17_ideal_ref", "HTmod_2017_QuadJet_noTag_17_ideal_ref",0,0,600,600);
    HTmod_2017_QuadJet_noTag_17_ideal_ref->SetHighLightColor(2);
    HTmod_2017_QuadJet_noTag_17_ideal_ref->Range(-400,-0.7314163,2266.667,3.572446);

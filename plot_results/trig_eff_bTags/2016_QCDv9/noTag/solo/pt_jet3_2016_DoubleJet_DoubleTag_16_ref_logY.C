@@ -1,0 +1,97 @@
+#ifdef __CLING__
+#pragma cling optimize(0)
+#endif
+void pt_jet3_2016_DoubleJet_DoubleTag_16_ref_logY()
+{
+//=========Macro generated from canvas: pt_jet3_2016_DoubleJet_DoubleTag_16_ref/pt_jet3_2016_DoubleJet_DoubleTag_16_ref
+//=========  (Thu Apr 27 10:19:44 2023) by ROOT version 6.26/06
+   TCanvas *pt_jet3_2016_DoubleJet_DoubleTag_16_ref = new TCanvas("pt_jet3_2016_DoubleJet_DoubleTag_16_ref", "pt_jet3_2016_DoubleJet_DoubleTag_16_ref",0,0,600,600);
+   pt_jet3_2016_DoubleJet_DoubleTag_16_ref->SetHighLightColor(2);
+   pt_jet3_2016_DoubleJet_DoubleTag_16_ref->Range(-100,-1.0315,566.6667,6.2732);
+   pt_jet3_2016_DoubleJet_DoubleTag_16_ref->SetFillColor(0);
+   pt_jet3_2016_DoubleJet_DoubleTag_16_ref->SetBorderMode(0);
+   pt_jet3_2016_DoubleJet_DoubleTag_16_ref->SetBorderSize(2);
+   pt_jet3_2016_DoubleJet_DoubleTag_16_ref->SetLogy();
+   pt_jet3_2016_DoubleJet_DoubleTag_16_ref->SetLeftMargin(0.15);
+   pt_jet3_2016_DoubleJet_DoubleTag_16_ref->SetFrameBorderMode(0);
+   pt_jet3_2016_DoubleJet_DoubleTag_16_ref->SetFrameBorderMode(0);
+   
+   TH1D *_DoubleJet_DoubleTag_pt_jet3_ref__48 = new TH1D("_DoubleJet_DoubleTag_pt_jet3_ref__48","",50,0,500);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetBinContent(5,153700);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetBinContent(6,184154);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetBinContent(7,92698);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetBinContent(8,48685);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetBinContent(9,26872);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetBinContent(10,15337);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetBinContent(11,9120);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetBinContent(12,5751);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetBinContent(13,3445);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetBinContent(14,2231);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetBinContent(15,1423);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetBinContent(16,976);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetBinContent(17,631);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetBinContent(18,415);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetBinContent(19,320);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetBinContent(20,193);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetBinContent(21,164);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetBinContent(22,114);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetBinContent(23,90);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetBinContent(24,60);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetBinContent(25,30);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetBinContent(26,30);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetBinContent(27,26);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetBinContent(28,23);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetBinContent(29,29);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetBinContent(30,14);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetBinContent(31,7);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetBinContent(32,5);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetBinContent(33,7);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetBinContent(34,4);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetBinContent(35,2);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetBinContent(36,2);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetBinContent(37,2);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetBinContent(38,2);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetBinContent(39,1);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetBinContent(40,2);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetBinContent(43,1);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetBinContent(46,1);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetBinContent(51,1);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetEntries(546568);
+   
+   TPaveStats *ptstats = new TPaveStats(0.78,0.775,0.98,0.935,"brNDC");
+   ptstats->SetName("stats");
+   ptstats->SetBorderSize(1);
+   ptstats->SetFillColor(0);
+   ptstats->SetTextAlign(12);
+   ptstats->SetTextFont(42);
+   TText *ptstats_LaTex = ptstats->AddText("2016_DoubleJet_DoubleTag_pt_jet3_ref");
+   ptstats_LaTex->SetTextSize(0.0368);
+   ptstats_LaTex = ptstats->AddText("Entries = 546568 ");
+   ptstats_LaTex = ptstats->AddText("Mean  =   61.7");
+   ptstats_LaTex = ptstats->AddText("Std Dev   =  19.15");
+   ptstats->SetOptStat(1111);
+   ptstats->SetOptFit(0);
+   ptstats->Draw();
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->GetListOfFunctions()->Add(ptstats);
+   ptstats->SetParent(_DoubleJet_DoubleTag_pt_jet3_ref__48);
+
+   Int_t ci;      // for color index setting
+   TColor *color; // for color definition with alpha
+   ci = TColor::GetColor("#0000ff");
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->SetLineColor(ci);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->GetXaxis()->SetTitle("Sub^{(3)}leading jet p_{T} [GeV]");
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->GetXaxis()->SetRange(1,50);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->GetXaxis()->SetLabelFont(42);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->GetXaxis()->SetTitleOffset(1);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->GetXaxis()->SetTitleFont(42);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->GetYaxis()->SetTitle("Events");
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->GetYaxis()->SetLabelFont(42);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->GetYaxis()->SetTitleFont(42);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->GetZaxis()->SetLabelFont(42);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->GetZaxis()->SetTitleOffset(1);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->GetZaxis()->SetTitleFont(42);
+   _DoubleJet_DoubleTag_pt_jet3_ref__48->Draw("HIST");
+   pt_jet3_2016_DoubleJet_DoubleTag_16_ref->Modified();
+   pt_jet3_2016_DoubleJet_DoubleTag_16_ref->cd();
+   pt_jet3_2016_DoubleJet_DoubleTag_16_ref->SetSelected(pt_jet3_2016_DoubleJet_DoubleTag_16_ref);
+}

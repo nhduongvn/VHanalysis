@@ -4,7 +4,7 @@
 void HTmod_2016_QuadJet_DoubleTag_16()
 {
 //=========Macro generated from canvas: HTmod_2016_QuadJet_DoubleTag_16/HTmod_2016_QuadJet_DoubleTag_16
-//=========  (Wed Apr 26 16:41:41 2023) by ROOT version 6.26/06
+//=========  (Thu Apr 27 10:18:36 2023) by ROOT version 6.26/06
    TCanvas *HTmod_2016_QuadJet_DoubleTag_16 = new TCanvas("HTmod_2016_QuadJet_DoubleTag_16", "HTmod_2016_QuadJet_DoubleTag_16",0,0,600,600);
    HTmod_2016_QuadJet_DoubleTag_16->SetHighLightColor(2);
    HTmod_2016_QuadJet_DoubleTag_16->Range(-436.7058,-0.02485207,2343.266,0.1822485);

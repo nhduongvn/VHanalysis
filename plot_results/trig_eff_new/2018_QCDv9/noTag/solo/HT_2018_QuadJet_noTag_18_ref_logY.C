@@ -4,7 +4,7 @@
 void HT_2018_QuadJet_noTag_18_ref_logY()
 {
 //=========Macro generated from canvas: HT_2018_QuadJet_noTag_18_ref/HT_2018_QuadJet_noTag_18_ref
-//=========  (Wed Apr 26 16:41:57 2023) by ROOT version 6.26/06
+//=========  (Thu Apr 27 10:18:09 2023) by ROOT version 6.26/06
    TCanvas *HT_2018_QuadJet_noTag_18_ref = new TCanvas("HT_2018_QuadJet_noTag_18_ref", "HT_2018_QuadJet_noTag_18_ref",0,0,600,600);
    HT_2018_QuadJet_noTag_18_ref->SetHighLightColor(2);
    HT_2018_QuadJet_noTag_18_ref->Range(-400,0.01089537,2266.667,5.342622);

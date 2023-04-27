@@ -4,7 +4,7 @@
 void CvB_2017_QuadJet_noTag_17_tagged_logY()
 {
 //=========Macro generated from canvas: CvB_2017_QuadJet_noTag_17_tagged/CvB_2017_QuadJet_noTag_17_tagged
-//=========  (Wed Apr 26 16:41:50 2023) by ROOT version 6.26/06
+//=========  (Thu Apr 27 10:18:24 2023) by ROOT version 6.26/06
    TCanvas *CvB_2017_QuadJet_noTag_17_tagged = new TCanvas("CvB_2017_QuadJet_noTag_17_tagged", "CvB_2017_QuadJet_noTag_17_tagged",0,0,600,600);
    CvB_2017_QuadJet_noTag_17_tagged->SetHighLightColor(2);
    CvB_2017_QuadJet_noTag_17_tagged->Range(-0.2,0.7130166,1.133333,2.61375);
