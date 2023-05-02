@@ -281,6 +281,16 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_2018_QuadJet_TripleTag_ideal = new TriggerEffPlots("2018_QuadJet_TripleTag_ideal");
   h_2018_QuadJet_noTag_ideal = new TriggerEffPlots("2018_QuadJet_noTag_ideal");
 
+  h_2017_QuadJet_noTagV2_ideal = new TriggerEffPlots("2017_QuadJet_noTagV2_ideal");
+  h_2017_QuadJet_noTagV3_ideal = new TriggerEffPlots("2017_QuadJet_noTagV3_ideal");
+  h_2017_QuadJet_noTagV4_ideal = new TriggerEffPlots("2017_QuadJet_noTagV4_ideal");
+  h_2017_QuadJet_noTagV5_ideal = new TriggerEffPlots("2017_QuadJet_noTagV5_ideal");
+
+  h_2018_QuadJet_noTagV2_ideal = new TriggerEffPlots("2018_QuadJet_noTagV2_ideal");
+  h_2018_QuadJet_noTagV3_ideal = new TriggerEffPlots("2018_QuadJet_noTagV3_ideal");
+  h_2018_QuadJet_noTagV4_ideal = new TriggerEffPlots("2018_QuadJet_noTagV4_ideal");
+  h_2018_QuadJet_noTagV5_ideal = new TriggerEffPlots("2018_QuadJet_noTagV5_ideal");
+
   // Set up the CutFlows (for events) 
   h_evt_MC_cutflow = new TH1D("VbbHcc_MC_CutFlow", "", 2, 0, 2);
   h_evt_MC_cutflow->GetXaxis()->SetBinLabel(1, "Total");
@@ -465,6 +475,23 @@ void VH_selection::SlaveBegin(Reader *r) {
   tmp = h_2018_QuadJet_TripleTag_ideal->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_2018_QuadJet_noTag_ideal->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+
+  tmp = h_2017_QuadJet_noTagV2_ideal->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_2017_QuadJet_noTagV3_ideal->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_2017_QuadJet_noTagV4_ideal->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_2017_QuadJet_noTagV5_ideal->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_2018_QuadJet_noTagV2_ideal->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_2018_QuadJet_noTagV3_ideal->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_2018_QuadJet_noTagV4_ideal->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_2018_QuadJet_noTagV5_ideal->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
 
   r->GetOutputList()->Add(h_evt_VbbHcc);
@@ -1011,6 +1038,32 @@ void VH_selection::Process(Reader* r) {
     for (size_t i = 0; i < 4; ++i) {
       if (jets2017_18[i].Pt() <= cuts[i]) pT_criteria_met_2017_18 = false;
     }
+
+    // These are the additional versions we want to check for 2017-18.
+    bool pT_criteria_met_2017_18_v2 = true;
+    float cuts_v2[4] = { 103.0, 88.0, 75.0, 15.0 };
+    for (size_t i = 0; i < 4; ++i) {
+      if (jets2017_18[i].Pt() <= cuts_v2[i]) pT_criteria_met_2017_18_v2 = false;
+    }
+
+    bool pT_criteria_met_2017_18_v3 = true;
+    float cuts_v3[4] = { 105.0, 88.0, 76.0, 15.0 };
+    for (size_t i = 0; i < 4; ++i) {
+      if (jets2017_18[i].Pt() <= cuts_v3[i]) pT_criteria_met_2017_18_v3 = false;
+    }
+
+    bool pT_criteria_met_2017_18_v4 = true;
+    float cuts_v4[4] = { 111.0, 90.0, 80.0, 15.0 };
+    for (size_t i = 0; i < 4; ++i) {
+      if (jets2017_18[i].Pt() <= cuts_v4[i]) pT_criteria_met_2017_18_v4 = false;
+    }
+
+    bool pT_criteria_met_2017_18_v5 = true;
+    float cuts_v5[4] = { 98.0, 83.0, 71.0, 15.0 };
+    for (size_t i = 0; i < 4; ++i) {
+      if (jets2017_18[i].Pt() <= cuts_v5[i]) pT_criteria_met_2017_18_v5 = false;
+    }
+
 #endif
 
     // ========================================================================
@@ -1172,6 +1225,31 @@ void VH_selection::Process(Reader* r) {
 
         }
 
+        // These are the other triggers for 2017
+        if (properly_tagged && pT_criteria_met_2017_18_v2) {
+          h_2017_QuadJet_noTagV2_ideal->Fill(analysis_jets, true, HTmod, evtW);
+          if (*(r->HLT_QuadPFJet103_88_75_15))
+            h_2017_QuadJet_noTagV2_ideal->Fill(analysis_jets, false, HTmod, evtW);
+        }
+
+        if (properly_tagged && pT_criteria_met_2017_18_v3) {
+          h_2017_QuadJet_noTagV3_ideal->Fill(analysis_jets, true, HTmod, evtW);
+          if (*(r->HLT_QuadPFJet105_88_76_15))
+            h_2017_QuadJet_noTagV3_ideal->Fill(analysis_jets, false, HTmod, evtW);
+        }
+
+        if (properly_tagged && pT_criteria_met_2017_18_v4) {
+          h_2017_QuadJet_noTagV4_ideal->Fill(analysis_jets, true, HTmod, evtW);
+          if (*(r->HLT_QuadPFJet111_90_80_15))
+            h_2017_QuadJet_noTagV4_ideal->Fill(analysis_jets, false, HTmod, evtW);
+        }
+
+        if (properly_tagged && pT_criteria_met_2017_18_v5) {
+          h_2017_QuadJet_noTagV5_ideal->Fill(analysis_jets, true, HTmod, evtW);
+          if (*(r->HLT_QuadPFJet98_83_71_15))
+            h_2017_QuadJet_noTagV5_ideal->Fill(analysis_jets, false, HTmod, evtW);
+        }
+
         /************************************************************
         * We wanna look at the versions with none of the requirements
         * and then just the tagging requirement.
@@ -1217,6 +1295,31 @@ void VH_selection::Process(Reader* r) {
 
           }
 
+        }
+
+        // Other tags of interest for 2018.
+        if (properly_tagged && pT_criteria_met_2017_18_v2) {
+          h_2018_QuadJet_noTagV2_ideal->Fill(analysis_jets, true, HTmod, evtW);
+          if (*(r->HLT_QuadPFJet103_88_75_15))
+            h_2018_QuadJet_noTagV2_ideal->Fill(analysis_jets, false, HTmod, evtW);
+        }
+
+        if (properly_tagged && pT_criteria_met_2017_18_v3) {
+          h_2018_QuadJet_noTagV3_ideal->Fill(analysis_jets, true, HTmod, evtW);
+          if (*(r->HLT_QuadPFJet105_88_76_15))
+            h_2018_QuadJet_noTagV3_ideal->Fill(analysis_jets, false, HTmod, evtW);
+        }
+
+        if (properly_tagged && pT_criteria_met_2017_18_v4) {
+          h_2018_QuadJet_noTagV4_ideal->Fill(analysis_jets, true, HTmod, evtW);
+          if (*(r->HLT_QuadPFJet111_90_80_15))
+            h_2018_QuadJet_noTagV4_ideal->Fill(analysis_jets, false, HTmod, evtW);
+        }
+
+        if (properly_tagged && pT_criteria_met_2017_18_v5) {
+          h_2018_QuadJet_noTagV5_ideal->Fill(analysis_jets, true, HTmod, evtW);
+          if (*(r->HLT_QuadPFJet98_83_71_15))
+            h_2018_QuadJet_noTagV5_ideal->Fill(analysis_jets, false, HTmod, evtW);
         }
 
         /***********************************************************

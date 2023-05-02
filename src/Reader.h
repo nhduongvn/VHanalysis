@@ -138,6 +138,13 @@ TTreeReaderArray<Int_t> Jet_genJetIdx = {fReader, "Jet_genJetIdx"};
    TTreeReaderValue<Bool_t> HLT_PFHT330PT30_QuadPFJet_75_60_45_40_TriplePFBTagDeepCSV_4p5 = {fReader, "HLT_PFHT330PT30_QuadPFJet_75_60_45_40_TriplePFBTagDeepCSV_4p5"};
 #endif
 
+#if defined(MC_2017) || defined(MC_2018) || defined(DATA_2017) || defined(DATA_2018)
+   TTreeReaderValue<Bool_t> HLT_QuadPFJet98_83_71_15 = {fReader, "HLT_QuadPFJet98_83_71_15"};
+   TTreeReaderValue<Bool_t> HLT_QuadPFJet103_88_75_15 = {fReader, "HLT_QuadPFJet103_88_75_15"};
+   TTreeReaderValue<Bool_t> HLT_QuadPFJet105_88_76_15 = {fReader, "HLT_QuadPFJet105_88_76_15"};
+   TTreeReaderValue<Bool_t> HLT_QuadPFJet111_90_80_15 = {fReader, "HLT_QuadPFJet111_90_80_15"};
+#endif
+
    Reader(TTree * /*tree*/ =0) {}
 
    virtual ~Reader() { }
