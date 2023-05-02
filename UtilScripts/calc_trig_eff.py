@@ -147,7 +147,7 @@ nums = {}
 ## Go through each variable and year.
 ##############################################################
 
-regions = ["", "_tagged", "_ideal"]
+regions = ["_ideal"]
 
 ## Go through each plot of interest
 categories = {

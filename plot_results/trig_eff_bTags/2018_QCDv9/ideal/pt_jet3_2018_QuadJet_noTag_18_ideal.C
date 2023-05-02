@@ -4,10 +4,10 @@
 void pt_jet3_2018_QuadJet_noTag_18_ideal()
 {
 //=========Macro generated from canvas: pt_jet3_2018_QuadJet_noTag_18_ideal/pt_jet3_2018_QuadJet_noTag_18_ideal
-//=========  (Thu Apr 27 10:20:01 2023) by ROOT version 6.26/06
+//=========  (Tue May  2 10:29:47 2023) by ROOT version 6.26/06
    TCanvas *pt_jet3_2018_QuadJet_noTag_18_ideal = new TCanvas("pt_jet3_2018_QuadJet_noTag_18_ideal", "pt_jet3_2018_QuadJet_noTag_18_ideal",0,0,600,600);
    pt_jet3_2018_QuadJet_noTag_18_ideal->SetHighLightColor(2);
-   pt_jet3_2018_QuadJet_noTag_18_ideal->Range(-109.1764,-0.002524038,585.8166,0.01850962);
+   pt_jet3_2018_QuadJet_noTag_18_ideal->Range(-109.1764,-0.002605459,585.8166,0.0191067);
    pt_jet3_2018_QuadJet_noTag_18_ideal->SetFillColor(0);
    pt_jet3_2018_QuadJet_noTag_18_ideal->SetFillStyle(4000);
    pt_jet3_2018_QuadJet_noTag_18_ideal->SetBorderMode(0);
@@ -20,12 +20,12 @@ void pt_jet3_2018_QuadJet_noTag_18_ideal()
    pt_jet3_2018_QuadJet_noTag_18_ideal->SetFrameFillStyle(1000);
    pt_jet3_2018_QuadJet_noTag_18_ideal->SetFrameBorderMode(0);
    
-   TH1D *_QuadJet_noTag_ideal_pt_jet3__130 = new TH1D("_QuadJet_noTag_ideal_pt_jet3__130","",50,0,500);
-   _QuadJet_noTag_ideal_pt_jet3__130->SetBinContent(6,0.01179245);
-   _QuadJet_noTag_ideal_pt_jet3__130->SetBinContent(9,0.006060606);
-   _QuadJet_noTag_ideal_pt_jet3__130->SetBinContent(11,0.01149425);
-   _QuadJet_noTag_ideal_pt_jet3__130->SetBinContent(12,0.015625);
-   _QuadJet_noTag_ideal_pt_jet3__130->SetEntries(0.04497231);
+   TH1D *_QuadJet_noTag_ideal_pt_jet3__58 = new TH1D("_QuadJet_noTag_ideal_pt_jet3__58","",50,0,500);
+   _QuadJet_noTag_ideal_pt_jet3__58->SetBinContent(6,0.01193317);
+   _QuadJet_noTag_ideal_pt_jet3__58->SetBinContent(9,0.006060606);
+   _QuadJet_noTag_ideal_pt_jet3__58->SetBinContent(11,0.01162791);
+   _QuadJet_noTag_ideal_pt_jet3__58->SetBinContent(12,0.01612903);
+   _QuadJet_noTag_ideal_pt_jet3__58->SetEntries(0.04575072);
    
    TPaveStats *ptstats = new TPaveStats(0.78,0.775,0.98,0.935,"brNDC");
    ptstats->SetName("stats");
@@ -36,30 +36,30 @@ void pt_jet3_2018_QuadJet_noTag_18_ideal()
    TText *ptstats_LaTex = ptstats->AddText("2018_QuadJet_noTag_ideal_pt_jet3");
    ptstats_LaTex->SetTextSize(0.0368);
    ptstats_LaTex = ptstats->AddText("Entries = 0      ");
-   ptstats_LaTex = ptstats->AddText("Mean  =  92.67");
-   ptstats_LaTex = ptstats->AddText("Std Dev   =  24.33");
+   ptstats_LaTex = ptstats->AddText("Mean  =  92.83");
+   ptstats_LaTex = ptstats->AddText("Std Dev   =  24.34");
    ptstats->SetOptStat(1111);
    ptstats->SetOptFit(0);
    ptstats->Draw();
-   _QuadJet_noTag_ideal_pt_jet3__130->GetListOfFunctions()->Add(ptstats);
-   ptstats->SetParent(_QuadJet_noTag_ideal_pt_jet3__130);
+   _QuadJet_noTag_ideal_pt_jet3__58->GetListOfFunctions()->Add(ptstats);
+   ptstats->SetParent(_QuadJet_noTag_ideal_pt_jet3__58);
 
    Int_t ci;      // for color index setting
    TColor *color; // for color definition with alpha
    ci = TColor::GetColor("#000099");
-   _QuadJet_noTag_ideal_pt_jet3__130->SetLineColor(ci);
-   _QuadJet_noTag_ideal_pt_jet3__130->GetXaxis()->SetTitle("Sub^{(3)}leading jet p_{T} [GeV]");
-   _QuadJet_noTag_ideal_pt_jet3__130->GetXaxis()->SetRange(1,500);
-   _QuadJet_noTag_ideal_pt_jet3__130->GetXaxis()->SetLabelFont(42);
-   _QuadJet_noTag_ideal_pt_jet3__130->GetXaxis()->SetTitleOffset(1);
-   _QuadJet_noTag_ideal_pt_jet3__130->GetXaxis()->SetTitleFont(42);
-   _QuadJet_noTag_ideal_pt_jet3__130->GetYaxis()->SetTitle("Efficiency");
-   _QuadJet_noTag_ideal_pt_jet3__130->GetYaxis()->SetLabelFont(42);
-   _QuadJet_noTag_ideal_pt_jet3__130->GetYaxis()->SetTitleFont(42);
-   _QuadJet_noTag_ideal_pt_jet3__130->GetZaxis()->SetLabelFont(42);
-   _QuadJet_noTag_ideal_pt_jet3__130->GetZaxis()->SetTitleOffset(1);
-   _QuadJet_noTag_ideal_pt_jet3__130->GetZaxis()->SetTitleFont(42);
-   _QuadJet_noTag_ideal_pt_jet3__130->Draw("HIST");
+   _QuadJet_noTag_ideal_pt_jet3__58->SetLineColor(ci);
+   _QuadJet_noTag_ideal_pt_jet3__58->GetXaxis()->SetTitle("Sub^{(3)}leading jet p_{T} [GeV]");
+   _QuadJet_noTag_ideal_pt_jet3__58->GetXaxis()->SetRange(1,500);
+   _QuadJet_noTag_ideal_pt_jet3__58->GetXaxis()->SetLabelFont(42);
+   _QuadJet_noTag_ideal_pt_jet3__58->GetXaxis()->SetTitleOffset(1);
+   _QuadJet_noTag_ideal_pt_jet3__58->GetXaxis()->SetTitleFont(42);
+   _QuadJet_noTag_ideal_pt_jet3__58->GetYaxis()->SetTitle("Efficiency");
+   _QuadJet_noTag_ideal_pt_jet3__58->GetYaxis()->SetLabelFont(42);
+   _QuadJet_noTag_ideal_pt_jet3__58->GetYaxis()->SetTitleFont(42);
+   _QuadJet_noTag_ideal_pt_jet3__58->GetZaxis()->SetLabelFont(42);
+   _QuadJet_noTag_ideal_pt_jet3__58->GetZaxis()->SetTitleOffset(1);
+   _QuadJet_noTag_ideal_pt_jet3__58->GetZaxis()->SetTitleFont(42);
+   _QuadJet_noTag_ideal_pt_jet3__58->Draw("HIST");
    pt_jet3_2018_QuadJet_noTag_18_ideal->Modified();
    pt_jet3_2018_QuadJet_noTag_18_ideal->cd();
    pt_jet3_2018_QuadJet_noTag_18_ideal->SetSelected(pt_jet3_2018_QuadJet_noTag_18_ideal);
