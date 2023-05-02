@@ -154,7 +154,9 @@ categories = {
   '16': ["2016_QuadJet_TripleTag", "2016_QuadJet_DoubleTag",
          "2016_DoubleJet_TripleTag", "2016_DoubleJet_DoubleTag"],
   '17': ["2017_QuadJet_TripleTag", "2017_QuadJet_noTag"],
-  '18': ["2018_QuadJet_TripleTag", "2018_QuadJet_noTag"],
+  '18': ["2018_QuadJet_TripleTag", "2018_QuadJet_noTag",
+         "2018_QuadJet_noTagV2", "2018_QuadJet_noTagV3",
+         "2018_QuadJet_noTagV4", "2018_QuadJet_noTagV5"],
 }
 
 trigger_names = {
@@ -164,7 +166,9 @@ trigger_names = {
   '17': ["HLT_PFHT300PT30_QuadPFJet_75_60_45_40_TriplePFBTagCSV_3p0",
          "HLT_PFHT300PT30_QuadPFJet_75_60_45_40"],
   '18': ["HLT_PTHT330PT30_QuadPFJet_75_60_45_40_TriplePFBTagDeepCSV_4p5",
-         "HLT_PTHT330PT30_QuadPFJet_75_60_45_40"],
+         "HLT_PTHT330PT30_QuadPFJet_75_60_45_40", 
+         "HLT_QuadPFJet103_88_75_15", "HLT_QuadPFJet105_88_76_15",
+         "HLT_QuadPFJet111_90_80_15", "HLT_QuadPFJet98_83_71_15"],
 }
 
 variables = ["pt_jet0", "pt_jet1", "pt_jet2", "pt_jet3", "HT", "HTmod", "BvL", "CvL", "CvB"]
