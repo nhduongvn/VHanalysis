@@ -59,7 +59,7 @@ def getHist(pN, sample_name, fH, lS, printSamples=True):
 ## These you can edit / change
 ###############################
 years = ['16', '17', '18']
-years = ['18']
+years = ['17']
 regions = ['tags', 'algo', 'both']#, 'alljet', 'seljet']
 regions = [
   'tags', 'tags_noMassCorr', 'tags_noJEC',
