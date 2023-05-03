@@ -4,7 +4,7 @@
 void pt_jet3_2018_QuadJet_noTag_18_ideal_logY()
 {
 //=========Macro generated from canvas: pt_jet3_2018_QuadJet_noTag_18_ideal/pt_jet3_2018_QuadJet_noTag_18_ideal
-//=========  (Thu Apr 27 10:20:02 2023) by ROOT version 6.26/06
+//=========  (Tue May  2 10:29:47 2023) by ROOT version 6.26/06
    TCanvas *pt_jet3_2018_QuadJet_noTag_18_ideal = new TCanvas("pt_jet3_2018_QuadJet_noTag_18_ideal", "pt_jet3_2018_QuadJet_noTag_18_ideal",0,0,600,600);
    pt_jet3_2018_QuadJet_noTag_18_ideal->SetHighLightColor(2);
    pt_jet3_2018_QuadJet_noTag_18_ideal->Range(-100,-0.4607236,566.6667,1.136213);
@@ -16,12 +16,12 @@ void pt_jet3_2018_QuadJet_noTag_18_ideal_logY()
    pt_jet3_2018_QuadJet_noTag_18_ideal->SetFrameBorderMode(0);
    pt_jet3_2018_QuadJet_noTag_18_ideal->SetFrameBorderMode(0);
    
-   TH1D *_QuadJet_noTag_ideal_pt_jet3__131 = new TH1D("_QuadJet_noTag_ideal_pt_jet3__131","",50,0,500);
-   _QuadJet_noTag_ideal_pt_jet3__131->SetBinContent(6,5);
-   _QuadJet_noTag_ideal_pt_jet3__131->SetBinContent(9,1);
-   _QuadJet_noTag_ideal_pt_jet3__131->SetBinContent(11,1);
-   _QuadJet_noTag_ideal_pt_jet3__131->SetBinContent(12,1);
-   _QuadJet_noTag_ideal_pt_jet3__131->SetEntries(8);
+   TH1D *_QuadJet_noTag_ideal_pt_jet3__59 = new TH1D("_QuadJet_noTag_ideal_pt_jet3__59","",50,0,500);
+   _QuadJet_noTag_ideal_pt_jet3__59->SetBinContent(6,5);
+   _QuadJet_noTag_ideal_pt_jet3__59->SetBinContent(9,1);
+   _QuadJet_noTag_ideal_pt_jet3__59->SetBinContent(11,1);
+   _QuadJet_noTag_ideal_pt_jet3__59->SetBinContent(12,1);
+   _QuadJet_noTag_ideal_pt_jet3__59->SetEntries(8);
    
    TPaveStats *ptstats = new TPaveStats(0.78,0.775,0.98,0.935,"brNDC");
    ptstats->SetName("stats");
@@ -37,25 +37,25 @@ void pt_jet3_2018_QuadJet_noTag_18_ideal_logY()
    ptstats->SetOptStat(1111);
    ptstats->SetOptFit(0);
    ptstats->Draw();
-   _QuadJet_noTag_ideal_pt_jet3__131->GetListOfFunctions()->Add(ptstats);
-   ptstats->SetParent(_QuadJet_noTag_ideal_pt_jet3__131);
+   _QuadJet_noTag_ideal_pt_jet3__59->GetListOfFunctions()->Add(ptstats);
+   ptstats->SetParent(_QuadJet_noTag_ideal_pt_jet3__59);
 
    Int_t ci;      // for color index setting
    TColor *color; // for color definition with alpha
    ci = TColor::GetColor("#0000ff");
-   _QuadJet_noTag_ideal_pt_jet3__131->SetLineColor(ci);
-   _QuadJet_noTag_ideal_pt_jet3__131->GetXaxis()->SetTitle("Sub^{(3)}leading jet p_{T} [GeV]");
-   _QuadJet_noTag_ideal_pt_jet3__131->GetXaxis()->SetRange(1,50);
-   _QuadJet_noTag_ideal_pt_jet3__131->GetXaxis()->SetLabelFont(42);
-   _QuadJet_noTag_ideal_pt_jet3__131->GetXaxis()->SetTitleOffset(1);
-   _QuadJet_noTag_ideal_pt_jet3__131->GetXaxis()->SetTitleFont(42);
-   _QuadJet_noTag_ideal_pt_jet3__131->GetYaxis()->SetTitle("Events");
-   _QuadJet_noTag_ideal_pt_jet3__131->GetYaxis()->SetLabelFont(42);
-   _QuadJet_noTag_ideal_pt_jet3__131->GetYaxis()->SetTitleFont(42);
-   _QuadJet_noTag_ideal_pt_jet3__131->GetZaxis()->SetLabelFont(42);
-   _QuadJet_noTag_ideal_pt_jet3__131->GetZaxis()->SetTitleOffset(1);
-   _QuadJet_noTag_ideal_pt_jet3__131->GetZaxis()->SetTitleFont(42);
-   _QuadJet_noTag_ideal_pt_jet3__131->Draw("HIST");
+   _QuadJet_noTag_ideal_pt_jet3__59->SetLineColor(ci);
+   _QuadJet_noTag_ideal_pt_jet3__59->GetXaxis()->SetTitle("Sub^{(3)}leading jet p_{T} [GeV]");
+   _QuadJet_noTag_ideal_pt_jet3__59->GetXaxis()->SetRange(1,50);
+   _QuadJet_noTag_ideal_pt_jet3__59->GetXaxis()->SetLabelFont(42);
+   _QuadJet_noTag_ideal_pt_jet3__59->GetXaxis()->SetTitleOffset(1);
+   _QuadJet_noTag_ideal_pt_jet3__59->GetXaxis()->SetTitleFont(42);
+   _QuadJet_noTag_ideal_pt_jet3__59->GetYaxis()->SetTitle("Events");
+   _QuadJet_noTag_ideal_pt_jet3__59->GetYaxis()->SetLabelFont(42);
+   _QuadJet_noTag_ideal_pt_jet3__59->GetYaxis()->SetTitleFont(42);
+   _QuadJet_noTag_ideal_pt_jet3__59->GetZaxis()->SetLabelFont(42);
+   _QuadJet_noTag_ideal_pt_jet3__59->GetZaxis()->SetTitleOffset(1);
+   _QuadJet_noTag_ideal_pt_jet3__59->GetZaxis()->SetTitleFont(42);
+   _QuadJet_noTag_ideal_pt_jet3__59->Draw("HIST");
    pt_jet3_2018_QuadJet_noTag_18_ideal->Modified();
    pt_jet3_2018_QuadJet_noTag_18_ideal->cd();
    pt_jet3_2018_QuadJet_noTag_18_ideal->SetSelected(pt_jet3_2018_QuadJet_noTag_18_ideal);
