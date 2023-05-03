@@ -15,11 +15,11 @@ files = {
 
   "DATA_2018": "root:://cmsxrootd.fnal.gov///store/data/Run2018B/JetHT/NANOAOD/UL2018_MiniAODv2_NanoAODv9-v1/120000/A4258CED-A995-AC4E-B50C-50CD7FCA4A94.root",
 
-  "MC_2016": "root:://cmsxrootd.fnal.gov///store/mc/RunIISummer16NanoAODv7/ZH_HToBB_ZToQQ_M125_13TeV_powheg_pythia8/NANOAODSIM/PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1/270000/480B1409-A76A-1C48-B8D1-A19616ACBAA2.root",
+  "MC_2016": "root:://cmsxrootd.fnal.gov///store/mc/RunIISummer20UL16NanoAODv9/ZH_HToCC_ZToQQ_M125_TuneCP5_13TeV-powheg-pythia8/NANOAODSIM/106X_mcRun2_asymptotic_v17-v1/2810000/45CCF319-7DC5-844F-B2E6-68A4215CE98D.root",
 
-  "MC_2017": "root:://cmsxrootd.fnal.gov///store/mc/RunIIFall17NanoAODv7/ZH_HToBB_ZToQQ_M125_13TeV_powheg_pythia8/NANOAODSIM/PU2017_12Apr2018_Nano02Apr2020_102X_mc2017_realistic_v8-v1/100000/AB56D787-B4DC-5D45-BA4E-FC2DDB3E5B61.root",
+  "MC_2017": "root:://cmsxrootd.fnal.gov///store/mc/RunIISummer20UL17NanoAODv9/ZH_HToCC_ZToQQ_M125_TuneCP5_13TeV-powheg-pythia8/NANOAODSIM/106X_mc2017_realistic_v9-v1/70000/307C5497-83A7-1840-89FA-A72DF9D0ACFD.root",
 
-  "MC_2018": "root:://cmsxrootd.fnal.gov///store/mc/RunIIAutumn18NanoAODv7/ZH_HToBB_ZToQQ_M125_13TeV_powheg_pythia8/NANOAODSIM/Nano02Apr2020_102X_upgrade2018_realistic_v21-v1/60000/19A53285-E3F2-344D-8939-EBE534E2C222.root",
+  "MC_2018": "root:://cmsxrootd.fnal.gov///store/mc/RunIISummer20UL18NanoAODv9/ZH_HToCC_ZToQQ_M125_TuneCP5_13TeV-powheg-pythia8/NANOAODSIM/106X_upgrade2018_realistic_v16_L1v1-v1/80000/9DBFECCE-45AF-8148-8319-D9A557FE7B66.root",
 }
 
 ## Directories
