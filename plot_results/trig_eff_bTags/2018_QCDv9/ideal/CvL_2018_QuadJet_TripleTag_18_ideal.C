@@ -4,7 +4,7 @@
 void CvL_2018_QuadJet_TripleTag_18_ideal()
 {
 //=========Macro generated from canvas: CvL_2018_QuadJet_TripleTag_18_ideal/CvL_2018_QuadJet_TripleTag_18_ideal
-//=========  (Tue May  2 10:29:48 2023) by ROOT version 6.26/06
+//=========  (Wed May  3 17:28:54 2023) by ROOT version 6.26/06
    TCanvas *CvL_2018_QuadJet_TripleTag_18_ideal = new TCanvas("CvL_2018_QuadJet_TripleTag_18_ideal", "CvL_2018_QuadJet_TripleTag_18_ideal",0,0,600,600);
    CvL_2018_QuadJet_TripleTag_18_ideal->SetHighLightColor(2);
    CvL_2018_QuadJet_TripleTag_18_ideal->Range(-0.2183529,0.572309,1.171633,0.8251518);
@@ -20,18 +20,18 @@ void CvL_2018_QuadJet_TripleTag_18_ideal()
    CvL_2018_QuadJet_TripleTag_18_ideal->SetFrameFillStyle(1000);
    CvL_2018_QuadJet_TripleTag_18_ideal->SetFrameBorderMode(0);
    
-   TH1D *_QuadJet_TripleTag_ideal_CvL__127 = new TH1D("_QuadJet_TripleTag_ideal_CvL__127","",10,0,1);
-   _QuadJet_TripleTag_ideal_CvL__127->SetBinContent(1,0.7724868);
-   _QuadJet_TripleTag_ideal_CvL__127->SetBinContent(2,0.7904762);
-   _QuadJet_TripleTag_ideal_CvL__127->SetBinContent(3,0.6292835);
-   _QuadJet_TripleTag_ideal_CvL__127->SetBinContent(4,0.6115942);
-   _QuadJet_TripleTag_ideal_CvL__127->SetBinContent(5,0.6623037);
-   _QuadJet_TripleTag_ideal_CvL__127->SetBinContent(6,0.6887255);
-   _QuadJet_TripleTag_ideal_CvL__127->SetBinContent(7,0.666);
-   _QuadJet_TripleTag_ideal_CvL__127->SetBinContent(8,0.733871);
-   _QuadJet_TripleTag_ideal_CvL__127->SetBinContent(9,0.7300493);
-   _QuadJet_TripleTag_ideal_CvL__127->SetBinContent(10,0.7384752);
-   _QuadJet_TripleTag_ideal_CvL__127->SetEntries(7.023265);
+   TH1D *_QuadJet_TripleTag_ideal_CvL__22 = new TH1D("_QuadJet_TripleTag_ideal_CvL__22","",10,0,1);
+   _QuadJet_TripleTag_ideal_CvL__22->SetBinContent(1,0.7724868);
+   _QuadJet_TripleTag_ideal_CvL__22->SetBinContent(2,0.7904762);
+   _QuadJet_TripleTag_ideal_CvL__22->SetBinContent(3,0.6292835);
+   _QuadJet_TripleTag_ideal_CvL__22->SetBinContent(4,0.6115942);
+   _QuadJet_TripleTag_ideal_CvL__22->SetBinContent(5,0.6623037);
+   _QuadJet_TripleTag_ideal_CvL__22->SetBinContent(6,0.6887255);
+   _QuadJet_TripleTag_ideal_CvL__22->SetBinContent(7,0.666);
+   _QuadJet_TripleTag_ideal_CvL__22->SetBinContent(8,0.733871);
+   _QuadJet_TripleTag_ideal_CvL__22->SetBinContent(9,0.7300493);
+   _QuadJet_TripleTag_ideal_CvL__22->SetBinContent(10,0.7384752);
+   _QuadJet_TripleTag_ideal_CvL__22->SetEntries(7.023265);
    
    TPaveStats *ptstats = new TPaveStats(0.78,0.775,0.98,0.935,"brNDC");
    ptstats->SetName("stats");
@@ -47,25 +47,43 @@ void CvL_2018_QuadJet_TripleTag_18_ideal()
    ptstats->SetOptStat(1111);
    ptstats->SetOptFit(0);
    ptstats->Draw();
-   _QuadJet_TripleTag_ideal_CvL__127->GetListOfFunctions()->Add(ptstats);
-   ptstats->SetParent(_QuadJet_TripleTag_ideal_CvL__127);
+   _QuadJet_TripleTag_ideal_CvL__22->GetListOfFunctions()->Add(ptstats);
+   ptstats->SetParent(_QuadJet_TripleTag_ideal_CvL__22);
 
    Int_t ci;      // for color index setting
    TColor *color; // for color definition with alpha
    ci = TColor::GetColor("#000099");
-   _QuadJet_TripleTag_ideal_CvL__127->SetLineColor(ci);
-   _QuadJet_TripleTag_ideal_CvL__127->GetXaxis()->SetTitle("CvL tagging score");
-   _QuadJet_TripleTag_ideal_CvL__127->GetXaxis()->SetRange(1,100);
-   _QuadJet_TripleTag_ideal_CvL__127->GetXaxis()->SetLabelFont(42);
-   _QuadJet_TripleTag_ideal_CvL__127->GetXaxis()->SetTitleOffset(1);
-   _QuadJet_TripleTag_ideal_CvL__127->GetXaxis()->SetTitleFont(42);
-   _QuadJet_TripleTag_ideal_CvL__127->GetYaxis()->SetTitle("Efficiency");
-   _QuadJet_TripleTag_ideal_CvL__127->GetYaxis()->SetLabelFont(42);
-   _QuadJet_TripleTag_ideal_CvL__127->GetYaxis()->SetTitleFont(42);
-   _QuadJet_TripleTag_ideal_CvL__127->GetZaxis()->SetLabelFont(42);
-   _QuadJet_TripleTag_ideal_CvL__127->GetZaxis()->SetTitleOffset(1);
-   _QuadJet_TripleTag_ideal_CvL__127->GetZaxis()->SetTitleFont(42);
-   _QuadJet_TripleTag_ideal_CvL__127->Draw("HIST");
+   _QuadJet_TripleTag_ideal_CvL__22->SetLineColor(ci);
+   _QuadJet_TripleTag_ideal_CvL__22->GetXaxis()->SetTitle("CvL tagging score");
+   _QuadJet_TripleTag_ideal_CvL__22->GetXaxis()->SetRange(1,100);
+   _QuadJet_TripleTag_ideal_CvL__22->GetXaxis()->SetLabelFont(42);
+   _QuadJet_TripleTag_ideal_CvL__22->GetXaxis()->SetTitleOffset(1);
+   _QuadJet_TripleTag_ideal_CvL__22->GetXaxis()->SetTitleFont(42);
+   _QuadJet_TripleTag_ideal_CvL__22->GetYaxis()->SetTitle("Efficiency");
+   _QuadJet_TripleTag_ideal_CvL__22->GetYaxis()->SetLabelFont(42);
+   _QuadJet_TripleTag_ideal_CvL__22->GetYaxis()->SetTitleFont(42);
+   _QuadJet_TripleTag_ideal_CvL__22->GetZaxis()->SetLabelFont(42);
+   _QuadJet_TripleTag_ideal_CvL__22->GetZaxis()->SetTitleOffset(1);
+   _QuadJet_TripleTag_ideal_CvL__22->GetZaxis()->SetTitleFont(42);
+   _QuadJet_TripleTag_ideal_CvL__22->Draw("HIST");
+   
+   TLegend *leg = new TLegend(0.5,0.7,0.9,0.87,NULL,"brNDC");
+   leg->SetBorderSize(0);
+   leg->SetTextSize(0.025);
+   leg->SetLineColor(1);
+   leg->SetLineStyle(1);
+   leg->SetLineWidth(2);
+   leg->SetFillColor(0);
+   leg->SetFillStyle(1001);
+   TLegendEntry *entry=leg->AddEntry("NULL","HLT_PTHT330PT30_QuadPFJet_75_60_45_40_TriplePFBTagDeepCSV_4p5","");
+   entry->SetLineColor(1);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(42);
+   leg->Draw();
    CvL_2018_QuadJet_TripleTag_18_ideal->Modified();
    CvL_2018_QuadJet_TripleTag_18_ideal->cd();
    CvL_2018_QuadJet_TripleTag_18_ideal->SetSelected(CvL_2018_QuadJet_TripleTag_18_ideal);

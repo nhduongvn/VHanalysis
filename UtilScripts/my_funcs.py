@@ -157,7 +157,7 @@ def makeGausFit(plot, plotName, canvasName, plotDir, fitRange,
 ###############################################################################
 def makePlot(plot, plotName, canvasName, plotDir, xAxisTitle, xAxisRange, 
   yAxisTitle, rebin, logY, lumi, line_color, fill_color, fill=False, yRange=[],
-  is2D = False, showStats=False):
+  is2D = False, showStats=False, textForPlot = ""):
   
   ## Make the canvas
   if not showStats: ROOT.gStyle.SetOptStat(0)
@@ -423,7 +423,87 @@ def makeRatioPlots(plots, plotNames, canvasName, plotDir, xAxisTitle, xAxisRange
 ## Make Efficiency Plot Function
 ###############################################################################
 def makeEfficiencyPlot(plots, plotNames, canvasName, plotDir, 
-  xAxisTitle, xAxisRange, yAxisTitle):
+  xAxisTitle, xAxisRange, yAxisTitle, textForPlot = "", yr='16',
+  taggingStr = ""):
+  
+  ## ===========================================
+  ## Create the canvas & modify it as necessary
+  ## ===========================================
+  c = ROOT.TCanvas(canvasName, canvasName, 600, 600)
+  c.SetFillStyle(4000)
+  c.SetFrameFillStyle(1000)
+  c.SetFrameFillColor(0)
+  
+  c.SetBottomMargin(0.12)
+  c.SetLeftMargin(0.15709)
+  c.SetRightMargin(0.1234783)
+  
+  ## ============================================
+  ## Divide the plots to get the efficiency plot
+  ## ============================================
+  numerator = plots[0]
+  denominator = plots[1]
+  tgae = ROOT.TGraphAsymmErrors()
+  tgae.Divide(numerator, denominator, "cl=0.683 b(1,1) mode")
+  
+  #tgae.SetMarkerSize(20)
+  tgae.SetMarkerStyle(ROOT.kFullCircle)
+  #tgae.SetLineColor(0)
+  #tgae.SetLineWidth(0)
+  #tgae.SetLineColor(ROOT.kWhite)
+  tgae.Draw("ap")
+  tgae.GetXaxis().SetTitle(xAxisTitle)
+  tgae.GetYaxis().SetTitle(yAxisTitle)
+  
+  ## ===============================
+  ## Handle a legend if we want one
+  ## ===============================
+  if textForPlot != "":
+    myText(textForPlot, 0.15, 0.937775, 0.5)
+    #myText("SingleMuon, 20" + yr, 0.15, 0.91, 0.5)
+    #0.25, 0.937775
+    x0 = 0.5
+    x1 = 0.8
+    l = ROOT.TLegend(x0, 0.2, x1, 0.3)
+    l.SetLineWidth(2)
+    l.SetBorderSize(0)
+    l.SetTextFont(42)
+    l.SetTextSize(0.025)
+    l.AddEntry(tgae, "SingleMuon 20" + yr, "L")
+    if taggingStr != "":
+      l.AddEntry("", taggingStr, "")
+    l.Draw()
+  
+  ## =====================================================
+  ## Update the canvas & modify the y-axis if appropriate
+  ## =====================================================
+  c.Update()
+  ##if logY and not is2D: c.SetLogy()
+  
+  ## ==========================================
+  ## Check to make sure the directory exists &
+  ## then print the proper files to the output
+  ## ==========================================
+  dirExists = os.path.exists(plotDir)
+  if not dirExists:
+    print "Warning: output directory does not exist."
+    os.makedirs(plotDir)
+    print ">>> directory created."
+  
+  ## =================================
+  ## Print out the plot appropriately
+  ## =================================
+  #extraName = ''
+  #if logY: extraName = '_logY'
+  fullpath = plotDir + '/' + canvasName #+ extraName
+  c.Print(fullpath + '.png')
+  c.Print(fullpath + '.pdf')
+  c.Print(fullpath + '.C')
+  return c
+
+
+def makeEfficiencyPlotOld(plots, plotNames, canvasName, plotDir, 
+  xAxisTitle, xAxisRange, yAxisTitle, textForPlot = ""):
   
   ## ===========================================
   ## Create the canvas & modify it as necessary
@@ -445,6 +525,21 @@ def makeEfficiencyPlot(plots, plotNames, canvasName, plotDir,
   
   plots[0].GetXaxis().SetTitle(xAxisTitle)
   plots[0].GetYaxis().SetTitle(yAxisTitle)
+  
+  ## ===============================
+  ## Handle a legend if we want one
+  ## ===============================
+  if textForPlot != "":
+    #0.25, 0.937775
+    x0 = -0.1
+    x1 = 0.8
+    l = ROOT.TLegend(x0, 0.937775, x1, 1.0)
+    l.SetLineWidth(2)
+    l.SetBorderSize(0)
+    l.SetTextFont(42)
+    l.SetTextSize(0.025)
+    l.AddEntry("", textForPlot, "")
+    l.Draw()
   
   ## =====================================================
   ## Update the canvas & modify the y-axis if appropriate

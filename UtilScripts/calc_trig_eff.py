@@ -59,7 +59,7 @@ def getHist(pN, sample_name, fH, lS, printSamples=True):
 ## These you can edit / change
 ###############################
 years = ['16', '17', '18']
-years = ['17']
+years = ['16']
 regions = ['tags', 'algo', 'both']#, 'alljet', 'seljet']
 regions = [
   'tags', 'tags_noMassCorr', 'tags_noJEC',
@@ -69,8 +69,8 @@ regions = [
 plotCat = 'VbbHcc'
 useLogY = False
 
-plotFolder = '../plot_results/trig_eff_bTags/'
-resultpath = '../condor_results/trigger_efficiency_bTags/'
+plotFolder = '../plot_results/trig_eff_NEWEST/'
+resultpath = '../condor_results/trigger_efficiency_NEWEST/'
 
 ## Samples
 ss = [ "SingleMuon" ]
@@ -147,28 +147,20 @@ nums = {}
 ## Go through each variable and year.
 ##############################################################
 
-regions = ["_ideal"]
+regions = ["_ideal", "_3B", "_2b2c"]
 
 ## Go through each plot of interest
 categories = {
-  '16': ["2016_QuadJet_TripleTag", "2016_QuadJet_DoubleTag",
-         "2016_DoubleJet_TripleTag", "2016_DoubleJet_DoubleTag"],
-  '17': ["2017_QuadJet_TripleTag", "2017_QuadJet_noTag"],
-  '18': ["2018_QuadJet_TripleTag", "2018_QuadJet_noTag",
-         "2018_QuadJet_noTagV2", "2018_QuadJet_noTagV3",
-         "2018_QuadJet_noTagV4", "2018_QuadJet_noTagV5"],
+  '16': ["2016_QuadJet_TripleTag", "2016_DoubleJet_TripleTag"],
+  '17': ["2017_QuadJet_TripleTag"],
+  '18': ["2018_QuadJet_TripleTag"],
 }
 
 trigger_names = {
-  '16': ["HLT_QuadJet45_TripleBTagCSV_p087", "HLT_QuadJet45_TripleBTagCSV_p087",
-         "HLT_DoubleJet90_Double30_TripleBTagCSV_p087",
-         "HLT_DoubleJet90_Double30_DoubleBTagCSV_p087"],
-  '17': ["HLT_PFHT300PT30_QuadPFJet_75_60_45_40_TriplePFBTagCSV_3p0",
-         "HLT_PFHT300PT30_QuadPFJet_75_60_45_40"],
-  '18': ["HLT_PTHT330PT30_QuadPFJet_75_60_45_40_TriplePFBTagDeepCSV_4p5",
-         "HLT_PTHT330PT30_QuadPFJet_75_60_45_40", 
-         "HLT_QuadPFJet103_88_75_15", "HLT_QuadPFJet105_88_76_15",
-         "HLT_QuadPFJet111_90_80_15", "HLT_QuadPFJet98_83_71_15"],
+  '16': ["HLT_QuadJet45_TripleBTagCSV_p087",
+         "HLT_DoubleJet90_Double30_TripleBTagCSV_p087"],
+  '17': ["HLT_PFHT300PT30_QuadPFJet_75_60_45_40_TriplePFBTagCSV_3p0"],
+  '18': ["HLT_PTHT330PT30_QuadPFJet_75_60_45_40_TriplePFBTagDeepCSV_4p5"],
 }
 
 variables = ["pt_jet0", "pt_jet1", "pt_jet2", "pt_jet3", "HT", "HTmod", "BvL", "CvL", "CvB"]
@@ -222,7 +214,8 @@ for r in regions:
         print "outputdir   = ", outputdir
         
         makeEfficiencyPlot(plots, "", canvas_name,
-          outputdir, xA_title, xA_range, "Efficiency")
+          outputdir, xA_title, xA_range, "Efficiency",
+          triggers[i])
         
         makePlot(hProbe[y].Clone().Rebin(nRebin),
           "", canvas_name, outputdir + "/solo/",

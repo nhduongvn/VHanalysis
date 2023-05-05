@@ -4,7 +4,7 @@
 void pt_jet0_2018_QuadJet_TripleTag_18_ideal()
 {
 //=========Macro generated from canvas: pt_jet0_2018_QuadJet_TripleTag_18_ideal/pt_jet0_2018_QuadJet_TripleTag_18_ideal
-//=========  (Tue May  2 10:29:46 2023) by ROOT version 6.26/06
+//=========  (Wed May  3 17:28:54 2023) by ROOT version 6.26/06
    TCanvas *pt_jet0_2018_QuadJet_TripleTag_18_ideal = new TCanvas("pt_jet0_2018_QuadJet_TripleTag_18_ideal", "pt_jet0_2018_QuadJet_TripleTag_18_ideal",0,0,600,600);
    pt_jet0_2018_QuadJet_TripleTag_18_ideal->SetHighLightColor(2);
    pt_jet0_2018_QuadJet_TripleTag_18_ideal->Range(-109.1764,-0.1615385,585.8166,1.184615);
@@ -99,6 +99,24 @@ void pt_jet0_2018_QuadJet_TripleTag_18_ideal()
    _QuadJet_TripleTag_ideal_pt_jet0__1->GetZaxis()->SetTitleOffset(1);
    _QuadJet_TripleTag_ideal_pt_jet0__1->GetZaxis()->SetTitleFont(42);
    _QuadJet_TripleTag_ideal_pt_jet0__1->Draw("HIST");
+   
+   TLegend *leg = new TLegend(0.5,0.7,0.9,0.87,NULL,"brNDC");
+   leg->SetBorderSize(0);
+   leg->SetTextSize(0.025);
+   leg->SetLineColor(1);
+   leg->SetLineStyle(1);
+   leg->SetLineWidth(2);
+   leg->SetFillColor(0);
+   leg->SetFillStyle(1001);
+   TLegendEntry *entry=leg->AddEntry("NULL","HLT_PTHT330PT30_QuadPFJet_75_60_45_40_TriplePFBTagDeepCSV_4p5","");
+   entry->SetLineColor(1);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(42);
+   leg->Draw();
    pt_jet0_2018_QuadJet_TripleTag_18_ideal->Modified();
    pt_jet0_2018_QuadJet_TripleTag_18_ideal->cd();
    pt_jet0_2018_QuadJet_TripleTag_18_ideal->SetSelected(pt_jet0_2018_QuadJet_TripleTag_18_ideal);

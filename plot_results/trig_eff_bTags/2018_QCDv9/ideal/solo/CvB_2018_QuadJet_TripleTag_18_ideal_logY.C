@@ -4,7 +4,7 @@
 void CvB_2018_QuadJet_TripleTag_18_ideal_logY()
 {
 //=========Macro generated from canvas: CvB_2018_QuadJet_TripleTag_18_ideal/CvB_2018_QuadJet_TripleTag_18_ideal
-//=========  (Tue May  2 10:29:48 2023) by ROOT version 6.26/06
+//=========  (Wed May  3 17:28:54 2023) by ROOT version 6.26/06
    TCanvas *CvB_2018_QuadJet_TripleTag_18_ideal = new TCanvas("CvB_2018_QuadJet_TripleTag_18_ideal", "CvB_2018_QuadJet_TripleTag_18_ideal",0,0,600,600);
    CvB_2018_QuadJet_TripleTag_18_ideal->SetHighLightColor(2);
    CvB_2018_QuadJet_TripleTag_18_ideal->Range(-0.2,1.83078,1.133333,3.837063);
@@ -16,18 +16,18 @@ void CvB_2018_QuadJet_TripleTag_18_ideal_logY()
    CvB_2018_QuadJet_TripleTag_18_ideal->SetFrameBorderMode(0);
    CvB_2018_QuadJet_TripleTag_18_ideal->SetFrameBorderMode(0);
    
-   TH1D *_QuadJet_TripleTag_ideal_CvB__146 = new TH1D("_QuadJet_TripleTag_ideal_CvB__146","",10,0,1);
-   _QuadJet_TripleTag_ideal_CvB__146->SetBinContent(1,2285);
-   _QuadJet_TripleTag_ideal_CvB__146->SetBinContent(2,399);
-   _QuadJet_TripleTag_ideal_CvB__146->SetBinContent(3,400);
-   _QuadJet_TripleTag_ideal_CvB__146->SetBinContent(4,351);
-   _QuadJet_TripleTag_ideal_CvB__146->SetBinContent(5,302);
-   _QuadJet_TripleTag_ideal_CvB__146->SetBinContent(6,261);
-   _QuadJet_TripleTag_ideal_CvB__146->SetBinContent(7,245);
-   _QuadJet_TripleTag_ideal_CvB__146->SetBinContent(8,215);
-   _QuadJet_TripleTag_ideal_CvB__146->SetBinContent(9,509);
-   _QuadJet_TripleTag_ideal_CvB__146->SetBinContent(10,237);
-   _QuadJet_TripleTag_ideal_CvB__146->SetEntries(5204);
+   TH1D *_QuadJet_TripleTag_ideal_CvB__26 = new TH1D("_QuadJet_TripleTag_ideal_CvB__26","",10,0,1);
+   _QuadJet_TripleTag_ideal_CvB__26->SetBinContent(1,2285);
+   _QuadJet_TripleTag_ideal_CvB__26->SetBinContent(2,399);
+   _QuadJet_TripleTag_ideal_CvB__26->SetBinContent(3,400);
+   _QuadJet_TripleTag_ideal_CvB__26->SetBinContent(4,351);
+   _QuadJet_TripleTag_ideal_CvB__26->SetBinContent(5,302);
+   _QuadJet_TripleTag_ideal_CvB__26->SetBinContent(6,261);
+   _QuadJet_TripleTag_ideal_CvB__26->SetBinContent(7,245);
+   _QuadJet_TripleTag_ideal_CvB__26->SetBinContent(8,215);
+   _QuadJet_TripleTag_ideal_CvB__26->SetBinContent(9,509);
+   _QuadJet_TripleTag_ideal_CvB__26->SetBinContent(10,237);
+   _QuadJet_TripleTag_ideal_CvB__26->SetEntries(5204);
    
    TPaveStats *ptstats = new TPaveStats(0.78,0.775,0.98,0.935,"brNDC");
    ptstats->SetName("stats");
@@ -43,25 +43,25 @@ void CvB_2018_QuadJet_TripleTag_18_ideal_logY()
    ptstats->SetOptStat(1111);
    ptstats->SetOptFit(0);
    ptstats->Draw();
-   _QuadJet_TripleTag_ideal_CvB__146->GetListOfFunctions()->Add(ptstats);
-   ptstats->SetParent(_QuadJet_TripleTag_ideal_CvB__146);
+   _QuadJet_TripleTag_ideal_CvB__26->GetListOfFunctions()->Add(ptstats);
+   ptstats->SetParent(_QuadJet_TripleTag_ideal_CvB__26);
 
    Int_t ci;      // for color index setting
    TColor *color; // for color definition with alpha
    ci = TColor::GetColor("#0000ff");
-   _QuadJet_TripleTag_ideal_CvB__146->SetLineColor(ci);
-   _QuadJet_TripleTag_ideal_CvB__146->GetXaxis()->SetTitle("CvB tagging score");
-   _QuadJet_TripleTag_ideal_CvB__146->GetXaxis()->SetRange(1,10);
-   _QuadJet_TripleTag_ideal_CvB__146->GetXaxis()->SetLabelFont(42);
-   _QuadJet_TripleTag_ideal_CvB__146->GetXaxis()->SetTitleOffset(1);
-   _QuadJet_TripleTag_ideal_CvB__146->GetXaxis()->SetTitleFont(42);
-   _QuadJet_TripleTag_ideal_CvB__146->GetYaxis()->SetTitle("Events");
-   _QuadJet_TripleTag_ideal_CvB__146->GetYaxis()->SetLabelFont(42);
-   _QuadJet_TripleTag_ideal_CvB__146->GetYaxis()->SetTitleFont(42);
-   _QuadJet_TripleTag_ideal_CvB__146->GetZaxis()->SetLabelFont(42);
-   _QuadJet_TripleTag_ideal_CvB__146->GetZaxis()->SetTitleOffset(1);
-   _QuadJet_TripleTag_ideal_CvB__146->GetZaxis()->SetTitleFont(42);
-   _QuadJet_TripleTag_ideal_CvB__146->Draw("HIST");
+   _QuadJet_TripleTag_ideal_CvB__26->SetLineColor(ci);
+   _QuadJet_TripleTag_ideal_CvB__26->GetXaxis()->SetTitle("CvB tagging score");
+   _QuadJet_TripleTag_ideal_CvB__26->GetXaxis()->SetRange(1,10);
+   _QuadJet_TripleTag_ideal_CvB__26->GetXaxis()->SetLabelFont(42);
+   _QuadJet_TripleTag_ideal_CvB__26->GetXaxis()->SetTitleOffset(1);
+   _QuadJet_TripleTag_ideal_CvB__26->GetXaxis()->SetTitleFont(42);
+   _QuadJet_TripleTag_ideal_CvB__26->GetYaxis()->SetTitle("Events");
+   _QuadJet_TripleTag_ideal_CvB__26->GetYaxis()->SetLabelFont(42);
+   _QuadJet_TripleTag_ideal_CvB__26->GetYaxis()->SetTitleFont(42);
+   _QuadJet_TripleTag_ideal_CvB__26->GetZaxis()->SetLabelFont(42);
+   _QuadJet_TripleTag_ideal_CvB__26->GetZaxis()->SetTitleOffset(1);
+   _QuadJet_TripleTag_ideal_CvB__26->GetZaxis()->SetTitleFont(42);
+   _QuadJet_TripleTag_ideal_CvB__26->Draw("HIST");
    CvB_2018_QuadJet_TripleTag_18_ideal->Modified();
    CvB_2018_QuadJet_TripleTag_18_ideal->cd();
    CvB_2018_QuadJet_TripleTag_18_ideal->SetSelected(CvB_2018_QuadJet_TripleTag_18_ideal);

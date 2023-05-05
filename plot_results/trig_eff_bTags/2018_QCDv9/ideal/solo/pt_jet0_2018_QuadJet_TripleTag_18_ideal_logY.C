@@ -4,7 +4,7 @@
 void pt_jet0_2018_QuadJet_TripleTag_18_ideal_logY()
 {
 //=========Macro generated from canvas: pt_jet0_2018_QuadJet_TripleTag_18_ideal/pt_jet0_2018_QuadJet_TripleTag_18_ideal
-//=========  (Tue May  2 10:29:46 2023) by ROOT version 6.26/06
+//=========  (Wed May  3 17:28:54 2023) by ROOT version 6.26/06
    TCanvas *pt_jet0_2018_QuadJet_TripleTag_18_ideal = new TCanvas("pt_jet0_2018_QuadJet_TripleTag_18_ideal", "pt_jet0_2018_QuadJet_TripleTag_18_ideal",0,0,600,600);
    pt_jet0_2018_QuadJet_TripleTag_18_ideal->SetHighLightColor(2);
    pt_jet0_2018_QuadJet_TripleTag_18_ideal->Range(-100,-0.611913,566.6667,2.496917);
