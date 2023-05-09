@@ -1283,11 +1283,18 @@ void VH_selection::Process(Reader* r) {
           h_2017_QuadJet_noTag_ideal->Fill(analysis_jets, true, HTmod, evtW);
 
           // Pass our probe triggers.
+          #if defined(MC_2017) || !defined(DATA_2017B)
           if (*(r->HLT_PFHT300PT30_QuadPFJet_75_60_45_40_TriplePFBTagCSV_3p0))
             h_2017_QuadJet_TripleTag_ideal->Fill(analysis_jets, false, HTmod, evtW);
+          
           if (*(r->HLT_PFHT300PT30_QuadPFJet_75_60_45_40))
             h_2017_QuadJet_noTag_ideal->Fill(analysis_jets, false, HTmod, evtW);     
-          
+          #endif
+
+          #if defined(DATA_2017B)
+          if (*(r->HLT_HT300PT30_QuadJet_75_60_45_40_TripeCSV_p07))
+            h_2017_QuadJet_TripleTag_ideal->Fill(analysis_jets, false, HTmod, evtW);
+          #endif
         }
 
         // 3B tagging requirement
@@ -1297,9 +1304,15 @@ void VH_selection::Process(Reader* r) {
           h_2017_QuadJet_TripleTag_3B->Fill(analysis_jets, true, HTmod, evtW);
 
           // Pass our probe triggers.
+          #if defined(MC_2017) || !defined(DATA_2017B)
           if (*(r->HLT_PFHT300PT30_QuadPFJet_75_60_45_40_TriplePFBTagCSV_3p0))
             h_2017_QuadJet_TripleTag_3B->Fill(analysis_jets, false, HTmod, evtW);
-          
+          #endif
+
+          #if defined(DATA_2017B)
+          if (*(r->HLT_HT300PT30_QuadJet_75_60_45_40_TripeCSV_p07))
+            h_2017_QuadJet_TripleTag_3B->Fill(analysis_jets, false, HTmod, evtW);
+          #endif 
         }
 
         // 2b2c tagging requirement
@@ -1309,9 +1322,15 @@ void VH_selection::Process(Reader* r) {
           h_2017_QuadJet_TripleTag_2b2c->Fill(analysis_jets, true, HTmod, evtW);
 
           // Pass our probe triggers.
+          #if defined(MC_2017) || !defined(DATA_2017B)
           if (*(r->HLT_PFHT300PT30_QuadPFJet_75_60_45_40_TriplePFBTagCSV_3p0))
             h_2017_QuadJet_TripleTag_2b2c->Fill(analysis_jets, false, HTmod, evtW);
-         
+          #endif
+
+          #if defined(DATA_2017B)
+          if (*(r->HLT_HT300PT30_QuadJet_75_60_45_40_TripeCSV_p07))
+            h_2017_QuadJet_TripleTag_2b2c->Fill(analysis_jets, false, HTmod, evtW);
+          #endif
         }
 
         // These are the other triggers for 2017

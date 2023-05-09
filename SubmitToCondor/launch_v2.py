@@ -3,7 +3,7 @@ import json
 import time
 
 #def write_condor_config(workDir,sample_format,sample_format_processing, data_name, name_output_dir, nJob, syst='none', compile_with_pdfscalesyst='NONE', compile_for_sherpa='NOTSHERPA', debug = False):
-def write_condor_config(workDir,sample_format, nanoaod_format, data_name, name_output_dir, nJob, syst='none', centralGenWeight=0, debug = False):
+def write_condor_config(workDir,sample_format, sample_subformat, nanoaod_format, data_name, name_output_dir, nJob, syst='none', centralGenWeight=0, debug = False):
   exe_fileName = 'exe_' + data_name + '.sh'
   if syst != 'none':
     exe_fileName = 'exe_' + syst + '_' + data_name + '.sh'
@@ -39,7 +39,7 @@ def write_condor_config(workDir,sample_format, nanoaod_format, data_name, name_o
   f.write('tar -xvf input.tar \n')
 #  f.write('make clean \n')
 #  f.write('make FORMAT='+sample_format+' FORMATPROCESSING='+sample_format_processing+' INPUT=TCHAIN'+' PDFSCALESYST='+compile_with_pdfscalesyst+' SHERPA='+compile_for_sherpa+'\n')
-  f.write('make FORMAT='+sample_format+' NANOAOD='+nanoaod_format+' INPUT=TCHAIN'+'\n')
+  f.write('make FORMAT='+sample_format+ ' SUBFORMAT=' + sample_subformat+' NANOAOD='+nanoaod_format+' INPUT=TCHAIN'+'\n')
 
   sampleType = '0'
   if 'DATA' in sample_format:
@@ -95,18 +95,20 @@ outputDir_scratch = '/uscmst1b_scratch/lpc1/lpctrig/duong//Output_VH/'+syst+'/'
 sourceDir = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/'
 #condorRunDir = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/SubmitToCondor/condor/'
 condorRunDir = '/uscmst1b_scratch/lpc1/lpcphys/peteryou/Output_VH/mediumWP_updates042023/'
-condorRunDir = '/uscmst1b_scratch/lpc1/lpcphys/peteryou/Output_VH/trigger_efficiency_NEWEST/'
+condorRunDir = '/uscmst1b_scratch/lpc1/lpcphys/peteryou/Output_VH/trigger_efficiency_2017fix/'
 outputDir_eos = '/store/user/peteryou/Output_VH/mediumWP_updates042023/'+syst+'/' 
-outputDir_eos = '/store/user/peteryou/Output_VH/trigger_efficiency_NEWEST/'+syst+'/'
+outputDir_eos = '/store/user/peteryou/Output_VH/trigger_efficiency_2017fix/'+syst+'/'
 #outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/new_condor_results/' + syst + '/'
 #outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/newest_condor_results/' + syst + '/'
 outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/mediumWP_updates042023/' + syst + '/'
-outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/trigger_efficiency_NEWEST/' + syst + '/'
+outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/trigger_efficiency_2017fix/' + syst + '/'
 #Input data sets
 #dataSet_list = sourceDir+"/Dataset_lists/datasets_JetHT_combined.txt" #data
 #dataSet_list = sourceDir+"/Dataset_lists/datasets_QCD100to200.txt" 
 dataSet_list = sourceDir+"/Dataset_lists/datasets_major_signal_bckg.txt" #signal + QCD/ttbar
 dataSet_list = sourceDir+"/Dataset_lists/datasets_SingleMuon_combined.txt"
+dataSet_list = sourceDir+"/Dataset_lists/datasets_SingleMuon.txt"
+dataSet_list = sourceDir+"/Dataset_lists/datasets_trigEff.txt"
 #dataSet_list = sourceDir+"/Dataset_lists/datasets_NANOAODv9_MC.txt" #all except Hcc
 #dataSet_list = sourceDir+"/Dataset_lists/datasets_HToCC_NANOAODV7_MC.txt" #data
 nFile = 2
@@ -154,7 +156,11 @@ for line in lines:
   if syst != 'none':
     work_dir = condorRunDir+'/condor_run_'+syst+'/' + data_name + '_' + dir_affix
 
-  sample_format = data_name.split('_')[-2] + '_' + data_name.split('_')[-1]
+  sample_subformat = data_name.split('_')[-2] + '_' + data_name.split('_')[-1]
+  if 'DATA' in sample_subformat:
+    sample_format = sample_subformat[:-1]
+  else:
+    sample_format = sample_subformat
   nanoaod_format='NANOAODV9'
   #if 'HToCC' in data_name:
   #  nanoaod_format='NANOAODV7'
@@ -189,7 +195,7 @@ for line in lines:
     nJob = make_input_file_list(nFile, work_dir, file_list_name)
     
     #prepare condor job configuration
-    write_condor_config(work_dir, sample_format, nanoaod_format, data_name, dir_final_rootFile, nJob, syst, centralGenWeight, debug)
+    write_condor_config(work_dir, sample_format, sample_subformat, nanoaod_format, data_name, dir_final_rootFile, nJob, syst, centralGenWeight, debug)
     
     #copy codes, ....
     os.system('cp '+sourceDir+'/Makefile ' + work_dir)

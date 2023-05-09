@@ -128,10 +128,19 @@ TTreeReaderArray<Int_t> Jet_genJetIdx = {fReader, "Jet_genJetIdx"};
    TTreeReaderValue<Bool_t> HLT_DoubleJet90_Double30_DoubleBTagCSV_p087 = {fReader, "HLT_DoubleJet90_Double30_DoubleBTagCSV_p087"};
 #endif
 
+// NOTE: There is an issue with the desired trigger is that it only exists for
+// 2017C-F. We need a different trigger for 2017B.
 #if defined(MC_2017) || defined(DATA_2017)
+   #if defined(MC_2017) || !defined(DATA_2017B)
    TTreeReaderValue<Bool_t> HLT_PFHT300PT30_QuadPFJet_75_60_45_40 = {fReader, "HLT_PFHT300PT30_QuadPFJet_75_60_45_40"};
    TTreeReaderValue<Bool_t> HLT_PFHT300PT30_QuadPFJet_75_60_45_40_TriplePFBTagCSV_3p0 = {fReader, "HLT_PFHT300PT30_QuadPFJet_75_60_45_40_TriplePFBTagCSV_3p0"};
+   #endif
 #endif
+
+#if defined(DATA_2017B)
+   TTreeReaderValue<Bool_t> HLT_HT300PT30_QuadJet_75_60_45_40_TripeCSV_p07 = {fReader, "HLT_HT300PT30_QuadJet_75_60_45_40_TripeCSV_p07"};
+#endif
+
 
 #if defined(MC_2018) || defined(DATA_2018)
    TTreeReaderValue<Bool_t> HLT_PFHT330PT30_QuadPFJet_75_60_45_40 = {fReader, "HLT_PFHT330PT30_QuadPFJet_75_60_45_40"};
