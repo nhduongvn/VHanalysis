@@ -424,7 +424,7 @@ def makeRatioPlots(plots, plotNames, canvasName, plotDir, xAxisTitle, xAxisRange
 ###############################################################################
 def makeEfficiencyPlot(plots, plotNames, canvasName, plotDir, 
   xAxisTitle, xAxisRange, yAxisTitle, textForPlot = "", yr='16',
-  taggingStr = ""):
+  taggingStr = "", sampleName = "SingleMuon"):
   
   ## ===========================================
   ## Create the canvas & modify it as necessary
@@ -469,7 +469,7 @@ def makeEfficiencyPlot(plots, plotNames, canvasName, plotDir,
     l.SetBorderSize(0)
     l.SetTextFont(42)
     l.SetTextSize(0.025)
-    l.AddEntry(tgae, "SingleMuon 20" + yr, "L")
+    l.AddEntry(tgae, sampleName + " 20" + yr, "L")
     if taggingStr != "":
       l.AddEntry("", taggingStr, "")
     l.Draw()
@@ -498,7 +498,7 @@ def makeEfficiencyPlot(plots, plotNames, canvasName, plotDir,
   fullpath = plotDir + '/' + canvasName #+ extraName
   c.Print(fullpath + '.png')
   c.Print(fullpath + '.pdf')
-  c.Print(fullpath + '.C')
+  #c.Print(fullpath + '.C')
   return c
 
 

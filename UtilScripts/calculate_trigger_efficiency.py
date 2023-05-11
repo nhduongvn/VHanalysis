@@ -62,7 +62,7 @@ def getHist(pN, sample_name, fH, lS, printSamples=True):
 
 ## Years to run over
 years = ['16', '17', '18']
-years = ['16']
+years = ['18']
 
 ## Regions to go through
 regions = [ "_ideal", "_3B", "_2b2c" ]
@@ -75,11 +75,18 @@ region_name = {
 useLogY = False
 
 ## Input & Output
-plotFolder = '../plot_results/trig_eff_better/'
-resultpath = '../condor_results/trigger_efficiency_NEWEST/'
+plotFolder = '../plot_results/trig_eff_better/'                ## SingleMuon
+resultpath = '../condor_results/trigger_efficiency_NEWEST/'    ## SingleMuon
+plotFolder = '../plot_results/trig_eff_2017fix/'
+resultpath = '../condor_results/trigger_efficiency_2017fix/'
 
 ## Samples
-ss = [ "SingleMuon" ]
+ss = [ "SingleMuon" ]  ## SingleMuon
+ss = [ "TTTo2L2Nu", "TTToHadronic", "TTToSemiLeptonic"]
+#ss = [ "ZH_HToCC_ZToQQ"]#, "ggZH_HToCC_ZToQQ" ]
+sampleName = "SingleMuon DATA"
+sampleName = "ttbar MC"
+#sampleName = "ZH HToCC ZToQQ MC"
 
 ## Triggers we're interested in
 categories = {
@@ -172,7 +179,7 @@ nums = {}
 ## Develop the special binning we want for each variable
 ##############################################################
 
-HT_binning = [0]
+HT_binning = [0, 100]
 for i in range(200, 610, 50):
   HT_binning.append(i)
 #for i in range(700, 2100, 100):
@@ -241,14 +248,14 @@ for r in regions:
         ## Make the canvas name & output directory
         regionName = r[1:] if r != "" else "noTag"
         canvas_name = v + "_" + categories[y][i] + "_" + y + r
-        outputdir = plotFolder + '/20' + y + '_QCDv9/' + regionName + '/'
+        outputdir = plotFolder + '/20' + y + '_QCDv9/' + regionName + '/' + sampleName
         
         print "canvas_name = ", canvas_name
         print "outputdir   = ", outputdir
         
         makeEfficiencyPlot(plots, "", canvas_name,
           outputdir, xA_title, xA_range, "Efficiency",
-          triggers[i], y, region_name[r])
+          triggers[i], y, region_name[r], sampleName)
 
 
 
