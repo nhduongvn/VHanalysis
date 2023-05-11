@@ -148,10 +148,13 @@ TTreeReaderArray<Int_t> Jet_genJetIdx = {fReader, "Jet_genJetIdx"};
 #endif
 
 #if defined(MC_2017) || defined(MC_2018) || defined(DATA_2017) || defined(DATA_2018)
+
+   /*#if !defined(MC_2017B)
    TTreeReaderValue<Bool_t> HLT_QuadPFJet98_83_71_15 = {fReader, "HLT_QuadPFJet98_83_71_15"};
    TTreeReaderValue<Bool_t> HLT_QuadPFJet103_88_75_15 = {fReader, "HLT_QuadPFJet103_88_75_15"};
    TTreeReaderValue<Bool_t> HLT_QuadPFJet105_88_76_15 = {fReader, "HLT_QuadPFJet105_88_76_15"};
    TTreeReaderValue<Bool_t> HLT_QuadPFJet111_90_80_15 = {fReader, "HLT_QuadPFJet111_90_80_15"};
+   #endif*/
 #endif
 
    Reader(TTree * /*tree*/ =0) {}
