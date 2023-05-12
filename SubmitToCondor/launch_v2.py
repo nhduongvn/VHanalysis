@@ -271,12 +271,13 @@ if haddData:
   if runMode == 1:
     yrRuns = {
       '2016': ['B','C','D','E','F','G','H'],
-      '2017': ['B','C','D','E','F'],
+      '2017': ['C','D','E','F'],
       '2018': ['B','C','D']
     }
     for y in ['2016', '2017', '2018']:
       data_name = "SingleMuon_DATA_" + y
       os.system('rm ' + outputDir_scratch + '/' + data_name + '.root')
-      cmd_hadd = 'hadd -f -k ' + outputDir_scratch + '/' + data_name + '.root ' + outputDir_scratch + '/' + data_name +'*.root'
+      for l in yrRuns[y]:
+        cmd_hadd = 'hadd -f -k ' + outputDir_scratch + '/' + data_name + '.root ' + outputDir_scratch + '/' + data_name + l + '.root'
       print cmd_hadd 
       os.system(cmd_hadd)
