@@ -62,7 +62,7 @@ def getHist(pN, sample_name, fH, lS, printSamples=True):
 
 ## Years to run over
 years = ['16', '17', '18']
-years = ['17']
+years = ['16']
 
 ## Regions to go through
 regions = [ "_ideal", "_3B", "_2b2c" ]
@@ -79,15 +79,17 @@ plotFolder = '../plot_results/trig_eff_better/'                ## SingleMuon
 resultpath = '../condor_results/trigger_efficiency_NEWEST/'    ## SingleMuon
 plotFolder = '../plot_results/trig_eff_2017fix/'
 resultpath = '../condor_results/trigger_efficiency_2017fix/'
+plotFolder = '../plot_results/trig_eff_ZH/'                    ## ZH
+resultpath = '../condor_results/trigger_efficiency_ZH/'        ## ZH
 
 ## Samples
 ss = [ "SingleMuon" ]  ## SingleMuon
 #ss = [ "TTTo2L2Nu", "TTToHadronic", "TTToSemiLeptonic"]
 #ss = [ ""]
-#ss = [ "ZH_HToCC_ZToQQ"]#, "ggZH_HToCC_ZToQQ" ]
+ss = [ "ZH_HToCC_ZToQQ"]#, "ggZH_HToCC_ZToQQ" ]
 sampleName = "SingleMuon DATA"
 #sampleName = "ttbar MC"
-#sampleName = "ZH HToCC ZToQQ MC"
+sampleName = "ZH HToCC ZToQQ MC"
 
 ## Triggers we're interested in
 categories = {
