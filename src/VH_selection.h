@@ -108,6 +108,7 @@ class VH_selection : public Selector {
     TriggerEffPlots *h_2016_QuadJet_TripleTag_ideal;
     TriggerEffPlots *h_2016_DoubleJet_TripleTag_ideal;
     TriggerEffPlots *h_2017_QuadJet_TripleTag_ideal;
+    TriggerEffPlots *h_2017_QuadJet_TripleTag_RunB_ideal;
     TriggerEffPlots *h_2018_QuadJet_TripleTag_ideal;
 
     TriggerEffPlots *h_2016_QuadJet_DoubleTag_ideal;
@@ -129,12 +130,14 @@ class VH_selection : public Selector {
     TriggerEffPlots *h_2016_QuadJet_TripleTag_3B;
     TriggerEffPlots *h_2016_DoubleJet_TripleTag_3B;
     TriggerEffPlots *h_2017_QuadJet_TripleTag_3B;
+    TriggerEffPlots *h_2017_QuadJet_TripleTag_RunB_3B;
     TriggerEffPlots *h_2018_QuadJet_TripleTag_3B;
 
     // Versions where the tagging requirement is 2b2c
     TriggerEffPlots *h_2016_QuadJet_TripleTag_2b2c;
     TriggerEffPlots *h_2016_DoubleJet_TripleTag_2b2c;
     TriggerEffPlots *h_2017_QuadJet_TripleTag_2b2c;
+    TriggerEffPlots *h_2017_QuadJet_TripleTag_RunB_2b2c;
     TriggerEffPlots *h_2018_QuadJet_TripleTag_2b2c;
 
     // Efficiency Plots

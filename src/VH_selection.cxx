@@ -290,6 +290,9 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_2017_QuadJet_TripleTag_2b2c = new TriggerEffPlots("2017_QuadJet_TripleTag_2b2c");
   h_2018_QuadJet_TripleTag_2b2c = new TriggerEffPlots("2018_QuadJet_TripleTag_2b2c");
 
+  h_2017_QuadJet_TripleTag_RunB_ideal = new TriggerEffPlots("2017_QuadJet_TripleTag_RunB_ideal");
+  h_2017_QuadJet_TripleTag_RunB_3B = new TriggerEffPlots("2017_QuadJet_TripleTag_RunB_3B");
+  h_2017_QuadJet_TripleTag_RunB_2b2c = new TriggerEffPlots("2017_QuadJet_TripleTag_RunB_2b2c");
 
   h_2017_QuadJet_noTagV2_ideal = new TriggerEffPlots("2017_QuadJet_noTagV2_ideal");
   h_2017_QuadJet_noTagV3_ideal = new TriggerEffPlots("2017_QuadJet_noTagV3_ideal");
@@ -502,6 +505,13 @@ void VH_selection::SlaveBegin(Reader *r) {
   tmp = h_2017_QuadJet_TripleTag_2b2c->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_2018_QuadJet_TripleTag_2b2c->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+
+  tmp = h_2017_QuadJet_TripleTag_RunB_ideal->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_2017_QuadJet_TripleTag_RunB_3B->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_2017_QuadJet_TripleTag_RunB_2b2c->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
 
   /*tmp = h_2017_QuadJet_noTagV2_ideal->returnHisto();
@@ -1103,6 +1113,9 @@ void VH_selection::Process(Reader* r) {
     // Trigger Efficiency
     // ========================================================================
 
+    bool is_ZH = true; // Use this boolean for cases where we want to ignore
+                       // our reference trigger & just use the base events.
+
     // Reference Trigger - HLT_IsoMu24 
     // Probe Triggers:
     // 2016 - HLT_QuadJet45_TripleBTagCSV_p087 OR
@@ -1114,10 +1127,10 @@ void VH_selection::Process(Reader* r) {
     // we have at least one isolated muon. Luckily, in our code above, 
     // we check for muons, so all we have to do is make sure our list
     // contains at least one.
-    if (muons.size() >= 1) {
+    if (muons.size() >= 1 || is_ZH) {
 
       // Make sure events pass our reference frame.
-      if (*(r->HLT_IsoMu24)) {
+      if (*(r->HLT_IsoMu24) || is_ZH) {
 
         // We want the option to see if HT is being used as just sum(jet pT)
         // or if it's ALL objects. We need an HT mod that is the sum of the
@@ -1293,7 +1306,7 @@ void VH_selection::Process(Reader* r) {
 
           #if defined(DATA_2017B)
           if (*(r->HLT_HT300PT30_QuadJet_75_60_45_40_TripeCSV_p07))
-            h_2017_QuadJet_TripleTag_ideal->Fill(analysis_jets, false, HTmod, evtW);
+            h_2017_QuadJet_TripleTag_RunB_ideal->Fill(analysis_jets, false, HTmod, evtW);
           #endif
         }
 
@@ -1311,7 +1324,7 @@ void VH_selection::Process(Reader* r) {
 
           #if defined(DATA_2017B)
           if (*(r->HLT_HT300PT30_QuadJet_75_60_45_40_TripeCSV_p07))
-            h_2017_QuadJet_TripleTag_3B->Fill(analysis_jets, false, HTmod, evtW);
+            h_2017_QuadJet_TripleTag_RunB_3B->Fill(analysis_jets, false, HTmod, evtW);
           #endif 
         }
 
@@ -1329,7 +1342,7 @@ void VH_selection::Process(Reader* r) {
 
           #if defined(DATA_2017B)
           if (*(r->HLT_HT300PT30_QuadJet_75_60_45_40_TripeCSV_p07))
-            h_2017_QuadJet_TripleTag_2b2c->Fill(analysis_jets, false, HTmod, evtW);
+            h_2017_QuadJet_TripleTag_RunB_2b2c->Fill(analysis_jets, false, HTmod, evtW);
           #endif
         }
 
