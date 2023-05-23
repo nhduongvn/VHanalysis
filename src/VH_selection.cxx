@@ -1115,6 +1115,8 @@ void VH_selection::Process(Reader* r) {
 
     bool is_ZH = true; // Use this boolean for cases where we want to ignore
                        // our reference trigger & just use the base events.
+    bool noTrigCheck = false; // Use this if we want to check how the events
+                             // are selected without the trigger requirement.
 
     // Reference Trigger - HLT_IsoMu24 
     // Probe Triggers:
@@ -1179,9 +1181,9 @@ void VH_selection::Process(Reader* r) {
           h_2016_QuadJet_DoubleTag_ideal->Fill(analysis_jets, true, HTmod, evtW);        
 
           // Fill reference + probe   
-          if (*(r->HLT_QuadJet45_TripleBTagCSV_p087))
+          if (*(r->HLT_QuadJet45_TripleBTagCSV_p087) || noTrigCheck)
             h_2016_QuadJet_TripleTag_ideal->Fill(analysis_jets, false, HTmod, evtW);
-           if (*(r->HLT_QuadJet45_DoubleBTagCSV_p087))
+           if (*(r->HLT_QuadJet45_DoubleBTagCSV_p087) || noTrigCheck)
             h_2016_QuadJet_DoubleTag_ideal->Fill(analysis_jets, false, HTmod, evtW);       
         }
 
@@ -1192,7 +1194,7 @@ void VH_selection::Process(Reader* r) {
           h_2016_QuadJet_TripleTag_3B->Fill(analysis_jets, true, HTmod, evtW);
           
           // Fill reference + probe   
-          if (*(r->HLT_QuadJet45_TripleBTagCSV_p087))
+          if (*(r->HLT_QuadJet45_TripleBTagCSV_p087) || noTrigCheck)
             h_2016_QuadJet_TripleTag_3B->Fill(analysis_jets, false, HTmod, evtW);
         }
 
@@ -1203,7 +1205,7 @@ void VH_selection::Process(Reader* r) {
           h_2016_QuadJet_TripleTag_2b2c->Fill(analysis_jets, true, HTmod, evtW);
           
           // Fill reference + probe   
-          if (*(r->HLT_QuadJet45_TripleBTagCSV_p087))
+          if (*(r->HLT_QuadJet45_TripleBTagCSV_p087) || noTrigCheck)
             h_2016_QuadJet_TripleTag_2b2c->Fill(analysis_jets, false, HTmod, evtW);
 
         }
@@ -1216,7 +1218,7 @@ void VH_selection::Process(Reader* r) {
           h_2016_DoubleJet_TripleTag_ideal->Fill(analysis_jets, true, HTmod, evtW);
           
           // Pass our reference + probe
-          if (*(r->HLT_DoubleJet90_Double30_TripleBTagCSV_p087))
+          if (*(r->HLT_DoubleJet90_Double30_TripleBTagCSV_p087) || noTrigCheck)
             h_2016_DoubleJet_TripleTag_ideal->Fill(analysis_jets, false, HTmod, evtW); 
         }
 
@@ -1227,7 +1229,7 @@ void VH_selection::Process(Reader* r) {
           h_2016_DoubleJet_TripleTag_3B->Fill(analysis_jets, true, HTmod, evtW);
 
           // Pass our reference + probe
-          if (*(r->HLT_DoubleJet90_Double30_TripleBTagCSV_p087))
+          if (*(r->HLT_DoubleJet90_Double30_TripleBTagCSV_p087) || noTrigCheck)
             h_2016_DoubleJet_TripleTag_3B->Fill(analysis_jets, false, HTmod, evtW);
         }
  
@@ -1238,7 +1240,7 @@ void VH_selection::Process(Reader* r) {
           h_2016_DoubleJet_TripleTag_2b2c->Fill(analysis_jets, true, HTmod, evtW);
           
           // Pass our reference + probe
-          if (*(r->HLT_DoubleJet90_Double30_TripleBTagCSV_p087))
+          if (*(r->HLT_DoubleJet90_Double30_TripleBTagCSV_p087) || noTrigCheck)
             h_2016_DoubleJet_TripleTag_2b2c->Fill(analysis_jets, false, HTmod, evtW);
         }
 
@@ -1297,15 +1299,15 @@ void VH_selection::Process(Reader* r) {
 
           // Pass our probe triggers.
           #if defined(MC_2017) || !defined(DATA_2017B)
-          if (*(r->HLT_PFHT300PT30_QuadPFJet_75_60_45_40_TriplePFBTagCSV_3p0))
+          if (*(r->HLT_PFHT300PT30_QuadPFJet_75_60_45_40_TriplePFBTagCSV_3p0) || noTrigCheck)
             h_2017_QuadJet_TripleTag_ideal->Fill(analysis_jets, false, HTmod, evtW);
           
-          if (*(r->HLT_PFHT300PT30_QuadPFJet_75_60_45_40))
+          if (*(r->HLT_PFHT300PT30_QuadPFJet_75_60_45_40) || noTrigCheck)
             h_2017_QuadJet_noTag_ideal->Fill(analysis_jets, false, HTmod, evtW);     
           #endif
 
           #if defined(DATA_2017B)
-          if (*(r->HLT_HT300PT30_QuadJet_75_60_45_40_TripeCSV_p07))
+          if (*(r->HLT_HT300PT30_QuadJet_75_60_45_40_TripeCSV_p07) || noTrigCheck)
             h_2017_QuadJet_TripleTag_RunB_ideal->Fill(analysis_jets, false, HTmod, evtW);
           #endif
         }
@@ -1318,12 +1320,12 @@ void VH_selection::Process(Reader* r) {
 
           // Pass our probe triggers.
           #if defined(MC_2017) || !defined(DATA_2017B)
-          if (*(r->HLT_PFHT300PT30_QuadPFJet_75_60_45_40_TriplePFBTagCSV_3p0))
+          if (*(r->HLT_PFHT300PT30_QuadPFJet_75_60_45_40_TriplePFBTagCSV_3p0) || noTrigCheck)
             h_2017_QuadJet_TripleTag_3B->Fill(analysis_jets, false, HTmod, evtW);
           #endif
 
           #if defined(DATA_2017B)
-          if (*(r->HLT_HT300PT30_QuadJet_75_60_45_40_TripeCSV_p07))
+          if (*(r->HLT_HT300PT30_QuadJet_75_60_45_40_TripeCSV_p07) || noTrigCheck)
             h_2017_QuadJet_TripleTag_RunB_3B->Fill(analysis_jets, false, HTmod, evtW);
           #endif 
         }
@@ -1336,12 +1338,12 @@ void VH_selection::Process(Reader* r) {
 
           // Pass our probe triggers.
           #if defined(MC_2017) || !defined(DATA_2017B)
-          if (*(r->HLT_PFHT300PT30_QuadPFJet_75_60_45_40_TriplePFBTagCSV_3p0))
+          if (*(r->HLT_PFHT300PT30_QuadPFJet_75_60_45_40_TriplePFBTagCSV_3p0) || noTrigCheck)
             h_2017_QuadJet_TripleTag_2b2c->Fill(analysis_jets, false, HTmod, evtW);
           #endif
 
           #if defined(DATA_2017B)
-          if (*(r->HLT_HT300PT30_QuadJet_75_60_45_40_TripeCSV_p07))
+          if (*(r->HLT_HT300PT30_QuadJet_75_60_45_40_TripeCSV_p07) || noTrigCheck)
             h_2017_QuadJet_TripleTag_RunB_2b2c->Fill(analysis_jets, false, HTmod, evtW);
           #endif
         }
@@ -1408,9 +1410,9 @@ void VH_selection::Process(Reader* r) {
           h_2018_QuadJet_noTag_ideal->Fill(analysis_jets, true, HTmod, evtW);
 
           // Pass our probe triggers.
-          if (*(r->HLT_PFHT330PT30_QuadPFJet_75_60_45_40_TriplePFBTagDeepCSV_4p5))
+          if (*(r->HLT_PFHT330PT30_QuadPFJet_75_60_45_40_TriplePFBTagDeepCSV_4p5) || noTrigCheck)
             h_2018_QuadJet_TripleTag_ideal->Fill(analysis_jets, false, HTmod, evtW);
-          if (*(r->HLT_PFHT330PT30_QuadPFJet_75_60_45_40))
+          if (*(r->HLT_PFHT330PT30_QuadPFJet_75_60_45_40) || noTrigCheck)
             h_2018_QuadJet_noTag_ideal->Fill(analysis_jets, false, HTmod, evtW);
         }
 
@@ -1421,7 +1423,7 @@ void VH_selection::Process(Reader* r) {
           h_2018_QuadJet_TripleTag_3B->Fill(analysis_jets, true, HTmod, evtW);
 
           // Pass our probe triggers.
-          if (*(r->HLT_PFHT330PT30_QuadPFJet_75_60_45_40_TriplePFBTagDeepCSV_4p5))
+          if (*(r->HLT_PFHT330PT30_QuadPFJet_75_60_45_40_TriplePFBTagDeepCSV_4p5) || noTrigCheck)
             h_2018_QuadJet_TripleTag_3B->Fill(analysis_jets, false, HTmod, evtW);
         }
 
@@ -1432,7 +1434,7 @@ void VH_selection::Process(Reader* r) {
           h_2018_QuadJet_TripleTag_2b2c->Fill(analysis_jets, true, HTmod, evtW);
 
           // Pass our probe triggers.
-          if (*(r->HLT_PFHT330PT30_QuadPFJet_75_60_45_40_TriplePFBTagDeepCSV_4p5))
+          if (*(r->HLT_PFHT330PT30_QuadPFJet_75_60_45_40_TriplePFBTagDeepCSV_4p5) || noTrigCheck)
             h_2018_QuadJet_TripleTag_2b2c->Fill(analysis_jets, false, HTmod, evtW);
         }
 
