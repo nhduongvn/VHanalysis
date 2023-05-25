@@ -59,6 +59,7 @@ def getHist(pN, sample_name, fH, lS, printSamples=True):
 ## These you can edit / change
 ###############################
 years = ['16', '17', '18']
+years = ['16']
 regions = ['tags', 'algo', 'both']#, 'alljet', 'seljet']
 regions = [
   'tags', 'tags_noMassCorr', 'tags_noJEC',
@@ -80,6 +81,9 @@ useLogY = False
 #resultpath = '../condor_results/mediumWP_viaFlavor/'
 plotFolder = '../plot_results/JEC_comp/newest/' ## medium WP (all from one file)
 resultpath = '../condor_results/mediumWP_newest/'
+
+plotFolder = '../plot_results/updated_May2023/'
+resultpath = '../condor_results/updatedResults_may2023/'
 
 ## Normal List of Files we want
 ss = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ', 'ZH_HToBB_ZToQQ', 'ggZH_HToBB_ZToQQ', 
@@ -208,7 +212,7 @@ for r in regions:
         xA_title, xA_range,                                        ## x-axis information
         normMC=False, logY=_logY, lumi=lumiS[y], minY_forLog=0.0)  ## modifications
       
-
+    continue
     ###################################
     ## Plot control plot for all years
     ###################################

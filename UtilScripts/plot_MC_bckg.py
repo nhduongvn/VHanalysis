@@ -61,6 +61,7 @@ bckg_colors = [ ROOT.kMagenta + 2, ROOT.kOrange + 7]
 ## These you can edit / change
 ###############################
 years = ['16', '17', '18']
+years = ['16']
 regions = ['tags', 'algo', 'both']##, 'alljet', 'seljet']
 plotCat = 'VbbHcc'
 useLogY = True
@@ -69,6 +70,8 @@ plotFolder = '../full_results/'      ## mediumWP
 resultpath = '../condor_results/' 
 plotFolder = '../looseWP_results/'   ## looseWP
 resultpath = '../newest_condor_results/'
+plotFolder = '../plot_results/updated_May2023/'
+resultpath = '../condor_results/updatedResults_may2023/'
 
 ## Normal List of Files we want
 ss = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ', 'ZH_HToBB_ZToQQ', 'ggZH_HToBB_ZToQQ', 
@@ -206,7 +209,7 @@ for r in regions:
         xA_title, xA_range,                                                 ## x-axis information
         normMC=False, logY=_logY, lumi=lumiS[y],custom_colors=bckg_colors)  ## modifications
       
-
+    continue
     ###################################
     ## Plot control plot for all years
     ###################################
