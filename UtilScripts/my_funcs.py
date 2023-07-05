@@ -1056,3 +1056,31 @@ def makeROCinterval(signal_plots, bckg_plots, plotNames, plotVar, canvasName,
   canv.Print(plotDir + '/' + canvasName + '.pdf')
   canv.Print(plotDir + '/' + canvasName + '.C')
 
+###############################################################################
+## customBin
+###############################################################################
+def customBin(hist, xDiv):
+  hOut = ROOT.TH1D(hist.GetName() + '_customBinning','',len(xDiv)-1,array('f',xDiv))
+  for i in range(1, hOut.GetNbinsX()+1):
+    eL = hOut.GetBinLowEdge(i) - 0.000001
+    eH = hOut.GetBinLowEdge(i) + hOut.GetBinWidth(i) + 0.000001
+    
+    contS = 0
+    errS = 0
+    for j in ranger(1, hist.GetNbinsX()+1):
+      eL1 = hist.GetBinLowEdge(j)
+      eH1 = eL1 + hist.GetBinWidth(j)
+      if eL1 >= eL and eH1 <= eH:
+        contS += hist.GetBinContent(j)
+        errS += hist.GetBinError(j)*hist.GetBinError(j)
+    errS = ROOT.TMath.Sqrt(errS)
+    
+    hOut.SetBinContent(i, contS)
+    hOut.SetBinError(i, errS)
+  
+  hOut.SetBinError(0, hist.GetBinError(0))
+  hOut.SetBinContent(0, hist.GetBinContent(0))
+  hOut.SetBinError(hOut.GetNbinsX()+1,hist.GetBinError(hist.GetNbinsX()+1))
+  hOut.SetBinContent(hOut.GetNbinsX()+1,h.GetBinContent(hist.GetNbinsX()+1))
+  
+  return hOut
