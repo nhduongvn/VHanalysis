@@ -16,6 +16,15 @@ from my_funcs import *
 
 ## == custom methods ==========================================================
 
+## Scale a file properly to its luminosity
+def scaleToLumi1(fName, xSec, lumi):
+  f = ROOT.TFile.Open(fName, 'read')
+  hTmp = f.Get('Nevt')
+  nP = hTmp.GetBinContent(3)
+  nN = hTmp.GetBinContent(1)
+  return lumi*xSec/(nP-nN)
+
+
 ## Format a line of text so that the first label is properly spaced
 ## on the left side and then everything follows a special spacing
 ## to its right.
@@ -98,7 +107,7 @@ def Rebinning(hist, xRange):
   for i in range(0, ufBin + 1):
     nUf += hist.GetBinContent(i)
     nErrUf += hist.GetBinError(i)*hist.GetBinError(i)
-  nErrUf = math.sqrt(0, nUf)
+  nErrUf = math.sqrt(nErrUf)
   histNew.SetBinContent(0, nUf)
   histNew.SetBinError(0, nErrUf)
 
@@ -133,7 +142,7 @@ def write_data_card(dc_name, in_file, systs='NONE'):
   dc_file.write('jmax * number of backgrounds (\'*\' = automatic)\n')
   dc_file.write('kmax * number of nuisance parameters (sources of systematical uncertainties)\n')
   st = 'shapes * * ' + in_file.GetName() + ' $PROCESS $PROCESS$SYSTEMATIC\n\n'
-  f_dc.write(st)
+  dc_file.write(st)
 
   obs = (in_file.Get('data_obs')).Integral()
   ws = ['observation', str(obs)]
@@ -198,7 +207,7 @@ def write_data_card(dc_name, in_file, systs='NONE'):
 
 ## == These values can be edited for the proper analysis ==
 years = ['16', '17', '18']
-regions = ['VbbHcc_resolved']
+regions = ['VbbHcc_both']
 
 desired_samples = ['ZHcc', 'ZHbb', 'QCD', 'Top', 'VJ', 'VV']
 bkgr_xSec = [-1, -1, 1.2, 1.055, 1.05, 1.15]
@@ -212,13 +221,17 @@ xDiv = [40.,60.,80.,90.,100.,130.,160.,200.]
 
 ss = [ 'JetHT', 'ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ', ## Jet HT & ZH(H->CC)
   'ZH_HToBB_ZToQQ', 'ggZH_HToBB_ZToQQ',               ## ZH(H->BB)
+  'QCD_HT100to200_v9',
   'QCD_HT200to300_v9', 'QCD_HT300to500_v9',           ## QCD (200-Inf)
   'QCD_HT500to700_v9', 'QCD_HT700to1000_v9', 'QCD_HT1000to1500_v9', 
   'QCD_HT1500to2000_v9', 'QCD_HT2000toInf_v9', 
+  'WJetsToQQ_HT-200to400',
   'WJetsToQQ_HT-400to600', 'WJetsToQQ_HT-600to800',   ## WJ (400-Inf)
   'WJetsToQQ_HT-800toInf', 'WJetsToLNu_HT-400to600',
+  'WJetsToLNu_HT-100to200', 'WJetsToLNu_HT-200to400',
   'WJetsToLNu_HT-600to800','WJetsToLNu_HT-800to1200', 
   'WJetsToLNu_HT-1200to2500','WJetsToLNu_HT-2500toInf',
+  'ZJetsToQQ_HT-200to400',
   'ZJetsToQQ_HT-400to600', 'ZJetsToQQ_HT-600to800',   ## ZJ (400-Inf)
   'ZJetsToQQ_HT-800toInf',
   'TTToHadronic','TTToSemiLeptonic','TTTo2L2Nu',      ## Top (ttbar)
@@ -234,8 +247,11 @@ dc_name = '../tmp'
 ## == DO NOT MODIFY BELOW THIS POINT ==
 ## ====================================
 
-cfg = BetterConfigParser()
-cfg.read('../Configs/config.ini')
+#cfg = BetterConfigParser()
+#cfg.read('../Configs/config.ini')
+config_file = '../Configs/config.ini'
+cfg = ConfigParser.ConfigParser()
+cfg.read(config_file)
 
 lumiS = {}
 for y in years:
@@ -286,13 +302,13 @@ for s in ss:
     lumiScales[s][y] = [1]*len(names)
     for iN in range(len(fileNames[s][y])):
       if s not in ['JetHT']:
-        print s, y, iN, fileNmaes[s][y][iN]
+        print s, y, iN, fileNames[s][y][iN]
         lumiScales[s][y][iN] = scaleToLumi1(fileNames[s][y][iN],
-          xSecs[s][y][iN], lumi, 'Nevt_VbbHcc_resolved')
+          xSecs[s][y][iN], lumi)
 
 
 nums = {}
-plN = 'HMass'
+plN = 'H_mass'
 
 for r in regions:
   
@@ -336,6 +352,8 @@ for r in regions:
   ################################  
   ## Add plots for all the years
   ################################
+
+  print "Combining plots for all years..."
   
   ## We do this by first cloning all the 2016 histograms...
   hDataA = hData['16'].Clone(hData['16'].GetName()+'_all')
@@ -372,7 +390,8 @@ for r in regions:
   ## categories. Because of the small numbers of certain
   ## background signals, it is more useful to clump them
   ## togther, rather than having 20 signals to deal with.
-  
+  print "Grouping common processes..."  
+
   ## Combine ZH + ggZH (ZHqq)
   hZHcc_comb = hZHccA.Clone("ZHcc")
   hZHcc_comb.Add(hggZHccA)
@@ -393,6 +412,7 @@ for r in regions:
   hVV.Add(hZZA)
 
   ## Get the number of events per sample (integrated)
+  print "Getting the no. events per sample..."
   nums[r]['All'] = {}
   nums[r]['All']['JetHT'] = getHistIntegral(hDataA,lowM,highM)
   nums[r]['All']['ZH_HToCC_ZToQQ'] = getHistIntegral(hZHccA,lowM,highM)
@@ -409,6 +429,8 @@ for r in regions:
   nums[r]['All']['ZZ'] = getHistIntegral(hZZA,lowM,highM)
 
   ## Rebin our histograms
+  print "Rebinning our histograms..."
+
   hDataA.Rebin(nRebin)
   hDataA_rebin = Rebinning(hDataA, [lowM,highM])
   hQCDA.Rebin(nRebin)
@@ -427,6 +449,8 @@ for r in regions:
   hVV_rebin = Rebinning(hVV,[lowM,highM])
   
   ## Save our histograms
+  print "Saving the histograms..."
+  
   out_file.cd()
   hDataA_rebin.SetName("data_obs")
   hDataA_rebin.Write()
