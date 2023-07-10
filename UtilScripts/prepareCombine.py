@@ -207,7 +207,7 @@ def write_data_card(dc_name, in_file, systs='NONE'):
 
 ## == These values can be edited for the proper analysis ==
 years = ['16', '17', '18']
-regions = ['VbbHcc_both']
+regions = ['VbbHcc_tags']
 
 desired_samples = ['ZHcc', 'ZHbb', 'QCD', 'Top', 'VJ', 'VV']
 bkgr_xSec = [-1, -1, 1.2, 1.055, 1.05, 1.15]
@@ -240,8 +240,8 @@ ss = [ 'JetHT', 'ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ', ## Jet HT & ZH(H->CC)
   'WW','WZ','ZZ'                                      ## VV
 ]
 
-out_file = ROOT.TFile("../histos.root", "RECREATE")
-dc_name = '../tmp/dataCard_both'
+out_file = ROOT.TFile("../histos_tags.root", "RECREATE")
+dc_name = '../tmp/dataCard_tags'
 
 ## ====================================
 ## == DO NOT MODIFY BELOW THIS POINT ==

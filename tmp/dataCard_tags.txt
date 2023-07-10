@@ -1,15 +1,15 @@
 imax 1 number of channels
 jmax * number of backgrounds ('*' = automatic)
 kmax * number of nuisance parameters (sources of systematical uncertainties)
-shapes * * ../histos_both.root $PROCESS $PROCESS$SYSTEMATIC
+shapes * * ../histos_tags.root $PROCESS $PROCESS$SYSTEMATIC
 
-observation                   4977720.0           
+observation                   3602274.0           
 
 bin                           SR                  
 bin                                               SR                  SR                  SR                  SR                  SR                  SR                  
 process                                           ZHcc                ZHbb                QCD                 Top                 VJ                  VV                  
 process                                           0                   1                   2                   3                   4                   5                   
-rate                                              19.0939418067       618.053824611       13016830.3852       2336220.48596       134662.101738       1904.15215436       
+rate                                              13.5854396776       421.60629968        9086122.65415       1423055.34627       92810.301796        1394.67248349       
 lumi                          lnN                 1.026               1.026               1.026               1.026               1.026               1.026               
 QCD_bkgr_xSec                 lnN                 -                   -                   1.2                 -                   -                   -                   
 Top_bkgr_xSec                 lnN                 -                   -                   -                   1.055               -                   -                   
