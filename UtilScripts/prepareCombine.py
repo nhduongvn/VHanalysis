@@ -241,7 +241,7 @@ ss = [ 'JetHT', 'ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ', ## Jet HT & ZH(H->CC)
 ]
 
 out_file = ROOT.TFile("../histos.root", "RECREATE")
-dc_name = '../tmp'
+dc_name = '../tmp/dataCard_both'
 
 ## ====================================
 ## == DO NOT MODIFY BELOW THIS POINT ==
