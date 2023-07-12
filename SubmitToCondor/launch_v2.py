@@ -97,15 +97,15 @@ sourceDir = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/'
 #condorRunDir = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/SubmitToCondor/condor/'
 condorRunDir = '/uscmst1b_scratch/lpc1/lpcphys/peteryou/Output_VH/mediumWP_updates042023/'
 condorRunDir = '/uscmst1b_scratch/lpc1/lpcphys/peteryou/Output_VH/trigger_efficiency_ZH/'
-condorRunDir = '/uscmst1b_scratch/lpc1/lpcphys/peteryou/Output_VH/updatedResults_june2023/'
+condorRunDir = '/uscmst1b_scratch/lpc1/lpcphys/peteryou/Output_VH/updatedResults_july2023/'
 outputDir_eos = '/store/user/peteryou/Output_VH/mediumWP_updates042023/'+syst+'/' 
 outputDir_eos = '/store/user/peteryou/Output_VH/trigger_efficiency_ZH/'+syst+'/'
-outputDir_eos = '/store/user/peteryou/Output_VH/updatedResults_june2023/'
+outputDir_eos = '/store/user/peteryou/Output_VH/updatedResults_july2023/'
 #outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/new_condor_results/' + syst + '/'
 #outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/newest_condor_results/' + syst + '/'
 outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/mediumWP_updates042023/' + syst + '/'
 outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/trigger_efficiency_ZH/' + syst + '/'
-outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/updatedResults_june2023/' + syst + '/'
+outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/updatedResults_july2023/' + syst + '/'
 
 #Input data sets
 #dataSet_list = sourceDir+"/Dataset_lists/datasets_JetHT_combined.txt" #data

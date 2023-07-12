@@ -1574,6 +1574,31 @@ void VH_selection::Process(Reader* r) {
  
     }
 
+    // We want to only keep going with our selections if we trigger properly.
+    // We need to check each year of the analysis properly.
+    bool trigger = false;
+
+#if defined(MC_2016) || defined(DATA_2016)
+    trigger = (*(r->HLT_QuadJet45_TripleBTagCSV_p087) || 
+      *(r->HLT_DoubleJet90_Double30_TripleBTagCSV_p087));
+#endif
+
+#if defined(MC_2017) || defined(DATA_2017)
+  #if !defined(DATA_2017B)
+    trigger = *(r->HLT_PFHT300PT30_QuadPFJet_75_60_45_40_TriplePFBTagCSV_3p0);
+  #endif
+  #if defined(DATA_2017B)
+    trigger = *(r->HLT_HT300PT30_QuadJet_75_60_45_40_TripeCSV_p07);
+  #endif
+#endif
+
+#if defined(MC_2018) || defined(DATA_2018)
+    trigger = *(r->HLT_PFHT330PT30_QuadPFJet_75_60_45_40_TriplePFBTagDeepCSV_4p5);
+#endif
+
+    // Do not continue on if we haven't triggered properly.
+    if (!trigger) return;
+
     /**************************************************************************
     * Selection Method #1 - TAGGING ONLY                                      *
     **************************************************************************/
