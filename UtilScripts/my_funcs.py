@@ -894,6 +894,215 @@ def makeROCcurve(signal_plots, bckg_plots, plotNames, plotVar, canvasName,
   canv.Print(plotDir + '/' + canvasName + '.C')
 
 ###############################################################################
+## Make DataMC Plot
+###############################################################################
+
+def makeDataMCPlot(plots, plotNames, canvasName, outputDir = 'Test/', 
+  xAxisTitle = 'M [GeV]', xAxisRange = [0,10], uncName = 'MC unc. (stat.)',
+  normMC = True, logY = False, normBinWidth = -1, legendOrder = [],
+  minY_forLog = 0.01, lumi = '35.9'):
+  
+  ## Make our canvas & modify it as possible
+  c = ROOT.TCanvas(canvasName, canvasName, 600, 600)
+  c.SetFillStyle(4000)
+  c.SetFrameFillStyle(1000)
+  c.SetFrameFillColor(0)
+  
+  ## Modify the top pad
+  topPad = ROOT.TPad('topPad', 'topPad', 0, 0.3, 1.0, 1.0)
+  if logY: topPad.SetLogy()
+  topPad.SetBottomMargin(0.001)
+  topPad.SetLeftMargin(0.12709)
+  topPad.SetRightMargin(0.0434783)
+  topPad.Draw()
+
+  ## Modify the bottom pad
+  bottomPad = ROOT.TPad('bottomPad','bottomPad',0,0.0,1.0,0.3)
+  bottomPad.SetTopMargin(0.)
+  bottomPad.SetBottomMargin(0.35)
+  bottomPad.Draw()
+
+  topPad.cd()
+  
+  ## Make a StackPlot and legend for later
+  allStack = ROOT.THStack('st','')
+  y1_ndc = 0.42
+  y2_ndc = 0.87
+  x1_ndc = 0.58
+  if len(legendOrder) != 0:
+      x1_ndc = 0.42
+      y1_ndc = 0.62
+  l = ROOT.TLegend(x1_ndc, y1_ndc,0.89,y2_ndc)
+  if len(legendOrder) != 0: l.SetNColumns(2)
+  l.SetLineWidth(2)
+  l.SetBorderSize(0)
+  l.SetFillColor(0)
+  l.SetTextFont(42)
+  l.SetTextSize(0.035)
+  
+  ## Calculate the normalized MC scale (if desired)
+  MC_integral = 0
+  for i in range(1, len(plots)):
+    MC_integral += plots[i].Integral()
+  
+  normScale = 1
+  if MC_integral > 0 and normMC:
+    normScale = plots[0].Integral()/MC_integral
+  else: print "Scale MC by :", normScale
+  
+  ## == NORM BIN CODE GOES HERE ==
+  
+  ## Add the entries to the legend
+  l.AddEntry(plots[0], plotNames[0], 'p')
+  if len(legendOrder) != 0: l.AddEntry('','','')
+  iColor = 0
+  for i in range(len(plots)-1,0,-1):
+    plots[i].Scale(normScale)
+    plots[i].SetFillColor(colors[iColor])
+    iColor = iColor + 1
+    if len(legendOrder) == 0: l.AddEntry(plots[i], plotNames[i], 'F')
+  
+  for i in legendOrder:
+    l.AddEntry(plots[i], plotNames[i], 'F')
+  
+  ## Create the stack
+  for i in range(1, len(plots)):
+    allStack.Add(plots[i])
+  
+  allMC = allStack.GetStack().Last().Clone()
+  theErrorGraph = ROOT.TGraphErrors(allMC)
+  theErrorGraph.SetFillColor(ROOT.kGray+3)
+  theErrorGraph.SetFillStyle(3013)
+  l.AddEntry(theErrorGraph, uncName, "fl")
+  
+  ## Modify it as necessary
+  allStack.Draw("hist")
+  allStack.GetXaxis().SetRangeUser(xAxisRange[0], xAxisRange[1])
+  binW = plots[0].GetBinWidth(1)
+  
+  formatNum = ''
+  aNum = floor(binW*pow(10,3))-floor(binW*pow(10,2))*10
+  if aNum >= 1: formatNum = '0.3f'
+  allStack.GetYaxis().SetTitle('Events/' + format(binW,formatNum))
+  if normBinWidth >= 0:
+    allStack.GetYaxis().SetTitle('Events/' + str(normBinWidth))
+  
+  allStack.GetYaxis().SetTitleSize(0.057)
+  allStack.GetYaxis().SetTitleOffset(1.2)
+  allStack.GetYaxis().SetLabelSize(0.05)
+  scaleTmp = 0.9 - (y2_ndc - y1_ndc)
+  maxScaleFromPlots = ROOT.TMath.Max(plots[0].GetMaximum(), allStack.GetMaximum())
+  maxX = 1./scaleTmp*maxScaleFromPlots
+  if logY and maxScaleFromPlots > 0:
+    maxX = pow(10, 1./scaleTmp*log10(maxScaleFromPlots))
+  allStack.SetMaximum(maxX)
+  allStack.SetMinimum(minY_forLog)
+  
+  plots[0].Draw("same E")
+  plots[0].SetMarkerStyle(20)
+  plots[0].SetMarkerSize(1.2)
+  plots[0].SetLineWidth(2)
+  theErrorGraph.Draw('SAME2')
+
+  l.Draw()
+  myText('CMS Work in Progress #sqrt{s} = 13 TeV, '+ lumi+' fb^{-1}', 0.5, 0.937775, 1.0)
+  topPad.Update()
+  
+  #Handle the bottom pad
+  bottomPad.cd()
+  bottomPad.SetLeftMargin(0.12709)
+  bottomPad.SetRightMargin(0.0434783)
+  bottomPad.SetTopMargin(0.03)
+  
+  ROOT.gPad.SetTicks(1,1)
+  
+  l2 = ROOT.TLegend(0.7, 0.78, 0.93, 0.87)
+  l2.SetLineWidth(2)
+  l2.SetBorderSize(0)
+  l2.SetFillColor(0)
+  l2.SetTextSize(0.075)
+  l2.SetNColumns(2)
+  xL = allMC.GetXaxis().GetXmin()
+  xH = allMC.GetXaxis().GetXmax()
+  if len(xAxisRange) > 0:
+    xL = xAxisRange[0]
+    xH = xAxisRange[1]
+  
+  ## Handle the ratio
+  allMC = allStack.GetStack().Last().Clone()
+  ratio = plots[0].Clone('data_mc_ratio')
+  ratio.Divide(allMC)
+  
+  for i in range(1, ratio.GetNbinsX()+1):
+    binErrTmp = 0
+    if plots[0].GetBinContent(i) > 0:
+      binErrTmp = ratio.GetBinContent(i)*plots[0].GetBinError(i)/plots[0].GetBinContent(i)
+    ratio.SetBinError(i, binErrTmp)
+  error = allMC.Clone('mc_statistical_error')
+  error.Reset()
+  
+  for i in range(1, error.GetNbinsX()+1):
+    error.SetBinContent(i,1)
+    error.SetBinError(i,0)
+    if allMC.GetBinContent(i) > 0:
+      error.SetBinError(i, allMC.GetBinError(i)/allMC.GetBinContent(i))
+    if allMC.GetBinContent(i) < 0:
+      print ">>>>>> Strange bin content in allMC histogram, set error to 0: ", allMC.GetBinLowEdge(i), allMC.GetBinContent(i)
+  
+  if ratio.GetNbinsX() != error.GetNbinsX():
+    print "@@@@@@ Warning: ratio and ratio error histograms do not have the same number of bins: ", ratio.GetNbinsX(), " ", error.GetNbinsX()
+  
+  ksScore = plots[0].KolmogorovTest(allMC)
+  chiScore = plots[0].Chi2Test(allMC, "UWCHI2/NDF")
+  print 'ksScore:  ', ksScore
+  print 'chiScore: ', chiScore
+  
+  ratio.SetStats(0)
+  ratioError = ROOT.TGraphErrors(error)
+  ratioError.SetFillColor(ROOT.kGray+3)
+  ratioError.SetFillStyle(3013)
+  ratio.Draw("E1")
+  ratio.GetXaxis().SetRangeUser(xAxisRange[0], xAxisRange[1])
+  
+  l2.AddEntry(ratioError, "MC unc. (stat.)", "f")
+  l2.SetTextFont(42)
+  l2.SetTextSize(0.1) 
+  
+  ratioError.Draw('E2SAME')
+  ratio.SetMarkerStyle(20)
+  ratio.SetMarkerSize(1.2)
+  ratio.SetLineWidth(2)
+  ratio.SetTitle("")
+  ratio.GetXaxis().SetTitle(xAxisTitle)
+  ratio.GetXaxis().SetTitleSize(0.12)
+  ratio.GetXaxis().SetLabelSize(0.12)
+  ratio.GetXaxis().SetTitleOffset(1.1)
+  ratio.GetYaxis().SetNdivisions(505)
+  ratio.GetYaxis().SetTitle("Data/MC")
+  ratio.GetYaxis().SetTitleSize(0.12)
+  ratio.GetYaxis().SetTitleOffset(0.5)
+  ratio.GetYaxis().SetLabelSize(0.12)
+  ratio.GetYaxis().SetRangeUser(0.4,1.6)
+  
+  m_one_line = ROOT.TLine(xAxisRange[0], 1, xAxisRange[1], 1)
+  m_one_line.SetLineStyle(ROOT.kSolid)
+  m_one_line.Draw("same")
+  bottomPad.Update()
+
+  dirExists = os.path.exists(outputDir)
+  if not dirExists:
+    print "Warning: output directory does not exist."
+    os.makedirs(outputDir)
+    print ">>> directory created."
+  
+  c.Print(outputDir + '/' + canvasName + '.png')
+  c.Print(outputDir + '/' + canvasName + '.pdf')
+  c.Print(outputDir + '/' + canvasName + '.eps')
+  c.Print(outputDir + '/' + canvasName + '.C')
+  
+  return c
+
+###############################################################################
 ## Make ROC interval
 ###############################################################################
 
