@@ -900,7 +900,7 @@ def makeROCcurve(signal_plots, bckg_plots, plotNames, plotVar, canvasName,
 def makeDataMCPlot(plots, plotNames, canvasName, outputDir = 'Test/', 
   xAxisTitle = 'M [GeV]', xAxisRange = [0,10], uncName = 'MC unc. (stat.)',
   normMC = True, logY = False, normBinWidth = -1, legendOrder = [],
-  minY_forLog = 0.01, lumi = '35.9'):
+  minY_forLog = 0.01, lumi = '35.9', blindMass=False, massRegion=[75,140]):
   
   ## Make our canvas & modify it as possible
   c = ROOT.TCanvas(canvasName, canvasName, 600, 600)
@@ -969,6 +969,24 @@ def makeDataMCPlot(plots, plotNames, canvasName, outputDir = 'Test/',
   for i in range(1, len(plots)):
     allStack.Add(plots[i])
   
+  ## Handle to see if we want to blind the mass region
+  if blindMass:
+    mL = massRegion[0]
+    mH = massRegion[1]
+    ## Remove any data that's not in the range we want
+    ## Basically, go through bin by bin and if it's contents
+    ## don't meet the range we want, ignore it.
+    for i in range(1,allStack.GetNbinsX()+1):
+      binCenter = allStack.GetBinCenter(i)
+      content = allStack.GetBinContent(i)
+      if binCenter >= mL and binCenter <= mH:
+        content = 0
+      allStack.SetBinContent(i, content)
+    dataPlot = plots[0]
+  else:
+    dataPlot = plots[0]
+    
+  
   allMC = allStack.GetStack().Last().Clone()
   theErrorGraph = ROOT.TGraphErrors(allMC)
   theErrorGraph.SetFillColor(ROOT.kGray+3)
@@ -998,10 +1016,10 @@ def makeDataMCPlot(plots, plotNames, canvasName, outputDir = 'Test/',
   allStack.SetMaximum(maxX)
   allStack.SetMinimum(minY_forLog)
   
-  plots[0].Draw("same E")
-  plots[0].SetMarkerStyle(20)
-  plots[0].SetMarkerSize(1.2)
-  plots[0].SetLineWidth(2)
+  dataPlot.Draw("same E")
+  dataPlot.SetMarkerStyle(20)
+  dataPlot.SetMarkerSize(1.2)
+  dataPlot.SetLineWidth(2)
   theErrorGraph.Draw('SAME2')
 
   l.Draw()

@@ -35,7 +35,7 @@ def getHist(plotName, sample_names, hist_files, lumiScales):
   for y in years:
     
     ## Get the first sample & the appropriate histogram
-    print sample_names[0], plotName, y
+    print(sample_names[0], plotName, y)
     hOut[y] = hist_files[sample_names[0]][y][0].Get(plotName).Clone()
     if sample_names[0] not in ['JetHT']:
       hOut[y].Scale(lumiScales[sample_names[0]][y][0])
@@ -92,22 +92,22 @@ ss = [ 'JetHT', 'ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ', ## Jet HT & ZH(H->CC)
 ################################
 
 ## Load the config
-if debug: print ">>> Loading config file..."
+if debug: print(">>> Loading config file...")
 config_file = '../Configs/config.ini'
 cfg = ConfigParser.ConfigParser()
 cfg.read(config_file)
 
 ## Get the lumi scales
-if debug: print ">>> Loading lumi scales..."
+if debug: print(">>> Loading lumi scales...")
 lumiS = {}
 for y in years:
   lumiTmp = float(cfg.get('General','lumi_'+y))/1000.0
   lumiTmp = float("%.1f" % lumiTmp)
   lumiS[y] = str(lumiTmp)
-print "lumi scales = ", lumiS
+print("lumi scales = ", lumiS)
 
 ## Retrieve necessary information from the desired samples
-print ">>> Retrieving file information..."
+print(">>> Retrieving file information...")
 fileNames = {}
 xSecs = {}
 lumiScales = {}
@@ -124,7 +124,7 @@ for s in ss:
     
     lumi = float(cfg.get('General','lumi_'+y))
     names = cfg.get(s,'file_'+y).split(',')
-    print '>>>>>>>>>: ', len(names)
+    print('>>>>>>>>>: ', len(names))
     xSecTmps = ['1']*len(names)
     kfactor = ['1']*len(names)
     if s not in ['JetHT']:
@@ -138,7 +138,7 @@ for s in ss:
       fileNames[s][y].append(dirpath + '/' + iN)
       histFiles[s][y].append(ROOT.TFile.Open(fileNames[s][y][-1],'READ'))
     
-    print xSecTmps
+    print(xSecTmps)
     for iS in xSecTmps:
       if '*' in iS: iS = iS.split('*')
       if len(iS) == 2:
@@ -149,7 +149,7 @@ for s in ss:
     lumiScales[s][y] = [1]*len(names)
     for iN in range(len(fileNames[s][y])):
       if s not in ['JetHT']:
-        print s, y, iN, fileNames[s][y][iN]
+        print(s, y, iN, fileNames[s][y][iN])
         lumiScales[s][y][iN] = scaleToLumi1(fileNames[s][y][iN], xSecs[s][y][iN], lumi)
 
 nums = {}
@@ -157,14 +157,14 @@ nums = {}
 ## Go through each region of interest
 for r in regions:
   
-  print ">>> Checking region r = ", r
+  print(">>> Checking region r = ", r)
   nums[r] = {}
   plotNames = cfg.get('Plots', 'VbbHcc_plot').split(',')
   
   
   for plN in plotNames:
     
-    print ">>>>>> Checking plot plN = ", plN
+    print(">>>>>> Checking plot plN = ", plN)
     if r != '': hN = 'VbbHcc_' + r + '_' + plN
     else: hN = 'VbbHcc_' + plN
     
@@ -207,7 +207,7 @@ for r in regions:
     
     for y in years:
       
-      print ">>>>>> Plotting for 20" + y
+      print(">>>>>> Plotting for 20" + y)
       tmps = cfg.get(plN, 'xAxisRange').split(',')
       xA_range = []
       if 'Pi' not in tmps[1]:

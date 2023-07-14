@@ -1,0 +1,55 @@
+ <<< Combine >>> 
+>>> random number generator seed is 123456
+>>> method used is AsymptoticLimits
+Channel SR will use autoMCStats with settings: event-threshold=25, include-signal=1, hist-mode=1
+============================================================
+Analysing bin errors for: prop_binSR
+Poisson cut-off: 25
+============================================================
+Bin        Contents        Error           Notes                         
+0          1348445.214366  36045.436125    total sum                     
+0          1399.000000     37.403208       Unweighted events, alpha=963.863627
+  => Total parameter prop_binSR_bin0[0.00,-7.00,7.00] to be gaussian constrained
+------------------------------------------------------------
+1          1509240.270539  43794.833004    total sum                     
+1          1188.000000     34.467376       Unweighted events, alpha=1270.404268
+  => Total parameter prop_binSR_bin1[0.00,-7.00,7.00] to be gaussian constrained
+------------------------------------------------------------
+2          1592589.893566  62428.125502    total sum                     
+2          651.000000      25.514702       Unweighted events, alpha=2446.374644
+  => Total parameter prop_binSR_bin2[0.00,-7.00,7.00] to be gaussian constrained
+------------------------------------------------------------
+3          1373132.182690  38815.174304    total sum                     
+3          1251.000000     35.369478       Unweighted events, alpha=1097.627644
+  => Total parameter prop_binSR_bin3[0.00,-7.00,7.00] to be gaussian constrained
+------------------------------------------------------------
+4          1402605.675826  50447.771075    total sum                     
+4          773.000000      27.802878       Unweighted events, alpha=1814.496346
+  => Total parameter prop_binSR_bin4[0.00,-7.00,7.00] to be gaussian constrained
+------------------------------------------------------------
+5          1191854.257723  37067.203089    total sum                     
+5          1034.000000     32.155870       Unweighted events, alpha=1152.663692
+  => Total parameter prop_binSR_bin5[0.00,-7.00,7.00] to be gaussian constrained
+------------------------------------------------------------
+6          1168785.401172  49301.262236    total sum                     
+6          562.000000      23.706539       Unweighted events, alpha=2079.689326
+  => Total parameter prop_binSR_bin6[0.00,-7.00,7.00] to be gaussian constrained
+------------------------------------------------------------
+7          1017165.473724  42078.230418    total sum                     
+7          584.000000      24.166092       Unweighted events, alpha=1741.721702
+  => Total parameter prop_binSR_bin7[0.00,-7.00,7.00] to be gaussian constrained
+------------------------------------------------------------
+SimNLL created with 1 channels, 0 generic constraints, 13 fast gaussian constraints, 0 fast poisson constraints, 0 fast group constraints, 
+SimNLL created with 1 channels, 0 generic constraints, 13 fast gaussian constraints, 0 fast poisson constraints, 0 fast group constraints, 
+SimNLL created with 1 channels, 0 generic constraints, 13 fast gaussian constraints, 0 fast poisson constraints, 0 fast group constraints, 
+
+ -- AsymptoticLimits ( CLs ) --
+Observed Limit: r < 32541.6089
+Expected  2.5%: r < 3875.0000
+Expected 16.0%: r < 3984.3750
+Expected 50.0%: r < 4000.0000
+Expected 84.0%: r < 8049.8193
+Expected 97.5%: r < 12131.2783
+
+Done in 0.04 min (cpu), 0.04 min (real)
+
