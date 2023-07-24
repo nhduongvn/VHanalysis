@@ -1,7 +1,7 @@
 void Z_dR_algo_all()
 {
 //=========Macro generated from canvas: Z_dR_algo_all/Z_dR_algo_all
-//=========  (Fri Jul 14 13:38:19 2023) by ROOT version 6.14/09
+//=========  (Mon Jul 24 10:11:42 2023) by ROOT version 6.14/09
    TCanvas *Z_dR_algo_all = new TCanvas("Z_dR_algo_all", "Z_dR_algo_all",0,0,600,600);
    Z_dR_algo_all->SetHighLightColor(2);
    Z_dR_algo_all->Range(0,0,1,1);
@@ -1076,7 +1076,7 @@ void Z_dR_algo_all()
    VbbHcc_algo_Z_dR_all__231->SetBinContent(29,5951);
    VbbHcc_algo_Z_dR_all__231->SetBinContent(30,4080);
    VbbHcc_algo_Z_dR_all__231->SetBinContent(31,3158);
-   VbbHcc_algo_Z_dR_all__231->SetEntries(439847);
+   VbbHcc_algo_Z_dR_all__231->SetEntries(439876);
 
    ci = TColor::GetColor("#000099");
    VbbHcc_algo_Z_dR_all__231->SetLineColor(ci);
@@ -1272,8 +1272,8 @@ void Z_dR_algo_all()
    entry->SetLineStyle(1);
    entry->SetLineWidth(1);
    entry->SetMarkerColor(1);
-   entry->SetMarkerStyle(20);
-   entry->SetMarkerSize(1.2);
+   entry->SetMarkerStyle(1);
+   entry->SetMarkerSize(1);
    entry->SetTextFont(42);
    entry=leg->AddEntry("VbbHcc_algo_Z_dR_all_stack_12","ggZHcc","F");
 

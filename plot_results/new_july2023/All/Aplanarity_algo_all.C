@@ -1,7 +1,7 @@
 void Aplanarity_algo_all()
 {
 //=========Macro generated from canvas: Aplanarity_algo_all/Aplanarity_algo_all
-//=========  (Fri Jul 14 13:38:27 2023) by ROOT version 6.14/09
+//=========  (Mon Jul 24 10:11:52 2023) by ROOT version 6.14/09
    TCanvas *Aplanarity_algo_all = new TCanvas("Aplanarity_algo_all", "Aplanarity_algo_all",0,0,600,600);
    Aplanarity_algo_all->SetHighLightColor(2);
    Aplanarity_algo_all->Range(0,0,1,1);
@@ -545,7 +545,7 @@ void Aplanarity_algo_all()
    VbbHcc_algo_Aplanarity_all__319->SetBinContent(11,8);
    VbbHcc_algo_Aplanarity_all__319->SetBinContent(12,4);
    VbbHcc_algo_Aplanarity_all__319->SetBinContent(13,2);
-   VbbHcc_algo_Aplanarity_all__319->SetEntries(439847);
+   VbbHcc_algo_Aplanarity_all__319->SetEntries(439896);
 
    ci = TColor::GetColor("#000099");
    VbbHcc_algo_Aplanarity_all__319->SetLineColor(ci);
@@ -821,8 +821,8 @@ void Aplanarity_algo_all()
    entry->SetLineStyle(1);
    entry->SetLineWidth(1);
    entry->SetMarkerColor(1);
-   entry->SetMarkerStyle(20);
-   entry->SetMarkerSize(1.2);
+   entry->SetMarkerStyle(1);
+   entry->SetMarkerSize(1);
    entry->SetTextFont(42);
    entry=leg->AddEntry("VbbHcc_algo_Aplanarity_all_stack_12","ggZHcc","F");
 

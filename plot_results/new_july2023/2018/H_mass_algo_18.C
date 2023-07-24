@@ -1,7 +1,7 @@
 void H_mass_algo_18()
 {
 //=========Macro generated from canvas: H_mass_algo_18/H_mass_algo_18
-//=========  (Fri Jul 14 13:38:12 2023) by ROOT version 6.14/09
+//=========  (Mon Jul 24 10:11:35 2023) by ROOT version 6.14/09
    TCanvas *H_mass_algo_18 = new TCanvas("H_mass_algo_18", "H_mass_algo_18",0,0,600,600);
    H_mass_algo_18->SetHighLightColor(2);
    H_mass_algo_18->Range(0,0,1,1);
@@ -1084,13 +1084,6 @@ void H_mass_algo_18()
    VbbHcc_algo_H_mass__205->SetBinContent(5,429);
    VbbHcc_algo_H_mass__205->SetBinContent(6,2411);
    VbbHcc_algo_H_mass__205->SetBinContent(7,4509);
-   VbbHcc_algo_H_mass__205->SetBinContent(8,6166);
-   VbbHcc_algo_H_mass__205->SetBinContent(9,6644);
-   VbbHcc_algo_H_mass__205->SetBinContent(10,6299);
-   VbbHcc_algo_H_mass__205->SetBinContent(11,5949);
-   VbbHcc_algo_H_mass__205->SetBinContent(12,5699);
-   VbbHcc_algo_H_mass__205->SetBinContent(13,5605);
-   VbbHcc_algo_H_mass__205->SetBinContent(14,5514);
    VbbHcc_algo_H_mass__205->SetBinContent(15,5478);
    VbbHcc_algo_H_mass__205->SetBinContent(16,5259);
    VbbHcc_algo_H_mass__205->SetBinContent(17,5174);
@@ -1118,7 +1111,7 @@ void H_mass_algo_18()
    VbbHcc_algo_H_mass__205->SetBinContent(39,3147);
    VbbHcc_algo_H_mass__205->SetBinContent(40,3085);
    VbbHcc_algo_H_mass__205->SetBinContent(41,146700);
-   VbbHcc_algo_H_mass__205->SetEntries(303071);
+   VbbHcc_algo_H_mass__205->SetEntries(303110);
 
    ci = TColor::GetColor("#000099");
    VbbHcc_algo_H_mass__205->SetLineColor(ci);
@@ -1354,8 +1347,8 @@ void H_mass_algo_18()
    entry->SetLineStyle(1);
    entry->SetLineWidth(1);
    entry->SetMarkerColor(1);
-   entry->SetMarkerStyle(20);
-   entry->SetMarkerSize(1.2);
+   entry->SetMarkerStyle(1);
+   entry->SetMarkerSize(1);
    entry->SetTextFont(42);
    entry=leg->AddEntry("VbbHcc_algo_H_mass_stack_12","ggZHcc","F");
 

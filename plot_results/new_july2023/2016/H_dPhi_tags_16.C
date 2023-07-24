@@ -1,7 +1,7 @@
 void H_dPhi_tags_16()
 {
 //=========Macro generated from canvas: H_dPhi_tags_16/H_dPhi_tags_16
-//=========  (Fri Jul 14 13:37:58 2023) by ROOT version 6.14/09
+//=========  (Mon Jul 24 10:11:19 2023) by ROOT version 6.14/09
    TCanvas *H_dPhi_tags_16 = new TCanvas("H_dPhi_tags_16", "H_dPhi_tags_16",0,0,600,600);
    H_dPhi_tags_16->SetHighLightColor(2);
    H_dPhi_tags_16->Range(0,0,1,1);
@@ -2684,7 +2684,7 @@ void H_dPhi_tags_16()
    VbbHcc_tags_H_dPhi__57->SetBinContent(93,5131);
    VbbHcc_tags_H_dPhi__57->SetBinContent(94,5208);
    VbbHcc_tags_H_dPhi__57->SetBinContent(95,1293);
-   VbbHcc_tags_H_dPhi__57->SetEntries(1508675);
+   VbbHcc_tags_H_dPhi__57->SetEntries(1508794);
 
    ci = TColor::GetColor("#000099");
    VbbHcc_tags_H_dPhi__57->SetLineColor(ci);
@@ -3240,8 +3240,8 @@ void H_dPhi_tags_16()
    entry->SetLineStyle(1);
    entry->SetLineWidth(1);
    entry->SetMarkerColor(1);
-   entry->SetMarkerStyle(20);
-   entry->SetMarkerSize(1.2);
+   entry->SetMarkerStyle(1);
+   entry->SetMarkerSize(1);
    entry->SetTextFont(42);
    entry=leg->AddEntry("VbbHcc_tags_H_dPhi_stack_12","ggZHcc","F");
 

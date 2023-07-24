@@ -894,6 +894,26 @@ def makeROCcurve(signal_plots, bckg_plots, plotNames, plotVar, canvasName,
   canv.Print(plotDir + '/' + canvasName + '.C')
 
 ###############################################################################
+## Blind Region 
+###############################################################################
+def blind_region(original_plot, low_end, high_end):
+  
+  ## Make a copy of the plot
+  plot = original_plot.Clone()
+  
+  ## Go through each bin and remove data from the desired region
+  nBins = plot.GetNbinsX()
+  for i in range(1, nBins):
+    binContent = original_plot.GetBinContent(i)
+    binCenter  = original_plot.GetBinCenter(i)
+    if binCenter >= low_end and binCenter <= high_end:
+      proper_value = 0
+    else: proper_value = binContent
+    plot.SetBinContent(i, proper_value)
+  
+  return plot
+
+###############################################################################
 ## Make DataMC Plot
 ###############################################################################
 
@@ -976,13 +996,7 @@ def makeDataMCPlot(plots, plotNames, canvasName, outputDir = 'Test/',
     ## Remove any data that's not in the range we want
     ## Basically, go through bin by bin and if it's contents
     ## don't meet the range we want, ignore it.
-    for i in range(1,allStack.GetNbinsX()+1):
-      binCenter = allStack.GetBinCenter(i)
-      content = allStack.GetBinContent(i)
-      if binCenter >= mL and binCenter <= mH:
-        content = 0
-      allStack.SetBinContent(i, content)
-    dataPlot = plots[0]
+    dataPlot = blind_region(plots[0], mL, mH)
   else:
     dataPlot = plots[0]
     

@@ -1,7 +1,7 @@
 void dPhi_HZ_algo_all()
 {
 //=========Macro generated from canvas: dPhi_HZ_algo_all/dPhi_HZ_algo_all
-//=========  (Fri Jul 14 13:38:23 2023) by ROOT version 6.14/09
+//=========  (Mon Jul 24 10:11:47 2023) by ROOT version 6.14/09
    TCanvas *dPhi_HZ_algo_all = new TCanvas("dPhi_HZ_algo_all", "dPhi_HZ_algo_all",0,0,600,600);
    dPhi_HZ_algo_all->SetHighLightColor(2);
    dPhi_HZ_algo_all->Range(0,0,1,1);
@@ -8038,7 +8038,7 @@ void dPhi_HZ_algo_all()
    VbbHcc_algo_dPhi_HZ_all__263->SetBinContent(427,541);
    VbbHcc_algo_dPhi_HZ_all__263->SetBinContent(428,538);
    VbbHcc_algo_dPhi_HZ_all__263->SetBinContent(429,308);
-   VbbHcc_algo_dPhi_HZ_all__263->SetEntries(439847);
+   VbbHcc_algo_dPhi_HZ_all__263->SetEntries(440326);
 
    ci = TColor::GetColor("#000099");
    VbbHcc_algo_dPhi_HZ_all__263->SetLineColor(ci);
@@ -10034,8 +10034,8 @@ void dPhi_HZ_algo_all()
    entry->SetLineStyle(1);
    entry->SetLineWidth(1);
    entry->SetMarkerColor(1);
-   entry->SetMarkerStyle(20);
-   entry->SetMarkerSize(1.2);
+   entry->SetMarkerStyle(1);
+   entry->SetMarkerSize(1);
    entry->SetTextFont(42);
    entry=leg->AddEntry("VbbHcc_algo_dPhi_HZ_all_stack_12","ggZHcc","F");
 

@@ -1,7 +1,7 @@
 void Aplanarity_both_16()
 {
 //=========Macro generated from canvas: Aplanarity_both_16/Aplanarity_both_16
-//=========  (Fri Jul 14 13:38:56 2023) by ROOT version 6.14/09
+//=========  (Mon Jul 24 10:12:22 2023) by ROOT version 6.14/09
    TCanvas *Aplanarity_both_16 = new TCanvas("Aplanarity_both_16", "Aplanarity_both_16",0,0,600,600);
    Aplanarity_both_16->SetHighLightColor(2);
    Aplanarity_both_16->Range(0,0,1,1);
@@ -803,7 +803,7 @@ void Aplanarity_both_16()
    VbbHcc_both_Aplanarity__505->SetBinContent(21,12);
    VbbHcc_both_Aplanarity__505->SetBinContent(22,7);
    VbbHcc_both_Aplanarity__505->SetBinContent(23,4);
-   VbbHcc_both_Aplanarity__505->SetEntries(1597002);
+   VbbHcc_both_Aplanarity__505->SetEntries(1597051);
 
    ci = TColor::GetColor("#000099");
    VbbHcc_both_Aplanarity__505->SetLineColor(ci);
@@ -1079,8 +1079,8 @@ void Aplanarity_both_16()
    entry->SetLineStyle(1);
    entry->SetLineWidth(1);
    entry->SetMarkerColor(1);
-   entry->SetMarkerStyle(20);
-   entry->SetMarkerSize(1.2);
+   entry->SetMarkerStyle(1);
+   entry->SetMarkerSize(1);
    entry->SetTextFont(42);
    entry=leg->AddEntry("VbbHcc_both_Aplanarity_stack_12","ggZHcc","F");
 

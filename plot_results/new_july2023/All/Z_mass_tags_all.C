@@ -1,7 +1,7 @@
 void Z_mass_tags_all()
 {
 //=========Macro generated from canvas: Z_mass_tags_all/Z_mass_tags_all
-//=========  (Fri Jul 14 13:37:50 2023) by ROOT version 6.14/09
+//=========  (Mon Jul 24 10:11:09 2023) by ROOT version 6.14/09
    TCanvas *Z_mass_tags_all = new TCanvas("Z_mass_tags_all", "Z_mass_tags_all",0,0,600,600);
    Z_mass_tags_all->SetHighLightColor(2);
    Z_mass_tags_all->Range(0,0,1,1);
@@ -1287,13 +1287,6 @@ void Z_mass_tags_all()
    VbbHcc_tags_Z_mass_all__7->SetBinContent(5,96516);
    VbbHcc_tags_Z_mass_all__7->SetBinContent(6,157579);
    VbbHcc_tags_Z_mass_all__7->SetBinContent(7,181941);
-   VbbHcc_tags_Z_mass_all__7->SetBinContent(8,181327);
-   VbbHcc_tags_Z_mass_all__7->SetBinContent(9,171403);
-   VbbHcc_tags_Z_mass_all__7->SetBinContent(10,160112);
-   VbbHcc_tags_Z_mass_all__7->SetBinContent(11,146956);
-   VbbHcc_tags_Z_mass_all__7->SetBinContent(12,135421);
-   VbbHcc_tags_Z_mass_all__7->SetBinContent(13,126886);
-   VbbHcc_tags_Z_mass_all__7->SetBinContent(14,117654);
    VbbHcc_tags_Z_mass_all__7->SetBinContent(15,110813);
    VbbHcc_tags_Z_mass_all__7->SetBinContent(16,103897);
    VbbHcc_tags_Z_mass_all__7->SetBinContent(17,98154);
@@ -1321,7 +1314,7 @@ void Z_mass_tags_all()
    VbbHcc_tags_Z_mass_all__7->SetBinContent(39,40487);
    VbbHcc_tags_Z_mass_all__7->SetBinContent(40,39372);
    VbbHcc_tags_Z_mass_all__7->SetBinContent(41,1839145);
-   VbbHcc_tags_Z_mass_all__7->SetEntries(4987951);
+   VbbHcc_tags_Z_mass_all__7->SetEntries(4987990);
 
    ci = TColor::GetColor("#000099");
    VbbHcc_tags_Z_mass_all__7->SetLineColor(ci);
@@ -1557,8 +1550,8 @@ void Z_mass_tags_all()
    entry->SetLineStyle(1);
    entry->SetLineWidth(1);
    entry->SetMarkerColor(1);
-   entry->SetMarkerStyle(20);
-   entry->SetMarkerSize(1.2);
+   entry->SetMarkerStyle(1);
+   entry->SetMarkerSize(1);
    entry->SetTextFont(42);
    entry=leg->AddEntry("VbbHcc_tags_Z_mass_all_stack_12","ggZHcc","F");
 

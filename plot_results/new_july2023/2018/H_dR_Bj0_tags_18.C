@@ -1,7 +1,7 @@
 void H_dR_Bj0_tags_18()
 {
 //=========Macro generated from canvas: H_dR_Bj0_tags_18/H_dR_Bj0_tags_18
-//=========  (Fri Jul 14 13:38:01 2023) by ROOT version 6.14/09
+//=========  (Mon Jul 24 10:11:23 2023) by ROOT version 6.14/09
    TCanvas *H_dR_Bj0_tags_18 = new TCanvas("H_dR_Bj0_tags_18", "H_dR_Bj0_tags_18",0,0,600,600);
    H_dR_Bj0_tags_18->SetHighLightColor(2);
    H_dR_Bj0_tags_18->Range(0,0,1,1);
@@ -1091,7 +1091,7 @@ void H_dR_Bj0_tags_18()
    VbbHcc_tags_H_dR_Bj0__85->SetBinContent(29,3292);
    VbbHcc_tags_H_dR_Bj0__85->SetBinContent(30,2103);
    VbbHcc_tags_H_dR_Bj0__85->SetBinContent(31,3808);
-   VbbHcc_tags_H_dR_Bj0__85->SetEntries(2972106);
+   VbbHcc_tags_H_dR_Bj0__85->SetEntries(2972135);
 
    ci = TColor::GetColor("#000099");
    VbbHcc_tags_H_dR_Bj0__85->SetLineColor(ci);
@@ -1287,8 +1287,8 @@ void H_dR_Bj0_tags_18()
    entry->SetLineStyle(1);
    entry->SetLineWidth(1);
    entry->SetMarkerColor(1);
-   entry->SetMarkerStyle(20);
-   entry->SetMarkerSize(1.2);
+   entry->SetMarkerStyle(1);
+   entry->SetMarkerSize(1);
    entry->SetTextFont(42);
    entry=leg->AddEntry("VbbHcc_tags_H_dR_Bj0_stack_12","ggZHcc","F");
 

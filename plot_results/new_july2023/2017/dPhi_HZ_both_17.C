@@ -1,7 +1,7 @@
 void dPhi_HZ_both_17()
 {
 //=========Macro generated from canvas: dPhi_HZ_both_17/dPhi_HZ_both_17
-//=========  (Fri Jul 14 13:38:49 2023) by ROOT version 6.14/09
+//=========  (Mon Jul 24 10:12:14 2023) by ROOT version 6.14/09
    TCanvas *dPhi_HZ_both_17 = new TCanvas("dPhi_HZ_both_17", "dPhi_HZ_both_17",0,0,600,600);
    dPhi_HZ_both_17->SetHighLightColor(2);
    dPhi_HZ_both_17->Range(0,0,1,1);
@@ -8966,7 +8966,7 @@ void dPhi_HZ_both_17()
    VbbHcc_both_dPhi_HZ__451->SetBinContent(427,1482);
    VbbHcc_both_dPhi_HZ__451->SetBinContent(428,1509);
    VbbHcc_both_dPhi_HZ__451->SetBinContent(429,738);
-   VbbHcc_both_dPhi_HZ__451->SetEntries(562016);
+   VbbHcc_both_dPhi_HZ__451->SetEntries(562495);
 
    ci = TColor::GetColor("#000099");
    VbbHcc_both_dPhi_HZ__451->SetLineColor(ci);
@@ -10962,8 +10962,8 @@ void dPhi_HZ_both_17()
    entry->SetLineStyle(1);
    entry->SetLineWidth(1);
    entry->SetMarkerColor(1);
-   entry->SetMarkerStyle(20);
-   entry->SetMarkerSize(1.2);
+   entry->SetMarkerStyle(1);
+   entry->SetMarkerSize(1);
    entry->SetTextFont(42);
    entry=leg->AddEntry("VbbHcc_both_dPhi_HZ_stack_12","ggZHcc","F");
 

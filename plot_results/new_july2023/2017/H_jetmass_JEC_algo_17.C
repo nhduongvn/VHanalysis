@@ -1,7 +1,7 @@
 void H_jetmass_JEC_algo_17()
 {
 //=========Macro generated from canvas: H_jetmass_JEC_algo_17/H_jetmass_JEC_algo_17
-//=========  (Fri Jul 14 13:38:31 2023) by ROOT version 6.14/09
+//=========  (Mon Jul 24 10:11:55 2023) by ROOT version 6.14/09
    TCanvas *H_jetmass_JEC_algo_17 = new TCanvas("H_jetmass_JEC_algo_17", "H_jetmass_JEC_algo_17",0,0,600,600);
    H_jetmass_JEC_algo_17->SetHighLightColor(2);
    H_jetmass_JEC_algo_17->Range(0,0,1,1);
@@ -1726,39 +1726,6 @@ void H_jetmass_JEC_algo_17()
    VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(35,138);
    VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(36,137);
    VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(37,115);
-   VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(38,133);
-   VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(39,116);
-   VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(40,86);
-   VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(41,93);
-   VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(42,68);
-   VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(43,68);
-   VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(44,56);
-   VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(45,51);
-   VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(46,53);
-   VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(47,35);
-   VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(48,43);
-   VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(49,30);
-   VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(50,36);
-   VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(51,25);
-   VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(52,29);
-   VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(53,21);
-   VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(54,14);
-   VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(55,10);
-   VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(56,8);
-   VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(57,12);
-   VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(58,9);
-   VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(59,14);
-   VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(60,5);
-   VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(61,8);
-   VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(62,8);
-   VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(63,5);
-   VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(64,5);
-   VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(65,4);
-   VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(66,3);
-   VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(67,2);
-   VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(68,6);
-   VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(69,1);
-   VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(70,3);
    VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(71,1);
    VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(72,2);
    VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(73,2);
@@ -1774,7 +1741,7 @@ void H_jetmass_JEC_algo_17()
    VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(90,1);
    VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(91,1);
    VbbHcc_algo_H_jetmass_JEC__347->SetBinContent(101,1);
-   VbbHcc_algo_H_jetmass_JEC__347->SetEntries(29743);
+   VbbHcc_algo_H_jetmass_JEC__347->SetEntries(29892);
 
    ci = TColor::GetColor("#000099");
    VbbHcc_algo_H_jetmass_JEC__347->SetLineColor(ci);
@@ -2450,8 +2417,8 @@ void H_jetmass_JEC_algo_17()
    entry->SetLineStyle(1);
    entry->SetLineWidth(1);
    entry->SetMarkerColor(1);
-   entry->SetMarkerStyle(20);
-   entry->SetMarkerSize(1.2);
+   entry->SetMarkerStyle(1);
+   entry->SetMarkerSize(1);
    entry->SetTextFont(42);
    entry=leg->AddEntry("VbbHcc_algo_H_jetmass_JEC_stack_12","ggZHcc","F");
 

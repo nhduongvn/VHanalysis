@@ -1,7 +1,7 @@
 void Sphericity_algo_16()
 {
 //=========Macro generated from canvas: Sphericity_algo_16/Sphericity_algo_16
-//=========  (Fri Jul 14 13:38:26 2023) by ROOT version 6.14/09
+//=========  (Mon Jul 24 10:11:51 2023) by ROOT version 6.14/09
    TCanvas *Sphericity_algo_16 = new TCanvas("Sphericity_algo_16", "Sphericity_algo_16",0,0,600,600);
    Sphericity_algo_16->SetHighLightColor(2);
    Sphericity_algo_16->Range(0,0,1,1);
@@ -676,7 +676,7 @@ void Sphericity_algo_16()
    VbbHcc_algo_Sphericity__305->SetBinContent(16,8);
    VbbHcc_algo_Sphericity__305->SetBinContent(17,4);
    VbbHcc_algo_Sphericity__305->SetBinContent(18,1);
-   VbbHcc_algo_Sphericity__305->SetEntries(107033);
+   VbbHcc_algo_Sphericity__305->SetEntries(107057);
 
    ci = TColor::GetColor("#000099");
    VbbHcc_algo_Sphericity__305->SetLineColor(ci);
@@ -852,8 +852,8 @@ void Sphericity_algo_16()
    entry->SetLineStyle(1);
    entry->SetLineWidth(1);
    entry->SetMarkerColor(1);
-   entry->SetMarkerStyle(20);
-   entry->SetMarkerSize(1.2);
+   entry->SetMarkerStyle(1);
+   entry->SetMarkerSize(1);
    entry->SetTextFont(42);
    entry=leg->AddEntry("VbbHcc_algo_Sphericity_stack_12","ggZHcc","F");
 

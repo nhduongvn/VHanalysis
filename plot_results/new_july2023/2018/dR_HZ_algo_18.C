@@ -1,7 +1,7 @@
 void dR_HZ_algo_18()
 {
 //=========Macro generated from canvas: dR_HZ_algo_18/dR_HZ_algo_18
-//=========  (Fri Jul 14 13:38:23 2023) by ROOT version 6.14/09
+//=========  (Mon Jul 24 10:11:47 2023) by ROOT version 6.14/09
    TCanvas *dR_HZ_algo_18 = new TCanvas("dR_HZ_algo_18", "dR_HZ_algo_18",0,0,600,600);
    dR_HZ_algo_18->SetHighLightColor(2);
    dR_HZ_algo_18->Range(0,0,1,1);
@@ -1591,7 +1591,7 @@ void dR_HZ_algo_18()
    VbbHcc_algo_dR_HZ__269->SetBinContent(59,383);
    VbbHcc_algo_dR_HZ__269->SetBinContent(60,319);
    VbbHcc_algo_dR_HZ__269->SetBinContent(61,1448);
-   VbbHcc_algo_dR_HZ__269->SetEntries(303071);
+   VbbHcc_algo_dR_HZ__269->SetEntries(303130);
 
    ci = TColor::GetColor("#000099");
    VbbHcc_algo_dR_HZ__269->SetLineColor(ci);
@@ -1907,8 +1907,8 @@ void dR_HZ_algo_18()
    entry->SetLineStyle(1);
    entry->SetLineWidth(1);
    entry->SetMarkerColor(1);
-   entry->SetMarkerStyle(20);
-   entry->SetMarkerSize(1.2);
+   entry->SetMarkerStyle(1);
+   entry->SetMarkerSize(1);
    entry->SetTextFont(42);
    entry=leg->AddEntry("VbbHcc_algo_dR_HZ_stack_12","ggZHcc","F");
 

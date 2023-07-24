@@ -1,7 +1,7 @@
 void Z_mass_algo_16()
 {
 //=========Macro generated from canvas: Z_mass_algo_16/Z_mass_algo_16
-//=========  (Fri Jul 14 13:38:11 2023) by ROOT version 6.14/09
+//=========  (Mon Jul 24 10:11:34 2023) by ROOT version 6.14/09
    TCanvas *Z_mass_algo_16 = new TCanvas("Z_mass_algo_16", "Z_mass_algo_16",0,0,600,600);
    Z_mass_algo_16->SetHighLightColor(2);
    Z_mass_algo_16->Range(0,0,1,1);
@@ -1153,13 +1153,6 @@ void Z_mass_algo_16()
    VbbHcc_algo_Z_mass__193->SetBinContent(5,1116);
    VbbHcc_algo_Z_mass__193->SetBinContent(6,2516);
    VbbHcc_algo_Z_mass__193->SetBinContent(7,3409);
-   VbbHcc_algo_Z_mass__193->SetBinContent(8,3959);
-   VbbHcc_algo_Z_mass__193->SetBinContent(9,4541);
-   VbbHcc_algo_Z_mass__193->SetBinContent(10,4674);
-   VbbHcc_algo_Z_mass__193->SetBinContent(11,4464);
-   VbbHcc_algo_Z_mass__193->SetBinContent(12,4182);
-   VbbHcc_algo_Z_mass__193->SetBinContent(13,3854);
-   VbbHcc_algo_Z_mass__193->SetBinContent(14,3566);
    VbbHcc_algo_Z_mass__193->SetBinContent(15,3501);
    VbbHcc_algo_Z_mass__193->SetBinContent(16,3087);
    VbbHcc_algo_Z_mass__193->SetBinContent(17,3061);
@@ -1187,7 +1180,7 @@ void Z_mass_algo_16()
    VbbHcc_algo_Z_mass__193->SetBinContent(39,737);
    VbbHcc_algo_Z_mass__193->SetBinContent(40,740);
    VbbHcc_algo_Z_mass__193->SetBinContent(41,28035);
-   VbbHcc_algo_Z_mass__193->SetEntries(107033);
+   VbbHcc_algo_Z_mass__193->SetEntries(107072);
 
    ci = TColor::GetColor("#000099");
    VbbHcc_algo_Z_mass__193->SetLineColor(ci);
@@ -1423,8 +1416,8 @@ void Z_mass_algo_16()
    entry->SetLineStyle(1);
    entry->SetLineWidth(1);
    entry->SetMarkerColor(1);
-   entry->SetMarkerStyle(20);
-   entry->SetMarkerSize(1.2);
+   entry->SetMarkerStyle(1);
+   entry->SetMarkerSize(1);
    entry->SetTextFont(42);
    entry=leg->AddEntry("VbbHcc_algo_Z_mass_stack_12","ggZHcc","F");
 

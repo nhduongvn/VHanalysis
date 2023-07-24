@@ -1,7 +1,7 @@
 void Z_pt_algo_all()
 {
 //=========Macro generated from canvas: Z_pt_algo_all/Z_pt_algo_all
-//=========  (Fri Jul 14 13:38:16 2023) by ROOT version 6.14/09
+//=========  (Mon Jul 24 10:11:38 2023) by ROOT version 6.14/09
    TCanvas *Z_pt_algo_all = new TCanvas("Z_pt_algo_all", "Z_pt_algo_all",0,0,600,600);
    Z_pt_algo_all->SetHighLightColor(2);
    Z_pt_algo_all->Range(0,0,1,1);
@@ -10135,39 +10135,6 @@ void Z_pt_algo_all()
    VbbHcc_algo_Z_pt_all__215->SetBinContent(35,917);
    VbbHcc_algo_Z_pt_all__215->SetBinContent(36,924);
    VbbHcc_algo_Z_pt_all__215->SetBinContent(37,979);
-   VbbHcc_algo_Z_pt_all__215->SetBinContent(38,1035);
-   VbbHcc_algo_Z_pt_all__215->SetBinContent(39,1030);
-   VbbHcc_algo_Z_pt_all__215->SetBinContent(40,1066);
-   VbbHcc_algo_Z_pt_all__215->SetBinContent(41,1113);
-   VbbHcc_algo_Z_pt_all__215->SetBinContent(42,1153);
-   VbbHcc_algo_Z_pt_all__215->SetBinContent(43,1173);
-   VbbHcc_algo_Z_pt_all__215->SetBinContent(44,1238);
-   VbbHcc_algo_Z_pt_all__215->SetBinContent(45,1278);
-   VbbHcc_algo_Z_pt_all__215->SetBinContent(46,1334);
-   VbbHcc_algo_Z_pt_all__215->SetBinContent(47,1348);
-   VbbHcc_algo_Z_pt_all__215->SetBinContent(48,1420);
-   VbbHcc_algo_Z_pt_all__215->SetBinContent(49,1514);
-   VbbHcc_algo_Z_pt_all__215->SetBinContent(50,1514);
-   VbbHcc_algo_Z_pt_all__215->SetBinContent(51,1566);
-   VbbHcc_algo_Z_pt_all__215->SetBinContent(52,1667);
-   VbbHcc_algo_Z_pt_all__215->SetBinContent(53,1723);
-   VbbHcc_algo_Z_pt_all__215->SetBinContent(54,1789);
-   VbbHcc_algo_Z_pt_all__215->SetBinContent(55,1887);
-   VbbHcc_algo_Z_pt_all__215->SetBinContent(56,1978);
-   VbbHcc_algo_Z_pt_all__215->SetBinContent(57,2110);
-   VbbHcc_algo_Z_pt_all__215->SetBinContent(58,2183);
-   VbbHcc_algo_Z_pt_all__215->SetBinContent(59,2350);
-   VbbHcc_algo_Z_pt_all__215->SetBinContent(60,2513);
-   VbbHcc_algo_Z_pt_all__215->SetBinContent(61,2536);
-   VbbHcc_algo_Z_pt_all__215->SetBinContent(62,2630);
-   VbbHcc_algo_Z_pt_all__215->SetBinContent(63,2797);
-   VbbHcc_algo_Z_pt_all__215->SetBinContent(64,2984);
-   VbbHcc_algo_Z_pt_all__215->SetBinContent(65,2988);
-   VbbHcc_algo_Z_pt_all__215->SetBinContent(66,3236);
-   VbbHcc_algo_Z_pt_all__215->SetBinContent(67,3202);
-   VbbHcc_algo_Z_pt_all__215->SetBinContent(68,3441);
-   VbbHcc_algo_Z_pt_all__215->SetBinContent(69,3522);
-   VbbHcc_algo_Z_pt_all__215->SetBinContent(70,3680);
    VbbHcc_algo_Z_pt_all__215->SetBinContent(71,3855);
    VbbHcc_algo_Z_pt_all__215->SetBinContent(72,3813);
    VbbHcc_algo_Z_pt_all__215->SetBinContent(73,4040);
@@ -10757,7 +10724,7 @@ void Z_pt_algo_all()
    VbbHcc_algo_Z_pt_all__215->SetBinContent(963,1);
    VbbHcc_algo_Z_pt_all__215->SetBinContent(966,1);
    VbbHcc_algo_Z_pt_all__215->SetBinContent(1001,2);
-   VbbHcc_algo_Z_pt_all__215->SetEntries(439847);
+   VbbHcc_algo_Z_pt_all__215->SetEntries(440846);
 
    ci = TColor::GetColor("#000099");
    VbbHcc_algo_Z_pt_all__215->SetLineColor(ci);
@@ -14833,8 +14800,8 @@ void Z_pt_algo_all()
    entry->SetLineStyle(1);
    entry->SetLineWidth(1);
    entry->SetMarkerColor(1);
-   entry->SetMarkerStyle(20);
-   entry->SetMarkerSize(1.2);
+   entry->SetMarkerStyle(1);
+   entry->SetMarkerSize(1);
    entry->SetTextFont(42);
    entry=leg->AddEntry("VbbHcc_algo_Z_pt_all_stack_12","ggZHcc","F");
 

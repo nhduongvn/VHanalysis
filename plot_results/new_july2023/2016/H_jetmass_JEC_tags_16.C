@@ -1,7 +1,7 @@
 void H_jetmass_JEC_tags_16()
 {
 //=========Macro generated from canvas: H_jetmass_JEC_tags_16/H_jetmass_JEC_tags_16
-//=========  (Fri Jul 14 13:38:06 2023) by ROOT version 6.14/09
+//=========  (Mon Jul 24 10:11:29 2023) by ROOT version 6.14/09
    TCanvas *H_jetmass_JEC_tags_16 = new TCanvas("H_jetmass_JEC_tags_16", "H_jetmass_JEC_tags_16",0,0,600,600);
    H_jetmass_JEC_tags_16->SetHighLightColor(2);
    H_jetmass_JEC_tags_16->Range(0,0,1,1);
@@ -2149,39 +2149,6 @@ void H_jetmass_JEC_tags_16()
    VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(35,1314);
    VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(36,1208);
    VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(37,1052);
-   VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(38,965);
-   VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(39,864);
-   VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(40,765);
-   VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(41,801);
-   VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(42,678);
-   VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(43,615);
-   VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(44,553);
-   VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(45,432);
-   VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(46,387);
-   VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(47,306);
-   VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(48,286);
-   VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(49,244);
-   VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(50,175);
-   VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(51,201);
-   VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(52,154);
-   VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(53,124);
-   VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(54,95);
-   VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(55,113);
-   VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(56,100);
-   VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(57,76);
-   VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(58,56);
-   VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(59,44);
-   VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(60,38);
-   VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(61,57);
-   VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(62,44);
-   VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(63,41);
-   VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(64,32);
-   VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(65,40);
-   VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(66,19);
-   VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(67,25);
-   VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(68,21);
-   VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(69,23);
-   VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(70,27);
    VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(71,22);
    VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(72,11);
    VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(73,12);
@@ -2225,7 +2192,7 @@ void H_jetmass_JEC_tags_16()
    VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(122,1);
    VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(123,1);
    VbbHcc_tags_H_jetmass_JEC__153->SetBinContent(135,1);
-   VbbHcc_tags_H_jetmass_JEC__153->SetEntries(1508675);
+   VbbHcc_tags_H_jetmass_JEC__153->SetEntries(1508824);
 
    ci = TColor::GetColor("#000099");
    VbbHcc_tags_H_jetmass_JEC__153->SetLineColor(ci);
@@ -2901,8 +2868,8 @@ void H_jetmass_JEC_tags_16()
    entry->SetLineStyle(1);
    entry->SetLineWidth(1);
    entry->SetMarkerColor(1);
-   entry->SetMarkerStyle(20);
-   entry->SetMarkerSize(1.2);
+   entry->SetMarkerStyle(1);
+   entry->SetMarkerSize(1);
    entry->SetTextFont(42);
    entry=leg->AddEntry("VbbHcc_tags_H_jetmass_JEC_stack_12","ggZHcc","F");
 

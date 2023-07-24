@@ -1,7 +1,7 @@
 void H_jetpt_JEC_both_16()
 {
 //=========Macro generated from canvas: H_jetpt_JEC_both_16/H_jetpt_JEC_both_16
-//=========  (Fri Jul 14 13:38:58 2023) by ROOT version 6.14/09
+//=========  (Mon Jul 24 10:12:25 2023) by ROOT version 6.14/09
    TCanvas *H_jetpt_JEC_both_16 = new TCanvas("H_jetpt_JEC_both_16", "H_jetpt_JEC_both_16",0,0,600,600);
    H_jetpt_JEC_both_16->SetHighLightColor(2);
    H_jetpt_JEC_both_16->Range(0,0,1,1);
@@ -451,7 +451,7 @@ void H_jetpt_JEC_both_16()
    VbbHcc_both_H_jetpt_JEC__521->SetBinContent(2,518759);
    VbbHcc_both_H_jetpt_JEC__521->SetBinContent(3,271763);
    VbbHcc_both_H_jetpt_JEC__521->SetBinContent(151,24);
-   VbbHcc_both_H_jetpt_JEC__521->SetEntries(1597002);
+   VbbHcc_both_H_jetpt_JEC__521->SetEntries(1597151);
 
    ci = TColor::GetColor("#000099");
    VbbHcc_both_H_jetpt_JEC__521->SetLineColor(ci);
@@ -1127,8 +1127,8 @@ void H_jetpt_JEC_both_16()
    entry->SetLineStyle(1);
    entry->SetLineWidth(1);
    entry->SetMarkerColor(1);
-   entry->SetMarkerStyle(20);
-   entry->SetMarkerSize(1.2);
+   entry->SetMarkerStyle(1);
+   entry->SetMarkerSize(1);
    entry->SetTextFont(42);
    entry=leg->AddEntry("VbbHcc_both_H_jetpt_JEC_stack_12","ggZHcc","F");
 

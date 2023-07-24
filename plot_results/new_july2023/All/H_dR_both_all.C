@@ -1,7 +1,7 @@
 void H_dR_both_all()
 {
 //=========Macro generated from canvas: H_dR_both_all/H_dR_both_all
-//=========  (Fri Jul 14 13:38:46 2023) by ROOT version 6.14/09
+//=========  (Mon Jul 24 10:12:10 2023) by ROOT version 6.14/09
    TCanvas *H_dR_both_all = new TCanvas("H_dR_both_all", "H_dR_both_all",0,0,600,600);
    H_dR_both_all->SetHighLightColor(2);
    H_dR_both_all->Range(0,0,1,1);
@@ -1010,7 +1010,7 @@ void H_dR_both_all()
    VbbHcc_both_H_dR_all__431->SetBinContent(27,6002);
    VbbHcc_both_H_dR_all__431->SetBinContent(28,1764);
    VbbHcc_both_H_dR_all__431->SetBinContent(29,122);
-   VbbHcc_both_H_dR_all__431->SetEntries(5316192);
+   VbbHcc_both_H_dR_all__431->SetEntries(5316221);
 
    ci = TColor::GetColor("#000099");
    VbbHcc_both_H_dR_all__431->SetLineColor(ci);
@@ -1206,8 +1206,8 @@ void H_dR_both_all()
    entry->SetLineStyle(1);
    entry->SetLineWidth(1);
    entry->SetMarkerColor(1);
-   entry->SetMarkerStyle(20);
-   entry->SetMarkerSize(1.2);
+   entry->SetMarkerStyle(1);
+   entry->SetMarkerSize(1);
    entry->SetTextFont(42);
    entry=leg->AddEntry("VbbHcc_both_H_dR_all_stack_12","ggZHcc","F");
 

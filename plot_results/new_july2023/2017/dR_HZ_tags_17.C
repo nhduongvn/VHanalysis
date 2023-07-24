@@ -1,7 +1,7 @@
 void dR_HZ_tags_17()
 {
 //=========Macro generated from canvas: dR_HZ_tags_17/dR_HZ_tags_17
-//=========  (Fri Jul 14 13:38:00 2023) by ROOT version 6.14/09
+//=========  (Mon Jul 24 10:11:22 2023) by ROOT version 6.14/09
    TCanvas *dR_HZ_tags_17 = new TCanvas("dR_HZ_tags_17", "dR_HZ_tags_17",0,0,600,600);
    dR_HZ_tags_17->SetHighLightColor(2);
    dR_HZ_tags_17->Range(0,0,1,1);
@@ -1841,7 +1841,7 @@ void dR_HZ_tags_17()
    VbbHcc_tags_dR_HZ__75->SetBinContent(59,1249);
    VbbHcc_tags_dR_HZ__75->SetBinContent(60,1101);
    VbbHcc_tags_dR_HZ__75->SetBinContent(61,6015);
-   VbbHcc_tags_dR_HZ__75->SetEntries(507170);
+   VbbHcc_tags_dR_HZ__75->SetEntries(507229);
 
    ci = TColor::GetColor("#000099");
    VbbHcc_tags_dR_HZ__75->SetLineColor(ci);
@@ -2157,8 +2157,8 @@ void dR_HZ_tags_17()
    entry->SetLineStyle(1);
    entry->SetLineWidth(1);
    entry->SetMarkerColor(1);
-   entry->SetMarkerStyle(20);
-   entry->SetMarkerSize(1.2);
+   entry->SetMarkerStyle(1);
+   entry->SetMarkerSize(1);
    entry->SetTextFont(42);
    entry=leg->AddEntry("VbbHcc_tags_dR_HZ_stack_12","ggZHcc","F");
 

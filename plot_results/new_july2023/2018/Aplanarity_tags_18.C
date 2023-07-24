@@ -1,7 +1,7 @@
 void Aplanarity_tags_18()
 {
 //=========Macro generated from canvas: Aplanarity_tags_18/Aplanarity_tags_18
-//=========  (Fri Jul 14 13:38:03 2023) by ROOT version 6.14/09
+//=========  (Mon Jul 24 10:11:25 2023) by ROOT version 6.14/09
    TCanvas *Aplanarity_tags_18 = new TCanvas("Aplanarity_tags_18", "Aplanarity_tags_18",0,0,600,600);
    Aplanarity_tags_18->SetHighLightColor(2);
    Aplanarity_tags_18->Range(0,0,1,1);
@@ -684,7 +684,7 @@ void Aplanarity_tags_18()
    VbbHcc_tags_Aplanarity__125->SetBinContent(19,9);
    VbbHcc_tags_Aplanarity__125->SetBinContent(20,1);
    VbbHcc_tags_Aplanarity__125->SetBinContent(21,1);
-   VbbHcc_tags_Aplanarity__125->SetEntries(2972106);
+   VbbHcc_tags_Aplanarity__125->SetEntries(2972155);
 
    ci = TColor::GetColor("#000099");
    VbbHcc_tags_Aplanarity__125->SetLineColor(ci);
@@ -960,8 +960,8 @@ void Aplanarity_tags_18()
    entry->SetLineStyle(1);
    entry->SetLineWidth(1);
    entry->SetMarkerColor(1);
-   entry->SetMarkerStyle(20);
-   entry->SetMarkerSize(1.2);
+   entry->SetMarkerStyle(1);
+   entry->SetMarkerSize(1);
    entry->SetTextFont(42);
    entry=leg->AddEntry("VbbHcc_tags_Aplanarity_stack_12","ggZHcc","F");
 

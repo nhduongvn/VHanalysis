@@ -1,7 +1,7 @@
 void H_dR_Bj1_both_17()
 {
 //=========Macro generated from canvas: H_dR_Bj1_both_17/H_dR_Bj1_both_17
-//=========  (Fri Jul 14 13:38:52 2023) by ROOT version 6.14/09
+//=========  (Mon Jul 24 10:12:18 2023) by ROOT version 6.14/09
    TCanvas *H_dR_Bj1_both_17 = new TCanvas("H_dR_Bj1_both_17", "H_dR_Bj1_both_17",0,0,600,600);
    H_dR_Bj1_both_17->SetHighLightColor(2);
    H_dR_Bj1_both_17->Range(0,0,1,1);
@@ -1043,7 +1043,7 @@ void H_dR_Bj1_both_17()
    VbbHcc_both_H_dR_Bj1__475->SetBinContent(29,55);
    VbbHcc_both_H_dR_Bj1__475->SetBinContent(30,47);
    VbbHcc_both_H_dR_Bj1__475->SetBinContent(31,70);
-   VbbHcc_both_H_dR_Bj1__475->SetEntries(562016);
+   VbbHcc_both_H_dR_Bj1__475->SetEntries(562045);
 
    ci = TColor::GetColor("#000099");
    VbbHcc_both_H_dR_Bj1__475->SetLineColor(ci);
@@ -1239,8 +1239,8 @@ void H_dR_Bj1_both_17()
    entry->SetLineStyle(1);
    entry->SetLineWidth(1);
    entry->SetMarkerColor(1);
-   entry->SetMarkerStyle(20);
-   entry->SetMarkerSize(1.2);
+   entry->SetMarkerStyle(1);
+   entry->SetMarkerSize(1);
    entry->SetTextFont(42);
    entry=leg->AddEntry("VbbHcc_both_H_dR_Bj1_stack_12","ggZHcc","F");
 
