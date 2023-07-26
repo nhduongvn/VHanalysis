@@ -1615,11 +1615,14 @@ void VH_selection::Process(Reader* r) {
     std::vector<JetObj> bjets22 { jets2[0], jets2[1] };
     std::vector<JetObj> bjets23 { jets2[0], jets2[1] };
     jets2.erase(jets2.begin() + 1); jets2.erase(jets2.begin() + 0);
+    
+    bool btag1 = passes_btag(bjets2[0], desired_BvL);
+    bool btag2 = passes_btag(bjets2[1], desired_BvL);
 
-    if (passes_btag(bjets2[0], desired_BvL)) {
+    if (btag1) {
 
       h_evt_tags_cutflow->Fill(3.5, genWeight); // pass b-cut #1
-      if (passes_btag(bjets2[1], desired_BvL)) {
+      if (btag2) {
 
         // Since we passed the cut, adjust our jets with the proper
         // JEC for b-tagged jets and reconstruct the Z boson
@@ -1638,11 +1641,19 @@ void VH_selection::Process(Reader* r) {
         std::vector<JetObj> cjets22 { jets2[0], jets2[1] };
         std::vector<JetObj> cjets23 { jets2[0], jets2[1] };
         jets2.erase(jets2.begin() + 1); jets2.erase(jets2.begin() + 0);
+        
+        bool ctag1 = passes_ctag(cjets2[0], desired_CvL, desired_CvB);
+        bool ctag2 = passes_ctag(cjets2[1], desired_CvL, desired_CvB);
+        
+        // Uncomment the following lines if you want to check 4b tagging
+        // instead of 2b2c.
+        ctag1 = passes_btag(cjets2[0], desired_BvL);
+        ctag2 = passes_btag(cjets2[1], desired_BvL);
 
-        if (passes_ctag(cjets2[0], desired_CvL, desired_CvB)) {
+        if (ctag1) {
 
           h_evt_tags_cutflow->Fill(5.5, genWeight); // pass c-cut #1
-          if (passes_ctag(cjets2[1], desired_CvL, desired_CvB)) {
+          if (ctag2) {
           
             // Since we passed the cuts, adjust our jets with the proper
             // JEC for c-tagged jets and reconstruct the Higgs boson
@@ -1738,15 +1749,26 @@ void VH_selection::Process(Reader* r) {
     cjets33.push_back(jets3[chosenPair.m_hIdx1]);
     HObj H33(cjets33);
 
+    bool btag31 = chosenPair.Z_has_bjet0(desired_BvL);
+    bool btag32 = chosenPair.Z_has_bjet0(desired_BvL);
+
     // Now check our tagging requirements and other cuts.
-    if (chosenPair.Z_has_bjet0(desired_BvL)) {  
+    if (btag31) {  
       h_evt_algo_cutflow->Fill(3.5, genWeight); // pass b-tag #1
-      if (chosenPair.Z_has_bjet1(desired_BvL)) {
+      if (btag32) {
         h_evt_algo_cutflow->Fill(4.5, genWeight); // pass b-tag #2
 
-        if (chosenPair.H_has_cjet0(desired_CvL, desired_CvB)) {
+        bool ctag1 = chosenPair.H_has_cjet0(desired_CvL, desired_CvB);
+        bool ctag2 = chosenPair.H_has_cjet1(desired_CvL, desired_CvB);
+
+        // Uncomment the following two lines if you want to
+        // check 4b instead of 2b2c tagging.
+        ctag1 = chosenPair.H_has_bjet0(desired_BvL);
+        ctag2 = chosenPair.H_has_bjet1(desired_BvL);
+ 
+        if (ctag1) {
           h_evt_algo_cutflow->Fill(5.5, genWeight); // pass c-tag #1
-          if (chosenPair.H_has_cjet1(desired_CvL, desired_CvB)) {
+          if (ctag2) {
             h_evt_algo_cutflow->Fill(6.5, genWeight); // pass c-tag #2
             
             // Fill our histograms appropriately.
@@ -1785,11 +1807,15 @@ void VH_selection::Process(Reader* r) {
       float csv = jets4[i].m_deepCSV;
       float cvl = jets4[i].m_deepCvL;
 
-      if (passes_btag(jets4[i], desired_BvL)) {
+      bool btag1 = passes_btag(jets4[i], desired_BvL);
+      bool ctag1 = passes_ctag(jets4[i], desired_CvL, desired_CvB); 
+      ctag1 = passes_btag(jets4[i], desired_BvL);
+
+      if (btag1) {
         std::pair<int,float> pair0(i,csv);
         jets_idx_BvL.push_back(pair0); 
       }
-      if (passes_ctag(jets4[i], desired_CvL, desired_CvB)){
+      if (ctag1){
         std::pair<int,float> pair1(i,cvl);
         jets_idx_CvL.push_back(pair1);
       }

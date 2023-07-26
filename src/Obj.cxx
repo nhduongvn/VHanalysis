@@ -350,6 +350,16 @@ class DHZObj {
       bool pass1 = H_has_cjet1(desired_CvL, desired_CvB);
       return pass0 && pass1;
     };
+ 
+    bool H_has_bjet0(float desired_BvL) {
+      float csv0 = m_jets[m_hIdx0].m_deepCSV;
+      return (csv0 > desired_BvL);  
+    };
+
+    bool H_has_bjet1(float desired_BvL) {
+      float csv1 = m_jets[m_hIdx0].m_deepCSV;
+      return (csv1 > desired_BvL);
+    };
 
     bool Z_has_bjet0(float desired_BvL) {
       float csv0 = m_jets[m_zIdx0].m_deepCSV;
