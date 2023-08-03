@@ -1,7 +1,7 @@
 void l1preW__17()
 {
 //=========Macro generated from canvas: l1preW__17/l1preW__17
-//=========  (Thu Aug  3 12:49:00 2023) by ROOT version 6.14/09
+//=========  (Thu Aug  3 13:22:19 2023) by ROOT version 6.14/09
    TCanvas *l1preW__17 = new TCanvas("l1preW__17", "l1preW__17",0,0,600,600);
    gStyle->SetOptStat(0);
    l1preW__17->SetHighLightColor(2);
@@ -17,10 +17,11 @@ void l1preW__17()
    TPad *topPad = new TPad("topPad", "topPad",0,0.3,1,1);
    topPad->Draw();
    topPad->cd();
-   topPad->Range(-2.612902,-2.03923e+09,2.209678,2.037191e+12);
+   topPad->Range(-2.612902,-3.216189,2.209678,30.64525);
    topPad->SetFillColor(0);
    topPad->SetBorderMode(0);
    topPad->SetBorderSize(2);
+   topPad->SetLogy();
    topPad->SetLeftMargin(0.12709);
    topPad->SetRightMargin(0.0434783);
    topPad->SetBottomMargin(0.001);
@@ -31,11 +32,11 @@ void l1preW__17()
    st->SetName("st");
    st->SetTitle("");
    st->SetMinimum(0.01);
-   st->SetMaximum(1.745969e+12);
+   st->SetMaximum(2.715732e+26);
    
    TH1F *st_stack_10 = new TH1F("st_stack_10","",200,-2,2);
-   st_stack_10->SetMinimum(0.01);
-   st_stack_10->SetMaximum(1.833268e+12);
+   st_stack_10->SetMinimum(0.0006571622);
+   st_stack_10->SetMaximum(1.81595e+27);
    st_stack_10->SetDirectory(0);
    st_stack_10->SetStats(0);
 
@@ -2400,7 +2401,7 @@ void l1preW__17()
    gre->SetLineColor(ci);
    
    TH1F *Graph_Graph_from_l1preW1019 = new TH1F("Graph_Graph_from_l1preW1019","",200,-2.4,2.4);
-   Graph_Graph_from_l1preW1019->SetMinimum(0);
+   Graph_Graph_from_l1preW1019->SetMinimum(8.643703e+08);
    Graph_Graph_from_l1preW1019->SetMaximum(8.643703e+11);
    Graph_Graph_from_l1preW1019->SetDirectory(0);
    Graph_Graph_from_l1preW1019->SetStats(0);

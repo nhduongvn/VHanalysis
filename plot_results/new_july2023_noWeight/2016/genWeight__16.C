@@ -1,7 +1,7 @@
 void genWeight__16()
 {
 //=========Macro generated from canvas: genWeight__16/genWeight__16
-//=========  (Thu Aug  3 12:48:54 2023) by ROOT version 6.14/09
+//=========  (Thu Aug  3 13:22:13 2023) by ROOT version 6.14/09
    TCanvas *genWeight__16 = new TCanvas("genWeight__16", "genWeight__16",0,0,600,600);
    genWeight__16->SetHighLightColor(2);
    genWeight__16->Range(0,0,1,1);
@@ -16,10 +16,11 @@ void genWeight__16()
    TPad *topPad = new TPad("topPad", "topPad",0,0.3,1,1);
    topPad->Draw();
    topPad->cd();
-   topPad->Range(-2.612902,-2.801269e+09,2.209678,2.798467e+12);
+   topPad->Range(-2.612902,-3.22089,2.209678,30.99064);
    topPad->SetFillColor(0);
    topPad->SetBorderMode(0);
    topPad->SetBorderSize(2);
+   topPad->SetLogy();
    topPad->SetLeftMargin(0.12709);
    topPad->SetRightMargin(0.0434783);
    topPad->SetBottomMargin(0.001);
@@ -30,11 +31,11 @@ void genWeight__16()
    st->SetName("st");
    st->SetTitle("");
    st->SetMinimum(0.01);
-   st->SetMaximum(2.398419e+12);
+   st->SetMaximum(5.49928e+26);
    
    TH1F *st_stack_1 = new TH1F("st_stack_1","",200,-2,2);
-   st_stack_1->SetMinimum(0.01);
-   st_stack_1->SetMaximum(2.51834e+12);
+   st_stack_1->SetMinimum(0.0006506116);
+   st_stack_1->SetMaximum(3.710948e+27);
    st_stack_1->SetDirectory(0);
    st_stack_1->SetStats(0);
 
@@ -1447,7 +1448,7 @@ void genWeight__16()
    gre->SetLineColor(ci);
    
    TH1F *Graph_Graph_from_genWeight1001 = new TH1F("Graph_Graph_from_genWeight1001","",200,-2.4,2.4);
-   Graph_Graph_from_genWeight1001->SetMinimum(0);
+   Graph_Graph_from_genWeight1001->SetMinimum(1.187374e+09);
    Graph_Graph_from_genWeight1001->SetMaximum(1.187374e+12);
    Graph_Graph_from_genWeight1001->SetDirectory(0);
    Graph_Graph_from_genWeight1001->SetStats(0);

@@ -1,7 +1,7 @@
 void puSF__18()
 {
 //=========Macro generated from canvas: puSF__18/puSF__18
-//=========  (Thu Aug  3 12:48:58 2023) by ROOT version 6.14/09
+//=========  (Thu Aug  3 13:22:16 2023) by ROOT version 6.14/09
    TCanvas *puSF__18 = new TCanvas("puSF__18", "puSF__18",0,0,600,600);
    gStyle->SetOptStat(0);
    puSF__18->SetHighLightColor(2);
@@ -17,10 +17,11 @@ void puSF__18()
    TPad *topPad = new TPad("topPad", "topPad",0,0.3,1,1);
    topPad->Draw();
    topPad->cd();
-   topPad->Range(-2.612902,-7.300209e+08,2.209678,7.292908e+11);
+   topPad->Range(-2.612902,-3.200673,2.209678,29.52744);
    topPad->SetFillColor(0);
    topPad->SetBorderMode(0);
    topPad->SetBorderSize(2);
+   topPad->SetLogy();
    topPad->SetLeftMargin(0.12709);
    topPad->SetRightMargin(0.0434783);
    topPad->SetBottomMargin(0.001);
@@ -31,11 +32,11 @@ void puSF__18()
    st->SetName("st");
    st->SetTitle("");
    st->SetMinimum(0.01);
-   st->SetMaximum(6.250369e+11);
+   st->SetMaximum(2.770032e+25);
    
    TH1F *st_stack_7 = new TH1F("st_stack_7","",200,-2,2);
-   st_stack_7->SetMinimum(0.01);
-   st_stack_7->SetMaximum(6.562887e+11);
+   st_stack_7->SetMinimum(0.0006792905);
+   st_stack_7->SetMaximum(1.797335e+26);
    st_stack_7->SetDirectory(0);
    st_stack_7->SetStats(0);
 
@@ -2266,7 +2267,7 @@ void puSF__18()
    gre->SetLineColor(ci);
    
    TH1F *Graph_Graph_from_puSF1013 = new TH1F("Graph_Graph_from_puSF1013","",200,-2.4,2.4);
-   Graph_Graph_from_puSF1013->SetMinimum(0);
+   Graph_Graph_from_puSF1013->SetMinimum(3.094732e+08);
    Graph_Graph_from_puSF1013->SetMaximum(3.094732e+11);
    Graph_Graph_from_puSF1013->SetDirectory(0);
    Graph_Graph_from_puSF1013->SetStats(0);
