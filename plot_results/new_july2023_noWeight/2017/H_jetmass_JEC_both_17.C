@@ -1,8 +1,9 @@
 void H_jetmass_JEC_both_17()
 {
 //=========Macro generated from canvas: H_jetmass_JEC_both_17/H_jetmass_JEC_both_17
-//=========  (Thu Aug  3 10:22:00 2023) by ROOT version 6.14/09
+//=========  (Thu Aug  3 12:26:37 2023) by ROOT version 6.14/09
    TCanvas *H_jetmass_JEC_both_17 = new TCanvas("H_jetmass_JEC_both_17", "H_jetmass_JEC_both_17",0,0,600,600);
+   gStyle->SetOptStat(0);
    H_jetmass_JEC_both_17->SetHighLightColor(2);
    H_jetmass_JEC_both_17->Range(0,0,1,1);
    H_jetmass_JEC_both_17->SetFillColor(0);
@@ -413,32 +414,32 @@ void H_jetmass_JEC_both_17()
    st->Add(VbbHcc_both_H_jetmass_JEC_stack_12,"");
    st->Draw("hist");
    
-   TH1D *VbbHcc_both_H_jetmass_JEC__539 = new TH1D("VbbHcc_both_H_jetmass_JEC__539","",150,0,300);
-   VbbHcc_both_H_jetmass_JEC__539->SetBinContent(1,4);
-   VbbHcc_both_H_jetmass_JEC__539->SetBinContent(2,25811);
-   VbbHcc_both_H_jetmass_JEC__539->SetBinContent(3,46964);
-   VbbHcc_both_H_jetmass_JEC__539->SetEntries(72928);
+   TH1D *VbbHcc_both_H_jetmass_JEC__741 = new TH1D("VbbHcc_both_H_jetmass_JEC__741","",150,0,300);
+   VbbHcc_both_H_jetmass_JEC__741->SetBinContent(1,4);
+   VbbHcc_both_H_jetmass_JEC__741->SetBinContent(2,25811);
+   VbbHcc_both_H_jetmass_JEC__741->SetBinContent(3,46964);
+   VbbHcc_both_H_jetmass_JEC__741->SetEntries(72928);
 
    ci = TColor::GetColor("#000099");
-   VbbHcc_both_H_jetmass_JEC__539->SetLineColor(ci);
-   VbbHcc_both_H_jetmass_JEC__539->SetLineWidth(2);
-   VbbHcc_both_H_jetmass_JEC__539->SetMarkerStyle(20);
-   VbbHcc_both_H_jetmass_JEC__539->SetMarkerSize(1.2);
-   VbbHcc_both_H_jetmass_JEC__539->GetXaxis()->SetRange(1,300);
-   VbbHcc_both_H_jetmass_JEC__539->GetXaxis()->SetLabelFont(42);
-   VbbHcc_both_H_jetmass_JEC__539->GetXaxis()->SetLabelSize(0.035);
-   VbbHcc_both_H_jetmass_JEC__539->GetXaxis()->SetTitleSize(0.035);
-   VbbHcc_both_H_jetmass_JEC__539->GetXaxis()->SetTitleFont(42);
-   VbbHcc_both_H_jetmass_JEC__539->GetYaxis()->SetLabelFont(42);
-   VbbHcc_both_H_jetmass_JEC__539->GetYaxis()->SetLabelSize(0.035);
-   VbbHcc_both_H_jetmass_JEC__539->GetYaxis()->SetTitleSize(0.035);
-   VbbHcc_both_H_jetmass_JEC__539->GetYaxis()->SetTitleOffset(0);
-   VbbHcc_both_H_jetmass_JEC__539->GetYaxis()->SetTitleFont(42);
-   VbbHcc_both_H_jetmass_JEC__539->GetZaxis()->SetLabelFont(42);
-   VbbHcc_both_H_jetmass_JEC__539->GetZaxis()->SetLabelSize(0.035);
-   VbbHcc_both_H_jetmass_JEC__539->GetZaxis()->SetTitleSize(0.035);
-   VbbHcc_both_H_jetmass_JEC__539->GetZaxis()->SetTitleFont(42);
-   VbbHcc_both_H_jetmass_JEC__539->Draw("same E");
+   VbbHcc_both_H_jetmass_JEC__741->SetLineColor(ci);
+   VbbHcc_both_H_jetmass_JEC__741->SetLineWidth(2);
+   VbbHcc_both_H_jetmass_JEC__741->SetMarkerStyle(20);
+   VbbHcc_both_H_jetmass_JEC__741->SetMarkerSize(1.2);
+   VbbHcc_both_H_jetmass_JEC__741->GetXaxis()->SetRange(1,300);
+   VbbHcc_both_H_jetmass_JEC__741->GetXaxis()->SetLabelFont(42);
+   VbbHcc_both_H_jetmass_JEC__741->GetXaxis()->SetLabelSize(0.035);
+   VbbHcc_both_H_jetmass_JEC__741->GetXaxis()->SetTitleSize(0.035);
+   VbbHcc_both_H_jetmass_JEC__741->GetXaxis()->SetTitleFont(42);
+   VbbHcc_both_H_jetmass_JEC__741->GetYaxis()->SetLabelFont(42);
+   VbbHcc_both_H_jetmass_JEC__741->GetYaxis()->SetLabelSize(0.035);
+   VbbHcc_both_H_jetmass_JEC__741->GetYaxis()->SetTitleSize(0.035);
+   VbbHcc_both_H_jetmass_JEC__741->GetYaxis()->SetTitleOffset(0);
+   VbbHcc_both_H_jetmass_JEC__741->GetYaxis()->SetTitleFont(42);
+   VbbHcc_both_H_jetmass_JEC__741->GetZaxis()->SetLabelFont(42);
+   VbbHcc_both_H_jetmass_JEC__741->GetZaxis()->SetLabelSize(0.035);
+   VbbHcc_both_H_jetmass_JEC__741->GetZaxis()->SetTitleSize(0.035);
+   VbbHcc_both_H_jetmass_JEC__741->GetZaxis()->SetTitleFont(42);
+   VbbHcc_both_H_jetmass_JEC__741->Draw("same E");
    
    Double_t Graph_from_VbbHcc_both_H_jetmass_JEC_fx1539[150] = {
    1,
@@ -1279,7 +1280,7 @@ void H_jetmass_JEC_both_17()
    entry->SetMarkerSize(1);
    entry->SetTextFont(42);
    leg->Draw();
-   TLatex *   tex = new TLatex(0.5,0.937775,"CMS Work in Progress #sqrt{s} = 13 TeV, 41.5 fb^{-1}");
+   TLatex *   tex = new TLatex(0.25,0.937775,"CMS Work in Progress #sqrt{s} = 13 TeV, 41.5 fb^{-1}");
 tex->SetNDC();
    tex->SetTextFont(42);
    tex->SetLineWidth(2);
@@ -1304,42 +1305,42 @@ tex->SetNDC();
    bottomPad->SetFrameBorderMode(0);
    bottomPad->SetFrameBorderMode(0);
    
-   TH1D *data_mc_ratio__540 = new TH1D("data_mc_ratio__540","",150,0,300);
-   data_mc_ratio__540->SetBinContent(1,0.0001349858);
-   data_mc_ratio__540->SetBinContent(2,0.293763);
-   data_mc_ratio__540->SetBinContent(3,0.3983007);
-   data_mc_ratio__540->SetBinError(1,6.74929e-05);
-   data_mc_ratio__540->SetBinError(2,0.001828499);
-   data_mc_ratio__540->SetBinError(3,0.001837928);
-   data_mc_ratio__540->SetMinimum(0.4);
-   data_mc_ratio__540->SetMaximum(1.6);
-   data_mc_ratio__540->SetEntries(1382.496);
-   data_mc_ratio__540->SetStats(0);
+   TH1D *data_mc_ratio__742 = new TH1D("data_mc_ratio__742","",150,0,300);
+   data_mc_ratio__742->SetBinContent(1,0.0001349858);
+   data_mc_ratio__742->SetBinContent(2,0.293763);
+   data_mc_ratio__742->SetBinContent(3,0.3983007);
+   data_mc_ratio__742->SetBinError(1,6.74929e-05);
+   data_mc_ratio__742->SetBinError(2,0.001828499);
+   data_mc_ratio__742->SetBinError(3,0.001837928);
+   data_mc_ratio__742->SetMinimum(0.4);
+   data_mc_ratio__742->SetMaximum(1.6);
+   data_mc_ratio__742->SetEntries(1382.496);
+   data_mc_ratio__742->SetStats(0);
 
    ci = TColor::GetColor("#000099");
-   data_mc_ratio__540->SetLineColor(ci);
-   data_mc_ratio__540->SetLineWidth(2);
-   data_mc_ratio__540->SetMarkerStyle(20);
-   data_mc_ratio__540->SetMarkerSize(1.2);
-   data_mc_ratio__540->GetXaxis()->SetTitle("c-jet mass (w/ JEC) [GeV]");
-   data_mc_ratio__540->GetXaxis()->SetRange(1,150);
-   data_mc_ratio__540->GetXaxis()->SetLabelFont(42);
-   data_mc_ratio__540->GetXaxis()->SetLabelSize(0.12);
-   data_mc_ratio__540->GetXaxis()->SetTitleSize(0.12);
-   data_mc_ratio__540->GetXaxis()->SetTitleOffset(1.1);
-   data_mc_ratio__540->GetXaxis()->SetTitleFont(42);
-   data_mc_ratio__540->GetYaxis()->SetTitle("Data/MC");
-   data_mc_ratio__540->GetYaxis()->SetNdivisions(505);
-   data_mc_ratio__540->GetYaxis()->SetLabelFont(42);
-   data_mc_ratio__540->GetYaxis()->SetLabelSize(0.12);
-   data_mc_ratio__540->GetYaxis()->SetTitleSize(0.12);
-   data_mc_ratio__540->GetYaxis()->SetTitleOffset(0.5);
-   data_mc_ratio__540->GetYaxis()->SetTitleFont(42);
-   data_mc_ratio__540->GetZaxis()->SetLabelFont(42);
-   data_mc_ratio__540->GetZaxis()->SetLabelSize(0.035);
-   data_mc_ratio__540->GetZaxis()->SetTitleSize(0.035);
-   data_mc_ratio__540->GetZaxis()->SetTitleFont(42);
-   data_mc_ratio__540->Draw("E1");
+   data_mc_ratio__742->SetLineColor(ci);
+   data_mc_ratio__742->SetLineWidth(2);
+   data_mc_ratio__742->SetMarkerStyle(20);
+   data_mc_ratio__742->SetMarkerSize(1.2);
+   data_mc_ratio__742->GetXaxis()->SetTitle("c-jet mass (w/ JEC) [GeV]");
+   data_mc_ratio__742->GetXaxis()->SetRange(1,150);
+   data_mc_ratio__742->GetXaxis()->SetLabelFont(42);
+   data_mc_ratio__742->GetXaxis()->SetLabelSize(0.12);
+   data_mc_ratio__742->GetXaxis()->SetTitleSize(0.12);
+   data_mc_ratio__742->GetXaxis()->SetTitleOffset(1.1);
+   data_mc_ratio__742->GetXaxis()->SetTitleFont(42);
+   data_mc_ratio__742->GetYaxis()->SetTitle("Data/MC");
+   data_mc_ratio__742->GetYaxis()->SetNdivisions(505);
+   data_mc_ratio__742->GetYaxis()->SetLabelFont(42);
+   data_mc_ratio__742->GetYaxis()->SetLabelSize(0.12);
+   data_mc_ratio__742->GetYaxis()->SetTitleSize(0.12);
+   data_mc_ratio__742->GetYaxis()->SetTitleOffset(0.5);
+   data_mc_ratio__742->GetYaxis()->SetTitleFont(42);
+   data_mc_ratio__742->GetZaxis()->SetLabelFont(42);
+   data_mc_ratio__742->GetZaxis()->SetLabelSize(0.035);
+   data_mc_ratio__742->GetZaxis()->SetTitleSize(0.035);
+   data_mc_ratio__742->GetZaxis()->SetTitleFont(42);
+   data_mc_ratio__742->Draw("E1");
    
    Double_t Graph_from_mc_statistical_error_fx1540[150] = {
    1,

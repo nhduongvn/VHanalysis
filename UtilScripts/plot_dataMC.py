@@ -11,7 +11,7 @@ import copy
 import math
 import ConfigParser
 from math import *
-from my_funcs import makeDataMCPlot
+from my_funcs import makeDataMCPlot, makePlot
 
 ROOT.gROOT.SetBatch(True)
 
@@ -62,6 +62,10 @@ regions = ['tags', 'algo', 'both']
 useLogY = False
 outputDir = '../plot_results/new_july2023_noWeight/'
 dirpath = '../condor_results/updatedResults_july2023_noWeight/NONE/'
+plotCat = 'VbbHcc_plot'
+
+regions = ['']
+plotCat = 'Weight_plot'
 
 debug = True
 
@@ -159,14 +163,15 @@ for r in regions:
   
   print ">>> Checking region r = ", r
   nums[r] = {}
-  plotNames = cfg.get('Plots', 'VbbHcc_plot').split(',')
+  plotNames = cfg.get('Plots', plotCat).split(',')
   
   
   for plN in plotNames:
     
+    plN = plN.strip(' ')
     print ">>>>>> Checking plot plN = ", plN
     if r != '': hN = 'VbbHcc_' + r + '_' + plN
-    else: hN = 'VbbHcc_' + plN
+    else: hN = plN
     
     ## Get all desired plots
     hData = getHist(hN, ['JetHT'], histFiles, lumiScales)                    ## Data
@@ -239,6 +244,10 @@ for r in regions:
         dataTitle, 'QCD', 'Single top', 't#bar{t}', 'Z + jets', 'W + jets', 'WW',
         'WZ', 'ZZ', 'ZHbb', 'ggZHbb', 'ZHcc', 'ggZHcc'
       ]
+      individual_names = [
+        'JetHT', 'QCD', 'SingleTop', 'Ttbar', 'Zjets', 'Wjets', 'WW', 
+        'WZ', 'ZZ', 'ZHbb', 'ggZHbb', 'ZHcc', 'ggZHcc'
+      ]
       
       logY = useLogY
       if 'CutFlow' in plN: logY = True
@@ -246,6 +255,13 @@ for r in regions:
         plN + '_' + r + '_' + y, outputDir + '/20'+y,  ## folders
         xA_title, xA_range, 'MC unc. (stat.)', False,  ## axes
         logY=logY, lumi=lumiS[y], blindMass=True)      ## other
+      
+      ## Plot each plot separately so we have it for reference
+      for i in range(len(plotNames_process)):
+        makePlot(plots_process[i], plotNames_process[i],
+          plN + '_' + r + '_' + y, outputDir + '/20' + y + '/' + individual_names[i],
+          xA_title, xA_range, '', 1, logY, lumiS[y], ROOT.kBlack, ROOT.kRed, fill=False)
+          
       
     ####################################
     ## Plot control plots for ALL years 

@@ -1,8 +1,9 @@
 void H_jetpt_JEC_both_18()
 {
 //=========Macro generated from canvas: H_jetpt_JEC_both_18/H_jetpt_JEC_both_18
-//=========  (Thu Aug  3 10:21:58 2023) by ROOT version 6.14/09
+//=========  (Thu Aug  3 12:26:31 2023) by ROOT version 6.14/09
    TCanvas *H_jetpt_JEC_both_18 = new TCanvas("H_jetpt_JEC_both_18", "H_jetpt_JEC_both_18",0,0,600,600);
+   gStyle->SetOptStat(0);
    H_jetpt_JEC_both_18->SetHighLightColor(2);
    H_jetpt_JEC_both_18->Range(0,0,1,1);
    H_jetpt_JEC_both_18->SetFillColor(0);
@@ -453,33 +454,33 @@ void H_jetpt_JEC_both_18()
    st->Add(VbbHcc_both_H_jetpt_JEC_stack_12,"");
    st->Draw("hist");
    
-   TH1D *VbbHcc_both_H_jetpt_JEC__525 = new TH1D("VbbHcc_both_H_jetpt_JEC__525","",150,0,300);
-   VbbHcc_both_H_jetpt_JEC__525->SetBinContent(0,162744);
-   VbbHcc_both_H_jetpt_JEC__525->SetBinContent(1,552);
-   VbbHcc_both_H_jetpt_JEC__525->SetBinContent(2,107551);
-   VbbHcc_both_H_jetpt_JEC__525->SetBinContent(3,55521);
-   VbbHcc_both_H_jetpt_JEC__525->SetEntries(326517);
+   TH1D *VbbHcc_both_H_jetpt_JEC__722 = new TH1D("VbbHcc_both_H_jetpt_JEC__722","",150,0,300);
+   VbbHcc_both_H_jetpt_JEC__722->SetBinContent(0,162744);
+   VbbHcc_both_H_jetpt_JEC__722->SetBinContent(1,552);
+   VbbHcc_both_H_jetpt_JEC__722->SetBinContent(2,107551);
+   VbbHcc_both_H_jetpt_JEC__722->SetBinContent(3,55521);
+   VbbHcc_both_H_jetpt_JEC__722->SetEntries(326517);
 
    ci = TColor::GetColor("#000099");
-   VbbHcc_both_H_jetpt_JEC__525->SetLineColor(ci);
-   VbbHcc_both_H_jetpt_JEC__525->SetLineWidth(2);
-   VbbHcc_both_H_jetpt_JEC__525->SetMarkerStyle(20);
-   VbbHcc_both_H_jetpt_JEC__525->SetMarkerSize(1.2);
-   VbbHcc_both_H_jetpt_JEC__525->GetXaxis()->SetRange(1,300);
-   VbbHcc_both_H_jetpt_JEC__525->GetXaxis()->SetLabelFont(42);
-   VbbHcc_both_H_jetpt_JEC__525->GetXaxis()->SetLabelSize(0.035);
-   VbbHcc_both_H_jetpt_JEC__525->GetXaxis()->SetTitleSize(0.035);
-   VbbHcc_both_H_jetpt_JEC__525->GetXaxis()->SetTitleFont(42);
-   VbbHcc_both_H_jetpt_JEC__525->GetYaxis()->SetLabelFont(42);
-   VbbHcc_both_H_jetpt_JEC__525->GetYaxis()->SetLabelSize(0.035);
-   VbbHcc_both_H_jetpt_JEC__525->GetYaxis()->SetTitleSize(0.035);
-   VbbHcc_both_H_jetpt_JEC__525->GetYaxis()->SetTitleOffset(0);
-   VbbHcc_both_H_jetpt_JEC__525->GetYaxis()->SetTitleFont(42);
-   VbbHcc_both_H_jetpt_JEC__525->GetZaxis()->SetLabelFont(42);
-   VbbHcc_both_H_jetpt_JEC__525->GetZaxis()->SetLabelSize(0.035);
-   VbbHcc_both_H_jetpt_JEC__525->GetZaxis()->SetTitleSize(0.035);
-   VbbHcc_both_H_jetpt_JEC__525->GetZaxis()->SetTitleFont(42);
-   VbbHcc_both_H_jetpt_JEC__525->Draw("same E");
+   VbbHcc_both_H_jetpt_JEC__722->SetLineColor(ci);
+   VbbHcc_both_H_jetpt_JEC__722->SetLineWidth(2);
+   VbbHcc_both_H_jetpt_JEC__722->SetMarkerStyle(20);
+   VbbHcc_both_H_jetpt_JEC__722->SetMarkerSize(1.2);
+   VbbHcc_both_H_jetpt_JEC__722->GetXaxis()->SetRange(1,300);
+   VbbHcc_both_H_jetpt_JEC__722->GetXaxis()->SetLabelFont(42);
+   VbbHcc_both_H_jetpt_JEC__722->GetXaxis()->SetLabelSize(0.035);
+   VbbHcc_both_H_jetpt_JEC__722->GetXaxis()->SetTitleSize(0.035);
+   VbbHcc_both_H_jetpt_JEC__722->GetXaxis()->SetTitleFont(42);
+   VbbHcc_both_H_jetpt_JEC__722->GetYaxis()->SetLabelFont(42);
+   VbbHcc_both_H_jetpt_JEC__722->GetYaxis()->SetLabelSize(0.035);
+   VbbHcc_both_H_jetpt_JEC__722->GetYaxis()->SetTitleSize(0.035);
+   VbbHcc_both_H_jetpt_JEC__722->GetYaxis()->SetTitleOffset(0);
+   VbbHcc_both_H_jetpt_JEC__722->GetYaxis()->SetTitleFont(42);
+   VbbHcc_both_H_jetpt_JEC__722->GetZaxis()->SetLabelFont(42);
+   VbbHcc_both_H_jetpt_JEC__722->GetZaxis()->SetLabelSize(0.035);
+   VbbHcc_both_H_jetpt_JEC__722->GetZaxis()->SetTitleSize(0.035);
+   VbbHcc_both_H_jetpt_JEC__722->GetZaxis()->SetTitleFont(42);
+   VbbHcc_both_H_jetpt_JEC__722->Draw("same E");
    
    Double_t Graph_from_VbbHcc_both_H_jetpt_JEC_fx1525[150] = {
    1,
@@ -1320,7 +1321,7 @@ void H_jetpt_JEC_both_18()
    entry->SetMarkerSize(1);
    entry->SetTextFont(42);
    leg->Draw();
-   TLatex *   tex = new TLatex(0.5,0.937775,"CMS Work in Progress #sqrt{s} = 13 TeV, 59.7 fb^{-1}");
+   TLatex *   tex = new TLatex(0.25,0.937775,"CMS Work in Progress #sqrt{s} = 13 TeV, 59.7 fb^{-1}");
 tex->SetNDC();
    tex->SetTextFont(42);
    tex->SetLineWidth(2);
@@ -1345,44 +1346,44 @@ tex->SetNDC();
    bottomPad->SetFrameBorderMode(0);
    bottomPad->SetFrameBorderMode(0);
    
-   TH1D *data_mc_ratio__526 = new TH1D("data_mc_ratio__526","",150,0,300);
-   data_mc_ratio__526->SetBinContent(0,1.233996);
-   data_mc_ratio__526->SetBinContent(1,1.455205);
-   data_mc_ratio__526->SetBinContent(2,1.29557);
-   data_mc_ratio__526->SetBinContent(3,1.504738);
-   data_mc_ratio__526->SetBinError(0,0.04809294);
-   data_mc_ratio__526->SetBinError(1,0.06193765);
-   data_mc_ratio__526->SetBinError(2,0.003950515);
-   data_mc_ratio__526->SetBinError(3,0.00638605);
-   data_mc_ratio__526->SetMinimum(0.4);
-   data_mc_ratio__526->SetMaximum(1.6);
-   data_mc_ratio__526->SetEntries(129.1528);
-   data_mc_ratio__526->SetStats(0);
+   TH1D *data_mc_ratio__723 = new TH1D("data_mc_ratio__723","",150,0,300);
+   data_mc_ratio__723->SetBinContent(0,1.233996);
+   data_mc_ratio__723->SetBinContent(1,1.455205);
+   data_mc_ratio__723->SetBinContent(2,1.29557);
+   data_mc_ratio__723->SetBinContent(3,1.504738);
+   data_mc_ratio__723->SetBinError(0,0.04809294);
+   data_mc_ratio__723->SetBinError(1,0.06193765);
+   data_mc_ratio__723->SetBinError(2,0.003950515);
+   data_mc_ratio__723->SetBinError(3,0.00638605);
+   data_mc_ratio__723->SetMinimum(0.4);
+   data_mc_ratio__723->SetMaximum(1.6);
+   data_mc_ratio__723->SetEntries(129.1528);
+   data_mc_ratio__723->SetStats(0);
 
    ci = TColor::GetColor("#000099");
-   data_mc_ratio__526->SetLineColor(ci);
-   data_mc_ratio__526->SetLineWidth(2);
-   data_mc_ratio__526->SetMarkerStyle(20);
-   data_mc_ratio__526->SetMarkerSize(1.2);
-   data_mc_ratio__526->GetXaxis()->SetTitle("c-jet p_{T} (w/ JEC) [GeV]");
-   data_mc_ratio__526->GetXaxis()->SetRange(1,150);
-   data_mc_ratio__526->GetXaxis()->SetLabelFont(42);
-   data_mc_ratio__526->GetXaxis()->SetLabelSize(0.12);
-   data_mc_ratio__526->GetXaxis()->SetTitleSize(0.12);
-   data_mc_ratio__526->GetXaxis()->SetTitleOffset(1.1);
-   data_mc_ratio__526->GetXaxis()->SetTitleFont(42);
-   data_mc_ratio__526->GetYaxis()->SetTitle("Data/MC");
-   data_mc_ratio__526->GetYaxis()->SetNdivisions(505);
-   data_mc_ratio__526->GetYaxis()->SetLabelFont(42);
-   data_mc_ratio__526->GetYaxis()->SetLabelSize(0.12);
-   data_mc_ratio__526->GetYaxis()->SetTitleSize(0.12);
-   data_mc_ratio__526->GetYaxis()->SetTitleOffset(0.5);
-   data_mc_ratio__526->GetYaxis()->SetTitleFont(42);
-   data_mc_ratio__526->GetZaxis()->SetLabelFont(42);
-   data_mc_ratio__526->GetZaxis()->SetLabelSize(0.035);
-   data_mc_ratio__526->GetZaxis()->SetTitleSize(0.035);
-   data_mc_ratio__526->GetZaxis()->SetTitleFont(42);
-   data_mc_ratio__526->Draw("E1");
+   data_mc_ratio__723->SetLineColor(ci);
+   data_mc_ratio__723->SetLineWidth(2);
+   data_mc_ratio__723->SetMarkerStyle(20);
+   data_mc_ratio__723->SetMarkerSize(1.2);
+   data_mc_ratio__723->GetXaxis()->SetTitle("c-jet p_{T} (w/ JEC) [GeV]");
+   data_mc_ratio__723->GetXaxis()->SetRange(1,150);
+   data_mc_ratio__723->GetXaxis()->SetLabelFont(42);
+   data_mc_ratio__723->GetXaxis()->SetLabelSize(0.12);
+   data_mc_ratio__723->GetXaxis()->SetTitleSize(0.12);
+   data_mc_ratio__723->GetXaxis()->SetTitleOffset(1.1);
+   data_mc_ratio__723->GetXaxis()->SetTitleFont(42);
+   data_mc_ratio__723->GetYaxis()->SetTitle("Data/MC");
+   data_mc_ratio__723->GetYaxis()->SetNdivisions(505);
+   data_mc_ratio__723->GetYaxis()->SetLabelFont(42);
+   data_mc_ratio__723->GetYaxis()->SetLabelSize(0.12);
+   data_mc_ratio__723->GetYaxis()->SetTitleSize(0.12);
+   data_mc_ratio__723->GetYaxis()->SetTitleOffset(0.5);
+   data_mc_ratio__723->GetYaxis()->SetTitleFont(42);
+   data_mc_ratio__723->GetZaxis()->SetLabelFont(42);
+   data_mc_ratio__723->GetZaxis()->SetLabelSize(0.035);
+   data_mc_ratio__723->GetZaxis()->SetTitleSize(0.035);
+   data_mc_ratio__723->GetZaxis()->SetTitleFont(42);
+   data_mc_ratio__723->Draw("E1");
    
    Double_t Graph_from_mc_statistical_error_fx1526[150] = {
    1,

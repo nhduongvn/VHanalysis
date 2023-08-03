@@ -181,7 +181,10 @@ def makePlot(plot, plotName, canvasName, plotDir, xAxisTitle, xAxisRange,
   else: plot.Draw("HIST")
   plot.GetXaxis().SetTitle(xAxisTitle)
   plot.GetYaxis().SetTitle(yAxisTitle)
-  
+
+  myText('CMS Work in Progress #sqrt{s} = 13 TeV, '+lumi+' fb^{-1}',
+    0.25, 0.937775, 0.8) 
+ 
   ## Update the canvas & modify the y-axis if appropriate
   c.Update()
   if logY and not is2D: c.SetLogy()
@@ -1037,7 +1040,7 @@ def makeDataMCPlot(plots, plotNames, canvasName, outputDir = 'Test/',
   theErrorGraph.Draw('SAME2')
 
   l.Draw()
-  myText('CMS Work in Progress #sqrt{s} = 13 TeV, '+ lumi+' fb^{-1}', 0.5, 0.937775, 1.0)
+  myText('CMS Work in Progress #sqrt{s} = 13 TeV, '+ lumi+' fb^{-1}', 0.25, 0.937775, 1.0)
   topPad.Update()
   
   #Handle the bottom pad
