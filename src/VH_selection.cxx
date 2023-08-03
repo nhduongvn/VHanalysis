@@ -374,12 +374,20 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_cRegCorr = new TH1D("cRegCorr", "", 200, 0, 2);
   h_JetMass = new TH1D("JetMass", "", 300, 0, 300);  
 
+  h_genWeight = new TH1D("genWeight", "", 200, -2, 2);
+  h_puSF = new TH1D("puSF", "", 200, -2, 2);
+  h_l1preW = new TH1D("l1preW", "", 200, -2, 2);
+
   // Add them to the return list so we can use them in our analyses.
   r->GetOutputList()->Add(h_evt);
 
   r->GetOutputList()->Add(h_bRegCorr);
   r->GetOutputList()->Add(h_cRegCorr);
   r->GetOutputList()->Add(h_JetMass);
+
+  r->GetOutputList()->Add(h_genWeight);
+  r->GetOutputList()->Add(h_puSF);
+  r->GetOutputList()->Add(h_l1preW);
 
   std::vector<TH1*> tmp = h_VH_MC->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
@@ -583,9 +591,12 @@ void VH_selection::Process(Reader* r) {
   if (*(r->genWeight) < 0) h_evt->Fill(-1);
   if (*(r->genWeight) > 0) h_evt->Fill(1);
 
+  h_genWeight->Fill(*(r->genWeight));
+
   // Use central general weights to normalize generator weights
   if (m_centralGenWeight != 0) genWeight *= *(r->genWeight)/m_centralGenWeight;
   puSF = PileupSF(*(r->Pileup_nTrueInt));
+  h_puSF->Fill(puSF);
 
 #endif
 
@@ -599,6 +610,8 @@ void VH_selection::Process(Reader* r) {
   if (m_l1prefiringType == "l1prefiringu") l1preW = *(r->L1PreFiringWeight_Up);
   if (m_l1prefiringType == "l1prefiringd") l1preW = *(r->L1PreFiringWeight_Dn);
 
+  h_l1preW->Fill(l1preW);
+
 #endif
 
 #if defined(DATA_2016) || defined(DATA_2017) || defined(DATA_2018)
@@ -610,7 +623,7 @@ void VH_selection::Process(Reader* r) {
 #endif
 
   float evtW = 1.;
-  if (!m_isData) evtW *= genWeight * puSF * l1preW;
+  //if (!m_isData) evtW *= genWeight * puSF * l1preW;
 
   /***************************************************************************
   * GET THE PROPER TAGGING CUTS THAT WE WANT TO USE                          *

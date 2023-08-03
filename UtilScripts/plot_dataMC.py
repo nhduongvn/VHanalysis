@@ -60,8 +60,8 @@ def getHist(plotName, sample_names, hist_files, lumiScales):
 years = ['16', '17', '18']
 regions = ['tags', 'algo', 'both']
 useLogY = False
-outputDir = '../plot_results/new_july2023/'
-dirpath = '../condor_results/updatedResults_july2023/NONE/'
+outputDir = '../plot_results/new_july2023_noWeight/'
+dirpath = '../condor_results/updatedResults_july2023_noWeight/NONE/'
 
 debug = True
 

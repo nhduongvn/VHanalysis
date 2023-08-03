@@ -177,6 +177,10 @@ class VH_selection : public Selector {
     GenPlots *h_genJet_all;
     GenPlots *h_genJet_cuts;
     GenPlots *h_genJet_VbbHcc;
+
+    TH1D* h_genWeight;
+    TH1D* h_puSF;
+    TH1D* h_l1preW;
 };
 
 #endif
