@@ -623,7 +623,12 @@ void VH_selection::Process(Reader* r) {
 #endif
 
   float evtW = 1.;
-  //if (!m_isData) evtW *= genWeight * puSF * l1preW;
+
+#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
+  //if (!m_isData) 
+  // Only set the event weights with the scales if we're in MC, not data.
+  evtW *= genWeight * puSF * l1preW;
+#endif
 
   /***************************************************************************
   * GET THE PROPER TAGGING CUTS THAT WE WANT TO USE                          *
