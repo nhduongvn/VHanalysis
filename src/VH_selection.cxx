@@ -627,7 +627,7 @@ void VH_selection::Process(Reader* r) {
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
   //if (!m_isData) 
   // Only set the event weights with the scales if we're in MC, not data.
-  //evtW *= genWeight * puSF * l1preW;
+  evtW *= genWeight * puSF * l1preW;
 #endif
 
   /***************************************************************************
