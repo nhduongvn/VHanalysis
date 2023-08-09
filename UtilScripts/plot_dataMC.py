@@ -64,8 +64,8 @@ outputDir = '../plot_results/new_july2023_w_Weight/'
 dirpath = '../condor_results/updatedResults_july2023_w_Weight/NONE/'
 plotCat = 'VbbHcc_plot'
 
-regions = ['']
-plotCat = 'Weight_plot'
+#regions = ['']
+#plotCat = 'Weight_plot'
 
 debug = True
 
