@@ -1,7 +1,7 @@
 void Sphericity_algo_18()
 {
 //=========Macro generated from canvas: Sphericity_algo_18/Sphericity_algo_18
-//=========  (Thu Aug  3 12:24:52 2023) by ROOT version 6.14/09
+//=========  (Thu Aug 10 12:28:43 2023) by ROOT version 6.14/09
    TCanvas *Sphericity_algo_18 = new TCanvas("Sphericity_algo_18", "Sphericity_algo_18",0,0,600,600);
    gStyle->SetOptStat(0);
    Sphericity_algo_18->SetHighLightColor(2);

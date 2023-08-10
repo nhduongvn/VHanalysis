@@ -1,0 +1,105 @@
+void Z_jetpt_JEC_tags_18_logY()
+{
+//=========Macro generated from canvas: Z_jetpt_JEC_tags_18/Z_jetpt_JEC_tags_18
+//=========  (Thu Aug 10 12:31:44 2023) by ROOT version 6.14/09
+   TCanvas *Z_jetpt_JEC_tags_18 = new TCanvas("Z_jetpt_JEC_tags_18", "Z_jetpt_JEC_tags_18",0,0,600,600);
+   gStyle->SetOptStat(0);
+   Z_jetpt_JEC_tags_18->SetHighLightColor(2);
+   Z_jetpt_JEC_tags_18->Range(-60,-0.8617336,340,0.2377775);
+   Z_jetpt_JEC_tags_18->SetFillColor(0);
+   Z_jetpt_JEC_tags_18->SetBorderMode(0);
+   Z_jetpt_JEC_tags_18->SetBorderSize(2);
+   Z_jetpt_JEC_tags_18->SetLogy();
+   Z_jetpt_JEC_tags_18->SetLeftMargin(0.15);
+   Z_jetpt_JEC_tags_18->SetFrameBorderMode(0);
+   Z_jetpt_JEC_tags_18->SetFrameBorderMode(0);
+   
+   TH1D *VbbHcc_tags_Z_jetpt_JEC_stack_7 = new TH1D("VbbHcc_tags_Z_jetpt_JEC_stack_7","",150,0,300);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinContent(25,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinContent(26,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinContent(27,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinContent(29,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinContent(31,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinContent(33,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinContent(34,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinContent(37,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinContent(39,0.7083982);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinContent(40,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinContent(46,0.7083982);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinContent(49,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinContent(50,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinContent(53,0.7083982);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinContent(55,0.7083982);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinContent(60,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinContent(61,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinContent(63,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinContent(67,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinContent(83,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinContent(84,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinContent(86,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinContent(91,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinContent(92,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinContent(93,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinContent(101,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinContent(104,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinContent(151,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinError(25,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinError(26,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinError(27,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinError(29,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinError(31,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinError(33,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinError(34,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinError(37,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinError(39,0.5009132);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinError(40,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinError(46,0.5009132);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinError(49,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinError(50,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinError(53,0.5009132);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinError(55,0.5009132);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinError(60,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinError(61,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinError(63,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinError(67,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinError(83,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinError(84,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinError(86,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinError(91,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinError(92,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinError(93,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinError(101,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinError(104,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetBinError(151,0.3541991);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetEntries(32);
+
+   Int_t ci;      // for color index setting
+   TColor *color; // for color definition with alpha
+   ci = TColor::GetColor("#3399ff");
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->SetFillColor(ci);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->GetXaxis()->SetTitle("b-jet p_{T} (w/ JEC) [GeV]");
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->GetXaxis()->SetRange(1,150);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->GetXaxis()->SetLabelFont(42);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->GetXaxis()->SetLabelSize(0.035);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->GetXaxis()->SetTitleSize(0.035);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->GetXaxis()->SetTitleFont(42);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->GetYaxis()->SetLabelFont(42);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->GetYaxis()->SetLabelSize(0.035);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->GetYaxis()->SetTitleSize(0.035);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->GetYaxis()->SetTitleOffset(0);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->GetYaxis()->SetTitleFont(42);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->GetZaxis()->SetLabelFont(42);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->GetZaxis()->SetLabelSize(0.035);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->GetZaxis()->SetTitleSize(0.035);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->GetZaxis()->SetTitleFont(42);
+   VbbHcc_tags_Z_jetpt_JEC_stack_7->Draw("HIST");
+   TLatex *   tex = new TLatex(0.25,0.937775,"CMS Work in Progress #sqrt{s} = 13 TeV, 59.7 fb^{-1}");
+tex->SetNDC();
+   tex->SetTextFont(42);
+   tex->SetTextSize(0.04);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   Z_jetpt_JEC_tags_18->Modified();
+   Z_jetpt_JEC_tags_18->cd();
+   Z_jetpt_JEC_tags_18->SetSelected(Z_jetpt_JEC_tags_18);
+}

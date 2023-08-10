@@ -1,7 +1,7 @@
 void Z_jetmass_JEC_both_16_logY()
 {
 //=========Macro generated from canvas: Z_jetmass_JEC_both_16/Z_jetmass_JEC_both_16
-//=========  (Thu Aug 10 10:43:50 2023) by ROOT version 6.14/09
+//=========  (Thu Aug 10 12:22:08 2023) by ROOT version 6.14/09
    TCanvas *Z_jetmass_JEC_both_16 = new TCanvas("Z_jetmass_JEC_both_16", "Z_jetmass_JEC_both_16",0,0,600,600);
    gStyle->SetOptStat(0);
    Z_jetmass_JEC_both_16->SetHighLightColor(2);

@@ -1,7 +1,7 @@
 void Z_jetpt_JEC_both_18_logY()
 {
 //=========Macro generated from canvas: Z_jetpt_JEC_both_18/Z_jetpt_JEC_both_18
-//=========  (Thu Aug 10 10:43:47 2023) by ROOT version 6.14/09
+//=========  (Thu Aug 10 12:22:06 2023) by ROOT version 6.14/09
    TCanvas *Z_jetpt_JEC_both_18 = new TCanvas("Z_jetpt_JEC_both_18", "Z_jetpt_JEC_both_18",0,0,600,600);
    gStyle->SetOptStat(0);
    Z_jetpt_JEC_both_18->SetHighLightColor(2);

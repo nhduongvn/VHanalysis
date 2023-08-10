@@ -1,7 +1,7 @@
 void dR_HZ_both_16()
 {
 //=========Macro generated from canvas: dR_HZ_both_16/dR_HZ_both_16
-//=========  (Thu Aug 10 10:43:16 2023) by ROOT version 6.14/09
+//=========  (Thu Aug 10 12:24:55 2023) by ROOT version 6.14/09
    TCanvas *dR_HZ_both_16 = new TCanvas("dR_HZ_both_16", "dR_HZ_both_16",0,0,600,600);
    gStyle->SetOptStat(0);
    dR_HZ_both_16->SetHighLightColor(2);
@@ -17,11 +17,10 @@ void dR_HZ_both_16()
    TPad *topPad = new TPad("topPad", "topPad",0,0.3,1,1);
    topPad->Draw();
    topPad->cd();
-   topPad->Range(-0.9346749,-2.821311,6.419758,10.70071);
+   topPad->Range(-0.9346749,-24.85569,6.419758,24840.84);
    topPad->SetFillColor(0);
    topPad->SetBorderMode(0);
    topPad->SetBorderSize(2);
-   topPad->SetLogy();
    topPad->SetLeftMargin(0.12709);
    topPad->SetRightMargin(0.0434783);
    topPad->SetBottomMargin(0.001);
@@ -32,11 +31,11 @@ void dR_HZ_both_16()
    st->SetName("st");
    st->SetTitle("");
    st->SetMinimum(0.01);
-   st->SetMaximum(7.039135e+08);
+   st->SetMaximum(21289.78);
    
    TH1F *st_stack_229 = new TH1F("st_stack_229","",60,0,6);
-   st_stack_229->SetMinimum(0.001556721);
-   st_stack_229->SetMaximum(2.231056e+09);
+   st_stack_229->SetMinimum(0.01);
+   st_stack_229->SetMaximum(22354.27);
    st_stack_229->SetDirectory(0);
    st_stack_229->SetStats(0);
 

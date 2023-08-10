@@ -1,7 +1,7 @@
 void H_jetmass_noJEC_algo_all()
 {
 //=========Macro generated from canvas: H_jetmass_noJEC_algo_all/H_jetmass_noJEC_algo_all
-//=========  (Thu Aug 10 10:42:36 2023) by ROOT version 6.14/09
+//=========  (Thu Aug 10 12:24:25 2023) by ROOT version 6.14/09
    TCanvas *H_jetmass_noJEC_algo_all = new TCanvas("H_jetmass_noJEC_algo_all", "H_jetmass_noJEC_algo_all",0,0,600,600);
    gStyle->SetOptStat(0);
    H_jetmass_noJEC_algo_all->SetHighLightColor(2);
@@ -17,11 +17,10 @@ void H_jetmass_noJEC_algo_all()
    TPad *topPad = new TPad("topPad", "topPad",0,0.3,1,1);
    topPad->Draw();
    topPad->cd();
-   topPad->Range(-45.96762,-1.438732,315.7258,15.60046);
+   topPad->Range(-45.96762,-2560.499,315.7258,2558239);
    topPad->SetFillColor(0);
    topPad->SetBorderMode(0);
    topPad->SetBorderSize(2);
-   topPad->SetLogy();
    topPad->SetLeftMargin(0.12709);
    topPad->SetRightMargin(0.0434783);
    topPad->SetBottomMargin(0.001);
@@ -32,11 +31,11 @@ void H_jetmass_noJEC_algo_all()
    st->SetName("st");
    st->SetTitle("");
    st->SetMinimum(0.3);
-   st->SetMaximum(2.090991e+13);
+   st->SetMaximum(2192532);
    
    TH1F *st_stack_172 = new TH1F("st_stack_172","",150,0,300);
-   st_stack_172->SetMinimum(0.03787106);
-   st_stack_172->SetMaximum(7.880205e+13);
+   st_stack_172->SetMinimum(0.3);
+   st_stack_172->SetMaximum(2302159);
    st_stack_172->SetDirectory(0);
    st_stack_172->SetStats(0);
 
@@ -3303,7 +3302,7 @@ void H_jetmass_noJEC_algo_all()
    gre->SetLineColor(ci);
    
    TH1F *Graph_Graph_from_VbbHcc_algo_H_jetmass_noJEC_all1343 = new TH1F("Graph_Graph_from_VbbHcc_algo_H_jetmass_noJEC_all1343","",150,0,330);
-   Graph_Graph_from_VbbHcc_algo_H_jetmass_noJEC_all1343->SetMinimum(0.000661907);
+   Graph_Graph_from_VbbHcc_algo_H_jetmass_noJEC_all1343->SetMinimum(-101103.6);
    Graph_Graph_from_VbbHcc_algo_H_jetmass_noJEC_all1343->SetMaximum(1112139);
    Graph_Graph_from_VbbHcc_algo_H_jetmass_noJEC_all1343->SetDirectory(0);
    Graph_Graph_from_VbbHcc_algo_H_jetmass_noJEC_all1343->SetStats(0);

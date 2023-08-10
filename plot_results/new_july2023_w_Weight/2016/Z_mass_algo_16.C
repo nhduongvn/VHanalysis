@@ -1,7 +1,7 @@
 void Z_mass_algo_16()
 {
 //=========Macro generated from canvas: Z_mass_algo_16/Z_mass_algo_16
-//=========  (Thu Aug 10 10:41:34 2023) by ROOT version 6.14/09
+//=========  (Thu Aug 10 12:23:51 2023) by ROOT version 6.14/09
    TCanvas *Z_mass_algo_16 = new TCanvas("Z_mass_algo_16", "Z_mass_algo_16",0,0,600,600);
    gStyle->SetOptStat(0);
    Z_mass_algo_16->SetHighLightColor(2);
@@ -17,11 +17,10 @@ void Z_mass_algo_16()
    TPad *topPad = new TPad("topPad", "topPad",0,0.3,1,1);
    topPad->Draw();
    topPad->cd();
-   topPad->Range(-45.96762,-2.908622,315.7258,13.83709);
+   topPad->Range(-45.96762,-427.2454,315.7258,426828.1);
    topPad->SetFillColor(0);
    topPad->SetBorderMode(0);
    topPad->SetBorderSize(2);
-   topPad->SetLogy();
    topPad->SetLeftMargin(0.12709);
    topPad->SetRightMargin(0.0434783);
    topPad->SetBottomMargin(0.001);
@@ -32,11 +31,11 @@ void Z_mass_algo_16()
    st->SetName("st");
    st->SetTitle("");
    st->SetMinimum(0.01);
-   st->SetMaximum(3.909818e+11);
+   st->SetMaximum(365812);
    
    TH1F *st_stack_97 = new TH1F("st_stack_97","",40,0,400);
-   st_stack_97->SetMinimum(0.001282696);
-   st_stack_97->SetMaximum(1.453839e+12);
+   st_stack_97->SetMinimum(0.01);
+   st_stack_97->SetMaximum(384102.6);
    st_stack_97->SetDirectory(0);
    st_stack_97->SetStats(0);
 
@@ -1507,7 +1506,7 @@ void Z_mass_algo_16()
    gre->SetLineColor(ci);
    
    TH1F *Graph_Graph_from_VbbHcc_algo_Z_mass1193 = new TH1F("Graph_Graph_from_VbbHcc_algo_Z_mass1193","",100,0,440);
-   Graph_Graph_from_VbbHcc_algo_Z_mass1193->SetMinimum(204.2732);
+   Graph_Graph_from_VbbHcc_algo_Z_mass1193->SetMinimum(0);
    Graph_Graph_from_VbbHcc_algo_Z_mass1193->SetMaximum(204273.2);
    Graph_Graph_from_VbbHcc_algo_Z_mass1193->SetDirectory(0);
    Graph_Graph_from_VbbHcc_algo_Z_mass1193->SetStats(0);

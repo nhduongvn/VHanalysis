@@ -1,7 +1,7 @@
 void H_pt_algo_all()
 {
 //=========Macro generated from canvas: H_pt_algo_all/H_pt_algo_all
-//=========  (Thu Aug 10 10:41:56 2023) by ROOT version 6.14/09
+//=========  (Thu Aug 10 12:24:02 2023) by ROOT version 6.14/09
    TCanvas *H_pt_algo_all = new TCanvas("H_pt_algo_all", "H_pt_algo_all",0,0,600,600);
    gStyle->SetOptStat(0);
    H_pt_algo_all->SetHighLightColor(2);
@@ -17,11 +17,10 @@ void H_pt_algo_all()
    TPad *topPad = new TPad("topPad", "topPad",0,0.3,1,1);
    topPad->Draw();
    topPad->cd();
-   topPad->Range(116.1295,-1.372897,1562.903,13.14662);
+   topPad->Range(116.1295,-275.8855,1562.903,275909.6);
    topPad->SetFillColor(0);
    topPad->SetBorderMode(0);
    topPad->SetBorderSize(2);
-   topPad->SetLogy();
    topPad->SetLeftMargin(0.12709);
    topPad->SetRightMargin(0.0434783);
    topPad->SetBottomMargin(0.001);
@@ -32,11 +31,11 @@ void H_pt_algo_all()
    st->SetName("st");
    st->SetTitle("");
    st->SetMinimum(0.3);
-   st->SetMaximum(1.482778e+11);
+   st->SetMaximum(236467.7);
    
    TH1F *st_stack_112 = new TH1F("st_stack_112","",1000,0,2000);
-   st_stack_112->SetMinimum(0.04381495);
-   st_stack_112->SetMaximum(4.950687e+11);
+   st_stack_112->SetMinimum(0.3);
+   st_stack_112->SetMaximum(248291.1);
    st_stack_112->SetDirectory(0);
    st_stack_112->SetStats(0);
 

@@ -1,7 +1,7 @@
 void Aplanarity_both_18()
 {
 //=========Macro generated from canvas: Aplanarity_both_18/Aplanarity_both_18
-//=========  (Thu Aug  3 12:26:23 2023) by ROOT version 6.14/09
+//=========  (Thu Aug 10 12:29:34 2023) by ROOT version 6.14/09
    TCanvas *Aplanarity_both_18 = new TCanvas("Aplanarity_both_18", "Aplanarity_both_18",0,0,600,600);
    gStyle->SetOptStat(0);
    Aplanarity_both_18->SetHighLightColor(2);

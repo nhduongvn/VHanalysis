@@ -1,7 +1,7 @@
 void H_jetpt_noJEC_both_16()
 {
 //=========Macro generated from canvas: H_jetpt_noJEC_both_16/H_jetpt_noJEC_both_16
-//=========  (Thu Aug 10 10:43:30 2023) by ROOT version 6.14/09
+//=========  (Thu Aug 10 12:25:09 2023) by ROOT version 6.14/09
    TCanvas *H_jetpt_noJEC_both_16 = new TCanvas("H_jetpt_noJEC_both_16", "H_jetpt_noJEC_both_16",0,0,600,600);
    gStyle->SetOptStat(0);
    H_jetpt_noJEC_both_16->SetHighLightColor(2);
@@ -17,11 +17,10 @@ void H_jetpt_noJEC_both_16()
    TPad *topPad = new TPad("topPad", "topPad",0,0.3,1,1);
    topPad->Draw();
    topPad->cd();
-   topPad->Range(-45.96762,-2.820912,315.7258,10.68763);
+   topPad->Range(-45.96762,-24.56322,315.7258,24548.66);
    topPad->SetFillColor(0);
    topPad->SetBorderMode(0);
    topPad->SetBorderSize(2);
-   topPad->SetLogy();
    topPad->SetLeftMargin(0.12709);
    topPad->SetRightMargin(0.0434783);
    topPad->SetBottomMargin(0.001);
@@ -32,11 +31,11 @@ void H_jetpt_noJEC_both_16()
    st->SetName("st");
    st->SetTitle("");
    st->SetMinimum(0.01);
-   st->SetMaximum(6.856467e+08);
+   st->SetMaximum(21039.37);
    
    TH1F *st_stack_257 = new TH1F("st_stack_257","",150,0,300);
-   st_stack_257->SetMinimum(0.001558106);
-   st_stack_257->SetMaximum(2.171594e+09);
+   st_stack_257->SetMinimum(0.01);
+   st_stack_257->SetMaximum(22091.33);
    st_stack_257->SetDirectory(0);
    st_stack_257->SetStats(0);
 
@@ -3303,7 +3302,7 @@ void H_jetpt_noJEC_both_16()
    gre->SetLineColor(ci);
    
    TH1F *Graph_Graph_from_VbbHcc_both_H_jetpt_noJEC1513 = new TH1F("Graph_Graph_from_VbbHcc_both_H_jetpt_noJEC1513","",150,0,330);
-   Graph_Graph_from_VbbHcc_both_H_jetpt_noJEC1513->SetMinimum(13.64082);
+   Graph_Graph_from_VbbHcc_both_H_jetpt_noJEC1513->SetMinimum(0);
    Graph_Graph_from_VbbHcc_both_H_jetpt_noJEC1513->SetMaximum(13640.82);
    Graph_Graph_from_VbbHcc_both_H_jetpt_noJEC1513->SetDirectory(0);
    Graph_Graph_from_VbbHcc_both_H_jetpt_noJEC1513->SetStats(0);

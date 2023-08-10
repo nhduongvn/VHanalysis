@@ -1,7 +1,7 @@
 void H_dR_Bj1_tags_18()
 {
 //=========Macro generated from canvas: H_dR_Bj1_tags_18/H_dR_Bj1_tags_18
-//=========  (Thu Aug 10 10:41:05 2023) by ROOT version 6.14/09
+//=========  (Thu Aug 10 12:23:31 2023) by ROOT version 6.14/09
    TCanvas *H_dR_Bj1_tags_18 = new TCanvas("H_dR_Bj1_tags_18", "H_dR_Bj1_tags_18",0,0,600,600);
    gStyle->SetOptStat(0);
    H_dR_Bj1_tags_18->SetHighLightColor(2);
@@ -17,11 +17,10 @@ void H_dR_Bj1_tags_18()
    TPad *topPad = new TPad("topPad", "topPad",0,0.3,1,1);
    topPad->Draw();
    topPad->cd();
-   topPad->Range(-0.9193524,-2.866757,6.314516,12.26181);
+   topPad->Range(-0.9193524,-102.2388,6.314516,102146.5);
    topPad->SetFillColor(0);
    topPad->SetBorderMode(0);
    topPad->SetBorderSize(2);
-   topPad->SetLogy();
    topPad->SetLeftMargin(0.12709);
    topPad->SetRightMargin(0.0434783);
    topPad->SetBottomMargin(0.001);
@@ -32,11 +31,11 @@ void H_dR_Bj1_tags_18()
    st->SetName("st");
    st->SetTitle("");
    st->SetMinimum(0.01);
-   st->SetMaximum(1.629639e+10);
+   st->SetMaximum(87544.44);
    
    TH1F *st_stack_47 = new TH1F("st_stack_47","",30,0,6);
-   st_stack_47->SetMinimum(0.001407252);
-   st_stack_47->SetMaximum(5.609898e+10);
+   st_stack_47->SetMinimum(0.01);
+   st_stack_47->SetMaximum(91921.67);
    st_stack_47->SetDirectory(0);
    st_stack_47->SetStats(0);
 

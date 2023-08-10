@@ -1,7 +1,7 @@
 void Aplanarity_both_16()
 {
 //=========Macro generated from canvas: Aplanarity_both_16/Aplanarity_both_16
-//=========  (Thu Aug 10 10:43:28 2023) by ROOT version 6.14/09
+//=========  (Thu Aug 10 12:25:08 2023) by ROOT version 6.14/09
    TCanvas *Aplanarity_both_16 = new TCanvas("Aplanarity_both_16", "Aplanarity_both_16",0,0,600,600);
    gStyle->SetOptStat(0);
    Aplanarity_both_16->SetHighLightColor(2);
@@ -17,11 +17,10 @@ void Aplanarity_both_16()
    TPad *topPad = new TPad("topPad", "topPad",0,0.3,1,1);
    topPad->Draw();
    topPad->cd();
-   topPad->Range(-0.1532254,-2.900655,1.052419,13.52664);
+   topPad->Range(-0.1532254,-322.2437,1.052419,321931.4);
    topPad->SetFillColor(0);
    topPad->SetBorderMode(0);
    topPad->SetBorderSize(2);
-   topPad->SetLogy();
    topPad->SetLeftMargin(0.12709);
    topPad->SetRightMargin(0.0434783);
    topPad->SetBottomMargin(0.001);
@@ -32,11 +31,11 @@ void Aplanarity_both_16()
    st->SetName("st");
    st->SetTitle("");
    st->SetMinimum(0.01);
-   st->SetMaximum(2.089091e+11);
+   st->SetMaximum(275910.5);
    
    TH1F *st_stack_253 = new TH1F("st_stack_253","",50,0,1);
-   st_stack_253->SetMinimum(0.001305487);
-   st_stack_253->SetMaximum(7.65441e+11);
+   st_stack_253->SetMinimum(0.01);
+   st_stack_253->SetMaximum(289706);
    st_stack_253->SetDirectory(0);
    st_stack_253->SetStats(0);
 
@@ -945,7 +944,7 @@ void Aplanarity_both_16()
    gre->SetLineColor(ci);
    
    TH1F *Graph_Graph_from_VbbHcc_both_Aplanarity1505 = new TH1F("Graph_Graph_from_VbbHcc_both_Aplanarity1505","",100,0,1.1);
-   Graph_Graph_from_VbbHcc_both_Aplanarity1505->SetMinimum(143.6586);
+   Graph_Graph_from_VbbHcc_both_Aplanarity1505->SetMinimum(-13059.87);
    Graph_Graph_from_VbbHcc_both_Aplanarity1505->SetMaximum(143658.6);
    Graph_Graph_from_VbbHcc_both_Aplanarity1505->SetDirectory(0);
    Graph_Graph_from_VbbHcc_both_Aplanarity1505->SetStats(0);

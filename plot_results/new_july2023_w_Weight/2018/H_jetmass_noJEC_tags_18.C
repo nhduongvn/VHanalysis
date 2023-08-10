@@ -1,7 +1,7 @@
 void H_jetmass_noJEC_tags_18()
 {
 //=========Macro generated from canvas: H_jetmass_noJEC_tags_18/H_jetmass_noJEC_tags_18
-//=========  (Thu Aug 10 10:41:24 2023) by ROOT version 6.14/09
+//=========  (Thu Aug 10 12:23:42 2023) by ROOT version 6.14/09
    TCanvas *H_jetmass_noJEC_tags_18 = new TCanvas("H_jetmass_noJEC_tags_18", "H_jetmass_noJEC_tags_18",0,0,600,600);
    gStyle->SetOptStat(0);
    H_jetmass_noJEC_tags_18->SetHighLightColor(2);
@@ -17,11 +17,10 @@ void H_jetmass_noJEC_tags_18()
    TPad *topPad = new TPad("topPad", "topPad",0,0.3,1,1);
    topPad->Draw();
    topPad->cd();
-   topPad->Range(-45.96762,-2.874645,315.7258,12.54821);
+   topPad->Range(-45.96762,-132.5669,315.7258,132444.4);
    topPad->SetFillColor(0);
    topPad->SetBorderMode(0);
    topPad->SetBorderSize(2);
-   topPad->SetLogy();
    topPad->SetLeftMargin(0.12709);
    topPad->SetRightMargin(0.0434783);
    topPad->SetBottomMargin(0.001);
@@ -32,11 +31,11 @@ void H_jetmass_noJEC_tags_18()
    st->SetName("st");
    st->SetTitle("");
    st->SetMinimum(0.01);
-   st->SetMaximum(2.90255e+10);
+   st->SetMaximum(113511.1);
    
    TH1F *st_stack_75 = new TH1F("st_stack_75","",150,0,300);
-   st_stack_75->SetMinimum(0.00138286);
-   st_stack_75->SetMaximum(1.013732e+11);
+   st_stack_75->SetMinimum(0.01);
+   st_stack_75->SetMaximum(119186.7);
    st_stack_75->SetDirectory(0);
    st_stack_75->SetStats(0);
 
@@ -2197,8 +2196,8 @@ void H_jetmass_noJEC_tags_18()
    gre->SetLineColor(ci);
    
    TH1F *Graph_Graph_from_VbbHcc_tags_H_jetmass_noJEC1149 = new TH1F("Graph_Graph_from_VbbHcc_tags_H_jetmass_noJEC1149","",150,0,330);
-   Graph_Graph_from_VbbHcc_tags_H_jetmass_noJEC1149->SetMinimum(57.31306);
-   Graph_Graph_from_VbbHcc_tags_H_jetmass_noJEC1149->SetMaximum(57313.06);
+   Graph_Graph_from_VbbHcc_tags_H_jetmass_noJEC1149->SetMinimum(-5210.358);
+   Graph_Graph_from_VbbHcc_tags_H_jetmass_noJEC1149->SetMaximum(57313.07);
    Graph_Graph_from_VbbHcc_tags_H_jetmass_noJEC1149->SetDirectory(0);
    Graph_Graph_from_VbbHcc_tags_H_jetmass_noJEC1149->SetStats(0);
 

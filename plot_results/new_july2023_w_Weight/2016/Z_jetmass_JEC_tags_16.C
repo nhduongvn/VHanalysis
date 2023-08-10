@@ -1,7 +1,7 @@
 void Z_jetmass_JEC_tags_16()
 {
 //=========Macro generated from canvas: Z_jetmass_JEC_tags_16/Z_jetmass_JEC_tags_16
-//=========  (Thu Aug 10 10:41:32 2023) by ROOT version 6.14/09
+//=========  (Thu Aug 10 12:23:49 2023) by ROOT version 6.14/09
    TCanvas *Z_jetmass_JEC_tags_16 = new TCanvas("Z_jetmass_JEC_tags_16", "Z_jetmass_JEC_tags_16",0,0,600,600);
    gStyle->SetOptStat(0);
    Z_jetmass_JEC_tags_16->SetHighLightColor(2);
@@ -17,11 +17,10 @@ void Z_jetmass_JEC_tags_16()
    TPad *topPad = new TPad("topPad", "topPad",0,0.3,1,1);
    topPad->Draw();
    topPad->cd();
-   topPad->Range(-45.96762,-2.869654,315.7258,12.36646);
+   topPad->Range(-45.96762,-112.4173,315.7258,112314.9);
    topPad->SetFillColor(0);
    topPad->SetBorderMode(0);
    topPad->SetBorderSize(2);
-   topPad->SetLogy();
    topPad->SetLeftMargin(0.12709);
    topPad->SetRightMargin(0.0434783);
    topPad->SetBottomMargin(0.001);
@@ -32,11 +31,11 @@ void Z_jetmass_JEC_tags_16()
    st->SetName("st");
    st->SetTitle("");
    st->SetMinimum(0.01);
-   st->SetMaximum(2.012229e+10);
+   st->SetMaximum(96259.21);
    
    TH1F *st_stack_93 = new TH1F("st_stack_93","",150,0,300);
-   st_stack_93->SetMinimum(0.001398242);
-   st_stack_93->SetMaximum(6.963792e+10);
+   st_stack_93->SetMinimum(0.01);
+   st_stack_93->SetMaximum(101072.2);
    st_stack_93->SetDirectory(0);
    st_stack_93->SetStats(0);
 
@@ -2158,8 +2157,8 @@ void Z_jetmass_JEC_tags_16()
    gre->SetLineColor(ci);
    
    TH1F *Graph_Graph_from_VbbHcc_tags_Z_jetmass_JEC1185 = new TH1F("Graph_Graph_from_VbbHcc_tags_Z_jetmass_JEC1185","",150,0,330);
-   Graph_Graph_from_VbbHcc_tags_Z_jetmass_JEC1185->SetMinimum(52.67155);
-   Graph_Graph_from_VbbHcc_tags_Z_jetmass_JEC1185->SetMaximum(52671.55);
+   Graph_Graph_from_VbbHcc_tags_Z_jetmass_JEC1185->SetMinimum(-4788.419);
+   Graph_Graph_from_VbbHcc_tags_Z_jetmass_JEC1185->SetMaximum(52671.56);
    Graph_Graph_from_VbbHcc_tags_Z_jetmass_JEC1185->SetDirectory(0);
    Graph_Graph_from_VbbHcc_tags_Z_jetmass_JEC1185->SetStats(0);
 

@@ -1,7 +1,7 @@
 void Z_jetmass_noJEC_both_16()
 {
 //=========Macro generated from canvas: Z_jetmass_noJEC_both_16/Z_jetmass_noJEC_both_16
-//=========  (Thu Aug 10 10:43:48 2023) by ROOT version 6.14/09
+//=========  (Thu Aug 10 12:25:20 2023) by ROOT version 6.14/09
    TCanvas *Z_jetmass_noJEC_both_16 = new TCanvas("Z_jetmass_noJEC_both_16", "Z_jetmass_noJEC_both_16",0,0,600,600);
    gStyle->SetOptStat(0);
    Z_jetmass_noJEC_both_16->SetHighLightColor(2);
@@ -17,11 +17,10 @@ void Z_jetmass_noJEC_both_16()
    TPad *topPad = new TPad("topPad", "topPad",0,0.3,1,1);
    topPad->Draw();
    topPad->cd();
-   topPad->Range(-45.96762,-2.871729,315.7258,12.44179);
+   topPad->Range(-45.96762,-120.3674,315.7258,120257);
    topPad->SetFillColor(0);
    topPad->SetBorderMode(0);
    topPad->SetBorderSize(2);
-   topPad->SetLogy();
    topPad->SetLeftMargin(0.12709);
    topPad->SetRightMargin(0.0434783);
    topPad->SetBottomMargin(0.001);
@@ -32,11 +31,11 @@ void Z_jetmass_noJEC_both_16()
    st->SetName("st");
    st->SetTitle("");
    st->SetMinimum(0.01);
-   st->SetMaximum(2.342166e+10);
+   st->SetMaximum(103066);
    
    TH1F *st_stack_281 = new TH1F("st_stack_281","",150,0,300);
-   st_stack_281->SetMinimum(0.001391825);
-   st_stack_281->SetMaximum(8.136505e+10);
+   st_stack_281->SetMinimum(0.01);
+   st_stack_281->SetMaximum(108219.3);
    st_stack_281->SetDirectory(0);
    st_stack_281->SetStats(0);
 
@@ -2168,8 +2167,8 @@ void Z_jetmass_noJEC_both_16()
    gre->SetLineColor(ci);
    
    TH1F *Graph_Graph_from_VbbHcc_both_Z_jetmass_noJEC1561 = new TH1F("Graph_Graph_from_VbbHcc_both_Z_jetmass_noJEC1561","",150,0,330);
-   Graph_Graph_from_VbbHcc_both_Z_jetmass_noJEC1561->SetMinimum(56.20282);
-   Graph_Graph_from_VbbHcc_both_Z_jetmass_noJEC1561->SetMaximum(56202.82);
+   Graph_Graph_from_VbbHcc_both_Z_jetmass_noJEC1561->SetMinimum(-5109.418);
+   Graph_Graph_from_VbbHcc_both_Z_jetmass_noJEC1561->SetMaximum(56202.83);
    Graph_Graph_from_VbbHcc_both_Z_jetmass_noJEC1561->SetDirectory(0);
    Graph_Graph_from_VbbHcc_both_Z_jetmass_noJEC1561->SetStats(0);
 

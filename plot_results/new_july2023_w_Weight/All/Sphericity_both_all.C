@@ -1,7 +1,7 @@
 void Sphericity_both_all()
 {
 //=========Macro generated from canvas: Sphericity_both_all/Sphericity_both_all
-//=========  (Thu Aug 10 10:43:27 2023) by ROOT version 6.14/09
+//=========  (Thu Aug 10 12:25:08 2023) by ROOT version 6.14/09
    TCanvas *Sphericity_both_all = new TCanvas("Sphericity_both_all", "Sphericity_both_all",0,0,600,600);
    gStyle->SetOptStat(0);
    Sphericity_both_all->SetHighLightColor(2);
@@ -17,11 +17,10 @@ void Sphericity_both_all()
    TPad *topPad = new TPad("topPad", "topPad",0,0.3,1,1);
    topPad->Draw();
    topPad->cd();
-   topPad->Range(-0.1532254,-1.378399,1.052419,13.33903);
+   topPad->Range(-0.1532254,-328.4908,1.052419,328462.3);
    topPad->SetFillColor(0);
    topPad->SetBorderMode(0);
    topPad->SetBorderSize(2);
-   topPad->SetLogy();
    topPad->SetLeftMargin(0.12709);
    topPad->SetRightMargin(0.0434783);
    topPad->SetBottomMargin(0.001);
@@ -32,11 +31,11 @@ void Sphericity_both_all()
    st->SetName("st");
    st->SetTitle("");
    st->SetMinimum(0.3);
-   st->SetMaximum(2.184439e+11);
+   st->SetMaximum(281507.8);
    
    TH1F *st_stack_252 = new TH1F("st_stack_252","",25,0,1);
-   st_stack_252->SetMinimum(0.04328311);
-   st_stack_252->SetMaximum(7.366898e+11);
+   st_stack_252->SetMinimum(0.3);
+   st_stack_252->SetMaximum(295583.2);
    st_stack_252->SetDirectory(0);
    st_stack_252->SetStats(0);
 

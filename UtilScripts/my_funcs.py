@@ -1129,11 +1129,14 @@ def makeDataMCPlot(plots, plotNames, canvasName, outputDir = 'Test/',
     print "Warning: output directory does not exist."
     os.makedirs(outputDir)
     print ">>> directory created."
+
+  extraBit = ''
+  if logY: extraBit = '_logY'
   
-  c.Print(outputDir + '/' + canvasName + '.png')
-  c.Print(outputDir + '/' + canvasName + '.pdf')
-  c.Print(outputDir + '/' + canvasName + '.eps')
-  c.Print(outputDir + '/' + canvasName + '.C')
+  c.Print(outputDir + '/' + canvasName + extraBit + '.png')
+  c.Print(outputDir + '/' + canvasName + extraBit + '.pdf')
+  c.Print(outputDir + '/' + canvasName + extraBit + '.eps')
+  c.Print(outputDir + '/' + canvasName + extraBit + '.C')
   
   return c
 

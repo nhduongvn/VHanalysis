@@ -1,7 +1,7 @@
 void H_jetmass_JEC_tags_18()
 {
 //=========Macro generated from canvas: H_jetmass_JEC_tags_18/H_jetmass_JEC_tags_18
-//=========  (Thu Aug 10 10:41:26 2023) by ROOT version 6.14/09
+//=========  (Thu Aug 10 12:23:44 2023) by ROOT version 6.14/09
    TCanvas *H_jetmass_JEC_tags_18 = new TCanvas("H_jetmass_JEC_tags_18", "H_jetmass_JEC_tags_18",0,0,600,600);
    gStyle->SetOptStat(0);
    H_jetmass_JEC_tags_18->SetHighLightColor(2);
@@ -17,11 +17,10 @@ void H_jetmass_JEC_tags_18()
    TPad *topPad = new TPad("topPad", "topPad",0,0.3,1,1);
    topPad->Draw();
    topPad->cd();
-   topPad->Range(-45.96762,-2.875184,315.7258,12.56795);
+   topPad->Range(-45.96762,-134.9626,315.7258,134837.6);
    topPad->SetFillColor(0);
    topPad->SetBorderMode(0);
    topPad->SetBorderSize(2);
-   topPad->SetLogy();
    topPad->SetLeftMargin(0.12709);
    topPad->SetRightMargin(0.0434783);
    topPad->SetBottomMargin(0.001);
@@ -32,11 +31,11 @@ void H_jetmass_JEC_tags_18()
    st->SetName("st");
    st->SetTitle("");
    st->SetMinimum(0.01);
-   st->SetMaximum(3.020391e+10);
+   st->SetMaximum(115562.2);
    
    TH1F *st_stack_79 = new TH1F("st_stack_79","",150,0,300);
-   st_stack_79->SetMinimum(0.001381209);
-   st_stack_79->SetMaximum(1.055932e+11);
+   st_stack_79->SetMinimum(0.01);
+   st_stack_79->SetMaximum(121340.3);
    st_stack_79->SetDirectory(0);
    st_stack_79->SetStats(0);
 
@@ -2190,8 +2189,8 @@ void H_jetmass_JEC_tags_18()
    gre->SetLineColor(ci);
    
    TH1F *Graph_Graph_from_VbbHcc_tags_H_jetmass_JEC1157 = new TH1F("Graph_Graph_from_VbbHcc_tags_H_jetmass_JEC1157","",150,0,330);
-   Graph_Graph_from_VbbHcc_tags_H_jetmass_JEC1157->SetMinimum(58.03259);
-   Graph_Graph_from_VbbHcc_tags_H_jetmass_JEC1157->SetMaximum(58032.59);
+   Graph_Graph_from_VbbHcc_tags_H_jetmass_JEC1157->SetMinimum(-5275.761);
+   Graph_Graph_from_VbbHcc_tags_H_jetmass_JEC1157->SetMaximum(58032.6);
    Graph_Graph_from_VbbHcc_tags_H_jetmass_JEC1157->SetDirectory(0);
    Graph_Graph_from_VbbHcc_tags_H_jetmass_JEC1157->SetStats(0);
 

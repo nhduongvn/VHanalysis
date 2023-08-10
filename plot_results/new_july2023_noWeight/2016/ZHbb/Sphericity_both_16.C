@@ -1,7 +1,7 @@
 void Sphericity_both_16()
 {
 //=========Macro generated from canvas: Sphericity_both_16/Sphericity_both_16
-//=========  (Thu Aug  3 12:26:19 2023) by ROOT version 6.14/09
+//=========  (Thu Aug 10 12:29:32 2023) by ROOT version 6.14/09
    TCanvas *Sphericity_both_16 = new TCanvas("Sphericity_both_16", "Sphericity_both_16",0,0,600,600);
    gStyle->SetOptStat(0);
    Sphericity_both_16->SetHighLightColor(2);

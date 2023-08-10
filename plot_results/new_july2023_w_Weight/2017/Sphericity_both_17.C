@@ -1,7 +1,7 @@
 void Sphericity_both_17()
 {
 //=========Macro generated from canvas: Sphericity_both_17/Sphericity_both_17
-//=========  (Thu Aug 10 10:43:26 2023) by ROOT version 6.14/09
+//=========  (Thu Aug 10 12:25:07 2023) by ROOT version 6.14/09
    TCanvas *Sphericity_both_17 = new TCanvas("Sphericity_both_17", "Sphericity_both_17",0,0,600,600);
    gStyle->SetOptStat(0);
    Sphericity_both_17->SetHighLightColor(2);
@@ -17,11 +17,10 @@ void Sphericity_both_17()
    TPad *topPad = new TPad("topPad", "topPad",0,0.3,1,1);
    topPad->Draw();
    topPad->cd();
-   topPad->Range(-0.1532254,-2.871418,1.052419,12.43048);
+   topPad->Range(-0.1532254,-119.1391,1.052419,119030);
    topPad->SetFillColor(0);
    topPad->SetBorderMode(0);
    topPad->SetBorderSize(2);
-   topPad->SetLogy();
    topPad->SetLeftMargin(0.12709);
    topPad->SetRightMargin(0.0434783);
    topPad->SetBottomMargin(0.001);
@@ -32,11 +31,11 @@ void Sphericity_both_17()
    st->SetName("st");
    st->SetTitle("");
    st->SetMinimum(0.01);
-   st->SetMaximum(2.289389e+10);
+   st->SetMaximum(102014.3);
    
    TH1F *st_stack_250 = new TH1F("st_stack_250","",25,0,1);
-   st_stack_250->SetMinimum(0.001392785);
-   st_stack_250->SetMaximum(7.948628e+10);
+   st_stack_250->SetMinimum(0.01);
+   st_stack_250->SetMaximum(107115.1);
    st_stack_250->SetDirectory(0);
    st_stack_250->SetStats(0);
 
@@ -961,7 +960,7 @@ void Sphericity_both_17()
    gre->SetLineColor(ci);
    
    TH1F *Graph_Graph_from_VbbHcc_both_Sphericity1499 = new TH1F("Graph_Graph_from_VbbHcc_both_Sphericity1499","",100,0,1.1);
-   Graph_Graph_from_VbbHcc_both_Sphericity1499->SetMinimum(79.67858);
+   Graph_Graph_from_VbbHcc_both_Sphericity1499->SetMinimum(0);
    Graph_Graph_from_VbbHcc_both_Sphericity1499->SetMaximum(79678.58);
    Graph_Graph_from_VbbHcc_both_Sphericity1499->SetDirectory(0);
    Graph_Graph_from_VbbHcc_both_Sphericity1499->SetStats(0);

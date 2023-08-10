@@ -1,7 +1,7 @@
 void H_jetpt_JEC_algo_18()
 {
 //=========Macro generated from canvas: H_jetpt_JEC_algo_18/H_jetpt_JEC_algo_18
-//=========  (Thu Aug 10 10:42:33 2023) by ROOT version 6.14/09
+//=========  (Thu Aug 10 12:24:23 2023) by ROOT version 6.14/09
    TCanvas *H_jetpt_JEC_algo_18 = new TCanvas("H_jetpt_JEC_algo_18", "H_jetpt_JEC_algo_18",0,0,600,600);
    gStyle->SetOptStat(0);
    H_jetpt_JEC_algo_18->SetHighLightColor(2);
@@ -17,11 +17,10 @@ void H_jetpt_JEC_algo_18()
    TPad *topPad = new TPad("topPad", "topPad",0,0.3,1,1);
    topPad->Draw();
    topPad->cd();
-   topPad->Range(-45.96762,-2.872323,315.7258,12.46342);
+   topPad->Range(-45.96762,-122.7525,315.7258,122639.8);
    topPad->SetFillColor(0);
    topPad->SetBorderMode(0);
    topPad->SetBorderSize(2);
-   topPad->SetLogy();
    topPad->SetLeftMargin(0.12709);
    topPad->SetRightMargin(0.0434783);
    topPad->SetBottomMargin(0.001);
@@ -32,11 +31,11 @@ void H_jetpt_JEC_algo_18()
    st->SetName("st");
    st->SetTitle("");
    st->SetMinimum(0.01);
-   st->SetMaximum(2.446543e+10);
+   st->SetMaximum(105108.1);
    
    TH1F *st_stack_167 = new TH1F("st_stack_167","",150,0,300);
-   st_stack_167->SetMinimum(0.001389994);
-   st_stack_167->SetMaximum(8.50837e+10);
+   st_stack_167->SetMinimum(0.01);
+   st_stack_167->SetMaximum(110363.5);
    st_stack_167->SetDirectory(0);
    st_stack_167->SetStats(0);
 

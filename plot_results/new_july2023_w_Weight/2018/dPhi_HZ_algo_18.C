@@ -1,7 +1,7 @@
 void dPhi_HZ_algo_18()
 {
 //=========Macro generated from canvas: dPhi_HZ_algo_18/dPhi_HZ_algo_18
-//=========  (Thu Aug 10 10:42:05 2023) by ROOT version 6.14/09
+//=========  (Thu Aug 10 12:24:09 2023) by ROOT version 6.14/09
    TCanvas *dPhi_HZ_algo_18 = new TCanvas("dPhi_HZ_algo_18", "dPhi_HZ_algo_18",0,0,600,600);
    gStyle->SetOptStat(0);
    dPhi_HZ_algo_18->SetHighLightColor(2);
@@ -17,11 +17,10 @@ void dPhi_HZ_algo_18()
    TPad *topPad = new TPad("topPad", "topPad",0,0.3,1,1);
    topPad->Draw();
    topPad->cd();
-   topPad->Range(-5.225803,-2.859452,4.419355,12.00079);
+   topPad->Range(-5.225803,-80.69192,4.419355,80621.22);
    topPad->SetFillColor(0);
    topPad->SetBorderMode(0);
    topPad->SetBorderSize(2);
-   topPad->SetLogy();
    topPad->SetLeftMargin(0.12709);
    topPad->SetRightMargin(0.0434783);
    topPad->SetBottomMargin(0.001);
@@ -32,11 +31,11 @@ void dPhi_HZ_algo_18()
    st->SetName("st");
    st->SetTitle("");
    st->SetMinimum(0.01);
-   st->SetMaximum(9.631724e+09);
+   st->SetMaximum(69096.22);
    
    TH1F *st_stack_131 = new TH1F("st_stack_131","",480,-4,4);
-   st_stack_131->SetMinimum(0.001430236);
-   st_stack_131->SetMaximum(3.271647e+10);
+   st_stack_131->SetMinimum(0.01);
+   st_stack_131->SetMaximum(72551.03);
    st_stack_131->SetDirectory(0);
    st_stack_131->SetStats(0);
 
@@ -9727,7 +9726,7 @@ void dPhi_HZ_algo_18()
    gre->SetLineColor(ci);
    
    TH1F *Graph_Graph_from_VbbHcc_algo_dPhi_HZ1261 = new TH1F("Graph_Graph_from_VbbHcc_algo_dPhi_HZ1261","",480,-4.8,4.8);
-   Graph_Graph_from_VbbHcc_algo_dPhi_HZ1261->SetMinimum(59.66045);
+   Graph_Graph_from_VbbHcc_algo_dPhi_HZ1261->SetMinimum(0);
    Graph_Graph_from_VbbHcc_algo_dPhi_HZ1261->SetMaximum(59660.45);
    Graph_Graph_from_VbbHcc_algo_dPhi_HZ1261->SetDirectory(0);
    Graph_Graph_from_VbbHcc_algo_dPhi_HZ1261->SetStats(0);

@@ -1,7 +1,7 @@
 void H_jetmass_noJEC_tags_all()
 {
 //=========Macro generated from canvas: H_jetmass_noJEC_tags_all/H_jetmass_noJEC_tags_all
-//=========  (Thu Aug 10 10:41:24 2023) by ROOT version 6.14/09
+//=========  (Thu Aug 10 12:23:43 2023) by ROOT version 6.14/09
    TCanvas *H_jetmass_noJEC_tags_all = new TCanvas("H_jetmass_noJEC_tags_all", "H_jetmass_noJEC_tags_all",0,0,600,600);
    gStyle->SetOptStat(0);
    H_jetmass_noJEC_tags_all->SetHighLightColor(2);
@@ -17,11 +17,10 @@ void H_jetmass_noJEC_tags_all()
    TPad *topPad = new TPad("topPad", "topPad",0,0.3,1,1);
    topPad->Draw();
    topPad->cd();
-   topPad->Range(-45.96762,-1.379262,315.7258,13.3694);
+   topPad->Range(-45.96762,-337.6681,315.7258,337630.4);
    topPad->SetFillColor(0);
    topPad->SetBorderMode(0);
    topPad->SetBorderSize(2);
-   topPad->SetLogy();
    topPad->SetLeftMargin(0.12709);
    topPad->SetRightMargin(0.0434783);
    topPad->SetBottomMargin(0.001);
@@ -32,11 +31,11 @@ void H_jetmass_noJEC_tags_all()
    st->SetName("st");
    st->SetTitle("");
    st->SetMinimum(0.3);
-   st->SetMaximum(2.32225e+11);
+   st->SetMaximum(289365.4);
    
    TH1F *st_stack_76 = new TH1F("st_stack_76","",150,0,300);
-   st_stack_76->SetMinimum(0.04320031);
-   st_stack_76->SetMaximum(7.843999e+11);
+   st_stack_76->SetMinimum(0.3);
+   st_stack_76->SetMaximum(303833.6);
    st_stack_76->SetDirectory(0);
    st_stack_76->SetStats(0);
 
@@ -2388,7 +2387,7 @@ void H_jetmass_noJEC_tags_all()
    gre->SetLineColor(ci);
    
    TH1F *Graph_Graph_from_VbbHcc_tags_H_jetmass_noJEC_all1151 = new TH1F("Graph_Graph_from_VbbHcc_tags_H_jetmass_noJEC_all1151","",150,0,330);
-   Graph_Graph_from_VbbHcc_tags_H_jetmass_noJEC_all1151->SetMinimum(150.5411);
+   Graph_Graph_from_VbbHcc_tags_H_jetmass_noJEC_all1151->SetMinimum(-13685.55);
    Graph_Graph_from_VbbHcc_tags_H_jetmass_noJEC_all1151->SetMaximum(150541.1);
    Graph_Graph_from_VbbHcc_tags_H_jetmass_noJEC_all1151->SetDirectory(0);
    Graph_Graph_from_VbbHcc_tags_H_jetmass_noJEC_all1151->SetStats(0);

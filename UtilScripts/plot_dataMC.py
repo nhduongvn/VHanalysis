@@ -60,8 +60,8 @@ def getHist(plotName, sample_names, hist_files, lumiScales):
 years = ['16', '17', '18']
 regions = ['tags', 'algo', 'both']
 useLogY = True
-outputDir = '../plot_results/new_july2023_w_Weight/'
-dirpath = '../condor_results/updatedResults_july2023_w_Weight/NONE/'
+outputDir = '../plot_results/new_july2023_noWeight/'
+dirpath = '../condor_results/updatedResults_july2023_noWeight/NONE/'
 plotCat = 'VbbHcc_plot'
 
 #regions = ['']

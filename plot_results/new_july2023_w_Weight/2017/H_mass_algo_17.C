@@ -1,7 +1,7 @@
 void H_mass_algo_17()
 {
 //=========Macro generated from canvas: H_mass_algo_17/H_mass_algo_17
-//=========  (Thu Aug 10 10:41:37 2023) by ROOT version 6.14/09
+//=========  (Thu Aug 10 12:23:53 2023) by ROOT version 6.14/09
    TCanvas *H_mass_algo_17 = new TCanvas("H_mass_algo_17", "H_mass_algo_17",0,0,600,600);
    gStyle->SetOptStat(0);
    H_mass_algo_17->SetHighLightColor(2);
@@ -17,11 +17,10 @@ void H_mass_algo_17()
    TPad *topPad = new TPad("topPad", "topPad",0,0.3,1,1);
    topPad->Draw();
    topPad->cd();
-   topPad->Range(-45.96762,-2.877355,315.7258,12.64771);
+   topPad->Range(-45.96762,-145.0918,315.7258,144956.7);
    topPad->SetFillColor(0);
    topPad->SetBorderMode(0);
    topPad->SetBorderSize(2);
-   topPad->SetLogy();
    topPad->SetLeftMargin(0.12709);
    topPad->SetRightMargin(0.0434783);
    topPad->SetBottomMargin(0.001);
@@ -32,11 +31,11 @@ void H_mass_algo_17()
    st->SetName("st");
    st->SetTitle("");
    st->SetMinimum(0.01);
-   st->SetMaximum(3.547331e+10);
+   st->SetMaximum(124234.8);
    
    TH1F *st_stack_102 = new TH1F("st_stack_102","",40,0,400);
-   st_stack_102->SetMinimum(0.00137458);
-   st_stack_102->SetMaximum(1.245106e+11);
+   st_stack_102->SetMinimum(0.01);
+   st_stack_102->SetMaximum(130446.5);
    st_stack_102->SetDirectory(0);
    st_stack_102->SetStats(0);
 
@@ -1442,7 +1441,7 @@ void H_mass_algo_17()
    gre->SetLineColor(ci);
    
    TH1F *Graph_Graph_from_VbbHcc_algo_H_mass1203 = new TH1F("Graph_Graph_from_VbbHcc_algo_H_mass1203","",100,0,440);
-   Graph_Graph_from_VbbHcc_algo_H_mass1203->SetMinimum(0.01522225);
+   Graph_Graph_from_VbbHcc_algo_H_mass1203->SetMinimum(0);
    Graph_Graph_from_VbbHcc_algo_H_mass1203->SetMaximum(82332.98);
    Graph_Graph_from_VbbHcc_algo_H_mass1203->SetDirectory(0);
    Graph_Graph_from_VbbHcc_algo_H_mass1203->SetStats(0);

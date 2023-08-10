@@ -1,7 +1,7 @@
 void Z_dR_Bj0_algo_all()
 {
 //=========Macro generated from canvas: Z_dR_Bj0_algo_all/Z_dR_Bj0_algo_all
-//=========  (Thu Aug 10 10:42:25 2023) by ROOT version 6.14/09
+//=========  (Thu Aug 10 12:24:16 2023) by ROOT version 6.14/09
    TCanvas *Z_dR_Bj0_algo_all = new TCanvas("Z_dR_Bj0_algo_all", "Z_dR_Bj0_algo_all",0,0,600,600);
    gStyle->SetOptStat(0);
    Z_dR_Bj0_algo_all->SetHighLightColor(2);
@@ -17,11 +17,10 @@ void Z_dR_Bj0_algo_all()
    TPad *topPad = new TPad("topPad", "topPad",0,0.3,1,1);
    topPad->Draw();
    topPad->cd();
-   topPad->Range(-0.9193524,-1.449559,6.314516,16.03716);
+   topPad->Range(-0.9193524,-3808.772,6.314516,3805263);
    topPad->SetFillColor(0);
    topPad->SetBorderMode(0);
    topPad->SetBorderSize(2);
-   topPad->SetLogy();
    topPad->SetLeftMargin(0.12709);
    topPad->SetRightMargin(0.0434783);
    topPad->SetBottomMargin(0.001);
@@ -32,11 +31,11 @@ void Z_dR_Bj0_algo_all()
    st->SetName("st");
    st->SetTitle("");
    st->SetMinimum(0.3);
-   st->SetMaximum(5.053128e+13);
+   st->SetMaximum(3261292);
    
    TH1F *st_stack_148 = new TH1F("st_stack_148","",30,0,6);
-   st_stack_148->SetMinimum(0.03697669);
-   st_stack_148->SetMaximum(1.943073e+14);
+   st_stack_148->SetMinimum(0.3);
+   st_stack_148->SetMaximum(3424356);
    st_stack_148->SetDirectory(0);
    st_stack_148->SetStats(0);
 

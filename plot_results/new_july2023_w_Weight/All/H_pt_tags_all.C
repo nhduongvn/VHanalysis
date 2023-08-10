@@ -1,7 +1,7 @@
 void H_pt_tags_all()
 {
 //=========Macro generated from canvas: H_pt_tags_all/H_pt_tags_all
-//=========  (Thu Aug 10 10:40:53 2023) by ROOT version 6.14/09
+//=========  (Thu Aug 10 12:23:15 2023) by ROOT version 6.14/09
    TCanvas *H_pt_tags_all = new TCanvas("H_pt_tags_all", "H_pt_tags_all",0,0,600,600);
    gStyle->SetOptStat(0);
    H_pt_tags_all->SetHighLightColor(2);
@@ -17,11 +17,10 @@ void H_pt_tags_all()
    TPad *topPad = new TPad("topPad", "topPad",0,0.3,1,1);
    topPad->Draw();
    topPad->cd();
-   topPad->Range(116.1295,-1.326271,1562.903,11.60203);
+   topPad->Range(116.1295,-67.96614,1562.903,68198.17);
    topPad->SetFillColor(0);
    topPad->SetBorderMode(0);
    topPad->SetBorderSize(2);
-   topPad->SetLogy();
    topPad->SetLeftMargin(0.12709);
    topPad->SetRightMargin(0.0434783);
    topPad->SetBottomMargin(0.001);
@@ -32,11 +31,11 @@ void H_pt_tags_all()
    st->SetName("st");
    st->SetTitle("");
    st->SetMinimum(0.3);
-   st->SetMaximum(6.6405e+09);
+   st->SetMaximum(58449.1);
    
    TH1F *st_stack_16 = new TH1F("st_stack_16","",1000,0,2000);
-   st_stack_16->SetMinimum(0.04860236);
-   st_stack_16->SetMaximum(2.03798e+10);
+   st_stack_16->SetMinimum(0.3);
+   st_stack_16->SetMaximum(61371.55);
    st_stack_16->SetDirectory(0);
    st_stack_16->SetStats(0);
 
@@ -16004,8 +16003,8 @@ void H_pt_tags_all()
    gre->SetLineColor(ci);
    
    TH1F *Graph_Graph_from_VbbHcc_tags_H_pt_all1031 = new TH1F("Graph_Graph_from_VbbHcc_tags_H_pt_all1031","",1000,0,2200);
-   Graph_Graph_from_VbbHcc_tags_H_pt_all1031->SetMinimum(52.78871);
-   Graph_Graph_from_VbbHcc_tags_H_pt_all1031->SetMaximum(52788.71);
+   Graph_Graph_from_VbbHcc_tags_H_pt_all1031->SetMinimum(-4799.088);
+   Graph_Graph_from_VbbHcc_tags_H_pt_all1031->SetMaximum(52788.72);
    Graph_Graph_from_VbbHcc_tags_H_pt_all1031->SetDirectory(0);
    Graph_Graph_from_VbbHcc_tags_H_pt_all1031->SetStats(0);
 

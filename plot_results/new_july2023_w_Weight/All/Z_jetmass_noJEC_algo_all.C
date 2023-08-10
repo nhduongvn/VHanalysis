@@ -1,7 +1,7 @@
 void Z_jetmass_noJEC_algo_all()
 {
 //=========Macro generated from canvas: Z_jetmass_noJEC_algo_all/Z_jetmass_noJEC_algo_all
-//=========  (Thu Aug 10 10:42:48 2023) by ROOT version 6.14/09
+//=========  (Thu Aug 10 12:24:35 2023) by ROOT version 6.14/09
    TCanvas *Z_jetmass_noJEC_algo_all = new TCanvas("Z_jetmass_noJEC_algo_all", "Z_jetmass_noJEC_algo_all",0,0,600,600);
    gStyle->SetOptStat(0);
    Z_jetmass_noJEC_algo_all->SetHighLightColor(2);
@@ -17,11 +17,10 @@ void Z_jetmass_noJEC_algo_all()
    TPad *topPad = new TPad("topPad", "topPad",0,0.3,1,1);
    topPad->Draw();
    topPad->cd();
-   topPad->Range(-45.96762,-1.446814,315.7258,15.92552);
+   topPad->Range(-45.96762,-3441.044,315.7258,3437903);
    topPad->SetFillColor(0);
    topPad->SetBorderMode(0);
    topPad->SetBorderSize(2);
-   topPad->SetLogy();
    topPad->SetLeftMargin(0.12709);
    topPad->SetRightMargin(0.0434783);
    topPad->SetBottomMargin(0.001);
@@ -32,11 +31,11 @@ void Z_jetmass_noJEC_algo_all()
    st->SetName("st");
    st->SetTitle("");
    st->SetMinimum(0.3);
-   st->SetMaximum(4.032552e+13);
+   st->SetMaximum(2946446);
    
    TH1F *st_stack_188 = new TH1F("st_stack_188","",150,0,300);
-   st_stack_188->SetMinimum(0.03720132);
-   st_stack_188->SetMaximum(1.54273e+14);
+   st_stack_188->SetMinimum(0.3);
+   st_stack_188->SetMaximum(3093768);
    st_stack_188->SetDirectory(0);
    st_stack_188->SetStats(0);
 
