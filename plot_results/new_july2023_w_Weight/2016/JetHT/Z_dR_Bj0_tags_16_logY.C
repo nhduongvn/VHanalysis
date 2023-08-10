@@ -1,0 +1,75 @@
+void Z_dR_Bj0_tags_16_logY()
+{
+//=========Macro generated from canvas: Z_dR_Bj0_tags_16/Z_dR_Bj0_tags_16
+//=========  (Thu Aug 10 10:41:06 2023) by ROOT version 6.14/09
+   TCanvas *Z_dR_Bj0_tags_16 = new TCanvas("Z_dR_Bj0_tags_16", "Z_dR_Bj0_tags_16",0,0,600,600);
+   gStyle->SetOptStat(0);
+   Z_dR_Bj0_tags_16->SetHighLightColor(2);
+   Z_dR_Bj0_tags_16->Range(-1.2,0.8874158,6.8,4.800794);
+   Z_dR_Bj0_tags_16->SetFillColor(0);
+   Z_dR_Bj0_tags_16->SetBorderMode(0);
+   Z_dR_Bj0_tags_16->SetBorderSize(2);
+   Z_dR_Bj0_tags_16->SetLogy();
+   Z_dR_Bj0_tags_16->SetLeftMargin(0.15);
+   Z_dR_Bj0_tags_16->SetFrameBorderMode(0);
+   Z_dR_Bj0_tags_16->SetFrameBorderMode(0);
+   
+   TH1D *VbbHcc_tags_Z_dR_Bj0__135 = new TH1D("VbbHcc_tags_Z_dR_Bj0__135","",30,0,6);
+   VbbHcc_tags_Z_dR_Bj0__135->SetBinContent(1,3457);
+   VbbHcc_tags_Z_dR_Bj0__135->SetBinContent(2,13549);
+   VbbHcc_tags_Z_dR_Bj0__135->SetBinContent(3,13231);
+   VbbHcc_tags_Z_dR_Bj0__135->SetBinContent(4,10637);
+   VbbHcc_tags_Z_dR_Bj0__135->SetBinContent(5,8507);
+   VbbHcc_tags_Z_dR_Bj0__135->SetBinContent(6,6875);
+   VbbHcc_tags_Z_dR_Bj0__135->SetBinContent(7,5450);
+   VbbHcc_tags_Z_dR_Bj0__135->SetBinContent(8,4798);
+   VbbHcc_tags_Z_dR_Bj0__135->SetBinContent(9,4062);
+   VbbHcc_tags_Z_dR_Bj0__135->SetBinContent(10,3568);
+   VbbHcc_tags_Z_dR_Bj0__135->SetBinContent(11,3306);
+   VbbHcc_tags_Z_dR_Bj0__135->SetBinContent(12,2886);
+   VbbHcc_tags_Z_dR_Bj0__135->SetBinContent(13,2648);
+   VbbHcc_tags_Z_dR_Bj0__135->SetBinContent(14,2434);
+   VbbHcc_tags_Z_dR_Bj0__135->SetBinContent(15,2173);
+   VbbHcc_tags_Z_dR_Bj0__135->SetBinContent(16,1866);
+   VbbHcc_tags_Z_dR_Bj0__135->SetBinContent(17,1525);
+   VbbHcc_tags_Z_dR_Bj0__135->SetBinContent(18,1259);
+   VbbHcc_tags_Z_dR_Bj0__135->SetBinContent(19,1031);
+   VbbHcc_tags_Z_dR_Bj0__135->SetBinContent(20,859);
+   VbbHcc_tags_Z_dR_Bj0__135->SetBinContent(21,732);
+   VbbHcc_tags_Z_dR_Bj0__135->SetBinContent(22,603);
+   VbbHcc_tags_Z_dR_Bj0__135->SetBinContent(23,451);
+   VbbHcc_tags_Z_dR_Bj0__135->SetBinContent(24,345);
+   VbbHcc_tags_Z_dR_Bj0__135->SetBinContent(25,314);
+   VbbHcc_tags_Z_dR_Bj0__135->SetBinContent(26,236);
+   VbbHcc_tags_Z_dR_Bj0__135->SetBinContent(27,137);
+   VbbHcc_tags_Z_dR_Bj0__135->SetBinContent(28,89);
+   VbbHcc_tags_Z_dR_Bj0__135->SetBinContent(29,70);
+   VbbHcc_tags_Z_dR_Bj0__135->SetBinContent(30,38);
+   VbbHcc_tags_Z_dR_Bj0__135->SetBinContent(31,49);
+   VbbHcc_tags_Z_dR_Bj0__135->SetEntries(97185);
+   VbbHcc_tags_Z_dR_Bj0__135->GetXaxis()->SetTitle("#DeltaR(Z,j_{1})");
+   VbbHcc_tags_Z_dR_Bj0__135->GetXaxis()->SetRange(1,30);
+   VbbHcc_tags_Z_dR_Bj0__135->GetXaxis()->SetLabelFont(42);
+   VbbHcc_tags_Z_dR_Bj0__135->GetXaxis()->SetLabelSize(0.035);
+   VbbHcc_tags_Z_dR_Bj0__135->GetXaxis()->SetTitleSize(0.035);
+   VbbHcc_tags_Z_dR_Bj0__135->GetXaxis()->SetTitleFont(42);
+   VbbHcc_tags_Z_dR_Bj0__135->GetYaxis()->SetLabelFont(42);
+   VbbHcc_tags_Z_dR_Bj0__135->GetYaxis()->SetLabelSize(0.035);
+   VbbHcc_tags_Z_dR_Bj0__135->GetYaxis()->SetTitleSize(0.035);
+   VbbHcc_tags_Z_dR_Bj0__135->GetYaxis()->SetTitleOffset(0);
+   VbbHcc_tags_Z_dR_Bj0__135->GetYaxis()->SetTitleFont(42);
+   VbbHcc_tags_Z_dR_Bj0__135->GetZaxis()->SetLabelFont(42);
+   VbbHcc_tags_Z_dR_Bj0__135->GetZaxis()->SetLabelSize(0.035);
+   VbbHcc_tags_Z_dR_Bj0__135->GetZaxis()->SetTitleSize(0.035);
+   VbbHcc_tags_Z_dR_Bj0__135->GetZaxis()->SetTitleFont(42);
+   VbbHcc_tags_Z_dR_Bj0__135->Draw("HIST");
+   TLatex *   tex = new TLatex(0.25,0.937775,"CMS Work in Progress #sqrt{s} = 13 TeV, 35.9 fb^{-1}");
+tex->SetNDC();
+   tex->SetTextFont(42);
+   tex->SetTextSize(0.04);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   Z_dR_Bj0_tags_16->Modified();
+   Z_dR_Bj0_tags_16->cd();
+   Z_dR_Bj0_tags_16->SetSelected(Z_dR_Bj0_tags_16);
+}
