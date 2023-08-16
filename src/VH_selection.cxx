@@ -378,6 +378,9 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_puSF = new TH1D("puSF", "", 200, -2, 2);
   h_l1preW = new TH1D("l1preW", "", 200, -2, 2);
 
+  h_nMuon = new TH1D("nMuon", "", 10, -0.5, 9.5);
+  h_nElec = new TH1D("nElec", "", 10, -0.5, 9.5);
+
   // Add them to the return list so we can use them in our analyses.
   r->GetOutputList()->Add(h_evt);
 
@@ -556,6 +559,10 @@ void VH_selection::SlaveBegin(Reader *r) {
 
   r->GetOutputList()->Add(h_mistag_leading);
   r->GetOutputList()->Add(h_mistag_all);
+
+  r->GetOutputList()->Add(h_nMuon);
+  r->GetOutputList()->Add(h_nElec);
+
 }// end SlaveBegin
 
 // == Process =================================================================
@@ -729,6 +736,8 @@ void VH_selection::Process(Reader* r) {
 
   }//end-elecs
 
+  h_nElec->Fill(elecs.size(), evtW);
+
   // ==== MUONS ====
   std::vector<LepObj> muons;
   for (unsigned int i = 0; i < *(r->nMuon); ++i) {
@@ -757,6 +766,8 @@ void VH_selection::Process(Reader* r) {
     muons.push_back(muon);
 
   }//end-muons
+
+  h_nMuon->Fill(muons.size(), evtW);
 
   //=================================================================
   // START EVENT SELECTION
@@ -1131,8 +1142,8 @@ void VH_selection::Process(Reader* r) {
     // Trigger Efficiency
     // ========================================================================
 
-    bool is_ZH = true; // Use this boolean for cases where we want to ignore
-                       // our reference trigger & just use the base events.
+    bool is_ZH = false; // Use this boolean for cases where we want to ignore
+                        // our reference trigger & just use the base events.
     bool noTrigCheck = false; // Use this if we want to check how the events
                              // are selected without the trigger requirement.
 
@@ -1366,31 +1377,6 @@ void VH_selection::Process(Reader* r) {
           #endif
         }
 
-        // These are the other triggers for 2017
-        /*if (properly_tagged && pT_criteria_met_2017_18_v2) {
-          h_2017_QuadJet_noTagV2_ideal->Fill(analysis_jets, true, HTmod, evtW);
-          if (*(r->HLT_QuadPFJet103_88_75_15))
-            h_2017_QuadJet_noTagV2_ideal->Fill(analysis_jets, false, HTmod, evtW);
-        }
-
-        if (properly_tagged && pT_criteria_met_2017_18_v3) {
-          h_2017_QuadJet_noTagV3_ideal->Fill(analysis_jets, true, HTmod, evtW);
-          if (*(r->HLT_QuadPFJet105_88_76_15))
-            h_2017_QuadJet_noTagV3_ideal->Fill(analysis_jets, false, HTmod, evtW);
-        }
-
-        if (properly_tagged && pT_criteria_met_2017_18_v4) {
-          h_2017_QuadJet_noTagV4_ideal->Fill(analysis_jets, true, HTmod, evtW);
-          if (*(r->HLT_QuadPFJet111_90_80_15))
-            h_2017_QuadJet_noTagV4_ideal->Fill(analysis_jets, false, HTmod, evtW);
-        }
-
-        if (properly_tagged && pT_criteria_met_2017_18_v5) {
-          h_2017_QuadJet_noTagV5_ideal->Fill(analysis_jets, true, HTmod, evtW);
-          if (*(r->HLT_QuadPFJet98_83_71_15))
-            h_2017_QuadJet_noTagV5_ideal->Fill(analysis_jets, false, HTmod, evtW);
-        }*/
-
         /************************************************************
         * We wanna look at the versions with none of the requirements
         * and then just the tagging requirement.
@@ -1456,33 +1442,6 @@ void VH_selection::Process(Reader* r) {
             h_2018_QuadJet_TripleTag_2b2c->Fill(analysis_jets, false, HTmod, evtW);
         }
 
-
-
-        // Other tags of interest for 2018.
-        /*if (properly_tagged && pT_criteria_met_2017_18_v2) {
-          h_2018_QuadJet_noTagV2_ideal->Fill(analysis_jets, true, HTmod, evtW);
-          if (*(r->HLT_QuadPFJet103_88_75_15))
-            h_2018_QuadJet_noTagV2_ideal->Fill(analysis_jets, false, HTmod, evtW);
-        }
-
-        if (properly_tagged && pT_criteria_met_2017_18_v3) {
-          h_2018_QuadJet_noTagV3_ideal->Fill(analysis_jets, true, HTmod, evtW);
-          if (*(r->HLT_QuadPFJet105_88_76_15))
-            h_2018_QuadJet_noTagV3_ideal->Fill(analysis_jets, false, HTmod, evtW);
-        }
-
-        if (properly_tagged && pT_criteria_met_2017_18_v4) {
-          h_2018_QuadJet_noTagV4_ideal->Fill(analysis_jets, true, HTmod, evtW);
-          if (*(r->HLT_QuadPFJet111_90_80_15))
-            h_2018_QuadJet_noTagV4_ideal->Fill(analysis_jets, false, HTmod, evtW);
-        }
-
-        if (properly_tagged && pT_criteria_met_2017_18_v5) {
-          h_2018_QuadJet_noTagV5_ideal->Fill(analysis_jets, true, HTmod, evtW);
-          if (*(r->HLT_QuadPFJet98_83_71_15))
-            h_2018_QuadJet_noTagV5_ideal->Fill(analysis_jets, false, HTmod, evtW);
-        }*/
-
         /***********************************************************
         * We wanna look at the version with none of the requirements
         * and then just the tagging requirement.
@@ -1494,7 +1453,7 @@ void VH_selection::Process(Reader* r) {
           if (properly_tagged_4B) {
             h_2018_QuadJet_TripleTag_tagged->Fill(analysis_jets, 
               false, HTmod, evtW);
-          }
+         two-factor authentication   }
         }
         if (*(r->HLT_PFHT330PT30_QuadPFJet_75_60_45_40)) {
           h_2018_QuadJet_noTag->Fill(analysis_jets, false, HTmod, evtW);
