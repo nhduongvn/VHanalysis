@@ -1606,7 +1606,7 @@ void VH_selection::Process(Reader* r) {
     trigger = *(r->HLT_PFHT300PT30_QuadPFJet_75_60_45_40_TriplePFBTagCSV_3p0);
   #endif
   #if defined(DATA_2017B)
-    trigger = *(r->HLT_HT300PT30_QuadJet_75_60_45_40_TripeCSV_p07);
+    trigger = false;//*(r->HLT_HT300PT30_QuadJet_75_60_45_40_TripeCSV_p07);
   #endif
 #endif
 
