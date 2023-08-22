@@ -61,8 +61,9 @@ def getHist(pN, sample_name, fH, lS, printSamples=True):
 ###############################
 
 ## Years to run over
-years = ['16', '17', '18']
-years = ['16']
+#years = ['16', '17', '18']
+#years = ['16', '18']
+years = ['17']
 
 ## Regions to go through
 regions = [ "_ideal", "_3B", "_2b2c" ]
@@ -75,21 +76,27 @@ region_name = {
 useLogY = False
 
 ## Input & Output
-plotFolder = '../plot_results/trig_eff_better/'                ## SingleMuon
-resultpath = '../condor_results/trigger_efficiency_NEWEST/'    ## SingleMuon
-plotFolder = '../plot_results/trig_eff_2017fix/'
-resultpath = '../condor_results/trigger_efficiency_2017fix/'
-plotFolder = '../plot_results/trig_eff_ZH/'                    ## ZH
-resultpath = '../condor_results/trigger_efficiency_ZH/'        ## ZH
+#resultpath = '../condor_results/trigger_efficiency_NEWEST/' ## Single Muon (2016,18)
+resultpath = '../condor_results/trigger_efficiency_2017fix/' ## Single Muon (2017) + MC
+plotFolder = '../plot_results/trigger_results_aug2023/'
+
+#plotFolder = '../plot_results/trig_eff_better/'                ## SingleMuon
+#resultpath = '../condor_results/trigger_efficiency_NEWEST/'    ## SingleMuon
+#plotFolder = '../plot_results/trig_eff_2017fix/'
+#resultpath = '../condor_results/trigger_efficiency_2017fix/'
+#plotFolder = '../plot_results/trig_eff_ZH/'                    ## ZH
+#resultpath = '../condor_results/trigger_efficiency_ZH/'        ## ZH
+#plotFolder = '../plot_results/trig_eff_aug2023/'
+#resultpath = '../condor_results/updatedResults_july2023_w_Weight/'
 
 ## Samples
 ss = [ "SingleMuon" ]  ## SingleMuon
 #ss = [ "TTTo2L2Nu", "TTToHadronic", "TTToSemiLeptonic"]
 #ss = [ ""]
-ss = [ "ZH_HToCC_ZToQQ"]#, "ggZH_HToCC_ZToQQ" ]
+#ss = [ "ZH_HToCC_ZToQQ"]#, "ggZH_HToCC_ZToQQ" ]
 sampleName = "SingleMuon DATA"
 #sampleName = "ttbar MC"
-sampleName = "ZH HToCC ZToQQ MC"
+#sampleName = "ZH HToCC ZToQQ MC"
 
 ## Triggers we're interested in
 categories = {
@@ -251,7 +258,7 @@ for r in regions:
         ## Make the canvas name & output directory
         regionName = r[1:] if r != "" else "noTag"
         canvas_name = v + "_" + categories[y][i] + "_" + y + r
-        outputdir = plotFolder + '/20' + y + '_QCDv9/' + regionName + '/' + sampleName
+        outputdir = plotFolder + '/20' + y + '/' + regionName + '/' + sampleName
         
         print "canvas_name = ", canvas_name
         print "outputdir   = ", outputdir
@@ -260,8 +267,35 @@ for r in regions:
           outputdir, xA_title, xA_range, "Efficiency",
           triggers[i], y, region_name[r], sampleName)
 
-
-
-
-
-
+        ## We want to record the appropriate efficiencies into a text file
+        ## Go through bin by bin and store the values
+        
+        bin_str = "bins: "
+        ## For each bin...
+        for i in range(0, len(bins)):
+          
+          ## Add the bin value to a string for output
+          bin_str += str(bins[i])
+          if i < len(bins)-1:
+            bin_str += ", "
+        
+        eff_str = "\neff: "
+        ## For each of the n bins...
+        for i in range(1, nBins+1):
+          
+          ## Calculate the efficiency for this bin
+          trig_content = plots[0].GetBinContent(i)
+          ref_content = plots[1].GetBinContent(i)
+          print (">>>>>>>> ", trig_content, "/", ref_content)
+          if ref_content <= 0.0:
+            iEff = 1.0
+          else: 
+            iEff = 1.0 * trig_content / ref_content
+          eff_str += str(iEff)
+          if i < nBins: eff_str += ", "
+        
+        ## Output the strings to text
+        output_file = outputdir + '/efficiency_per_bin.txt'
+        print ">>> Printing out the efficiencies to ", output_file
+        with open(output_file, 'w') as f:
+          f.writelines([bin_str, eff_str])

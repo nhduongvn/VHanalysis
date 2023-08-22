@@ -193,6 +193,70 @@ bool are_cjets(std::vector<JetObj>& jets, float CvL_cut, float CvB_cut) {
   return true;
 }
 
+//===========================================================
+// determine_trigger_SF - take in the list of jets, determine
+// the HT of the event, and then calculate return the 
+// appropriate value.
+//===========================================================
+float determine_trigger_SF(std::vector<JetObj>& jets, int year) {
+  float HT = 0.0;
+  for (auto it : jets) HT += it.Pt();
+
+  if (HT < 250 || HT >= 2000) return 1.0;
+  else if (HT < 300) {
+    if (year == 16) return 0.507;
+    if (year == 17) return 0.488;
+    if (year == 18) return 1.784;
+  }
+  else if (HT < 350) {
+    if (year == 16) return 0.607;
+    if (year == 17) return 0.563;
+    if (year == 18) return 1.398;
+  }
+  else if (HT < 400) {
+    if (year == 16) return 0.660;
+    if (year == 17) return 0.716;
+    if (year == 18) return 1.077;
+  }
+  else if (HT < 450) {
+    if (year == 16) return 0.677;
+    if (year == 17) return 0.701;
+    if (year == 18) return 0.980;
+  }
+  else if (HT < 500) {
+    if (year == 16) return 0.711;
+    if (year == 17) return 0.827;
+    if (year == 18) return 0.914;
+  }
+  else if (HT < 550) {
+    if (year == 16) return 0.725;
+    if (year == 17) return 0.845;
+    if (year == 18) return 0.975;
+  }
+  else if (HT < 600) {
+    if (year == 16) return 0.738;
+    if (year == 17) return 0.802;
+    if (year == 18) return 0.908;
+  }
+  else if (HT < 800) {
+    if (year == 16) return 0.762;
+    if (year == 17) return 0.867;
+    if (year == 18) return 0.905;
+  }
+  else if (HT < 1000) {
+    if (year == 16) return 0.765;
+    if (year == 17) return 0.955;
+    if (year == 18) return 0.914;
+  }
+  else if (HT < 2000) {
+    if (year == 16) return 0.809;
+    if (year == 17) return 0.942;
+    if (year == 18) return 0.918;
+  }
+
+  return 1.0;
+}
+
 // == SlaveBegin ==============================================================
 
 /*
@@ -703,6 +767,22 @@ void VH_selection::Process(Reader* r) {
     jets.push_back(jet);
 
   }//end-jets
+
+  int year = 0;
+#if defined(MC_2016)
+  year = 16;
+#endif
+#if defined(MC_2017)
+  year = 17;
+#endif
+#if defined(MC_2018)
+  year = 18;
+#endif
+
+#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
+  // Modify the event weight account for the HT in the event
+  evtW *= determine_trigger_SF(jets, year);
+#endif
    
   // ==== ELECTRONS ====
   std::vector<LepObj> elecs;
@@ -1142,7 +1222,7 @@ void VH_selection::Process(Reader* r) {
     // Trigger Efficiency
     // ========================================================================
 
-    bool is_ZH = false; // Use this boolean for cases where we want to ignore
+    bool is_ZH = true;  // Use this boolean for cases where we want to ignore
                         // our reference trigger & just use the base events.
     bool noTrigCheck = false; // Use this if we want to check how the events
                              // are selected without the trigger requirement.

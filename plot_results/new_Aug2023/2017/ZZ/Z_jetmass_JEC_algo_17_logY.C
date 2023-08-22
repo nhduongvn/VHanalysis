@@ -1,0 +1,103 @@
+void Z_jetmass_JEC_algo_17_logY()
+{
+//=========Macro generated from canvas: Z_jetmass_JEC_algo_17/Z_jetmass_JEC_algo_17
+//=========  (Tue Aug 22 09:17:58 2023) by ROOT version 6.14/09
+   TCanvas *Z_jetmass_JEC_algo_17 = new TCanvas("Z_jetmass_JEC_algo_17", "Z_jetmass_JEC_algo_17",0,0,600,600);
+   gStyle->SetOptStat(0);
+   Z_jetmass_JEC_algo_17->SetHighLightColor(2);
+   Z_jetmass_JEC_algo_17->Range(-60,-1.273501,340,1.826447);
+   Z_jetmass_JEC_algo_17->SetFillColor(0);
+   Z_jetmass_JEC_algo_17->SetBorderMode(0);
+   Z_jetmass_JEC_algo_17->SetBorderSize(2);
+   Z_jetmass_JEC_algo_17->SetLogy();
+   Z_jetmass_JEC_algo_17->SetLeftMargin(0.15);
+   Z_jetmass_JEC_algo_17->SetFrameBorderMode(0);
+   Z_jetmass_JEC_algo_17->SetFrameBorderMode(0);
+   
+   TH1D *VbbHcc_algo_Z_jetmass_JEC_stack_8 = new TH1D("VbbHcc_algo_Z_jetmass_JEC_stack_8","",150,0,300);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinContent(4,1.639177);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinContent(5,3.80495);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinContent(6,9.186151);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinContent(7,17.33418);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinContent(8,16.23387);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinContent(9,15.07602);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinContent(10,11.10631);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinContent(11,7.128293);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinContent(12,2.533452);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinContent(13,4.516932);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinContent(14,4.333763);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinContent(15,2.145793);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinContent(16,1.320867);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinContent(17,1.446237);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinContent(18,0.5593031);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinContent(19,0.8466811);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinContent(20,0.7327632);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinContent(21,0.4185783);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinContent(22,0.4515172);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinContent(23,1.206076);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinContent(25,0.2286297);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinContent(28,0.3005642);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinContent(29,0.298764);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinContent(33,0.3040151);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinContent(38,0.2286297);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinContent(41,0.2175324);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinContent(44,0.3456672);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinError(4,0.6337369);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinError(5,0.9365601);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinError(6,1.465886);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinError(7,2.016961);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinError(8,2.001827);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinError(9,1.932536);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinError(10,1.653465);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinError(11,1.319828);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinError(12,0.786625);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinError(13,1.043714);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinError(14,1.065477);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinError(15,0.7653139);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinError(16,0.5954426);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinError(17,0.6031341);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinError(18,0.3955007);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinError(19,0.5049753);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinError(20,0.428577);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinError(21,0.2974101);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinError(22,0.323155);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinError(23,0.605927);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinError(25,0.2286297);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinError(28,0.3005642);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinError(29,0.298764);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinError(33,0.3040151);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinError(38,0.2286297);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinError(41,0.2175324);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetBinError(44,0.3456672);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetEntries(443);
+
+   Int_t ci;      // for color index setting
+   TColor *color; // for color definition with alpha
+   ci = TColor::GetColor("#33ff99");
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->SetFillColor(ci);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->GetXaxis()->SetTitle("b-jet mass (w/ JEC) [GeV]");
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->GetXaxis()->SetRange(1,150);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->GetXaxis()->SetLabelFont(42);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->GetXaxis()->SetLabelSize(0.035);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->GetXaxis()->SetTitleSize(0.035);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->GetXaxis()->SetTitleFont(42);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->GetYaxis()->SetLabelFont(42);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->GetYaxis()->SetLabelSize(0.035);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->GetYaxis()->SetTitleSize(0.035);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->GetYaxis()->SetTitleOffset(0);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->GetYaxis()->SetTitleFont(42);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->GetZaxis()->SetLabelFont(42);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->GetZaxis()->SetLabelSize(0.035);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->GetZaxis()->SetTitleSize(0.035);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->GetZaxis()->SetTitleFont(42);
+   VbbHcc_algo_Z_jetmass_JEC_stack_8->Draw("HIST");
+   TLatex *   tex = new TLatex(0.25,0.937775,"CMS Work in Progress #sqrt{s} = 13 TeV, 41.5 fb^{-1}");
+tex->SetNDC();
+   tex->SetTextFont(42);
+   tex->SetTextSize(0.04);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   Z_jetmass_JEC_algo_17->Modified();
+   Z_jetmass_JEC_algo_17->cd();
+   Z_jetmass_JEC_algo_17->SetSelected(Z_jetmass_JEC_algo_17);
+}

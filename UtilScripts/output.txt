@@ -1,0 +1,4 @@
+Hello, world!
+Check to see if ROOT is fine right now...
+0.0
+END OF TEST

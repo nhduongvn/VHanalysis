@@ -1,0 +1,108 @@
+void H_dR_Bj0_both_18()
+{
+//=========Macro generated from canvas: H_dR_Bj0_both_18/H_dR_Bj0_both_18
+//=========  (Tue Aug 22 09:23:03 2023) by ROOT version 6.14/09
+   TCanvas *H_dR_Bj0_both_18 = new TCanvas("H_dR_Bj0_both_18", "H_dR_Bj0_both_18",0,0,600,600);
+   gStyle->SetOptStat(0);
+   H_dR_Bj0_both_18->SetHighLightColor(2);
+   H_dR_Bj0_both_18->Range(-1.2,-1.545444,6.8,13.909);
+   H_dR_Bj0_both_18->SetFillColor(0);
+   H_dR_Bj0_both_18->SetBorderMode(0);
+   H_dR_Bj0_both_18->SetBorderSize(2);
+   H_dR_Bj0_both_18->SetLeftMargin(0.15);
+   H_dR_Bj0_both_18->SetFrameBorderMode(0);
+   H_dR_Bj0_both_18->SetFrameBorderMode(0);
+   
+   TH1D *VbbHcc_both_H_dR_Bj0_stack_9 = new TH1D("VbbHcc_both_H_dR_Bj0_stack_9","",30,0,6);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinContent(1,2.731008);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinContent(2,11.77481);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinContent(3,10.88149);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinContent(4,7.223132);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinContent(5,4.412718);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinContent(6,3.218789);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinContent(7,2.643094);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinContent(8,2.368008);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinContent(9,2.067398);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinContent(10,2.10143);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinContent(11,2.064562);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinContent(12,1.990828);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinContent(13,1.91993);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinContent(14,1.866047);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinContent(15,1.98232);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinContent(16,1.778133);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinContent(17,0.9613827);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinContent(18,0.5501718);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinContent(19,0.3318047);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinContent(20,0.1729922);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinContent(21,0.0992578);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinContent(22,0.09642187);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinContent(23,0.0226875);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinContent(24,0.01985156);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinContent(25,0.01985156);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinContent(26,0.01701562);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinContent(28,0.005671875);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinContent(29,0.002835937);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinContent(30,0.002835937);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinContent(31,0.002835937);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinError(1,0.08800549);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinError(2,0.1827365);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinError(3,0.1756679);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinError(4,0.1431235);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinError(5,0.1118669);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinError(6,0.09554205);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinError(7,0.08657741);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinError(8,0.08194828);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinError(9,0.07657031);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinError(10,0.07719794);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinError(11,0.07651777);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinError(12,0.07513896);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinError(13,0.07378889);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinError(14,0.07274608);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinError(15,0.07497823);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinError(16,0.07101178);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinError(17,0.05221514);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinError(18,0.03950004);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinError(19,0.03067535);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinError(20,0.02214938);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinError(21,0.01677763);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinError(22,0.01653621);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinError(23,0.008021242);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinError(24,0.007503185);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinError(25,0.007503185);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinError(26,0.006946599);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinError(28,0.004010621);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinError(29,0.002835937);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinError(30,0.002835937);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetBinError(31,0.002835937);
+   VbbHcc_both_H_dR_Bj0_stack_9->SetEntries(22331);
+
+   Int_t ci;      // for color index setting
+   TColor *color; // for color definition with alpha
+   ci = TColor::GetColor("#cccc00");
+   VbbHcc_both_H_dR_Bj0_stack_9->SetFillColor(ci);
+   VbbHcc_both_H_dR_Bj0_stack_9->GetXaxis()->SetTitle("#DeltaR(H,j_{1})");
+   VbbHcc_both_H_dR_Bj0_stack_9->GetXaxis()->SetRange(1,30);
+   VbbHcc_both_H_dR_Bj0_stack_9->GetXaxis()->SetLabelFont(42);
+   VbbHcc_both_H_dR_Bj0_stack_9->GetXaxis()->SetLabelSize(0.035);
+   VbbHcc_both_H_dR_Bj0_stack_9->GetXaxis()->SetTitleSize(0.035);
+   VbbHcc_both_H_dR_Bj0_stack_9->GetXaxis()->SetTitleFont(42);
+   VbbHcc_both_H_dR_Bj0_stack_9->GetYaxis()->SetLabelFont(42);
+   VbbHcc_both_H_dR_Bj0_stack_9->GetYaxis()->SetLabelSize(0.035);
+   VbbHcc_both_H_dR_Bj0_stack_9->GetYaxis()->SetTitleSize(0.035);
+   VbbHcc_both_H_dR_Bj0_stack_9->GetYaxis()->SetTitleOffset(0);
+   VbbHcc_both_H_dR_Bj0_stack_9->GetYaxis()->SetTitleFont(42);
+   VbbHcc_both_H_dR_Bj0_stack_9->GetZaxis()->SetLabelFont(42);
+   VbbHcc_both_H_dR_Bj0_stack_9->GetZaxis()->SetLabelSize(0.035);
+   VbbHcc_both_H_dR_Bj0_stack_9->GetZaxis()->SetTitleSize(0.035);
+   VbbHcc_both_H_dR_Bj0_stack_9->GetZaxis()->SetTitleFont(42);
+   VbbHcc_both_H_dR_Bj0_stack_9->Draw("HIST");
+   TLatex *   tex = new TLatex(0.25,0.937775,"CMS Work in Progress #sqrt{s} = 13 TeV, 59.7 fb^{-1}");
+tex->SetNDC();
+   tex->SetTextFont(42);
+   tex->SetTextSize(0.04);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   H_dR_Bj0_both_18->Modified();
+   H_dR_Bj0_both_18->cd();
+   H_dR_Bj0_both_18->SetSelected(H_dR_Bj0_both_18);
+}

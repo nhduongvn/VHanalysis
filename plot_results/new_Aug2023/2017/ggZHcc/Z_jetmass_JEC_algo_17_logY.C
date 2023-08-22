@@ -1,0 +1,103 @@
+void Z_jetmass_JEC_algo_17_logY()
+{
+//=========Macro generated from canvas: Z_jetmass_JEC_algo_17/Z_jetmass_JEC_algo_17
+//=========  (Tue Aug 22 09:17:58 2023) by ROOT version 6.14/09
+   TCanvas *Z_jetmass_JEC_algo_17 = new TCanvas("Z_jetmass_JEC_algo_17", "Z_jetmass_JEC_algo_17",0,0,600,600);
+   gStyle->SetOptStat(0);
+   Z_jetmass_JEC_algo_17->SetHighLightColor(2);
+   Z_jetmass_JEC_algo_17->Range(-60,-4.494232,340,-0.6110786);
+   Z_jetmass_JEC_algo_17->SetFillColor(0);
+   Z_jetmass_JEC_algo_17->SetBorderMode(0);
+   Z_jetmass_JEC_algo_17->SetBorderSize(2);
+   Z_jetmass_JEC_algo_17->SetLogy();
+   Z_jetmass_JEC_algo_17->SetLeftMargin(0.15);
+   Z_jetmass_JEC_algo_17->SetFrameBorderMode(0);
+   Z_jetmass_JEC_algo_17->SetFrameBorderMode(0);
+   
+   TH1D *VbbHcc_algo_Z_jetmass_JEC_stack_12 = new TH1D("VbbHcc_algo_Z_jetmass_JEC_stack_12","",150,0,300);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinContent(3,0.0001567159);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinContent(4,0.0008371341);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinContent(5,0.01038105);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinContent(6,0.03970452);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinContent(7,0.04589962);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinContent(8,0.05285147);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinContent(9,0.03154412);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinContent(10,0.02795602);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinContent(11,0.01973237);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinContent(12,0.01284674);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinContent(13,0.009773772);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinContent(14,0.008985555);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinContent(15,0.005088352);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinContent(16,0.002810533);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinContent(17,0.002713411);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinContent(18,0.001050085);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinContent(19,0.00124684);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinContent(20,0.0013998);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinContent(21,0.0002090274);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinContent(22,0.0006654094);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinContent(23,0.0008891446);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinContent(24,0.000617655);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinContent(25,0.0002519535);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinContent(27,0.0005775627);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinContent(28,0.001073948);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinContent(30,0.0002485237);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinContent(31,0.0003820037);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinError(3,0.0001567159);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinError(4,0.0003754764);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinError(5,0.001397055);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinError(6,0.002776164);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinError(7,0.003014061);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinError(8,0.003259383);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinError(9,0.002521256);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinError(10,0.002381073);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinError(11,0.002019427);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinError(12,0.001626297);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinError(13,0.001441618);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinError(14,0.001382812);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinError(15,0.00107741);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinError(16,0.0007670935);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinError(17,0.0007633924);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinError(18,0.0004394086);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinError(19,0.0005611283);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinError(20,0.0005642876);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinError(21,0.0002090274);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinError(22,0.0003861841);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinError(23,0.0004511783);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinError(24,0.0003592335);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinError(25,0.0002519535);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinError(27,0.000343888);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinError(28,0.0004860848);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinError(30,0.0002485237);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetBinError(31,0.000276791);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetEntries(1460);
+
+   Int_t ci;      // for color index setting
+   TColor *color; // for color definition with alpha
+   ci = TColor::GetColor("#00cc00");
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->SetFillColor(ci);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->GetXaxis()->SetTitle("b-jet mass (w/ JEC) [GeV]");
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->GetXaxis()->SetRange(1,150);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->GetXaxis()->SetLabelFont(42);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->GetXaxis()->SetLabelSize(0.035);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->GetXaxis()->SetTitleSize(0.035);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->GetXaxis()->SetTitleFont(42);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->GetYaxis()->SetLabelFont(42);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->GetYaxis()->SetLabelSize(0.035);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->GetYaxis()->SetTitleSize(0.035);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->GetYaxis()->SetTitleOffset(0);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->GetYaxis()->SetTitleFont(42);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->GetZaxis()->SetLabelFont(42);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->GetZaxis()->SetLabelSize(0.035);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->GetZaxis()->SetTitleSize(0.035);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->GetZaxis()->SetTitleFont(42);
+   VbbHcc_algo_Z_jetmass_JEC_stack_12->Draw("HIST");
+   TLatex *   tex = new TLatex(0.25,0.937775,"CMS Work in Progress #sqrt{s} = 13 TeV, 41.5 fb^{-1}");
+tex->SetNDC();
+   tex->SetTextFont(42);
+   tex->SetTextSize(0.04);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   Z_jetmass_JEC_algo_17->Modified();
+   Z_jetmass_JEC_algo_17->cd();
+   Z_jetmass_JEC_algo_17->SetSelected(Z_jetmass_JEC_algo_17);
+}
