@@ -172,7 +172,8 @@ int main(int argc, char *argv[]) {
   
   //Selection for VH 
   VH_selection sel ;
-
+  
+  std::string fName_btagSF;
   std::string fName_puSF;
   std::string fName_PUjetID_SF;
   std::string fName_PUjetID_eff;
@@ -185,18 +186,21 @@ int main(int argc, char *argv[]) {
   if (syst == "JETPUIDD") jetPUidUncType = "down";
 
 #ifdef MC_2016
+  fName_btagSF = "CalibData/DeepCSV_2016LegacySF_WP_V1.csv";
   fName_puSF = "CalibData/2016_pileup_ratio.root";
   if (syst == "PUU") fName_puSF = "CalibData/2016_pileup_ratio_up.root";
   if (syst == "PUD") fName_puSF = "CalibData/2016_pileup_ratio_down.root";
 #endif
 
 #ifdef MC_2017
+  fName_btagSF = "CalibData/DeepCSV_94XSF_WP_V4_B_F.csv";
   fName_puSF = "CalibData/2017_pileup_ratio.root";
   if (syst == "PUU") fName_puSF = "CalibData/2017_pileup_ratio_up.root";
   if (syst == "PUD") fName_puSF = "CalibData/2017_pileup_ratio_down.root";
 #endif
 
 #ifdef MC_2018
+  fName_btagSF = "CalibData/DeepCSV_102XSF_WP_V1.csv";
   fName_puSF = "CalibData/2018_pileup_ratio.root";
   if (syst == "PUU") fName_puSF = "CalibData/2018_pileup_ratio_up.root";
   if (syst == "PUD") fName_puSF = "CalibData/2018_pileup_ratio_down.root";
@@ -215,12 +219,27 @@ int main(int argc, char *argv[]) {
   std::string fName_lumiMaskFilter("CalibData/Cert_314472-325175_13TeV_17SeptEarlyReReco2018ABC_PromptEraD_Collisions18_JSON.txt");
 #endif
 
+  std::string btagUncType = "central";
+  if (syst == "BTAGU") btagUncType = "up";
+  if (syst == "BTAGD") btagUncType = "down";
+  if (syst == "BTAGLU") btagUncType = "light_up";
+  if (syst == "BTAGLD") btagUncType = "light_down";
+  if (syst == "BTAGBCU") btagUncType = "bc_up";
+  if (syst == "BTAGBCD") btagUncType = "bc_down";
+
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
   sel.SetCentralGenWeight(centralGenWeight);
   sel.SetPileupSF(fName_puSF);
   fName_PUjetID_SF = "CalibData/scalefactorsPUID_81Xtraining.root";
   fName_PUjetID_eff = "CalibData/effcyPUID_81Xtraining.root";
   sel.SetPUjetidCalib(fName_PUjetID_SF,fName_PUjetID_eff,jetPUidUncType); //pileup jet ID SF
+  
+  // Add what allows us to calibrate based on b-tags
+  if (CUTS.GetStr("jet_main_btagWP")=="deepCSVT") sel.SetBtagCalib(fName_btagSF,"DeepCSV","CalibData/effT.root",btagUncType);
+  if (CUTS.GetStr("jet_main_btagWP")=="deepJetT") sel.SetBtagCalib(fName_btagSF,"DeepJet","CalibData/effT.root",btagUncType);
+  if (CUTS.GetStr("jet_main_btagWP")=="deepCSVM") sel.SetBtagCalib(fName_btagSF,"DeepCSV","CalibData/effM.root",btagUncType);
+  if (CUTS.GetStr("jet_main_btagWP")=="deepJetM") sel.SetBtagCalib(fName_btagSF,"DeepJet","CalibData/effM.root",btagUncType);
+
 #endif
 #if defined(DATA_2016) || defined(DATA_2017) || defined(DATA_2018)
   sel.SetLumiMaskFilter(fName_lumiMaskFilter);

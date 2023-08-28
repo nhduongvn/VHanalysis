@@ -441,6 +441,8 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_genWeight = new TH1D("genWeight", "", 200, -2, 2);
   h_puSF = new TH1D("puSF", "", 200, -2, 2);
   h_l1preW = new TH1D("l1preW", "", 200, -2, 2);
+  h_trigSF = new TH1D("trigSF", "", 200, -2, 2);
+  h_btagW = new TH1D("btagW", "", 200, -2, -2);
 
   h_nMuon = new TH1D("nMuon", "", 10, -0.5, 9.5);
   h_nElec = new TH1D("nElec", "", 10, -0.5, 9.5);
@@ -455,12 +457,13 @@ void VH_selection::SlaveBegin(Reader *r) {
   r->GetOutputList()->Add(h_genWeight);
   r->GetOutputList()->Add(h_puSF);
   r->GetOutputList()->Add(h_l1preW);
+  r->GetOutputList()->Add(h_trigSF);
+  r->GetOutputList()->Add(h_btagW);
 
   std::vector<TH1*> tmp = h_VH_MC->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_VH_MCjet->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-
   tmp = h_VH_tags->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_VH_tags_noMassCorr->returnHisto();
@@ -780,8 +783,16 @@ void VH_selection::Process(Reader* r) {
 #endif
 
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
+
   // Modify the event weight account for the HT in the event
-  evtW *= determine_trigger_SF(jets, year);
+  float trig_SF = determine_trigger_SF(jets, year);
+  evtW *= trig_SF;
+  h_trigSF->Fill(trig_SF);
+
+  // Modify the event weight to account for the btag & ctag weights
+  float btagW = CalBtagWeight(jets, CUTS.GetStr("jet_main_btagWP"), m_btagUncType); 
+  h_btagW->Fill(btagW);
+  evtW *= btagW;
 #endif
    
   // ==== ELECTRONS ====
@@ -1905,8 +1916,6 @@ void VH_selection::Process(Reader* r) {
       for (size_t i = 0; i < combos.size(); ++i) {
 
         std::vector<int> idxs = combos[i];
-
-        // Create a DHZ Object & add it to the list.
         DHZObj D(jets4, idxs[2], idxs[3], idxs[0], idxs[1]);
         DHZ_values.push_back(D);
       }

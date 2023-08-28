@@ -181,6 +181,8 @@ class VH_selection : public Selector {
     TH1D* h_genWeight;
     TH1D* h_puSF;
     TH1D* h_l1preW;
+    TH1D* h_trigSF;
+    TH1D* h_btagW;
 
     TH1D* h_nMuon;
     TH1D* h_nElec;

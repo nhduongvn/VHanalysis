@@ -51,7 +51,18 @@ namespace glob {
         parameterNames.push_back("CvL_mediumWP_deepJet");
         parameterNames.push_back("CvB_looseWP_deepJet");
         parameterNames.push_back("CvB_mediumWP_deepJet");
-
+        parameterNames.push_back("jet_deepCSVM_2016") ;
+        parameterNames.push_back("jet_deepCSVM_2017") ;
+        parameterNames.push_back("jet_deepCSVM_2018") ;
+        parameterNames.push_back("jet_deepCSVT_2016") ;
+        parameterNames.push_back("jet_deepCSVT_2017") ;
+        parameterNames.push_back("jet_deepCSVT_2018") ;
+        parameterNames.push_back("jet_deepJetM_2016") ;
+        parameterNames.push_back("jet_deepJetM_2017") ;
+        parameterNames.push_back("jet_deepJetM_2018") ;
+        parameterNames.push_back("jet_deepJetT_2016") ;
+        parameterNames.push_back("jet_deepJetT_2017") ;
+        parameterNames.push_back("jet_deepJetT_2018") ;
       };
       
       // Get method
@@ -89,6 +100,19 @@ namespace glob {
           if (name == "CvL_mediumWP_deepJet") return CvL_mediumWP_deepJet;
           if (name == "CvB_looseWP_deepJet") return CvL_looseWP_deepJet;
           if (name == "CvB_mediumWP_deepJet") return CvB_mediumWP_deepJet;
+
+          if (name == "jet_deepCSVM_2016") return jet_deepCSVM_2016 ;
+          if (name == "jet_deepCSVM_2017") return jet_deepCSVM_2017 ;
+          if (name == "jet_deepCSVM_2018") return jet_deepCSVM_2018 ;
+          if (name == "jet_deepCSVT_2016") return jet_deepCSVT_2016 ;
+          if (name == "jet_deepCSVT_2017") return jet_deepCSVT_2017 ;
+          if (name == "jet_deepCSVT_2018") return jet_deepCSVT_2018 ;
+          if (name == "jet_deepJetM_2016") return jet_deepJetM_2016 ;
+          if (name == "jet_deepJetM_2017") return jet_deepJetM_2017 ;
+          if (name == "jet_deepJetM_2018") return jet_deepJetM_2018 ;
+          if (name == "jet_deepJetT_2016") return jet_deepJetT_2016 ;
+          if (name == "jet_deepJetT_2017") return jet_deepJetT_2017 ;
+          if (name == "jet_deepJetT_2018") return jet_deepJetT_2018 ;
 
           // If we somehow miss one of the cases, return -1.
           return -1;
@@ -154,6 +178,19 @@ namespace glob {
           if (name == "CvB_mediumWP_deepJet") CvB_mediumWP_deepJet = val;
           if (name == "CvL_looseWP_deepJet") CvL_looseWP_deepJet = val;
           if (name == "CvL_mediumWP_deepJet") CvL_mediumWP_deepJet = val;
+
+          if (name == "jet_deepCSVM_2016") jet_deepCSVM_2016 = val;
+          if (name == "jet_deepCSVM_2017") jet_deepCSVM_2017 = val;
+          if (name == "jet_deepCSVM_2018") jet_deepCSVM_2018 = val;
+          if (name == "jet_deepCSVT_2016") jet_deepCSVT_2016 = val;
+          if (name == "jet_deepCSVT_2017") jet_deepCSVT_2017 = val;
+          if (name == "jet_deepCSVT_2018") jet_deepCSVT_2018 = val;
+          if (name == "jet_deepJetM_2016") jet_deepJetM_2016 = val;
+          if (name == "jet_deepJetM_2017") jet_deepJetM_2017 = val;
+          if (name == "jet_deepJetM_2018") jet_deepJetM_2018 = val;
+          if (name == "jet_deepJetT_2016") jet_deepJetT_2016 = val;
+          if (name == "jet_deepJetT_2017") jet_deepJetT_2017 = val;
+          if (name == "jet_deepJetT_2018") jet_deepJetT_2018 = val;
         }
         // Otherwise, return an "error"/warning message.
         else {
@@ -211,6 +248,19 @@ namespace glob {
       float CvB_mediumWP_deepJet;
       float CvL_looseWP_deepJet;
       float CvL_mediumWP_deepJet;      
+
+      float jet_deepCSVM_2016 ;
+      float jet_deepCSVM_2017 ;
+      float jet_deepCSVM_2018 ;
+      float jet_deepCSVT_2016 ;
+      float jet_deepCSVT_2017 ;
+      float jet_deepCSVT_2018 ;
+      float jet_deepJetM_2016 ;
+      float jet_deepJetM_2017 ;
+      float jet_deepJetM_2018 ;
+      float jet_deepJetT_2016 ;
+      float jet_deepJetT_2017 ;
+      float jet_deepJetT_2018 ;
 
       std::vector<std::string> initializedVars;
       std::vector<std::string> parameterNames;

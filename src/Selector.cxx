@@ -165,6 +165,10 @@ float Selector::PUjetWeight(std::vector<JetObj>& jets){
 }
 
 float Selector::CalBtagWeight(std::vector<JetObj>& jets, std::string jet_main_btagWP, std::string uncType) {
+  
+  //Test #1 - make sure the method works
+  //return 1.0;
+
   //get calibration file
   std::string bN = "b_pt_eff_"+m_year;
   std::string cN = "c_pt_eff_"+m_year;
@@ -179,13 +183,17 @@ float Selector::CalBtagWeight(std::vector<JetObj>& jets, std::string jet_main_bt
   TH1D* hEff_l = (TH1D*)m_btagEffFile->Get(lN.c_str());
   float pMC(1.);
   float pData(1.);
+
+  //Test #2 - see if we're getting the btagEff file
+  //return 1.0;  
+
   for (std::vector<JetObj>::iterator jetIt = jets.begin() ; jetIt != jets.end() ; ++jetIt) {
     float jetPt = (jetIt->m_lvec).Pt() ;
     int iBin = hEff_b->FindFixBin(jetPt) ; //return overflow bin if jetPt > max pt range
     unsigned flav = jetIt->m_flav ;
     std::string uncTypeInput = "central";
     float eff = hEff_l->GetBinContent(iBin); //jet with pt > max pt range of efficinecy histogram will get the eff of overflow bins
-    if (eff <= 0) std::cout << "\n Warning: Efficiency <=0, " << eff ; //we do not want eff = 0 
+    //if (eff <= 0) std::cout << "\n Warning: Efficiency <=0, " << eff ; //we do not want eff = 0 
     BTagEntry::JetFlavor flavCode(BTagEntry::FLAV_UDSG) ;
     if (flav == 5) {
       eff = hEff_b->GetBinContent(iBin);
