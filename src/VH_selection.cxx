@@ -792,7 +792,7 @@ void VH_selection::Process(Reader* r) {
   // Modify the event weight to account for the btag & ctag weights
   float btagW = CalBtagWeight(jets, CUTS.GetStr("jet_main_btagWP"), m_btagUncType); 
   h_btagW->Fill(btagW);
-  evtW *= btagW;
+  //evtW *= btagW;
 #endif
    
   // ==== ELECTRONS ====
