@@ -187,6 +187,8 @@ int main(int argc, char *argv[]) {
 
 #ifdef MC_2016
   fName_btagSF = "CalibData/DeepCSV_2016LegacySF_WP_V1.csv";
+  fName_btagSF = "CalibData/DeepJet_2016LegacySF_WP_V1.csv";
+  //fName_btagSF = "CalibData/wp_deepJet_2016.csv";
   fName_puSF = "CalibData/2016_pileup_ratio.root";
   if (syst == "PUU") fName_puSF = "CalibData/2016_pileup_ratio_up.root";
   if (syst == "PUD") fName_puSF = "CalibData/2016_pileup_ratio_down.root";
@@ -194,6 +196,8 @@ int main(int argc, char *argv[]) {
 
 #ifdef MC_2017
   fName_btagSF = "CalibData/DeepCSV_94XSF_WP_V4_B_F.csv";
+  fName_btagSF = "CalibData/DeepFlavour_94XSF_WP_V3_B_F.csv";
+  //fName_btagSF = "CalibData/wp_deepJet_2017.csv";
   fName_puSF = "CalibData/2017_pileup_ratio.root";
   if (syst == "PUU") fName_puSF = "CalibData/2017_pileup_ratio_up.root";
   if (syst == "PUD") fName_puSF = "CalibData/2017_pileup_ratio_down.root";
@@ -201,6 +205,8 @@ int main(int argc, char *argv[]) {
 
 #ifdef MC_2018
   fName_btagSF = "CalibData/DeepCSV_102XSF_WP_V1.csv";
+  fName_btagSF = "CalibData/DeepJet_102XSF_WP_V1.csv";
+  //fName_btagSF = "CalibData/wp_deepJet_2018.csv";
   fName_puSF = "CalibData/2018_pileup_ratio.root";
   if (syst == "PUU") fName_puSF = "CalibData/2018_pileup_ratio_up.root";
   if (syst == "PUD") fName_puSF = "CalibData/2018_pileup_ratio_down.root";
