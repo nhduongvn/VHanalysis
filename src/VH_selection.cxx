@@ -442,8 +442,8 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_puSF = new TH1D("puSF", "", 200, -2, 2);
   h_l1preW = new TH1D("l1preW", "", 200, -2, 2);
   h_trigSF = new TH1D("trigSF", "", 200, -2, 2);
-  h_btagW = new TH1D("btagW", "", 200, -2, -2);
-
+  h_btagW = new TH1D("btagW", "", 2000, -2, 2);
+  h_evtW = new TH1D("evtW", "", 2000, -2, 2);
   h_nMuon = new TH1D("nMuon", "", 10, -0.5, 9.5);
   h_nElec = new TH1D("nElec", "", 10, -0.5, 9.5);
 
@@ -459,6 +459,7 @@ void VH_selection::SlaveBegin(Reader *r) {
   r->GetOutputList()->Add(h_l1preW);
   r->GetOutputList()->Add(h_trigSF);
   r->GetOutputList()->Add(h_btagW);
+  r->GetOutputList()->Add(h_evtW);
 
   std::vector<TH1*> tmp = h_VH_MC->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
@@ -792,7 +793,9 @@ void VH_selection::Process(Reader* r) {
   // Modify the event weight to account for the btag & ctag weights
   float btagW = CalBtagWeight(jets, CUTS.GetStr("jet_main_btagWP"), m_btagUncType); 
   h_btagW->Fill(btagW);
-  //evtW *= btagW;
+  evtW *= btagW;
+
+  h_evtW->Fill(evtW);
 #endif
    
   // ==== ELECTRONS ====
