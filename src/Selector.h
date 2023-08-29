@@ -29,14 +29,20 @@ class Selector
   virtual void SetRandom() ;
   virtual void SetDataInfo(bool isData, std::string year) {m_isData = isData ; m_year = year ; } ;
   virtual void SetCentralGenWeight(double centralGenWeight) {m_centralGenWeight = centralGenWeight;}; //this is the central gen weight used to normalize the gen weight. This is useful when the absolute value of gen weight is not always the same like in sherpa sample.  
+ 
   virtual void SetBtagCalib(std::string csvFileName, std::string taggerName, std::string effFileName, std::string btagUncType) ;
+  virtual void SetCtagCalib(std::string csvFileName, std::string taggerName, std::string effFileName, std::string ctagUncType) ;  
+
   virtual void SetEleEffCorr(std::vector<std::string> fName_trig, std::string fName_recSF, std::string fName_IDSF, std::vector<float> w_trig, std::string eleUncType) ;
   virtual void SetMuonEffCorr(std::vector<std::string> fName_trig, std::vector<std::string> fName_ID, std::vector<std::string> fName_iso, std::vector<float> w_trig, std::vector<float> w_ID, std::vector<float> w_iso, std::string muonUncType) ;
   virtual void SetLumiMaskFilter(std::string fName_lumiMaskFilter);
   virtual void SetPileupSF(std::string fName_puSF);
   virtual float PileupSF(int nTrueInt);
   virtual std::vector<float> GetSF_2DHist(float x, float y, std::vector<TH2F*> h, std::vector<float> w);
+
   virtual float CalBtagWeight(std::vector<JetObj>& jets, std::string jet_main_bTagWP="deepCSVT", std::string uncType="central") ;
+  virtual float CalCtagWeight(std::vector<JetObj>& jets, std::string jet_main_cTagWP="deepCSVT", std::string uncType="central") ;
+
   virtual float CalEleSF(LepObj e1, LepObj e2);
   virtual float CalSingleEleSF(LepObj e1);
   virtual float CalMuonSF_id_iso(LepObj e1, LepObj e2);

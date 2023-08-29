@@ -233,6 +233,8 @@ int main(int argc, char *argv[]) {
   if (syst == "BTAGBCU") btagUncType = "bc_up";
   if (syst == "BTAGBCD") btagUncType = "bc_down";
 
+  std::string ctagUncType = "central";
+
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
   sel.SetCentralGenWeight(centralGenWeight);
   sel.SetPileupSF(fName_puSF);

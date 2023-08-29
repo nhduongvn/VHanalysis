@@ -77,7 +77,7 @@ def make_input_file_list(nFile, outDir_file_list, file_list_name):
 
 
 #///////////////////////////////////////////////////////////////////
-runMode = 1 #0: submit, 1: check output and hadd output file
+runMode = 0 #0: submit, 1: check output and hadd output file
 submit = True # for testing setup or executing submission 
 debug = False   # just run on 10000 
 haddData = True # use to combine DATA runs back together
@@ -97,28 +97,28 @@ sourceDir = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/'
 #condorRunDir = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/SubmitToCondor/condor/'
 condorRunDir = '/uscmst1b_scratch/lpc1/lpcphys/peteryou/Output_VH/mediumWP_updates042023/'
 condorRunDir = '/uscmst1b_scratch/lpc1/lpcphys/peteryou/Output_VH/trigger_efficiency_ZH/'
-condorRunDir = '/uscmst1b_scratch/lpc1/lpcphys/peteryou/Output_VH/updatedResults_Aug2023/'
+condorRunDir = '/uscmst1b_scratch/lpc1/lpcphys/peteryou/Output_VH/Aug2023_addedBtagSF/'
 outputDir_eos = '/store/user/peteryou/Output_VH/mediumWP_updates042023/'+syst+'/' 
 outputDir_eos = '/store/user/peteryou/Output_VH/trigger_efficiency_ZH/'+syst+'/'
-outputDir_eos = '/store/user/peteryou/Output_VH/updatedResults_Aug2023/'
+outputDir_eos = '/store/user/peteryou/Output_VH/Aug2023_addedBtagSF'
 #outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/new_condor_results/' + syst + '/'
 #outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/newest_condor_results/' + syst + '/'
 outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/mediumWP_updates042023/' + syst + '/'
 outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/trigger_efficiency_ZH/' + syst + '/'
-outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/updatedResults_Aug2023/' + syst + '/'
+outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Aug2023_addedBtagSF/' + syst + '/'
 
 #Input data sets
 #dataSet_list = sourceDir+"/Dataset_lists/datasets_JetHT_combined.txt" #data
 #dataSet_list = sourceDir+"/Dataset_lists/datasets_QCD100to200.txt" 
 dataSet_list = sourceDir+"/Dataset_lists/datasets_major_signal_bckg.txt" #signal + QCD/ttbar
-dataSet_list = sourceDir+"/Dataset_lists/datasets_ZH.txt"
+#dataSet_list = sourceDir+"/Dataset_lists/datasets_ZH.txt"
 #dataSet_list = sourceDir+"/Dataset_lists/datasets_NANOAODv9_MC.txt"
 #dataSet_list = sourceDir+"/Dataset_lists/datasets_JetHT_combined.txt"
 #dataSet_list = sourceDir+"/Dataset_lists/datasets_SingleMuon_combined.txt"
 #dataSet_list = sourceDir+"/Dataset_lists/datasets_SingleMuon.txt"
 #dataSet_lists = [sourceDir+"/Dataset_lists/datasets_SingleMuon.txt"]
 dataSet_lists = [sourceDir+"/Dataset_lists/datasets_major_signal_bckg.txt"]
-dataSet_lists = [sourceDir+"/Dataset_lists/datasets_ZH.txt"]
+#dataSet_lists = [sourceDir+"/Dataset_lists/datasets_ZH.txt"]
 #dataSet_lists = [sourceDir+"/Dataset_lists/datasets_NANOAODv9_MC.txt"]
 #dataSet_lists = [sourceDir+"/Dataset_lists/datasets_JetHT_combined.txt"]
 #dataSet_list = sourceDir+"/Dataset_lists/datasets_trigEff.txt"

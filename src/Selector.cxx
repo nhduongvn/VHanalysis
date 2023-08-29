@@ -13,6 +13,9 @@ void Selector::SetLumiMaskFilter(std::string fName_lumiMaskFilter) {
   m_lumiFilter.Set(fName_lumiMaskFilter) ;
 }
 
+// This is where we set up the Btag calibration. We have four parameters with it:
+// 1. csvFileName - this is the BTV csv file that contains the values we're interested in
+// 2. 
 void Selector::SetBtagCalib(std::string csvFileName, std::string taggerName, std::string effFileName, std::string btagUncType) {
   m_btagCal = BTagCalibration(taggerName, csvFileName) ;
   m_btagReader = BTagCalibrationReader(BTagEntry::OP_MEDIUM,  // operating point
@@ -164,12 +167,11 @@ float Selector::PUjetWeight(std::vector<JetObj>& jets){
    return weight ;
 }
 
+// This method is what we use to determine the scale factor / event weight for b-tagging.
+// These annotations are added by P.W. Young so we know what's going on.
 float Selector::CalBtagWeight(std::vector<JetObj>& jets, std::string jet_main_btagWP, std::string uncType) {
-  
-  //Test #1 - make sure the method works
-  //return 1.0;
 
-  //get calibration file
+  // Get the calibration files (suggested by BTV group)
   std::string bN = "b_pt_eff_"+m_year;
   std::string cN = "c_pt_eff_"+m_year;
   std::string lN = "l_pt_eff_"+m_year;
@@ -184,16 +186,20 @@ float Selector::CalBtagWeight(std::vector<JetObj>& jets, std::string jet_main_bt
   float pMC(1.);
   float pData(1.);
 
-  //Test #2 - see if we're getting the btagEff file
-  //return 1.0;  
-
+  // Go through each jet in the given event (from function parameter)
   for (std::vector<JetObj>::iterator jetIt = jets.begin() ; jetIt != jets.end() ; ++jetIt) {
+
+    // Get the pT of the jet & its flavor
     float jetPt = (jetIt->m_lvec).Pt() ;
     int iBin = hEff_b->FindFixBin(jetPt) ; //return overflow bin if jetPt > max pt range
     unsigned flav = jetIt->m_flav ;
+
+    // Determine what type of uncertainty we want.
     std::string uncTypeInput = "central";
     float eff = hEff_l->GetBinContent(iBin); //jet with pt > max pt range of efficinecy histogram will get the eff of overflow bins
     //if (eff <= 0) std::cout << "\n Warning: Efficiency <=0, " << eff ; //we do not want eff = 0 
+   
+    // Check the flavors of the jets & get the appropriate efficiency.
     BTagEntry::JetFlavor flavCode(BTagEntry::FLAV_UDSG) ;
     if (flav == 5) {
       eff = hEff_b->GetBinContent(iBin);
@@ -210,12 +216,14 @@ float Selector::CalBtagWeight(std::vector<JetObj>& jets, std::string jet_main_bt
     if (uncType == "bc_up" && (flav == 4 || flav == 5)) uncTypeInput = "up";
     if (uncType == "bc_down" && (flav == 4 || flav == 5)) uncTypeInput = "down";
 
+    // Determine the scale factor for this jet
     float sf = m_btagReader.eval_auto_bounds(
                  uncTypeInput, 
                  flavCode, 
                  fabs((jetIt->m_lvec).Eta()), // absolute value of eta
                  jetPt
     );
+
     //pass b-tagging requirement
     if (jetIt->m_deepCSV > CUTS.Get<float>("jet_"+jet_main_btagWP+"_" + m_year)) {
       pData = pData*sf*eff ;
@@ -226,6 +234,8 @@ float Selector::CalBtagWeight(std::vector<JetObj>& jets, std::string jet_main_bt
       pMC = pMC*(1-eff) ;
     }
   } //end loop over jet 
+
+  // Determine the sf from the Data & MC values
   float sf(1.) ;
   if (pMC > 0) sf = pData/pMC ;
   return sf ;

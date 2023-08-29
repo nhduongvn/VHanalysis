@@ -438,12 +438,16 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_cRegCorr = new TH1D("cRegCorr", "", 200, 0, 2);
   h_JetMass = new TH1D("JetMass", "", 300, 0, 300);  
 
-  h_genWeight = new TH1D("genWeight", "", 200, -2, 2);
-  h_puSF = new TH1D("puSF", "", 200, -2, 2);
-  h_l1preW = new TH1D("l1preW", "", 200, -2, 2);
-  h_trigSF = new TH1D("trigSF", "", 200, -2, 2);
-  h_btagW = new TH1D("btagW", "", 2000, -2, 2);
-  h_evtW = new TH1D("evtW", "", 2000, -2, 2);
+  h_genWeight = new TH1D("genWeight", "", 500, -5, 5);
+  h_puSF = new TH1D("puSF", "", 500, -5, 5);
+  h_l1preW = new TH1D("l1preW", "", 500, -5, 5);
+  h_trigSF = new TH1D("trigSF", "", 500, -5, 5);
+  h_btagW = new TH1D("btagW", "", 5000, -5, 5);
+  h_evtW = new TH1D("evtW", "", 5000, -5, 5);
+
+  h_nJet = new TH1D("nJet", "", 20, -0.5, 19.5);
+  h_nAnalysisJet = new TH1D("nAnalysisJet", "", 20, -0.5, 19.5);
+
   h_nMuon = new TH1D("nMuon", "", 10, -0.5, 9.5);
   h_nElec = new TH1D("nElec", "", 10, -0.5, 9.5);
 
@@ -460,6 +464,9 @@ void VH_selection::SlaveBegin(Reader *r) {
   r->GetOutputList()->Add(h_trigSF);
   r->GetOutputList()->Add(h_btagW);
   r->GetOutputList()->Add(h_evtW);
+
+  r->GetOutputList()->Add(h_nJet);
+  r->GetOutputList()->Add(h_nAnalysisJet);
 
   std::vector<TH1*> tmp = h_VH_MC->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
@@ -1126,8 +1133,12 @@ void VH_selection::Process(Reader* r) {
   // Any analysis after this point should be using only our selected jets which
   // pass our selection criteria. There should be at least four of them.
   //===========================================================================
+  //std::cout << "no. jets = " << analysis_jets.size() << std::endl;
+  h_nJet->Fill(jets.size());
+  h_nAnalysisJet->Fill(analysis_jets.size());
   if (analysis_jets.size() >= 4) {
 
+    //std::cout << "we have four jets!!!" << std::endl;
     h_evt_tags_cutflow->Fill(2.5, genWeight); // passed jet selection
     h_evt_algo_cutflow->Fill(2.5, genWeight); 
     h_evt_both_cutflow->Fill(2.5, genWeight); 
@@ -1652,6 +1663,7 @@ void VH_selection::Process(Reader* r) {
 #if defined(MC_2016) || defined(DATA_2016)
     trigger = (*(r->HLT_QuadJet45_TripleBTagCSV_p087) || 
       *(r->HLT_DoubleJet90_Double30_TripleBTagCSV_p087));
+    //std::cout << "Checking the 2016 trigger!!!" << std::endl;
 #endif
 
 #if defined(MC_2017) || defined(DATA_2017)
@@ -1661,14 +1673,18 @@ void VH_selection::Process(Reader* r) {
   #if defined(DATA_2017B)
     trigger = false;//*(r->HLT_HT300PT30_QuadJet_75_60_45_40_TripeCSV_p07);
   #endif
+  //std::cout << "Checking the 2017 trigger!!!" << std::endl;
 #endif
 
 #if defined(MC_2018) || defined(DATA_2018)
     trigger = *(r->HLT_PFHT330PT30_QuadPFJet_75_60_45_40_TriplePFBTagDeepCSV_4p5);
+    //std::cout << "Checking the 2018 trigger!!!" << std::endl;
 #endif
 
     // Do not continue on if we haven't triggered properly.
     if (!trigger) return;
+
+    //std::cout << "Passed our triggers!!!!" << std::endl;
 
     /**************************************************************************
     * Selection Method #1 - TAGGING ONLY                                      *
