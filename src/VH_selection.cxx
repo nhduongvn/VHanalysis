@@ -442,9 +442,9 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_puSF = new TH1D("puSF", "", 500, -5, 5);
   h_l1preW = new TH1D("l1preW", "", 500, -5, 5);
   h_trigSF = new TH1D("trigSF", "", 500, -5, 5);
-  h_btagW = new TH1D("btagW", "", 5000, -5, 5);
-  h_ctagW = new TH1D("ctagW", "", 5000, -5, 5);
-  h_evtW = new TH1D("evtW", "", 5000, -5, 5);
+  h_btagW = new TH1D("btagW", "", 500, -5, 5);
+  h_ctagW = new TH1D("ctagW", "", 500, -5, 5);
+  h_evtW = new TH1D("evtW", "", 500, -5, 5);
 
   h_nJet = new TH1D("nJet", "", 20, -0.5, 19.5);
   h_nAnalysisJet = new TH1D("nAnalysisJet", "", 20, -0.5, 19.5);
