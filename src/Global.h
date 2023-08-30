@@ -63,6 +63,12 @@ namespace glob {
         parameterNames.push_back("jet_deepJetT_2016") ;
         parameterNames.push_back("jet_deepJetT_2017") ;
         parameterNames.push_back("jet_deepJetT_2018") ;
+        parameterNames.push_back("jet_deepJetM_CvL_2016");
+        parameterNames.push_back("jet_deepJetM_CvB_2016");
+        parameterNames.push_back("jet_deepJetM_CvL_2017");
+        parameterNames.push_back("jet_deepJetM_CvB_2017");
+        parameterNames.push_back("jet_deepJetM_CvL_2018");
+        parameterNames.push_back("jet_deepJetM_CvB_2018");
       };
       
       // Get method
@@ -113,6 +119,13 @@ namespace glob {
           if (name == "jet_deepJetT_2016") return jet_deepJetT_2016 ;
           if (name == "jet_deepJetT_2017") return jet_deepJetT_2017 ;
           if (name == "jet_deepJetT_2018") return jet_deepJetT_2018 ;
+          
+          if (name == "jet_deepJetM_CvL_2016") return jet_deepJetM_CvL_2016;
+          if (name == "jet_deepJetM_CvB_2016") return jet_deepJetM_CvB_2016;
+          if (name == "jet_deepJetM_CvL_2017") return jet_deepJetM_CvL_2017;
+          if (name == "jet_deepJetM_CvB_2017") return jet_deepJetM_CvB_2017;
+          if (name == "jet_deepJetM_CvL_2018") return jet_deepJetM_CvL_2018;
+          if (name == "jet_deepJetM_CvB_2018") return jet_deepJetM_CvB_2018;
 
           // If we somehow miss one of the cases, return -1.
           return -1;
@@ -191,6 +204,13 @@ namespace glob {
           if (name == "jet_deepJetT_2016") jet_deepJetT_2016 = val;
           if (name == "jet_deepJetT_2017") jet_deepJetT_2017 = val;
           if (name == "jet_deepJetT_2018") jet_deepJetT_2018 = val;
+          
+          if (name == "jet_deepJetM_CvL_2016") jet_deepJetM_CvL_2016 = val;
+          if (name == "jet_deepJetM_CvB_2016") jet_deepJetM_CvB_2016 = val;
+          if (name == "jet_deepJetM_CvL_2017") jet_deepJetM_CvL_2017 = val;
+          if (name == "jet_deepJetM_CvB_2017") jet_deepJetM_CvB_2017 = val;
+          if (name == "jet_deepJetM_CvL_2018") jet_deepJetM_CvL_2018 = val;
+          if (name == "jet_deepJetM_CvB_2018") jet_deepJetM_CvB_2018 = val;
         }
         // Otherwise, return an "error"/warning message.
         else {
@@ -261,6 +281,13 @@ namespace glob {
       float jet_deepJetT_2016 ;
       float jet_deepJetT_2017 ;
       float jet_deepJetT_2018 ;
+      
+      float jet_deepJetM_CvL_2016;
+      float jet_deepJetM_CvB_2016;
+      float jet_deepJetM_CvL_2017;
+      float jet_deepJetM_CvB_2017;
+      float jet_deepJetM_CvL_2018;
+      float jet_deepJetM_CvB_2018;
 
       std::vector<std::string> initializedVars;
       std::vector<std::string> parameterNames;

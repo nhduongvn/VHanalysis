@@ -36,6 +36,23 @@ void Selector::SetBtagCalib(std::string csvFileName, std::string taggerName, std
 
 }
 
+// This is where we setup the Ctag calibration. We have four parameters with it.
+void Selector::SetCtagCalib(std::string csvFileName, std::string taggerName, std::string effFileName, std::string ctagUncType) {
+
+  m_ctagCal = BTagCalibration(taggerName, csvFileName);
+  m_ctagReader = BTagCalibrationReader(BTagEntry::OP_MEDIUM, // operating point
+	                               "central",            // central sys type
+				       {"up","down"});       // other sys type
+  
+  m_ctagReader.load(m_ctagCal, BTagEntry::FLAV_B, "comb");
+  m_ctagReader.load(m_ctagCal, BTagEntry::FLAV_C, "comb");
+  m_ctagReader.load(m_ctagCal, BTagEntry::FLAV_UDSG, "incl");
+
+  m_ctagUncType = ctagUncType;
+  m_ctagEffFile = new TFile(effFileName.c_str(), "READ");
+
+}
+
 void Selector::SetEleEffCorr(std::vector<std::string> fName_trig,std::string fName_recSF, std::string fName_IDSF, std::vector<float> w_trig, std::string eleUncType) {
   std::string trigN("EGamma_SF2D");
   TFile* fRec = new TFile(fName_recSF.c_str(),"READ") ;
@@ -239,6 +256,81 @@ float Selector::CalBtagWeight(std::vector<JetObj>& jets, std::string jet_main_bt
   float sf(1.) ;
   if (pMC > 0) sf = pData/pMC ;
   return sf ;
+}
+
+//This method is what we use to determine the scale factor / event weight for c-tagging.
+float Selector::CalCtagWeight(std::vector<JetObj>& jets, std::string jet_main_ctagWP, std::string uncType) {
+
+  // Get the calibration files (suggested by BTV group)
+  std::string bN = "b_pt_eff_" + m_year;
+  std::string cN = "c_pt_eff_" + m_year;
+  std::string lN = "l_pt_eff_" + m_year;
+  if (jet_main_ctagWP.find("deepJet") != std::string::npos) {
+    bN = "bdj_pt_eff_" + m_year;
+    cN = "cdj_pt_eff_" + m_year;
+    lN = "ldj_pt_eff_" + m_year;
+  }
+  
+  TH1D* hEff_b = (TH1D*)m_ctagEffFile->Get(bN.c_str());
+  TH1D* hEff_c = (TH1D*)m_ctagEffFile->Get(cN.c_str());
+  TH1D* hEff_l = (TH1D*)m_ctagEffFile->Get(lN.c_str());
+  float pMC(1.);
+  float pData(1.);
+  
+  // Go through each jet in the given event (from function parameter)
+  for (std::vector<JetObj>::iterator jetIt = jets.begin(); jetIt != jets.end(); ++jetIt) {
+    
+    // Get the pT of the jet & its flavor
+    float jetPt = (jetIt->m_lvec).Pt();
+    int iBin = hEff_c->FindFixBin(jetPt) ; //return overflow bin if jetPt > max pt range
+    unsigned flav = jetIt->m_flav ;
+    
+    // Determine what type of uncertainty we want.
+    std::string uncTypeInput = "central";
+    float eff = hEff_l->GetBinContent(iBin); //jet with pt > max pt range of efficinecy histogram will get the eff of overflow bins
+    //if (eff <= 0) std::cout << "\n Warning: Efficiency <=0, " << eff ; //we do not want eff = 0 
+    
+    // Check the flavors of the jets & get the appropriate efficiency.
+    BTagEntry::JetFlavor flavCode(BTagEntry::FLAV_UDSG) ;
+    if (flav == 5) {
+      eff = hEff_b->GetBinContent(iBin);
+      flavCode = BTagEntry::FLAV_B;
+    }
+    if (flav == 4) {
+      eff = hEff_c->GetBinContent(iBin);
+      flavCode = BTagEntry::FLAV_C;
+    }
+    
+    if (uncType == "up" || uncType == "down") uncTypeInput = uncType; //all bc and light are up together
+    if (uncType == "light_up" && flav != 4 && flav != 5) uncTypeInput = "up";
+    if (uncType == "light_down" && flav != 4 && flav != 5) uncTypeInput = "down";
+    if (uncType == "bc_up" && (flav == 4 || flav == 5)) uncTypeInput = "up";
+    if (uncType == "bc_down" && (flav == 4 || flav == 5)) uncTypeInput = "down";
+    
+    // Determine the scale factor for this jet
+    float sf = m_ctagReader.eval_auto_bounds(
+                 uncTypeInput,
+                 flavCode,
+                 fabs((jetIt->m_lvec).Eta()),
+                 jetPt
+    );
+    
+    // Pass c-tagging requirement
+    if (jetIt->m_deepCvL > CUTS.Get<float>("jet_"+jet_main_ctagWP+"_CvL_" + m_year) && 
+        jetIt->m_deepCvB > CUTS.Get<float>("jet_"+jet_main_ctagWP+"_CvB_" + m_year) {
+      pData = pData*sf*eff;
+      pMC = pMC*eff;
+    }
+    else {
+      pData = pData * (1-sf*eff);
+      pMC = pMC * (1-eff);
+    }
+  }//end-loop over jet
+  
+  // Determine the sf from the Data & MC values
+  float sf(1.) ;
+  if (pMC > 0) sf = pData / pMC;
+  return sf;
 }
 
 //Get scale factors from a list of calibration histograms h (each histo corresponds to a run periods, for example muon in 2016 has scale factors for B->F and G->H sets. w are weights for each sets 

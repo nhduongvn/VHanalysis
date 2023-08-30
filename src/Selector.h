@@ -84,6 +84,12 @@ class Selector
   BTagCalibrationReader m_btagReader ;
   LumiMaskFilter m_lumiFilter ;
 
+  //for ctagging SFs
+  TFile* m_ctagEffFile ;
+  BTagCalibration m_ctagCal ;
+  BTagCalibrationReader m_btagReader ;
+  LumiMaskFilter m_lumiFilter ;
+
   //for electron SFs
   std::vector<TH2F*> m_hSF_eleTrig ;
   TH2F* m_hSF_eleRec ;
