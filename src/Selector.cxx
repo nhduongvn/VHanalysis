@@ -266,8 +266,6 @@ float Selector::CalBtagWeight(std::vector<JetObj>& jets, std::string jet_main_bt
 //This method is what we use to determine the scale factor / event weight for c-tagging.
 float Selector::CalCtagWeight(std::vector<JetObj>& jets, std::string jet_main_ctagWP, std::string uncType) {
 
-  return 1.0;
-
   // Get the calibration files (suggested by BTV group)
   std::string bN = "b_pt_eff_" + m_year;
   std::string cN = "c_pt_eff_" + m_year;
