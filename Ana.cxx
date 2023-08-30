@@ -191,6 +191,7 @@ int main(int argc, char *argv[]) {
   fName_btagSF = "CalibData/DeepJet_2016LegacySF_WP_V1.csv";
   //fName_btagSF = "CalibData/wp_deepJet_2016.csv";
   fName_ctagSF = "CalibData/ctagging_wp_deepJet_106XUL16postVFP_v1.csv";
+  fName_ctagSF = fName_btagSF;
   fName_puSF = "CalibData/2016_pileup_ratio.root";
   if (syst == "PUU") fName_puSF = "CalibData/2016_pileup_ratio_up.root";
   if (syst == "PUD") fName_puSF = "CalibData/2016_pileup_ratio_down.root";
@@ -201,6 +202,7 @@ int main(int argc, char *argv[]) {
   fName_btagSF = "CalibData/DeepFlavour_94XSF_WP_V3_B_F.csv";
   //fName_btagSF = "CalibData/wp_deepJet_2017.csv";
   fName_ctagSF = "CalibData/ctagging_wp_deepJet_106XUL17_v1.csv";
+  fName_ctagSF = fName_btagSF;
   fName_puSF = "CalibData/2017_pileup_ratio.root";
   if (syst == "PUU") fName_puSF = "CalibData/2017_pileup_ratio_up.root";
   if (syst == "PUD") fName_puSF = "CalibData/2017_pileup_ratio_down.root";
@@ -211,6 +213,7 @@ int main(int argc, char *argv[]) {
   fName_btagSF = "CalibData/DeepJet_102XSF_WP_V1.csv";
   //fName_btagSF = "CalibData/wp_deepJet_2018.csv";
   fName_ctagSF = "CalibData/ctagging_wp_deepJet_106XUL18_v2.csv";
+  fName_ctagSF = fName_btagSF;
   fName_puSF = "CalibData/2018_pileup_ratio.root";
   if (syst == "PUU") fName_puSF = "CalibData/2018_pileup_ratio_up.root";
   if (syst == "PUD") fName_puSF = "CalibData/2018_pileup_ratio_down.root";
@@ -247,13 +250,19 @@ int main(int argc, char *argv[]) {
   sel.SetPUjetidCalib(fName_PUjetID_SF,fName_PUjetID_eff,jetPUidUncType); //pileup jet ID SF
   
   // Add what allows us to calibrate based on b-tags
+  std::cout << "Setting b-tagging calibration..." << std::endl;
   if (CUTS.GetStr("jet_main_btagWP")=="deepCSVT") sel.SetBtagCalib(fName_btagSF,"DeepCSV","CalibData/effT.root",btagUncType);
   if (CUTS.GetStr("jet_main_btagWP")=="deepJetT") sel.SetBtagCalib(fName_btagSF,"DeepJet","CalibData/effT.root",btagUncType);
   if (CUTS.GetStr("jet_main_btagWP")=="deepCSVM") sel.SetBtagCalib(fName_btagSF,"DeepCSV","CalibData/effM.root",btagUncType);
   if (CUTS.GetStr("jet_main_btagWP")=="deepJetM") sel.SetBtagCalib(fName_btagSF,"DeepJet","CalibData/effM.root",btagUncType);
 
   // Add what allows us to calibrate based on c-tags
-
+  std::cout << "Setting c-tagging calibration..." << std::endl;
+  if (CUTS.GetStr("jet_main_btagWP")=="deepCSVT") sel.SetCtagCalib(fName_ctagSF,"DeepCSV","CalibData/effT.root",ctagUncType);
+  if (CUTS.GetStr("jet_main_btagWP")=="deepJetT") sel.SetCtagCalib(fName_ctagSF,"DeepJet","CalibData/effT.root",ctagUncType);
+  if (CUTS.GetStr("jet_main_btagWP")=="deepCSVM") sel.SetCtagCalib(fName_ctagSF,"DeepCSV","CalibData/effM.root",ctagUncType);
+  if (CUTS.GetStr("jet_main_btagWP")=="deepJetM") sel.SetCtagCalib(fName_ctagSF,"DeepJet","CalibData/effM.root",ctagUncType);
+  std::cout << "jet_main_btagWP = " << CUTS.GetStr("jet_main_btagWP") << std::endl;
 #endif
 #if defined(DATA_2016) || defined(DATA_2017) || defined(DATA_2018)
   sel.SetLumiMaskFilter(fName_lumiMaskFilter);

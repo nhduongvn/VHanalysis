@@ -183,6 +183,7 @@ class VH_selection : public Selector {
     TH1D* h_l1preW;
     TH1D* h_trigSF;
     TH1D* h_btagW;
+    TH1D* h_ctagW;
     TH1D* h_evtW;
 
     TH1D* h_nJet;

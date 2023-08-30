@@ -87,8 +87,8 @@ class Selector
   //for ctagging SFs
   TFile* m_ctagEffFile ;
   BTagCalibration m_ctagCal ;
-  BTagCalibrationReader m_btagReader ;
-  LumiMaskFilter m_lumiFilter ;
+  BTagCalibrationReader m_ctagReader ;
+  //LumiMaskFilter m_lumiFilter ;
 
   //for electron SFs
   std::vector<TH2F*> m_hSF_eleTrig ;
@@ -104,6 +104,7 @@ class Selector
   std::vector<float> m_muonID_w ;
 
   std::string m_btagUncType;
+  std::string m_ctagUncType;
   std::string m_eleUncType;
   std::string m_muonUncType;
   std::string m_jetmetSystType;

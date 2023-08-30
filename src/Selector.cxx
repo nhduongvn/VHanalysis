@@ -39,18 +39,23 @@ void Selector::SetBtagCalib(std::string csvFileName, std::string taggerName, std
 // This is where we setup the Ctag calibration. We have four parameters with it.
 void Selector::SetCtagCalib(std::string csvFileName, std::string taggerName, std::string effFileName, std::string ctagUncType) {
 
+  std::cout << "Setting ctagCal & ctagReader..." << std::endl;
+  std::cout << ">>> ctagCal..." << std::endl;
   m_ctagCal = BTagCalibration(taggerName, csvFileName);
+  std::cout << ">>> ctagReader..." << std::endl;
   m_ctagReader = BTagCalibrationReader(BTagEntry::OP_MEDIUM, // operating point
 	                               "central",            // central sys type
 				       {"up","down"});       // other sys type
   
+  std::cout << "Loading ctagReader..." << std::endl;
   m_ctagReader.load(m_ctagCal, BTagEntry::FLAV_B, "comb");
   m_ctagReader.load(m_ctagCal, BTagEntry::FLAV_C, "comb");
   m_ctagReader.load(m_ctagCal, BTagEntry::FLAV_UDSG, "incl");
 
+  std::cout << "Loading ctagEff file..." << std::endl;
   m_ctagUncType = ctagUncType;
   m_ctagEffFile = new TFile(effFileName.c_str(), "READ");
-
+  std::cout << "CtagCalib completed." << std::endl;
 }
 
 void Selector::SetEleEffCorr(std::vector<std::string> fName_trig,std::string fName_recSF, std::string fName_IDSF, std::vector<float> w_trig, std::string eleUncType) {
@@ -261,6 +266,8 @@ float Selector::CalBtagWeight(std::vector<JetObj>& jets, std::string jet_main_bt
 //This method is what we use to determine the scale factor / event weight for c-tagging.
 float Selector::CalCtagWeight(std::vector<JetObj>& jets, std::string jet_main_ctagWP, std::string uncType) {
 
+  return 1.0;
+
   // Get the calibration files (suggested by BTV group)
   std::string bN = "b_pt_eff_" + m_year;
   std::string cN = "c_pt_eff_" + m_year;
@@ -317,7 +324,7 @@ float Selector::CalCtagWeight(std::vector<JetObj>& jets, std::string jet_main_ct
     
     // Pass c-tagging requirement
     if (jetIt->m_deepCvL > CUTS.Get<float>("jet_"+jet_main_ctagWP+"_CvL_" + m_year) && 
-        jetIt->m_deepCvB > CUTS.Get<float>("jet_"+jet_main_ctagWP+"_CvB_" + m_year) {
+        jetIt->m_deepCvB > CUTS.Get<float>("jet_"+jet_main_ctagWP+"_CvB_" + m_year)) {
       pData = pData*sf*eff;
       pMC = pMC*eff;
     }

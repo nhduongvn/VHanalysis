@@ -443,6 +443,7 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_l1preW = new TH1D("l1preW", "", 500, -5, 5);
   h_trigSF = new TH1D("trigSF", "", 500, -5, 5);
   h_btagW = new TH1D("btagW", "", 5000, -5, 5);
+  h_ctagW = new TH1D("ctagW", "", 5000, -5, 5);
   h_evtW = new TH1D("evtW", "", 5000, -5, 5);
 
   h_nJet = new TH1D("nJet", "", 20, -0.5, 19.5);
@@ -463,6 +464,7 @@ void VH_selection::SlaveBegin(Reader *r) {
   r->GetOutputList()->Add(h_l1preW);
   r->GetOutputList()->Add(h_trigSF);
   r->GetOutputList()->Add(h_btagW);
+  r->GetOutputList()->Add(h_ctagW);
   r->GetOutputList()->Add(h_evtW);
 
   r->GetOutputList()->Add(h_nJet);
@@ -801,6 +803,10 @@ void VH_selection::Process(Reader* r) {
   float btagW = CalBtagWeight(jets, CUTS.GetStr("jet_main_btagWP"), m_btagUncType); 
   h_btagW->Fill(btagW);
   evtW *= btagW;
+  
+  float ctagW = CalCtagWeight(jets, CUTS.GetStr("jet_main_btagWP"), m_ctagUncType);
+  h_ctagW->Fill(ctagW);
+  evtW *= ctagW;
 
   h_evtW->Fill(evtW);
 #endif
