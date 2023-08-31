@@ -56,12 +56,14 @@ def getHist(plotName, sample_names, hist_files, lumiScales):
 
 ## == Main Code ===============================================================
 
+print "Pulling settings and preferences..."
+
 ## Edit / change the following options as needed:
 years = ['16', '17', '18']
 regions = ['tags', 'algo', 'both']
 useLogY = False
-outputDir = '../plot_results/new_Aug2023/'
-dirpath = '../condor_results/updatedResults_Aug2023/NONE/'
+outputDir = '../plot_results/Aug2023_SF/'
+dirpath = '../condor_results/Aug2023_addedTagSF/NONE/'
 plotCat = 'VbbHcc_plot'
 
 #regions = ['']
