@@ -108,22 +108,25 @@ outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_
 outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Aug2023_addedTagSF/' + syst + '/'
 
 #Input data sets
-#dataSet_list = sourceDir+"/Dataset_lists/datasets_JetHT_combined.txt" #data
-#dataSet_list = sourceDir+"/Dataset_lists/datasets_QCD100to200.txt" 
-#dataSet_list = sourceDir+"/Dataset_lists/datasets_major_signal_bckg.txt" #signal + QCD/ttbar
-#dataSet_list = sourceDir+"/Dataset_lists/datasets_ZH.txt"
-dataSet_list = sourceDir+"/Dataset_lists/datasets_NANOAODv9_MC.txt"
+#dataSet_list = sourceDir+"/Dataset_lists/datasets_NANOAODv9_MC.txt"
 #dataSet_list = sourceDir+"/Dataset_lists/datasets_JetHT_combined.txt"
-#dataSet_list = sourceDir+"/Dataset_lists/datasets_SingleMuon_combined.txt"
-#dataSet_list = sourceDir+"/Dataset_lists/datasets_SingleMuon.txt"
-#dataSet_lists = [sourceDir+"/Dataset_lists/datasets_SingleMuon.txt"]
-#dataSet_lists = [sourceDir+"/Dataset_lists/datasets_major_signal_bckg.txt"]
-#dataSet_lists = [sourceDir+"/Dataset_lists/datasets_ZH.txt"]
-dataSet_lists = [sourceDir+"/Dataset_lists/datasets_NANOAODv9_MC.txt"]
+#dataSet_lists = [sourceDir+"/Dataset_lists/datasets_NANOAODv9_MC.txt"]
 #dataSet_lists = [sourceDir+"/Dataset_lists/datasets_JetHT_combined.txt"]
-#dataSet_list = sourceDir+"/Dataset_lists/datasets_trigEff.txt"
-#dataSet_list = sourceDir+"/Dataset_lists/datasets_NANOAODv9_MC.txt" #all except Hcc
-#dataSet_list = sourceDir+"/Dataset_lists/datasets_HToCC_NANOAODV7_MC.txt" #data
+dataSet_list = sourceDir+"/Dataset_lists/separated/datasets_ZH_MC.txt"
+dataSet_lists = [sourceDir+"/Dataset_lists/separated/datasets_ZH_MC.txt"]
+#dataSet_list = sourceDir+"/Dataset_lists/separated/datasets_Wjets_MC.txt"
+#dataSet_lists = [sourceDir+"/Dataset_lists/separated/datasets_Wjets_MC.txt"]
+#dataSet_list = sourceDir+"/Dataset_lists/separated/datasets_Zjets_MC.txt"
+#dataSet_lists = [sourceDir+"/Dataset_lists/separated/datasets_Zjets_MC.txt"]
+#dataSet_list = sourceDir+"/Dataset_lists/separated/datasets_ttbar_MC.txt"
+#dataSet_lists = [sourceDir+"/Dataset_lists/separated/datasets_ttbar_MC.txt"]
+#dataSet_list = sourceDir+"/Dataset_lists/separated/datasets_singletop_MC.txt"
+#dataSet_lists = [sourceDir+"/Dataset_lists/separated/datasets_singletop_MC.txt"]
+#dataSet_list = sourceDir+"/Dataset_lists/separated/datasets_QCD_MC.txt"
+#dataSet_lists = [sourceDir+"/Dataset_lists/separated/datasets_QCD_MC.txt"]
+#dataSet_list = sourceDir+"/Dataset_lists/separated/datasets_diboson_MC.txt"
+#dataSet_lists = [sourceDir+"/Dataset_lists/separated/datasets_diboson_MC.txt"]
+
 nFile = 2
 dir_file_list = sourceDir+'/FileLists/'
 
