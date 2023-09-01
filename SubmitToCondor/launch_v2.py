@@ -77,7 +77,7 @@ def make_input_file_list(nFile, outDir_file_list, file_list_name):
 
 
 #///////////////////////////////////////////////////////////////////
-runMode = 0 #0: submit, 1: check output and hadd output file
+runMode = 1 #0: submit, 1: check output and hadd output file
 submit = True # for testing setup or executing submission 
 debug = False   # just run on 10000 
 haddData = True # use to combine DATA runs back together
@@ -108,12 +108,12 @@ outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_
 outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Aug2023_addedTagSF/' + syst + '/'
 
 #Input data sets
-#dataSet_list = sourceDir+"/Dataset_lists/datasets_NANOAODv9_MC.txt"
+dataSet_list = sourceDir+"/Dataset_lists/datasets_NANOAODv9_MC.txt"
 #dataSet_list = sourceDir+"/Dataset_lists/datasets_JetHT_combined.txt"
-#dataSet_lists = [sourceDir+"/Dataset_lists/datasets_NANOAODv9_MC.txt"]
+dataSet_lists = [sourceDir+"/Dataset_lists/datasets_NANOAODv9_MC.txt"]
 #dataSet_lists = [sourceDir+"/Dataset_lists/datasets_JetHT_combined.txt"]
-dataSet_list = sourceDir+"/Dataset_lists/separated/datasets_ZH_MC.txt"
-dataSet_lists = [sourceDir+"/Dataset_lists/separated/datasets_ZH_MC.txt"]
+#dataSet_list = sourceDir+"/Dataset_lists/separated/datasets_ZH_MC.txt"
+#dataSet_lists = [sourceDir+"/Dataset_lists/separated/datasets_ZH_MC.txt"]
 #dataSet_list = sourceDir+"/Dataset_lists/separated/datasets_Wjets_MC.txt"
 #dataSet_lists = [sourceDir+"/Dataset_lists/separated/datasets_Wjets_MC.txt"]
 #dataSet_list = sourceDir+"/Dataset_lists/separated/datasets_Zjets_MC.txt"
