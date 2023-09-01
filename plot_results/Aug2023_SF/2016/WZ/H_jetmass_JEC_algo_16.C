@@ -1,0 +1,138 @@
+#ifdef __CLING__
+#pragma cling optimize(0)
+#endif
+void H_jetmass_JEC_algo_16()
+{
+//=========Macro generated from canvas: H_jetmass_JEC_algo_16/H_jetmass_JEC_algo_16
+//=========  (Fri Sep  1 13:23:39 2023) by ROOT version 6.28/04
+   TCanvas *H_jetmass_JEC_algo_16 = new TCanvas("H_jetmass_JEC_algo_16", "H_jetmass_JEC_algo_16",0,0,600,600);
+   gStyle->SetOptStat(0);
+   H_jetmass_JEC_algo_16->SetHighLightColor(2);
+   H_jetmass_JEC_algo_16->Range(-60,-1.711133,340,15.40019);
+   H_jetmass_JEC_algo_16->SetFillColor(0);
+   H_jetmass_JEC_algo_16->SetBorderMode(0);
+   H_jetmass_JEC_algo_16->SetBorderSize(2);
+   H_jetmass_JEC_algo_16->SetLeftMargin(0.15);
+   H_jetmass_JEC_algo_16->SetFrameBorderMode(0);
+   H_jetmass_JEC_algo_16->SetFrameBorderMode(0);
+   
+   TH1D *VbbHcc_algo_H_jetmass_JEC__655 = new TH1D("VbbHcc_algo_H_jetmass_JEC__655","",150,0,300);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(3,0.1230492);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(4,1.014714);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(5,3.646161);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(6,10.59177);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(7,11.23192);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(8,13.0372);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(9,11.70917);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(10,8.69104);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(11,6.443306);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(12,5.266927);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(13,4.747267);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(14,3.849525);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(15,3.865679);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(16,2.812616);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(17,2.541369);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(18,1.876421);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(19,1.365701);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(20,0.9705791);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(21,1.362861);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(22,0.8031129);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(23,0.5520625);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(24,0.3900917);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(25,0.6316918);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(26,0.4266392);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(28,0.3948184);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(29,0.4115639);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(30,0.09343388);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(31,0.2124945);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(32,0.3857775);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(33,0.08284658);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(35,0.1794423);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(36,0.3783622);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(39,0.1710723);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(40,0.2003773);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(41,0.404399);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(42,0.3473816);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(43,0.308055);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(44,0.2076568);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(46,0.2958432);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(47,0.1418059);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(48,0.1891207);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(49,0.1375954);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(52,0.1016384);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(54,0.09294618);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(56,0.1357049);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinContent(60,0.1090194);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(3,0.09120117);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(4,0.2940069);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(5,0.5554619);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(6,0.9521285);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(7,0.9903089);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(8,1.071713);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(9,1.036584);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(10,0.8960549);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(11,0.7697679);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(12,0.6990177);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(13,0.6748838);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(14,0.614745);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(15,0.6161239);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(16,0.5334553);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(17,0.5007729);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(18,0.4386049);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(19,0.3681327);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(20,0.3219331);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(21,0.3665397);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(22,0.2869834);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(23,0.2268025);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(24,0.1960416);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(25,0.2421605);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(26,0.1923444);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(28,0.1991984);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(29,0.2072658);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(30,0.09343388);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(31,0.1518944);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(32,0.1929408);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(33,0.08284658);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(35,0.1273599);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(36,0.189606);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(39,0.121301);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(40,0.1416891);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(41,0.1980835);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(42,0.1780677);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(43,0.1830177);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(44,0.1471195);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(46,0.1710753);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(47,0.1418059);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(48,0.1338816);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(49,0.1375954);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(52,0.1016384);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(54,0.09294618);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(56,0.1357049);
+   VbbHcc_algo_H_jetmass_JEC__655->SetBinError(60,0.1090194);
+   VbbHcc_algo_H_jetmass_JEC__655->SetEntries(1159);
+
+   Int_t ci;      // for color index setting
+   TColor *color; // for color definition with alpha
+   ci = TColor::GetColor("#3399ff");
+   VbbHcc_algo_H_jetmass_JEC__655->SetFillColor(ci);
+   VbbHcc_algo_H_jetmass_JEC__655->GetXaxis()->SetTitle("c-jet mass (w/ JEC) [GeV]");
+   VbbHcc_algo_H_jetmass_JEC__655->GetXaxis()->SetRange(1,150);
+   VbbHcc_algo_H_jetmass_JEC__655->GetXaxis()->SetLabelFont(42);
+   VbbHcc_algo_H_jetmass_JEC__655->GetXaxis()->SetTitleOffset(1);
+   VbbHcc_algo_H_jetmass_JEC__655->GetXaxis()->SetTitleFont(42);
+   VbbHcc_algo_H_jetmass_JEC__655->GetYaxis()->SetLabelFont(42);
+   VbbHcc_algo_H_jetmass_JEC__655->GetYaxis()->SetTitleFont(42);
+   VbbHcc_algo_H_jetmass_JEC__655->GetZaxis()->SetLabelFont(42);
+   VbbHcc_algo_H_jetmass_JEC__655->GetZaxis()->SetTitleOffset(1);
+   VbbHcc_algo_H_jetmass_JEC__655->GetZaxis()->SetTitleFont(42);
+   VbbHcc_algo_H_jetmass_JEC__655->Draw("HIST");
+   TLatex *   tex = new TLatex(0.25,0.937775,"CMS Work in Progress #sqrt{s} = 13 TeV, 35.9 fb^{-1}");
+   tex->SetNDC();
+   tex->SetTextFont(42);
+   tex->SetTextSize(0.04);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   H_jetmass_JEC_algo_16->Modified();
+   H_jetmass_JEC_algo_16->cd();
+   H_jetmass_JEC_algo_16->SetSelected(H_jetmass_JEC_algo_16);
+}

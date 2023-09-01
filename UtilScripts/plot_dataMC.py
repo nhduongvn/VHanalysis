@@ -60,6 +60,7 @@ print "Pulling settings and preferences..."
 
 ## Edit / change the following options as needed:
 years = ['16', '17', '18']
+years = ['18']
 regions = ['tags', 'algo', 'both']
 useLogY = False
 outputDir = '../plot_results/Aug2023_SF/'
@@ -159,6 +160,7 @@ for s in ss:
         lumiScales[s][y][iN] = scaleToLumi1(fileNames[s][y][iN], xSecs[s][y][iN], lumi)
 
 nums = {}
+print "All files retrieved..."
 
 ## Go through each region of interest
 for r in regions:
@@ -268,6 +270,8 @@ for r in regions:
     ####################################
     ## Plot control plots for ALL years 
     ####################################
+    
+    continue
     
     ## Start by getting the first plot for each sample
     hDataA = hData['16'].Clone(hData['16'].GetName()+'_all')
