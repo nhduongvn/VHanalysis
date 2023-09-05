@@ -4,9 +4,8 @@
 void Sphericity_tags_16()
 {
 //=========Macro generated from canvas: Sphericity_tags_16/Sphericity_tags_16
-//=========  (Fri Sep  1 13:23:33 2023) by ROOT version 6.28/04
+//=========  (Tue Sep  5 11:02:10 2023) by ROOT version 6.28/04
    TCanvas *Sphericity_tags_16 = new TCanvas("Sphericity_tags_16", "Sphericity_tags_16",0,0,600,600);
-   gStyle->SetOptStat(0);
    Sphericity_tags_16->SetHighLightColor(2);
    Sphericity_tags_16->Range(0,0,1,1);
    Sphericity_tags_16->SetFillColor(0);
@@ -20,7 +19,7 @@ void Sphericity_tags_16()
    TPad *topPad = new TPad("topPad", "topPad",0,0.3,1,1);
    topPad->Draw();
    topPad->cd();
-   topPad->Range(-0.1532254,-142.075,1.052419,141942.9);
+   topPad->Range(-0.1532254,-142.0755,1.052419,141943.4);
    topPad->SetFillColor(0);
    topPad->SetBorderMode(0);
    topPad->SetBorderSize(2);
@@ -34,33 +33,33 @@ void Sphericity_tags_16()
    st->SetName("st");
    st->SetTitle("");
    st->SetMinimum(0.01);
-   st->SetMaximum(127734.4);
+   st->SetMaximum(127734.8);
    
-   TH1F *st_stack_15 = new TH1F("st_stack_15","",25,0,1);
-   st_stack_15->SetMinimum(0.01);
-   st_stack_15->SetMaximum(127734.4);
-   st_stack_15->SetDirectory(nullptr);
-   st_stack_15->SetStats(0);
+   TH1F *st_stack_43 = new TH1F("st_stack_43","",25,0,1);
+   st_stack_43->SetMinimum(0.01);
+   st_stack_43->SetMaximum(127734.8);
+   st_stack_43->SetDirectory(nullptr);
+   st_stack_43->SetStats(0);
 
    Int_t ci;      // for color index setting
    TColor *color; // for color definition with alpha
    ci = TColor::GetColor("#000099");
-   st_stack_15->SetLineColor(ci);
-   st_stack_15->SetLineWidth(0);
-   st_stack_15->GetXaxis()->SetRange(1,25);
-   st_stack_15->GetXaxis()->SetLabelFont(42);
-   st_stack_15->GetXaxis()->SetTitleOffset(1);
-   st_stack_15->GetXaxis()->SetTitleFont(42);
-   st_stack_15->GetYaxis()->SetTitle("Events/0.04");
-   st_stack_15->GetYaxis()->SetLabelFont(42);
-   st_stack_15->GetYaxis()->SetLabelSize(0.05);
-   st_stack_15->GetYaxis()->SetTitleSize(0.057);
-   st_stack_15->GetYaxis()->SetTitleOffset(1.2);
-   st_stack_15->GetYaxis()->SetTitleFont(42);
-   st_stack_15->GetZaxis()->SetLabelFont(42);
-   st_stack_15->GetZaxis()->SetTitleOffset(1);
-   st_stack_15->GetZaxis()->SetTitleFont(42);
-   st->SetHistogram(st_stack_15);
+   st_stack_43->SetLineColor(ci);
+   st_stack_43->SetLineWidth(0);
+   st_stack_43->GetXaxis()->SetRange(1,25);
+   st_stack_43->GetXaxis()->SetLabelFont(42);
+   st_stack_43->GetXaxis()->SetTitleOffset(1);
+   st_stack_43->GetXaxis()->SetTitleFont(42);
+   st_stack_43->GetYaxis()->SetTitle("Events/0.04");
+   st_stack_43->GetYaxis()->SetLabelFont(42);
+   st_stack_43->GetYaxis()->SetLabelSize(0.05);
+   st_stack_43->GetYaxis()->SetTitleSize(0.057);
+   st_stack_43->GetYaxis()->SetTitleOffset(1.2);
+   st_stack_43->GetYaxis()->SetTitleFont(42);
+   st_stack_43->GetZaxis()->SetLabelFont(42);
+   st_stack_43->GetZaxis()->SetTitleOffset(1);
+   st_stack_43->GetZaxis()->SetTitleFont(42);
+   st->SetHistogram(st_stack_43);
    
    
    TH1D *VbbHcc_tags_Sphericity_stack_1 = new TH1D("VbbHcc_tags_Sphericity_stack_1","",25,0,1);
@@ -121,45 +120,45 @@ void Sphericity_tags_16()
    st->Add(VbbHcc_tags_Sphericity_stack_1,"");
    
    TH1D *VbbHcc_tags_Sphericity_stack_2 = new TH1D("VbbHcc_tags_Sphericity_stack_2","",25,0,1);
-   VbbHcc_tags_Sphericity_stack_2->SetBinContent(1,199.1436);
-   VbbHcc_tags_Sphericity_stack_2->SetBinContent(2,151.9455);
-   VbbHcc_tags_Sphericity_stack_2->SetBinContent(3,89.55563);
-   VbbHcc_tags_Sphericity_stack_2->SetBinContent(4,56.57343);
-   VbbHcc_tags_Sphericity_stack_2->SetBinContent(5,30.22405);
-   VbbHcc_tags_Sphericity_stack_2->SetBinContent(6,17.62385);
-   VbbHcc_tags_Sphericity_stack_2->SetBinContent(7,11.52683);
-   VbbHcc_tags_Sphericity_stack_2->SetBinContent(8,6.083523);
-   VbbHcc_tags_Sphericity_stack_2->SetBinContent(9,5.517486);
-   VbbHcc_tags_Sphericity_stack_2->SetBinContent(10,2.661748);
-   VbbHcc_tags_Sphericity_stack_2->SetBinContent(11,1.504387);
-   VbbHcc_tags_Sphericity_stack_2->SetBinContent(12,1.128844);
-   VbbHcc_tags_Sphericity_stack_2->SetBinContent(13,1.16224);
-   VbbHcc_tags_Sphericity_stack_2->SetBinContent(14,1.119488);
-   VbbHcc_tags_Sphericity_stack_2->SetBinContent(15,1.164392);
-   VbbHcc_tags_Sphericity_stack_2->SetBinContent(16,0.266127);
-   VbbHcc_tags_Sphericity_stack_2->SetBinContent(17,0.4614613);
-   VbbHcc_tags_Sphericity_stack_2->SetBinContent(18,0.08171696);
-   VbbHcc_tags_Sphericity_stack_2->SetBinContent(19,0.1243346);
-   VbbHcc_tags_Sphericity_stack_2->SetBinError(1,5.549799);
-   VbbHcc_tags_Sphericity_stack_2->SetBinError(2,4.791402);
-   VbbHcc_tags_Sphericity_stack_2->SetBinError(3,3.721928);
-   VbbHcc_tags_Sphericity_stack_2->SetBinError(4,3.09128);
-   VbbHcc_tags_Sphericity_stack_2->SetBinError(5,2.170321);
-   VbbHcc_tags_Sphericity_stack_2->SetBinError(6,1.717189);
-   VbbHcc_tags_Sphericity_stack_2->SetBinError(7,1.314179);
-   VbbHcc_tags_Sphericity_stack_2->SetBinError(8,0.9216726);
-   VbbHcc_tags_Sphericity_stack_2->SetBinError(9,0.9104007);
-   VbbHcc_tags_Sphericity_stack_2->SetBinError(10,0.571861);
-   VbbHcc_tags_Sphericity_stack_2->SetBinError(11,0.5201329);
-   VbbHcc_tags_Sphericity_stack_2->SetBinError(12,0.3155235);
-   VbbHcc_tags_Sphericity_stack_2->SetBinError(13,0.3568473);
-   VbbHcc_tags_Sphericity_stack_2->SetBinError(14,0.3918913);
-   VbbHcc_tags_Sphericity_stack_2->SetBinError(15,0.4822246);
-   VbbHcc_tags_Sphericity_stack_2->SetBinError(16,0.2068693);
-   VbbHcc_tags_Sphericity_stack_2->SetBinError(17,0.2717684);
-   VbbHcc_tags_Sphericity_stack_2->SetBinError(18,0.05900741);
-   VbbHcc_tags_Sphericity_stack_2->SetBinError(19,0.0726346);
-   VbbHcc_tags_Sphericity_stack_2->SetEntries(9292);
+   VbbHcc_tags_Sphericity_stack_2->SetBinContent(1,199.3264);
+   VbbHcc_tags_Sphericity_stack_2->SetBinContent(2,151.2673);
+   VbbHcc_tags_Sphericity_stack_2->SetBinContent(3,89.91124);
+   VbbHcc_tags_Sphericity_stack_2->SetBinContent(4,56.49297);
+   VbbHcc_tags_Sphericity_stack_2->SetBinContent(5,30.34685);
+   VbbHcc_tags_Sphericity_stack_2->SetBinContent(6,17.65059);
+   VbbHcc_tags_Sphericity_stack_2->SetBinContent(7,11.44985);
+   VbbHcc_tags_Sphericity_stack_2->SetBinContent(8,6.091845);
+   VbbHcc_tags_Sphericity_stack_2->SetBinContent(9,5.485332);
+   VbbHcc_tags_Sphericity_stack_2->SetBinContent(10,2.646396);
+   VbbHcc_tags_Sphericity_stack_2->SetBinContent(11,1.537728);
+   VbbHcc_tags_Sphericity_stack_2->SetBinContent(12,1.11834);
+   VbbHcc_tags_Sphericity_stack_2->SetBinContent(13,1.148509);
+   VbbHcc_tags_Sphericity_stack_2->SetBinContent(14,1.102927);
+   VbbHcc_tags_Sphericity_stack_2->SetBinContent(15,1.15905);
+   VbbHcc_tags_Sphericity_stack_2->SetBinContent(16,0.2659382);
+   VbbHcc_tags_Sphericity_stack_2->SetBinContent(17,0.4594297);
+   VbbHcc_tags_Sphericity_stack_2->SetBinContent(18,0.03429457);
+   VbbHcc_tags_Sphericity_stack_2->SetBinContent(19,0.1240597);
+   VbbHcc_tags_Sphericity_stack_2->SetBinError(1,5.544555);
+   VbbHcc_tags_Sphericity_stack_2->SetBinError(2,4.783528);
+   VbbHcc_tags_Sphericity_stack_2->SetBinError(3,3.718116);
+   VbbHcc_tags_Sphericity_stack_2->SetBinError(4,3.086414);
+   VbbHcc_tags_Sphericity_stack_2->SetBinError(5,2.168748);
+   VbbHcc_tags_Sphericity_stack_2->SetBinError(6,1.715778);
+   VbbHcc_tags_Sphericity_stack_2->SetBinError(7,1.311272);
+   VbbHcc_tags_Sphericity_stack_2->SetBinError(8,0.9223128);
+   VbbHcc_tags_Sphericity_stack_2->SetBinError(9,0.9083747);
+   VbbHcc_tags_Sphericity_stack_2->SetBinError(10,0.5705754);
+   VbbHcc_tags_Sphericity_stack_2->SetBinError(11,0.5205896);
+   VbbHcc_tags_Sphericity_stack_2->SetBinError(12,0.3141237);
+   VbbHcc_tags_Sphericity_stack_2->SetBinError(13,0.3549845);
+   VbbHcc_tags_Sphericity_stack_2->SetBinError(14,0.3896352);
+   VbbHcc_tags_Sphericity_stack_2->SetBinError(15,0.4817303);
+   VbbHcc_tags_Sphericity_stack_2->SetBinError(16,0.206761);
+   VbbHcc_tags_Sphericity_stack_2->SetBinError(17,0.2714527);
+   VbbHcc_tags_Sphericity_stack_2->SetBinError(18,0.07319989);
+   VbbHcc_tags_Sphericity_stack_2->SetBinError(19,0.07247402);
+   VbbHcc_tags_Sphericity_stack_2->SetEntries(9408);
 
    ci = TColor::GetColor("#660066");
    VbbHcc_tags_Sphericity_stack_2->SetFillColor(ci);
@@ -658,56 +657,56 @@ void Sphericity_tags_16()
    st->Add(VbbHcc_tags_Sphericity_stack_12,"");
    st->Draw("hist");
    
-   TH1D *VbbHcc_tags_Sphericity__211 = new TH1D("VbbHcc_tags_Sphericity__211","",25,0,1);
-   VbbHcc_tags_Sphericity__211->SetBinContent(1,33450);
-   VbbHcc_tags_Sphericity__211->SetBinContent(2,24215);
-   VbbHcc_tags_Sphericity__211->SetBinContent(3,14065);
-   VbbHcc_tags_Sphericity__211->SetBinContent(4,8420);
-   VbbHcc_tags_Sphericity__211->SetBinContent(5,5091);
-   VbbHcc_tags_Sphericity__211->SetBinContent(6,3083);
-   VbbHcc_tags_Sphericity__211->SetBinContent(7,1794);
-   VbbHcc_tags_Sphericity__211->SetBinContent(8,1128);
-   VbbHcc_tags_Sphericity__211->SetBinContent(9,790);
-   VbbHcc_tags_Sphericity__211->SetBinContent(10,571);
-   VbbHcc_tags_Sphericity__211->SetBinContent(11,422);
-   VbbHcc_tags_Sphericity__211->SetBinContent(12,292);
-   VbbHcc_tags_Sphericity__211->SetBinContent(13,239);
-   VbbHcc_tags_Sphericity__211->SetBinContent(14,170);
-   VbbHcc_tags_Sphericity__211->SetBinContent(15,154);
-   VbbHcc_tags_Sphericity__211->SetBinContent(16,109);
-   VbbHcc_tags_Sphericity__211->SetBinContent(17,88);
-   VbbHcc_tags_Sphericity__211->SetBinContent(18,59);
-   VbbHcc_tags_Sphericity__211->SetBinContent(19,23);
-   VbbHcc_tags_Sphericity__211->SetBinContent(20,8);
-   VbbHcc_tags_Sphericity__211->SetBinContent(21,2);
-   VbbHcc_tags_Sphericity__211->SetBinContent(22,1);
-   VbbHcc_tags_Sphericity__211->SetEntries(94198);
+   TH1D *VbbHcc_tags_Sphericity__85 = new TH1D("VbbHcc_tags_Sphericity__85","",25,0,1);
+   VbbHcc_tags_Sphericity__85->SetBinContent(1,33450);
+   VbbHcc_tags_Sphericity__85->SetBinContent(2,24215);
+   VbbHcc_tags_Sphericity__85->SetBinContent(3,14065);
+   VbbHcc_tags_Sphericity__85->SetBinContent(4,8420);
+   VbbHcc_tags_Sphericity__85->SetBinContent(5,5091);
+   VbbHcc_tags_Sphericity__85->SetBinContent(6,3083);
+   VbbHcc_tags_Sphericity__85->SetBinContent(7,1794);
+   VbbHcc_tags_Sphericity__85->SetBinContent(8,1128);
+   VbbHcc_tags_Sphericity__85->SetBinContent(9,790);
+   VbbHcc_tags_Sphericity__85->SetBinContent(10,571);
+   VbbHcc_tags_Sphericity__85->SetBinContent(11,422);
+   VbbHcc_tags_Sphericity__85->SetBinContent(12,292);
+   VbbHcc_tags_Sphericity__85->SetBinContent(13,239);
+   VbbHcc_tags_Sphericity__85->SetBinContent(14,170);
+   VbbHcc_tags_Sphericity__85->SetBinContent(15,154);
+   VbbHcc_tags_Sphericity__85->SetBinContent(16,109);
+   VbbHcc_tags_Sphericity__85->SetBinContent(17,88);
+   VbbHcc_tags_Sphericity__85->SetBinContent(18,59);
+   VbbHcc_tags_Sphericity__85->SetBinContent(19,23);
+   VbbHcc_tags_Sphericity__85->SetBinContent(20,8);
+   VbbHcc_tags_Sphericity__85->SetBinContent(21,2);
+   VbbHcc_tags_Sphericity__85->SetBinContent(22,1);
+   VbbHcc_tags_Sphericity__85->SetEntries(94198);
 
    ci = TColor::GetColor("#000099");
-   VbbHcc_tags_Sphericity__211->SetLineColor(ci);
-   VbbHcc_tags_Sphericity__211->SetLineWidth(2);
-   VbbHcc_tags_Sphericity__211->SetMarkerStyle(20);
-   VbbHcc_tags_Sphericity__211->SetMarkerSize(1.2);
-   VbbHcc_tags_Sphericity__211->GetXaxis()->SetRange(1,100);
-   VbbHcc_tags_Sphericity__211->GetXaxis()->SetLabelFont(42);
-   VbbHcc_tags_Sphericity__211->GetXaxis()->SetTitleOffset(1);
-   VbbHcc_tags_Sphericity__211->GetXaxis()->SetTitleFont(42);
-   VbbHcc_tags_Sphericity__211->GetYaxis()->SetLabelFont(42);
-   VbbHcc_tags_Sphericity__211->GetYaxis()->SetTitleFont(42);
-   VbbHcc_tags_Sphericity__211->GetZaxis()->SetLabelFont(42);
-   VbbHcc_tags_Sphericity__211->GetZaxis()->SetTitleOffset(1);
-   VbbHcc_tags_Sphericity__211->GetZaxis()->SetTitleFont(42);
-   VbbHcc_tags_Sphericity__211->Draw("same E");
+   VbbHcc_tags_Sphericity__85->SetLineColor(ci);
+   VbbHcc_tags_Sphericity__85->SetLineWidth(2);
+   VbbHcc_tags_Sphericity__85->SetMarkerStyle(20);
+   VbbHcc_tags_Sphericity__85->SetMarkerSize(1.2);
+   VbbHcc_tags_Sphericity__85->GetXaxis()->SetRange(1,100);
+   VbbHcc_tags_Sphericity__85->GetXaxis()->SetLabelFont(42);
+   VbbHcc_tags_Sphericity__85->GetXaxis()->SetTitleOffset(1);
+   VbbHcc_tags_Sphericity__85->GetXaxis()->SetTitleFont(42);
+   VbbHcc_tags_Sphericity__85->GetYaxis()->SetLabelFont(42);
+   VbbHcc_tags_Sphericity__85->GetYaxis()->SetTitleFont(42);
+   VbbHcc_tags_Sphericity__85->GetZaxis()->SetLabelFont(42);
+   VbbHcc_tags_Sphericity__85->GetZaxis()->SetTitleOffset(1);
+   VbbHcc_tags_Sphericity__85->GetZaxis()->SetTitleFont(42);
+   VbbHcc_tags_Sphericity__85->Draw("same E");
    
-   Double_t Graph_from_VbbHcc_tags_Sphericity_fx1029[25] = { 0.02, 0.06, 0.1, 0.14, 0.18, 0.22, 0.26, 0.3, 0.34, 0.38, 0.42, 0.46, 0.5, 0.54, 0.58, 0.62, 0.66,
+   Double_t Graph_from_VbbHcc_tags_Sphericity_fx1085[25] = { 0.02, 0.06, 0.1, 0.14, 0.18, 0.22, 0.26, 0.3, 0.34, 0.38, 0.42, 0.46, 0.5, 0.54, 0.58, 0.62, 0.66,
    0.7, 0.74, 0.78, 0.82, 0.86, 0.9, 0.94, 0.98 };
-   Double_t Graph_from_VbbHcc_tags_Sphericity_fy1029[25] = { 57480.5, 45267.35, 24265.81, 15902.17, 5750.37, 4678.024, 1291.251, 1153.57, 650.9047, 287.2923, 264.2887, 190.8467, 164.9696, 95.07008, 93.61952, 99.64007, 58.36971,
-   46.15415, 20.18933, 1.438959, 0.495677, 0.05905002, 0.0002641559, 0, 0 };
-   Double_t Graph_from_VbbHcc_tags_Sphericity_fex1029[25] = { 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02,
+   Double_t Graph_from_VbbHcc_tags_Sphericity_fy1085[25] = { 57480.68, 45266.67, 24266.17, 15902.09, 5750.493, 4678.051, 1291.174, 1153.578, 650.8726, 287.277, 264.322, 190.8362, 164.9559, 95.05352, 93.61417, 99.63988, 58.36768,
+   46.10673, 20.18906, 1.438959, 0.495677, 0.05905002, 0.0002641559, 0, 0 };
+   Double_t Graph_from_VbbHcc_tags_Sphericity_fex1085[25] = { 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02,
    0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02 };
-   Double_t Graph_from_VbbHcc_tags_Sphericity_fey1029[25] = { 3833.439, 3273.541, 2621.991, 1706.644, 699.6185, 1179.345, 223.2136, 248.3768, 236.223, 51.3832, 55.85892, 43.04546, 40.91348, 29.11913, 20.89701, 30.65306, 24.82856,
-   24.83784, 8.551198, 0.2977529, 0.1746336, 0.05831014, 0.0002641559, 0, 0 };
-   TGraphErrors *gre = new TGraphErrors(25,Graph_from_VbbHcc_tags_Sphericity_fx1029,Graph_from_VbbHcc_tags_Sphericity_fy1029,Graph_from_VbbHcc_tags_Sphericity_fex1029,Graph_from_VbbHcc_tags_Sphericity_fey1029);
+   Double_t Graph_from_VbbHcc_tags_Sphericity_fey1085[25] = { 3833.439, 3273.541, 2621.991, 1706.644, 699.6185, 1179.345, 223.2136, 248.3768, 236.223, 51.38318, 55.85893, 43.04545, 40.91346, 29.1191, 20.89699, 30.65306, 24.82856,
+   24.83787, 8.551196, 0.2977529, 0.1746336, 0.05831014, 0.0002641559, 0, 0 };
+   TGraphErrors *gre = new TGraphErrors(25,Graph_from_VbbHcc_tags_Sphericity_fx1085,Graph_from_VbbHcc_tags_Sphericity_fy1085,Graph_from_VbbHcc_tags_Sphericity_fex1085,Graph_from_VbbHcc_tags_Sphericity_fey1085);
    gre->SetName("Graph_from_VbbHcc_tags_Sphericity");
    gre->SetTitle("");
 
@@ -718,23 +717,23 @@ void Sphericity_tags_16()
    ci = TColor::GetColor("#000099");
    gre->SetLineColor(ci);
    
-   TH1F *Graph_Graph_from_VbbHcc_tags_Sphericity1029 = new TH1F("Graph_Graph_from_VbbHcc_tags_Sphericity1029","",100,0,1.1);
-   Graph_Graph_from_VbbHcc_tags_Sphericity1029->SetMinimum(-6131.394);
-   Graph_Graph_from_VbbHcc_tags_Sphericity1029->SetMaximum(67445.33);
-   Graph_Graph_from_VbbHcc_tags_Sphericity1029->SetDirectory(nullptr);
-   Graph_Graph_from_VbbHcc_tags_Sphericity1029->SetStats(0);
+   TH1F *Graph_Graph_from_VbbHcc_tags_Sphericity1085 = new TH1F("Graph_Graph_from_VbbHcc_tags_Sphericity1085","",100,0,1.1);
+   Graph_Graph_from_VbbHcc_tags_Sphericity1085->SetMinimum(-6131.412);
+   Graph_Graph_from_VbbHcc_tags_Sphericity1085->SetMaximum(67445.53);
+   Graph_Graph_from_VbbHcc_tags_Sphericity1085->SetDirectory(nullptr);
+   Graph_Graph_from_VbbHcc_tags_Sphericity1085->SetStats(0);
 
    ci = TColor::GetColor("#000099");
-   Graph_Graph_from_VbbHcc_tags_Sphericity1029->SetLineColor(ci);
-   Graph_Graph_from_VbbHcc_tags_Sphericity1029->GetXaxis()->SetLabelFont(42);
-   Graph_Graph_from_VbbHcc_tags_Sphericity1029->GetXaxis()->SetTitleOffset(1);
-   Graph_Graph_from_VbbHcc_tags_Sphericity1029->GetXaxis()->SetTitleFont(42);
-   Graph_Graph_from_VbbHcc_tags_Sphericity1029->GetYaxis()->SetLabelFont(42);
-   Graph_Graph_from_VbbHcc_tags_Sphericity1029->GetYaxis()->SetTitleFont(42);
-   Graph_Graph_from_VbbHcc_tags_Sphericity1029->GetZaxis()->SetLabelFont(42);
-   Graph_Graph_from_VbbHcc_tags_Sphericity1029->GetZaxis()->SetTitleOffset(1);
-   Graph_Graph_from_VbbHcc_tags_Sphericity1029->GetZaxis()->SetTitleFont(42);
-   gre->SetHistogram(Graph_Graph_from_VbbHcc_tags_Sphericity1029);
+   Graph_Graph_from_VbbHcc_tags_Sphericity1085->SetLineColor(ci);
+   Graph_Graph_from_VbbHcc_tags_Sphericity1085->GetXaxis()->SetLabelFont(42);
+   Graph_Graph_from_VbbHcc_tags_Sphericity1085->GetXaxis()->SetTitleOffset(1);
+   Graph_Graph_from_VbbHcc_tags_Sphericity1085->GetXaxis()->SetTitleFont(42);
+   Graph_Graph_from_VbbHcc_tags_Sphericity1085->GetYaxis()->SetLabelFont(42);
+   Graph_Graph_from_VbbHcc_tags_Sphericity1085->GetYaxis()->SetTitleFont(42);
+   Graph_Graph_from_VbbHcc_tags_Sphericity1085->GetZaxis()->SetLabelFont(42);
+   Graph_Graph_from_VbbHcc_tags_Sphericity1085->GetZaxis()->SetTitleOffset(1);
+   Graph_Graph_from_VbbHcc_tags_Sphericity1085->GetZaxis()->SetTitleFont(42);
+   gre->SetHistogram(Graph_Graph_from_VbbHcc_tags_Sphericity1085);
    
    gre->Draw("2");
    
@@ -962,89 +961,89 @@ void Sphericity_tags_16()
    bottomPad->SetFrameBorderMode(0);
    bottomPad->SetFrameBorderMode(0);
    
-   TH1D *data_mc_ratio__212 = new TH1D("data_mc_ratio__212","",25,0,1);
-   data_mc_ratio__212->SetBinContent(1,0.5819365);
-   data_mc_ratio__212->SetBinContent(2,0.5349331);
-   data_mc_ratio__212->SetBinContent(3,0.5796221);
-   data_mc_ratio__212->SetBinContent(4,0.5294873);
-   data_mc_ratio__212->SetBinContent(5,0.8853343);
-   data_mc_ratio__212->SetBinContent(6,0.6590389);
-   data_mc_ratio__212->SetBinContent(7,1.389351);
-   data_mc_ratio__212->SetBinContent(8,0.9778341);
-   data_mc_ratio__212->SetBinContent(9,1.213695);
-   data_mc_ratio__212->SetBinContent(10,1.987523);
-   data_mc_ratio__212->SetBinContent(11,1.596739);
-   data_mc_ratio__212->SetBinContent(12,1.530024);
-   data_mc_ratio__212->SetBinContent(13,1.448752);
-   data_mc_ratio__212->SetBinContent(14,1.788155);
-   data_mc_ratio__212->SetBinContent(15,1.644956);
-   data_mc_ratio__212->SetBinContent(16,1.093937);
-   data_mc_ratio__212->SetBinContent(17,1.507631);
-   data_mc_ratio__212->SetBinContent(18,1.278325);
-   data_mc_ratio__212->SetBinContent(19,1.139216);
-   data_mc_ratio__212->SetBinContent(20,5.559576);
-   data_mc_ratio__212->SetBinContent(21,4.034885);
-   data_mc_ratio__212->SetBinContent(22,16.93479);
-   data_mc_ratio__212->SetBinError(1,0.003181834);
-   data_mc_ratio__212->SetBinError(2,0.003437615);
-   data_mc_ratio__212->SetBinError(3,0.004887368);
-   data_mc_ratio__212->SetBinError(4,0.005770315);
-   data_mc_ratio__212->SetBinError(5,0.01240811);
-   data_mc_ratio__212->SetBinError(6,0.01186928);
-   data_mc_ratio__212->SetBinError(7,0.03280203);
-   data_mc_ratio__212->SetBinError(8,0.02911459);
-   data_mc_ratio__212->SetBinError(9,0.04318134);
-   data_mc_ratio__212->SetBinError(10,0.08317523);
-   data_mc_ratio__212->SetBinError(11,0.07772804);
-   data_mc_ratio__212->SetBinError(12,0.08953786);
-   data_mc_ratio__212->SetBinError(13,0.09371195);
-   data_mc_ratio__212->SetBinError(14,0.1371452);
-   data_mc_ratio__212->SetBinError(15,0.1325543);
-   data_mc_ratio__212->SetBinError(16,0.1047802);
-   data_mc_ratio__212->SetBinError(17,0.160714);
-   data_mc_ratio__212->SetBinError(18,0.1664237);
-   data_mc_ratio__212->SetBinError(19,0.2375429);
-   data_mc_ratio__212->SetBinError(20,1.965607);
-   data_mc_ratio__212->SetBinError(21,2.853095);
-   data_mc_ratio__212->SetBinError(22,16.93479);
-   data_mc_ratio__212->SetMinimum(0.4);
-   data_mc_ratio__212->SetMaximum(1.6);
-   data_mc_ratio__212->SetEntries(4.090525);
-   data_mc_ratio__212->SetStats(0);
+   TH1D *data_mc_ratio__86 = new TH1D("data_mc_ratio__86","",25,0,1);
+   data_mc_ratio__86->SetBinContent(1,0.5819346);
+   data_mc_ratio__86->SetBinContent(2,0.5349411);
+   data_mc_ratio__86->SetBinContent(3,0.5796136);
+   data_mc_ratio__86->SetBinContent(4,0.52949);
+   data_mc_ratio__86->SetBinContent(5,0.8853154);
+   data_mc_ratio__86->SetBinContent(6,0.6590351);
+   data_mc_ratio__86->SetBinContent(7,1.389434);
+   data_mc_ratio__86->SetBinContent(8,0.9778271);
+   data_mc_ratio__86->SetBinContent(9,1.213755);
+   data_mc_ratio__86->SetBinContent(10,1.987629);
+   data_mc_ratio__86->SetBinContent(11,1.596538);
+   data_mc_ratio__86->SetBinContent(12,1.530108);
+   data_mc_ratio__86->SetBinContent(13,1.448872);
+   data_mc_ratio__86->SetBinContent(14,1.788466);
+   data_mc_ratio__86->SetBinContent(15,1.64505);
+   data_mc_ratio__86->SetBinContent(16,1.09394);
+   data_mc_ratio__86->SetBinContent(17,1.507684);
+   data_mc_ratio__86->SetBinContent(18,1.27964);
+   data_mc_ratio__86->SetBinContent(19,1.139231);
+   data_mc_ratio__86->SetBinContent(20,5.559576);
+   data_mc_ratio__86->SetBinContent(21,4.034885);
+   data_mc_ratio__86->SetBinContent(22,16.93479);
+   data_mc_ratio__86->SetBinError(1,0.003181824);
+   data_mc_ratio__86->SetBinError(2,0.003437666);
+   data_mc_ratio__86->SetBinError(3,0.004887297);
+   data_mc_ratio__86->SetBinError(4,0.005770344);
+   data_mc_ratio__86->SetBinError(5,0.01240785);
+   data_mc_ratio__86->SetBinError(6,0.01186921);
+   data_mc_ratio__86->SetBinError(7,0.03280398);
+   data_mc_ratio__86->SetBinError(8,0.02911438);
+   data_mc_ratio__86->SetBinError(9,0.04318347);
+   data_mc_ratio__86->SetBinError(10,0.08317968);
+   data_mc_ratio__86->SetBinError(11,0.07771823);
+   data_mc_ratio__86->SetBinError(12,0.08954279);
+   data_mc_ratio__86->SetBinError(13,0.09371975);
+   data_mc_ratio__86->SetBinError(14,0.1371691);
+   data_mc_ratio__86->SetBinError(15,0.1325619);
+   data_mc_ratio__86->SetBinError(16,0.1047804);
+   data_mc_ratio__86->SetBinError(17,0.1607196);
+   data_mc_ratio__86->SetBinError(18,0.1665949);
+   data_mc_ratio__86->SetBinError(19,0.2375461);
+   data_mc_ratio__86->SetBinError(20,1.965607);
+   data_mc_ratio__86->SetBinError(21,2.853095);
+   data_mc_ratio__86->SetBinError(22,16.93479);
+   data_mc_ratio__86->SetMinimum(0.4);
+   data_mc_ratio__86->SetMaximum(1.6);
+   data_mc_ratio__86->SetEntries(4.090845);
+   data_mc_ratio__86->SetStats(0);
 
    ci = TColor::GetColor("#000099");
-   data_mc_ratio__212->SetLineColor(ci);
-   data_mc_ratio__212->SetLineWidth(2);
-   data_mc_ratio__212->SetMarkerStyle(20);
-   data_mc_ratio__212->SetMarkerSize(1.2);
-   data_mc_ratio__212->GetXaxis()->SetTitle("Sphericity");
-   data_mc_ratio__212->GetXaxis()->SetRange(1,25);
-   data_mc_ratio__212->GetXaxis()->SetLabelFont(42);
-   data_mc_ratio__212->GetXaxis()->SetLabelSize(0.12);
-   data_mc_ratio__212->GetXaxis()->SetTitleSize(0.12);
-   data_mc_ratio__212->GetXaxis()->SetTitleOffset(1.1);
-   data_mc_ratio__212->GetXaxis()->SetTitleFont(42);
-   data_mc_ratio__212->GetYaxis()->SetTitle("Data/MC");
-   data_mc_ratio__212->GetYaxis()->SetNdivisions(505);
-   data_mc_ratio__212->GetYaxis()->SetLabelFont(42);
-   data_mc_ratio__212->GetYaxis()->SetLabelSize(0.12);
-   data_mc_ratio__212->GetYaxis()->SetTitleSize(0.12);
-   data_mc_ratio__212->GetYaxis()->SetTitleOffset(0.5);
-   data_mc_ratio__212->GetYaxis()->SetTitleFont(42);
-   data_mc_ratio__212->GetZaxis()->SetLabelFont(42);
-   data_mc_ratio__212->GetZaxis()->SetTitleOffset(1);
-   data_mc_ratio__212->GetZaxis()->SetTitleFont(42);
-   data_mc_ratio__212->Draw("E1");
+   data_mc_ratio__86->SetLineColor(ci);
+   data_mc_ratio__86->SetLineWidth(2);
+   data_mc_ratio__86->SetMarkerStyle(20);
+   data_mc_ratio__86->SetMarkerSize(1.2);
+   data_mc_ratio__86->GetXaxis()->SetTitle("Sphericity");
+   data_mc_ratio__86->GetXaxis()->SetRange(1,25);
+   data_mc_ratio__86->GetXaxis()->SetLabelFont(42);
+   data_mc_ratio__86->GetXaxis()->SetLabelSize(0.12);
+   data_mc_ratio__86->GetXaxis()->SetTitleSize(0.12);
+   data_mc_ratio__86->GetXaxis()->SetTitleOffset(1.1);
+   data_mc_ratio__86->GetXaxis()->SetTitleFont(42);
+   data_mc_ratio__86->GetYaxis()->SetTitle("Data/MC");
+   data_mc_ratio__86->GetYaxis()->SetNdivisions(505);
+   data_mc_ratio__86->GetYaxis()->SetLabelFont(42);
+   data_mc_ratio__86->GetYaxis()->SetLabelSize(0.12);
+   data_mc_ratio__86->GetYaxis()->SetTitleSize(0.12);
+   data_mc_ratio__86->GetYaxis()->SetTitleOffset(0.5);
+   data_mc_ratio__86->GetYaxis()->SetTitleFont(42);
+   data_mc_ratio__86->GetZaxis()->SetLabelFont(42);
+   data_mc_ratio__86->GetZaxis()->SetTitleOffset(1);
+   data_mc_ratio__86->GetZaxis()->SetTitleFont(42);
+   data_mc_ratio__86->Draw("E1");
    
-   Double_t Graph_from_mc_statistical_error_fx1030[25] = { 0.02, 0.06, 0.1, 0.14, 0.18, 0.22, 0.26, 0.3, 0.34, 0.38, 0.42, 0.46, 0.5, 0.54, 0.58, 0.62, 0.66,
+   Double_t Graph_from_mc_statistical_error_fx1086[25] = { 0.02, 0.06, 0.1, 0.14, 0.18, 0.22, 0.26, 0.3, 0.34, 0.38, 0.42, 0.46, 0.5, 0.54, 0.58, 0.62, 0.66,
    0.7, 0.74, 0.78, 0.82, 0.86, 0.9, 0.94, 0.98 };
-   Double_t Graph_from_mc_statistical_error_fy1030[25] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+   Double_t Graph_from_mc_statistical_error_fy1086[25] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
    1, 1, 1, 1, 1, 1, 1, 1 };
-   Double_t Graph_from_mc_statistical_error_fex1030[25] = { 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02,
+   Double_t Graph_from_mc_statistical_error_fex1086[25] = { 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02,
    0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02 };
-   Double_t Graph_from_mc_statistical_error_fey1030[25] = { 0.06669112, 0.07231573, 0.1080529, 0.1073214, 0.121665, 0.2521032, 0.1728662, 0.2153114, 0.3629148, 0.1788534, 0.2113557, 0.2255499, 0.2480061, 0.3062912, 0.2232121, 0.3076379, 0.4253673,
-   0.5381496, 0.4235503, 0.2069225, 0.3523133, 0.9874702, 1, 0, 0 };
-   gre = new TGraphErrors(25,Graph_from_mc_statistical_error_fx1030,Graph_from_mc_statistical_error_fy1030,Graph_from_mc_statistical_error_fex1030,Graph_from_mc_statistical_error_fey1030);
+   Double_t Graph_from_mc_statistical_error_fey1086[25] = { 0.06669091, 0.07231682, 0.1080513, 0.107322, 0.1216624, 0.2521017, 0.1728765, 0.2153099, 0.3629327, 0.1788629, 0.2113291, 0.2255623, 0.2480267, 0.3063443, 0.2232247, 0.3076384, 0.425382,
+   0.5387039, 0.423556, 0.2069225, 0.3523133, 0.9874702, 1, 0, 0 };
+   gre = new TGraphErrors(25,Graph_from_mc_statistical_error_fx1086,Graph_from_mc_statistical_error_fy1086,Graph_from_mc_statistical_error_fex1086,Graph_from_mc_statistical_error_fey1086);
    gre->SetName("Graph_from_mc_statistical_error");
    gre->SetTitle("");
 
@@ -1055,23 +1054,23 @@ void Sphericity_tags_16()
    ci = TColor::GetColor("#000099");
    gre->SetLineColor(ci);
    
-   TH1F *Graph_Graph_from_mc_statistical_error1030 = new TH1F("Graph_Graph_from_mc_statistical_error1030","",100,0,1.1);
-   Graph_Graph_from_mc_statistical_error1030->SetMinimum(-0.2);
-   Graph_Graph_from_mc_statistical_error1030->SetMaximum(2.2);
-   Graph_Graph_from_mc_statistical_error1030->SetDirectory(nullptr);
-   Graph_Graph_from_mc_statistical_error1030->SetStats(0);
+   TH1F *Graph_Graph_from_mc_statistical_error1086 = new TH1F("Graph_Graph_from_mc_statistical_error1086","",100,0,1.1);
+   Graph_Graph_from_mc_statistical_error1086->SetMinimum(-0.2);
+   Graph_Graph_from_mc_statistical_error1086->SetMaximum(2.2);
+   Graph_Graph_from_mc_statistical_error1086->SetDirectory(nullptr);
+   Graph_Graph_from_mc_statistical_error1086->SetStats(0);
 
    ci = TColor::GetColor("#000099");
-   Graph_Graph_from_mc_statistical_error1030->SetLineColor(ci);
-   Graph_Graph_from_mc_statistical_error1030->GetXaxis()->SetLabelFont(42);
-   Graph_Graph_from_mc_statistical_error1030->GetXaxis()->SetTitleOffset(1);
-   Graph_Graph_from_mc_statistical_error1030->GetXaxis()->SetTitleFont(42);
-   Graph_Graph_from_mc_statistical_error1030->GetYaxis()->SetLabelFont(42);
-   Graph_Graph_from_mc_statistical_error1030->GetYaxis()->SetTitleFont(42);
-   Graph_Graph_from_mc_statistical_error1030->GetZaxis()->SetLabelFont(42);
-   Graph_Graph_from_mc_statistical_error1030->GetZaxis()->SetTitleOffset(1);
-   Graph_Graph_from_mc_statistical_error1030->GetZaxis()->SetTitleFont(42);
-   gre->SetHistogram(Graph_Graph_from_mc_statistical_error1030);
+   Graph_Graph_from_mc_statistical_error1086->SetLineColor(ci);
+   Graph_Graph_from_mc_statistical_error1086->GetXaxis()->SetLabelFont(42);
+   Graph_Graph_from_mc_statistical_error1086->GetXaxis()->SetTitleOffset(1);
+   Graph_Graph_from_mc_statistical_error1086->GetXaxis()->SetTitleFont(42);
+   Graph_Graph_from_mc_statistical_error1086->GetYaxis()->SetLabelFont(42);
+   Graph_Graph_from_mc_statistical_error1086->GetYaxis()->SetTitleFont(42);
+   Graph_Graph_from_mc_statistical_error1086->GetZaxis()->SetLabelFont(42);
+   Graph_Graph_from_mc_statistical_error1086->GetZaxis()->SetTitleOffset(1);
+   Graph_Graph_from_mc_statistical_error1086->GetZaxis()->SetTitleFont(42);
+   gre->SetHistogram(Graph_Graph_from_mc_statistical_error1086);
    
    gre->Draw("e2");
    TLine *line = new TLine(0,1,1,1);

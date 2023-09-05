@@ -58,12 +58,13 @@ def getHist(pN, sample_name, fH, lS):
 years = ['16', '17', '18']
 regions = ['tags', 'algo', 'both', 'alljet', 'seljet']
 regions = ['tags', 'algo', 'both']
-regions = ['jets', 'jets_all']
+#regions = ['jets', 'jets_all']
+regions = ['']
 #regions = ['all']
-plotCat = 'VbbHcc_jet'
+plotCat = 'Weight'
 useLogY = False
 summary_control_plot_name = 'summary_control_plot_zjet_zHFjet.txt'
-plotFolder = '../full_results/'
+plotFolder = '../plot_results/Aug2023_SF/'
 
 ## Normal List of Files we want
 ss = ['ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ', 'ZH_HToBB_ZToQQ', 'ggZH_HToBB_ZToQQ', 'QCD_HT200to300_v9', 'WJetsToQQ_HT-400to600', 'WJetsToLNu_HT-400to600', 'ZJetsToQQ_HT-400to600', 'TTToHadronic', 'TTToSemiLeptonic', 'TTTo2L2Nu', 'ST_t-channel_antitop', 'ST_t-channel_top', 'ST_tW-channel_antitop', 'ST_tW-channel_top', 'WW', 'WZ', 'ZZ']
@@ -115,7 +116,7 @@ for s in ss:
     fNames[s][y] = []
     xSecs[s][y] = []
     fHist[s][y] = []
-    dirpath = '../new_condor_results/NONE/'
+    dirpath = '../condor_results/Aug2023_addedTagSF/NONE/'
     for iN in names:
       #fNames[s][y].append(cfg.get('Paths', 'path') + '/' + iN)
       fNames[s][y].append(dirpath + '/' + iN)

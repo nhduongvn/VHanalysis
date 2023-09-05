@@ -60,7 +60,7 @@ print "Pulling settings and preferences..."
 
 ## Edit / change the following options as needed:
 years = ['16', '17', '18']
-years = ['18']
+#years = ['16']
 regions = ['tags', 'algo', 'both']
 useLogY = False
 outputDir = '../plot_results/Aug2023_SF/'
@@ -261,10 +261,10 @@ for r in regions:
         logY=logY, lumi=lumiS[y], blindMass=True)      ## other
       
       ## Plot each plot separately so we have it for reference
-      for i in range(len(plotNames_process)):
-        makePlot(plots_process[i], plotNames_process[i],
-          plN + '_' + r + '_' + y, outputDir + '/20' + y + '/' + individual_names[i],
-          xA_title, xA_range, '', 1, logY, lumiS[y], ROOT.kBlack, ROOT.kRed, fill=False)
+      #for i in range(len(plotNames_process)):
+      # makePlot(plots_process[i], plotNames_process[i],
+      #    plN + '_' + r + '_' + y, outputDir + '/20' + y + '/' + individual_names[i],
+      #    xA_title, xA_range, '', 1, logY, lumiS[y], ROOT.kBlack, ROOT.kRed, fill=False)
           
       
     ####################################
