@@ -1,269 +1,95 @@
 
 
--- Schedd: lpcschedd3.fnal.gov : <131.225.188.235:9618?... @ 09/01/23 14:14:05
- ID          OWNER            SUBMITTED     RUN_TIME ST PRI SIZE  CMD
-79072993.3   peteryou        9/1  12:53   0+00:48:13 R  0   356.0 exe_NONE_ST_t-channel_antitop_MC_2018.sh 3
-79072993.6   peteryou        9/1  12:53   0+00:47:37 R  0   331.0 exe_NONE_ST_t-channel_antitop_MC_2018.sh 6
-79072993.7   peteryou        9/1  12:53   0+00:47:15 R  0   384.0 exe_NONE_ST_t-channel_antitop_MC_2018.sh 7
-79072993.12  peteryou        9/1  12:53   0+00:46:11 R  0   338.0 exe_NONE_ST_t-channel_antitop_MC_2018.sh 12
-79072993.18  peteryou        9/1  12:53   0+00:45:12 R  0   364.0 exe_NONE_ST_t-channel_antitop_MC_2018.sh 18
-79072993.23  peteryou        9/1  12:53   0+00:44:48 R  0   340.0 exe_NONE_ST_t-channel_antitop_MC_2018.sh 23
-79072993.25  peteryou        9/1  12:53   0+00:43:59 R  0   363.0 exe_NONE_ST_t-channel_antitop_MC_2018.sh 25
-79072993.34  peteryou        9/1  12:53   0+00:41:35 R  0   370.0 exe_NONE_ST_t-channel_antitop_MC_2018.sh 34
-79072993.35  peteryou        9/1  12:53   0+00:41:33 R  0   382.0 exe_NONE_ST_t-channel_antitop_MC_2018.sh 35
-79072993.38  peteryou        9/1  12:53   0+00:41:09 R  0   338.0 exe_NONE_ST_t-channel_antitop_MC_2018.sh 38
-79072993.39  peteryou        9/1  12:53   0+00:40:04 R  0   321.0 exe_NONE_ST_t-channel_antitop_MC_2018.sh 39
-79072993.55  peteryou        9/1  12:53   0+00:33:29 R  0   388.0 exe_NONE_ST_t-channel_antitop_MC_2018.sh 55
-79072993.56  peteryou        9/1  12:53   0+00:31:18 R  0   361.0 exe_NONE_ST_t-channel_antitop_MC_2018.sh 56
-79072993.57  peteryou        9/1  12:53   0+00:30:51 R  0   358.0 exe_NONE_ST_t-channel_antitop_MC_2018.sh 57
-79072993.59  peteryou        9/1  12:53   0+00:30:44 R  0   347.0 exe_NONE_ST_t-channel_antitop_MC_2018.sh 59
-79072994.0   peteryou        9/1  12:53   0+00:26:51 R  0   372.0 exe_NONE_ST_t-channel_antitop_MC_2017.sh 0
-79072994.1   peteryou        9/1  12:53   0+00:26:48 R  0   358.0 exe_NONE_ST_t-channel_antitop_MC_2017.sh 1
-79072994.2   peteryou        9/1  12:53   0+00:26:33 R  0   356.0 exe_NONE_ST_t-channel_antitop_MC_2017.sh 2
-79072994.3   peteryou        9/1  12:53   0+00:26:19 R  0   376.0 exe_NONE_ST_t-channel_antitop_MC_2017.sh 3
-79072994.4   peteryou        9/1  12:53   0+00:26:15 R  0   349.0 exe_NONE_ST_t-channel_antitop_MC_2017.sh 4
-79072994.5   peteryou        9/1  12:53   0+00:26:14 R  0   351.0 exe_NONE_ST_t-channel_antitop_MC_2017.sh 5
-79072994.6   peteryou        9/1  12:53   0+00:26:05 R  0   340.0 exe_NONE_ST_t-channel_antitop_MC_2017.sh 6
-79072994.7   peteryou        9/1  12:53   0+00:26:04 R  0   332.0 exe_NONE_ST_t-channel_antitop_MC_2017.sh 7
-79072994.8   peteryou        9/1  12:53   0+00:26:03 R  0   379.0 exe_NONE_ST_t-channel_antitop_MC_2017.sh 8
-79072994.9   peteryou        9/1  12:53   0+00:25:37 R  0   367.0 exe_NONE_ST_t-channel_antitop_MC_2017.sh 9
-79072994.10  peteryou        9/1  12:53   0+00:25:24 R  0   387.0 exe_NONE_ST_t-channel_antitop_MC_2017.sh 10
-79072994.11  peteryou        9/1  12:53   0+00:25:04 R  0   323.0 exe_NONE_ST_t-channel_antitop_MC_2017.sh 11
-79072994.12  peteryou        9/1  12:53   0+00:24:21 R  0   387.0 exe_NONE_ST_t-channel_antitop_MC_2017.sh 12
-79072994.13  peteryou        9/1  12:53   0+00:22:25 R  0   355.0 exe_NONE_ST_t-channel_antitop_MC_2017.sh 13
-79072994.14  peteryou        9/1  12:53   0+00:21:50 R  0   360.0 exe_NONE_ST_t-channel_antitop_MC_2017.sh 14
-79072994.15  peteryou        9/1  12:53   0+00:21:40 R  0   323.0 exe_NONE_ST_t-channel_antitop_MC_2017.sh 15
-79072994.16  peteryou        9/1  12:53   0+00:21:01 R  0   358.0 exe_NONE_ST_t-channel_antitop_MC_2017.sh 16
-79072994.17  peteryou        9/1  12:53   0+00:21:01 R  0   368.0 exe_NONE_ST_t-channel_antitop_MC_2017.sh 17
-79072994.18  peteryou        9/1  12:53   0+00:20:28 R  0   369.0 exe_NONE_ST_t-channel_antitop_MC_2017.sh 18
-79072994.19  peteryou        9/1  12:53   0+00:19:40 R  0   361.0 exe_NONE_ST_t-channel_antitop_MC_2017.sh 19
-79072994.20  peteryou        9/1  12:53   0+00:17:46 R  0   376.0 exe_NONE_ST_t-channel_antitop_MC_2017.sh 20
-79072994.21  peteryou        9/1  12:53   0+00:17:46 R  0   351.0 exe_NONE_ST_t-channel_antitop_MC_2017.sh 21
-79072994.22  peteryou        9/1  12:53   0+00:17:23 R  0   359.0 exe_NONE_ST_t-channel_antitop_MC_2017.sh 22
-79072994.23  peteryou        9/1  12:53   0+00:17:22 R  0   369.0 exe_NONE_ST_t-channel_antitop_MC_2017.sh 23
-79072994.24  peteryou        9/1  12:53   0+00:17:01 R  0   387.0 exe_NONE_ST_t-channel_antitop_MC_2017.sh 24
-79072994.25  peteryou        9/1  12:53   0+00:17:00 R  0   359.0 exe_NONE_ST_t-channel_antitop_MC_2017.sh 25
-79072994.26  peteryou        9/1  12:53   0+00:17:00 R  0   360.0 exe_NONE_ST_t-channel_antitop_MC_2017.sh 26
-79072994.27  peteryou        9/1  12:53   0+00:16:59 R  0   359.0 exe_NONE_ST_t-channel_antitop_MC_2017.sh 27
-79072994.28  peteryou        9/1  12:53   0+00:16:02 R  0   328.0 exe_NONE_ST_t-channel_antitop_MC_2017.sh 28
-79072995.0   peteryou        9/1  12:53   0+00:15:20 R  0   343.0 exe_NONE_ST_t-channel_antitop_MC_2016.sh 0
-79072995.2   peteryou        9/1  12:53   0+00:15:19 R  0   393.0 exe_NONE_ST_t-channel_antitop_MC_2016.sh 2
-79072995.3   peteryou        9/1  12:53   0+00:14:55 R  0     0.0 exe_NONE_ST_t-channel_antitop_MC_2016.sh 3
-79072995.4   peteryou        9/1  12:53   0+00:14:32 R  0     0.0 exe_NONE_ST_t-channel_antitop_MC_2016.sh 4
-79072995.5   peteryou        9/1  12:53   0+00:14:08 R  0     0.0 exe_NONE_ST_t-channel_antitop_MC_2016.sh 5
-79072995.6   peteryou        9/1  12:53   0+00:14:09 R  0     0.0 exe_NONE_ST_t-channel_antitop_MC_2016.sh 6
-79072995.8   peteryou        9/1  12:53   0+00:14:07 R  0     0.0 exe_NONE_ST_t-channel_antitop_MC_2016.sh 8
-79072995.9   peteryou        9/1  12:53   0+00:14:06 R  0     0.0 exe_NONE_ST_t-channel_antitop_MC_2016.sh 9
-79072995.10  peteryou        9/1  12:53   0+00:13:52 R  0     0.0 exe_NONE_ST_t-channel_antitop_MC_2016.sh 10
-79072995.11  peteryou        9/1  12:53   0+00:13:20 R  0     0.0 exe_NONE_ST_t-channel_antitop_MC_2016.sh 11
-79072995.12  peteryou        9/1  12:53   0+00:12:56 R  0     0.0 exe_NONE_ST_t-channel_antitop_MC_2016.sh 12
-79072995.13  peteryou        9/1  12:53   0+00:12:47 R  0     0.0 exe_NONE_ST_t-channel_antitop_MC_2016.sh 13
-79072995.14  peteryou        9/1  12:53   0+00:12:31 R  0     0.0 exe_NONE_ST_t-channel_antitop_MC_2016.sh 14
-79072995.17  peteryou        9/1  12:53   0+00:11:42 R  0     0.0 exe_NONE_ST_t-channel_antitop_MC_2016.sh 17
-79072995.19  peteryou        9/1  12:53   0+00:11:27 R  0     0.0 exe_NONE_ST_t-channel_antitop_MC_2016.sh 19
-79072995.23  peteryou        9/1  12:53   0+00:11:18 R  0     0.0 exe_NONE_ST_t-channel_antitop_MC_2016.sh 23
-79072995.24  peteryou        9/1  12:53   0+00:11:18 R  0     0.0 exe_NONE_ST_t-channel_antitop_MC_2016.sh 24
-79072995.25  peteryou        9/1  12:53   0+00:10:51 R  0     0.0 exe_NONE_ST_t-channel_antitop_MC_2016.sh 25
-79072995.26  peteryou        9/1  12:53   0+00:10:53 R  0     0.0 exe_NONE_ST_t-channel_antitop_MC_2016.sh 26
-79072995.27  peteryou        9/1  12:53   0+00:10:51 R  0     0.0 exe_NONE_ST_t-channel_antitop_MC_2016.sh 27
-79072995.28  peteryou        9/1  12:53   0+00:10:29 R  0     0.0 exe_NONE_ST_t-channel_antitop_MC_2016.sh 28
-79072995.29  peteryou        9/1  12:53   0+00:10:11 R  0     0.0 exe_NONE_ST_t-channel_antitop_MC_2016.sh 29
-79072995.30  peteryou        9/1  12:53   0+00:10:04 R  0     0.0 exe_NONE_ST_t-channel_antitop_MC_2016.sh 30
-79072995.31  peteryou        9/1  12:53   0+00:09:38 R  0     0.0 exe_NONE_ST_t-channel_antitop_MC_2016.sh 31
-79072995.32  peteryou        9/1  12:53   0+00:09:39 R  0     0.0 exe_NONE_ST_t-channel_antitop_MC_2016.sh 32
-79072995.33  peteryou        9/1  12:53   0+00:09:37 R  0     0.0 exe_NONE_ST_t-channel_antitop_MC_2016.sh 33
-79072995.34  peteryou        9/1  12:53   0+00:09:23 R  0     0.0 exe_NONE_ST_t-channel_antitop_MC_2016.sh 34
-79072995.35  peteryou        9/1  12:53   0+00:09:15 R  0     0.0 exe_NONE_ST_t-channel_antitop_MC_2016.sh 35
-79072995.36  peteryou        9/1  12:53   0+00:09:15 R  0     0.0 exe_NONE_ST_t-channel_antitop_MC_2016.sh 36
-79072995.37  peteryou        9/1  12:53   0+00:08:47 R  0     0.0 exe_NONE_ST_t-channel_antitop_MC_2016.sh 37
-79072995.38  peteryou        9/1  12:53   0+00:08:02 R  0     0.0 exe_NONE_ST_t-channel_antitop_MC_2016.sh 38
-79072995.39  peteryou        9/1  12:53   0+00:07:57 R  0     0.0 exe_NONE_ST_t-channel_antitop_MC_2016.sh 39
-79072996.0   peteryou        9/1  12:53   0+00:07:36 R  0     0.0 exe_NONE_ST_tW-channel_antitop_MC_2017.sh 0
-79072996.6   peteryou        9/1  12:53   0+00:06:48 R  0     0.0 exe_NONE_ST_tW-channel_antitop_MC_2017.sh 6
-79072996.7   peteryou        9/1  12:53   0+00:06:21 R  0     0.0 exe_NONE_ST_tW-channel_antitop_MC_2017.sh 7
-79072996.8   peteryou        9/1  12:53   0+00:06:23 R  0     0.0 exe_NONE_ST_tW-channel_antitop_MC_2017.sh 8
-79072996.9   peteryou        9/1  12:53   0+00:06:23 R  0     0.0 exe_NONE_ST_tW-channel_antitop_MC_2017.sh 9
-79072996.13  peteryou        9/1  12:53   0+00:06:21 R  0     0.0 exe_NONE_ST_tW-channel_antitop_MC_2017.sh 13
-79072996.22  peteryou        9/1  12:53   0+00:04:14 R  0     0.0 exe_NONE_ST_tW-channel_antitop_MC_2017.sh 22
-79072996.23  peteryou        9/1  12:53   0+00:04:05 R  0     0.0 exe_NONE_ST_tW-channel_antitop_MC_2017.sh 23
-79072997.0   peteryou        9/1  12:54   0+00:03:37 R  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 0
-79072997.1   peteryou        9/1  12:54   0+00:03:30 R  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 1
-79072997.2   peteryou        9/1  12:54   0+00:03:23 R  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 2
-79072997.3   peteryou        9/1  12:54   0+00:03:17 R  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 3
-79072997.4   peteryou        9/1  12:54   0+00:03:00 R  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 4
-79072997.5   peteryou        9/1  12:54   0+00:02:54 R  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 5
-79072997.6   peteryou        9/1  12:54   0+00:02:44 R  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 6
-79072997.7   peteryou        9/1  12:54   0+00:02:40 R  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 7
-79072997.8   peteryou        9/1  12:54   0+00:02:31 R  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 8
-79072997.9   peteryou        9/1  12:54   0+00:02:23 R  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 9
-79072997.10  peteryou        9/1  12:54   0+00:02:10 R  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 10
-79072997.11  peteryou        9/1  12:54   0+00:02:08 R  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 11
-79072997.12  peteryou        9/1  12:54   0+00:01:42 R  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 12
-79072997.13  peteryou        9/1  12:54   0+00:01:37 R  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 13
-79072997.14  peteryou        9/1  12:54   0+00:01:24 R  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 14
-79072997.15  peteryou        9/1  12:54   0+00:00:28 R  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 15
-79072997.16  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 16
-79072997.17  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 17
-79072997.18  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 18
-79072997.19  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 19
-79072997.20  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 20
-79072997.21  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 21
-79072997.22  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 22
-79072997.23  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 23
-79072997.24  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 24
-79072997.25  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 25
-79072997.26  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 26
-79072997.27  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 27
-79072997.28  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 28
-79072997.29  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 29
-79072997.30  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 30
-79072997.31  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 31
-79072997.32  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 32
-79072997.33  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 33
-79072997.34  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 34
-79072997.35  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 35
-79072997.36  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 36
-79072997.37  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 37
-79072997.38  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 38
-79072997.39  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 39
-79072997.40  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 40
-79072997.41  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 41
-79072997.42  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 42
-79072997.43  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 43
-79072997.44  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 44
-79072997.45  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 45
-79072997.46  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 46
-79072997.47  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 47
-79072997.48  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 48
-79072997.49  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 49
-79072997.50  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 50
-79072997.51  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 51
-79072997.52  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 52
-79072997.53  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 53
-79072997.54  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 54
-79072997.55  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 55
-79072997.56  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 56
-79072997.57  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 57
-79072997.58  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 58
-79072997.59  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 59
-79072997.60  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 60
-79072997.61  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 61
-79072997.62  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 62
-79072997.63  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 63
-79072997.64  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 64
-79072997.65  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 65
-79072997.66  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 66
-79072997.67  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 67
-79072997.68  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 68
-79072997.69  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 69
-79072997.70  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 70
-79072997.71  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 71
-79072997.72  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 72
-79072997.73  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 73
-79072997.74  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 74
-79072997.75  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 75
-79072997.76  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 76
-79072997.77  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 77
-79072997.78  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 78
-79072997.79  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 79
-79072997.80  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 80
-79072997.81  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 81
-79072997.82  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 82
-79072997.83  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 83
-79072997.84  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 84
-79072997.85  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 85
-79072997.86  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 86
-79072997.87  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 87
-79072997.88  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 88
-79072997.89  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 89
-79072997.90  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 90
-79072997.91  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 91
-79072997.92  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 92
-79072997.93  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 93
-79072997.94  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 94
-79072997.95  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 95
-79072997.96  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 96
-79072997.97  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 97
-79072997.98  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2017.sh 98
+-- Schedd: lpcschedd3.fnal.gov : <131.225.188.235:9618?... @ 09/05/23 14:33:49
+ ID      OWNER            SUBMITTED     RUN_TIME ST PRI SIZE CMD
 
-Total for query: 183 jobs; 0 completed, 0 removed, 83 idle, 100 running, 0 held, 0 suspended 
-Total for peteryou: 183 jobs; 0 completed, 0 removed, 83 idle, 100 running, 0 held, 0 suspended 
-Total for all users: 1616 jobs; 0 completed, 30 removed, 644 idle, 893 running, 49 held, 0 suspended
+Total for query: 0 jobs; 0 completed, 0 removed, 0 idle, 0 running, 0 held, 0 suspended 
+Total for peteryou: 0 jobs; 0 completed, 0 removed, 0 idle, 0 running, 0 held, 0 suspended 
+Total for all users: 1827 jobs; 0 completed, 30 removed, 1368 idle, 340 running, 89 held, 0 suspended
 
 
 
--- Schedd: lpcschedd4.fnal.gov : <131.225.189.251:9618?... @ 09/01/23 14:14:05
+-- Schedd: lpcschedd4.fnal.gov : <131.225.189.251:9618?... @ 09/05/23 14:33:49
  ID         OWNER            SUBMITTED     RUN_TIME ST PRI SIZE  CMD
-2693849.7   peteryou        9/1  12:54   0+00:51:42 R  0   384.0 exe_NONE_ST_tW-channel_antitop_MC_2016.sh 7
-2693850.1   peteryou        9/1  12:54   0+00:51:19 R  0   329.0 exe_NONE_ST_t-channel_top_MC_2018.sh 1
-2693850.3   peteryou        9/1  12:54   0+00:51:18 R  0   360.0 exe_NONE_ST_t-channel_top_MC_2018.sh 3
-2693850.4   peteryou        9/1  12:54   0+00:51:18 R  0   359.0 exe_NONE_ST_t-channel_top_MC_2018.sh 4
-2693850.5   peteryou        9/1  12:54   0+00:51:18 R  0   333.0 exe_NONE_ST_t-channel_top_MC_2018.sh 5
-2693850.6   peteryou        9/1  12:54   0+00:51:19 R  0   355.0 exe_NONE_ST_t-channel_top_MC_2018.sh 6
-2693850.26  peteryou        9/1  12:54   0+00:44:06 R  0   360.0 exe_NONE_ST_t-channel_top_MC_2018.sh 26
-2693850.29  peteryou        9/1  12:54   0+00:42:19 R  0   346.0 exe_NONE_ST_t-channel_top_MC_2018.sh 29
-2693850.32  peteryou        9/1  12:54   0+00:31:01 R  0   363.0 exe_NONE_ST_t-channel_top_MC_2018.sh 32
-2693850.33  peteryou        9/1  12:54   0+00:27:28 R  0   363.0 exe_NONE_ST_t-channel_top_MC_2018.sh 33
-2693850.34  peteryou        9/1  12:54   0+00:27:04 R  0   363.0 exe_NONE_ST_t-channel_top_MC_2018.sh 34
-2693850.35  peteryou        9/1  12:54   0+00:26:58 R  0   375.0 exe_NONE_ST_t-channel_top_MC_2018.sh 35
-2693850.36  peteryou        9/1  12:54   0+00:23:36 R  0   360.0 exe_NONE_ST_t-channel_top_MC_2018.sh 36
-2693850.37  peteryou        9/1  12:54   0+00:22:52 R  0   355.0 exe_NONE_ST_t-channel_top_MC_2018.sh 37
-2693850.38  peteryou        9/1  12:54   0+00:20:39 R  0   329.0 exe_NONE_ST_t-channel_top_MC_2018.sh 38
-2693850.39  peteryou        9/1  12:54   0+00:19:08 R  0   337.0 exe_NONE_ST_t-channel_top_MC_2018.sh 39
-2693850.40  peteryou        9/1  12:54   0+00:18:42 R  0   383.0 exe_NONE_ST_t-channel_top_MC_2018.sh 40
-2693850.41  peteryou        9/1  12:54   0+00:18:41 R  0   368.0 exe_NONE_ST_t-channel_top_MC_2018.sh 41
-2693850.42  peteryou        9/1  12:54   0+00:18:07 R  0   386.0 exe_NONE_ST_t-channel_top_MC_2018.sh 42
-2693850.43  peteryou        9/1  12:54   0+00:18:01 R  0   345.0 exe_NONE_ST_t-channel_top_MC_2018.sh 43
-2693850.44  peteryou        9/1  12:54   0+00:16:40 R  0   323.0 exe_NONE_ST_t-channel_top_MC_2018.sh 44
-2693850.45  peteryou        9/1  12:54   0+00:16:34 R  0   347.0 exe_NONE_ST_t-channel_top_MC_2018.sh 45
-2693850.46  peteryou        9/1  12:54   0+00:16:10 R  0   390.0 exe_NONE_ST_t-channel_top_MC_2018.sh 46
-2693850.47  peteryou        9/1  12:54   0+00:13:44 R  0     0.0 exe_NONE_ST_t-channel_top_MC_2018.sh 47
-2693850.48  peteryou        9/1  12:54   0+00:13:19 R  0     0.0 exe_NONE_ST_t-channel_top_MC_2018.sh 48
-2693850.49  peteryou        9/1  12:54   0+00:12:56 R  0     0.0 exe_NONE_ST_t-channel_top_MC_2018.sh 49
-2693850.50  peteryou        9/1  12:54   0+00:12:56 R  0     0.0 exe_NONE_ST_t-channel_top_MC_2018.sh 50
-2693850.51  peteryou        9/1  12:54   0+00:11:36 R  0     0.0 exe_NONE_ST_t-channel_top_MC_2018.sh 51
-2693850.52  peteryou        9/1  12:54   0+00:11:19 R  0     0.0 exe_NONE_ST_t-channel_top_MC_2018.sh 52
-2693850.53  peteryou        9/1  12:54   0+00:08:49 R  0     0.0 exe_NONE_ST_t-channel_top_MC_2018.sh 53
-2693850.54  peteryou        9/1  12:54   0+00:08:49 R  0     0.0 exe_NONE_ST_t-channel_top_MC_2018.sh 54
-2693850.55  peteryou        9/1  12:54   0+00:08:49 R  0     0.0 exe_NONE_ST_t-channel_top_MC_2018.sh 55
-2693850.56  peteryou        9/1  12:54   0+00:07:37 R  0     0.0 exe_NONE_ST_t-channel_top_MC_2018.sh 56
-2693850.57  peteryou        9/1  12:54   0+00:07:36 R  0     0.0 exe_NONE_ST_t-channel_top_MC_2018.sh 57
-2693850.58  peteryou        9/1  12:54   0+00:07:36 R  0     0.0 exe_NONE_ST_t-channel_top_MC_2018.sh 58
-2693850.59  peteryou        9/1  12:54   0+00:07:12 R  0     0.0 exe_NONE_ST_t-channel_top_MC_2018.sh 59
-2693850.60  peteryou        9/1  12:54   0+00:06:08 R  0     0.0 exe_NONE_ST_t-channel_top_MC_2018.sh 60
-2693850.61  peteryou        9/1  12:54   0+00:04:43 R  0     0.0 exe_NONE_ST_t-channel_top_MC_2018.sh 61
-2693850.62  peteryou        9/1  12:54   0+00:04:43 R  0     0.0 exe_NONE_ST_t-channel_top_MC_2018.sh 62
-2693850.63  peteryou        9/1  12:54   0+00:04:11 R  0     0.0 exe_NONE_ST_t-channel_top_MC_2018.sh 63
-2693850.64  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2018.sh 64
-2693850.65  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2018.sh 65
-2693850.66  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2018.sh 66
-2693850.67  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2018.sh 67
-2693850.68  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2018.sh 68
-2693850.69  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2018.sh 69
-2693850.70  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2018.sh 70
-2693850.71  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2018.sh 71
-2693850.72  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2018.sh 72
-2693850.73  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2018.sh 73
-2693850.74  peteryou        9/1  12:54   0+00:00:00 I  0     0.0 exe_NONE_ST_t-channel_top_MC_2018.sh 74
+2729231.124 peteryou        9/5  13:06   0+01:02:03 R  0   369.0 exe_NONE_JetHT_DATA_2018.sh 124
+2729231.125 peteryou        9/5  13:06   0+01:02:01 R  0   313.0 exe_NONE_JetHT_DATA_2018.sh 125
+2729231.126 peteryou        9/5  13:06   0+01:02:03 R  0   364.0 exe_NONE_JetHT_DATA_2018.sh 126
+2729231.128 peteryou        9/5  13:06   0+01:02:02 R  0   356.0 exe_NONE_JetHT_DATA_2018.sh 128
+2729231.129 peteryou        9/5  13:06   0+01:02:02 R  0   303.0 exe_NONE_JetHT_DATA_2018.sh 129
+2729231.130 peteryou        9/5  13:06   0+01:02:02 R  0   304.0 exe_NONE_JetHT_DATA_2018.sh 130
+2729231.131 peteryou        9/5  13:06   0+01:02:02 R  0   387.0 exe_NONE_JetHT_DATA_2018.sh 131
+2729231.132 peteryou        9/5  13:06   0+01:01:59 R  0   316.0 exe_NONE_JetHT_DATA_2018.sh 132
+2729231.134 peteryou        9/5  13:06   0+01:02:01 R  0   329.0 exe_NONE_JetHT_DATA_2018.sh 134
+2729231.135 peteryou        9/5  13:06   0+01:02:01 R  0   349.0 exe_NONE_JetHT_DATA_2018.sh 135
+2729231.136 peteryou        9/5  13:06   0+01:02:01 R  0   309.0 exe_NONE_JetHT_DATA_2018.sh 136
+2729231.137 peteryou        9/5  13:06   0+01:02:00 R  0   319.0 exe_NONE_JetHT_DATA_2018.sh 137
+2729231.138 peteryou        9/5  13:06   0+01:01:59 R  0   287.0 exe_NONE_JetHT_DATA_2018.sh 138
+2729231.139 peteryou        9/5  13:06   0+01:02:00 R  0   389.0 exe_NONE_JetHT_DATA_2018.sh 139
+2729231.140 peteryou        9/5  13:06   0+01:02:00 R  0   352.0 exe_NONE_JetHT_DATA_2018.sh 140
+2729231.141 peteryou        9/5  13:06   0+01:01:57 R  0   304.0 exe_NONE_JetHT_DATA_2018.sh 141
+2729231.142 peteryou        9/5  13:06   0+01:02:00 R  0   296.0 exe_NONE_JetHT_DATA_2018.sh 142
+2729231.144 peteryou        9/5  13:06   0+01:01:56 R  0   332.0 exe_NONE_JetHT_DATA_2018.sh 144
+2729231.145 peteryou        9/5  13:06   0+01:01:59 R  0   329.0 exe_NONE_JetHT_DATA_2018.sh 145
+2729231.146 peteryou        9/5  13:06   0+01:01:59 R  0   330.0 exe_NONE_JetHT_DATA_2018.sh 146
+2729231.148 peteryou        9/5  13:06   0+01:01:58 R  0   389.0 exe_NONE_JetHT_DATA_2018.sh 148
+2729231.154 peteryou        9/5  13:06   0+01:01:57 R  0   336.0 exe_NONE_JetHT_DATA_2018.sh 154
+2729231.155 peteryou        9/5  13:06   0+01:01:57 R  0   350.0 exe_NONE_JetHT_DATA_2018.sh 155
+2729231.156 peteryou        9/5  13:06   0+01:01:57 R  0   356.0 exe_NONE_JetHT_DATA_2018.sh 156
+2729231.157 peteryou        9/5  13:06   0+01:01:56 R  0   383.0 exe_NONE_JetHT_DATA_2018.sh 157
+2729231.158 peteryou        9/5  13:06   0+01:01:56 R  0   322.0 exe_NONE_JetHT_DATA_2018.sh 158
+2729231.160 peteryou        9/5  13:06   0+01:01:56 R  0   352.0 exe_NONE_JetHT_DATA_2018.sh 160
+2729231.161 peteryou        9/5  13:06   0+01:01:55 R  0   350.0 exe_NONE_JetHT_DATA_2018.sh 161
+2729231.162 peteryou        9/5  13:06   0+01:01:55 R  0   355.0 exe_NONE_JetHT_DATA_2018.sh 162
+2729231.167 peteryou        9/5  13:06   0+01:01:52 R  0   374.0 exe_NONE_JetHT_DATA_2018.sh 167
+2729231.168 peteryou        9/5  13:06   0+01:01:50 R  0   339.0 exe_NONE_JetHT_DATA_2018.sh 168
+2729231.169 peteryou        9/5  13:06   0+01:01:51 R  0   369.0 exe_NONE_JetHT_DATA_2018.sh 169
+2729231.173 peteryou        9/5  13:06   0+01:01:20 R  0   380.0 exe_NONE_JetHT_DATA_2018.sh 173
+2729231.174 peteryou        9/5  13:06   0+01:01:24 R  0   374.0 exe_NONE_JetHT_DATA_2018.sh 174
+2729231.177 peteryou        9/5  13:06   0+01:01:22 R  0   290.0 exe_NONE_JetHT_DATA_2018.sh 177
+2729231.178 peteryou        9/5  13:06   0+01:01:04 R  0   378.0 exe_NONE_JetHT_DATA_2018.sh 178
+2729231.180 peteryou        9/5  13:06   0+01:01:02 R  0   347.0 exe_NONE_JetHT_DATA_2018.sh 180
+2729231.182 peteryou        9/5  13:06   0+01:01:02 R  0   306.0 exe_NONE_JetHT_DATA_2018.sh 182
+2729231.184 peteryou        9/5  13:06   0+01:01:02 R  0   340.0 exe_NONE_JetHT_DATA_2018.sh 184
+2729231.185 peteryou        9/5  13:06   0+01:00:46 R  0   329.0 exe_NONE_JetHT_DATA_2018.sh 185
+2729231.187 peteryou        9/5  13:06   0+01:00:20 R  0   299.0 exe_NONE_JetHT_DATA_2018.sh 187
+2729231.188 peteryou        9/5  13:06   0+01:00:20 R  0   358.0 exe_NONE_JetHT_DATA_2018.sh 188
+2729231.190 peteryou        9/5  13:06   0+00:59:57 R  0   330.0 exe_NONE_JetHT_DATA_2018.sh 190
+2729231.192 peteryou        9/5  13:06   0+00:59:31 R  0   364.0 exe_NONE_JetHT_DATA_2018.sh 192
+2729231.193 peteryou        9/5  13:06   0+00:59:31 R  0   386.0 exe_NONE_JetHT_DATA_2018.sh 193
+2729231.194 peteryou        9/5  13:06   0+00:59:30 R  0   315.0 exe_NONE_JetHT_DATA_2018.sh 194
+2729231.195 peteryou        9/5  13:06   0+00:59:10 R  0   322.0 exe_NONE_JetHT_DATA_2018.sh 195
+2729231.196 peteryou        9/5  13:06   0+00:59:08 R  0   350.0 exe_NONE_JetHT_DATA_2018.sh 196
+2729231.198 peteryou        9/5  13:06   0+00:59:08 R  0   340.0 exe_NONE_JetHT_DATA_2018.sh 198
+2729231.199 peteryou        9/5  13:06   0+00:59:08 R  0   378.0 exe_NONE_JetHT_DATA_2018.sh 199
+2729231.200 peteryou        9/5  13:06   0+00:58:22 R  0   353.0 exe_NONE_JetHT_DATA_2018.sh 200
+2729231.202 peteryou        9/5  13:06   0+00:58:22 R  0   359.0 exe_NONE_JetHT_DATA_2018.sh 202
+2729231.203 peteryou        9/5  13:06   0+00:58:22 R  0   344.0 exe_NONE_JetHT_DATA_2018.sh 203
+2729231.206 peteryou        9/5  13:06   0+00:57:13 R  0   331.0 exe_NONE_JetHT_DATA_2018.sh 206
+2729231.207 peteryou        9/5  13:06   0+00:57:14 R  0   390.0 exe_NONE_JetHT_DATA_2018.sh 207
+2729231.208 peteryou        9/5  13:06   0+00:56:50 R  0   386.0 exe_NONE_JetHT_DATA_2018.sh 208
+2729231.211 peteryou        9/5  13:06   0+00:56:28 R  0   356.0 exe_NONE_JetHT_DATA_2018.sh 211
+2729231.212 peteryou        9/5  13:06   0+00:56:27 R  0   330.0 exe_NONE_JetHT_DATA_2018.sh 212
+2729231.213 peteryou        9/5  13:06   0+00:55:43 R  0   364.0 exe_NONE_JetHT_DATA_2018.sh 213
+2729231.217 peteryou        9/5  13:06   0+00:55:18 R  0   303.0 exe_NONE_JetHT_DATA_2018.sh 217
+2729231.219 peteryou        9/5  13:06   0+00:55:18 R  0   340.0 exe_NONE_JetHT_DATA_2018.sh 219
+2729231.220 peteryou        9/5  13:06   0+00:55:18 R  0   377.0 exe_NONE_JetHT_DATA_2018.sh 220
 
-Total for query: 51 jobs; 0 completed, 0 removed, 11 idle, 40 running, 0 held, 0 suspended 
-Total for peteryou: 51 jobs; 0 completed, 0 removed, 11 idle, 40 running, 0 held, 0 suspended 
-Total for all users: 1101 jobs; 0 completed, 0 removed, 789 idle, 129 running, 183 held, 0 suspended
+Total for query: 62 jobs; 0 completed, 0 removed, 0 idle, 62 running, 0 held, 0 suspended 
+Total for peteryou: 62 jobs; 0 completed, 0 removed, 0 idle, 62 running, 0 held, 0 suspended 
+Total for all users: 2508 jobs; 0 completed, 4 removed, 1000 idle, 1497 running, 7 held, 0 suspended
 
 
 
--- Schedd: lpcschedd5.fnal.gov : <131.225.204.62:9618?... @ 09/01/23 14:14:05
+-- Schedd: lpcschedd5.fnal.gov : <131.225.204.62:9618?... @ 09/05/23 14:33:49
  ID          OWNER            SUBMITTED     RUN_TIME ST PRI SIZE  CMD
-33036727.8   peteryou        9/1  12:53   0+00:40:19 R  0   360.0 exe_NONE_ST_tW-channel_top_MC_2018.sh 8
-33036727.9   peteryou        9/1  12:53   0+00:37:08 R  0   363.0 exe_NONE_ST_tW-channel_top_MC_2018.sh 9
-33036727.19  peteryou        9/1  12:53   0+00:29:03 R  0   331.0 exe_NONE_ST_tW-channel_top_MC_2018.sh 19
-33036727.24  peteryou        9/1  12:53   0+00:23:04 R  0   335.0 exe_NONE_ST_tW-channel_top_MC_2018.sh 24
-33036735.6   peteryou        9/1  12:53   0+00:19:53 R  0   344.0 exe_NONE_ST_tW-channel_antitop_MC_2018.sh 6
-33036735.7   peteryou        9/1  12:53   0+00:18:27 R  0   359.0 exe_NONE_ST_tW-channel_antitop_MC_2018.sh 7
-33036735.8   peteryou        9/1  12:53   0+00:16:52 R  0   333.0 exe_NONE_ST_tW-channel_antitop_MC_2018.sh 8
-33036735.9   peteryou        9/1  12:53   0+00:16:45 R  0   355.0 exe_NONE_ST_tW-channel_antitop_MC_2018.sh 9
+33067147.4   peteryou        9/5  13:06   0+01:10:45 R  0   352.0 exe_NONE_JetHT_DATA_2016.sh 4
+33067147.6   peteryou        9/5  13:06   0+01:10:44 R  0   378.0 exe_NONE_JetHT_DATA_2016.sh 6
+33067147.7   peteryou        9/5  13:06   0+01:10:44 R  0   344.0 exe_NONE_JetHT_DATA_2016.sh 7
+33067147.8   peteryou        9/5  13:06   0+01:10:31 R  0   325.0 exe_NONE_JetHT_DATA_2016.sh 8
+33067147.18  peteryou        9/5  13:06   0+01:10:43 R  0   312.0 exe_NONE_JetHT_DATA_2016.sh 18
+33067147.19  peteryou        9/5  13:06   0+01:10:37 R  0   359.0 exe_NONE_JetHT_DATA_2016.sh 19
 
-Total for query: 8 jobs; 0 completed, 0 removed, 0 idle, 8 running, 0 held, 0 suspended 
-Total for peteryou: 8 jobs; 0 completed, 0 removed, 0 idle, 8 running, 0 held, 0 suspended 
-Total for all users: 1640 jobs; 0 completed, 0 removed, 1016 idle, 619 running, 5 held, 0 suspended
+Total for query: 6 jobs; 0 completed, 0 removed, 0 idle, 6 running, 0 held, 0 suspended 
+Total for peteryou: 6 jobs; 0 completed, 0 removed, 0 idle, 6 running, 0 held, 0 suspended 
+Total for all users: 1586 jobs; 0 completed, 0 removed, 1089 idle, 496 running, 1 held, 0 suspended
 
