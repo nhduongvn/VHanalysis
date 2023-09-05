@@ -579,7 +579,7 @@ def makeStackPlot(plots, plotNames, cName, plotDir = 'Test/',
 xAxisTitle = 'Jet M_{SV}[GeV]', xAxisRange = [0,10], normMC=True, logY=False, 
 normBinWidth = -1, legendOrder = [], minY_forLog = 1.0, lumi = '35.9', 
 custom_colors=colors, useStack=True, useFill=True, forceMin=True, modMaxY = False,
-forceMaxY = False, forced_maxY = 0.3, legendColumns=2):
+forceMaxY = False, forced_maxY = 0.3, legendColumns=2, legendOnLeft=False):
 
   ## ===========================================
   ## Create the canvas & modify it as necessary
@@ -598,14 +598,19 @@ forceMaxY = False, forced_maxY = 0.3, legendColumns=2):
   ## ===================================
   allStack = ROOT.THStack('st','')
   
-  y1_ndc = 0.8
+  y1_ndc = 0.7
   y2_ndc = 0.87
   x1_ndc = 0.48
+  x2_ndc = 0.85
   if len(legendOrder) != 0:
     x1_ndc = 0.42
     y1_ndc = 0.5
   
-  l = ROOT.TLegend(x1_ndc, y1_ndc, 0.85, y2_ndc)
+  if legendOnLeft:
+    x1_ndc = 0.2
+    x2_ndc = 0.58
+  
+  l = ROOT.TLegend(x1_ndc, y1_ndc, x2_ndc, y2_ndc)
   l.SetNColumns(legendColumns)
   l.SetColumnSeparation(0.2)
   l.SetLineWidth(2)
