@@ -4,7 +4,7 @@
 void H_jetpt_JEC_both_18()
 {
 //=========Macro generated from canvas: H_jetpt_JEC_both_18/H_jetpt_JEC_both_18
-//=========  (Tue Sep  5 11:02:22 2023) by ROOT version 6.28/04
+//=========  (Thu Sep  7 11:48:01 2023) by ROOT version 6.28/04
    TCanvas *H_jetpt_JEC_both_18 = new TCanvas("H_jetpt_JEC_both_18", "H_jetpt_JEC_both_18",0,0,600,600);
    H_jetpt_JEC_both_18->SetHighLightColor(2);
    H_jetpt_JEC_both_18->Range(0,0,1,1);
@@ -382,11 +382,11 @@ void H_jetpt_JEC_both_18()
    st->Draw("hist");
    
    TH1D *VbbHcc_both_H_jetpt_JEC__395 = new TH1D("VbbHcc_both_H_jetpt_JEC__395","",150,0,300);
-   VbbHcc_both_H_jetpt_JEC__395->SetBinContent(0,159184);
-   VbbHcc_both_H_jetpt_JEC__395->SetBinContent(1,542);
-   VbbHcc_both_H_jetpt_JEC__395->SetBinContent(2,105423);
-   VbbHcc_both_H_jetpt_JEC__395->SetBinContent(3,54273);
-   VbbHcc_both_H_jetpt_JEC__395->SetEntries(319571);
+   VbbHcc_both_H_jetpt_JEC__395->SetBinContent(0,162439);
+   VbbHcc_both_H_jetpt_JEC__395->SetBinContent(1,549);
+   VbbHcc_both_H_jetpt_JEC__395->SetBinContent(2,107394);
+   VbbHcc_both_H_jetpt_JEC__395->SetBinContent(3,55506);
+   VbbHcc_both_H_jetpt_JEC__395->SetEntries(326037);
 
    ci = TColor::GetColor("#000099");
    VbbHcc_both_H_jetpt_JEC__395->SetLineColor(ci);
@@ -700,17 +700,17 @@ void H_jetpt_JEC_both_18()
    bottomPad->SetFrameBorderMode(0);
    
    TH1D *data_mc_ratio__396 = new TH1D("data_mc_ratio__396","",150,0,300);
-   data_mc_ratio__396->SetBinContent(0,0.8900612);
-   data_mc_ratio__396->SetBinContent(1,0.5770151);
-   data_mc_ratio__396->SetBinContent(2,0.8614339);
-   data_mc_ratio__396->SetBinContent(3,1.164829);
-   data_mc_ratio__396->SetBinError(0,0.04866135);
-   data_mc_ratio__396->SetBinError(1,0.02478492);
-   data_mc_ratio__396->SetBinError(2,0.002653104);
-   data_mc_ratio__396->SetBinError(3,0.005000003);
+   data_mc_ratio__396->SetBinContent(0,0.9082612);
+   data_mc_ratio__396->SetBinContent(1,0.5844673);
+   data_mc_ratio__396->SetBinContent(2,0.8775393);
+   data_mc_ratio__396->SetBinContent(3,1.191292);
+   data_mc_ratio__396->SetBinError(0,0.04965534);
+   data_mc_ratio__396->SetBinError(1,0.02494446);
+   data_mc_ratio__396->SetBinError(2,0.00267779);
+   data_mc_ratio__396->SetBinError(3,0.00505648);
    data_mc_ratio__396->SetMinimum(0.4);
    data_mc_ratio__396->SetMaximum(1.6);
-   data_mc_ratio__396->SetEntries(117.1172);
+   data_mc_ratio__396->SetEntries(118.1957);
    data_mc_ratio__396->SetStats(0);
 
    ci = TColor::GetColor("#000099");

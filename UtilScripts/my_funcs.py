@@ -27,6 +27,39 @@ def ScaleToLumi1(fName, xSec, lumi):
 ###############################################################################
 ## Get Histogram
 ###############################################################################
+
+def getHist(plotName, sample_names, hist_files, lumiScales, debug = True):
+  
+  hOut = {}
+  
+  ## Go through each year we're interested in.
+  for y in years:
+    
+    ## Get the first sample and the appropriate histogram
+    if debug: 
+      print "Looking in ", sample_names[0], " for ", plotName, "(20",y,")"
+    hOut[y] = hist_files[sample_names[0]][y][0].Get(plotName).Clone()
+    if sample_names[0] not in ['JetHT']:
+      hOut[y].Scale(lumiScales[sample_names[0]][y][0])
+    
+    ## Add the other samples
+    for iS in range(len(sample_names)):
+      for fi in range(len(hist_files[sample_names[iS]][y])):
+        
+        ## Skip the first sample (already grabbed)
+        if iS == 0 and fi == 0: continue
+        
+        h = hist_files[sample_names[iS]][y][fi].Get(plotName).Clone()
+        if sample_names[iS] not in ["JetHT"]:
+          h.Scale(lumiScales[sample_names[iS]][y][fi])
+        hOut[y].Add(h)
+  
+  return hOut
+
+###############################################################################
+## Get Histogram (OLD VERSION)
+###############################################################################
+'''
 def getHist(pN, samList, fList, lS, selType, scale=True):
   hOut = {}
   plotName = 'VbbHcc'
@@ -48,7 +81,7 @@ def getHist(pN, samList, fList, lS, selType, scale=True):
       hOut[y].Add(h)
     
   return hOut
-
+'''
 ###############################################################################
 ## My Text Function
 ###############################################################################
@@ -921,6 +954,30 @@ def blind_region(original_plot, low_end, high_end):
   
   return plot
 
+
+def blind_regions(original_plot, regionsToKeep):
+  
+  ## Make a copy of the plot
+  plot = original_plot.Clone()
+  
+  ## Go through each bin and remove data from the desired region
+  nBins = plot.GetNbinsX()
+  for i in range(1, nBins):
+    binContent = original_plot.GetBinContent(i)
+    binCenter  = original_plot.GetBinCenter(i)
+    
+    keepValue = False
+    for r in regionsToKeep:
+      low = r[0]
+      high = r[1]
+      if low < binCenter < high:
+        keepValue = True
+        break
+    
+    if not keepValue: plot.SetBinContent(i, 0)
+  
+  return plot
+
 ###############################################################################
 ## Make DataMC Plot
 ###############################################################################
@@ -1018,7 +1075,7 @@ def makeDataMCPlot(plots, plotNames, canvasName, outputDir = 'Test/',
   ## Modify it as necessary
   allStack.Draw("hist")
   allStack.GetXaxis().SetRangeUser(xAxisRange[0], xAxisRange[1])
-  binW = plots[0].GetBinWidth(1)
+  binW = dataPlot.GetBinWidth(1)
   
   formatNum = ''
   aNum = floor(binW*pow(10,3))-floor(binW*pow(10,2))*10
@@ -1031,7 +1088,7 @@ def makeDataMCPlot(plots, plotNames, canvasName, outputDir = 'Test/',
   allStack.GetYaxis().SetTitleOffset(1.2)
   allStack.GetYaxis().SetLabelSize(0.05)
   scaleTmp = 0.9 - (y2_ndc - y1_ndc)
-  maxScaleFromPlots = ROOT.TMath.Max(plots[0].GetMaximum(), allStack.GetMaximum())
+  maxScaleFromPlots = ROOT.TMath.Max(dataPlot.GetMaximum(), allStack.GetMaximum())
   maxX = 1./scaleTmp*maxScaleFromPlots
   if logY and maxScaleFromPlots > 0:
     maxX = pow(10, 1./scaleTmp*log10(maxScaleFromPlots))
@@ -1070,12 +1127,12 @@ def makeDataMCPlot(plots, plotNames, canvasName, outputDir = 'Test/',
   
   ## Handle the ratio
   allMC = allStack.GetStack().Last().Clone()
-  ratio = plots[0].Clone('data_mc_ratio')
+  ratio = dataPlot.Clone('data_mc_ratio')
   ratio.Divide(allMC)
   
   for i in range(1, ratio.GetNbinsX()+1):
     binErrTmp = 0
-    if plots[0].GetBinContent(i) > 0:
+    if dataPlot.GetBinContent(i) > 0:
       binErrTmp = ratio.GetBinContent(i)*plots[0].GetBinError(i)/plots[0].GetBinContent(i)
     ratio.SetBinError(i, binErrTmp)
   error = allMC.Clone('mc_statistical_error')
@@ -1092,8 +1149,8 @@ def makeDataMCPlot(plots, plotNames, canvasName, outputDir = 'Test/',
   if ratio.GetNbinsX() != error.GetNbinsX():
     print "@@@@@@ Warning: ratio and ratio error histograms do not have the same number of bins: ", ratio.GetNbinsX(), " ", error.GetNbinsX()
   
-  ksScore = plots[0].KolmogorovTest(allMC)
-  chiScore = plots[0].Chi2Test(allMC, "UWCHI2/NDF")
+  ksScore = dataPlot.KolmogorovTest(allMC)
+  chiScore = dataPlot.Chi2Test(allMC, "UWCHI2/NDF")
   print 'ksScore:  ', ksScore
   print 'chiScore: ', chiScore
   

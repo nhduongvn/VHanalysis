@@ -4,7 +4,7 @@
 void H_jetmass_JEC_both_18()
 {
 //=========Macro generated from canvas: H_jetmass_JEC_both_18/H_jetmass_JEC_both_18
-//=========  (Tue Sep  5 11:02:22 2023) by ROOT version 6.28/04
+//=========  (Thu Sep  7 11:48:01 2023) by ROOT version 6.28/04
    TCanvas *H_jetmass_JEC_both_18 = new TCanvas("H_jetmass_JEC_both_18", "H_jetmass_JEC_both_18",0,0,600,600);
    H_jetmass_JEC_both_18->SetHighLightColor(2);
    H_jetmass_JEC_both_18->Range(0,0,1,1);
@@ -19,7 +19,7 @@ void H_jetmass_JEC_both_18()
    TPad *topPad = new TPad("topPad", "topPad",0,0.3,1,1);
    topPad->Draw();
    topPad->cd();
-   topPad->Range(-45.96762,-507.858,315.7258,507360.1);
+   topPad->Range(-45.96762,-518.2523,315.7258,517744);
    topPad->SetFillColor(0);
    topPad->SetBorderMode(0);
    topPad->SetBorderSize(2);
@@ -33,11 +33,11 @@ void H_jetmass_JEC_both_18()
    st->SetName("st");
    st->SetTitle("");
    st->SetMinimum(0.01);
-   st->SetMaximum(456573.3);
+   st->SetMaximum(465917.8);
    
    TH1F *st_stack_204 = new TH1F("st_stack_204","",150,0,300);
    st_stack_204->SetMinimum(0.01);
-   st_stack_204->SetMaximum(456573.3);
+   st_stack_204->SetMaximum(465917.8);
    st_stack_204->SetDirectory(nullptr);
    st_stack_204->SetStats(0);
 
@@ -360,10 +360,10 @@ void H_jetmass_JEC_both_18()
    st->Draw("hist");
    
    TH1D *VbbHcc_both_H_jetmass_JEC__407 = new TH1D("VbbHcc_both_H_jetmass_JEC__407","",150,0,300);
-   VbbHcc_both_H_jetmass_JEC__407->SetBinContent(1,8);
-   VbbHcc_both_H_jetmass_JEC__407->SetBinContent(2,113956);
-   VbbHcc_both_H_jetmass_JEC__407->SetBinContent(3,205458);
-   VbbHcc_both_H_jetmass_JEC__407->SetEntries(319571);
+   VbbHcc_both_H_jetmass_JEC__407->SetBinContent(1,9);
+   VbbHcc_both_H_jetmass_JEC__407->SetBinContent(2,116216);
+   VbbHcc_both_H_jetmass_JEC__407->SetBinContent(3,209663);
+   VbbHcc_both_H_jetmass_JEC__407->SetEntries(326037);
 
    ci = TColor::GetColor("#000099");
    VbbHcc_both_H_jetmass_JEC__407->SetLineColor(ci);
@@ -677,15 +677,15 @@ void H_jetmass_JEC_both_18()
    bottomPad->SetFrameBorderMode(0);
    
    TH1D *data_mc_ratio__408 = new TH1D("data_mc_ratio__408","",150,0,300);
-   data_mc_ratio__408->SetBinContent(1,0.01754067);
-   data_mc_ratio__408->SetBinContent(2,0.7330782);
-   data_mc_ratio__408->SetBinContent(3,1.065351);
-   data_mc_ratio__408->SetBinError(1,0.006201564);
-   data_mc_ratio__408->SetBinError(2,0.002171609);
-   data_mc_ratio__408->SetBinError(3,0.002350344);
+   data_mc_ratio__408->SetBinContent(1,0.01973326);
+   data_mc_ratio__408->SetBinContent(2,0.7476167);
+   data_mc_ratio__408->SetBinContent(3,1.087155);
+   data_mc_ratio__408->SetBinError(1,0.006577752);
+   data_mc_ratio__408->SetBinError(2,0.002193037);
+   data_mc_ratio__408->SetBinError(3,0.002374274);
    data_mc_ratio__408->SetMinimum(0.4);
    data_mc_ratio__408->SetMaximum(1.6);
-   data_mc_ratio__408->SetEntries(515.514);
+   data_mc_ratio__408->SetEntries(513.9158);
    data_mc_ratio__408->SetStats(0);
 
    ci = TColor::GetColor("#000099");
