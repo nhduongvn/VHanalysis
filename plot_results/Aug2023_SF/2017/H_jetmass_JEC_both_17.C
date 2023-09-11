@@ -4,7 +4,7 @@
 void H_jetmass_JEC_both_17()
 {
 //=========Macro generated from canvas: H_jetmass_JEC_both_17/H_jetmass_JEC_both_17
-//=========  (Tue Sep  5 11:02:22 2023) by ROOT version 6.28/04
+//=========  (Thu Sep  7 11:48:01 2023) by ROOT version 6.28/04
    TCanvas *H_jetmass_JEC_both_17 = new TCanvas("H_jetmass_JEC_both_17", "H_jetmass_JEC_both_17",0,0,600,600);
    H_jetmass_JEC_both_17->SetHighLightColor(2);
    H_jetmass_JEC_both_17->Range(0,0,1,1);
@@ -357,9 +357,9 @@ void H_jetmass_JEC_both_17()
    
    TH1D *VbbHcc_both_H_jetmass_JEC__405 = new TH1D("VbbHcc_both_H_jetmass_JEC__405","",150,0,300);
    VbbHcc_both_H_jetmass_JEC__405->SetBinContent(1,3);
-   VbbHcc_both_H_jetmass_JEC__405->SetBinContent(2,23746);
-   VbbHcc_both_H_jetmass_JEC__405->SetBinContent(3,43287);
-   VbbHcc_both_H_jetmass_JEC__405->SetEntries(67185);
+   VbbHcc_both_H_jetmass_JEC__405->SetBinContent(2,21250);
+   VbbHcc_both_H_jetmass_JEC__405->SetBinContent(3,36673);
+   VbbHcc_both_H_jetmass_JEC__405->SetEntries(58075);
 
    ci = TColor::GetColor("#000099");
    VbbHcc_both_H_jetmass_JEC__405->SetLineColor(ci);
@@ -674,14 +674,14 @@ void H_jetmass_JEC_both_17()
    
    TH1D *data_mc_ratio__406 = new TH1D("data_mc_ratio__406","",150,0,300);
    data_mc_ratio__406->SetBinContent(1,4.448631e-05);
-   data_mc_ratio__406->SetBinContent(2,0.2605281);
-   data_mc_ratio__406->SetBinContent(3,0.3536193);
+   data_mc_ratio__406->SetBinContent(2,0.2331434);
+   data_mc_ratio__406->SetBinContent(3,0.2995884);
    data_mc_ratio__406->SetBinError(1,2.568419e-05);
-   data_mc_ratio__406->SetBinError(2,0.001690672);
-   data_mc_ratio__406->SetBinError(3,0.001699641);
+   data_mc_ratio__406->SetBinError(2,0.00159935);
+   data_mc_ratio__406->SetBinError(3,0.001564414);
    data_mc_ratio__406->SetMinimum(0.4);
    data_mc_ratio__406->SetMaximum(1.6);
-   data_mc_ratio__406->SetEntries(975.7274);
+   data_mc_ratio__406->SetEntries(957.6318);
    data_mc_ratio__406->SetStats(0);
 
    ci = TColor::GetColor("#000099");
