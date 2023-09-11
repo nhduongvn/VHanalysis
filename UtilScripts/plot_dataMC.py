@@ -11,7 +11,7 @@ import copy
 import math
 import ConfigParser
 from math import *
-from my_funcs import makeDataMCPlot, makePlot
+from my_funcs import makeDataMCPlot, makePlot, blind_region
 
 ROOT.gROOT.SetBatch(True)
 
@@ -227,6 +227,13 @@ for r in regions:
       xA_title = cfg.get(plN, 'xAxisTitle')
       nRebin = int(cfg.get(plN, 'rebin'))
       
+      ## If 2017, remove the problematic bin ~40-60 GeV
+      if y in ['17']:
+        if plN in ["H_mass", "Z_mass"]:
+          low = 40 if plN == "H_mass" else 50
+          high = 50 if plN == "H_mass" else 60
+          hQCD[y] = blind_region(hQCD[y], low, high)
+      
       plots_process = [
         hData[y].Clone().Rebin(nRebin),   ## Jet HT (data)
         hQCD[y].Clone().Rebin(nRebin),    ## QCD
@@ -242,6 +249,7 @@ for r in regions:
         hZHcc[y].Clone().Rebin(nRebin),   ## ZHcc (signal)
         hggZHcc[y].Clone().Rebin(nRebin)  ## ggZHcc (signal 2)
       ]
+        
       
       dataTitle = 'Data (JetHT, 20'+y+')'
       plotNames_process = [
