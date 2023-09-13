@@ -373,29 +373,32 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_evt_MC_cutflow->GetXaxis()->SetBinLabel(1, "Total");
   h_evt_MC_cutflow->GetXaxis()->SetBinLabel(2, "Passed daughter selection");
   
-  h_evt_tags_cutflow = new TH1D("VbbHcc_tags_CutFlow", "", 7, 0, 7);
+  h_evt_tags_cutflow = new TH1D("VbbHcc_tags_CutFlow", "", 8, 0, 8);
   h_evt_tags_cutflow->GetXaxis()->SetBinLabel(1, "Total");
   h_evt_tags_cutflow->GetXaxis()->SetBinLabel(2, "MET cut");
   h_evt_tags_cutflow->GetXaxis()->SetBinLabel(3, "jet cuts");
-  h_evt_tags_cutflow->GetXaxis()->SetBinLabel(4, "b-tag #1");
-  h_evt_tags_cutflow->GetXaxis()->SetBinLabel(5, "b-tag #2");
-  h_evt_tags_cutflow->GetXaxis()->SetBinLabel(6, "c-tag #1");
-  h_evt_tags_cutflow->GetXaxis()->SetBinLabel(7, "c-tag #2");
+  h_evt_tags_cutflow->GetXaxis()->SetBinLabel(4, "triggers");
+  h_evt_tags_cutflow->GetXaxis()->SetBinLabel(5, "b-tag #1");
+  h_evt_tags_cutflow->GetXaxis()->SetBinLabel(6, "b-tag #2");
+  h_evt_tags_cutflow->GetXaxis()->SetBinLabel(7, "c-tag #1");
+  h_evt_tags_cutflow->GetXaxis()->SetBinLabel(8, "c-tag #2");
   
-  h_evt_algo_cutflow = new TH1D("VbbHcc_algo_CutFlow", "", 7, 0, 7);
+  h_evt_algo_cutflow = new TH1D("VbbHcc_algo_CutFlow", "", 8, 0, 8);
   h_evt_algo_cutflow->GetXaxis()->SetBinLabel(1, "Total");
   h_evt_algo_cutflow->GetXaxis()->SetBinLabel(2, "MET cut");
   h_evt_algo_cutflow->GetXaxis()->SetBinLabel(3, "jet cuts");
-  h_evt_algo_cutflow->GetXaxis()->SetBinLabel(4, "b-tag #1");
-  h_evt_algo_cutflow->GetXaxis()->SetBinLabel(5, "b-tag #2");
-  h_evt_algo_cutflow->GetXaxis()->SetBinLabel(6, "c-tag #1");
-  h_evt_algo_cutflow->GetXaxis()->SetBinLabel(7, "c-tag #2");
+  h_evt_algo_cutflow->GetXaxis()->SetBinLabel(4, "triggers");
+  h_evt_algo_cutflow->GetXaxis()->SetBinLabel(5, "b-tag #1");
+  h_evt_algo_cutflow->GetXaxis()->SetBinLabel(6, "b-tag #2");
+  h_evt_algo_cutflow->GetXaxis()->SetBinLabel(7, "c-tag #1");
+  h_evt_algo_cutflow->GetXaxis()->SetBinLabel(8, "c-tag #2");
   
-  h_evt_both_cutflow = new TH1D("VbbHcc_both_CutFlow", "", 4, 0, 4);
+  h_evt_both_cutflow = new TH1D("VbbHcc_both_CutFlow", "", 5, 0, 5);
   h_evt_both_cutflow->GetXaxis()->SetBinLabel(1, "Total");
   h_evt_both_cutflow->GetXaxis()->SetBinLabel(2, "MET cut");
   h_evt_both_cutflow->GetXaxis()->SetBinLabel(3, "jet cuts");
-  h_evt_both_cutflow->GetXaxis()->SetBinLabel(4, "tags cut");
+  h_evt_both_cutflow->GetXaxis()->SetBinLabel(4, "triggers");
+  h_evt_both_cutflow->GetXaxis()->SetBinLabel(5, "tags cut");
 
   // Set up the CutFlows (for obj selections)
   h_jet_cutflow = new TH1D("VbbHcc_CutFlow_jets", "", 4, 0, 4);
@@ -1691,11 +1694,16 @@ void VH_selection::Process(Reader* r) {
     if (!trigger) return;
 
     //std::cout << "Passed our triggers!!!!" << std::endl;
+    h_evt_tags_cutflow->Fill(3.5, genWeight);
+    h_evt_algo_cutflow->Fill(3.5, genWeight);
+    h_evt_both_cutflow->Fill(3.5, genWeight);
 
     /**************************************************************************
     * Selection Method #1 - TAGGING ONLY                                      *
     **************************************************************************/
 
+    bool force_pass_tagging = true;
+    
     // Make an appropriate copy of the jets to use for this analysis.
     std::vector<JetObj> jets2; jets2 = analysis_jets;
 
@@ -1712,14 +1720,14 @@ void VH_selection::Process(Reader* r) {
     bool btag1 = passes_btag(bjets2[0], desired_BvL);
     bool btag2 = passes_btag(bjets2[1], desired_BvL);
 
-    if (btag1) {
+    if (btag1 || force_pass_tagging) {
 
-      h_evt_tags_cutflow->Fill(3.5, genWeight); // pass b-cut #1
-      if (btag2) {
+      h_evt_tags_cutflow->Fill(4.5, genWeight); // pass b-cut #1
+      if (btag2 || force_pass_tagging) {
 
         // Since we passed the cut, adjust our jets with the proper
         // JEC for b-tagged jets and reconstruct the Z boson
-        h_evt_tags_cutflow->Fill(4.5, genWeight); // pass b-cut #2
+        h_evt_tags_cutflow->Fill(5.5, genWeight); // pass b-cut #2
 
         bjets2[0].ApplyRegression(5); bjets2[1].ApplyRegression(5); // Full JEC version
         ZObj Z2(bjets2);
@@ -1743,14 +1751,14 @@ void VH_selection::Process(Reader* r) {
         ctag1 = passes_btag(cjets2[0], desired_BvL);
         ctag2 = passes_btag(cjets2[1], desired_BvL);
 
-        if (ctag1) {
+        if (ctag1 || force_pass_tagging) {
 
-          h_evt_tags_cutflow->Fill(5.5, genWeight); // pass c-cut #1
-          if (ctag2) {
+          h_evt_tags_cutflow->Fill(6.5, genWeight); // pass c-cut #1
+          if (ctag2 || force_pass_tagging) {
           
             // Since we passed the cuts, adjust our jets with the proper
             // JEC for c-tagged jets and reconstruct the Higgs boson
-            h_evt_tags_cutflow->Fill(6.5, genWeight); // pass c-cut #2
+            h_evt_tags_cutflow->Fill(7.5, genWeight); // pass c-cut #2
 
             cjets2[0].ApplyRegression(4); cjets2[1].ApplyRegression(4); // Full JEC version
             HObj H2(cjets2);
@@ -1846,10 +1854,10 @@ void VH_selection::Process(Reader* r) {
     bool btag32 = chosenPair.Z_has_bjet0(desired_BvL);
 
     // Now check our tagging requirements and other cuts.
-    if (btag31) {  
-      h_evt_algo_cutflow->Fill(3.5, genWeight); // pass b-tag #1
-      if (btag32) {
-        h_evt_algo_cutflow->Fill(4.5, genWeight); // pass b-tag #2
+    if (btag31 || force_pass_tagging) {  
+      h_evt_algo_cutflow->Fill(4.5, genWeight); // pass b-tag #1
+      if (btag32 || force_pass_tagging) {
+        h_evt_algo_cutflow->Fill(5.5, genWeight); // pass b-tag #2
 
         bool ctag1 = chosenPair.H_has_cjet0(desired_CvL, desired_CvB);
         bool ctag2 = chosenPair.H_has_cjet1(desired_CvL, desired_CvB);
@@ -1859,10 +1867,10 @@ void VH_selection::Process(Reader* r) {
         ctag1 = chosenPair.H_has_bjet0(desired_BvL);
         ctag2 = chosenPair.H_has_bjet1(desired_BvL);
  
-        if (ctag1) {
-          h_evt_algo_cutflow->Fill(5.5, genWeight); // pass c-tag #1
-          if (ctag2) {
-            h_evt_algo_cutflow->Fill(6.5, genWeight); // pass c-tag #2
+        if (ctag1 || force_pass_tagging) {
+          h_evt_algo_cutflow->Fill(6.5, genWeight); // pass c-tag #1
+          if (ctag2 || force_pass_tagging) {
+            h_evt_algo_cutflow->Fill(7.5, genWeight); // pass c-tag #2
             
             // Fill our histograms appropriately.
             h_VH_algo->FillVH(Z3, H3, evtW);
@@ -1904,11 +1912,11 @@ void VH_selection::Process(Reader* r) {
       bool ctag1 = passes_ctag(jets4[i], desired_CvL, desired_CvB); 
       ctag1 = passes_btag(jets4[i], desired_BvL);
 
-      if (btag1) {
+      if (btag1 || force_pass_tagging) {
         std::pair<int,float> pair0(i,csv);
         jets_idx_BvL.push_back(pair0); 
       }
-      if (ctag1){
+      if (ctag1 || force_pass_tagging){
         std::pair<int,float> pair1(i,cvl);
         jets_idx_CvL.push_back(pair1);
       }
@@ -1933,7 +1941,7 @@ void VH_selection::Process(Reader* r) {
     // If there are possible combos, let's check them.
     if (combos.size() > 0) {
 
-      h_evt_both_cutflow->Fill(3.5, genWeight); // passed tags
+      h_evt_both_cutflow->Fill(4.5, genWeight); // passed tags
 
       // From the combos we've found, run the DHZ algorithm and
       // determine which is the best combination.

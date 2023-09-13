@@ -1,95 +1,41 @@
 
 
--- Schedd: lpcschedd3.fnal.gov : <131.225.188.235:9618?... @ 09/05/23 14:33:49
- ID      OWNER            SUBMITTED     RUN_TIME ST PRI SIZE CMD
+-- Schedd: lpcschedd3.fnal.gov : <131.225.188.235:9618?... @ 09/13/23 14:28:58
+ ID          OWNER            SUBMITTED     RUN_TIME ST PRI SIZE  CMD
+79144147.5   peteryou        9/13 13:54   0+00:15:14 R  0   392.0 exe_NONE_ggZH_HToBB_ZToQQ_MC_2018.sh 5
+79144147.6   peteryou        9/13 13:54   0+00:15:06 R  0   381.0 exe_NONE_ggZH_HToBB_ZToQQ_MC_2018.sh 6
+79144148.8   peteryou        9/13 13:54   0+00:15:09 R  0   397.0 exe_NONE_ggZH_HToBB_ZToQQ_MC_2017.sh 8
+79144148.9   peteryou        9/13 13:54   0+00:15:06 R  0   381.0 exe_NONE_ggZH_HToBB_ZToQQ_MC_2017.sh 9
+79144148.11  peteryou        9/13 13:54   0+00:15:05 R  0   350.0 exe_NONE_ggZH_HToBB_ZToQQ_MC_2017.sh 11
+79144148.12  peteryou        9/13 13:54   0+00:15:10 R  0   392.0 exe_NONE_ggZH_HToBB_ZToQQ_MC_2017.sh 12
+79144149.16  peteryou        9/13 13:54   0+00:15:01 R  0   354.0 exe_NONE_ggZH_HToBB_ZToQQ_MC_2016.sh 16
+79144150.15  peteryou        9/13 13:54   0+00:14:42 R  0     0.0 exe_NONE_ZH_HToBB_ZToQQ_MC_2017.sh 15
+79144150.20  peteryou        9/13 13:54   0+00:14:44 R  0     0.0 exe_NONE_ZH_HToBB_ZToQQ_MC_2017.sh 20
+79144150.22  peteryou        9/13 13:54   0+00:14:40 R  0     0.0 exe_NONE_ZH_HToBB_ZToQQ_MC_2017.sh 22
+79144150.28  peteryou        9/13 13:54   0+00:14:36 R  0     0.0 exe_NONE_ZH_HToBB_ZToQQ_MC_2017.sh 28
+79144152.0   peteryou        9/13 13:55   0+00:14:36 R  0     0.0 exe_NONE_ZH_HToCC_ZToQQ_MC_2018.sh 0
+
+Total for query: 12 jobs; 0 completed, 0 removed, 0 idle, 12 running, 0 held, 0 suspended 
+Total for peteryou: 12 jobs; 0 completed, 0 removed, 0 idle, 12 running, 0 held, 0 suspended 
+Total for all users: 3567 jobs; 0 completed, 30 removed, 2396 idle, 1141 running, 0 held, 0 suspended
+
+
+
+-- Schedd: lpcschedd4.fnal.gov : <131.225.189.251:9618?... @ 09/13/23 14:28:58
+ ID          OWNER            SUBMITTED     RUN_TIME ST PRI SIZE  CMD
 
 Total for query: 0 jobs; 0 completed, 0 removed, 0 idle, 0 running, 0 held, 0 suspended 
 Total for peteryou: 0 jobs; 0 completed, 0 removed, 0 idle, 0 running, 0 held, 0 suspended 
-Total for all users: 1827 jobs; 0 completed, 30 removed, 1368 idle, 340 running, 89 held, 0 suspended
+Total for all users: 3539 jobs; 0 completed, 0 removed, 3251 idle, 284 running, 4 held, 0 suspended
 
 
 
--- Schedd: lpcschedd4.fnal.gov : <131.225.189.251:9618?... @ 09/05/23 14:33:49
- ID         OWNER            SUBMITTED     RUN_TIME ST PRI SIZE  CMD
-2729231.124 peteryou        9/5  13:06   0+01:02:03 R  0   369.0 exe_NONE_JetHT_DATA_2018.sh 124
-2729231.125 peteryou        9/5  13:06   0+01:02:01 R  0   313.0 exe_NONE_JetHT_DATA_2018.sh 125
-2729231.126 peteryou        9/5  13:06   0+01:02:03 R  0   364.0 exe_NONE_JetHT_DATA_2018.sh 126
-2729231.128 peteryou        9/5  13:06   0+01:02:02 R  0   356.0 exe_NONE_JetHT_DATA_2018.sh 128
-2729231.129 peteryou        9/5  13:06   0+01:02:02 R  0   303.0 exe_NONE_JetHT_DATA_2018.sh 129
-2729231.130 peteryou        9/5  13:06   0+01:02:02 R  0   304.0 exe_NONE_JetHT_DATA_2018.sh 130
-2729231.131 peteryou        9/5  13:06   0+01:02:02 R  0   387.0 exe_NONE_JetHT_DATA_2018.sh 131
-2729231.132 peteryou        9/5  13:06   0+01:01:59 R  0   316.0 exe_NONE_JetHT_DATA_2018.sh 132
-2729231.134 peteryou        9/5  13:06   0+01:02:01 R  0   329.0 exe_NONE_JetHT_DATA_2018.sh 134
-2729231.135 peteryou        9/5  13:06   0+01:02:01 R  0   349.0 exe_NONE_JetHT_DATA_2018.sh 135
-2729231.136 peteryou        9/5  13:06   0+01:02:01 R  0   309.0 exe_NONE_JetHT_DATA_2018.sh 136
-2729231.137 peteryou        9/5  13:06   0+01:02:00 R  0   319.0 exe_NONE_JetHT_DATA_2018.sh 137
-2729231.138 peteryou        9/5  13:06   0+01:01:59 R  0   287.0 exe_NONE_JetHT_DATA_2018.sh 138
-2729231.139 peteryou        9/5  13:06   0+01:02:00 R  0   389.0 exe_NONE_JetHT_DATA_2018.sh 139
-2729231.140 peteryou        9/5  13:06   0+01:02:00 R  0   352.0 exe_NONE_JetHT_DATA_2018.sh 140
-2729231.141 peteryou        9/5  13:06   0+01:01:57 R  0   304.0 exe_NONE_JetHT_DATA_2018.sh 141
-2729231.142 peteryou        9/5  13:06   0+01:02:00 R  0   296.0 exe_NONE_JetHT_DATA_2018.sh 142
-2729231.144 peteryou        9/5  13:06   0+01:01:56 R  0   332.0 exe_NONE_JetHT_DATA_2018.sh 144
-2729231.145 peteryou        9/5  13:06   0+01:01:59 R  0   329.0 exe_NONE_JetHT_DATA_2018.sh 145
-2729231.146 peteryou        9/5  13:06   0+01:01:59 R  0   330.0 exe_NONE_JetHT_DATA_2018.sh 146
-2729231.148 peteryou        9/5  13:06   0+01:01:58 R  0   389.0 exe_NONE_JetHT_DATA_2018.sh 148
-2729231.154 peteryou        9/5  13:06   0+01:01:57 R  0   336.0 exe_NONE_JetHT_DATA_2018.sh 154
-2729231.155 peteryou        9/5  13:06   0+01:01:57 R  0   350.0 exe_NONE_JetHT_DATA_2018.sh 155
-2729231.156 peteryou        9/5  13:06   0+01:01:57 R  0   356.0 exe_NONE_JetHT_DATA_2018.sh 156
-2729231.157 peteryou        9/5  13:06   0+01:01:56 R  0   383.0 exe_NONE_JetHT_DATA_2018.sh 157
-2729231.158 peteryou        9/5  13:06   0+01:01:56 R  0   322.0 exe_NONE_JetHT_DATA_2018.sh 158
-2729231.160 peteryou        9/5  13:06   0+01:01:56 R  0   352.0 exe_NONE_JetHT_DATA_2018.sh 160
-2729231.161 peteryou        9/5  13:06   0+01:01:55 R  0   350.0 exe_NONE_JetHT_DATA_2018.sh 161
-2729231.162 peteryou        9/5  13:06   0+01:01:55 R  0   355.0 exe_NONE_JetHT_DATA_2018.sh 162
-2729231.167 peteryou        9/5  13:06   0+01:01:52 R  0   374.0 exe_NONE_JetHT_DATA_2018.sh 167
-2729231.168 peteryou        9/5  13:06   0+01:01:50 R  0   339.0 exe_NONE_JetHT_DATA_2018.sh 168
-2729231.169 peteryou        9/5  13:06   0+01:01:51 R  0   369.0 exe_NONE_JetHT_DATA_2018.sh 169
-2729231.173 peteryou        9/5  13:06   0+01:01:20 R  0   380.0 exe_NONE_JetHT_DATA_2018.sh 173
-2729231.174 peteryou        9/5  13:06   0+01:01:24 R  0   374.0 exe_NONE_JetHT_DATA_2018.sh 174
-2729231.177 peteryou        9/5  13:06   0+01:01:22 R  0   290.0 exe_NONE_JetHT_DATA_2018.sh 177
-2729231.178 peteryou        9/5  13:06   0+01:01:04 R  0   378.0 exe_NONE_JetHT_DATA_2018.sh 178
-2729231.180 peteryou        9/5  13:06   0+01:01:02 R  0   347.0 exe_NONE_JetHT_DATA_2018.sh 180
-2729231.182 peteryou        9/5  13:06   0+01:01:02 R  0   306.0 exe_NONE_JetHT_DATA_2018.sh 182
-2729231.184 peteryou        9/5  13:06   0+01:01:02 R  0   340.0 exe_NONE_JetHT_DATA_2018.sh 184
-2729231.185 peteryou        9/5  13:06   0+01:00:46 R  0   329.0 exe_NONE_JetHT_DATA_2018.sh 185
-2729231.187 peteryou        9/5  13:06   0+01:00:20 R  0   299.0 exe_NONE_JetHT_DATA_2018.sh 187
-2729231.188 peteryou        9/5  13:06   0+01:00:20 R  0   358.0 exe_NONE_JetHT_DATA_2018.sh 188
-2729231.190 peteryou        9/5  13:06   0+00:59:57 R  0   330.0 exe_NONE_JetHT_DATA_2018.sh 190
-2729231.192 peteryou        9/5  13:06   0+00:59:31 R  0   364.0 exe_NONE_JetHT_DATA_2018.sh 192
-2729231.193 peteryou        9/5  13:06   0+00:59:31 R  0   386.0 exe_NONE_JetHT_DATA_2018.sh 193
-2729231.194 peteryou        9/5  13:06   0+00:59:30 R  0   315.0 exe_NONE_JetHT_DATA_2018.sh 194
-2729231.195 peteryou        9/5  13:06   0+00:59:10 R  0   322.0 exe_NONE_JetHT_DATA_2018.sh 195
-2729231.196 peteryou        9/5  13:06   0+00:59:08 R  0   350.0 exe_NONE_JetHT_DATA_2018.sh 196
-2729231.198 peteryou        9/5  13:06   0+00:59:08 R  0   340.0 exe_NONE_JetHT_DATA_2018.sh 198
-2729231.199 peteryou        9/5  13:06   0+00:59:08 R  0   378.0 exe_NONE_JetHT_DATA_2018.sh 199
-2729231.200 peteryou        9/5  13:06   0+00:58:22 R  0   353.0 exe_NONE_JetHT_DATA_2018.sh 200
-2729231.202 peteryou        9/5  13:06   0+00:58:22 R  0   359.0 exe_NONE_JetHT_DATA_2018.sh 202
-2729231.203 peteryou        9/5  13:06   0+00:58:22 R  0   344.0 exe_NONE_JetHT_DATA_2018.sh 203
-2729231.206 peteryou        9/5  13:06   0+00:57:13 R  0   331.0 exe_NONE_JetHT_DATA_2018.sh 206
-2729231.207 peteryou        9/5  13:06   0+00:57:14 R  0   390.0 exe_NONE_JetHT_DATA_2018.sh 207
-2729231.208 peteryou        9/5  13:06   0+00:56:50 R  0   386.0 exe_NONE_JetHT_DATA_2018.sh 208
-2729231.211 peteryou        9/5  13:06   0+00:56:28 R  0   356.0 exe_NONE_JetHT_DATA_2018.sh 211
-2729231.212 peteryou        9/5  13:06   0+00:56:27 R  0   330.0 exe_NONE_JetHT_DATA_2018.sh 212
-2729231.213 peteryou        9/5  13:06   0+00:55:43 R  0   364.0 exe_NONE_JetHT_DATA_2018.sh 213
-2729231.217 peteryou        9/5  13:06   0+00:55:18 R  0   303.0 exe_NONE_JetHT_DATA_2018.sh 217
-2729231.219 peteryou        9/5  13:06   0+00:55:18 R  0   340.0 exe_NONE_JetHT_DATA_2018.sh 219
-2729231.220 peteryou        9/5  13:06   0+00:55:18 R  0   377.0 exe_NONE_JetHT_DATA_2018.sh 220
-
-Total for query: 62 jobs; 0 completed, 0 removed, 0 idle, 62 running, 0 held, 0 suspended 
-Total for peteryou: 62 jobs; 0 completed, 0 removed, 0 idle, 62 running, 0 held, 0 suspended 
-Total for all users: 2508 jobs; 0 completed, 4 removed, 1000 idle, 1497 running, 7 held, 0 suspended
-
-
-
--- Schedd: lpcschedd5.fnal.gov : <131.225.204.62:9618?... @ 09/05/23 14:33:49
+-- Schedd: lpcschedd5.fnal.gov : <131.225.204.62:9618?... @ 09/13/23 14:28:58
  ID          OWNER            SUBMITTED     RUN_TIME ST PRI SIZE  CMD
-33067147.4   peteryou        9/5  13:06   0+01:10:45 R  0   352.0 exe_NONE_JetHT_DATA_2016.sh 4
-33067147.6   peteryou        9/5  13:06   0+01:10:44 R  0   378.0 exe_NONE_JetHT_DATA_2016.sh 6
-33067147.7   peteryou        9/5  13:06   0+01:10:44 R  0   344.0 exe_NONE_JetHT_DATA_2016.sh 7
-33067147.8   peteryou        9/5  13:06   0+01:10:31 R  0   325.0 exe_NONE_JetHT_DATA_2016.sh 8
-33067147.18  peteryou        9/5  13:06   0+01:10:43 R  0   312.0 exe_NONE_JetHT_DATA_2016.sh 18
-33067147.19  peteryou        9/5  13:06   0+01:10:37 R  0   359.0 exe_NONE_JetHT_DATA_2016.sh 19
+33179762.17  peteryou        9/13 13:54   0+00:27:45 R  0   353.0 exe_NONE_ZH_HToBB_ZToQQ_MC_2016.sh 17
+33179768.0   peteryou        9/13 13:55   0+00:24:57 R  0   349.0 exe_NONE_ZH_HToBB_ZToQQ_MC_2018.sh 0
 
-Total for query: 6 jobs; 0 completed, 0 removed, 0 idle, 6 running, 0 held, 0 suspended 
-Total for peteryou: 6 jobs; 0 completed, 0 removed, 0 idle, 6 running, 0 held, 0 suspended 
-Total for all users: 1586 jobs; 0 completed, 0 removed, 1089 idle, 496 running, 1 held, 0 suspended
+Total for query: 2 jobs; 0 completed, 0 removed, 0 idle, 2 running, 0 held, 0 suspended 
+Total for peteryou: 2 jobs; 0 completed, 0 removed, 0 idle, 2 running, 0 held, 0 suspended 
+Total for all users: 3006 jobs; 0 completed, 0 removed, 2330 idle, 604 running, 72 held, 0 suspended
 
