@@ -9,7 +9,7 @@ import sys, os
 import ROOT
 import ConfigParser
 from math import *
-from my_funcs import ScaleToLumi1, makePlot
+from my_funcs import ScaleToLumi1, make2DplotWithProjections
 
 ## == Useful Methods ==========================================================
 
@@ -55,8 +55,8 @@ years = ['16', '17', '18']
 useLogY = False
 
 ## Input & Output file locations
-dirpath = '../condor_results/Aug2023_addedTagSF/NONE/'
-output_directory = '../plot_results/Aug2023_SF/'
+dirpath = '../condor_results/Sep2023_ZH_noTag/NONE/'
+output_directory = '../plot_results/Sep2023_ZH/'
 
 ## Variables we care about
 selection_methods = [ "tags", "algo", "both" ]
@@ -195,22 +195,11 @@ for sel in selection_methods:
       logY = useLogY
       
       plot = plots_by_year[cat][y]
+      plot.Rebin2D(10,10)
+      
       canvas_name = sel + "_MH_v_MZ_" + y
       full_output = output_directory + '/20' + y + '/2D_signal/' + cat + '/'
-      makePlot(plot, "", canvas_name, full_output,
-        'm_{H} [GeV]', [], 'm_{Z} [GeV]', 10, logY, lumiS[y], 
-        0, 0, fill=True, is2D=True, showStats=True)
       
-      ## Plot the x-axis projection
-      plotX = plot.ProjectionX()
-      canvas_name = sel + "_MH_v_MZ_projX_" + y
-      makePlot(plot, "", canvas_name, full_output,
-        'm_{H} [GeV]', [], 'Events/10 GeV', 1, logY, lumiS[y], 
-        ROOT.kBlue, ROOT.kBlue, fill=True)
+      make2DplotWithProjections(plot, canvas_name, full_output,
+        "m_{H} [GeV]", "m_{Z} [GeV]")
       
-      ## Plot the y-axis projection
-      plotY = plot.ProjectionY()
-      canvas_name = sel + "_MH_v_MZ_projY_" + y
-      makePlot(plot, "", canvas_name, full_output,
-        'm_{H} [GeV]', [], 'Events/10 GeV', 1, logY, lumiS[y], 
-        ROOT.kBlue, ROOT.kBlue, fill=True)

@@ -1393,3 +1393,72 @@ def customBin(hist, xDiv):
   hOut.SetBinContent(hOut.GetNbinsX()+1,h.GetBinContent(hist.GetNbinsX()+1))
   
   return hOut
+
+###############################################################################
+## Plot 2D with Projections
+###############################################################################
+def make2DplotWithProjections(plot, canvasName, plotDir, xAxis_title, 
+  yAxis_title, debug=False):
+  
+  ## Make our canvas & modify it as possible
+  c = ROOT.TCanvas(canvasName, canvasName, 600, 600)
+  c.SetFillStyle(4000)
+  c.SetFrameFillStyle(1000)
+  c.SetFrameFillColor(0)
+  
+  ## Create the pads
+  if debug: print "Creating the center pad..."
+  center_pad = ROOT.TPad("center_pad", "center_pad", 0.0, 0.0, 0.6, 0.6)
+  center_pad.Draw()
+  
+  if debug: print "Creating the right pad..."
+  right_pad = ROOT.TPad("right_pad", "right_pad", 0.55, 0.0, 1.0, 0.6)
+  right_pad.Draw()
+  
+  if debug: print "Creating the top pad..."
+  top_pad = ROOT.TPad("top_pad", "top_pad", 0.0, 0.55, 0.6, 1.0)
+  top_pad.Draw()
+  
+  ## Pull the projection plots from the main TH2
+  projh2X = plot.ProjectionX()
+  projh2X.SetStats(0)
+  projh2Y = plot.ProjectionY()
+  projh2Y.SetStats(0)
+  
+  ## Draw the 2D plot in the center pad
+  if debug: "Drawing TH2 to the center pad..."
+  center_pad.cd()
+  ROOT.gStyle.SetPalette(1)
+  plot.GetXaxis().SetTitle(xAxis_title)
+  plot.GetYaxis().SetTitle(yAxis_title)
+  plot.SetStats(0)
+  plot.Draw("COL")
+  
+  ## Draw the X-projection on the top pad
+  if debug: "Drawing X-projection to the top pad..."
+  top_pad.cd()
+  projh2X.SetFillColor(ROOT.kBlue+1)
+  projh2X.GetXaxis().SetTitle("m_{H} [GeV]")
+  projh2X.GetYaxis().SetTitle("Events / 10 GeV")
+  projh2X.Draw("bar")
+  
+  ## Draw the Y-projection on the right pad
+  if debug: "Drawing Y-projection to the top pad..."
+  right_pad.cd()
+  projh2Y.SetFillColor(ROOT.kBlue-2)
+  projh2Y.GetXaxis().SetTitle("m_{Z} [GeV]")
+  projh2Y.GetYaxis().SetTitle("Events / 10 GeV")
+  projh2Y.Draw("hbar")
+  
+  ## Check to make sure the directory exists &
+  ## then print the proper files to the output
+  dirExists = os.path.exists(plotDir)
+  if not dirExists:
+    print "Warning: output directory does not exist."
+    os.makedirs(plotDir)
+    print ">>> directory created."
+  
+  c.Print(plotDir + '/' + canvasName + '.png')
+  c.Print(plotDir + '/' + canvasName + '.pdf')
+  c.Print(plotDir + '/' + canvasName + '.C')
+  
