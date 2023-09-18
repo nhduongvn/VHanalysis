@@ -4,7 +4,7 @@
 void both_MH_v_MZ_17()
 {
 //=========Macro generated from canvas: both_MH_v_MZ_17/both_MH_v_MZ_17
-//=========  (Thu Sep 14 11:40:29 2023) by ROOT version 6.28/04
+//=========  (Mon Sep 18 11:26:50 2023) by ROOT version 6.28/04
    TCanvas *both_MH_v_MZ_17 = new TCanvas("both_MH_v_MZ_17", "both_MH_v_MZ_17",0,0,600,600);
    both_MH_v_MZ_17->SetHighLightColor(2);
    both_MH_v_MZ_17->Range(0,0,1,1);
@@ -3889,7 +3889,7 @@ void both_MH_v_MZ_17()
    VbbHcc_both_MH_v_MZ_py__8->GetXaxis()->SetRange(1,200);
    VbbHcc_both_MH_v_MZ_py__8->GetXaxis()->SetLabelFont(42);
    VbbHcc_both_MH_v_MZ_py__8->GetXaxis()->SetTitleFont(42);
-   VbbHcc_both_MH_v_MZ_py__8->GetYaxis()->SetTitle("Events / 10 GeV");
+   VbbHcc_both_MH_v_MZ_py__8->GetYaxis()->SetTitle("Events / 1.0 GeV");
    VbbHcc_both_MH_v_MZ_py__8->GetYaxis()->SetLabelFont(42);
    VbbHcc_both_MH_v_MZ_py__8->GetYaxis()->SetTitleFont(42);
    VbbHcc_both_MH_v_MZ_py__8->GetZaxis()->SetLabelFont(42);
@@ -4252,7 +4252,7 @@ void both_MH_v_MZ_17()
    VbbHcc_both_MH_v_MZ_px__9->GetXaxis()->SetLabelFont(42);
    VbbHcc_both_MH_v_MZ_px__9->GetXaxis()->SetTitleOffset(1);
    VbbHcc_both_MH_v_MZ_px__9->GetXaxis()->SetTitleFont(42);
-   VbbHcc_both_MH_v_MZ_px__9->GetYaxis()->SetTitle("Events / 10 GeV");
+   VbbHcc_both_MH_v_MZ_px__9->GetYaxis()->SetTitle("Events / 1.0 GeV");
    VbbHcc_both_MH_v_MZ_px__9->GetYaxis()->SetLabelFont(42);
    VbbHcc_both_MH_v_MZ_px__9->GetYaxis()->SetTitleFont(42);
    VbbHcc_both_MH_v_MZ_px__9->GetZaxis()->SetLabelFont(42);

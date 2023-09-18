@@ -1398,7 +1398,7 @@ def customBin(hist, xDiv):
 ## Plot 2D with Projections
 ###############################################################################
 def make2DplotWithProjections(plot, canvasName, plotDir, xAxis_title, 
-  yAxis_title, debug=False):
+  yAxis_title, debug=False, xRange = [], yRange = []):
   
   ## Make our canvas & modify it as possible
   c = ROOT.TCanvas(canvasName, canvasName, 600, 600)
@@ -1430,24 +1430,34 @@ def make2DplotWithProjections(plot, canvasName, plotDir, xAxis_title,
   center_pad.cd()
   ROOT.gStyle.SetPalette(1)
   plot.GetXaxis().SetTitle(xAxis_title)
+  if len(xRange) >= 2:
+    plot.GetYaxis().SetRange(xRange[0], xRange[1])
   plot.GetYaxis().SetTitle(yAxis_title)
+  if len(yRange) >= 2:
+    plot.GetXaxis().SetRange(yRange[0], yRange[1])
   plot.SetStats(0)
   plot.Draw("COL")
   
   ## Draw the X-projection on the top pad
   if debug: "Drawing X-projection to the top pad..."
   top_pad.cd()
+  binWidth = projh2X.GetBinWidth(1)
   projh2X.SetFillColor(ROOT.kBlue+1)
   projh2X.GetXaxis().SetTitle("m_{H} [GeV]")
-  projh2X.GetYaxis().SetTitle("Events / 10 GeV")
+  projh2X.GetYaxis().SetTitle("Events / " + str(binWidth) + " GeV")
+  if len(xRange) >= 2:
+    plot.GetXaxis().SetRange(xRange[0], xRange[1])
   projh2X.Draw("bar")
   
   ## Draw the Y-projection on the right pad
   if debug: "Drawing Y-projection to the top pad..."
   right_pad.cd()
+  binWidth = projh2Y.GetBinWidth(1)
   projh2Y.SetFillColor(ROOT.kBlue-2)
   projh2Y.GetXaxis().SetTitle("m_{Z} [GeV]")
-  projh2Y.GetYaxis().SetTitle("Events / 10 GeV")
+  projh2Y.GetYaxis().SetTitle("Events / " + str(binWidth) + " GeV")
+  if len(yRange) >= 2:
+    plot.GetXaxis().SetRange(yRange[0], yRange[1])
   projh2Y.Draw("hbar")
   
   ## Check to make sure the directory exists &

@@ -60,7 +60,7 @@ output_directory = '../plot_results/Sep2023_ZH/'
 
 ## Variables we care about
 selection_methods = [ "tags", "algo", "both" ]
-selection_methods = [ "both" ]
+selection_methods = [ "MCjet" ]
 variables = [ "MH_v_MZ" ]
 
 ## Normal List of Samples 
@@ -201,5 +201,5 @@ for sel in selection_methods:
       full_output = output_directory + '/20' + y + '/2D_signal/' + cat + '/'
       
       make2DplotWithProjections(plot, canvas_name, full_output,
-        "m_{H} [GeV]", "m_{Z} [GeV]")
+        "m_{H} [GeV]", "m_{Z} [GeV]")#, xRange=[75,155], yRange=[41,141])
       
