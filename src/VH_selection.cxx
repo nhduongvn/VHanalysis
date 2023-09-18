@@ -1086,6 +1086,8 @@ void VH_selection::Process(Reader* r) {
       // and fill our desired methods.
       ZObj Z_MCjet(gen_bjets);
       HObj H_MCjet(gen_cjets);
+      //std::cout << "REACHED!!!!" << std::endl;
+      //std::cout << Z_MCjet.M() << " " << H_MCjet.M() << std::endl;
       h_VH_MC->FillVH(Z_MCjet, H_MCjet, evtW);
 
     }//end-found-jets
