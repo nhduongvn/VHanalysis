@@ -195,7 +195,7 @@ for sel in selection_methods:
       logY = useLogY
       
       plot = plots_by_year[cat][y]
-      plot.Rebin2D(10,10)
+      #plot.Rebin2D(10,10)
       
       canvas_name = sel + "_MH_v_MZ_" + y
       full_output = output_directory + '/20' + y + '/2D_signal/' + cat + '/'
