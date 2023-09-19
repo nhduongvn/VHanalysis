@@ -55,7 +55,7 @@ years = ['16', '17', '18']
 useLogY = False
 
 ## Input & Output file locations
-dirpath = '../condor_results/Sep2023_ZH_noTag/NONE/'
+dirpath = '../condor_results/Sep2023_ZH/NONE/'
 output_directory = '../plot_results/Sep2023_ZH/'
 
 ## Variables we care about
