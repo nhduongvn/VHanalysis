@@ -1725,7 +1725,7 @@ void VH_selection::Process(Reader* r) {
     * Selection Method #1 - TAGGING ONLY                                      *
     **************************************************************************/
 
-    bool force_pass_tagging = true;
+    bool force_pass_tagging = false;
     
     // Make an appropriate copy of the jets to use for this analysis.
     std::vector<JetObj> jets2; jets2 = analysis_jets;
