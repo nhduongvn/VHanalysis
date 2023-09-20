@@ -1009,7 +1009,7 @@ void VH_selection::Process(Reader* r) {
   
       // Build a jet from the information
       Int_t flavor = (r->GenJet_partonFlavour)[i];
-      if ((r->GetJet_pt)[i] < 45 || abs((r->GenJet_eta)[i]) > 2.4) continue;
+      if ((r->GenJet_pt)[i] < 45 || abs((r->GenJet_eta)[i]) > 2.4) continue;
       
       JetObj gjet((r->GenJet_pt)[i], (r->GenJet_eta)[i], (r->GenJet_phi)[i], 
         (r->GenJet_mass)[i], flavor, 0, 0);
