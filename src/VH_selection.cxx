@@ -455,13 +455,13 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_nMuon = new TH1D("nMuon", "", 10, -0.5, 9.5);
   h_nElec = new TH1D("nElec", "", 10, -0.5, 9.5);
   
-  h_pT_ratio = new TH1D("pT_ratio", 400, -2, 2);
-  h_dR_bjets = new TH1D("dR_bjets", 700, 0, 7);
-  h_dR_bjet0 = new TH1D("dR_bjet0", 700, 0, 7);
-  h_dR_bjet1 = new TH1D("dR_bjet1", 700, 0, 7);
-  h_dR_cjets = new TH1D("dR_cjets", 700, 0, 7);
-  h_dR_cjet0 = new TH1D("dR_cjet0", 700, 0, 7);
-  h_dR_cjet1 = new TH1D("dR_cjet1", 700, 0, 7);
+  h_pT_ratio = new TH1D("pT_ratio", "", 400, -2, 2);
+  h_dR_bjets = new TH1D("dR_bjets", "", 700, 0, 7);
+  h_dR_bjet0 = new TH1D("dR_bjet0", "", 700, 0, 7);
+  h_dR_bjet1 = new TH1D("dR_bjet1", "", 700, 0, 7);
+  h_dR_cjets = new TH1D("dR_cjets", "", 700, 0, 7);
+  h_dR_cjet0 = new TH1D("dR_cjet0", "", 700, 0, 7);
+  h_dR_cjet1 = new TH1D("dR_cjet1", "", 700, 0, 7);
 
   // Add them to the return list so we can use them in our analyses.
   r->GetOutputList()->Add(h_evt);
@@ -1123,7 +1123,7 @@ void VH_selection::Process(Reader* r) {
         // Check the match of the c-jets
         pT_jet = gen_cjets[i].Pt();
         pT_parton = gen_cs[i].Pt();
-        float = pT_jet/pT_parton;
+        SF = pT_jet/pT_parton;
         h_pT_ratio->Fill(SF, evtW);
         //if (SF <= 0.5) pT_matches = false; 
       }
