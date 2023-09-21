@@ -1009,8 +1009,7 @@ void VH_selection::Process(Reader* r) {
   
       // Build a jet from the information
       Int_t flavor = (r->GenJet_partonFlavour)[i];
-      if ((r->GenJet_pt)[i] < 45 || abs((r->GenJet_eta)[i]) > 2.4) continue;
-      
+      if ((r->GenJet_pt)[i] < 45 || abs((r->GenJet_eta)[i]) > 2.4) continue;     
       JetObj gjet((r->GenJet_pt)[i], (r->GenJet_eta)[i], (r->GenJet_phi)[i], 
         (r->GenJet_mass)[i], flavor, 0, 0);
 
@@ -1084,14 +1083,32 @@ void VH_selection::Process(Reader* r) {
       
       h_evt_VbbHcc->Fill(2.5, evtW);
 
-      // From the jets that we've found, reconstruct the proper bosons
-      // and fill our desired methods.
-      ZObj Z_MCjet(gen_bjets);
-      HObj H_MCjet(gen_cjets);
-      
-      
-      h_VH_MCjet->FillVH(Z_MCjet, H_MCjet, evtW);
+      // Check to make sure the pT of our Truth jets at least roughly
+      // matches the pT of the associated parton.
+      bool pT_matches = true;
+      for (int i = 0; i < 2; ++i){
+        // Check the match of the b-jets
+        float pT_jet = gen_bjets[i].Pt();
+        float pT_parton = gen_bs[i].Pt();
+        float SF = pT_jet/pT_parton;
+        if (SF <= 0.5) pT_matches = false;
 
+        // Check the match of the c-jets
+        pT_jet = gen_cjets[i].Pt();
+        pT_parton = gen_cs[i].Pt();
+        if (SF <= 0.5) pT_matches = false; 
+      }
+      
+      if (pT_matches) {
+
+        // From the jets that we've found, reconstruct the proper bosons
+        // and fill our desired methods.
+        ZObj Z_MCjet(gen_bjets);
+        HObj H_MCjet(gen_cjets);
+      
+        h_VH_MCjet->FillVH(Z_MCjet, H_MCjet, evtW);
+
+      }//end-pT-matches
     }//end-found-jets
     
     /*if (genCjet_list.size() == 1) {
