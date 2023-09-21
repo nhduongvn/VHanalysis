@@ -191,6 +191,15 @@ class VH_selection : public Selector {
 
     TH1D* h_nMuon;
     TH1D* h_nElec;
+    
+    TH1D* h_pT_ratio;
+    TH1D* h_dR_bjets;
+    TH1D* h_dR_bjet0;
+    TH1D* h_dR_bjet1;
+    TH1D* h_dR_cjets;
+    TH1D* h_dR_cjet0;
+    TH1D* h_dR_cjet1;
+
 };
 
 #endif

@@ -454,6 +454,14 @@ void VH_selection::SlaveBegin(Reader *r) {
 
   h_nMuon = new TH1D("nMuon", "", 10, -0.5, 9.5);
   h_nElec = new TH1D("nElec", "", 10, -0.5, 9.5);
+  
+  h_pT_ratio = new TH1D("pT_ratio", 400, -2, 2);
+  h_dR_bjets = new TH1D("dR_bjets", 700, 0, 7);
+  h_dR_bjet0 = new TH1D("dR_bjet0", 700, 0, 7);
+  h_dR_bjet1 = new TH1D("dR_bjet1", 700, 0, 7);
+  h_dR_cjets = new TH1D("dR_cjets", 700, 0, 7);
+  h_dR_cjet0 = new TH1D("dR_cjet0", 700, 0, 7);
+  h_dR_cjet1 = new TH1D("dR_cjet1", 700, 0, 7);
 
   // Add them to the return list so we can use them in our analyses.
   r->GetOutputList()->Add(h_evt);
@@ -469,6 +477,14 @@ void VH_selection::SlaveBegin(Reader *r) {
   r->GetOutputList()->Add(h_btagW);
   r->GetOutputList()->Add(h_ctagW);
   r->GetOutputList()->Add(h_evtW);
+  
+  r->GetOutputList()->Add(h_pT_ratio);
+  r->GetOutputList()->Add(h_dR_bjets);
+  r->GetOutputList()->Add(h_dR_bjet0);
+  r->GetOutputList()->Add(h_dR_bjet1);
+  r->GetOutputList()->Add(h_dR_cjets);
+  r->GetOutputList()->Add(h_dR_cjet0);
+  r->GetOutputList()->Add(h_dR_cjet1);
 
   r->GetOutputList()->Add(h_nJet);
   r->GetOutputList()->Add(h_nAnalysisJet);
@@ -1054,6 +1070,11 @@ void VH_selection::Process(Reader* r) {
         gen_bjets.push_back(genBjet_list[idx]);
         genBjet_list.erase(genBjet_list.begin() + idx);
 
+        // Fill match information into histograms.
+        h_dR_bjets->Fill(proper_pair.second, evtW);
+        if (i == 0) h_dR_bjet0->Fill(proper_pair.second, evtW);
+        else h_dR_bjet1->Fill(proper_pair.second, evtW);
+
       }//end-i
       
       // Find how the c-jets match the c-quarks.
@@ -1079,6 +1100,11 @@ void VH_selection::Process(Reader* r) {
         int idx2 = proper_pair.first;
         gen_cjets.push_back(genCjet_list[idx2]);
         genCjet_list.erase(genCjet_list.begin() + idx2);
+        
+        // Fill match information into histograms.
+        h_dR_cjets->Fill(proper_pair.second, evtW);
+        if (i == 0) h_dR_cjet0->Fill(proper_pair.second, evtW);
+        else h_dR_cjet1->Fill(proper_pair.second, evtW);
       }//end-i
       
       h_evt_VbbHcc->Fill(2.5, evtW);
@@ -1091,12 +1117,15 @@ void VH_selection::Process(Reader* r) {
         float pT_jet = gen_bjets[i].Pt();
         float pT_parton = gen_bs[i].Pt();
         float SF = pT_jet/pT_parton;
-        if (SF <= 0.5) pT_matches = false;
+        h_pT_ratio->Fill(SF, evtW);
+        //if (SF <= 0.5) pT_matches = false;
 
         // Check the match of the c-jets
         pT_jet = gen_cjets[i].Pt();
         pT_parton = gen_cs[i].Pt();
-        if (SF <= 0.5) pT_matches = false; 
+        float = pT_jet/pT_parton;
+        h_pT_ratio->Fill(SF, evtW);
+        //if (SF <= 0.5) pT_matches = false; 
       }
       
       if (pT_matches) {
