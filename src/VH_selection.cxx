@@ -462,6 +462,8 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_dR_cjets = new TH1D("dR_cjets", "", 700, 0, 7);
   h_dR_cjet0 = new TH1D("dR_cjet0", "", 700, 0, 7);
   h_dR_cjet1 = new TH1D("dR_cjet1", "", 700, 0, 7);
+  h_dR_ZUnder30 = new TH1D("dR_ZUnder30", "", 700, 0, 7);
+  h_dR_HUnder30 = new TH1D("dR_HUnder30", "", 700, 0, 7);
 
   // Add them to the return list so we can use them in our analyses.
   r->GetOutputList()->Add(h_evt);
@@ -485,7 +487,8 @@ void VH_selection::SlaveBegin(Reader *r) {
   r->GetOutputList()->Add(h_dR_cjets);
   r->GetOutputList()->Add(h_dR_cjet0);
   r->GetOutputList()->Add(h_dR_cjet1);
-
+  r->GetOutputList()->Add(h_dR_ZUnder30);
+  r->GetOutputList()->Add(h_dR_HUnder30);
   r->GetOutputList()->Add(h_nJet);
   r->GetOutputList()->Add(h_nAnalysisJet);
 
@@ -1048,7 +1051,7 @@ void VH_selection::Process(Reader* r) {
       
       // Find how the b-jets match the b-quarks.
       std::vector<std::pair<int,float>> jets_idx_dR;
-
+      std::vector<int> chosenIdx;
       // Go through each of the b-partons...
       for (size_t i = 0; i < gen_bs.size(); ++i) {
 	
@@ -1067,6 +1070,7 @@ void VH_selection::Process(Reader* r) {
 	// Move the proper jet to our list of chosen jets and remove
 	// it as an option from the list.
         int idx = proper_pair.first;
+        chosenIdx.push_back(idx);
         gen_bjets.push_back(genBjet_list[idx]);
         genBjet_list.erase(genBjet_list.begin() + idx);
 
@@ -1079,7 +1083,7 @@ void VH_selection::Process(Reader* r) {
       
       // Find how the c-jets match the c-quarks.
       std::vector<std::pair<int,float>> jets_idx_dR2;
-
+      std::vector<int> chosenIdx2;
       // Go through each of the c-partons...
       for (size_t i = 0; i < gen_cs.size(); ++i) {
 	
@@ -1098,6 +1102,7 @@ void VH_selection::Process(Reader* r) {
 	// Move the proper jet to our list of chosen jets and remove
 	// it as an option from the list.
         int idx2 = proper_pair.first;
+        chosenIdx2.push_back(idx2);
         gen_cjets.push_back(genCjet_list[idx2]);
         genCjet_list.erase(genCjet_list.begin() + idx2);
         
@@ -1134,6 +1139,19 @@ void VH_selection::Process(Reader* r) {
         // and fill our desired methods.
         ZObj Z_MCjet(gen_bjets);
         HObj H_MCjet(gen_cjets);
+
+        if (Z_MCjet.M() < 30) {
+          for (int i = 0; i < 2; ++i) {
+            float dR = jets_idx_dR[chosenIdx[i]].second;
+            h_dR_ZUnder30->Fill(dR, evtW); 
+          }
+        }
+        if (H_MCjet.M() < 30) {
+          for (int i = 0; i < 2; ++i) {
+            float dR = jets_idx_dR2[chosenIdx2[i]].second;
+            h_dR_HUnder30->Fill(dR, evtW);
+          }
+        }
       
         h_VH_MCjet->FillVH(Z_MCjet, H_MCjet, evtW);
 

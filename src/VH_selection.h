@@ -199,7 +199,8 @@ class VH_selection : public Selector {
     TH1D* h_dR_cjets;
     TH1D* h_dR_cjet0;
     TH1D* h_dR_cjet1;
-
+    TH1D* h_dR_ZUnder30;
+    TH1D* h_dR_HUnder30;
 };
 
 #endif
