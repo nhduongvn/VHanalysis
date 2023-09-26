@@ -1130,4 +1130,39 @@ class EffPlots
     TH2D* h_id_v_id_b; TH2D* h_id_v_id_b_truth;
     TH2D* h_id_v_id_c; TH2D* h_id_v_id_c_truth;
 };
+
+// ============================================================================
+// RecoPlots - these are plots we want to maintain for RECO jets.
+// ============================================================================
+class RecoPlots {
+
+  public:
+    
+    // Constructor
+    RecoPlots(TString name) : m_name(name) {
+
+    };
+
+    // Methods
+
+    // Return Histograms
+    std::vector<TH1*> returnHisto() {
+ 
+    };
+
+  protected:
+    
+    // Variables
+    TString m_name;
+    
+    // Plots
+    TH1D* h_dR_b_v_bjets;  // dR between b-partons and b-jets
+    TH1D* h_dR_b_v_bjet0;  // dR between b0 and b-jet 0
+    TH1D* h_dR_b_v_bjet1;  // dR between b1 and b-jet 1
+    TH1D* h_dR_c_v_cjets;  // dR between c-partons and c-jets
+    TH1D* h_dR_c_v_cjet0;  // dR between c0 and c-jet 0
+    TH1D* h_dR_c_v_cjet1;  // dR between c1 and c-jet 1
+    TH1D* h_dR_ZUnder30;   // dR for when m_{Z} <= 30 GeV
+    TH1D* h_dR_HUnder30;
+};
 #endif
