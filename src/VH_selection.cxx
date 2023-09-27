@@ -326,7 +326,7 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_reco_tagRemoved = new RecoPlots("Reco_tagRemoved");
   h_reco_tagRemoved_under30 = new RecoPlots("Reco_tagRemoved_under30");
   h_reco_inRange = new RecoPlots("Reco_inRange");
-  h_reco_inRange_under30 = new RecoPlots("Reco_tagRemoved_under30");
+  h_reco_inRange_under30 = new RecoPlots("Reco_inRange_under30");
   h_reco_fixed = new RecoPlots("Reco_fixed");
   h_reco_fixed_under30 = new RecoPlots("Reco_fixed_under30");
 
@@ -1105,7 +1105,7 @@ void VH_selection::Process(Reader* r) {
       
       // Find the c-jets closest to the c-quarks
       std::vector<std::pair<int,float>> cpair_idx_dR;
-      std::vector<int> chosenIdx;
+      std::vector<int> chosenIdx2;
       
       // Go through each c-parton...
       for (size_t i = 0; i < gen_cs.size(); ++i) {
@@ -1123,7 +1123,7 @@ void VH_selection::Process(Reader* r) {
         // Move the proper jet to our list of chosen jets
         // and remove it as an option from the list.
         int idx = proper_pair.first;
-        chosenIdx.push_back(idx);
+        chosenIdx2.push_back(idx);
         gen_cjets.push_back(cjets[idx]);
         cjets.erase(cjets.begin() + idx);
       }//end-cs
@@ -1136,7 +1136,7 @@ void VH_selection::Process(Reader* r) {
       if (Z_MCjet.M() < 30.0 || H_MCjet.M() < 30.0)
         h_reco_normal_under30->Fill(gen_bs, gen_bjets, gen_cs, gen_cjets, evtW);
       
-      
+      /*      
       // ==================
       // Method #3
       // ==================
@@ -1196,10 +1196,11 @@ void VH_selection::Process(Reader* r) {
       h_reco_inRange->Fill(gen_bs, genBjets, gen_cs, genCjets, evtW);
       if (Z_MCjet.M() < 30.0 || H_MCjet.M() < 30.0)
         h_reco_inRange_under30->Fill(gen_bs, genBjets, gen_cs, genCjets, evtW);
-    
+      */
     }//end-method-1-3
     
     // Methods 2 & 4 go here...
+    /*
     if (genJet_list.size() >= 4) {
     
       // Make a copy of the list of jets
@@ -1316,7 +1317,7 @@ void VH_selection::Process(Reader* r) {
       
     
     }//end-method-2-4
-
+    */
     
   }//end-VbbHcc-check
 #endif

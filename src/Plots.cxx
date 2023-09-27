@@ -1160,8 +1160,8 @@ class RecoPlots {
     };
 
     // Methods
-    void Fill(std::vector<JetObj*> blist, std::vector<JetObj*> bjets,
-    std::vector<JetObj*> clist, std::vector<JetObj*> cjets, float w) {
+    void Fill(std::vector<JetObj> blist, std::vector<JetObj> bjets,
+    std::vector<JetObj> clist, std::vector<JetObj> cjets, float w) {
     
       // Reconstruct the Z and H objects
       ZObj Z(bjets); HObj H(cjets);
