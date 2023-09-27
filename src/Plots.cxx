@@ -1140,14 +1140,91 @@ class RecoPlots {
     
     // Constructor
     RecoPlots(TString name) : m_name(name) {
-
+      
+      h_dR_b_v_bjets = new TH1D(name + "_dR_b_v_bjets", "", 700, 0, 7);
+      h_dR_b_v_bjet0 = new TH1D(name + "_dR_b_v_bjet0", "", 700, 0, 7);
+      h_dR_b_v_bjet1 = new TH1D(name + "_dR_b_v_bjet1", "", 700, 0, 7);
+      
+      h_dR_c_v_cjets = new TH1D(name + "_dR_c_v_cjets", "", 700, 0, 7);
+      h_dR_c_v_cjet0 = new TH1D(name + "_dR_c_v_cjet0", "", 700, 0, 7);
+      h_dR_c_v_cjet1 = new TH1D(name + "_dR_c_v_cjet1", "", 700, 0, 7);
+      
+      h_pTratio_all  = new TH1D(name + "_pTratio_all", "", 400, -2, 2);
+      h_pTratio_bjets = new TH1D(name + "_pTratio_bjets", "", 400, -2, 2);
+      h_pTratio_bjet0 = new TH1D(name + "_pTratio_bjet0", "", 400, -2, 2);
+      h_pTratio_bjet1 = new TH1D(name + "_pTratio_bjet1", "", 400, -2, 2);
+      
+      h_pTratio_cjets = new TH1D(name + "_pTratio_cjets", "", 400, -2, 2);
+      h_pTratio_cjet0 = new TH1D(name + "_pTratio_cjet0", "", 400, -2, 2);
+      h_pTratio_cjet1 = new TH1D(name + "_pTratio_cjet1", "", 400, -2, 2);
     };
 
     // Methods
+    void Fill(std::vector<JetObj*> blist, std::vector<JetObj*> bjets,
+    std::vector<JetObj*> clist, std::vector<JetObj*> cjets, float w) {
+    
+      // Reconstruct the Z and H objects
+      ZObj Z(bjets); HObj H(cjets);
+      
+      // Calculate the dR between the objects
+      for (int i = 0; i < 2; ++i){
+        
+        // First between the b's
+        float dR = blist[i].m_lvec.DeltaR(bjets[i].m_lvec);
+        h_dR_b_v_bjets->Fill(dR, w);
+        if (i == 0) h_dR_b_v_bjet0->Fill(dR, w);
+        else h_dR_b_v_bjet1->Fill(dR, w);
+        
+        // First between the c's
+        dR = clist[i].m_lvec.DeltaR(cjets[i].m_lvec);
+        h_dR_c_v_cjets->Fill(dR, w);
+        if (i == 0) h_dR_c_v_cjet0->Fill(dR, w);
+        else h_dR_c_v_cjet1->Fill(dR, w);
+        
+        // Now, determine the ratio between the pT of the partons and jets.
+        // First, let's do the b's.
+        float pT_parton = blist[i].Pt();
+        float pT_jet = bjets[i].Pt();
+        float ratio = pT_jet / pT_parton;
+        h_pTratio_all->Fill(ratio, w);
+        h_pTratio_bjets->Fill(ratio, w);
+        if (i == 0) h_pTratio_bjet0->Fill(ratio, w);
+        else h_pTratio_bjet1->Fill(ratio, w);
+        
+        // Now, let's do the c's.
+        pT_parton = clist[i].Pt();
+        pT_jet = cjets[i].Pt();
+        ratio = pT_jet / pT_parton;
+        h_pTratio_all->Fill(ratio, w);
+        h_pTratio_cjets->Fill(ratio, w);
+        if (i == 0) h_pTratio_cjet0->Fill(ratio, w);
+        else h_pTratio_cjet1->Fill(ratio, w);
+      }
+    
+    };
 
     // Return Histograms
     std::vector<TH1*> returnHisto() {
- 
+      std::vector<TH1*> histolist;
+      
+      histolist.push_back(h_dR_b_v_bjets);
+      histolist.push_back(h_dR_b_v_bjet0);
+      histolist.push_back(h_dR_b_v_bjet1);
+      
+      histolist.push_back(h_dR_c_v_cjets);
+      histolist.push_back(h_dR_c_v_cjet0);
+      histolist.push_back(h_dR_c_v_cjet1);
+      
+      histolist.push_back(h_pTratio_all);
+      histolist.push_back(h_pTratio_bjets);
+      histolist.push_back(h_pTratio_bjet0);
+      histolist.push_back(h_pTratio_bjet1);
+      
+      histolist.push_back(h_pTratio_cjets);
+      histolist.push_back(h_pTratio_cjet0);
+      histolist.push_back(h_pTratio_cjet1);
+      
+      return histolist;
     };
 
   protected:
@@ -1156,13 +1233,18 @@ class RecoPlots {
     TString m_name;
     
     // Plots
-    TH1D* h_dR_b_v_bjets;  // dR between b-partons and b-jets
-    TH1D* h_dR_b_v_bjet0;  // dR between b0 and b-jet 0
-    TH1D* h_dR_b_v_bjet1;  // dR between b1 and b-jet 1
-    TH1D* h_dR_c_v_cjets;  // dR between c-partons and c-jets
-    TH1D* h_dR_c_v_cjet0;  // dR between c0 and c-jet 0
-    TH1D* h_dR_c_v_cjet1;  // dR between c1 and c-jet 1
-    TH1D* h_dR_ZUnder30;   // dR for when m_{Z} <= 30 GeV
-    TH1D* h_dR_HUnder30;
+    TH1D* h_dR_b_v_bjets;   // dR between b-partons and b-jets
+    TH1D* h_dR_b_v_bjet0;   // dR between b0 and b-jet 0
+    TH1D* h_dR_b_v_bjet1;   // dR between b1 and b-jet 1
+    TH1D* h_dR_c_v_cjets;   // dR between c-partons and c-jets
+    TH1D* h_dR_c_v_cjet0;   // dR between c0 and c-jet 0
+    TH1D* h_dR_c_v_cjet1;   // dR between c1 and c-jet 1
+    TH1D* h_pTratio_all;      // pT "loss" for all cases
+    TH1D* h_pTratio_bjets;    // pT "loss" for b-jets
+    TH1D* h_pTratio_bjet0;    // pT "loss" for b-jet 0
+    TH1D* h_pTratio_bjet1;    // pT "loss" for b-jet 1
+    TH1D* h_pTratio_cjets;    // pT "loss" for c-jets
+    TH1D* h_pTratio_cjet0;    // pT "loss" for c-jet 0
+    TH1D* h_pTratio_cjet1;    // pT "loss" for c-jet 1
 };
 #endif

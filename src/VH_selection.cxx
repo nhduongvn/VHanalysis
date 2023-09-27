@@ -283,6 +283,9 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_VH_select = new VHPlots("VbbHcc_select");
   h_VH_MC = new VHPlots("VbbHcc_MC");
   h_VH_MCjet = new VHPlots("VbbHcc_MCjet");
+  h_VH_MCjet_tagRemoved = new VHPlots("VbbHcc_MCjet_tagRemoved");
+  h_VH_MCjet_inRange = new VHPlots("VbbHcc_MCjet_inRange");
+  h_VH_MCjet_fixed = new VHPlots("VbbHcc_MCjet_fixed");
 
   h_VH_tags = new VHPlots("VbbHcc_tags");
   h_VH_tags_noMassCorr = new VHPlots("VbbHcc_tags_noMassCorr");
@@ -316,6 +319,16 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_genJet_all = new GenPlots("GenJet_all");
   h_genJet_cuts = new GenPlots("GenJet_cuts");
   h_genJet_VbbHcc = new GenPlots("GenJet_VbbHcc");
+  
+  // Set up the RecoPlots instances
+  h_reco_normal = new RecoPlots("Reco_normal");
+  h_reco_normal_under30 = new RecoPlots("Reco_normal_under30");
+  h_reco_tagRemoved = new RecoPlots("Reco_tagRemoved");
+  h_reco_tagRemoved_under30 = new RecoPlots("Reco_tagRemoved_under30");
+  h_reco_inRange = new RecoPlots("Reco_inRange");
+  h_reco_inRange_under30 = new RecoPlots("Reco_tagRemoved_under30");
+  h_reco_fixed = new RecoPlots("Reco_fixed");
+  h_reco_fixed_under30 = new RecoPlots("Reco_fixed_under30");
 
   // Set up the Trigger efficiency plots
   h_2016_QuadJet_TripleTag = new TriggerEffPlots("2016_QuadJet_TripleTag");
@@ -454,16 +467,6 @@ void VH_selection::SlaveBegin(Reader *r) {
 
   h_nMuon = new TH1D("nMuon", "", 10, -0.5, 9.5);
   h_nElec = new TH1D("nElec", "", 10, -0.5, 9.5);
-  
-  h_pT_ratio = new TH1D("pT_ratio", "", 400, -2, 2);
-  h_dR_bjets = new TH1D("dR_bjets", "", 700, 0, 7);
-  h_dR_bjet0 = new TH1D("dR_bjet0", "", 700, 0, 7);
-  h_dR_bjet1 = new TH1D("dR_bjet1", "", 700, 0, 7);
-  h_dR_cjets = new TH1D("dR_cjets", "", 700, 0, 7);
-  h_dR_cjet0 = new TH1D("dR_cjet0", "", 700, 0, 7);
-  h_dR_cjet1 = new TH1D("dR_cjet1", "", 700, 0, 7);
-  h_dR_ZUnder30 = new TH1D("dR_ZUnder30", "", 700, 0, 7);
-  h_dR_HUnder30 = new TH1D("dR_HUnder30", "", 700, 0, 7);
 
   // Add them to the return list so we can use them in our analyses.
   r->GetOutputList()->Add(h_evt);
@@ -480,15 +483,6 @@ void VH_selection::SlaveBegin(Reader *r) {
   r->GetOutputList()->Add(h_ctagW);
   r->GetOutputList()->Add(h_evtW);
   
-  r->GetOutputList()->Add(h_pT_ratio);
-  r->GetOutputList()->Add(h_dR_bjets);
-  r->GetOutputList()->Add(h_dR_bjet0);
-  r->GetOutputList()->Add(h_dR_bjet1);
-  r->GetOutputList()->Add(h_dR_cjets);
-  r->GetOutputList()->Add(h_dR_cjet0);
-  r->GetOutputList()->Add(h_dR_cjet1);
-  r->GetOutputList()->Add(h_dR_ZUnder30);
-  r->GetOutputList()->Add(h_dR_HUnder30);
   r->GetOutputList()->Add(h_nJet);
   r->GetOutputList()->Add(h_nAnalysisJet);
 
@@ -496,6 +490,13 @@ void VH_selection::SlaveBegin(Reader *r) {
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_VH_MCjet->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_MCjet_tagRemoved->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_MCjet_inRange->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_MCjet_fixed->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  
   tmp = h_VH_tags->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_VH_tags_noMassCorr->returnHisto();
@@ -622,6 +623,23 @@ void VH_selection::SlaveBegin(Reader *r) {
   tmp = h_2017_QuadJet_TripleTag_RunB_3B->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_2017_QuadJet_TripleTag_RunB_2b2c->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  
+  tmp = h_reco_normal->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_reco_normal_under30->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_reco_tagRemoved->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_reco_tagRemoved_under30->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_reco_inRange->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_reco_inRange_under30->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_reco_fixed->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_reco_fixed_under30->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
 
   /*tmp = h_2017_QuadJet_noTagV2_ideal->returnHisto();
@@ -1028,10 +1046,11 @@ void VH_selection::Process(Reader* r) {
   
       // Build a jet from the information
       Int_t flavor = (r->GenJet_partonFlavour)[i];
-      if ((r->GenJet_pt)[i] < 45 || abs((r->GenJet_eta)[i]) > 2.4) continue;     
+      if ((r->GenJet_pt)[i] < 45.0 || abs((r->GenJet_eta)[i]) > 2.4) continue;     
       JetObj gjet((r->GenJet_pt)[i], (r->GenJet_eta)[i], (r->GenJet_phi)[i], 
         (r->GenJet_mass)[i], flavor, 0, 0);
 
+      // Sort the gets into lists based on flavors
       genJet_list.push_back(gjet);
       if (abs(flavor) <= 3) nL++;
       else if (abs(flavor) == 4){ genCjet_list.push_back(gjet); nC++; }
@@ -1040,134 +1059,265 @@ void VH_selection::Process(Reader* r) {
     }
     
     h_genJet_VbbHcc->Fill(genJet_list, evtW);
-
-    // If we have at least two 'c-tagged' jets and two 'b-tagged' jets
-    // (which we require for our events), find the jets that match to
-    // our gen objects. We do this via dR-matching because there is no
-    // variable to match them.
-    if (genCjet_list.size() >= 2 && genBjet_list.size() >= 2) {      
-
-      found_MCjets = true;
+    
+    // We now have 4 options we want to go through to see how we can properly match the jets.
+    // Method 1 (original) - match partons to nearest properly-tagged jets.
+    // Method 2 - match partons to nearest jets (without tagging)
+    // Method 3 - combine any tagged jets within the desired range & match that combo-jet
+    // Method 4 - combine ANY jets within the desired range & match that combo-jet
+    
+    // Methods 1 & 3 go here...
+    float dR_cut = 0.4;
+    if (genCjet_list.size() >= 2 && genBjet_list.size() >= 2) {
+    
+      // ========================
+      // METHOD #1
+      // ========================
       
-      // Find how the b-jets match the b-quarks.
-      std::vector<std::pair<int,float>> jets_idx_dR;
+      // Make a copy of the lists
+      std::vector<JetObj> cjets = genCjet_list;
+      std::vector<JetObj> bjets = genBjet_list;
+    
+      // Find the b-jets closest to the b-quarks
+      std::vector<std::pair<int,float>> bpair_idx_dR;
       std::vector<int> chosenIdx;
-      // Go through each of the b-partons...
+      
+      // Go through each b-parton...
       for (size_t i = 0; i < gen_bs.size(); ++i) {
-	
-	// ...and check the separation to each possible jet.
-        for (size_t j = 0; j < genBjet_list.size(); ++j) {
-          float dR = fabs(gen_bs[i].m_lvec.DeltaR(genBjet_list[j].m_lvec));
-          //std::cout << "b[" << i << "] | bjet[" << j << "] = " << dR << "\n";
-          jets_idx_dR.push_back(std::make_pair(j,dR));
+        // ... and check the separation with each possible jet.
+        for (size_t j = 0; j < bjets.size(); ++j) {
+          float dR = fabs(gen_bs[i].m_lvec.DeltaR(bjets[j].m_lvec));
+          bpair_idx_dR.push_back(std::make_pair(j,dR));
         }
-
-        // Sort the matches via the dR values (second in pair). We sort
-	// in ascending order, so our proper choice will be the first option.
-        std::sort(jets_idx_dR.begin(), jets_idx_dR.end(), sort_by_second);
-        std::pair<int, float> proper_pair = jets_idx_dR[0];
-
-	// Move the proper jet to our list of chosen jets and remove
-	// it as an option from the list.
+        
+        // Sort the matches via the dR values (second value in pair). We sort
+        // in ascending order, so our proper choice will be the first option.
+        std::sort(bpair_idx_dR.begin(), bpair_idx_dR.end(), sort_by_second);
+        std::pair<int, float> proper_pair = bpair_idx_dR[0];
+        
+        // Move the proper jet to our list of chosen jets
+        // and remove it as an option from the list.
         int idx = proper_pair.first;
         chosenIdx.push_back(idx);
-        gen_bjets.push_back(genBjet_list[idx]);
-        genBjet_list.erase(genBjet_list.begin() + idx);
-
-        // Fill match information into histograms.
-        h_dR_bjets->Fill(proper_pair.second, evtW);
-        if (i == 0) h_dR_bjet0->Fill(proper_pair.second, evtW);
-        else h_dR_bjet1->Fill(proper_pair.second, evtW);
-
-      }//end-i
+        gen_bjets.push_back(bjets[idx]);
+        bjets.erase(bjets.begin() + idx);
+      }//end-bs
       
-      // Find how the c-jets match the c-quarks.
-      std::vector<std::pair<int,float>> jets_idx_dR2;
-      std::vector<int> chosenIdx2;
-      // Go through each of the c-partons...
+      // Find the c-jets closest to the c-quarks
+      std::vector<std::pair<int,float>> cpair_idx_dR;
+      std::vector<int> chosenIdx;
+      
+      // Go through each c-parton...
       for (size_t i = 0; i < gen_cs.size(); ++i) {
-	
-	// ...and check the separation to each possible jet.
-        for (size_t j = 0; j < genCjet_list.size(); ++j) {
-          float dR = fabs(gen_cs[i].m_lvec.DeltaR(genCjet_list[j].m_lvec));
-          //std::cout << "c[" << i << "] | cjet[" << j << "] = " << dR << "\n";
-          jets_idx_dR2.push_back(std::make_pair(j,dR));
-        }//end-j
-
-        // Sort the matches via the dR values (second in pair). We sort
-	// in ascending order, so our proper choice will be the first option.
-        std::sort(jets_idx_dR2.begin(), jets_idx_dR2.end(), sort_by_second);
-        std::pair<int, float> proper_pair = jets_idx_dR2[0];
-
-	// Move the proper jet to our list of chosen jets and remove
-	// it as an option from the list.
-        int idx2 = proper_pair.first;
-        chosenIdx2.push_back(idx2);
-        gen_cjets.push_back(genCjet_list[idx2]);
-        genCjet_list.erase(genCjet_list.begin() + idx2);
+        // ... and check the separation with each possible jet
+        for (size_t j = 0; j < cjets.size(); ++j) {
+          float dR = fabs(gen_cs[i].m_lvec.DeltaR(cjets[j].m_lvec));
+          cpair_idx_dR.push_back(std::make_pair(j,dR));
+        }
         
-        // Fill match information into histograms.
-        h_dR_cjets->Fill(proper_pair.second, evtW);
-        if (i == 0) h_dR_cjet0->Fill(proper_pair.second, evtW);
-        else h_dR_cjet1->Fill(proper_pair.second, evtW);
+        // Sort the matches via the dR values (second value in pair). We sort
+        // in ascending order, so our proper choice will be the first option.
+        std::sort(bpair_idx_dR.begin(), bpair_idx_dR.end(), sort_by_second);
+        std::pair<int, float> proper_pair = bpair_idx_dR[0];
+        
+        // Move the proper jet to our list of chosen jets
+        // and remove it as an option from the list.
+        int idx = proper_pair.first;
+        chosenIdx.push_back(idx);
+        gen_cjets.push_back(cjets[idx]);
+        cjets.erase(cjets.begin() + idx);
+      }//end-cs
+      
+      // From these pairs, reconstruct the proper bosons
+      // and fill our desired methods
+      ZObj Z_MCjet(gen_bjets); HObj H_MCjet(gen_cjets);
+      h_VH_MCjet->FillVH(Z_MCjet, H_MCjet, evtW);
+      h_reco_normal->Fill(gen_bs, gen_bjets, gen_cs, gen_cjets, evtW);
+      if (Z_MCjet.M() < 30.0 || H_MCjet.M() < 30.0)
+        h_reco_normal_under30->Fill(gen_bs, gen_bjets, gen_cs, gen_cjets, evtW);
+      
+      
+      // ==================
+      // Method #3
+      // ==================
+      
+      cjets = genCjet_list; bjets = genBjet_list;
+      std::vector<JetObj> genBjets; std::vector<JetObj> genCjets;
+      
+      // For each b-parton, take in any jet that's within our range
+      for (size_t i = 0; i < gen_bs.size(); ++i) {
+      
+        JetObj comb_bjet(0, 0, 0, 0, 0, 0, 0);
+        
+        // For each jet in the b-list...
+        for (size_t j = bjets.size() - 1; j >= 0; --j) {
+        
+          // Check for the separation. If the separation is less than our cut...
+          float dR = fabs(gen_bs[i].m_lvec.DeltaR(bjets[j].m_lvec));
+          if (dR < dR_cut) {
+            // Combine the jet with our ones so far 
+            // and remove it from the list
+            comb_bjet.m_lvec += bjets[j].m_lvec;
+            bjets.erase(bjets.begin() + j);
+          }
+        }//end-j
+        
+        genBjets.push_back(comb_bjet);
+        
       }//end-i
       
-      h_evt_VbbHcc->Fill(2.5, evtW);
-
-      // Check to make sure the pT of our Truth jets at least roughly
-      // matches the pT of the associated parton.
-      bool pT_matches = true;
-      for (int i = 0; i < 2; ++i){
-        // Check the match of the b-jets
-        float pT_jet = gen_bjets[i].Pt();
-        float pT_parton = gen_bs[i].Pt();
-        float SF = pT_jet/pT_parton;
-        h_pT_ratio->Fill(SF, evtW);
-        //if (SF <= 0.5) pT_matches = false;
-
-        // Check the match of the c-jets
-        pT_jet = gen_cjets[i].Pt();
-        pT_parton = gen_cs[i].Pt();
-        SF = pT_jet/pT_parton;
-        h_pT_ratio->Fill(SF, evtW);
-        //if (SF <= 0.5) pT_matches = false; 
-      }
+      // For each c-parton, take in any jet that's within our range
+      for (size_t i = 0; i < gen_cs.size(); ++i) {
       
-      if (pT_matches) {
-
-        // From the jets that we've found, reconstruct the proper bosons
-        // and fill our desired methods.
-        ZObj Z_MCjet(gen_bjets);
-        HObj H_MCjet(gen_cjets);
-
-        if (Z_MCjet.M() < 30) {
-          for (int i = 0; i < 2; ++i) {
-            float dR = jets_idx_dR[chosenIdx[i]].second;
-            h_dR_ZUnder30->Fill(dR, evtW); 
+        JetObj comb_cjet(0, 0, 0, 0, 0, 0, 0);
+        
+        // For each jet in the c-list...
+        for (size_t j = cjets.size() - 1; j >= 0; --j) {
+        
+          // Check for separation. If the separation is less than our cut...
+          float dR = fabs(gen_cs[i].m_lvec.DeltaR(cjets[j].m_lvec));
+          if (dR < dR_cut) {
+            // Combine the jet with our ones so far 
+            // and remove it from the list
+            comb_cjet.m_lvec += cjets[j].m_lvec;
+            cjets.erase(cjets.begin() + j);
           }
-        }
-        if (H_MCjet.M() < 30) {
-          for (int i = 0; i < 2; ++i) {
-            float dR = jets_idx_dR2[chosenIdx2[i]].second;
-            h_dR_HUnder30->Fill(dR, evtW);
-          }
-        }
+        
+        }//end-j
+        
+        genCjets.push_back(comb_cjet);
       
-        h_VH_MCjet->FillVH(Z_MCjet, H_MCjet, evtW);
-
-      }//end-pT-matches
-    }//end-found-jets
+      }//end-i
+      
+      // From these pairs, reconstruct the proper bosons
+      // and fill our desired methods
+      ZObj Z_MCjet2(genBjets); HObj H_MCjet2(genCjets);
+      h_VH_MCjet_inRange->FillVH(Z_MCjet2, H_MCjet2, evtW);
+      h_reco_inRange->Fill(gen_bs, genBjets, gen_cs, genCjets, evtW);
+      if (Z_MCjet.M() < 30.0 || H_MCjet.M() < 30.0)
+        h_reco_inRange_under30->Fill(gen_bs, genBjets, gen_cs, genCjets, evtW);
     
-    /*if (genCjet_list.size() == 1) {
-      std::cout << "only ONE cjet found" << std::endl;
-      std::cout << ">>> pt = " << genCjet_list[0].Pt() << "\n";
-      std::cout << ">>> m  = " << genCjet_list[0].M() << "\n";
-    }
-    if (genBjet_list.size() == 1) {
-      std::cout << "only ONE bjet found" << std::endl;
-      std::cout << ">>> pt = " << genBjet_list[0].Pt() << "\n";
-      std::cout << ">>> m  = " << genBjet_list[0].M() << "\n";
-    }*/
+    }//end-method-1-3
+    
+    // Methods 2 & 4 go here...
+    if (genJet_list.size() >= 4) {
+    
+      // Make a copy of the list of jets
+      std::vector<JetObj> alljets = genJet_list;
+      
+      // ================
+      // Method #2
+      // ================
+      
+      std::vector<JetObj> bjets;
+      std::vector<JetObj> cjets;
+      
+      // Compare each parton to each jet and see which jet gives us
+      // the closest jet.
+      float dR_min = 9999.0;
+      int chosenIdx = -1;
+      
+      // Go through each b-parton
+      for (size_t i = 0; i < gen_bs.size(); ++i) {
+      
+        for (size_t j = 0; j < alljets.size(); ++j) {
+          float dR = fabs(gen_bs[i].m_lvec.DeltaR(alljets[j].m_lvec));
+          if (dR < dR_min) { dR_min = dR; chosenIdx = j; }
+        }
+        
+        // Take the jet we found that was closest and add it to our list
+        bjets.push_back(alljets[chosenIdx]);
+        alljets.erase(alljets.begin() + chosenIdx);
+      
+      }//end-i
+      
+      // Go through each c-parton with the remaining jets
+      for (size_t i = 0; i < gen_cs.size(); ++i) {
+      
+        for (size_t j = 0; j < alljets.size(); ++j) {
+          float dR = fabs(gen_cs[i].m_lvec.DeltaR(alljets[j].m_lvec));
+          if (dR < dR_min) { dR_min = dR; chosenIdx = j; }
+        }
+        
+        // Take the jet we found that was closest and add it to our list
+        cjets.push_back(alljets[chosenIdx]);
+        alljets.erase(alljets.begin() + chosenIdx);
+      
+      }//end-i
+      
+      // From these pairs, reconstruct the proper bosons
+      // and fill our desired methods
+      ZObj Z_MCjet(bjets); HObj H_MCjet(cjets);
+      h_VH_MCjet_tagRemoved->FillVH(Z_MCjet, H_MCjet, evtW);
+      h_reco_tagRemoved->Fill(gen_bs, bjets, gen_cs, cjets, evtW);
+      if (Z_MCjet.M() < 30.0 || H_MCjet.M() < 30.0)
+        h_reco_tagRemoved_under30->Fill(gen_bs, bjets, gen_cs, cjets, evtW);
+      
+      // =====================
+      // Method #4
+      // =====================
+      
+      alljets = genJet_list;
+      std::vector<JetObj> genBjets;
+      std::vector<JetObj> genCjets;
+      
+      // For each parton, pull in any jets within our dR range
+      for (size_t i = 0; i < gen_bs.size(); ++i) {
+      
+        JetObj comb_bjet(0, 0, 0, 0, 0, 0, 0);
+        
+        // For each jet in the b-list...
+        for (size_t j = bjets.size() - 1; j >= 0; --j) {
+        
+          // Check for the separation. If the separation is less than our cut...
+          float dR = fabs(gen_bs[i].m_lvec.DeltaR(alljets[j].m_lvec));
+          if (dR < dR_cut) {
+            // Combine the jet with our ones so far 
+            // and remove it from the list
+            comb_bjet.m_lvec += alljets[j].m_lvec;
+            alljets.erase(alljets.begin() + j);
+          }
+        }//end-j
+        
+        genBjets.push_back(comb_bjet);
+        
+      }//end-i
+      
+      // For each c-parton, take in any jet that's within our range
+      for (size_t i = 0; i < gen_cs.size(); ++i) {
+      
+        JetObj comb_cjet(0, 0, 0, 0, 0, 0, 0);
+        
+        // For each jet in the c-list...
+        for (size_t j = cjets.size() - 1; j >= 0; --j) {
+        
+          // Check for separation. If the separation is less than our cut...
+          float dR = fabs(gen_cs[i].m_lvec.DeltaR(alljets[j].m_lvec));
+          if (dR < dR_cut) {
+            // Combine the jet with our ones so far 
+            // and remove it from the list
+            comb_cjet.m_lvec += alljets[j].m_lvec;
+            alljets.erase(cjets.begin() + j);
+          }
+        
+        }//end-j
+        
+        genCjets.push_back(comb_cjet);
+      
+      }//end-i
+      
+      // From these pairs, reconstruct the proper bosons
+      // and fill our desired methods
+      ZObj Z_MCjet2(genBjets); HObj H_MCjet2(genCjets);
+      h_VH_MCjet_fixed->FillVH(Z_MCjet2, H_MCjet2, evtW);
+      h_reco_fixed->Fill(gen_bs, genBjets, gen_cs, genCjets, evtW);
+      if (Z_MCjet.M() < 30.0 || H_MCjet.M() < 30.0)
+        h_reco_fixed_under30->Fill(gen_bs, genBjets, gen_cs, genCjets, evtW);
+      
+    
+    }//end-method-2-4
+
+    
   }//end-VbbHcc-check
 #endif
 

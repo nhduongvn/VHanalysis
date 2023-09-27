@@ -44,6 +44,19 @@ class VH_selection : public Selector {
     // VH Plots
     VHPlots *h_VH_MC;    // MC Truth events (GenObj)
     VHPlots *h_VH_MCjet; // MC Truth events (jets)
+    VHPlots *h_VH_MCjet_tagRemoved; 
+    VHPlots *h_VH_MCjet_inRange;
+    VHPlots *h_VH_MCjet_fixed;
+    
+    RecoPlots *h_reco_normal;
+    RecoPlots *h_reco_normal_under30;
+    RecoPlots *h_reco_tagRemoved;
+    RecoPlots *h_reco_tagRemoved_under30;
+    RecoPlots *h_reco_inRange;
+    RecoPlots *h_reco_inRange_under30;
+    RecoPlots *h_reco_fixed;
+    RecoPlots *h_reco_fixed_under30;
+    
     VHPlots *h_VH_tags;  // Tagging Only
     VHPlots *h_VH_tags_noMassCorr;
     VHPlots *h_VH_tags_noJEC;
@@ -191,16 +204,6 @@ class VH_selection : public Selector {
 
     TH1D* h_nMuon;
     TH1D* h_nElec;
-    
-    TH1D* h_pT_ratio;
-    TH1D* h_dR_bjets;
-    TH1D* h_dR_bjet0;
-    TH1D* h_dR_bjet1;
-    TH1D* h_dR_cjets;
-    TH1D* h_dR_cjet0;
-    TH1D* h_dR_cjet1;
-    TH1D* h_dR_ZUnder30;
-    TH1D* h_dR_HUnder30;
 };
 
 #endif
