@@ -1136,7 +1136,7 @@ void VH_selection::Process(Reader* r) {
       if (Z_MCjet.M() < 30.0 || H_MCjet.M() < 30.0)
         h_reco_normal_under30->Fill(gen_bs, gen_bjets, gen_cs, gen_cjets, evtW);
       
-      /*      
+           
       // ==================
       // Method #3
       // ==================
@@ -1196,7 +1196,7 @@ void VH_selection::Process(Reader* r) {
       h_reco_inRange->Fill(gen_bs, genBjets, gen_cs, genCjets, evtW);
       if (Z_MCjet.M() < 30.0 || H_MCjet.M() < 30.0)
         h_reco_inRange_under30->Fill(gen_bs, genBjets, gen_cs, genCjets, evtW);
-      */
+      
     }//end-method-1-3
     
     // Methods 2 & 4 go here...
