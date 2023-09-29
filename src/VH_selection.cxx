@@ -1141,24 +1141,29 @@ void VH_selection::Process(Reader* r) {
       // Method #3
       // ==================
       
-      cjets = genCjet_list; bjets = genBjet_list;
+      std::vector<JetObj> cjets2 = genCjet_list; 
+      std::vector<JetObj> bjets2 = genBjet_list;
       std::vector<JetObj> genBjets; std::vector<JetObj> genCjets;
       
       // For each b-parton, take in any jet that's within our range
+      //std::cout << "gen_bs.size() = " << gen_bs.size() << std::endl;
       for (size_t i = 0; i < gen_bs.size(); ++i) {
       
+        //std::cout << ">> i = " << i << std::endl;
         JetObj comb_bjet(0, 0, 0, 0, 0, 0, 0);
         
         // For each jet in the b-list...
-        for (size_t j = bjets.size() - 1; j >= 0; --j) {
-        
+        //std::cout << ">> bjets2.size() = " << bjets2.size() << std::endl;
+        for (Int_t j = bjets2.size() - 1; j >= 0; --j) {
+          
+          //std::cout << ">>>> j = " << j << std::endl; 
           // Check for the separation. If the separation is less than our cut...
-          float dR = fabs(gen_bs[i].m_lvec.DeltaR(bjets[j].m_lvec));
+          float dR = fabs(gen_bs[i].m_lvec.DeltaR(bjets2[j].m_lvec));
           if (dR < dR_cut) {
             // Combine the jet with our ones so far 
             // and remove it from the list
-            comb_bjet.m_lvec += bjets[j].m_lvec;
-            bjets.erase(bjets.begin() + j);
+            comb_bjet.m_lvec += bjets2[j].m_lvec;
+            bjets2.erase(bjets2.begin() + j);
           }
         }//end-j
         
@@ -1172,15 +1177,15 @@ void VH_selection::Process(Reader* r) {
         JetObj comb_cjet(0, 0, 0, 0, 0, 0, 0);
         
         // For each jet in the c-list...
-        for (size_t j = cjets.size() - 1; j >= 0; --j) {
+        for (Int_t j = cjets2.size() - 1; j >= 0; --j) {
         
           // Check for separation. If the separation is less than our cut...
-          float dR = fabs(gen_cs[i].m_lvec.DeltaR(cjets[j].m_lvec));
+          float dR = fabs(gen_cs[i].m_lvec.DeltaR(cjets2[j].m_lvec));
           if (dR < dR_cut) {
             // Combine the jet with our ones so far 
             // and remove it from the list
-            comb_cjet.m_lvec += cjets[j].m_lvec;
-            cjets.erase(cjets.begin() + j);
+            comb_cjet.m_lvec += cjets2[j].m_lvec;
+            cjets2.erase(cjets2.begin()+j);
           }
         
         }//end-j
@@ -1200,7 +1205,7 @@ void VH_selection::Process(Reader* r) {
     }//end-method-1-3
     
     // Methods 2 & 4 go here...
-    /*
+    
     if (genJet_list.size() >= 4) {
     
       // Make a copy of the list of jets
@@ -1258,7 +1263,7 @@ void VH_selection::Process(Reader* r) {
       // Method #4
       // =====================
       
-      alljets = genJet_list;
+      std::vector<JetObj> alljets2 = genJet_list;
       std::vector<JetObj> genBjets;
       std::vector<JetObj> genCjets;
       
@@ -1268,15 +1273,15 @@ void VH_selection::Process(Reader* r) {
         JetObj comb_bjet(0, 0, 0, 0, 0, 0, 0);
         
         // For each jet in the b-list...
-        for (size_t j = bjets.size() - 1; j >= 0; --j) {
+        for (Int_t j = alljets2.size() - 1; j >= 0; --j) {
         
           // Check for the separation. If the separation is less than our cut...
-          float dR = fabs(gen_bs[i].m_lvec.DeltaR(alljets[j].m_lvec));
+          float dR = fabs(gen_bs[i].m_lvec.DeltaR(alljets2[j].m_lvec));
           if (dR < dR_cut) {
             // Combine the jet with our ones so far 
             // and remove it from the list
-            comb_bjet.m_lvec += alljets[j].m_lvec;
-            alljets.erase(alljets.begin() + j);
+            comb_bjet.m_lvec += alljets2[j].m_lvec;
+            alljets2.erase(alljets2.begin() + j);
           }
         }//end-j
         
@@ -1290,15 +1295,15 @@ void VH_selection::Process(Reader* r) {
         JetObj comb_cjet(0, 0, 0, 0, 0, 0, 0);
         
         // For each jet in the c-list...
-        for (size_t j = cjets.size() - 1; j >= 0; --j) {
+        for (Int_t j = alljets2.size() - 1; j >= 0; --j) {
         
           // Check for separation. If the separation is less than our cut...
-          float dR = fabs(gen_cs[i].m_lvec.DeltaR(alljets[j].m_lvec));
+          float dR = fabs(gen_cs[i].m_lvec.DeltaR(alljets2[j].m_lvec));
           if (dR < dR_cut) {
             // Combine the jet with our ones so far 
             // and remove it from the list
-            comb_cjet.m_lvec += alljets[j].m_lvec;
-            alljets.erase(cjets.begin() + j);
+            comb_cjet.m_lvec += alljets2[j].m_lvec;
+            alljets2.erase(alljets2.begin() + j);
           }
         
         }//end-j
@@ -1317,7 +1322,6 @@ void VH_selection::Process(Reader* r) {
       
     
     }//end-method-2-4
-    */
     
   }//end-VbbHcc-check
 #endif
