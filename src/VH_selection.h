@@ -45,8 +45,10 @@ class VH_selection : public Selector {
     VHPlots *h_VH_MC;    // MC Truth events (GenObj)
     VHPlots *h_VH_MCjet; // MC Truth events (jets)
     VHPlots *h_VH_MCjet_tagRemoved; 
+    VHPlots *h_VH_MCjet_tagRemoved_v2;
     VHPlots *h_VH_MCjet_inRange;
     VHPlots *h_VH_MCjet_fixed;
+    VHPlots *h_VH_MCjet_ideal;
     
     RecoPlots *h_reco_normal;
     RecoPlots *h_reco_normal_under30;
@@ -56,6 +58,10 @@ class VH_selection : public Selector {
     RecoPlots *h_reco_inRange_under30;
     RecoPlots *h_reco_fixed;
     RecoPlots *h_reco_fixed_under30;
+    RecoPlots *h_reco_ideal;
+    RecoPlots *h_reco_ideal_under30;
+    RecoPlots *h_reco_tagRemoved_v2;
+    RecoPlots *h_reco_tagRemoved_under30_v2;
     
     VHPlots *h_VH_tags;  // Tagging Only
     VHPlots *h_VH_tags_noMassCorr;

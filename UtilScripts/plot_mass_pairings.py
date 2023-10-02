@@ -65,16 +65,16 @@ variables = [ "MH_v_MZ" ]
 
 ## Normal List of Samples 
 sampleList = [ 
-  'ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ', ## ZH(H->CC)
+  'ZH_HToCC_ZToQQ', #'ggZH_HToCC_ZToQQ', ## ZH(H->CC)
 ]
 
 ## Category names & Labels
-categories = [ "ZHcc", "ggZHcc" ]
+categories = [ "ZHcc", ]#"ggZHcc" ]
 
 ## Samples Split into Categories
 category_samples = {
   "ZHcc": ['ZH_HToCC_ZToQQ'],
-  "ggZHcc": ['ggZH_HToCC_ZToQQ'],
+  #"ggZHcc": ['ggZH_HToCC_ZToQQ'],
 }
 
 ## Config file we want to use

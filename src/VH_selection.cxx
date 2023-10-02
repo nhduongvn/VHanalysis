@@ -286,6 +286,8 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_VH_MCjet_tagRemoved = new VHPlots("VbbHcc_MCjet_tagRemoved");
   h_VH_MCjet_inRange = new VHPlots("VbbHcc_MCjet_inRange");
   h_VH_MCjet_fixed = new VHPlots("VbbHcc_MCjet_fixed");
+  h_VH_MCjet_ideal = new VHPlots("VbbHcc_MCjet_ideal");
+  h_VH_MCjet_tagRemoved_v2 = new VHPlots("VbbHcc_MCjet_tagRemoved_v2");
 
   h_VH_tags = new VHPlots("VbbHcc_tags");
   h_VH_tags_noMassCorr = new VHPlots("VbbHcc_tags_noMassCorr");
@@ -329,6 +331,10 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_reco_inRange_under30 = new RecoPlots("Reco_inRange_under30");
   h_reco_fixed = new RecoPlots("Reco_fixed");
   h_reco_fixed_under30 = new RecoPlots("Reco_fixed_under30");
+  h_reco_ideal = new RecoPlots("Reco_ideal");
+  h_reco_ideal_under30 = new RecoPlots("Reco_ideal_under30");
+  h_reco_tagRemoved_v2 = new RecoPlots("Reco_tagRemoved_v2");
+  h_reco_tagRemoved_under30_v2 = new RecoPlots("Reco_tagRemoved_under30_v2");
 
   // Set up the Trigger efficiency plots
   h_2016_QuadJet_TripleTag = new TriggerEffPlots("2016_QuadJet_TripleTag");
@@ -496,6 +502,12 @@ void VH_selection::SlaveBegin(Reader *r) {
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_VH_MCjet_fixed->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_MCjet_ideal->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_MCjet_fixed_v2->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_MCjet_tagRemoved_v2->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   
   tmp = h_VH_tags->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
@@ -640,6 +652,10 @@ void VH_selection::SlaveBegin(Reader *r) {
   tmp = h_reco_fixed->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_reco_fixed_under30->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_reco_ideal->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_reco_ideal_under30->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
 
   /*tmp = h_2017_QuadJet_noTagV2_ideal->returnHisto();
@@ -1194,13 +1210,24 @@ void VH_selection::Process(Reader* r) {
       
       }//end-i
       
+      // Check to make sure that we properly found each jet.
+      // Each jet is required to be > 45.0 GeV, so if we see
+      // values less than this, we did not find jets.
+      bool found_jets = true;
+      for (Int_t i = 0; i < genBjets.size(); ++i) {
+        if (genBjets[i].Pt() < 45.0) found_jets = false; }
+      for (Int_t j = 0; j < genCjets.size(); ++j) {
+        if (genCjets[j].Pt() < 45.0) found_jets = false; }
+      
       // From these pairs, reconstruct the proper bosons
-      // and fill our desired methods
-      ZObj Z_MCjet2(genBjets); HObj H_MCjet2(genCjets);
-      h_VH_MCjet_inRange->FillVH(Z_MCjet2, H_MCjet2, evtW);
-      h_reco_inRange->Fill(gen_bs, genBjets, gen_cs, genCjets, evtW);
-      if (Z_MCjet.M() < 30.0 || H_MCjet.M() < 30.0)
-        h_reco_inRange_under30->Fill(gen_bs, genBjets, gen_cs, genCjets, evtW);
+      // and fill our desired methods. 
+      if (found_jets) {
+        ZObj Z_MCjet2(genBjets); HObj H_MCjet2(genCjets);
+        h_VH_MCjet_inRange->FillVH(Z_MCjet2, H_MCjet2, evtW);
+        h_reco_inRange->Fill(gen_bs, genBjets, gen_cs, genCjets, evtW);
+        if (Z_MCjet.M() < 30.0 || H_MCjet.M() < 30.0)
+          h_reco_inRange_under30->Fill(gen_bs, genBjets, gen_cs, genCjets, evtW);
+      }
       
     }//end-method-1-3
     
@@ -1258,6 +1285,19 @@ void VH_selection::Process(Reader* r) {
       h_reco_tagRemoved->Fill(gen_bs, bjets, gen_cs, cjets, evtW);
       if (Z_MCjet.M() < 30.0 || H_MCjet.M() < 30.0)
         h_reco_tagRemoved_under30->Fill(gen_bs, bjets, gen_cs, cjets, evtW);
+        
+      // We have a second version where we check to see if our jets are
+      // b- or c-tagged.
+      if (abs(bjets[0].m_flav) == 5 && abs(bjets[1].m_flav) == 5 &&
+          abs(cjets[0].m_flav) == 4 && abs(cjets[1].m_flav) == 4) {
+      
+        ZObj Z_MCjet2(bjets); HObj H_MCjet2(cjets);
+        h_VH_MCjet_tagRemoved_v2->FillVH(Z_MCjet2, H_MCjet, evtW);
+        h_reco_tagRemoved_v2->Fill(gen_bs, bjets, gen_cs, cjets, evtW);
+        if (Z_MCjet.M() < 30.0 || H_MCjet.M() < 30.0)
+          h_reco_tagRemoved_under30_v2->Fill(gen_bs, bjets, gen_cs, cjets, evtW);
+      
+      }
       
       // =====================
       // Method #4
@@ -1312,16 +1352,127 @@ void VH_selection::Process(Reader* r) {
       
       }//end-i
       
+      bool found_jets = true;
+      for (Int_t i = 0; i < genBjets.size(); ++i) {
+        if (genBjets[i].Pt() < 45.0) found_jets = false; }
+      for (Int_t j = 0; j < genCjets.size(); ++j) {
+        if (genCjets[j].Pt() < 45.0) found_jets = false; }
+      
       // From these pairs, reconstruct the proper bosons
       // and fill our desired methods
-      ZObj Z_MCjet2(genBjets); HObj H_MCjet2(genCjets);
-      h_VH_MCjet_fixed->FillVH(Z_MCjet2, H_MCjet2, evtW);
-      h_reco_fixed->Fill(gen_bs, genBjets, gen_cs, genCjets, evtW);
-      if (Z_MCjet.M() < 30.0 || H_MCjet.M() < 30.0)
-        h_reco_fixed_under30->Fill(gen_bs, genBjets, gen_cs, genCjets, evtW);
-      
+      if (found_jets) {
+        ZObj Z_MCjet2(genBjets); HObj H_MCjet2(genCjets);
+        h_VH_MCjet_fixed->FillVH(Z_MCjet2, H_MCjet2, evtW);
+        h_reco_fixed->Fill(gen_bs, genBjets, gen_cs, genCjets, evtW);
+        if (Z_MCjet.M() < 30.0 || H_MCjet.M() < 30.0)
+          h_reco_fixed_under30->Fill(gen_bs, genBjets, gen_cs, genCjets, evtW);
+      }
     
     }//end-method-2-4
+    
+    // ===================
+    // IDEAL METHOD
+    // ===================
+    if (genJet_list.size() >= 4) {
+    
+      // Make a copy of our list of jets
+      std::vector<JetObj> alljets = genJet_list;
+      std::vector<JetObj> genBjets;
+      std::vector<JetObj> genCjets;
+      
+      // Check each parton versus our jets. Check to see how many jets
+      // are within a dR < 0.4 cut of our parton. If we have more than
+      // one jet in ANY of the cases, do not continue.
+      bool can_continue = true;
+      
+      for (size_t i = 0; i < gen_bs.size(); ++i) {
+      
+        JetObj comb_bjet(0, 0, 0, 0, 0, 0, 0);
+        int number_found = 0;
+        
+        if (!can_continue) continue;
+        
+        // For each jet in the list...
+        for (Int_t j = alljets.size() - 1; j >= 0; --j) {
+        
+          // Check for the separation. If the separation is less than our cut...
+          float dR = fabs(gen_bs[i].m_lvec.DeltaR(alljets2[j].m_lvec));
+          if (!can_continue) continue;
+          
+          if (dR < dR_cut) {
+            // Combine the jet with our ones so far 
+            // and remove it from the list
+            number_found++;
+            comb_bjet.m_lvec += alljets[j].m_lvec;
+            comb_bjet.m_flav += alljets[j].m_flav;
+            alljets.erase(alljets.begin() + j);
+            if (number_found > 1) { can_continue = false; break; }
+          }
+        }//end-j
+        
+        genBjets.push_back(comb_bjet);
+        
+      }//end-i
+      
+      // Only continue to check the c-jets if we didn't have an issue
+      // with the b-jets above.
+      if (can_continue) {
+      
+        // For each c-parton...
+        for (size_t i = 0; i < gen_cs.size(); ++i) {
+        
+          JetObj comb_cjet(0, 0, 0, 0, 0, 0, 0);
+          int number_found = 0;
+          
+          if (!can_continue) continue;
+          
+          // For each jet in the list...
+          for (Int_t j = alljets.size() - 1; j >= 0; --j) {
+        
+            // Check for the separation. If the separation is less than our cut...
+            float dR = fabs(gen_bs[i].m_lvec.DeltaR(alljets2[j].m_lvec));
+            if (!can_continue) continue;
+          
+            if (dR < dR_cut) {
+              // Combine the jet with our ones so far 
+              // and remove it from the list
+              number_found++;
+              comb_cjet.m_lvec += alljets[j].m_lvec;
+              comb_cjet.m_flav += alljets[j].m_flav;
+              alljets.erase(alljets.begin() + j);
+              if (number_found > 1) { can_continue = false; break; }
+            }
+          }//end-j
+          
+          genCjets.push_back(comb_cjet);
+        
+        }//end-i
+        
+        // Only continue on if we didn't have an issue with the c-jets.
+        if (can_continue) {
+        
+          // If we've reached this point, we have one jet for each c-parton
+          // and one jet for each b-parton. However, we do not know if the
+          // jets are actually b/c-tagged or not. We need to check to see
+          // if it's true.
+          if (abs(genBjets[0].m_flav) == 5 && abs(genBjets[1].m_flav) == 5 &&
+              abs(genCjets[0].m_flav) == 4 && abs(genCjets[1].m_flav) == 4) {
+          
+            // If we've found the flavors of each jet, add them to our 
+            // proper plots.
+            ZObj Z_MCjet(genBjets); HObj H_MCjet(genCjets);
+            h_VH_MCjet_ideal->FillVH(Z_MCjet, H_MCjet, evtW);
+            h_reco_ideal->Fill(gen_bs, genBjets, gen_cs, genCjets, evtW);
+            if (Z_MCjet.M() < 30.0 || H_MCjet.M() < 30.0)
+              h_reco_ideal_under30->Fill(gen_bs, genBjets, gen_cs, genCjets, evtW);
+          
+          }
+          
+        }
+      
+      }
+    
+    }//end-ideal-method
     
   }//end-VbbHcc-check
 #endif
