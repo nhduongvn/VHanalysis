@@ -1,41 +1,32 @@
 
 
--- Schedd: lpcschedd3.fnal.gov : <131.225.188.235:9618?... @ 09/13/23 14:28:58
+-- Schedd: lpcschedd3.fnal.gov : <131.225.188.235:9618?... @ 10/02/23 14:05:23
  ID          OWNER            SUBMITTED     RUN_TIME ST PRI SIZE  CMD
-79144147.5   peteryou        9/13 13:54   0+00:15:14 R  0   392.0 exe_NONE_ggZH_HToBB_ZToQQ_MC_2018.sh 5
-79144147.6   peteryou        9/13 13:54   0+00:15:06 R  0   381.0 exe_NONE_ggZH_HToBB_ZToQQ_MC_2018.sh 6
-79144148.8   peteryou        9/13 13:54   0+00:15:09 R  0   397.0 exe_NONE_ggZH_HToBB_ZToQQ_MC_2017.sh 8
-79144148.9   peteryou        9/13 13:54   0+00:15:06 R  0   381.0 exe_NONE_ggZH_HToBB_ZToQQ_MC_2017.sh 9
-79144148.11  peteryou        9/13 13:54   0+00:15:05 R  0   350.0 exe_NONE_ggZH_HToBB_ZToQQ_MC_2017.sh 11
-79144148.12  peteryou        9/13 13:54   0+00:15:10 R  0   392.0 exe_NONE_ggZH_HToBB_ZToQQ_MC_2017.sh 12
-79144149.16  peteryou        9/13 13:54   0+00:15:01 R  0   354.0 exe_NONE_ggZH_HToBB_ZToQQ_MC_2016.sh 16
-79144150.15  peteryou        9/13 13:54   0+00:14:42 R  0     0.0 exe_NONE_ZH_HToBB_ZToQQ_MC_2017.sh 15
-79144150.20  peteryou        9/13 13:54   0+00:14:44 R  0     0.0 exe_NONE_ZH_HToBB_ZToQQ_MC_2017.sh 20
-79144150.22  peteryou        9/13 13:54   0+00:14:40 R  0     0.0 exe_NONE_ZH_HToBB_ZToQQ_MC_2017.sh 22
-79144150.28  peteryou        9/13 13:54   0+00:14:36 R  0     0.0 exe_NONE_ZH_HToBB_ZToQQ_MC_2017.sh 28
-79144152.0   peteryou        9/13 13:55   0+00:14:36 R  0     0.0 exe_NONE_ZH_HToCC_ZToQQ_MC_2018.sh 0
+79263310.9   peteryou       10/2  13:31   0+00:32:08 R  0   318.0 exe_NONE_ggZH_HToBB_ZToQQ_MC_2017.sh 9
+79263359.17  peteryou       10/2  13:32   0+00:31:12 R  0   341.0 exe_NONE_ZH_HToBB_ZToQQ_MC_2016.sh 17
+79263359.25  peteryou       10/2  13:32   0+00:30:56 R  0   377.0 exe_NONE_ZH_HToBB_ZToQQ_MC_2016.sh 25
+79263361.0   peteryou       10/2  13:32   0+00:30:31 R  0   384.0 exe_NONE_ggZH_HToCC_ZToQQ_MC_2017.sh 0
+79263363.0   peteryou       10/2  13:32   0+00:30:33 R  0   329.0 exe_NONE_ZH_HToCC_ZToQQ_MC_2018.sh 0
 
-Total for query: 12 jobs; 0 completed, 0 removed, 0 idle, 12 running, 0 held, 0 suspended 
-Total for peteryou: 12 jobs; 0 completed, 0 removed, 0 idle, 12 running, 0 held, 0 suspended 
-Total for all users: 3567 jobs; 0 completed, 30 removed, 2396 idle, 1141 running, 0 held, 0 suspended
+Total for query: 5 jobs; 0 completed, 0 removed, 0 idle, 5 running, 0 held, 0 suspended 
+Total for peteryou: 5 jobs; 0 completed, 0 removed, 0 idle, 5 running, 0 held, 0 suspended 
+Total for all users: 545 jobs; 0 completed, 30 removed, 26 idle, 487 running, 2 held, 0 suspended
 
 
 
--- Schedd: lpcschedd4.fnal.gov : <131.225.189.251:9618?... @ 09/13/23 14:28:58
+-- Schedd: lpcschedd4.fnal.gov : <131.225.189.251:9618?... @ 10/02/23 14:05:23
  ID          OWNER            SUBMITTED     RUN_TIME ST PRI SIZE  CMD
 
 Total for query: 0 jobs; 0 completed, 0 removed, 0 idle, 0 running, 0 held, 0 suspended 
 Total for peteryou: 0 jobs; 0 completed, 0 removed, 0 idle, 0 running, 0 held, 0 suspended 
-Total for all users: 3539 jobs; 0 completed, 0 removed, 3251 idle, 284 running, 4 held, 0 suspended
+Total for all users: 2453 jobs; 0 completed, 0 removed, 558 idle, 1893 running, 2 held, 0 suspended
 
 
 
--- Schedd: lpcschedd5.fnal.gov : <131.225.204.62:9618?... @ 09/13/23 14:28:58
+-- Schedd: lpcschedd5.fnal.gov : <131.225.204.62:9618?... @ 10/02/23 14:05:23
  ID          OWNER            SUBMITTED     RUN_TIME ST PRI SIZE  CMD
-33179762.17  peteryou        9/13 13:54   0+00:27:45 R  0   353.0 exe_NONE_ZH_HToBB_ZToQQ_MC_2016.sh 17
-33179768.0   peteryou        9/13 13:55   0+00:24:57 R  0   349.0 exe_NONE_ZH_HToBB_ZToQQ_MC_2018.sh 0
 
-Total for query: 2 jobs; 0 completed, 0 removed, 0 idle, 2 running, 0 held, 0 suspended 
-Total for peteryou: 2 jobs; 0 completed, 0 removed, 0 idle, 2 running, 0 held, 0 suspended 
-Total for all users: 3006 jobs; 0 completed, 0 removed, 2330 idle, 604 running, 72 held, 0 suspended
+Total for query: 0 jobs; 0 completed, 0 removed, 0 idle, 0 running, 0 held, 0 suspended 
+Total for peteryou: 0 jobs; 0 completed, 0 removed, 0 idle, 0 running, 0 held, 0 suspended 
+Total for all users: 1104 jobs; 0 completed, 0 removed, 82 idle, 1022 running, 0 held, 0 suspended
 

@@ -504,8 +504,8 @@ void VH_selection::SlaveBegin(Reader *r) {
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_VH_MCjet_ideal->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_VH_MCjet_fixed_v2->returnHisto();
-  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  //tmp = h_VH_MCjet_fixed_v2->returnHisto();
+  //for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_VH_MCjet_tagRemoved_v2->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   
@@ -1396,7 +1396,7 @@ void VH_selection::Process(Reader* r) {
         for (Int_t j = alljets.size() - 1; j >= 0; --j) {
         
           // Check for the separation. If the separation is less than our cut...
-          float dR = fabs(gen_bs[i].m_lvec.DeltaR(alljets2[j].m_lvec));
+          float dR = fabs(gen_bs[i].m_lvec.DeltaR(alljets[j].m_lvec));
           if (!can_continue) continue;
           
           if (dR < dR_cut) {
@@ -1430,7 +1430,7 @@ void VH_selection::Process(Reader* r) {
           for (Int_t j = alljets.size() - 1; j >= 0; --j) {
         
             // Check for the separation. If the separation is less than our cut...
-            float dR = fabs(gen_bs[i].m_lvec.DeltaR(alljets2[j].m_lvec));
+            float dR = fabs(gen_bs[i].m_lvec.DeltaR(alljets[j].m_lvec));
             if (!can_continue) continue;
           
             if (dR < dR_cut) {

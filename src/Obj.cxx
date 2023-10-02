@@ -189,7 +189,7 @@ class JetObj : public GenObj {
     int Idx() { return m_Idx; }
 
     // Variables
-    unsigned m_flav;  // jet flavor
+    int m_flav;  // jet flavor
     float m_deepCSV;  // b-tagging
     float m_deepCvL;  // c-tagging
     float m_deepCvB;  // C vs B score
