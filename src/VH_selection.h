@@ -170,6 +170,8 @@ class VH_selection : public Selector {
     TH1D* h_evt_tags_cutflow;
     TH1D* h_evt_algo_cutflow;
     TH1D* h_evt_both_cutflow;
+    
+    TH1D* h_evt_MCjet_ideal_cutflow;
 
     // CutFlows for reconstruction
     TH1D* h_jet_cutflow;

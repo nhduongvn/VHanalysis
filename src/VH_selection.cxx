@@ -418,6 +418,15 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_evt_both_cutflow->GetXaxis()->SetBinLabel(3, "jet cuts");
   h_evt_both_cutflow->GetXaxis()->SetBinLabel(4, "triggers");
   h_evt_both_cutflow->GetXaxis()->SetBinLabel(5, "tags cut");
+  
+  h_evt_MCjet_ideal_cutflow = new TH1D("VbbHcc_MCjet_ideal_CutFlow", "", 7, 0, 7);
+  h_evt_MCjet_ideal_cutflow->GetXaxis()->SetBinLabel(1, "Total");
+  h_evt_MCjet_ideal_cutflow->GetXaxis()->SetBinLabel(2, "Jet Multiplicity");
+  h_evt_MCjet_ideal_cutflow->GetXaxis()->SetBinLabel(3, "b-jet 0 Matched");
+  h_evt_MCjet_ideal_cutflow->GetXaxis()->SetBinLabel(4, "b-jet 1 Matched");
+  h_evt_MCjet_ideal_cutflow->GetXaxis()->SetBinLabel(5, "c-jet 0 Matched");
+  h_evt_MCjet_ideal_cutflow->GetXaxis()->SetBinLabel(6, "c-jet 1 Matched");
+  h_evt_MCjet_ideal_cutflow->GetXaxis()->SetBinLabel(7, "Jets Tagged");
 
   // Set up the CutFlows (for obj selections)
   h_jet_cutflow = new TH1D("VbbHcc_CutFlow_jets", "", 4, 0, 4);
@@ -680,6 +689,7 @@ void VH_selection::SlaveBegin(Reader *r) {
   r->GetOutputList()->Add(h_evt_tags_cutflow);
   r->GetOutputList()->Add(h_evt_algo_cutflow);
   r->GetOutputList()->Add(h_evt_both_cutflow);
+  r->GetOutputList()->Add(h_evt_MCjet_ideal_cutflow);
 
   r->GetOutputList()->Add(h_jet_cutflow);
   r->GetOutputList()->Add(h_elec_cutflow);
@@ -1373,7 +1383,10 @@ void VH_selection::Process(Reader* r) {
     // ===================
     // IDEAL METHOD
     // ===================
+    h_evt_MCjet_ideal_cutflow->Fill(0.5, evtW);
     if (genJet_list.size() >= 4) {
+    
+      h_evt_MCjet_ideal_cutflow->Fill(1.5, evtW);
     
       // Make a copy of our list of jets
       std::vector<JetObj> alljets = genJet_list;
@@ -1407,6 +1420,8 @@ void VH_selection::Process(Reader* r) {
             comb_bjet.m_flav += alljets[j].m_flav;
             alljets.erase(alljets.begin() + j);
             if (number_found > 1) { can_continue = false; break; }
+            if (i == 0) h_evt_MCjet_ideal_cutflow->Fill(2.5, evtW);
+            if (i == 1) h_evt_MCjet_ideal_cutflow->Fill(3.5, evtW);
           }
         }//end-j
         
@@ -1441,6 +1456,8 @@ void VH_selection::Process(Reader* r) {
               comb_cjet.m_flav += alljets[j].m_flav;
               alljets.erase(alljets.begin() + j);
               if (number_found > 1) { can_continue = false; break; }
+              if (j == 0) h_evt_MCjet_ideal_cutflow->Fill(4.5, evtW);
+              if (j == 1) h_evt_MCjet_ideal_cutflow->Fill(5.5, evtW);
             }
           }//end-j
           
@@ -1457,6 +1474,8 @@ void VH_selection::Process(Reader* r) {
           // if it's true.
           if (abs(genBjets[0].m_flav) == 5 && abs(genBjets[1].m_flav) == 5 &&
               abs(genCjets[0].m_flav) == 4 && abs(genCjets[1].m_flav) == 4) {
+              
+            h_evt_MCjet_ideal_cutflow->Fill(6.5, evtW);
           
             // If we've found the flavors of each jet, add them to our 
             // proper plots.
