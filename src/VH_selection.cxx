@@ -1445,7 +1445,7 @@ void VH_selection::Process(Reader* r) {
           for (Int_t j = alljets.size() - 1; j >= 0; --j) {
         
             // Check for the separation. If the separation is less than our cut...
-            float dR = fabs(gen_bs[i].m_lvec.DeltaR(alljets[j].m_lvec));
+            float dR = fabs(gen_cs[i].m_lvec.DeltaR(alljets[j].m_lvec));
             if (!can_continue) continue;
           
             if (dR < dR_cut) {

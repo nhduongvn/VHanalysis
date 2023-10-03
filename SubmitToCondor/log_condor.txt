@@ -1,122 +1,33 @@
-Submitting job(s)............
-12 job(s) submitted to cluster 33303792.
-Querying the CMS LPC pool and trying to find an available schedd...
 
-Attempting to submit jobs to lpcschedd5.fnal.gov
 
-Submitting job(s)..............
-14 job(s) submitted to cluster 2989667.
-Querying the CMS LPC pool and trying to find an available schedd...
+-- Schedd: lpcschedd3.fnal.gov : <131.225.188.235:9618?... @ 10/03/23 09:53:19
+ ID          OWNER            SUBMITTED     RUN_TIME ST PRI SIZE  CMD
+79264729.0   peteryou       10/3  09:17   0+00:21:30 R  0   366.0 exe_NONE_ggZH_HToCC_ZToQQ_MC_2017.sh 0
+79264731.0   peteryou       10/3  09:17   0+00:21:15 R  0   367.0 exe_NONE_ZH_HToCC_ZToQQ_MC_2018.sh 0
+79264732.7   peteryou       10/3  09:17   0+00:19:26 R  0   350.0 exe_NONE_ZH_HToBB_ZToQQ_MC_2018.sh 7
 
-Attempting to submit jobs to lpcschedd4.fnal.gov
+Total for query: 3 jobs; 0 completed, 0 removed, 0 idle, 3 running, 0 held, 0 suspended 
+Total for peteryou: 3 jobs; 0 completed, 0 removed, 0 idle, 3 running, 0 held, 0 suspended 
+Total for all users: 1551 jobs; 0 completed, 30 removed, 531 idle, 949 running, 41 held, 0 suspended
 
-Submitting job(s)..........................................
-42 job(s) submitted to cluster 33303793.
-Querying the CMS LPC pool and trying to find an available schedd...
 
-Attempting to submit jobs to lpcschedd5.fnal.gov
 
-Submitting job(s)......................................
-38 job(s) submitted to cluster 2989668.
-Querying the CMS LPC pool and trying to find an available schedd...
+-- Schedd: lpcschedd4.fnal.gov : <131.225.189.251:9618?... @ 10/03/23 09:53:19
+ ID         OWNER            SUBMITTED     RUN_TIME ST PRI SIZE  CMD
+3009120.0   peteryou       10/3  09:17   0+00:11:42 R  0     0.0 exe_NONE_ZH_HToCC_ZToQQ_MC_2017.sh 0
 
-Attempting to submit jobs to lpcschedd4.fnal.gov
+Total for query: 1 jobs; 0 completed, 0 removed, 0 idle, 1 running, 0 held, 0 suspended 
+Total for peteryou: 1 jobs; 0 completed, 0 removed, 0 idle, 1 running, 0 held, 0 suspended 
+Total for all users: 3573 jobs; 0 completed, 0 removed, 3188 idle, 383 running, 2 held, 0 suspended
 
-Submitting job(s)..........................................
-42 job(s) submitted to cluster 79256747.
-Querying the CMS LPC pool and trying to find an available schedd...
 
-Attempting to submit jobs to lpcschedd3.fnal.gov
 
-Submitting job(s).
-1 job(s) submitted to cluster 2989669.
-Querying the CMS LPC pool and trying to find an available schedd...
+-- Schedd: lpcschedd5.fnal.gov : <131.225.204.62:9618?... @ 10/03/23 09:53:19
+ ID          OWNER            SUBMITTED     RUN_TIME ST PRI SIZE  CMD
+33320481.17  peteryou       10/3  09:17   0+00:21:34 R  0   368.0 exe_NONE_ZH_HToBB_ZToQQ_MC_2016.sh 17
+33320481.25  peteryou       10/3  09:17   0+00:16:04 R  0   388.0 exe_NONE_ZH_HToBB_ZToQQ_MC_2016.sh 25
 
-Attempting to submit jobs to lpcschedd4.fnal.gov
+Total for query: 2 jobs; 0 completed, 0 removed, 0 idle, 2 running, 0 held, 0 suspended 
+Total for peteryou: 2 jobs; 0 completed, 0 removed, 0 idle, 2 running, 0 held, 0 suspended 
+Total for all users: 1744 jobs; 0 completed, 0 removed, 874 idle, 870 running, 0 held, 0 suspended
 
-Submitting job(s).
-1 job(s) submitted to cluster 2989670.
-Querying the CMS LPC pool and trying to find an available schedd...
-
-Attempting to submit jobs to lpcschedd4.fnal.gov
-
-Submitting job(s).
-1 job(s) submitted to cluster 2989671.
-Querying the CMS LPC pool and trying to find an available schedd...
-
-Attempting to submit jobs to lpcschedd4.fnal.gov
-
-Submitting job(s).
-1 job(s) submitted to cluster 2989672.
-Querying the CMS LPC pool and trying to find an available schedd...
-
-Attempting to submit jobs to lpcschedd4.fnal.gov
-
-Submitting job(s).
-1 job(s) submitted to cluster 2989673.
-Querying the CMS LPC pool and trying to find an available schedd...
-
-Attempting to submit jobs to lpcschedd4.fnal.gov
-
-Submitting job(s).
-1 job(s) submitted to cluster 2989674.
-Querying the CMS LPC pool and trying to find an available schedd...
-
-Attempting to submit jobs to lpcschedd4.fnal.gov
-
-Submitting job(s).................
-17 job(s) submitted to cluster 2989675.
-Querying the CMS LPC pool and trying to find an available schedd...
-
-Attempting to submit jobs to lpcschedd4.fnal.gov
-
-=============================
-Run mode:  0
-Submit:    True
-Debug:     False
-haddData:  True
-Systematic:                                                  NONE
-Sample list file (list of input samples):                   
-       /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis//Dataset_lists/separated/datasets_ZH_MC.txt
-Sample list folder (location of input file lists):           /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis//FileLists/
-Number of file per jobs:                                     2
-Source dir:                                                  /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/
-Condor run dir:                                              /uscmst1b_scratch/lpc1/lpcphys/peteryou/Output_VH/Sep2023_ZH/
-Output location eos:                                         /store/user/peteryou/Output_VH/Sep2023_ZH
-Output location scratch:                                     /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Sep2023_ZH/NONE/
-=========================
-Processing sample:  ggZH_HToBB_ZToQQ_MC_2018
->>>>>>> Use this file list:  /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis//FileLists//ggZH_HToBB_ZToQQ_MC_2018.txt
-=========================
-Processing sample:  ggZH_HToBB_ZToQQ_MC_2017
->>>>>>> Use this file list:  /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis//FileLists//ggZH_HToBB_ZToQQ_MC_2017.txt
-=========================
-Processing sample:  ggZH_HToBB_ZToQQ_MC_2016
->>>>>>> Use this file list:  /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis//FileLists//ggZH_HToBB_ZToQQ_MC_2016.txt
-=========================
-Processing sample:  ZH_HToBB_ZToQQ_MC_2017
->>>>>>> Use this file list:  /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis//FileLists//ZH_HToBB_ZToQQ_MC_2017.txt
-=========================
-Processing sample:  ZH_HToBB_ZToQQ_MC_2016
->>>>>>> Use this file list:  /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis//FileLists//ZH_HToBB_ZToQQ_MC_2016.txt
-=========================
-Processing sample:  ZH_HToCC_ZToQQ_MC_2017
->>>>>>> Use this file list:  /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis//FileLists//ZH_HToCC_ZToQQ_MC_2017.txt
-=========================
-Processing sample:  ZH_HToCC_ZToQQ_MC_2016
->>>>>>> Use this file list:  /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis//FileLists//ZH_HToCC_ZToQQ_MC_2016.txt
-=========================
-Processing sample:  ggZH_HToCC_ZToQQ_MC_2018
->>>>>>> Use this file list:  /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis//FileLists//ggZH_HToCC_ZToQQ_MC_2018.txt
-=========================
-Processing sample:  ggZH_HToCC_ZToQQ_MC_2017
->>>>>>> Use this file list:  /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis//FileLists//ggZH_HToCC_ZToQQ_MC_2017.txt
-=========================
-Processing sample:  ggZH_HToCC_ZToQQ_MC_2016
->>>>>>> Use this file list:  /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis//FileLists//ggZH_HToCC_ZToQQ_MC_2016.txt
-=========================
-Processing sample:  ZH_HToCC_ZToQQ_MC_2018
->>>>>>> Use this file list:  /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis//FileLists//ZH_HToCC_ZToQQ_MC_2018.txt
-=========================
-Processing sample:  ZH_HToBB_ZToQQ_MC_2018
->>>>>>> Use this file list:  /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis//FileLists//ZH_HToBB_ZToQQ_MC_2018.txt
