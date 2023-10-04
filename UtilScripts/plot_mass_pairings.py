@@ -61,7 +61,7 @@ output_directory = '../plot_results/Oct2023_ZH/'
 ## Variables we care about
 selection_methods = [ "tags", "algo", "both" ]
 selection_methods = [ "MCjet", "MCjet_tagRemoved", "MCjet_inRange", 
-  "MCjet_fixed", "MCjet_ideal", "MCjet_tagRemoved_v2" ]
+  "MCjet_fixed", "MCjet_ideal", "MCjet_tagRemoved_v2", "MC" ]
 variables = [ "MH_v_MZ" ]
 
 ## Normal List of Samples 

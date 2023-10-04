@@ -15,6 +15,22 @@ fill_colors = [46, 16, ROOT.kAzure + 1] #38
 years = ["16", "17", "18"]
 
 ###############################################################################
+## Is Point within Ellipse
+###############################################################################
+
+def isWithinEllipse(x, y, h, k, a, b):
+  
+  ## Calculate the components of our ellipse equation
+  xbit = 1.0 * pow(x-h,2) / pow(a,2)
+  ybit = 1.0 * pow(y-k,2) / pow(b,2)
+  
+  ## Determine the two sides of our equation and compare
+  leftside = xbit + ybit
+  rightside = 1.0
+  
+  return leftside <= rightside
+
+###############################################################################
 ## Scale To Lumi
 ###############################################################################
 def ScaleToLumi1(fName, xSec, lumi):
@@ -1471,4 +1487,195 @@ def make2DplotWithProjections(plot, canvasName, plotDir, xAxis_title,
   c.Print(plotDir + '/' + canvasName + '.png')
   c.Print(plotDir + '/' + canvasName + '.pdf')
   c.Print(plotDir + '/' + canvasName + '.C')
+  
+
+###############################################################################
+## Plot 2D with Projections
+###############################################################################
+def make2DplotWithRegions(plot, canvasName, plotDir, xAxis_title, 
+  yAxis_title, debug=False, xRange = [], yRange = [], CR_width=20,
+  VR_width=10, SR_width=20):
+  
+  ## Make our canvas & modify it as possible
+  c = ROOT.TCanvas(canvasName, canvasName, 600, 600)
+  c.SetFillStyle(4000)
+  c.SetFrameFillStyle(1000)
+  c.SetFrameFillColor(0)
+  
+  ## Draw the 2D plot in the center pad
+  if debug: "Drawing TH2 to the center pad..."
+  ROOT.gStyle.SetPalette(1)
+  plot.GetXaxis().SetTitle(xAxis_title)
+  if len(xRange) >= 2:
+    plot.GetXaxis().SetRange(xRange[0], xRange[1])
+  plot.GetYaxis().SetTitle(yAxis_title)
+  if len(yRange) >= 2:
+    plot.GetYaxis().SetRange(yRange[0], yRange[1])
+  plot.SetStats(0)
+  plot.Draw("COL")
+  
+  ## ===========================
+  ## Draw the 2D regions on top
+  ## ===========================
+  
+  ## Ellipse #1 - Signal Region
+  if type(SR_width) == list:
+    SR_x = SR_width[0]
+    SR_y = SR_width[1]
+  else:
+    SR_x = SR_width
+    SR_y = SR_width
+  el1 = ROOT.TEllipse(125, 91, SR_x, SR_y)
+  el1.SetFillColorAlpha(ROOT.kWhite, 0)
+  el1.SetFillStyle(1001)
+  el1.SetLineColor(ROOT.kWhite)
+  el1.SetLineWidth(2)
+  el1.Draw("same")
+  
+  ## Ellipse #2 - Validation Region
+  if type(VR_width) == list:
+    VR_x = SR_x + VR_width[0]
+    VR_y = SR_y + VR_width[1]
+  else:
+    VR_x = SR_x + VR_width
+    VR_y = SR_y + VR_width
+  el2 = ROOT.TEllipse(125, 91, VR_x, VR_y)
+  el2.SetFillColorAlpha(ROOT.kWhite, 0)
+  el2.SetFillStyle(1001)
+  el2.SetLineColor(ROOT.kWhite)
+  el2.SetLineWidth(2)
+  el2.Draw("same")
+  
+  ## Ellipse #3 - Control Region
+  if type(CR_width) == list:
+    CR_x = VR_x + CR_width[0]
+    CR_y = VR_y + CR_width[1]
+  else:
+    CR_x = VR_x + CR_width
+    CR_y = VR_y + CR_width
+  el3 = ROOT.TEllipse(125, 91, CR_x, CR_y)
+  el3.SetFillColorAlpha(ROOT.kWhite, 0)
+  el3.SetFillStyle(1001)
+  el3.SetLineColor(ROOT.kWhite)
+  el3.SetLineWidth(2)
+  el3.Draw("same")
+  
+  ## We want to determine how many events are in each given
+  ## region
+  nBinsX = plot.GetNbinsX()
+  nBinsY = plot.GetNbinsY()
+  
+  event_multiplicity = {
+    "SR": 0, "VR": 0,
+    "CR": 0, "total": 0,
+    "other": 0 }
+  
+  ## Go through each bin in each direction
+  for y in range(1, nBinsY+1):
+    
+    cY = plot.GetYaxis().GetBinCenter(y)
+    for x in range(1, nBinsX+1):
+      cX = plot.GetXaxis().GetBinCenter(x)
+      
+      evts = plot.GetBinContent(x,y)
+      event_multiplicity["total"] += evts
+      
+      ## Check against each of our regions
+      region = "other"
+      if isWithinEllipse(cX, cY, 125.0, 91.0, SR_x, SR_y):
+        region = "SR"
+      elif isWithinEllipse(cX, cY, 125.0, 91.0, VR_x, VR_y):
+        region = "VR"
+      elif isWithinEllipse(cX, cY, 125.0, 91.0, CR_x, CR_y):
+        region = "CR"
+      
+      event_multiplicity[region] += evts
+  
+  ## Now, determine the percentages
+  total = event_multiplicity["total"] * 1.0
+  percentages = { 
+    "SR": event_multiplicity["SR"] / total,
+    "VR": event_multiplicity["VR"] / total,
+    "CR": event_multiplicity["CR"] / total,
+    "other": event_multiplicity["other"] / total
+  }
+  
+  ## Print out all this information
+  print "Total Events: ", total
+  print "============================="
+  for key in percentages:
+    print key, ": events = ", event_multiplicity[key], " | ", percentages[key], "%"
+  
+  ## Check to make sure the directory exists &
+  ## then print the proper files to the output
+  dirExists = os.path.exists(plotDir)
+  if not dirExists:
+    print "Warning: output directory does not exist."
+    os.makedirs(plotDir)
+    print ">>> directory created."
+  
+  c.Print(plotDir + '/' + canvasName + '.png')
+  c.Print(plotDir + '/' + canvasName + '.pdf')
+  c.Print(plotDir + '/' + canvasName + '.C')
+
+###############################################################################
+## Make Graph Overlays
+###############################################################################
+def makeGraphOverlays(canvasName, plotDir, x_data, y_data_series, 
+  xTitle, yTitle, legend_position=[0.7, 0.7, 0.9, 0.9]):
+  
+  ## Make our canvas & modify it as possible
+  c = ROOT.TCanvas(canvasName, canvasName, 600, 600)
+  c.SetFillStyle(4000)
+  c.SetFrameFillStyle(1000)
+  c.SetFrameFillColor(0)
+  
+  ## Make a TGraph using the data for each case
+  colors = [ROOT.kRed, ROOT.kBlue, ROOT.kBlack, ROOT.kGreen]
+  mg = ROOT.TMultiGraph()
+  legend = ROOT.TLegend(legend_position[0],
+    legend_position[1], legend_position[2],
+    legend_position[3])
+  legend.SetFillColor(0)
+  
+  graphs = {}
+  dict_items = list(y_data_series.items())
+  
+  for k in range(0, len(dict_items)):
+  
+    key, value = dict_items[k]
+  
+    ## For the TGraph instances to work, we must convert our
+    ## lists into arrays
+    n = len(x_data)
+    xarr,yarr = array('d'), array('d')
+    for i in range(0,n):
+      xarr.append(x_data[i])
+      yarr.append(y_data_series[key][i])
+    
+    g = ROOT.TGraph(n, xarr, yarr)
+    g.SetTitle(key)
+    legend.AddEntry(g, key, "lp")
+    g.SetLineColor(colors[k])
+    g.SetLineWidth(2)
+    mg.Add(g)
+  
+  mg.SetTitle("Percentages of Events inside Regions")
+  mg.GetXaxis().SetTitle(xTitle)
+  mg.GetYaxis().SetTitle(yTitle)
+  mg.Draw("AC")
+  legend.Draw()
+  
+  ## Check to make sure the directory exists &
+  ## then print the proper files to the output
+  dirExists = os.path.exists(plotDir)
+  if not dirExists:
+    print "Warning: output directory does not exist."
+    os.makedirs(plotDir)
+    print ">>> directory created."
+  
+  c.Print(plotDir + '/' + canvasName + '.png')
+  c.Print(plotDir + '/' + canvasName + '.pdf')
+  c.Print(plotDir + '/' + canvasName + '.C')
+  
   
