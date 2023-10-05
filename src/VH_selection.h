@@ -34,130 +34,116 @@ class VH_selection : public Selector {
     TH1D* h_evt;
 
     // Jet Plots
-    JetPlots *h_VH_jets;     // Selected jets
-    JetPlots *h_VH_jets_all; // All jets captured
-    JetPlots *h_VH_MC_jets;
+    JetPlots *h_jets_selected; // Selected Jets
+    JetPlots *h_jets_all;	  // All jets found
+    JetPlots *h_jets_MC;       // MC jets
 
-    JetPlots *h_VH_4b;    // Leading b-jets
-    JetPlots *h_VH_2b2c;  // 
+    JetPlots *h_jets_4b;   // Jets that pass 4 b-jet requirements
+    JetPlots *h_jets_2b2c; // Jets that pass 2 b, 2-cjet requirements
 
-    // VH Plots
-    VHPlots *h_VH_MC;    // MC Truth events (GenObj)
-    VHPlots *h_VH_MCjet; // MC Truth events (jets)
-    VHPlots *h_VH_MCjet_tagRemoved; 
-    VHPlots *h_VH_MCjet_tagRemoved_v2;
-    VHPlots *h_VH_MCjet_inRange;
-    VHPlots *h_VH_MCjet_fixed;
-    VHPlots *h_VH_MCjet_ideal;
+    // VH Plots (for MC Truth & Jets)
+    VHPlots *h_VH_MC;                    // MC Truth events (GenObj)
+    VHPlots *h_VH_MCjet_minDR;           // MC jet events (selected by min dR)
+    VHPlots *h_VH_MCjet_minDR_noTag;     // " " " (w/o tagging)
+    VHPlots *h_VH_MCjet_dRcollect;       // " " " (selected within dR cone)
+    VHPlots *h_VH_MCjet_dRcollect_noTag; // " " " (w/o tagging)
+    VHPlots *h_VH_MCjet_ideal;           // " " " (ideal scenario)
+    VHPlots *h_VH_MCjet_DHZ;             // " " " (selected using DHZ alogrithm)
     
-    RecoPlots *h_reco_normal;
-    RecoPlots *h_reco_normal_under30;
-    RecoPlots *h_reco_tagRemoved;
-    RecoPlots *h_reco_tagRemoved_under30;
-    RecoPlots *h_reco_inRange;
-    RecoPlots *h_reco_inRange_under30;
-    RecoPlots *h_reco_fixed;
-    RecoPlots *h_reco_fixed_under30;
+    // Reco Jet Plots (corresponding to MC jet selection methods)
+    // under30 is for cases where events have m_Z < 30 GeV or m_H < 30 GeV
+    RecoPlots *h_reco_minDR;                     
+    RecoPlots *h_reco_minDR_under30;
+    RecoPlots *h_reco_minDR_noTag;
+    RecoPlots *h_reco_minDR_noTag_under30;
+    RecoPlots *h_reco_dRcollect;
+    RecoPlots *h_reco_dRcollect_under30;
+    RecoPlots *h_reco_dRcollect_noTag;
+    RecoPlots *h_reco_dRcollect_noTag_under30;
     RecoPlots *h_reco_ideal;
     RecoPlots *h_reco_ideal_under30;
-    RecoPlots *h_reco_tagRemoved_v2;
-    RecoPlots *h_reco_tagRemoved_under30_v2;
+    RecoPlots *h_reco_DHZ;
+    RecoPlots *h_reco_DHZ_under30;
     
-    VHPlots *h_VH_tags;  // Tagging Only
-    VHPlots *h_VH_tags_noMassCorr;
-    VHPlots *h_VH_tags_noJEC;
+    // VH Plots (for our selection methods)
+    VHPlots *h_VH_tags;              // Tagging Only
+    VHPlots *h_VH_tags_noMassCorr;   // w/o mass correction
+    VHPlots *h_VH_tags_noJEC;        // w/o Jet Energy correction
+    VHPlots *h_VH_tags_2b1c;         // one c-jet requirement removed
 
-    VHPlots *h_VH_algo;  // Mass-Matching Prioritized
-    VHPlots *h_VH_algo_noMassCorr;
-    VHPlots *h_VH_algo_noJEC;
+    VHPlots *h_VH_algo;              // Mass-Matching Prioritized
+    VHPlots *h_VH_algo_noMassCorr;   // w/o mass correction
+    VHPlots *h_VH_algo_noJEC;        // w/o Jet Energy correction
+    VHPlots *h_VH_algo_2b1c;         // one c-jet requirement removed
 
-    VHPlots *h_VH_both;  // Tagging Prioritized
-    VHPlots *h_VH_both_noMassCorr;
-    VHPlots *h_VH_both_noJEC;
+    VHPlots *h_VH_both;              // Tagging Prioritized
+    VHPlots *h_VH_both_noMassCorr;   // w/o mass correction
+    VHPlots *h_VH_both_noJEC;        // w/o Jet Energy correction
+    VHPlots *h_VH_both_2b1c;         // one c-jet requirement removed
 
+    // I don't know if we use these 4 but keep them here as is for now...
     VHPlots *h_VH_all;   // Any plots related to ALL cut types
     VHPlots *h_VH_select; // Any plots related to ALL selection types (after our MET cut)
-
     VHPlots *h_VH_alljet; // Using just any jets
     VHPlots *h_VH_seljet; // Using selected jets
-
+    
     // Trigger Efficiency Plots - original triggers
-    TriggerEffPlots *h_2016_QuadJet_TripleTag;    // HLT_QuadJet45_Triple...
-    TriggerEffPlots *h_2016_DoubleJet_TripleTag;  // HLT_DoubleJet90_Double30_Triple...
-    TriggerEffPlots *h_2017_QuadJet_TripleTag;    // HLT_PFHT300PT30_QuadJet...
-    TriggerEffPlots *h_2018_QuadJet_TripleTag;    // HLT_PFHT330PT30_QuadJet...
+    TriggerEffPlots *h_trig_2016_QuadJet_TripleTag;    // HLT_QuadJet45_Triple...
+    TriggerEffPlots *h_trig_2016_DoubleJet_TripleTag;  // HLT_DoubleJet90_Double30_Triple...
+    TriggerEffPlots *h_trig_2017_QuadJet_TripleTag;    // HLT_PFHT300PT30_QuadJet...
+    TriggerEffPlots *h_trig_2018_QuadJet_TripleTag;    // HLT_PFHT330PT30_QuadJet...
 
-    TriggerEffPlots *h_2016_QuadJet_DoubleTag;    // 2016 but w/ DoubleBTag
-    TriggerEffPlots *h_2016_DoubleJet_DoubleTag;  // 2016 but w/ DoubleBTag
-    TriggerEffPlots *h_2017_QuadJet_noTag;        // 2017 but w/ no tagging requirement
-    TriggerEffPlots *h_2018_QuadJet_noTag;        // 2018 but w/ no tagging requirement
-
-    /*TriggerEffPlots *h_2017_QuadJet_noTagV2;      // HLT_QuadPFJet98_83_71_15
-    TriggerEffPlots *h_2017_QuadJet_noTagV3;      // HLT_QuadPFJet103_88_75_15
-    TriggerEffPlots *h_2017_QuadJet_noTagV4;      // HLT_QuadPFJet105_88_76_15
-    TriggerEffPlots *h_2017_QuadJet_noTagV5;      // HLT_QuadPFJet111_90_80_15
-
-    TriggerEffPlots *h_2018_QuadJet_noTagV2;      // same triggers for 2018
-    TriggerEffPlots *h_2018_QuadJet_noTagV3;
-    TriggerEffPlots *h_2018_QuadJet_noTagV4;
-    TriggerEffPlots *h_2018_QuadJet_noTagV5;*/
+    TriggerEffPlots *h_trig_2016_QuadJet_DoubleTag;    // 2016 but w/ DoubleBTag
+    TriggerEffPlots *h_trig_2016_DoubleJet_DoubleTag;  // 2016 but w/ DoubleBTag
+    TriggerEffPlots *h_trig_2017_QuadJet_noTag;        // 2017 but w/ no tagging requirement
+    TriggerEffPlots *h_trig_2018_QuadJet_noTag;        // 2018 but w/ no tagging requirement
 
     // Versions that pass tagging requirements
-    TriggerEffPlots *h_2016_QuadJet_TripleTag_tagged;
-    TriggerEffPlots *h_2016_DoubleJet_TripleTag_tagged;
-    TriggerEffPlots *h_2017_QuadJet_TripleTag_tagged;
-    TriggerEffPlots *h_2018_QuadJet_TripleTag_tagged;
+    TriggerEffPlots *h_trig_2016_QuadJet_TripleTag_tagged;
+    TriggerEffPlots *h_trig_2016_DoubleJet_TripleTag_tagged;
+    TriggerEffPlots *h_trig_2017_QuadJet_TripleTag_tagged;
+    TriggerEffPlots *h_trig_2018_QuadJet_TripleTag_tagged;
 
-    TriggerEffPlots *h_2016_QuadJet_DoubleTag_tagged;
-    TriggerEffPlots *h_2016_DoubleJet_DoubleTag_tagged;
-    TriggerEffPlots *h_2017_QuadJet_noTag_tagged;
-    TriggerEffPlots *h_2018_QuadJet_noTag_tagged;
-
-    /*TriggerEffPlots *h_2017_QuadJet_noTagV2_tagged;      
-    TriggerEffPlots *h_2017_QuadJet_noTagV3_tagged;      
-    TriggerEffPlots *h_2017_QuadJet_noTagV4_tagged;      
-    TriggerEffPlots *h_2017_QuadJet_noTagV5_tagged;      
-
-    TriggerEffPlots *h_2018_QuadJet_noTagV2_tagged;     
-    TriggerEffPlots *h_2018_QuadJet_noTagV3_tagged;
-    TriggerEffPlots *h_2018_QuadJet_noTagV4_tagged;
-    TriggerEffPlots *h_2018_QuadJet_noTagV5_tagged;*/
+    TriggerEffPlots *h_trig_2016_QuadJet_DoubleTag_tagged;
+    TriggerEffPlots *h_trig_2016_DoubleJet_DoubleTag_tagged;
+    TriggerEffPlots *h_trig_2017_QuadJet_noTag_tagged;
+    TriggerEffPlots *h_trig_2018_QuadJet_noTag_tagged;
 
     // Versions that pass all requirements in tagging names
-    TriggerEffPlots *h_2016_QuadJet_TripleTag_ideal;
-    TriggerEffPlots *h_2016_DoubleJet_TripleTag_ideal;
-    TriggerEffPlots *h_2017_QuadJet_TripleTag_ideal;
-    TriggerEffPlots *h_2017_QuadJet_TripleTag_RunB_ideal;
-    TriggerEffPlots *h_2018_QuadJet_TripleTag_ideal;
+    TriggerEffPlots *h_trig_2016_QuadJet_TripleTag_ideal;
+    TriggerEffPlots *h_trig_2016_DoubleJet_TripleTag_ideal;
+    TriggerEffPlots *h_trig_2017_QuadJet_TripleTag_ideal;
+    TriggerEffPlots *h_trig_2017_QuadJet_TripleTag_RunB_ideal;
+    TriggerEffPlots *h_trig_2018_QuadJet_TripleTag_ideal;
 
-    TriggerEffPlots *h_2016_QuadJet_DoubleTag_ideal;
-    TriggerEffPlots *h_2016_DoubleJet_DoubleTag_ideal;
-    TriggerEffPlots *h_2017_QuadJet_noTag_ideal;
-    TriggerEffPlots *h_2018_QuadJet_noTag_ideal;
+    TriggerEffPlots *h_trig_2016_QuadJet_DoubleTag_ideal;
+    TriggerEffPlots *h_trig_2016_DoubleJet_DoubleTag_ideal;
+    TriggerEffPlots *h_trig_2017_QuadJet_noTag_ideal;
+    TriggerEffPlots *h_trig_2018_QuadJet_noTag_ideal;
 
-    TriggerEffPlots *h_2017_QuadJet_noTagV2_ideal;      
-    TriggerEffPlots *h_2017_QuadJet_noTagV3_ideal;      
-    TriggerEffPlots *h_2017_QuadJet_noTagV4_ideal;      
-    TriggerEffPlots *h_2017_QuadJet_noTagV5_ideal;      
+    TriggerEffPlots *h_trig_2017_QuadJet_noTagV2_ideal;      
+    TriggerEffPlots *h_trig_2017_QuadJet_noTagV3_ideal;      
+    TriggerEffPlots *h_trig_2017_QuadJet_noTagV4_ideal;      
+    TriggerEffPlots *h_trig_2017_QuadJet_noTagV5_ideal;      
 
-    TriggerEffPlots *h_2018_QuadJet_noTagV2_ideal;     
-    TriggerEffPlots *h_2018_QuadJet_noTagV3_ideal;
-    TriggerEffPlots *h_2018_QuadJet_noTagV4_ideal;
-    TriggerEffPlots *h_2018_QuadJet_noTagV5_ideal;
+    TriggerEffPlots *h_trig_2018_QuadJet_noTagV2_ideal;     
+    TriggerEffPlots *h_trig_2018_QuadJet_noTagV3_ideal;
+    TriggerEffPlots *h_trig_2018_QuadJet_noTagV4_ideal;
+    TriggerEffPlots *h_trig_2018_QuadJet_noTagV5_ideal;
 
     // Versions where the tagging requirement is 3b
-    TriggerEffPlots *h_2016_QuadJet_TripleTag_3B;
-    TriggerEffPlots *h_2016_DoubleJet_TripleTag_3B;
-    TriggerEffPlots *h_2017_QuadJet_TripleTag_3B;
-    TriggerEffPlots *h_2017_QuadJet_TripleTag_RunB_3B;
-    TriggerEffPlots *h_2018_QuadJet_TripleTag_3B;
+    TriggerEffPlots *h_trig_2016_QuadJet_TripleTag_3B;
+    TriggerEffPlots *h_trig_2016_DoubleJet_TripleTag_3B;
+    TriggerEffPlots *h_trig_2017_QuadJet_TripleTag_3B;
+    TriggerEffPlots *h_trig_2017_QuadJet_TripleTag_RunB_3B;
+    TriggerEffPlots *h_trig_2018_QuadJet_TripleTag_3B;
 
     // Versions where the tagging requirement is 2b2c
-    TriggerEffPlots *h_2016_QuadJet_TripleTag_2b2c;
-    TriggerEffPlots *h_2016_DoubleJet_TripleTag_2b2c;
-    TriggerEffPlots *h_2017_QuadJet_TripleTag_2b2c;
-    TriggerEffPlots *h_2017_QuadJet_TripleTag_RunB_2b2c;
-    TriggerEffPlots *h_2018_QuadJet_TripleTag_2b2c;
+    TriggerEffPlots *h_trig_2016_QuadJet_TripleTag_2b2c;
+    TriggerEffPlots *h_trig_2016_DoubleJet_TripleTag_2b2c;
+    TriggerEffPlots *h_trig_2017_QuadJet_TripleTag_2b2c;
+    TriggerEffPlots *h_trig_2017_QuadJet_TripleTag_RunB_2b2c;
+    TriggerEffPlots *h_trig_2018_QuadJet_TripleTag_2b2c;
 
     // Efficiency Plots
     EffPlots *h_eff_tags; // Efficiencies for Tagging Only
@@ -170,7 +156,6 @@ class VH_selection : public Selector {
     TH1D* h_evt_tags_cutflow;
     TH1D* h_evt_algo_cutflow;
     TH1D* h_evt_both_cutflow;
-    
     TH1D* h_evt_MCjet_ideal_cutflow;
 
     // CutFlows for reconstruction
