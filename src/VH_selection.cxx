@@ -273,28 +273,28 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_VH_MCjet_ideal = new VHPlots("VbbHcc_MCjet_ideal");
   h_VH_MCjet_DHZ = new VHPlots("VbbHcc_MCjet_DHZ");
 
-  h_VH_tags = new VHPlots("VbbHcc_tags");
-  h_VH_tags_noMassCorr = new VHPlots("VbbHcc_tags_noMassCorr");
-  h_VH_tags_noJEC = new VHPlots("VbbHcc_tags_noJEC");
-  h_VH_tags_2b1c = new VHPlots("VbbHcc_tags_2b1c");
+  h_VH_tagOnly = new VHPlots("VbbHcc_tagOnly");
+  h_VH_tagOnly_noMassCorr = new VHPlots("VbbHcc_tagOnly_noMassCorr");
+  h_VH_tagOnly_noJEC = new VHPlots("VbbHcc_tagOnly_noJEC");
+  h_VH_tagOnly_2b1c = new VHPlots("VbbHcc_tagOnly_2b1c");
 
-  h_VH_algo = new VHPlots("VbbHcc_algo");
-  h_VH_algo_noMassCorr = new VHPlots("VbbHcc_algo_noMassCorr");
-  h_VH_algo_noJEC = new VHPlots("VbbHcc_algo_noJEC");
-  h_VH_algo_2b1c = new VHPlots("VbbHcc_algo_2b1c");
+  h_VH_algoFirst = new VHPlots("VbbHcc_algoFirst");
+  h_VH_algoFirst_noMassCorr = new VHPlots("VbbHcc_algoFirst_noMassCorr");
+  h_VH_algoFirst_noJEC = new VHPlots("VbbHcc_algoFirst_noJEC");
+  h_VH_algoFirst_2b1c = new VHPlots("VbbHcc_algoFirst_2b1c");
 
-  h_VH_both = new VHPlots("VbbHcc_both");
-  h_VH_both_noMassCorr = new VHPlots("VbbHcc_both_noMassCorr");
-  h_VH_both_noJEC = new VHPlots("VbbHcc_both_noJEC");
-  h_VH_both_2b1c = new VHPlots("VbbHcc_both_2b1c");
+  h_VH_tagFirst = new VHPlots("VbbHcc_tagFirst");
+  h_VH_tagFirst_noMassCorr = new VHPlots("VbbHcc_tagFirst_noMassCorr");
+  h_VH_tagFirst_noJEC = new VHPlots("VbbHcc_tagFirst_noJEC");
+  h_VH_tagFirst_2b1c = new VHPlots("VbbHcc_tagFirst_2b1c");
 
   h_VH_alljet = new VHPlots("VbbHcc_alljet");
   h_VH_seljet = new VHPlots("VbbHcc_seljet");
 
   // Set up the EffPlot instances
-  h_eff_tags = new EffPlots("VbbHcc_eff_tags");
-  h_eff_algo = new EffPlots("VbbHcc_eff_algo");
-  h_eff_both = new EffPlots("VbbHcc_eff_both");
+  h_eff_tagOnly = new EffPlots("VbbHcc_eff_tagOnly");
+  h_eff_algoFirst = new EffPlots("VbbHcc_eff_algoFirst");
+  h_eff_tagFirst = new EffPlots("VbbHcc_eff_tagFirst");
 
   // Set up the JetPlots instances
   h_jets_selected = new JetPlots("VbbHcc_jets");
@@ -379,32 +379,32 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_evt_MC_cutflow->GetXaxis()->SetBinLabel(1, "Total");
   h_evt_MC_cutflow->GetXaxis()->SetBinLabel(2, "Passed daughter selection");
   
-  h_evt_tags_cutflow = new TH1D("VbbHcc_tags_CutFlow", "", 8, 0, 8);
-  h_evt_tags_cutflow->GetXaxis()->SetBinLabel(1, "Total");
-  h_evt_tags_cutflow->GetXaxis()->SetBinLabel(2, "MET cut");
-  h_evt_tags_cutflow->GetXaxis()->SetBinLabel(3, "jet cuts");
-  h_evt_tags_cutflow->GetXaxis()->SetBinLabel(4, "triggers");
-  h_evt_tags_cutflow->GetXaxis()->SetBinLabel(5, "b-tag #1");
-  h_evt_tags_cutflow->GetXaxis()->SetBinLabel(6, "b-tag #2");
-  h_evt_tags_cutflow->GetXaxis()->SetBinLabel(7, "c-tag #1");
-  h_evt_tags_cutflow->GetXaxis()->SetBinLabel(8, "c-tag #2");
+  h_evt_tagOnly_cutflow = new TH1D("VbbHcc_tagOnly_CutFlow", "", 8, 0, 8);
+  h_evt_tagOnly_cutflow->GetXaxis()->SetBinLabel(1, "Total");
+  h_evt_tagOnly_cutflow->GetXaxis()->SetBinLabel(2, "MET cut");
+  h_evt_tagOnly_cutflow->GetXaxis()->SetBinLabel(3, "jet cuts");
+  h_evt_tagOnly_cutflow->GetXaxis()->SetBinLabel(4, "triggers");
+  h_evt_tagOnly_cutflow->GetXaxis()->SetBinLabel(5, "b-tag #1");
+  h_evt_tagOnly_cutflow->GetXaxis()->SetBinLabel(6, "b-tag #2");
+  h_evt_tagOnly_cutflow->GetXaxis()->SetBinLabel(7, "c-tag #1");
+  h_evt_tagOnly_cutflow->GetXaxis()->SetBinLabel(8, "c-tag #2");
   
-  h_evt_algo_cutflow = new TH1D("VbbHcc_algo_CutFlow", "", 8, 0, 8);
-  h_evt_algo_cutflow->GetXaxis()->SetBinLabel(1, "Total");
-  h_evt_algo_cutflow->GetXaxis()->SetBinLabel(2, "MET cut");
-  h_evt_algo_cutflow->GetXaxis()->SetBinLabel(3, "jet cuts");
-  h_evt_algo_cutflow->GetXaxis()->SetBinLabel(4, "triggers");
-  h_evt_algo_cutflow->GetXaxis()->SetBinLabel(5, "b-tag #1");
-  h_evt_algo_cutflow->GetXaxis()->SetBinLabel(6, "b-tag #2");
-  h_evt_algo_cutflow->GetXaxis()->SetBinLabel(7, "c-tag #1");
-  h_evt_algo_cutflow->GetXaxis()->SetBinLabel(8, "c-tag #2");
+  h_evt_algoFirst_cutflow = new TH1D("VbbHcc_algoFirst_CutFlow", "", 8, 0, 8);
+  h_evt_algoFirst_cutflow->GetXaxis()->SetBinLabel(1, "Total");
+  h_evt_algoFirst_cutflow->GetXaxis()->SetBinLabel(2, "MET cut");
+  h_evt_algoFirst_cutflow->GetXaxis()->SetBinLabel(3, "jet cuts");
+  h_evt_algoFirst_cutflow->GetXaxis()->SetBinLabel(4, "triggers");
+  h_evt_algoFirst_cutflow->GetXaxis()->SetBinLabel(5, "b-tag #1");
+  h_evt_algoFirst_cutflow->GetXaxis()->SetBinLabel(6, "b-tag #2");
+  h_evt_algoFirst_cutflow->GetXaxis()->SetBinLabel(7, "c-tag #1");
+  h_evt_algoFirst_cutflow->GetXaxis()->SetBinLabel(8, "c-tag #2");
   
-  h_evt_both_cutflow = new TH1D("VbbHcc_both_CutFlow", "", 5, 0, 5);
-  h_evt_both_cutflow->GetXaxis()->SetBinLabel(1, "Total");
-  h_evt_both_cutflow->GetXaxis()->SetBinLabel(2, "MET cut");
-  h_evt_both_cutflow->GetXaxis()->SetBinLabel(3, "jet cuts");
-  h_evt_both_cutflow->GetXaxis()->SetBinLabel(4, "triggers");
-  h_evt_both_cutflow->GetXaxis()->SetBinLabel(5, "tags cut");
+  h_evt_tagFirst_cutflow = new TH1D("VbbHcc_tagFirst_CutFlow", "", 5, 0, 5);
+  h_evt_tagFirst_cutflow->GetXaxis()->SetBinLabel(1, "Total");
+  h_evt_tagFirst_cutflow->GetXaxis()->SetBinLabel(2, "MET cut");
+  h_evt_tagFirst_cutflow->GetXaxis()->SetBinLabel(3, "jet cuts");
+  h_evt_tagFirst_cutflow->GetXaxis()->SetBinLabel(4, "triggers");
+  h_evt_tagFirst_cutflow->GetXaxis()->SetBinLabel(5, "tags cut");
   
   h_evt_MCjet_ideal_cutflow = new TH1D("VbbHcc_MCjet_ideal_CutFlow", "", 7, 0, 7);
   h_evt_MCjet_ideal_cutflow->GetXaxis()->SetBinLabel(1, "Total");
@@ -504,31 +504,31 @@ void VH_selection::SlaveBegin(Reader *r) {
   tmp = h_VH_MCjet_DHZ->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   
-  tmp = h_VH_tags->returnHisto();
+  tmp = h_VH_tagOnly->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_VH_tags_noMassCorr->returnHisto();
+  tmp = h_VH_tagOnly_noMassCorr->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_VH_tags_noJEC->returnHisto();
+  tmp = h_VH_tagOnly_noJEC->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_VH_tags_2b1c->returnHisto();
-  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  
-  tmp = h_VH_algo->returnHisto();
-  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_VH_algo_noMassCorr->returnHisto();
-  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_VH_algo_noJEC->returnHisto();
-  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_VH_algo_2b1c->returnHisto();
+  tmp = h_VH_tagOnly_2b1c->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   
-  tmp = h_VH_both->returnHisto();
+  tmp = h_VH_algoFirst->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_VH_both_noMassCorr->returnHisto();
+  tmp = h_VH_algoFirst_noMassCorr->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_VH_both_noJEC->returnHisto();
+  tmp = h_VH_algoFirst_noJEC->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_VH_both_2b1c->returnHisto();
+  tmp = h_VH_algoFirst_2b1c->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  
+  tmp = h_VH_tagFirst->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_tagFirst_noMassCorr->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_tagFirst_noJEC->returnHisto();
+  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_tagFirst_2b1c->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
 
   tmp = h_VH_all->returnHisto();
@@ -553,11 +553,11 @@ void VH_selection::SlaveBegin(Reader *r) {
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
 
   // Add each plot in the EffPlot instances
-  tmp = h_eff_tags->returnHisto();
+  tmp = h_eff_tagOnly->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_eff_algo->returnHisto();
+  tmp = h_eff_algoFirst->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_eff_both->returnHisto();
+  tmp = h_eff_tagFirst->returnHisto();
   for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
 
   tmp = h_genJet_all->returnHisto();
@@ -672,9 +672,9 @@ void VH_selection::SlaveBegin(Reader *r) {
   // Add all other plots we may desire.
   r->GetOutputList()->Add(h_evt_VbbHcc);
   r->GetOutputList()->Add(h_evt_MC_cutflow);
-  r->GetOutputList()->Add(h_evt_tags_cutflow);
-  r->GetOutputList()->Add(h_evt_algo_cutflow);
-  r->GetOutputList()->Add(h_evt_both_cutflow);
+  r->GetOutputList()->Add(h_evt_tagOnly_cutflow);
+  r->GetOutputList()->Add(h_evt_algoFirst_cutflow);
+  r->GetOutputList()->Add(h_evt_tagFirst_cutflow);
   r->GetOutputList()->Add(h_evt_MCjet_ideal_cutflow);
 
   r->GetOutputList()->Add(h_jet_cutflow);
@@ -932,18 +932,18 @@ void VH_selection::Process(Reader* r) {
  
   // All CutFlows need to show the total events.
   h_evt_MC_cutflow->Fill(0.5, genWeight);   // MC Truth
-  h_evt_tags_cutflow->Fill(0.5, genWeight); // Tagging Only
-  h_evt_algo_cutflow->Fill(0.5, genWeight); // Matching Prioritized
-  h_evt_both_cutflow->Fill(0.5, genWeight); // Tagging Prioritized
+  h_evt_tagOnly_cutflow->Fill(0.5, genWeight); // Tagging Only
+  h_evt_algoFirst_cutflow->Fill(0.5, genWeight); // Matching Prioritized
+  h_evt_tagFirst_cutflow->Fill(0.5, genWeight); // Tagging Prioritized
 
   h_VH_all->FillMET(*(r->MET_pt), evtW);
   if (*(r->MET_pt) >= CUTS.Get<float>("MET")) return;
 
   // Show that we pass the MET cut.
   h_evt_MC_cutflow->Fill(1.5, genWeight);
-  h_evt_tags_cutflow->Fill(1.5, genWeight);
-  h_evt_algo_cutflow->Fill(1.5, genWeight);
-  h_evt_both_cutflow->Fill(1.5, genWeight);
+  h_evt_tagOnly_cutflow->Fill(1.5, genWeight);
+  h_evt_algoFirst_cutflow->Fill(1.5, genWeight);
+  h_evt_tagFirst_cutflow->Fill(1.5, genWeight);
 
   /********************************************************
   * MONTE CARLO TRUTH - we want to have the MC truth      *
@@ -1599,9 +1599,9 @@ void VH_selection::Process(Reader* r) {
   if (analysis_jets.size() >= 4) {
 
     //std::cout << "we have four jets!!!" << std::endl;
-    h_evt_tags_cutflow->Fill(2.5, genWeight); // passed jet selection
-    h_evt_algo_cutflow->Fill(2.5, genWeight); 
-    h_evt_both_cutflow->Fill(2.5, genWeight); 
+    h_evt_tagOnly_cutflow->Fill(2.5, genWeight); // passed jet selection
+    h_evt_algoFirst_cutflow->Fill(2.5, genWeight); 
+    h_evt_tagFirst_cutflow->Fill(2.5, genWeight); 
 
     // For our cases where we make it this far,
     // check what our MET is and check the HT
@@ -1620,7 +1620,7 @@ void VH_selection::Process(Reader* r) {
     // tagging.
     bool has_bjets = false, has_cjets = false;
 
-    // Check if the highest two b-tags pass our requirement
+    // Check if the highest two b-tagOnly pass our requirement
     std::vector<JetObj> copyjets = analysis_jets;
     std::vector<JetObj> copyjets2 = analysis_jets;
     std::sort(copyjets.begin(), copyjets.end(), JetObj::JetCompBtag());
@@ -2145,9 +2145,9 @@ void VH_selection::Process(Reader* r) {
     if (!trigger) return;
 
     //std::cout << "Passed our triggers!!!!" << std::endl;
-    h_evt_tags_cutflow->Fill(3.5, genWeight);
-    h_evt_algo_cutflow->Fill(3.5, genWeight);
-    h_evt_both_cutflow->Fill(3.5, genWeight);
+    h_evt_tagOnly_cutflow->Fill(3.5, genWeight);
+    h_evt_algoFirst_cutflow->Fill(3.5, genWeight);
+    h_evt_tagFirst_cutflow->Fill(3.5, genWeight);
 
     /**************************************************************************
     * Selection Method #1 - TAGGING ONLY                                      *
@@ -2173,12 +2173,12 @@ void VH_selection::Process(Reader* r) {
 
     if (btag1 || force_pass_tagging) {
 
-      h_evt_tags_cutflow->Fill(4.5, genWeight); // pass b-cut #1
+      h_evt_tagOnly_cutflow->Fill(4.5, genWeight); // pass b-cut #1
       if (btag2 || force_pass_tagging) {
 
         // Since we passed the cut, adjust our jets with the proper
         // JEC for b-tagged jets and reconstruct the Z boson
-        h_evt_tags_cutflow->Fill(5.5, genWeight); // pass b-cut #2
+        h_evt_tagOnly_cutflow->Fill(5.5, genWeight); // pass b-cut #2
 
         bjets2[0].ApplyRegression(5); bjets2[1].ApplyRegression(5); // Full JEC version
         ZObj Z2(bjets2);
@@ -2205,12 +2205,12 @@ void VH_selection::Process(Reader* r) {
 
         if (ctag1 || force_pass_tagging) {
 
-          h_evt_tags_cutflow->Fill(6.5, genWeight); // pass c-cut #1
+          h_evt_tagOnly_cutflow->Fill(6.5, genWeight); // pass c-cut #1
           if (ctag2 || force_pass_tagging) {
           
             // Since we passed the cuts, adjust our jets with the proper
             // JEC for c-tagged jets and reconstruct the Higgs boson
-            h_evt_tags_cutflow->Fill(7.5, genWeight); // pass c-cut #2
+            h_evt_tagOnly_cutflow->Fill(7.5, genWeight); // pass c-cut #2
 
             cjets2[0].ApplyRegression(4); cjets2[1].ApplyRegression(4); // Full JEC version
             HObj H2(cjets2);
@@ -2218,17 +2218,17 @@ void VH_selection::Process(Reader* r) {
             HObj H22(cjets22);
             HObj H23(cjets23); // no JEC
 
-            h_VH_tags->FillVH(Z2, H2, evtW);
-            h_VH_tags_noMassCorr->FillVH(Z22, H22, evtW);
-            h_VH_tags_noJEC->FillVH(Z23, H23, evtW);         
+            h_VH_tagOnly->FillVH(Z2, H2, evtW);
+            h_VH_tagOnly_noMassCorr->FillVH(Z22, H22, evtW);
+            h_VH_tagOnly_noJEC->FillVH(Z23, H23, evtW);         
 
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
-            h_VH_tags->FillGluCheck(Z2, evtW);
+            h_VH_tagOnly->FillGluCheck(Z2, evtW);
             
             // If we have a proper VbbHcc event and we've found the 
             // proper MC truth objects, check the efficiency.
             if (is_VbbHcc_event) {
-              h_eff_tags->Fill(Z2, H2, gen_bs, gen_cs, true, evtW);
+              h_eff_tagOnly->Fill(Z2, H2, gen_bs, gen_cs, true, evtW);
             }
 #endif 
 
@@ -2242,7 +2242,7 @@ void VH_selection::Process(Reader* r) {
           cjets2_2b1c[1].ApplyRegression(4);
           HObj H2(cjets2_2b1c);
           
-          h_VH_tags_2b1c->FillVH(Z2, H2, evtW);
+          h_VH_tagOnly_2b1c->FillVH(Z2, H2, evtW);
         
         }//end-2b1c
         
@@ -2282,7 +2282,7 @@ void VH_selection::Process(Reader* r) {
     }
 
     // Reconstruct the objects here for various uses.
-    h_VH_algo->FillAlgo(distances, evtW);
+    h_VH_algoFirst->FillAlgo(distances, evtW);
     std::vector<JetObj> bjets3, bjets32, bjets33;
 
     bjets3.push_back(jets3[chosenPair.m_zIdx0]); // full JEC
@@ -2319,9 +2319,9 @@ void VH_selection::Process(Reader* r) {
 
     // Now check our tagging requirements and other cuts.
     if (btag31 || force_pass_tagging) {  
-      h_evt_algo_cutflow->Fill(4.5, genWeight); // pass b-tag #1
+      h_evt_algoFirst_cutflow->Fill(4.5, genWeight); // pass b-tag #1
       if (btag32 || force_pass_tagging) {
-        h_evt_algo_cutflow->Fill(5.5, genWeight); // pass b-tag #2
+        h_evt_algoFirst_cutflow->Fill(5.5, genWeight); // pass b-tag #2
 
         bool ctag1 = chosenPair.H_has_cjet0(desired_CvL, desired_CvB);
         bool ctag2 = chosenPair.H_has_cjet1(desired_CvL, desired_CvB);
@@ -2332,22 +2332,22 @@ void VH_selection::Process(Reader* r) {
         //ctag2 = chosenPair.H_has_bjet1(desired_BvL);
  
         if (ctag1 || force_pass_tagging) {
-          h_evt_algo_cutflow->Fill(6.5, genWeight); // pass c-tag #1
+          h_evt_algoFirst_cutflow->Fill(6.5, genWeight); // pass c-tag #1
           if (ctag2 || force_pass_tagging) {
-            h_evt_algo_cutflow->Fill(7.5, genWeight); // pass c-tag #2
+            h_evt_algoFirst_cutflow->Fill(7.5, genWeight); // pass c-tag #2
             
             // Fill our histograms appropriately.
-            h_VH_algo->FillVH(Z3, H3, evtW);
-            h_VH_algo_noMassCorr->FillVH(Z32, H32, evtW);
-            h_VH_algo_noJEC->FillVH(Z33, H33, evtW);
+            h_VH_algoFirst->FillVH(Z3, H3, evtW);
+            h_VH_algoFirst_noMassCorr->FillVH(Z32, H32, evtW);
+            h_VH_algoFirst_noJEC->FillVH(Z33, H33, evtW);
 
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
-            h_VH_algo->FillGluCheck(Z3, evtW);
+            h_VH_algoFirst->FillGluCheck(Z3, evtW);
 
             // If we have a proper VbbHcc event and we've found the 
             // proper MC truth objects, check the efficiency.
             if (is_VbbHcc_event) {
-              h_eff_algo->Fill(Z3, H3, gen_bs, gen_cs, true, evtW);
+              h_eff_algoFirst->Fill(Z3, H3, gen_bs, gen_cs, true, evtW);
             }
 #endif
 
@@ -2356,7 +2356,7 @@ void VH_selection::Process(Reader* r) {
         
         // Check the 2b1c version
         if (ctag1 || ctag2) {
-          h_VH_algo_2b1c->FillVH(Z3, H3, evtW);
+          h_VH_algoFirst_2b1c->FillVH(Z3, H3, evtW);
         }//end-2b1c
         
       }//end-b-cut-2
@@ -2423,7 +2423,7 @@ void VH_selection::Process(Reader* r) {
     // If there are possible combos, let's check them.
     if (combos.size() > 0) {
 
-      h_evt_both_cutflow->Fill(4.5, genWeight); // passed tags
+      h_evt_tagFirst_cutflow->Fill(4.5, genWeight); // passed tags
 
       // From the combos we've found, run the DHZ algorithm and
       // determine which is the best combination.
@@ -2453,7 +2453,7 @@ void VH_selection::Process(Reader* r) {
       }
 
       // Reconstruct the objects for use.
-      h_VH_both->FillAlgo(DHZ_values, evtW);
+      h_VH_tagFirst->FillAlgo(DHZ_values, evtW);
       std::vector<JetObj> bjets4, bjets42, bjets43;
 
       bjets4.push_back(jets4[chosenPair.m_zIdx0]); // full JEC
@@ -2484,17 +2484,17 @@ void VH_selection::Process(Reader* r) {
       HObj H43(cjets43);
 
       // Fill our histograms appropriately.
-      h_VH_both->FillVH(Z4, H4, evtW);
-      h_VH_both_noMassCorr->FillVH(Z42, H42, evtW);
-      h_VH_both_noJEC->FillVH(Z43, H43, evtW);
+      h_VH_tagFirst->FillVH(Z4, H4, evtW);
+      h_VH_tagFirst_noMassCorr->FillVH(Z42, H42, evtW);
+      h_VH_tagFirst_noJEC->FillVH(Z43, H43, evtW);
 
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
-        h_VH_both->FillGluCheck(Z4, evtW);
+        h_VH_tagFirst->FillGluCheck(Z4, evtW);
 
         // If we have a proper VbbHcc event and we've found the 
         // proper MC truth objects, check the efficiency.
         if (is_VbbHcc_event) {
-          h_eff_both->Fill(Z4, H4, gen_bs, gen_cs, true, evtW);
+          h_eff_tagFirst->Fill(Z4, H4, gen_bs, gen_cs, true, evtW);
         }
 #endif
 
@@ -2540,7 +2540,7 @@ void VH_selection::Process(Reader* r) {
       cjets4.push_back(jets4[chosenPair.m_hIdx1]);
       HObj H4(cjets4);
       
-      h_VH_both_2b1c->FillVH(Z4, H4, evtW);
+      h_VH_tagFirst_2b1c->FillVH(Z4, H4, evtW);
     
     }//end-combos-2b1c
 

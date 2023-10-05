@@ -66,20 +66,20 @@ class VH_selection : public Selector {
     RecoPlots *h_reco_DHZ_under30;
     
     // VH Plots (for our selection methods)
-    VHPlots *h_VH_tags;              // Tagging Only
-    VHPlots *h_VH_tags_noMassCorr;   // w/o mass correction
-    VHPlots *h_VH_tags_noJEC;        // w/o Jet Energy correction
-    VHPlots *h_VH_tags_2b1c;         // one c-jet requirement removed
+    VHPlots *h_VH_tagOnly;              // Tagging Only
+    VHPlots *h_VH_tagOnly_noMassCorr;   // w/o mass correction
+    VHPlots *h_VH_tagOnly_noJEC;        // w/o Jet Energy correction
+    VHPlots *h_VH_tagOnly_2b1c;         // one c-jet requirement removed
 
-    VHPlots *h_VH_algo;              // Mass-Matching Prioritized
-    VHPlots *h_VH_algo_noMassCorr;   // w/o mass correction
-    VHPlots *h_VH_algo_noJEC;        // w/o Jet Energy correction
-    VHPlots *h_VH_algo_2b1c;         // one c-jet requirement removed
+    VHPlots *h_VH_algoFirst;              // Mass-Matching Prioritized
+    VHPlots *h_VH_algoFirst_noMassCorr;   // w/o mass correction
+    VHPlots *h_VH_algoFirst_noJEC;        // w/o Jet Energy correction
+    VHPlots *h_VH_algoFirst_2b1c;         // one c-jet requirement removed
 
-    VHPlots *h_VH_both;              // Tagging Prioritized
-    VHPlots *h_VH_both_noMassCorr;   // w/o mass correction
-    VHPlots *h_VH_both_noJEC;        // w/o Jet Energy correction
-    VHPlots *h_VH_both_2b1c;         // one c-jet requirement removed
+    VHPlots *h_VH_tagFirst;              // Tagging Prioritized
+    VHPlots *h_VH_tagFirst_noMassCorr;   // w/o mass correction
+    VHPlots *h_VH_tagFirst_noJEC;        // w/o Jet Energy correction
+    VHPlots *h_VH_tagFirst_2b1c;         // one c-jet requirement removed
 
     // I don't know if we use these 4 but keep them here as is for now...
     VHPlots *h_VH_all;   // Any plots related to ALL cut types
@@ -146,16 +146,16 @@ class VH_selection : public Selector {
     TriggerEffPlots *h_trig_2018_QuadJet_TripleTag_2b2c;
 
     // Efficiency Plots
-    EffPlots *h_eff_tags; // Efficiencies for Tagging Only
-    EffPlots *h_eff_algo; // Efficiencies for Mass-Matching Prioritized
-    EffPlots *h_eff_both; // Efficiencies for Tagging Prioritized
+    EffPlots *h_eff_tagOnly; // Efficiencies for Tagging Only
+    EffPlots *h_eff_algoFirst; // Efficiencies for Mass-Matching Prioritized
+    EffPlots *h_eff_tagFirst; // Efficiencies for Tagging Prioritized
 
     // CutFlows for event selections
     TH1D* h_evt_VbbHcc;
     TH1D* h_evt_MC_cutflow;
-    TH1D* h_evt_tags_cutflow;
-    TH1D* h_evt_algo_cutflow;
-    TH1D* h_evt_both_cutflow;
+    TH1D* h_evt_tagOnly_cutflow;
+    TH1D* h_evt_algoFirst_cutflow;
+    TH1D* h_evt_tagFirst_cutflow;
     TH1D* h_evt_MCjet_ideal_cutflow;
 
     // CutFlows for reconstruction
