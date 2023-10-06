@@ -321,7 +321,7 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_reco_ideal = new RecoPlots("Reco_ideal");
   h_reco_ideal_under30 = new RecoPlots("Reco_ideal_under30");
   h_reco_DHZ = new RecoPlots("Reco_DHZ");
-  h_reco_DHZ_under30 = new RecoPlots("Reco_ideal_under30");
+  h_reco_DHZ_under30 = new RecoPlots("Reco_DHZ_under30");
 
   // Set up the Trigger efficiency plots
   h_trig_2016_QuadJet_TripleTag = new TriggerEffPlots("2016_QuadJet_TripleTag");
@@ -1468,7 +1468,9 @@ void VH_selection::Process(Reader* r) {
     // DHZ METHOD
     // ===================
     if (genJet_list.size() >= 4) {
-    
+      
+      //std::cout << "checking DHZ on gen jets..." << std::endl;    
+
       // Make a copy of the jets & sort them by pT
       std::vector<JetObj> jets = genJet_list;
       std::sort(jets.begin(), jets.end(), JetObj::JetCompPt());
@@ -1476,9 +1478,9 @@ void VH_selection::Process(Reader* r) {
       // Create the objects for the distance calculations and make sure
       // we sort them in ascending order. (All necessary calculations
       // for alogrithms are handled within the DObj class.)
-      DHZObj d0(jets3, 0, 1, 2, 3);          // H(0,1) ; Z(2,3)
-      DHZObj d1(jets3, 0, 2, 1, 3);          // H(0,2) ; Z(1,3)
-      DHZObj d2(jets3, 0, 3, 1, 2);          // H(0,3) ; Z(1,2)
+      DHZObj d0(jets, 0, 1, 2, 3);          // H(0,1) ; Z(2,3)
+      DHZObj d1(jets, 0, 2, 1, 3);          // H(0,2) ; Z(1,3)
+      DHZObj d2(jets, 0, 3, 1, 2);          // H(0,3) ; Z(1,2)
       std::vector<DHZObj> distances {d0, d1, d2};
       std::sort(distances.begin(), distances.end());
       
@@ -1503,20 +1505,22 @@ void VH_selection::Process(Reader* r) {
       bjets.push_back(jets[chosenPair.m_zIdx1]);
       ZObj Z(bjets);
       
-      std:vector<JetObj> cjets;
+      std::vector<JetObj> cjets;
       cjets.push_back(jets[chosenPair.m_hIdx0]);
       cjets.push_back(jets[chosenPair.m_hIdx1]);
       HObj H(cjets);
       
       // Check our tagging
-      bool btag1 = chosenPair.Z_has_bjet0(desired_BvL);
-      bool btag2 = chosenPair.Z_has_bjet0(desired_BvL);
+      bool btag1 = abs(bjets[0].m_flav) == 5; //chosenPair.Z_has_bjet0(desired_BvL);
+      bool btag2 = abs(bjets[1].m_flav) == 5; //chosenPair.Z_has_bjet1(desired_BvL);
       
+      //std::cout << "btag1: " << btag1 << ", btag2: " << btag2 << std::endl;
       if (btag1 && btag2) {
-      
-        bool ctag1 = chosenPair.H_has_cjet0(desired_CvL, desired_CvB);
-        bool ctag2 = chosenPair.H_has_cjet1(desired_CvL, desired_CvB);
+        //std::cout << "passed btag" << std::endl;
+        bool ctag1 = abs(cjets[0].m_flav) == 4; //chosenPair.H_has_cjet0(desired_CvL, desired_CvB);
+        bool ctag2 = abs(cjets[1].m_flav) == 4; // chosenPair.H_has_cjet1(desired_CvL, desired_CvB);
         if (ctag1 && ctag2) {
+          //std::cout << "passed ctag" << std::endl;
         
           h_VH_MCjet_DHZ->FillVH(Z, H, evtW);
           h_reco_DHZ->Fill(gen_bs, bjets, gen_cs, cjets, evtW);
@@ -2238,9 +2242,9 @@ void VH_selection::Process(Reader* r) {
         // Check the 2b1c version
         if (ctag1 || ctag2) {
         
-          cjets2_2b1c[0].ApplyRegression(4);
-          cjets2_2b1c[1].ApplyRegression(4);
-          HObj H2(cjets2_2b1c);
+          cjets_2b1c[0].ApplyRegression(4);
+          cjets_2b1c[1].ApplyRegression(4);
+          HObj H2(cjets_2b1c);
           
           h_VH_tagOnly_2b1c->FillVH(Z2, H2, evtW);
         
