@@ -2380,14 +2380,15 @@ void VH_selection::Process(Reader* r) {
     std::vector<std::pair<int,float> > jets_idx_CvL_2b1c;
     bool already_tagged_c = false;
     
+    // For each jet...
     for (size_t i = 0; i < jets4.size(); ++i) {
-
+      
       float csv = jets4[i].m_deepCSV;
       float cvl = jets4[i].m_deepCvL;
 
       bool btag1 = passes_btag(jets4[i], desired_BvL);
       bool ctag1 = passes_ctag(jets4[i], desired_CvL, desired_CvB); 
-      ctag1 = passes_btag(jets4[i], desired_BvL);
+      //ctag1 = passes_btag(jets4[i], desired_BvL);
 
       if (btag1 || force_pass_tagging) {
         std::pair<int,float> pair0(i,csv);

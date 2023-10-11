@@ -55,13 +55,24 @@ years = ['16', '17', '18']
 useLogY = False
 
 ## Input & Output file locations
-dirpath = '../condor_results/Oct2023_ZH/NONE/'
-output_directory = '../plot_results/Oct2023_ZH/'
+dirpath = '../condor_results/Oct2023_updated/NONE/'
+output_directory = '../plot_results/Oct2023_updated/'
 
 ## Variables we care about
-selection_methods = [ "tags", "algo", "both" ]
 selection_methods = [ "MCjet", "MCjet_tagRemoved", "MCjet_inRange", 
-  "MCjet_fixed", "MCjet_ideal", "MCjet_tagRemoved_v2", "MC" ]
+  "MCjet_fixed", "MCjet_ideal", "MCjet_tagRemoved_v2", "MC", 
+  "tagOnly", "algoFirst", "tagFirst" ]
+
+selection_methods = [
+  "tagOnly", "algoFirst", "tagFirst"
+]
+
+#selection_methods = [
+  ## MC jet versions
+#  "MCjet_minDR", "MCjet_minDR_noTag", "MCjet_dRcollect", 
+#  "MCjet_dRcollect_noTag", "MCjet_ideal", "MCjet_DHZ"
+#]
+
 variables = [ "MH_v_MZ" ]
 
 ## Normal List of Samples 
