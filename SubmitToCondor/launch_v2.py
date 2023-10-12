@@ -114,10 +114,10 @@ outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_
 #Input data sets
 dataSet_list = sourceDir+"/Dataset_lists/datasets_NANOAODv9_MC.txt"
 #dataSet_list = sourceDir+"/Dataset_lists/datasets_WjetsHighBin_2018_MC.txt"
-#dataSet_list = sourceDir+"/Dataset_lists/datasets_JetHT_combined.txt"
+dataSet_list = sourceDir+"/Dataset_lists/datasets_JetHT_combined.txt"
 dataSet_lists = [sourceDir+"/Dataset_lists/datasets_NANOAODv9_MC.txt"]
 #dataSet_lists = [sourceDir+"/Dataset_lists/datasets_WjetsHighBin_2018_MC.txt"]
-#dataSet_lists = [sourceDir+"/Dataset_lists/datasets_JetHT_combined.txt"]
+dataSet_lists = [sourceDir+"/Dataset_lists/datasets_JetHT_combined.txt"]
 #dataSet_list = sourceDir+"/Dataset_lists/separated/datasets_ZH_MC.txt"
 #dataSet_lists = [sourceDir+"/Dataset_lists/separated/datasets_ZH_MC.txt"]
 #dataSet_list = sourceDir+"/Dataset_lists/separated/datasets_Wjets_MC.txt"
