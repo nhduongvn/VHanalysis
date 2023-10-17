@@ -466,8 +466,8 @@ class VHPlots
       h_DHZ1 = new TH1D(name + "_DHZ1", "", NBIN_DH, X_DH[0], X_DH[1]);
       h_DHZ2 = new TH1D(name + "_DHZ2", "", NBIN_DH, X_DH[0], X_DH[1]);
       h_dH = new TH1D(name + "_dH", "", NBIN_DH, X_DH[0], X_DH[1]);
-      h_MH_v_MZ = new TH2D(name + "_MH_v_MZ", "", 200, 0, 200, 200, 0, 200);
-      h_MH_v_MZ_all = new TH2D(name + "_MH_v_MZ_all", "", 200, 0, 200, 200, 0, 200);
+      h_MH_v_MZ = new TH2D(name + "_MH_v_MZ", "", 2000, 0, 2000, 2000, 0, 2000);
+      h_MH_v_MZ_all = new TH2D(name + "_MH_v_MZ_all", "", 2000, 0, 2000, 2000, 0, 2000);
 
       h_MZ_v_flav = new TH2D(name + "_MZ_v_flav", "", 20, 0, 200, 15, 0, 15);
       h_dR_v_flav = new TH2D(name + "_dR_v_flav", "", 20, 0, 20, 15, 0, 15);
