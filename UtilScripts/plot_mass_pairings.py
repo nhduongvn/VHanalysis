@@ -64,7 +64,8 @@ selection_methods = [ "MCjet", "MCjet_tagRemoved", "MCjet_inRange",
   "tagOnly", "algoFirst", "tagFirst" ]
 
 selection_methods = [
-  "tagOnly", "algoFirst", "tagFirst"
+  "tagOnly", "algoFirst", "tagFirst",
+  "tagOnly_2b1c", "algoFirst_2b1c", "tagFirst_2b1c"
 ]
 
 #selection_methods = [
@@ -77,15 +78,17 @@ variables = [ "MH_v_MZ" ]
 
 ## Normal List of Samples 
 sampleList = [ 
-  'ZH_HToCC_ZToQQ', #'ggZH_HToCC_ZToQQ', ## ZH(H->CC)
+  'ZH_HToCC_ZToQQ', 'JetHT', #'ggZH_HToCC_ZToQQ', ## ZH(H->CC)
 ]
 
 ## Category names & Labels
-categories = [ "ZHcc", ]#"ggZHcc" ]
+categories = [ "ZHcc", "Data" ]#"ggZHcc" ]
+categories = [ "Data" ]
 
 ## Samples Split into Categories
 category_samples = {
-  "ZHcc": ['ZH_HToCC_ZToQQ'],
+  #"ZHcc": ['ZH_HToCC_ZToQQ'],
+  "Data": ['JetHT'],
   #"ggZHcc": ['ggZH_HToCC_ZToQQ'],
 }
 
@@ -206,6 +209,7 @@ for sel in selection_methods:
       ## Plot the 2D histogram
       logY = useLogY
       
+      print("category = ", cat)
       plot = plots_by_year[cat][y]
       #plot.Rebin2D(10,10)
       

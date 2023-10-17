@@ -61,10 +61,10 @@ print "Pulling settings and preferences..."
 ## Edit / change the following options as needed:
 years = ['16', '17', '18']
 #years = ['16']
-regions = ['tags', 'algo', 'both']
+regions = ['tagOnly', 'algoFirst', 'tagFirst']
 useLogY = False
-outputDir = '../plot_results/Aug2023_SF/'
-dirpath = '../condor_results/Aug2023_addedTagSF/NONE/'
+outputDir = '../plot_results/Oct2023_updated/'
+dirpath = '../condor_results/Oct2023_updated/NONE/'
 plotCat = 'VbbHcc_plot'
 
 #regions = ['']

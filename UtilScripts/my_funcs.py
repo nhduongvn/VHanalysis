@@ -206,7 +206,7 @@ def makeGausFit(plot, plotName, canvasName, plotDir, fitRange,
 ###############################################################################
 def makePlot(plot, plotName, canvasName, plotDir, xAxisTitle, xAxisRange, 
   yAxisTitle, rebin, logY, lumi, line_color, fill_color, fill=False, yRange=[],
-  is2D = False, showStats=False, textForPlot = ""):
+  is2D = False, showStats=False, textForPlot = "", blindMass=False, massRegion=[75,140]):
   
   ## Make the canvas
   if not showStats: ROOT.gStyle.SetOptStat(0)
@@ -1435,6 +1435,9 @@ def make2DplotWithProjections(plot, canvasName, plotDir, xAxis_title,
   top_pad = ROOT.TPad("top_pad", "top_pad", 0.0, 0.55, 0.6, 1.0)
   top_pad.Draw()
   
+  plot.RebinX(2)
+  plot.RebinY(2)
+  
   ## Pull the projection plots from the main TH2
   projh2X = plot.ProjectionX()
   projh2X.SetStats(0)
@@ -1490,7 +1493,7 @@ def make2DplotWithProjections(plot, canvasName, plotDir, xAxis_title,
   
 
 ###############################################################################
-## Plot 2D with Projections
+## Plot 2D with Regions
 ###############################################################################
 def make2DplotWithRegions(plot, canvasName, plotDir, xAxis_title, 
   yAxis_title, debug=False, xRange = [], yRange = [], CR_width=20,
