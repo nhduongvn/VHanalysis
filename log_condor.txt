@@ -1,27 +1,27 @@
 
 
--- Schedd: lpcschedd3.fnal.gov : <131.225.188.235:9618?... @ 10/11/23 19:25:49
+-- Schedd: lpcschedd3.fnal.gov : <131.225.188.235:9618?... @ 10/17/23 14:31:20
  ID      OWNER            SUBMITTED     RUN_TIME ST PRI SIZE CMD
 
 Total for query: 0 jobs; 0 completed, 0 removed, 0 idle, 0 running, 0 held, 0 suspended 
 Total for peteryou: 0 jobs; 0 completed, 0 removed, 0 idle, 0 running, 0 held, 0 suspended 
-Total for all users: 2126 jobs; 0 completed, 30 removed, 518 idle, 774 running, 804 held, 0 suspended
+Total for all users: 12662 jobs; 0 completed, 30 removed, 9049 idle, 2804 running, 779 held, 0 suspended
 
 
 
--- Schedd: lpcschedd4.fnal.gov : <131.225.189.251:9618?... @ 10/11/23 19:25:49
+-- Schedd: lpcschedd4.fnal.gov : <131.225.189.251:9618?... @ 10/17/23 14:31:20
  ID      OWNER            SUBMITTED     RUN_TIME ST PRI SIZE CMD
 
 Total for query: 0 jobs; 0 completed, 0 removed, 0 idle, 0 running, 0 held, 0 suspended 
 Total for peteryou: 0 jobs; 0 completed, 0 removed, 0 idle, 0 running, 0 held, 0 suspended 
-Total for all users: 1103 jobs; 0 completed, 0 removed, 569 idle, 529 running, 5 held, 0 suspended
+Total for all users: 6649 jobs; 0 completed, 0 removed, 6186 idle, 291 running, 172 held, 0 suspended
 
 
 
--- Schedd: lpcschedd5.fnal.gov : <131.225.204.62:9618?... @ 10/11/23 19:25:49
+-- Schedd: lpcschedd5.fnal.gov : <131.225.204.62:9618?... @ 10/17/23 14:31:21
  ID      OWNER            SUBMITTED     RUN_TIME ST PRI SIZE CMD
 
 Total for query: 0 jobs; 0 completed, 0 removed, 0 idle, 0 running, 0 held, 0 suspended 
 Total for peteryou: 0 jobs; 0 completed, 0 removed, 0 idle, 0 running, 0 held, 0 suspended 
-Total for all users: 2251 jobs; 0 completed, 0 removed, 816 idle, 370 running, 1065 held, 0 suspended
+Total for all users: 10087 jobs; 0 completed, 0 removed, 8827 idle, 303 running, 957 held, 0 suspended
 
