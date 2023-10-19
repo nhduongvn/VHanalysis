@@ -294,27 +294,55 @@ for sel in selection_methods:
     ##    in the control (CR) and validation (VR) regions
     alpha_CR = 1.0 * events["2b2c"]["CR"] / events["2b1c"]["CR"]
     alpha_VR = 1.0 * events["2b2c"]["VR"] / events["2b1c"]["VR"]
+    alphas = { "CR": alpha_CR, "VR": alpha_VR }
     
     ## 3. Apply the transfer function to N(2b1c) in the signal region (SR)
     ##    to estimate the QCD background. Compare it with the MC QCD events
     N_CR_predicted = alpha_CR * events["2b1c"]["SR"]
     N_VR_predicted = alpha_VR * events["2b1c"]["SR"]
+    predicted = { "CR": N_CR_predicted, "VR": N_VR_predicted }
     
+    ## Calculate the uncertainties
+    N_evt = events["2b1c"]["SR"]
+    dS_SR = sqrt(N_evt)
+    sigma_SR = pow(dS_SR / N_evt,2)
+    unc_alpha = {}
+    unc_percent_alpha = {}
+    uncertainty = {}
+    unc_percent = {}
+    for region in ["CR", "VR"]:
+      
+      evt_2b2c = events["2b2c"][region]
+      dS_2c = sqrt(evt_2b2c)
+      sigma_2c = pow(dS_2c / evt_2b2c,2)
+      
+      evt_2b1c = events["2b1c"][region]
+      dS_1c = sqrt(evt_2b1c)
+      sigma_1c = pow(dS_1c / evt_2b1c,2)
+      
+      rel_error = sqrt(sigma_SR + sigma_2c + sigma_1c)
+      uncertainty[region] = rel_error * predicted[region]
+      unc_percent[region] = uncertainty[region] / predicted[region]
+      
+      rel_error_alpha = sqrt(sigma_2c + sigma_1c)
+      unc_alpha[region] = rel_error_alpha * alphas[region]
+      unc_percent_alpha[region] = unc_alpha[region] / alphas[region]
+       
     ## Output all of the information we're interested in
     print "==================================="
     print "Control Region"
     print "==================================="
     print "N(2b2c) = ", events["2b2c"]["CR"]
     print "N(2b1c) = ", events["2b1c"]["CR"]
-    print "alpha   = ", alpha_CR
-    print "N_pred  = ", N_CR_predicted
+    print "alpha   = ", alpha_CR, " +/- ", unc_alpha["CR"], " | ", unc_percent_alpha["CR"]*100, "%"
+    print "N_pred  = ", N_CR_predicted, " +/- ", uncertainty["CR"], " | ", unc_percent["CR"]*100, "%"
     print "==================================="
     print "Validation Region"
     print "==================================="
     print "N(2b2c) = ", events["2b2c"]["VR"]
     print "N(2b1c) = ", events["2b1c"]["VR"]
-    print "alpha   = ", alpha_VR
-    print "N_pred  = ", N_VR_predicted
+    print "alpha   = ", alpha_VR, " +/- ", unc_alpha["VR"], " | ", unc_percent_alpha["VR"]*100, "%"
+    print "N_pred  = ", N_VR_predicted, " +/- ", uncertainty["VR"], " | ", unc_percent["VR"]*100, "%"
     print "==================================="
     print "Data SR = ", events["2b2c"]["SR"]
     print "QCD (MC)= ", QCD_evts

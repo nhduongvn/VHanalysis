@@ -204,7 +204,7 @@ def makeGausFit(plot, plotName, canvasName, plotDir, fitRange,
 ###############################################################################
 ## Make Plot Function
 ###############################################################################
-def makePlot(plot, plotName, canvasName, plotDir, xAxisTitle, xAxisRange, 
+def makePlot(iPlot, plotName, canvasName, plotDir, xAxisTitle, xAxisRange, 
   yAxisTitle, rebin, logY, lumi, line_color, fill_color, fill=False, yRange=[],
   is2D = False, showStats=False, textForPlot = "", blindMass=False, massRegion=[75,140]):
   
@@ -217,7 +217,19 @@ def makePlot(plot, plotName, canvasName, plotDir, xAxisTitle, xAxisRange,
   ## Adjust the axes if necessary
   if len(yRange) >= 2:
     print "<<< UPDATING Y-RANGE OF PLOT >>>"
-    plot.GetYaxis().SetRange(yRange[0],yRange[1])
+    iPlot.GetYaxis().SetRange(yRange[0],yRange[1])
+  if len(xAxisRange) >= 2:
+    iPlot.GetXaxis().SetRange(xAxisRange[0],xAxisRange[1])
+  
+  if blindMass:
+    mL = massRegion[0]
+    mH = massRegion[1]
+    ## Remove any data that's not in the range we want
+    ## Basically, go through bin by bin and if it's contents
+    ## don't meet the range we want, ignore it.
+    plot = blind_region(iPlot, mL, mH)
+  else:
+    plot = iPlot
   
   ## Appropriately modify the plot
   if fill: plot.SetFillColor(fill_color)
@@ -1434,7 +1446,7 @@ def make2DplotWithProjections(plot, canvasName, plotDir, xAxis_title,
   if debug: print "Creating the top pad..."
   top_pad = ROOT.TPad("top_pad", "top_pad", 0.0, 0.55, 0.6, 1.0)
   top_pad.Draw()
-  
+
   plot.RebinX(2)
   plot.RebinY(2)
   
@@ -1448,14 +1460,19 @@ def make2DplotWithProjections(plot, canvasName, plotDir, xAxis_title,
   if debug: "Drawing TH2 to the center pad..."
   center_pad.cd()
   ROOT.gStyle.SetPalette(1)
-  plot.GetXaxis().SetTitle(xAxis_title)
   if len(xRange) >= 2:
-    plot.GetYaxis().SetRange(xRange[0], xRange[1])
-  plot.GetYaxis().SetTitle(yAxis_title)
+    print "xRange: ", xRange[0], ", ", xRange[1]
+    plot.GetXaxis().SetLimits(0,50)
+    plot.GetXaxis().SetRangeUser(0,25)
   if len(yRange) >= 2:
-    plot.GetXaxis().SetRange(yRange[0], yRange[1])
+    print "yRange: ", yRange[0], ", ", yRange[1]
+    plot.GetYaxis().SetLimits(0,300)
+    plot.GetYaxis().SetRangeUser(0,200)
+  plot.GetYaxis().SetTitle(yAxis_title)
+  plot.GetXaxis().SetTitle(xAxis_title)
   plot.SetStats(0)
   plot.Draw("COL")
+  center_pad.ForceUpdate()
   
   ## Draw the X-projection on the top pad
   if debug: "Drawing X-projection to the top pad..."

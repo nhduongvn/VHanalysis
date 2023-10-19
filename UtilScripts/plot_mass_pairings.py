@@ -9,7 +9,7 @@ import sys, os
 import ROOT
 import ConfigParser
 from math import *
-from my_funcs import ScaleToLumi1, make2DplotWithProjections
+from my_funcs import ScaleToLumi1, make2DplotWithProjections, makePlot
 
 ## == Useful Methods ==========================================================
 
@@ -217,5 +217,15 @@ for sel in selection_methods:
       full_output = output_directory + '/20' + y + '/2D_signal/' + cat + '/'
       
       make2DplotWithProjections(plot, canvas_name, full_output,
-        "m_{H} [GeV]", "m_{Z} [GeV]")#, xRange=[75,155], yRange=[41,141])
+        "m_{H} [GeV]", "m_{Z} [GeV]", xRange=[0,300], yRange=[0,300])
+      
+      ## Plot the x projection separately
+      blind_mass_region = False
+      if not "2b1c" in sel: blind_mass_region = True
+      
+      makePlot(plot.ProjectionX(), "", canvas_name + "_ProjX", full_output,
+        "m_{H} [GeV]", [0,300], "Events / 2 GeV", 2, False,
+        lumiS[y], ROOT.kBlue, ROOT.kBlue, fill=True, blindMass=blind_mass_region)
+      
+      
       
