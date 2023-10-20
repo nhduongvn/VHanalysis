@@ -37,7 +37,7 @@ def getHist(plotName, sample_names, hist_files, lumiScales):
     ## Get the first sample & the appropriate histogram
     print sample_names[0], plotName, y
     hOut[y] = hist_files[sample_names[0]][y][0].Get(plotName).Clone()
-    if sample_names[0] not in ['JetHT']:
+    if sample_names[0] not in ['JetHT', 'BTagCSV', 'Data']:
       hOut[y].Scale(lumiScales[sample_names[0]][y][0])
 
     ## Add the other samples
@@ -48,7 +48,7 @@ def getHist(plotName, sample_names, hist_files, lumiScales):
         if iS == 0 and fi == 0: continue
                 
         h = hist_files[sample_names[iS]][y][fi].Get(plotName).Clone()
-        if sample_names[iS] not in ['JetHT']:
+        if sample_names[iS] not in ['JetHT', 'BTagCSV', 'Data']:
           h.Scale(lumiScales[sample_names[iS]][y][fi])
         hOut[y].Add(h)
   
@@ -73,7 +73,7 @@ plotCat = 'VbbHcc_plot'
 debug = True
 
 ## Normal List of Samples 
-ss = [ 'JetHT', 'ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ', ## Jet HT & ZH(H->CC)
+ss = [ 'Data', 'ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ', ## Jet HT & ZH(H->CC)
   'ZH_HToBB_ZToQQ', 'ggZH_HToBB_ZToQQ',               ## ZH(H->BB)
   'QCD_HT100to200_v9',
   'QCD_HT200to300_v9', 'QCD_HT300to500_v9',           ## QCD (200-Inf)
@@ -134,7 +134,7 @@ for s in ss:
     print '>>>>>>>>>: ', len(names)
     xSecTmps = ['1']*len(names)
     kfactor = ['1']*len(names)
-    if s not in ['JetHT']:
+    if s not in ['JetHT','BTagCSV', 'Data']:
       xSecTmps = cfg.get(s, 'xSec_'+y).split(',')
     
     fileNames[s][y] = []
@@ -155,7 +155,7 @@ for s in ss:
     
     lumiScales[s][y] = [1]*len(names)
     for iN in range(len(fileNames[s][y])):
-      if s not in ['JetHT']:
+      if s not in ['JetHT','BTagCSV', 'Data']:
         print s, y, iN, fileNames[s][y][iN]
         lumiScales[s][y][iN] = scaleToLumi1(fileNames[s][y][iN], xSecs[s][y][iN], lumi)
 
@@ -178,7 +178,7 @@ for r in regions:
     else: hN = plN
     
     ## Get all desired plots
-    hData = getHist(hN, ['JetHT'], histFiles, lumiScales)                    ## Data
+    hData = getHist(hN, ['Data'], histFiles, lumiScales)                    ## Data
     hZHcc = getHist(hN, ['ZH_HToCC_ZToQQ'], histFiles, lumiScales)           ## ZH (signal)
     hZHbb = getHist(hN, ['ZH_HToBB_ZToQQ'], histFiles, lumiScales)           ## ZHbb
     hggZHcc = getHist(hN, ['ggZH_HToCC_ZToQQ'], histFiles, lumiScales)       ## ggZH (signal 2)
@@ -251,13 +251,15 @@ for r in regions:
       ]
         
       
-      dataTitle = 'Data (JetHT, 20'+y+')'
+      if y == '18': dataTitle = 'Data (JetHT, 20'+y+')'
+      else: dataTitle = 'Data (BTagCSV, 20'+y+')'
+      
       plotNames_process = [
         dataTitle, 'QCD', 'Single top', 't#bar{t}', 'Z + jets', 'W + jets', 'WW',
         'WZ', 'ZZ', 'ZHbb', 'ggZHbb', 'ZHcc', 'ggZHcc'
       ]
       individual_names = [
-        'JetHT', 'QCD', 'SingleTop', 'Ttbar', 'Zjets', 'Wjets', 'WW', 
+        'Data', 'QCD', 'SingleTop', 'Ttbar', 'Zjets', 'Wjets', 'WW', 
         'WZ', 'ZZ', 'ZHbb', 'ggZHbb', 'ZHcc', 'ggZHcc'
       ]
       

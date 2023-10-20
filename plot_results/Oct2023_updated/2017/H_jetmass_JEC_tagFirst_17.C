@@ -4,7 +4,7 @@
 void H_jetmass_JEC_tagFirst_17()
 {
 //=========Macro generated from canvas: H_jetmass_JEC_tagFirst_17/H_jetmass_JEC_tagFirst_17
-//=========  (Tue Oct 17 10:20:04 2023) by ROOT version 6.28/04
+//=========  (Fri Oct 20 11:03:41 2023) by ROOT version 6.28/04
    TCanvas *H_jetmass_JEC_tagFirst_17 = new TCanvas("H_jetmass_JEC_tagFirst_17", "H_jetmass_JEC_tagFirst_17",0,0,600,600);
    H_jetmass_JEC_tagFirst_17->SetHighLightColor(2);
    H_jetmass_JEC_tagFirst_17->Range(0,0,1,1);
@@ -360,11 +360,11 @@ void H_jetmass_JEC_tagFirst_17()
    st->Draw("hist");
    
    TH1D *VbbHcc_tagFirst_H_jetmass_JEC__405 = new TH1D("VbbHcc_tagFirst_H_jetmass_JEC__405","",150,0,300);
-   VbbHcc_tagFirst_H_jetmass_JEC__405->SetBinContent(1,16);
-   VbbHcc_tagFirst_H_jetmass_JEC__405->SetBinContent(2,229409);
-   VbbHcc_tagFirst_H_jetmass_JEC__405->SetBinContent(3,292451);
-   VbbHcc_tagFirst_H_jetmass_JEC__405->SetBinContent(151,23);
-   VbbHcc_tagFirst_H_jetmass_JEC__405->SetEntries(522048);
+   VbbHcc_tagFirst_H_jetmass_JEC__405->SetBinContent(1,8);
+   VbbHcc_tagFirst_H_jetmass_JEC__405->SetBinContent(2,539704);
+   VbbHcc_tagFirst_H_jetmass_JEC__405->SetBinContent(3,607593);
+   VbbHcc_tagFirst_H_jetmass_JEC__405->SetBinContent(151,5);
+   VbbHcc_tagFirst_H_jetmass_JEC__405->SetEntries(1147459);
 
    ci = TColor::GetColor("#000099");
    VbbHcc_tagFirst_H_jetmass_JEC__405->SetLineColor(ci);
@@ -461,7 +461,7 @@ void H_jetmass_JEC_tagFirst_17()
    leg->SetLineWidth(2);
    leg->SetFillColor(0);
    leg->SetFillStyle(1001);
-   TLegendEntry *entry=leg->AddEntry("VbbHcc_tagFirst_H_jetmass_JEC","Data (JetHT, 2017)","p");
+   TLegendEntry *entry=leg->AddEntry("VbbHcc_tagFirst_H_jetmass_JEC","Data (BTagCSV, 2017)","p");
    entry->SetLineColor(1);
    entry->SetLineStyle(1);
    entry->SetLineWidth(1);
@@ -678,15 +678,15 @@ void H_jetmass_JEC_tagFirst_17()
    bottomPad->SetFrameBorderMode(0);
    
    TH1D *data_mc_ratio__406 = new TH1D("data_mc_ratio__406","",150,0,300);
-   data_mc_ratio__406->SetBinContent(1,0.0001756624);
-   data_mc_ratio__406->SetBinContent(2,0.2752318);
-   data_mc_ratio__406->SetBinContent(3,0.2693761);
-   data_mc_ratio__406->SetBinError(1,4.391559e-05);
-   data_mc_ratio__406->SetBinError(2,0.0005746368);
-   data_mc_ratio__406->SetBinError(3,0.0004981183);
+   data_mc_ratio__406->SetBinContent(1,8.783118e-05);
+   data_mc_ratio__406->SetBinContent(2,0.647506);
+   data_mc_ratio__406->SetBinContent(3,0.5596528);
+   data_mc_ratio__406->SetBinError(1,3.105301e-05);
+   data_mc_ratio__406->SetBinError(2,0.0008813857);
+   data_mc_ratio__406->SetBinError(3,0.0007179799);
    data_mc_ratio__406->SetMinimum(0.4);
    data_mc_ratio__406->SetMaximum(1.6);
-   data_mc_ratio__406->SetEntries(10738.24);
+   data_mc_ratio__406->SetEntries(10210.42);
    data_mc_ratio__406->SetStats(0);
 
    ci = TColor::GetColor("#000099");

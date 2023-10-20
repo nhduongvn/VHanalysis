@@ -4,7 +4,7 @@
 void H_jetmass_JEC_tagFirst_16()
 {
 //=========Macro generated from canvas: H_jetmass_JEC_tagFirst_16/H_jetmass_JEC_tagFirst_16
-//=========  (Tue Oct 17 10:20:04 2023) by ROOT version 6.28/04
+//=========  (Fri Oct 20 11:03:41 2023) by ROOT version 6.28/04
    TCanvas *H_jetmass_JEC_tagFirst_16 = new TCanvas("H_jetmass_JEC_tagFirst_16", "H_jetmass_JEC_tagFirst_16",0,0,600,600);
    H_jetmass_JEC_tagFirst_16->SetHighLightColor(2);
    H_jetmass_JEC_tagFirst_16->Range(0,0,1,1);
@@ -19,7 +19,7 @@ void H_jetmass_JEC_tagFirst_16()
    TPad *topPad = new TPad("topPad", "topPad",0,0.3,1,1);
    topPad->Draw();
    topPad->cd();
-   topPad->Range(-45.96762,-3459.9,315.7258,3456450);
+   topPad->Range(-45.96762,-3966.645,315.7258,3962688);
    topPad->SetFillColor(0);
    topPad->SetBorderMode(0);
    topPad->SetBorderSize(2);
@@ -33,11 +33,11 @@ void H_jetmass_JEC_tagFirst_16()
    st->SetName("st");
    st->SetTitle("");
    st->SetMinimum(0.01);
-   st->SetMaximum(3110459);
+   st->SetMaximum(3566022);
    
    TH1F *st_stack_202 = new TH1F("st_stack_202","",150,0,300);
    st_stack_202->SetMinimum(0.01);
-   st_stack_202->SetMaximum(3110459);
+   st_stack_202->SetMaximum(3566022);
    st_stack_202->SetDirectory(nullptr);
    st_stack_202->SetStats(0);
 
@@ -360,10 +360,10 @@ void H_jetmass_JEC_tagFirst_16()
    st->Draw("hist");
    
    TH1D *VbbHcc_tagFirst_H_jetmass_JEC__403 = new TH1D("VbbHcc_tagFirst_H_jetmass_JEC__403","",150,0,300);
-   VbbHcc_tagFirst_H_jetmass_JEC__403->SetBinContent(1,38);
-   VbbHcc_tagFirst_H_jetmass_JEC__403->SetBinContent(2,583170);
-   VbbHcc_tagFirst_H_jetmass_JEC__403->SetBinContent(3,1021341);
-   VbbHcc_tagFirst_H_jetmass_JEC__403->SetEntries(1604698);
+   VbbHcc_tagFirst_H_jetmass_JEC__403->SetBinContent(1,16);
+   VbbHcc_tagFirst_H_jetmass_JEC__403->SetBinContent(2,1587762);
+   VbbHcc_tagFirst_H_jetmass_JEC__403->SetBinContent(3,1604710);
+   VbbHcc_tagFirst_H_jetmass_JEC__403->SetEntries(3192637);
 
    ci = TColor::GetColor("#000099");
    VbbHcc_tagFirst_H_jetmass_JEC__403->SetLineColor(ci);
@@ -460,7 +460,7 @@ void H_jetmass_JEC_tagFirst_16()
    leg->SetLineWidth(2);
    leg->SetFillColor(0);
    leg->SetFillStyle(1001);
-   TLegendEntry *entry=leg->AddEntry("VbbHcc_tagFirst_H_jetmass_JEC","Data (JetHT, 2016)","p");
+   TLegendEntry *entry=leg->AddEntry("VbbHcc_tagFirst_H_jetmass_JEC","Data (BTagCSV, 2016)","p");
    entry->SetLineColor(1);
    entry->SetLineStyle(1);
    entry->SetLineWidth(1);
@@ -677,15 +677,15 @@ void H_jetmass_JEC_tagFirst_16()
    bottomPad->SetFrameBorderMode(0);
    
    TH1D *data_mc_ratio__404 = new TH1D("data_mc_ratio__404","",150,0,300);
-   data_mc_ratio__404->SetBinContent(1,0.02762663);
-   data_mc_ratio__404->SetBinContent(2,0.4284299);
-   data_mc_ratio__404->SetBinContent(3,0.7296823);
-   data_mc_ratio__404->SetBinError(1,0.004481632);
-   data_mc_ratio__404->SetBinError(2,0.000561025);
-   data_mc_ratio__404->SetBinError(3,0.0007220187);
+   data_mc_ratio__404->SetBinContent(1,0.01163227);
+   data_mc_ratio__404->SetBinContent(2,1.16646);
+   data_mc_ratio__404->SetBinContent(3,1.146462);
+   data_mc_ratio__404->SetBinError(1,0.002908067);
+   data_mc_ratio__404->SetBinError(2,0.000925715);
+   data_mc_ratio__404->SetBinError(3,0.0009050266);
    data_mc_ratio__404->SetMinimum(0.4);
    data_mc_ratio__404->SetMaximum(1.6);
-   data_mc_ratio__404->SetEntries(2589.906);
+   data_mc_ratio__404->SetEntries(4522.567);
    data_mc_ratio__404->SetStats(0);
 
    ci = TColor::GetColor("#000099");

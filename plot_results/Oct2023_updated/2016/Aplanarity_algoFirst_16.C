@@ -4,7 +4,7 @@
 void Aplanarity_algoFirst_16()
 {
 //=========Macro generated from canvas: Aplanarity_algoFirst_16/Aplanarity_algoFirst_16
-//=========  (Tue Oct 17 10:19:57 2023) by ROOT version 6.28/04
+//=========  (Fri Oct 20 11:03:33 2023) by ROOT version 6.28/04
    TCanvas *Aplanarity_algoFirst_16 = new TCanvas("Aplanarity_algoFirst_16", "Aplanarity_algoFirst_16",0,0,600,600);
    Aplanarity_algoFirst_16->SetHighLightColor(2);
    Aplanarity_algoFirst_16->Range(0,0,1,1);
@@ -19,7 +19,7 @@ void Aplanarity_algoFirst_16()
    TPad *topPad = new TPad("topPad", "topPad",0,0.3,1,1);
    topPad->Draw();
    topPad->cd();
-   topPad->Range(-0.1532254,-722.5017,1.052419,721789.1);
+   topPad->Range(-0.1532254,-760.692,1.052419,759941.3);
    topPad->SetFillColor(0);
    topPad->SetBorderMode(0);
    topPad->SetBorderSize(2);
@@ -33,11 +33,11 @@ void Aplanarity_algoFirst_16()
    st->SetName("st");
    st->SetTitle("");
    st->SetMinimum(0.01);
-   st->SetMaximum(649538);
+   st->SetMaximum(683871.1);
    
    TH1F *st_stack_118 = new TH1F("st_stack_118","",50,0,1);
    st_stack_118->SetMinimum(0.01);
-   st_stack_118->SetMaximum(649538);
+   st_stack_118->SetMaximum(683871.1);
    st_stack_118->SetDirectory(nullptr);
    st_stack_118->SetStats(0);
 
@@ -458,20 +458,20 @@ void Aplanarity_algoFirst_16()
    st->Draw("hist");
    
    TH1D *VbbHcc_algoFirst_Aplanarity__235 = new TH1D("VbbHcc_algoFirst_Aplanarity__235","",50,0,1);
-   VbbHcc_algoFirst_Aplanarity__235->SetBinContent(1,94642);
-   VbbHcc_algoFirst_Aplanarity__235->SetBinContent(2,10037);
-   VbbHcc_algoFirst_Aplanarity__235->SetBinContent(3,2118);
-   VbbHcc_algoFirst_Aplanarity__235->SetBinContent(4,525);
-   VbbHcc_algoFirst_Aplanarity__235->SetBinContent(5,134);
-   VbbHcc_algoFirst_Aplanarity__235->SetBinContent(6,58);
-   VbbHcc_algoFirst_Aplanarity__235->SetBinContent(7,23);
-   VbbHcc_algoFirst_Aplanarity__235->SetBinContent(8,9);
-   VbbHcc_algoFirst_Aplanarity__235->SetBinContent(9,9);
-   VbbHcc_algoFirst_Aplanarity__235->SetBinContent(10,2);
-   VbbHcc_algoFirst_Aplanarity__235->SetBinContent(11,2);
+   VbbHcc_algoFirst_Aplanarity__235->SetBinContent(1,307742);
+   VbbHcc_algoFirst_Aplanarity__235->SetBinContent(2,39035);
+   VbbHcc_algoFirst_Aplanarity__235->SetBinContent(3,7977);
+   VbbHcc_algoFirst_Aplanarity__235->SetBinContent(4,1902);
+   VbbHcc_algoFirst_Aplanarity__235->SetBinContent(5,431);
+   VbbHcc_algoFirst_Aplanarity__235->SetBinContent(6,150);
+   VbbHcc_algoFirst_Aplanarity__235->SetBinContent(7,51);
+   VbbHcc_algoFirst_Aplanarity__235->SetBinContent(8,25);
+   VbbHcc_algoFirst_Aplanarity__235->SetBinContent(9,14);
+   VbbHcc_algoFirst_Aplanarity__235->SetBinContent(10,8);
+   VbbHcc_algoFirst_Aplanarity__235->SetBinContent(11,3);
    VbbHcc_algoFirst_Aplanarity__235->SetBinContent(12,2);
-   VbbHcc_algoFirst_Aplanarity__235->SetBinContent(13,1);
-   VbbHcc_algoFirst_Aplanarity__235->SetEntries(107611);
+   VbbHcc_algoFirst_Aplanarity__235->SetBinContent(13,2);
+   VbbHcc_algoFirst_Aplanarity__235->SetEntries(357391);
 
    ci = TColor::GetColor("#000099");
    VbbHcc_algoFirst_Aplanarity__235->SetLineColor(ci);
@@ -544,7 +544,7 @@ void Aplanarity_algoFirst_16()
    leg->SetLineWidth(2);
    leg->SetFillColor(0);
    leg->SetFillStyle(1001);
-   TLegendEntry *entry=leg->AddEntry("VbbHcc_algoFirst_Aplanarity","Data (JetHT, 2016)","p");
+   TLegendEntry *entry=leg->AddEntry("VbbHcc_algoFirst_Aplanarity","Data (BTagCSV, 2016)","p");
    entry->SetLineColor(1);
    entry->SetLineStyle(1);
    entry->SetLineWidth(1);
@@ -761,35 +761,35 @@ void Aplanarity_algoFirst_16()
    bottomPad->SetFrameBorderMode(0);
    
    TH1D *data_mc_ratio__236 = new TH1D("data_mc_ratio__236","",50,0,1);
-   data_mc_ratio__236->SetBinContent(1,0.3237925);
-   data_mc_ratio__236->SetBinContent(2,0.2061188);
-   data_mc_ratio__236->SetBinContent(3,0.2621096);
-   data_mc_ratio__236->SetBinContent(4,0.2893156);
-   data_mc_ratio__236->SetBinContent(5,1.019898);
-   data_mc_ratio__236->SetBinContent(6,0.2170563);
-   data_mc_ratio__236->SetBinContent(7,1.998067);
-   data_mc_ratio__236->SetBinContent(8,0.4667539);
-   data_mc_ratio__236->SetBinContent(9,3.41613);
-   data_mc_ratio__236->SetBinContent(10,1.424731);
-   data_mc_ratio__236->SetBinContent(11,2.127336);
+   data_mc_ratio__236->SetBinContent(1,1.052858);
+   data_mc_ratio__236->SetBinContent(2,0.8016186);
+   data_mc_ratio__236->SetBinContent(3,0.9871803);
+   data_mc_ratio__236->SetBinContent(4,1.048149);
+   data_mc_ratio__236->SetBinContent(5,3.280418);
+   data_mc_ratio__236->SetBinContent(6,0.5613526);
+   data_mc_ratio__236->SetBinContent(7,4.430497);
+   data_mc_ratio__236->SetBinContent(8,1.296539);
+   data_mc_ratio__236->SetBinContent(9,5.31398);
+   data_mc_ratio__236->SetBinContent(10,5.698924);
+   data_mc_ratio__236->SetBinContent(11,3.191004);
    data_mc_ratio__236->SetBinContent(12,3.989457);
-   data_mc_ratio__236->SetBinContent(13,3.623014);
-   data_mc_ratio__236->SetBinError(1,0.001052507);
-   data_mc_ratio__236->SetBinError(2,0.002057385);
-   data_mc_ratio__236->SetBinError(3,0.005695343);
-   data_mc_ratio__236->SetBinError(4,0.01262677);
-   data_mc_ratio__236->SetBinError(5,0.08810575);
-   data_mc_ratio__236->SetBinError(6,0.02850089);
-   data_mc_ratio__236->SetBinError(7,0.4166258);
-   data_mc_ratio__236->SetBinError(8,0.1555846);
-   data_mc_ratio__236->SetBinError(9,1.13871);
-   data_mc_ratio__236->SetBinError(10,1.007437);
-   data_mc_ratio__236->SetBinError(11,1.504254);
+   data_mc_ratio__236->SetBinContent(13,7.246027);
+   data_mc_ratio__236->SetBinError(1,0.001897913);
+   data_mc_ratio__236->SetBinError(2,0.004057333);
+   data_mc_ratio__236->SetBinError(3,0.01105291);
+   data_mc_ratio__236->SetBinError(4,0.02403354);
+   data_mc_ratio__236->SetBinError(5,0.1580122);
+   data_mc_ratio__236->SetBinError(6,0.04583424);
+   data_mc_ratio__236->SetBinError(7,0.6203936);
+   data_mc_ratio__236->SetBinError(8,0.2593077);
+   data_mc_ratio__236->SetBinError(9,1.420221);
+   data_mc_ratio__236->SetBinError(10,2.014874);
+   data_mc_ratio__236->SetBinError(11,1.842327);
    data_mc_ratio__236->SetBinError(12,2.820972);
-   data_mc_ratio__236->SetBinError(13,3.623014);
+   data_mc_ratio__236->SetBinError(13,5.123715);
    data_mc_ratio__236->SetMinimum(0.4);
    data_mc_ratio__236->SetMaximum(1.6);
-   data_mc_ratio__236->SetEntries(12.33558);
+   data_mc_ratio__236->SetEntries(25.56917);
    data_mc_ratio__236->SetStats(0);
 
    ci = TColor::GetColor("#000099");
