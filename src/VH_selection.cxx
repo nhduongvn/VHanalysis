@@ -463,7 +463,9 @@ void VH_selection::SlaveBegin(Reader *r) {
   h_btagW = new TH1D("btagW", "", 500, -5, 5);
   h_ctagW = new TH1D("ctagW", "", 500, -5, 5);
   h_evtW = new TH1D("evtW", "", 500, -5, 5);
-
+  h_lheW = new TH1D("lheW", "", 500, -5, 5);
+  h_genW = new TH1D("genW", "", 500, -5, 5);
+ 
   h_nJet = new TH1D("nJet", "", 20, -0.5, 19.5);
   h_nAnalysisJet = new TH1D("nAnalysisJet", "", 20, -0.5, 19.5);
 
@@ -484,7 +486,9 @@ void VH_selection::SlaveBegin(Reader *r) {
   r->GetOutputList()->Add(h_btagW);
   r->GetOutputList()->Add(h_ctagW);
   r->GetOutputList()->Add(h_evtW);
-  
+  r->GetOutputList()->Add(h_lheW); 
+  r->GetOutputList()->Add(h_genW); 
+
   r->GetOutputList()->Add(h_nJet);
   r->GetOutputList()->Add(h_nAnalysisJet);
 
@@ -766,6 +770,9 @@ void VH_selection::Process(Reader* r) {
   //if (!m_isData) 
   // Only set the event weights with the scales if we're in MC, not data.
   evtW *= genWeight * puSF * l1preW;
+
+  //h_lheW->Fill(*(r->LHEWeight));
+  //h_genW->Fill(*(r->Generator_Weight));
 #endif
 
   // We don't want to have to change the working point in several spots,

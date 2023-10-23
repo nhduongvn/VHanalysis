@@ -1,60 +1,93 @@
 mkdir: cannot create directory '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Oct2023_updated/NONE/': File exists
-hadd Target file: /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Oct2023_updated/NONE//BTagCSV_DATA_2017.root
+rm: cannot remove '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Oct2023_updated/NONE//BTagCSV_DATA_2017D.root': No such file or directory
+hadd Target file: /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Oct2023_updated/NONE//BTagCSV_DATA_2017D.root
 hadd compression setting for all ouput: 1
-hadd Source file 1: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_10.root
-hadd Source file 2: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_13.root
-hadd Source file 3: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_14.root
-hadd Source file 4: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_15.root
-hadd Source file 5: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_19.root
-hadd Source file 6: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_20.root
-hadd Source file 7: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_21.root
-hadd Source file 8: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_22.root
-hadd Source file 9: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_23.root
-hadd Source file 10: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_24.root
-hadd Source file 11: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_25.root
-hadd Source file 12: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_26.root
-hadd Source file 13: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_27.root
-hadd Source file 14: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_28.root
-hadd Source file 15: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_29.root
-hadd Source file 16: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_3.root
-hadd Source file 17: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_30.root
-hadd Source file 18: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_31.root
-hadd Source file 19: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_32.root
-hadd Source file 20: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_33.root
-hadd Source file 21: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_34.root
-hadd Source file 22: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_35.root
-hadd Source file 23: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_36.root
-hadd Source file 24: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_37.root
-hadd Source file 25: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_38.root
-hadd Source file 26: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_39.root
-hadd Source file 27: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_4.root
-hadd Source file 28: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_40.root
-hadd Source file 29: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_41.root
-hadd Source file 30: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_42.root
-hadd Source file 31: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_43.root
-hadd Source file 32: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_44.root
-hadd Source file 33: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_45.root
-hadd Source file 34: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_46.root
-hadd Source file 35: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_47.root
-hadd Source file 36: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_48.root
-hadd Source file 37: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_49.root
-hadd Source file 38: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_50.root
-hadd Source file 39: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_51.root
-hadd Source file 40: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_52.root
-hadd Source file 41: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_53.root
-hadd Source file 42: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_54.root
-hadd Source file 43: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_55.root
-hadd Source file 44: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_56.root
-hadd Source file 45: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_57.root
-hadd Source file 46: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_58.root
-hadd Source file 47: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_59.root
-hadd Source file 48: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_60.root
-hadd Source file 49: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_61.root
-hadd Source file 50: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_62.root
-hadd Source file 51: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_63.root
-hadd Source file 52: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_7.root
-hadd Source file 53: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017/output_8.root
-hadd Target path: /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Oct2023_updated/NONE//BTagCSV_DATA_2017.root:/
+hadd Source file 1: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017D/output_0.root
+hadd Source file 2: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017D/output_1.root
+hadd Source file 3: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017D/output_2.root
+hadd Source file 4: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017D/output_3.root
+hadd Target path: /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Oct2023_updated/NONE//BTagCSV_DATA_2017D.root:/
+mkdir: cannot create directory '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Oct2023_updated/NONE/': File exists
+rm: cannot remove '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Oct2023_updated/NONE//BTagCSV_DATA_2017E.root': No such file or directory
+hadd Target file: /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Oct2023_updated/NONE//BTagCSV_DATA_2017E.root
+hadd compression setting for all ouput: 1
+hadd Source file 1: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017E/output_0.root
+hadd Source file 2: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017E/output_1.root
+hadd Source file 3: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017E/output_2.root
+hadd Source file 4: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017E/output_3.root
+hadd Source file 5: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017E/output_4.root
+hadd Source file 6: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017E/output_5.root
+hadd Target path: /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Oct2023_updated/NONE//BTagCSV_DATA_2017E.root:/
+mkdir: cannot create directory '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Oct2023_updated/NONE/': File exists
+rm: cannot remove '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Oct2023_updated/NONE//BTagCSV_DATA_2017F.root': No such file or directory
+hadd Target file: /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Oct2023_updated/NONE//BTagCSV_DATA_2017F.root
+hadd compression setting for all ouput: 1
+hadd Source file 1: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017F/output_0.root
+hadd Source file 2: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017F/output_1.root
+hadd Source file 3: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017F/output_10.root
+hadd Source file 4: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017F/output_11.root
+hadd Source file 5: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017F/output_12.root
+hadd Source file 6: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017F/output_13.root
+hadd Source file 7: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017F/output_14.root
+hadd Source file 8: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017F/output_15.root
+hadd Source file 9: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017F/output_16.root
+hadd Source file 10: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017F/output_17.root
+hadd Source file 11: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017F/output_18.root
+hadd Source file 12: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017F/output_19.root
+hadd Source file 13: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017F/output_2.root
+hadd Source file 14: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017F/output_20.root
+hadd Source file 15: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017F/output_21.root
+hadd Source file 16: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017F/output_22.root
+hadd Source file 17: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017F/output_23.root
+hadd Source file 18: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017F/output_24.root
+hadd Source file 19: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017F/output_25.root
+hadd Source file 20: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017F/output_26.root
+hadd Source file 21: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017F/output_27.root
+hadd Source file 22: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017F/output_28.root
+hadd Source file 23: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017F/output_29.root
+hadd Source file 24: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017F/output_3.root
+hadd Source file 25: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017F/output_30.root
+hadd Source file 26: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017F/output_31.root
+hadd Source file 27: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017F/output_32.root
+hadd Source file 28: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017F/output_33.root
+hadd Source file 29: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017F/output_34.root
+hadd Source file 30: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017F/output_35.root
+hadd Source file 31: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017F/output_36.root
+hadd Source file 32: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017F/output_37.root
+hadd Source file 33: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017F/output_38.root
+hadd Source file 34: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017F/output_4.root
+hadd Source file 35: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017F/output_5.root
+hadd Source file 36: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017F/output_6.root
+hadd Source file 37: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017F/output_7.root
+hadd Source file 38: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017F/output_8.root
+hadd Source file 39: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017F/output_9.root
+hadd Target path: /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Oct2023_updated/NONE//BTagCSV_DATA_2017F.root:/
+mkdir: cannot create directory '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Oct2023_updated/NONE/': File exists
+rm: cannot remove '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Oct2023_updated/NONE//BTagCSV_DATA_2017B.root': No such file or directory
+hadd Target file: /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Oct2023_updated/NONE//BTagCSV_DATA_2017B.root
+hadd compression setting for all ouput: 1
+hadd Source file 1: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017B/output_0.root
+hadd Source file 2: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017B/output_1.root
+hadd Target path: /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Oct2023_updated/NONE//BTagCSV_DATA_2017B.root:/
+mkdir: cannot create directory '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Oct2023_updated/NONE/': File exists
+rm: cannot remove '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Oct2023_updated/NONE//BTagCSV_DATA_2017C.root': No such file or directory
+hadd Target file: /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Oct2023_updated/NONE//BTagCSV_DATA_2017C.root
+hadd compression setting for all ouput: 1
+hadd Source file 1: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017C/output_0.root
+hadd Source file 2: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017C/output_1.root
+hadd Source file 3: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017C/output_10.root
+hadd Source file 4: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017C/output_11.root
+hadd Source file 5: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017C/output_12.root
+hadd Source file 6: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017C/output_13.root
+hadd Source file 7: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017C/output_2.root
+hadd Source file 8: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017C/output_3.root
+hadd Source file 9: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017C/output_4.root
+hadd Source file 10: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017C/output_5.root
+hadd Source file 11: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017C/output_6.root
+hadd Source file 12: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017C/output_7.root
+hadd Source file 13: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017C/output_8.root
+hadd Source file 14: root://cmseosmgm01.fnal.gov:1094//store/user/peteryou/Output_VH/Oct2023_updated/BTagCSV_DATA_2017C/output_9.root
+hadd Target path: /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Oct2023_updated/NONE//BTagCSV_DATA_2017C.root:/
 hadd Target file: /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Oct2023_updated/NONE//SingleMuon_DATA_2016.root
 hadd compression setting for all ouput: 1
 hadd Source file 1: /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Oct2023_updated/NONE//SingleMuon_DATA_2016H.root
@@ -80,7 +113,7 @@ Debug:     False
 haddData:  True
 Systematic:                                                  NONE
 Sample list file (list of input samples):                   
-       /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis//Dataset_lists/datasets_BTagCSV_2017.txt
+       /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis//Dataset_lists/datasets_BTagCSV_2017_separated.txt
 Sample list folder (location of input file lists):           /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis//FileLists/
 Number of file per jobs:                                     2
 Source dir:                                                  /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/
@@ -88,11 +121,20 @@ Condor run dir:                                              /uscmst1b_scratch/l
 Output location eos:                                         /store/user/peteryou/Output_VH/Oct2023_updated
 Output location scratch:                                     /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Oct2023_updated/NONE/
 =========================
-Processing sample:  BTagCSV_DATA_2017
-============================================
-Warning: MISSING OUTPUT ROOT FILES, found  53  files but  64  files expected
-/uscmst1b_scratch/lpc1/lpcphys/peteryou/Output_VH/Oct2023_updated//condor_run_NONE/BTagCSV_DATA_2017_test
-hadd -f -k /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Oct2023_updated/NONE//BTagCSV_DATA_2017.root @outFileListTmp.txt
+Processing sample:  BTagCSV_DATA_2017D
+hadd -f -k /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Oct2023_updated/NONE//BTagCSV_DATA_2017D.root @outFileListTmp.txt
+=========================
+Processing sample:  BTagCSV_DATA_2017E
+hadd -f -k /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Oct2023_updated/NONE//BTagCSV_DATA_2017E.root @outFileListTmp.txt
+=========================
+Processing sample:  BTagCSV_DATA_2017F
+hadd -f -k /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Oct2023_updated/NONE//BTagCSV_DATA_2017F.root @outFileListTmp.txt
+=========================
+Processing sample:  BTagCSV_DATA_2017B
+hadd -f -k /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Oct2023_updated/NONE//BTagCSV_DATA_2017B.root @outFileListTmp.txt
+=========================
+Processing sample:  BTagCSV_DATA_2017C
+hadd -f -k /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Oct2023_updated/NONE//BTagCSV_DATA_2017C.root @outFileListTmp.txt
 hadd -f -k /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Oct2023_updated/NONE//SingleMuon_DATA_2016.root /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Oct2023_updated/NONE//SingleMuon_DATA_2016H.root
 hadd -f -k /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Oct2023_updated/NONE//SingleMuon_DATA_2017.root /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Oct2023_updated/NONE//SingleMuon_DATA_2017F.root
 hadd -f -k /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Oct2023_updated/NONE//SingleMuon_DATA_2018.root /uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Oct2023_updated/NONE//SingleMuon_DATA_2018D.root
