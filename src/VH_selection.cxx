@@ -67,6 +67,25 @@ void VH_selection::SlaveBegin(Reader *r)
 */
 void VH_selection::Process(Reader *r)
 {
+  // ==================================
+  // [42a] Determine the Event Weights
+  // ==================================
+  
+  // Determine the general weights we need for every case.
+  // The weights we're interested in are:
+  // 1. Generator Weight (from Pythia8, Madgraph, etc.)
+  // 2. Pile-Up Scale Factor
+  // 3. L1 Pre-Firing Weight (2016-17 only)
+  // NOTE: These three are only applied for MC
+  float generator_weight = 1.0;
+  float pileup_SF = 1.0;
+  float l1_prefire_weight = 1.0;
+  
+#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
+
+  // Generator weight
+
+#endif
 
 };// end Process
 

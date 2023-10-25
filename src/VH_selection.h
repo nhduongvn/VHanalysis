@@ -61,7 +61,12 @@ class VH_selection : public Selector
   to within our class and we need special accessors to reach them.*/
   private:
     
-    int placeholder;
+    // ======================
+    // Individual Histograms
+    // ======================
+    
+    TH1D* h_evt;  // # events (accountint for generator weight)
+    
 
 };
 
