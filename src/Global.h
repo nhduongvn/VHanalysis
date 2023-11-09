@@ -154,6 +154,7 @@ namespace glob {
           exit(1);
         }
         // If somehow we pass both checks, return 0.
+        return 0;
       };
       
       // Set method
