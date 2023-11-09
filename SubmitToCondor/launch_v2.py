@@ -117,14 +117,14 @@ dataSet_list = sourceDir+"/Dataset_lists/datasets_NANOAODv9_MC.txt"
 dataSet_list = sourceDir+"/Dataset_lists/datasets_JetHT_combined.txt"
 dataSet_list = sourceDir+"/Dataset_lists/datasets_Data_combined.txt"
 dataSet_list = sourceDir+"/Dataset_lists/datasets_BTagCSV_2017_separated.txt"
-dataSet_list = sourceDir+"/Dataset_lists/datasets_SingleMuon_combined.txt"
+dataSet_list = sourceDir+"/Dataset_lists/datasets_SingleMuon.txt"
 #dataSet_list = sourceDir+"/Dataset_lists/datasets_JetHT_2018.txt"
 dataSet_lists = [sourceDir+"/Dataset_lists/datasets_NANOAODv9_MC.txt"]
 #dataSet_lists = [sourceDir+"/Dataset_lists/datasets_WjetsHighBin_2018_MC.txt"]
 dataSet_lists = [sourceDir+"/Dataset_lists/datasets_JetHT_combined.txt"]
 dataSet_lists = [sourceDir+"/Dataset_lists/datasets_Data_combined.txt"]
 dataSet_lists = [sourceDir+"/Dataset_lists/datasets_BTagCSV_2017_separated.txt"]
-dataSet_lists = [sourceDir+"/Dataset_lists/datasets_SingleMuon_combined.txt"]
+dataSet_lists = [sourceDir+"/Dataset_lists/datasets_SingleMuon.txt"]
 #dataSet_lists = [sourceDir+"/Dataset_lists/datasets_JetHT_2018.txt"]
 #dataSet_list = sourceDir+"/Dataset_lists/separated/datasets_ZH_MC.txt"
 #dataSet_lists = [sourceDir+"/Dataset_lists/separated/datasets_ZH_MC.txt"]
@@ -297,7 +297,10 @@ for line in lines:
 
 # now hadd data
 if haddData:
+  print "haddData = True"
+  print ">>> Checking that we're in hAdd mode... (runMode == 1)"
   if runMode == 1:
+    print ">>> Going to hadd..."
     yrRuns = {
       '2016': ['B','C','D','E','F','G','H'],
       '2017': ['C','D','E','F'],

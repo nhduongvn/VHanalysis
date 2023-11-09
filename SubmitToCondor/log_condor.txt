@@ -1,39 +1,33 @@
 
 
--- Schedd: lpcschedd3.fnal.gov : <131.225.188.235:9618?... @ 10/23/23 10:50:49
- ID          OWNER            SUBMITTED     RUN_TIME ST PRI SIZE   CMD
-79398888.2   peteryou       10/23 10:19   0+00:31:19 R  0   1539.0 exe_NONE_BTagCSV_DATA_2017D.sh 2
-79398889.2   peteryou       10/23 10:19   0+00:30:29 R  0   1545.0 exe_NONE_BTagCSV_DATA_2017E.sh 2
-79398889.3   peteryou       10/23 10:19   0+00:30:29 R  0   1545.0 exe_NONE_BTagCSV_DATA_2017E.sh 3
-79398889.4   peteryou       10/23 10:19   0+00:30:29 R  0   1541.0 exe_NONE_BTagCSV_DATA_2017E.sh 4
-79398891.4   peteryou       10/23 10:19   0+00:29:43 R  0     18.0 exe_NONE_BTagCSV_DATA_2017F.sh 4
-79398891.6   peteryou       10/23 10:19   0+00:29:41 R  0     18.0 exe_NONE_BTagCSV_DATA_2017F.sh 6
-79398891.19  peteryou       10/23 10:19   0+00:28:06 R  0     18.0 exe_NONE_BTagCSV_DATA_2017F.sh 19
-79398891.28  peteryou       10/23 10:19   0+00:27:00 R  0     18.0 exe_NONE_BTagCSV_DATA_2017F.sh 28
-79398891.33  peteryou       10/23 10:19   0+00:26:17 R  0     18.0 exe_NONE_BTagCSV_DATA_2017F.sh 33
-79398896.4   peteryou       10/23 10:19   0+00:25:52 R  0     18.0 exe_NONE_BTagCSV_DATA_2017C.sh 4
-79398896.9   peteryou       10/23 10:19   0+00:25:01 R  0   1540.0 exe_NONE_BTagCSV_DATA_2017C.sh 9
-79398896.10  peteryou       10/23 10:19   0+00:24:59 R  0   1539.0 exe_NONE_BTagCSV_DATA_2017C.sh 10
-
-Total for query: 12 jobs; 0 completed, 0 removed, 0 idle, 12 running, 0 held, 0 suspended 
-Total for peteryou: 12 jobs; 0 completed, 0 removed, 0 idle, 12 running, 0 held, 0 suspended 
-Total for all users: 14092 jobs; 0 completed, 30 removed, 10847 idle, 1449 running, 1766 held, 0 suspended
-
-
-
--- Schedd: lpcschedd4.fnal.gov : <131.225.189.251:9618?... @ 10/23/23 10:50:49
- ID          OWNER            SUBMITTED     RUN_TIME ST PRI SIZE   CMD
+-- Schedd: lpcschedd3.fnal.gov : <131.225.188.235:9618?... @ 11/09/23 10:17:26
+ ID      OWNER            SUBMITTED     RUN_TIME ST PRI SIZE CMD
 
 Total for query: 0 jobs; 0 completed, 0 removed, 0 idle, 0 running, 0 held, 0 suspended 
 Total for peteryou: 0 jobs; 0 completed, 0 removed, 0 idle, 0 running, 0 held, 0 suspended 
-Total for all users: 17336 jobs; 0 completed, 0 removed, 11442 idle, 155 running, 5739 held, 0 suspended
+Total for all users: 11349 jobs; 0 completed, 30 removed, 9543 idle, 769 running, 1007 held, 0 suspended
 
 
 
--- Schedd: lpcschedd5.fnal.gov : <131.225.204.62:9618?... @ 10/23/23 10:50:49
- ID          OWNER            SUBMITTED     RUN_TIME ST PRI SIZE   CMD
+-- Schedd: lpcschedd4.fnal.gov : <131.225.189.251:9618?... @ 11/09/23 10:17:26
+ ID         OWNER            SUBMITTED     RUN_TIME ST PRI SIZE  CMD
+3445366.65  peteryou       11/9  08:41   0+01:31:50 R  0   807.0 exe_NONE_SingleMuon_DATA_2018D.sh 65
+3445366.68  peteryou       11/9  08:41   0+01:31:49 R  0   807.0 exe_NONE_SingleMuon_DATA_2018D.sh 68
+3445366.72  peteryou       11/9  08:41   0+01:31:49 R  0   809.0 exe_NONE_SingleMuon_DATA_2018D.sh 72
+3445366.75  peteryou       11/9  08:41   0+01:31:48 R  0   806.0 exe_NONE_SingleMuon_DATA_2018D.sh 75
+3445372.14  peteryou       11/9  08:42   0+01:24:42 R  0   798.0 exe_NONE_SingleMuon_DATA_2016D.sh 14
+3445372.15  peteryou       11/9  08:42   0+01:24:42 R  0   801.0 exe_NONE_SingleMuon_DATA_2016D.sh 15
+
+Total for query: 6 jobs; 0 completed, 0 removed, 0 idle, 6 running, 0 held, 0 suspended 
+Total for peteryou: 6 jobs; 0 completed, 0 removed, 0 idle, 6 running, 0 held, 0 suspended 
+Total for all users: 7791 jobs; 0 completed, 0 removed, 5748 idle, 392 running, 1651 held, 0 suspended
+
+
+
+-- Schedd: lpcschedd5.fnal.gov : <131.225.204.62:9618?... @ 11/09/23 10:17:26
+ ID         OWNER            SUBMITTED     RUN_TIME ST PRI SIZE  CMD
 
 Total for query: 0 jobs; 0 completed, 0 removed, 0 idle, 0 running, 0 held, 0 suspended 
 Total for peteryou: 0 jobs; 0 completed, 0 removed, 0 idle, 0 running, 0 held, 0 suspended 
-Total for all users: 14692 jobs; 0 completed, 0 removed, 11343 idle, 359 running, 2990 held, 0 suspended
+Total for all users: 11134 jobs; 0 completed, 0 removed, 9408 idle, 326 running, 1400 held, 0 suspended
 
