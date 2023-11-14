@@ -239,7 +239,7 @@ bool are_cjets(std::vector<JetObj>& jets, float CvL_cut, float CvB_cut) {
 void fill_trigger_efficiency(TriggerEffPlots* plots, std::vector<JetObj>& jets,
   bool pass_reference, bool pass_trigger, float HTmod, float w=1.0)
 {
-  std::cout << "Trying to fill..." << std::endl;
+  //std::cout << "Trying to fill..." << std::endl;
   if (pass_reference) {
     plots->Fill(jets, true, HTmod, w);
     if (pass_trigger) plots->Fill(jets, false, HTmod, w);
@@ -1386,12 +1386,13 @@ void VH_selection::Process(Reader *r)
 #endif
 
 #if defined(MC_2017) || defined(DATA_2017)
-  #if !defined(DATA_2017B)
+  /*f !defined(DATA_2017B)
     trigger = *(r->HLT_PFHT300PT30_QuadPFJet_75_60_45_40_TriplePFBTagCSV_3p0);
   #endif
   #if defined(DATA_2017B)
     trigger = *(r->HLT_HT300PT30_QuadJet_75_60_45_40_TripeCSV_p07);
-  #endif
+  #endif*/
+  trigger = *(r->HLT_PFHT300PT30_QuadPFJet_75_60_45_40_TriplePFBTagCSV_3p0);
   //std::cout << "Checking the 2017 trigger!!!" << std::endl;
 #endif
 
@@ -1522,6 +1523,7 @@ void VH_selection::Process(Reader *r)
           if (ctag_passes[1] || force_pass_tagging) {
             h_cutflow_evt_DHZfirst->Fill(7.5, generator_weight); // c-tag 2
             h_VH_DHZfirst->FillVH(Z3, H3, event_weight);
+            std::cout << "HERE we are..." << std::endl;
           }
         }
       }
