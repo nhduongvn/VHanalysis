@@ -60,7 +60,7 @@ print "Pulling settings and preferences..."
 
 ## Edit / change the following options as needed:
 years = ['16', '17', '18']
-#years = ['16']
+years = ['17']
 regions = ['tagOnly', 'algoFirst', 'tagFirst']
 useLogY = False
 outputDir = '../plot_results/Oct2023_updated/'

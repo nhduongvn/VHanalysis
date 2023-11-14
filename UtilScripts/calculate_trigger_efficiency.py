@@ -63,13 +63,13 @@ def getHist(pN, sample_name, fH, lS, printSamples=True):
 ## Years to run over
 #years = ['16', '17', '18']
 #years = ['16', '18']
-years = ['17']
+years = ['18']
 
 ## Regions to go through
-regions = [ "_ideal", "_3B", "_2b2c" ]
+regions = [ "_4b", "_3b", "_2b2c" ]
 region_name = {
-  "_ideal": "Tagging: 4 b-jets",
-  "_3B": "Tagging: at least 3 b-jets",
+  "_4b": "Tagging: 4 b-jets",
+  "_3b": "Tagging: at least 3 b-jets",
   "_2b2c": "Tagging: 2 b-jets, 2 c-jets"
 }
 
@@ -77,8 +77,8 @@ useLogY = False
 
 ## Input & Output
 #resultpath = '../condor_results/trigger_efficiency_NEWEST/' ## Single Muon (2016,18)
-resultpath = '../condor_results/trigger_efficiency_2017fix/' ## Single Muon (2017) + MC
-plotFolder = '../plot_results/trigger_results_aug2023/'
+resultpath = '../condor_results/Nov2023_updated/' ## Single Muon (2017) + MC
+plotFolder = '../plot_results/trigger_results_Nov2023/'
 
 #plotFolder = '../plot_results/trig_eff_better/'                ## SingleMuon
 #resultpath = '../condor_results/trigger_efficiency_NEWEST/'    ## SingleMuon
@@ -100,9 +100,9 @@ sampleName = "SingleMuon DATA"
 
 ## Triggers we're interested in
 categories = {
-  '16': ["2016_QuadJet_TripleTag", "2016_DoubleJet_TripleTag"],
-  '17': ["2017_QuadJet_TripleTag"],
-  '18': ["2018_QuadJet_TripleTag"],
+  '16': ["trigger_2016_QuadJet", "trigger_2016_DoubleJet"],
+  '17': ["trigger_2017_QuadJet", "trigger_2017B_QuadJet"],
+  '18': ["trigger_2018_QuadJet"],
 }
 
 trigger_names = {
