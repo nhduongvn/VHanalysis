@@ -1,0 +1,980 @@
+#ifdef __CLING__
+#pragma cling optimize(0)
+#endif
+void CutFlow_algoFirst_18_logY()
+{
+//=========Macro generated from canvas: CutFlow_algoFirst_18/CutFlow_algoFirst_18
+//=========  (Wed Nov 15 14:59:18 2023) by ROOT version 6.28/04
+   TCanvas *CutFlow_algoFirst_18 = new TCanvas("CutFlow_algoFirst_18", "CutFlow_algoFirst_18",0,0,600,600);
+   CutFlow_algoFirst_18->SetHighLightColor(2);
+   CutFlow_algoFirst_18->Range(0,0,1,1);
+   CutFlow_algoFirst_18->SetFillColor(0);
+   CutFlow_algoFirst_18->SetFillStyle(4000);
+   CutFlow_algoFirst_18->SetBorderMode(0);
+   CutFlow_algoFirst_18->SetBorderSize(2);
+   CutFlow_algoFirst_18->SetFrameFillStyle(1000);
+   CutFlow_algoFirst_18->SetFrameBorderMode(0);
+  
+// ------------>Primitives in pad: topPad
+   TPad *topPad = new TPad("topPad", "topPad",0,0.3,1,1);
+   topPad->Draw();
+   topPad->cd();
+   topPad->Range(-1.072578,-3.228348,7.366936,31.54519);
+   topPad->SetFillColor(0);
+   topPad->SetBorderMode(0);
+   topPad->SetBorderSize(2);
+   topPad->SetLogy();
+   topPad->SetLeftMargin(0.12709);
+   topPad->SetRightMargin(0.0434783);
+   topPad->SetBottomMargin(0.001);
+   topPad->SetFrameBorderMode(0);
+   topPad->SetFrameBorderMode(0);
+   
+   THStack *st = new THStack();
+   st->SetName("st");
+   st->SetTitle("");
+   st->SetMinimum(0.01);
+   st->SetMaximum(1.707536e+27);
+   
+   TH1F *st_stack_6 = new TH1F("st_stack_6","",8,0,8);
+   st_stack_6->SetMinimum(0.0006403613);
+   st_stack_6->SetMaximum(1.16906e+28);
+   st_stack_6->SetDirectory(nullptr);
+   st_stack_6->SetStats(0);
+
+   Int_t ci;      // for color index setting
+   TColor *color; // for color definition with alpha
+   ci = TColor::GetColor("#000099");
+   st_stack_6->SetLineColor(ci);
+   st_stack_6->SetLineWidth(0);
+   st_stack_6->GetXaxis()->SetBinLabel(1,"Total");
+   st_stack_6->GetXaxis()->SetBinLabel(2,"MET cut");
+   st_stack_6->GetXaxis()->SetBinLabel(3,"jet cuts");
+   st_stack_6->GetXaxis()->SetBinLabel(4,"triggers");
+   st_stack_6->GetXaxis()->SetBinLabel(5,"b-tag #1");
+   st_stack_6->GetXaxis()->SetBinLabel(6,"b-tag #2");
+   st_stack_6->GetXaxis()->SetBinLabel(7,"c-tag #1");
+   st_stack_6->GetXaxis()->SetBinLabel(8,"c-tag #2");
+   st_stack_6->GetXaxis()->SetRange(1,7);
+   st_stack_6->GetXaxis()->SetLabelFont(42);
+   st_stack_6->GetXaxis()->SetTitleOffset(1);
+   st_stack_6->GetXaxis()->SetTitleFont(42);
+   st_stack_6->GetYaxis()->SetTitle("Events/1.0");
+   st_stack_6->GetYaxis()->SetLabelFont(42);
+   st_stack_6->GetYaxis()->SetLabelSize(0.05);
+   st_stack_6->GetYaxis()->SetTitleSize(0.057);
+   st_stack_6->GetYaxis()->SetTitleOffset(1.2);
+   st_stack_6->GetYaxis()->SetTitleFont(42);
+   st_stack_6->GetZaxis()->SetLabelFont(42);
+   st_stack_6->GetZaxis()->SetTitleOffset(1);
+   st_stack_6->GetZaxis()->SetTitleFont(42);
+   st->SetHistogram(st_stack_6);
+   
+   
+   TH1D *VbbHcc_algoFirst_CutFlow_stack_1 = new TH1D("VbbHcc_algoFirst_CutFlow_stack_1","",8,0,8);
+   VbbHcc_algoFirst_CutFlow_stack_1->SetBinContent(1,1.796649e+12);
+   VbbHcc_algoFirst_CutFlow_stack_1->SetBinContent(2,1.796543e+12);
+   VbbHcc_algoFirst_CutFlow_stack_1->SetBinContent(3,3.882291e+09);
+   VbbHcc_algoFirst_CutFlow_stack_1->SetBinContent(4,3.402801e+07);
+   VbbHcc_algoFirst_CutFlow_stack_1->SetBinContent(5,7738686);
+   VbbHcc_algoFirst_CutFlow_stack_1->SetBinContent(6,2418921);
+   VbbHcc_algoFirst_CutFlow_stack_1->SetBinContent(7,796815.1);
+   VbbHcc_algoFirst_CutFlow_stack_1->SetBinContent(8,199383.7);
+   VbbHcc_algoFirst_CutFlow_stack_1->SetBinError(1,1.838189e+08);
+   VbbHcc_algoFirst_CutFlow_stack_1->SetBinError(2,1.838145e+08);
+   VbbHcc_algoFirst_CutFlow_stack_1->SetBinError(3,2665041);
+   VbbHcc_algoFirst_CutFlow_stack_1->SetBinError(4,101938.6);
+   VbbHcc_algoFirst_CutFlow_stack_1->SetBinError(5,39783.76);
+   VbbHcc_algoFirst_CutFlow_stack_1->SetBinError(6,21642.62);
+   VbbHcc_algoFirst_CutFlow_stack_1->SetBinError(7,11584.1);
+   VbbHcc_algoFirst_CutFlow_stack_1->SetBinError(8,5857.656);
+   VbbHcc_algoFirst_CutFlow_stack_1->SetEntries(7.035491e+08);
+
+   ci = TColor::GetColor("#ff6600");
+   VbbHcc_algoFirst_CutFlow_stack_1->SetFillColor(ci);
+
+   ci = TColor::GetColor("#000099");
+   VbbHcc_algoFirst_CutFlow_stack_1->SetLineColor(ci);
+   VbbHcc_algoFirst_CutFlow_stack_1->GetXaxis()->SetBinLabel(1,"Total");
+   VbbHcc_algoFirst_CutFlow_stack_1->GetXaxis()->SetBinLabel(2,"MET cut");
+   VbbHcc_algoFirst_CutFlow_stack_1->GetXaxis()->SetBinLabel(3,"jet cuts");
+   VbbHcc_algoFirst_CutFlow_stack_1->GetXaxis()->SetBinLabel(4,"triggers");
+   VbbHcc_algoFirst_CutFlow_stack_1->GetXaxis()->SetBinLabel(5,"b-tag #1");
+   VbbHcc_algoFirst_CutFlow_stack_1->GetXaxis()->SetBinLabel(6,"b-tag #2");
+   VbbHcc_algoFirst_CutFlow_stack_1->GetXaxis()->SetBinLabel(7,"c-tag #1");
+   VbbHcc_algoFirst_CutFlow_stack_1->GetXaxis()->SetBinLabel(8,"c-tag #2");
+   VbbHcc_algoFirst_CutFlow_stack_1->GetXaxis()->SetRange(1,8);
+   VbbHcc_algoFirst_CutFlow_stack_1->GetXaxis()->SetLabelFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_1->GetXaxis()->SetTitleOffset(1);
+   VbbHcc_algoFirst_CutFlow_stack_1->GetXaxis()->SetTitleFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_1->GetYaxis()->SetLabelFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_1->GetYaxis()->SetTitleFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_1->GetZaxis()->SetLabelFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_1->GetZaxis()->SetTitleOffset(1);
+   VbbHcc_algoFirst_CutFlow_stack_1->GetZaxis()->SetTitleFont(42);
+   st->Add(VbbHcc_algoFirst_CutFlow_stack_1,"");
+   
+   TH1D *VbbHcc_algoFirst_CutFlow_stack_2 = new TH1D("VbbHcc_algoFirst_CutFlow_stack_2","",8,0,8);
+   VbbHcc_algoFirst_CutFlow_stack_2->SetBinContent(1,1.723649e+07);
+   VbbHcc_algoFirst_CutFlow_stack_2->SetBinContent(2,1.687543e+07);
+   VbbHcc_algoFirst_CutFlow_stack_2->SetBinContent(3,1400622);
+   VbbHcc_algoFirst_CutFlow_stack_2->SetBinContent(4,74176.47);
+   VbbHcc_algoFirst_CutFlow_stack_2->SetBinContent(5,33397.39);
+   VbbHcc_algoFirst_CutFlow_stack_2->SetBinContent(6,11323.18);
+   VbbHcc_algoFirst_CutFlow_stack_2->SetBinContent(7,4497.453);
+   VbbHcc_algoFirst_CutFlow_stack_2->SetBinContent(8,1566.193);
+   VbbHcc_algoFirst_CutFlow_stack_2->SetBinError(1,1399.008);
+   VbbHcc_algoFirst_CutFlow_stack_2->SetBinError(2,1375.293);
+   VbbHcc_algoFirst_CutFlow_stack_2->SetBinError(3,501.2743);
+   VbbHcc_algoFirst_CutFlow_stack_2->SetBinError(4,115.5819);
+   VbbHcc_algoFirst_CutFlow_stack_2->SetBinError(5,76.94982);
+   VbbHcc_algoFirst_CutFlow_stack_2->SetBinError(6,43.62171);
+   VbbHcc_algoFirst_CutFlow_stack_2->SetBinError(7,27.57281);
+   VbbHcc_algoFirst_CutFlow_stack_2->SetBinError(8,16.29942);
+   VbbHcc_algoFirst_CutFlow_stack_2->SetEntries(5.696041e+08);
+
+   ci = TColor::GetColor("#660066");
+   VbbHcc_algoFirst_CutFlow_stack_2->SetFillColor(ci);
+
+   ci = TColor::GetColor("#000099");
+   VbbHcc_algoFirst_CutFlow_stack_2->SetLineColor(ci);
+   VbbHcc_algoFirst_CutFlow_stack_2->GetXaxis()->SetBinLabel(1,"Total");
+   VbbHcc_algoFirst_CutFlow_stack_2->GetXaxis()->SetBinLabel(2,"MET cut");
+   VbbHcc_algoFirst_CutFlow_stack_2->GetXaxis()->SetBinLabel(3,"jet cuts");
+   VbbHcc_algoFirst_CutFlow_stack_2->GetXaxis()->SetBinLabel(4,"triggers");
+   VbbHcc_algoFirst_CutFlow_stack_2->GetXaxis()->SetBinLabel(5,"b-tag #1");
+   VbbHcc_algoFirst_CutFlow_stack_2->GetXaxis()->SetBinLabel(6,"b-tag #2");
+   VbbHcc_algoFirst_CutFlow_stack_2->GetXaxis()->SetBinLabel(7,"c-tag #1");
+   VbbHcc_algoFirst_CutFlow_stack_2->GetXaxis()->SetBinLabel(8,"c-tag #2");
+   VbbHcc_algoFirst_CutFlow_stack_2->GetXaxis()->SetRange(1,8);
+   VbbHcc_algoFirst_CutFlow_stack_2->GetXaxis()->SetLabelFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_2->GetXaxis()->SetTitleOffset(1);
+   VbbHcc_algoFirst_CutFlow_stack_2->GetXaxis()->SetTitleFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_2->GetYaxis()->SetLabelFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_2->GetYaxis()->SetTitleFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_2->GetZaxis()->SetLabelFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_2->GetZaxis()->SetTitleOffset(1);
+   VbbHcc_algoFirst_CutFlow_stack_2->GetZaxis()->SetTitleFont(42);
+   st->Add(VbbHcc_algoFirst_CutFlow_stack_2,"");
+   
+   TH1D *VbbHcc_algoFirst_CutFlow_stack_3 = new TH1D("VbbHcc_algoFirst_CutFlow_stack_3","",8,0,8);
+   VbbHcc_algoFirst_CutFlow_stack_3->SetBinContent(1,4.978202e+07);
+   VbbHcc_algoFirst_CutFlow_stack_3->SetBinContent(2,4.722954e+07);
+   VbbHcc_algoFirst_CutFlow_stack_3->SetBinContent(3,1.516e+07);
+   VbbHcc_algoFirst_CutFlow_stack_3->SetBinContent(4,1281740);
+   VbbHcc_algoFirst_CutFlow_stack_3->SetBinContent(5,569963.2);
+   VbbHcc_algoFirst_CutFlow_stack_3->SetBinContent(6,170554.1);
+   VbbHcc_algoFirst_CutFlow_stack_3->SetBinContent(7,56886.17);
+   VbbHcc_algoFirst_CutFlow_stack_3->SetBinContent(8,18318.02);
+   VbbHcc_algoFirst_CutFlow_stack_3->SetBinError(1,1671.997);
+   VbbHcc_algoFirst_CutFlow_stack_3->SetBinError(2,1637.058);
+   VbbHcc_algoFirst_CutFlow_stack_3->SetBinError(3,973.539);
+   VbbHcc_algoFirst_CutFlow_stack_3->SetBinError(4,284.0048);
+   VbbHcc_algoFirst_CutFlow_stack_3->SetBinError(5,188.3786);
+   VbbHcc_algoFirst_CutFlow_stack_3->SetBinError(6,102.0441);
+   VbbHcc_algoFirst_CutFlow_stack_3->SetBinError(7,58.99825);
+   VbbHcc_algoFirst_CutFlow_stack_3->SetBinError(8,33.50122);
+   VbbHcc_algoFirst_CutFlow_stack_3->SetEntries(2.132179e+09);
+
+   ci = TColor::GetColor("#cc00cc");
+   VbbHcc_algoFirst_CutFlow_stack_3->SetFillColor(ci);
+
+   ci = TColor::GetColor("#000099");
+   VbbHcc_algoFirst_CutFlow_stack_3->SetLineColor(ci);
+   VbbHcc_algoFirst_CutFlow_stack_3->GetXaxis()->SetBinLabel(1,"Total");
+   VbbHcc_algoFirst_CutFlow_stack_3->GetXaxis()->SetBinLabel(2,"MET cut");
+   VbbHcc_algoFirst_CutFlow_stack_3->GetXaxis()->SetBinLabel(3,"jet cuts");
+   VbbHcc_algoFirst_CutFlow_stack_3->GetXaxis()->SetBinLabel(4,"triggers");
+   VbbHcc_algoFirst_CutFlow_stack_3->GetXaxis()->SetBinLabel(5,"b-tag #1");
+   VbbHcc_algoFirst_CutFlow_stack_3->GetXaxis()->SetBinLabel(6,"b-tag #2");
+   VbbHcc_algoFirst_CutFlow_stack_3->GetXaxis()->SetBinLabel(7,"c-tag #1");
+   VbbHcc_algoFirst_CutFlow_stack_3->GetXaxis()->SetBinLabel(8,"c-tag #2");
+   VbbHcc_algoFirst_CutFlow_stack_3->GetXaxis()->SetRange(1,8);
+   VbbHcc_algoFirst_CutFlow_stack_3->GetXaxis()->SetLabelFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_3->GetXaxis()->SetTitleOffset(1);
+   VbbHcc_algoFirst_CutFlow_stack_3->GetXaxis()->SetTitleFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_3->GetYaxis()->SetLabelFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_3->GetYaxis()->SetTitleFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_3->GetZaxis()->SetLabelFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_3->GetZaxis()->SetTitleOffset(1);
+   VbbHcc_algoFirst_CutFlow_stack_3->GetZaxis()->SetTitleFont(42);
+   st->Add(VbbHcc_algoFirst_CutFlow_stack_3,"");
+   
+   TH1D *VbbHcc_algoFirst_CutFlow_stack_4 = new TH1D("VbbHcc_algoFirst_CutFlow_stack_4","",8,0,8);
+   VbbHcc_algoFirst_CutFlow_stack_4->SetBinContent(1,6.90576e+07);
+   VbbHcc_algoFirst_CutFlow_stack_4->SetBinContent(2,6.900855e+07);
+   VbbHcc_algoFirst_CutFlow_stack_4->SetBinContent(3,5160393);
+   VbbHcc_algoFirst_CutFlow_stack_4->SetBinContent(4,80411.11);
+   VbbHcc_algoFirst_CutFlow_stack_4->SetBinContent(5,35104.39);
+   VbbHcc_algoFirst_CutFlow_stack_4->SetBinContent(6,16389.65);
+   VbbHcc_algoFirst_CutFlow_stack_4->SetBinContent(7,5424.335);
+   VbbHcc_algoFirst_CutFlow_stack_4->SetBinContent(8,1559.146);
+   VbbHcc_algoFirst_CutFlow_stack_4->SetBinError(1,15617.62);
+   VbbHcc_algoFirst_CutFlow_stack_4->SetBinError(2,15616.12);
+   VbbHcc_algoFirst_CutFlow_stack_4->SetBinError(3,3037.733);
+   VbbHcc_algoFirst_CutFlow_stack_4->SetBinError(4,200.8106);
+   VbbHcc_algoFirst_CutFlow_stack_4->SetBinError(5,136.7951);
+   VbbHcc_algoFirst_CutFlow_stack_4->SetBinError(6,96.20059);
+   VbbHcc_algoFirst_CutFlow_stack_4->SetBinError(7,52.61635);
+   VbbHcc_algoFirst_CutFlow_stack_4->SetBinError(8,29.92085);
+   VbbHcc_algoFirst_CutFlow_stack_4->SetEntries(1.173829e+08);
+
+   ci = TColor::GetColor("#00cccc");
+   VbbHcc_algoFirst_CutFlow_stack_4->SetFillColor(ci);
+
+   ci = TColor::GetColor("#000099");
+   VbbHcc_algoFirst_CutFlow_stack_4->SetLineColor(ci);
+   VbbHcc_algoFirst_CutFlow_stack_4->GetXaxis()->SetBinLabel(1,"Total");
+   VbbHcc_algoFirst_CutFlow_stack_4->GetXaxis()->SetBinLabel(2,"MET cut");
+   VbbHcc_algoFirst_CutFlow_stack_4->GetXaxis()->SetBinLabel(3,"jet cuts");
+   VbbHcc_algoFirst_CutFlow_stack_4->GetXaxis()->SetBinLabel(4,"triggers");
+   VbbHcc_algoFirst_CutFlow_stack_4->GetXaxis()->SetBinLabel(5,"b-tag #1");
+   VbbHcc_algoFirst_CutFlow_stack_4->GetXaxis()->SetBinLabel(6,"b-tag #2");
+   VbbHcc_algoFirst_CutFlow_stack_4->GetXaxis()->SetBinLabel(7,"c-tag #1");
+   VbbHcc_algoFirst_CutFlow_stack_4->GetXaxis()->SetBinLabel(8,"c-tag #2");
+   VbbHcc_algoFirst_CutFlow_stack_4->GetXaxis()->SetRange(1,8);
+   VbbHcc_algoFirst_CutFlow_stack_4->GetXaxis()->SetLabelFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_4->GetXaxis()->SetTitleOffset(1);
+   VbbHcc_algoFirst_CutFlow_stack_4->GetXaxis()->SetTitleFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_4->GetYaxis()->SetLabelFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_4->GetYaxis()->SetTitleFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_4->GetZaxis()->SetLabelFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_4->GetZaxis()->SetTitleOffset(1);
+   VbbHcc_algoFirst_CutFlow_stack_4->GetZaxis()->SetTitleFont(42);
+   st->Add(VbbHcc_algoFirst_CutFlow_stack_4,"");
+   
+   TH1D *VbbHcc_algoFirst_CutFlow_stack_5 = new TH1D("VbbHcc_algoFirst_CutFlow_stack_5","",8,0,8);
+   VbbHcc_algoFirst_CutFlow_stack_5->SetBinContent(1,2.798024e+08);
+   VbbHcc_algoFirst_CutFlow_stack_5->SetBinContent(2,2.7289e+08);
+   VbbHcc_algoFirst_CutFlow_stack_5->SetBinContent(3,1.463291e+07);
+   VbbHcc_algoFirst_CutFlow_stack_5->SetBinContent(4,56797);
+   VbbHcc_algoFirst_CutFlow_stack_5->SetBinContent(5,16524.59);
+   VbbHcc_algoFirst_CutFlow_stack_5->SetBinContent(6,5132.414);
+   VbbHcc_algoFirst_CutFlow_stack_5->SetBinContent(7,2290.869);
+   VbbHcc_algoFirst_CutFlow_stack_5->SetBinContent(8,787.8297);
+   VbbHcc_algoFirst_CutFlow_stack_5->SetBinError(1,42136.17);
+   VbbHcc_algoFirst_CutFlow_stack_5->SetBinError(2,42055.82);
+   VbbHcc_algoFirst_CutFlow_stack_5->SetBinError(3,8593.642);
+   VbbHcc_algoFirst_CutFlow_stack_5->SetBinError(4,314.9181);
+   VbbHcc_algoFirst_CutFlow_stack_5->SetBinError(5,174.4171);
+   VbbHcc_algoFirst_CutFlow_stack_5->SetBinError(6,96.75012);
+   VbbHcc_algoFirst_CutFlow_stack_5->SetBinError(7,60.62639);
+   VbbHcc_algoFirst_CutFlow_stack_5->SetBinError(8,34.31321);
+   VbbHcc_algoFirst_CutFlow_stack_5->SetEntries(3.804914e+08);
+
+   ci = TColor::GetColor("#ff99cc");
+   VbbHcc_algoFirst_CutFlow_stack_5->SetFillColor(ci);
+
+   ci = TColor::GetColor("#000099");
+   VbbHcc_algoFirst_CutFlow_stack_5->SetLineColor(ci);
+   VbbHcc_algoFirst_CutFlow_stack_5->GetXaxis()->SetBinLabel(1,"Total");
+   VbbHcc_algoFirst_CutFlow_stack_5->GetXaxis()->SetBinLabel(2,"MET cut");
+   VbbHcc_algoFirst_CutFlow_stack_5->GetXaxis()->SetBinLabel(3,"jet cuts");
+   VbbHcc_algoFirst_CutFlow_stack_5->GetXaxis()->SetBinLabel(4,"triggers");
+   VbbHcc_algoFirst_CutFlow_stack_5->GetXaxis()->SetBinLabel(5,"b-tag #1");
+   VbbHcc_algoFirst_CutFlow_stack_5->GetXaxis()->SetBinLabel(6,"b-tag #2");
+   VbbHcc_algoFirst_CutFlow_stack_5->GetXaxis()->SetBinLabel(7,"c-tag #1");
+   VbbHcc_algoFirst_CutFlow_stack_5->GetXaxis()->SetBinLabel(8,"c-tag #2");
+   VbbHcc_algoFirst_CutFlow_stack_5->GetXaxis()->SetRange(1,8);
+   VbbHcc_algoFirst_CutFlow_stack_5->GetXaxis()->SetLabelFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_5->GetXaxis()->SetTitleOffset(1);
+   VbbHcc_algoFirst_CutFlow_stack_5->GetXaxis()->SetTitleFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_5->GetYaxis()->SetLabelFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_5->GetYaxis()->SetTitleFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_5->GetZaxis()->SetLabelFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_5->GetZaxis()->SetTitleOffset(1);
+   VbbHcc_algoFirst_CutFlow_stack_5->GetZaxis()->SetTitleFont(42);
+   st->Add(VbbHcc_algoFirst_CutFlow_stack_5,"");
+   
+   TH1D *VbbHcc_algoFirst_CutFlow_stack_6 = new TH1D("VbbHcc_algoFirst_CutFlow_stack_6","",8,0,8);
+   VbbHcc_algoFirst_CutFlow_stack_6->SetBinContent(1,7087577);
+   VbbHcc_algoFirst_CutFlow_stack_6->SetBinContent(2,6972701);
+   VbbHcc_algoFirst_CutFlow_stack_6->SetBinContent(3,141386.3);
+   VbbHcc_algoFirst_CutFlow_stack_6->SetBinContent(4,541.9992);
+   VbbHcc_algoFirst_CutFlow_stack_6->SetBinContent(5,122.9556);
+   VbbHcc_algoFirst_CutFlow_stack_6->SetBinContent(6,28.02665);
+   VbbHcc_algoFirst_CutFlow_stack_6->SetBinContent(7,9.492896);
+   VbbHcc_algoFirst_CutFlow_stack_6->SetBinContent(8,3.616341);
+   VbbHcc_algoFirst_CutFlow_stack_6->SetBinError(1,1789.941);
+   VbbHcc_algoFirst_CutFlow_stack_6->SetBinError(2,1775.376);
+   VbbHcc_algoFirst_CutFlow_stack_6->SetBinError(3,252.8095);
+   VbbHcc_algoFirst_CutFlow_stack_6->SetBinError(4,15.65269);
+   VbbHcc_algoFirst_CutFlow_stack_6->SetBinError(5,7.455279);
+   VbbHcc_algoFirst_CutFlow_stack_6->SetBinError(6,3.559388);
+   VbbHcc_algoFirst_CutFlow_stack_6->SetBinError(7,2.07152);
+   VbbHcc_algoFirst_CutFlow_stack_6->SetBinError(8,1.27857);
+   VbbHcc_algoFirst_CutFlow_stack_6->SetEntries(3.141821e+07);
+
+   ci = TColor::GetColor("#9933ff");
+   VbbHcc_algoFirst_CutFlow_stack_6->SetFillColor(ci);
+
+   ci = TColor::GetColor("#000099");
+   VbbHcc_algoFirst_CutFlow_stack_6->SetLineColor(ci);
+   VbbHcc_algoFirst_CutFlow_stack_6->GetXaxis()->SetBinLabel(1,"Total");
+   VbbHcc_algoFirst_CutFlow_stack_6->GetXaxis()->SetBinLabel(2,"MET cut");
+   VbbHcc_algoFirst_CutFlow_stack_6->GetXaxis()->SetBinLabel(3,"jet cuts");
+   VbbHcc_algoFirst_CutFlow_stack_6->GetXaxis()->SetBinLabel(4,"triggers");
+   VbbHcc_algoFirst_CutFlow_stack_6->GetXaxis()->SetBinLabel(5,"b-tag #1");
+   VbbHcc_algoFirst_CutFlow_stack_6->GetXaxis()->SetBinLabel(6,"b-tag #2");
+   VbbHcc_algoFirst_CutFlow_stack_6->GetXaxis()->SetBinLabel(7,"c-tag #1");
+   VbbHcc_algoFirst_CutFlow_stack_6->GetXaxis()->SetBinLabel(8,"c-tag #2");
+   VbbHcc_algoFirst_CutFlow_stack_6->GetXaxis()->SetRange(1,8);
+   VbbHcc_algoFirst_CutFlow_stack_6->GetXaxis()->SetLabelFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_6->GetXaxis()->SetTitleOffset(1);
+   VbbHcc_algoFirst_CutFlow_stack_6->GetXaxis()->SetTitleFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_6->GetYaxis()->SetLabelFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_6->GetYaxis()->SetTitleFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_6->GetZaxis()->SetLabelFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_6->GetZaxis()->SetTitleOffset(1);
+   VbbHcc_algoFirst_CutFlow_stack_6->GetZaxis()->SetTitleFont(42);
+   st->Add(VbbHcc_algoFirst_CutFlow_stack_6,"");
+   
+   TH1D *VbbHcc_algoFirst_CutFlow_stack_7 = new TH1D("VbbHcc_algoFirst_CutFlow_stack_7","",8,0,8);
+   VbbHcc_algoFirst_CutFlow_stack_7->SetBinContent(1,2812341);
+   VbbHcc_algoFirst_CutFlow_stack_7->SetBinContent(2,2746083);
+   VbbHcc_algoFirst_CutFlow_stack_7->SetBinContent(3,71073.24);
+   VbbHcc_algoFirst_CutFlow_stack_7->SetBinContent(4,962.359);
+   VbbHcc_algoFirst_CutFlow_stack_7->SetBinContent(5,414.7672);
+   VbbHcc_algoFirst_CutFlow_stack_7->SetBinContent(6,190.2049);
+   VbbHcc_algoFirst_CutFlow_stack_7->SetBinContent(7,89.96658);
+   VbbHcc_algoFirst_CutFlow_stack_7->SetBinContent(8,32.58632);
+   VbbHcc_algoFirst_CutFlow_stack_7->SetBinError(1,998.0625);
+   VbbHcc_algoFirst_CutFlow_stack_7->SetBinError(2,986.2353);
+   VbbHcc_algoFirst_CutFlow_stack_7->SetBinError(3,158.6634);
+   VbbHcc_algoFirst_CutFlow_stack_7->SetBinError(4,18.46258);
+   VbbHcc_algoFirst_CutFlow_stack_7->SetBinError(5,12.12065);
+   VbbHcc_algoFirst_CutFlow_stack_7->SetBinError(6,8.207948);
+   VbbHcc_algoFirst_CutFlow_stack_7->SetBinError(7,5.645005);
+   VbbHcc_algoFirst_CutFlow_stack_7->SetBinError(8,3.397359);
+   VbbHcc_algoFirst_CutFlow_stack_7->SetEntries(1.589836e+07);
+
+   ci = TColor::GetColor("#3399ff");
+   VbbHcc_algoFirst_CutFlow_stack_7->SetFillColor(ci);
+
+   ci = TColor::GetColor("#000099");
+   VbbHcc_algoFirst_CutFlow_stack_7->SetLineColor(ci);
+   VbbHcc_algoFirst_CutFlow_stack_7->GetXaxis()->SetBinLabel(1,"Total");
+   VbbHcc_algoFirst_CutFlow_stack_7->GetXaxis()->SetBinLabel(2,"MET cut");
+   VbbHcc_algoFirst_CutFlow_stack_7->GetXaxis()->SetBinLabel(3,"jet cuts");
+   VbbHcc_algoFirst_CutFlow_stack_7->GetXaxis()->SetBinLabel(4,"triggers");
+   VbbHcc_algoFirst_CutFlow_stack_7->GetXaxis()->SetBinLabel(5,"b-tag #1");
+   VbbHcc_algoFirst_CutFlow_stack_7->GetXaxis()->SetBinLabel(6,"b-tag #2");
+   VbbHcc_algoFirst_CutFlow_stack_7->GetXaxis()->SetBinLabel(7,"c-tag #1");
+   VbbHcc_algoFirst_CutFlow_stack_7->GetXaxis()->SetBinLabel(8,"c-tag #2");
+   VbbHcc_algoFirst_CutFlow_stack_7->GetXaxis()->SetRange(1,8);
+   VbbHcc_algoFirst_CutFlow_stack_7->GetXaxis()->SetLabelFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_7->GetXaxis()->SetTitleOffset(1);
+   VbbHcc_algoFirst_CutFlow_stack_7->GetXaxis()->SetTitleFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_7->GetYaxis()->SetLabelFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_7->GetYaxis()->SetTitleFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_7->GetZaxis()->SetLabelFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_7->GetZaxis()->SetTitleOffset(1);
+   VbbHcc_algoFirst_CutFlow_stack_7->GetZaxis()->SetTitleFont(42);
+   st->Add(VbbHcc_algoFirst_CutFlow_stack_7,"");
+   
+   TH1D *VbbHcc_algoFirst_CutFlow_stack_8 = new TH1D("VbbHcc_algoFirst_CutFlow_stack_8","",8,0,8);
+   VbbHcc_algoFirst_CutFlow_stack_8->SetBinContent(1,985215);
+   VbbHcc_algoFirst_CutFlow_stack_8->SetBinContent(2,959307.7);
+   VbbHcc_algoFirst_CutFlow_stack_8->SetBinContent(3,25169.92);
+   VbbHcc_algoFirst_CutFlow_stack_8->SetBinContent(4,711.3889);
+   VbbHcc_algoFirst_CutFlow_stack_8->SetBinContent(5,393.6948);
+   VbbHcc_algoFirst_CutFlow_stack_8->SetBinContent(6,224.3697);
+   VbbHcc_algoFirst_CutFlow_stack_8->SetBinContent(7,75.16246);
+   VbbHcc_algoFirst_CutFlow_stack_8->SetBinContent(8,27.66202);
+   VbbHcc_algoFirst_CutFlow_stack_8->SetBinError(1,524.6744);
+   VbbHcc_algoFirst_CutFlow_stack_8->SetBinError(2,517.73);
+   VbbHcc_algoFirst_CutFlow_stack_8->SetBinError(3,83.86202);
+   VbbHcc_algoFirst_CutFlow_stack_8->SetBinError(4,14.09866);
+   VbbHcc_algoFirst_CutFlow_stack_8->SetBinError(5,10.48828);
+   VbbHcc_algoFirst_CutFlow_stack_8->SetBinError(6,7.917836);
+   VbbHcc_algoFirst_CutFlow_stack_8->SetBinError(7,4.582736);
+   VbbHcc_algoFirst_CutFlow_stack_8->SetBinError(8,2.780138);
+   VbbHcc_algoFirst_CutFlow_stack_8->SetEntries(7054487);
+
+   ci = TColor::GetColor("#33ff99");
+   VbbHcc_algoFirst_CutFlow_stack_8->SetFillColor(ci);
+
+   ci = TColor::GetColor("#000099");
+   VbbHcc_algoFirst_CutFlow_stack_8->SetLineColor(ci);
+   VbbHcc_algoFirst_CutFlow_stack_8->GetXaxis()->SetBinLabel(1,"Total");
+   VbbHcc_algoFirst_CutFlow_stack_8->GetXaxis()->SetBinLabel(2,"MET cut");
+   VbbHcc_algoFirst_CutFlow_stack_8->GetXaxis()->SetBinLabel(3,"jet cuts");
+   VbbHcc_algoFirst_CutFlow_stack_8->GetXaxis()->SetBinLabel(4,"triggers");
+   VbbHcc_algoFirst_CutFlow_stack_8->GetXaxis()->SetBinLabel(5,"b-tag #1");
+   VbbHcc_algoFirst_CutFlow_stack_8->GetXaxis()->SetBinLabel(6,"b-tag #2");
+   VbbHcc_algoFirst_CutFlow_stack_8->GetXaxis()->SetBinLabel(7,"c-tag #1");
+   VbbHcc_algoFirst_CutFlow_stack_8->GetXaxis()->SetBinLabel(8,"c-tag #2");
+   VbbHcc_algoFirst_CutFlow_stack_8->GetXaxis()->SetRange(1,8);
+   VbbHcc_algoFirst_CutFlow_stack_8->GetXaxis()->SetLabelFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_8->GetXaxis()->SetTitleOffset(1);
+   VbbHcc_algoFirst_CutFlow_stack_8->GetXaxis()->SetTitleFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_8->GetYaxis()->SetLabelFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_8->GetYaxis()->SetTitleFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_8->GetZaxis()->SetLabelFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_8->GetZaxis()->SetTitleOffset(1);
+   VbbHcc_algoFirst_CutFlow_stack_8->GetZaxis()->SetTitleFont(42);
+   st->Add(VbbHcc_algoFirst_CutFlow_stack_8,"");
+   
+   TH1D *VbbHcc_algoFirst_CutFlow_stack_9 = new TH1D("VbbHcc_algoFirst_CutFlow_stack_9","",8,0,8);
+   VbbHcc_algoFirst_CutFlow_stack_9->SetBinContent(1,21460.37);
+   VbbHcc_algoFirst_CutFlow_stack_9->SetBinContent(2,21425);
+   VbbHcc_algoFirst_CutFlow_stack_9->SetBinContent(3,2685.5);
+   VbbHcc_algoFirst_CutFlow_stack_9->SetBinContent(4,339.5158);
+   VbbHcc_algoFirst_CutFlow_stack_9->SetBinContent(5,204.5658);
+   VbbHcc_algoFirst_CutFlow_stack_9->SetBinContent(6,127.119);
+   VbbHcc_algoFirst_CutFlow_stack_9->SetBinContent(7,36.89018);
+   VbbHcc_algoFirst_CutFlow_stack_9->SetBinContent(8,11.58204);
+   VbbHcc_algoFirst_CutFlow_stack_9->SetBinError(1,7.224385);
+   VbbHcc_algoFirst_CutFlow_stack_9->SetBinError(2,7.218542);
+   VbbHcc_algoFirst_CutFlow_stack_9->SetBinError(3,2.50043);
+   VbbHcc_algoFirst_CutFlow_stack_9->SetBinError(4,0.8885772);
+   VbbHcc_algoFirst_CutFlow_stack_9->SetBinError(5,0.6910276);
+   VbbHcc_algoFirst_CutFlow_stack_9->SetBinError(6,0.5459184);
+   VbbHcc_algoFirst_CutFlow_stack_9->SetBinError(7,0.2943511);
+   VbbHcc_algoFirst_CutFlow_stack_9->SetBinError(8,0.1650358);
+   VbbHcc_algoFirst_CutFlow_stack_9->SetEntries(2.148036e+07);
+
+   ci = TColor::GetColor("#cccc00");
+   VbbHcc_algoFirst_CutFlow_stack_9->SetFillColor(ci);
+
+   ci = TColor::GetColor("#000099");
+   VbbHcc_algoFirst_CutFlow_stack_9->SetLineColor(ci);
+   VbbHcc_algoFirst_CutFlow_stack_9->GetXaxis()->SetBinLabel(1,"Total");
+   VbbHcc_algoFirst_CutFlow_stack_9->GetXaxis()->SetBinLabel(2,"MET cut");
+   VbbHcc_algoFirst_CutFlow_stack_9->GetXaxis()->SetBinLabel(3,"jet cuts");
+   VbbHcc_algoFirst_CutFlow_stack_9->GetXaxis()->SetBinLabel(4,"triggers");
+   VbbHcc_algoFirst_CutFlow_stack_9->GetXaxis()->SetBinLabel(5,"b-tag #1");
+   VbbHcc_algoFirst_CutFlow_stack_9->GetXaxis()->SetBinLabel(6,"b-tag #2");
+   VbbHcc_algoFirst_CutFlow_stack_9->GetXaxis()->SetBinLabel(7,"c-tag #1");
+   VbbHcc_algoFirst_CutFlow_stack_9->GetXaxis()->SetBinLabel(8,"c-tag #2");
+   VbbHcc_algoFirst_CutFlow_stack_9->GetXaxis()->SetRange(1,8);
+   VbbHcc_algoFirst_CutFlow_stack_9->GetXaxis()->SetLabelFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_9->GetXaxis()->SetTitleOffset(1);
+   VbbHcc_algoFirst_CutFlow_stack_9->GetXaxis()->SetTitleFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_9->GetYaxis()->SetLabelFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_9->GetYaxis()->SetTitleFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_9->GetZaxis()->SetLabelFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_9->GetZaxis()->SetTitleOffset(1);
+   VbbHcc_algoFirst_CutFlow_stack_9->GetZaxis()->SetTitleFont(42);
+   st->Add(VbbHcc_algoFirst_CutFlow_stack_9,"");
+   
+   TH1D *VbbHcc_algoFirst_CutFlow_stack_10 = new TH1D("VbbHcc_algoFirst_CutFlow_stack_10","",8,0,8);
+   VbbHcc_algoFirst_CutFlow_stack_10->SetBinContent(1,2980.723);
+   VbbHcc_algoFirst_CutFlow_stack_10->SetBinContent(2,2967.389);
+   VbbHcc_algoFirst_CutFlow_stack_10->SetBinContent(3,1097.306);
+   VbbHcc_algoFirst_CutFlow_stack_10->SetBinContent(4,470.6121);
+   VbbHcc_algoFirst_CutFlow_stack_10->SetBinContent(5,211.992);
+   VbbHcc_algoFirst_CutFlow_stack_10->SetBinContent(6,101.4412);
+   VbbHcc_algoFirst_CutFlow_stack_10->SetBinContent(7,31.73755);
+   VbbHcc_algoFirst_CutFlow_stack_10->SetBinContent(8,9.63787);
+   VbbHcc_algoFirst_CutFlow_stack_10->SetBinError(1,1.33302);
+   VbbHcc_algoFirst_CutFlow_stack_10->SetBinError(2,1.330035);
+   VbbHcc_algoFirst_CutFlow_stack_10->SetBinError(3,0.8087974);
+   VbbHcc_algoFirst_CutFlow_stack_10->SetBinError(4,0.5296724);
+   VbbHcc_algoFirst_CutFlow_stack_10->SetBinError(5,0.3554967);
+   VbbHcc_algoFirst_CutFlow_stack_10->SetBinError(6,0.2459138);
+   VbbHcc_algoFirst_CutFlow_stack_10->SetBinError(7,0.1375506);
+   VbbHcc_algoFirst_CutFlow_stack_10->SetBinError(8,0.0757995);
+   VbbHcc_algoFirst_CutFlow_stack_10->SetEntries(1.32029e+07);
+
+   ci = TColor::GetColor("#0000cc");
+   VbbHcc_algoFirst_CutFlow_stack_10->SetFillColor(ci);
+
+   ci = TColor::GetColor("#000099");
+   VbbHcc_algoFirst_CutFlow_stack_10->SetLineColor(ci);
+   VbbHcc_algoFirst_CutFlow_stack_10->GetXaxis()->SetBinLabel(1,"Total");
+   VbbHcc_algoFirst_CutFlow_stack_10->GetXaxis()->SetBinLabel(2,"MET cut");
+   VbbHcc_algoFirst_CutFlow_stack_10->GetXaxis()->SetBinLabel(3,"jet cuts");
+   VbbHcc_algoFirst_CutFlow_stack_10->GetXaxis()->SetBinLabel(4,"triggers");
+   VbbHcc_algoFirst_CutFlow_stack_10->GetXaxis()->SetBinLabel(5,"b-tag #1");
+   VbbHcc_algoFirst_CutFlow_stack_10->GetXaxis()->SetBinLabel(6,"b-tag #2");
+   VbbHcc_algoFirst_CutFlow_stack_10->GetXaxis()->SetBinLabel(7,"c-tag #1");
+   VbbHcc_algoFirst_CutFlow_stack_10->GetXaxis()->SetBinLabel(8,"c-tag #2");
+   VbbHcc_algoFirst_CutFlow_stack_10->GetXaxis()->SetRange(1,8);
+   VbbHcc_algoFirst_CutFlow_stack_10->GetXaxis()->SetLabelFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_10->GetXaxis()->SetTitleOffset(1);
+   VbbHcc_algoFirst_CutFlow_stack_10->GetXaxis()->SetTitleFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_10->GetYaxis()->SetLabelFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_10->GetYaxis()->SetTitleFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_10->GetZaxis()->SetLabelFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_10->GetZaxis()->SetTitleOffset(1);
+   VbbHcc_algoFirst_CutFlow_stack_10->GetZaxis()->SetTitleFont(42);
+   st->Add(VbbHcc_algoFirst_CutFlow_stack_10,"");
+   
+   TH1D *VbbHcc_algoFirst_CutFlow_stack_11 = new TH1D("VbbHcc_algoFirst_CutFlow_stack_11","",8,0,8);
+   VbbHcc_algoFirst_CutFlow_stack_11->SetBinContent(1,1065.823);
+   VbbHcc_algoFirst_CutFlow_stack_11->SetBinContent(2,1064.799);
+   VbbHcc_algoFirst_CutFlow_stack_11->SetBinContent(3,145.3825);
+   VbbHcc_algoFirst_CutFlow_stack_11->SetBinContent(4,6.114972);
+   VbbHcc_algoFirst_CutFlow_stack_11->SetBinContent(5,2.596644);
+   VbbHcc_algoFirst_CutFlow_stack_11->SetBinContent(6,1.310839);
+   VbbHcc_algoFirst_CutFlow_stack_11->SetBinContent(7,0.7919651);
+   VbbHcc_algoFirst_CutFlow_stack_11->SetBinContent(8,0.5279768);
+   VbbHcc_algoFirst_CutFlow_stack_11->SetBinError(1,1.608294);
+   VbbHcc_algoFirst_CutFlow_stack_11->SetBinError(2,1.607521);
+   VbbHcc_algoFirst_CutFlow_stack_11->SetBinError(3,0.5808278);
+   VbbHcc_algoFirst_CutFlow_stack_11->SetBinError(4,0.1192768);
+   VbbHcc_algoFirst_CutFlow_stack_11->SetBinError(5,0.07820811);
+   VbbHcc_algoFirst_CutFlow_stack_11->SetBinError(6,0.05583738);
+   VbbHcc_algoFirst_CutFlow_stack_11->SetBinError(7,0.04377515);
+   VbbHcc_algoFirst_CutFlow_stack_11->SetBinError(8,0.03569393);
+   VbbHcc_algoFirst_CutFlow_stack_11->SetEntries(1068671);
+
+   ci = TColor::GetColor("#cc0000");
+   VbbHcc_algoFirst_CutFlow_stack_11->SetFillColor(ci);
+
+   ci = TColor::GetColor("#000099");
+   VbbHcc_algoFirst_CutFlow_stack_11->SetLineColor(ci);
+   VbbHcc_algoFirst_CutFlow_stack_11->GetXaxis()->SetBinLabel(1,"Total");
+   VbbHcc_algoFirst_CutFlow_stack_11->GetXaxis()->SetBinLabel(2,"MET cut");
+   VbbHcc_algoFirst_CutFlow_stack_11->GetXaxis()->SetBinLabel(3,"jet cuts");
+   VbbHcc_algoFirst_CutFlow_stack_11->GetXaxis()->SetBinLabel(4,"triggers");
+   VbbHcc_algoFirst_CutFlow_stack_11->GetXaxis()->SetBinLabel(5,"b-tag #1");
+   VbbHcc_algoFirst_CutFlow_stack_11->GetXaxis()->SetBinLabel(6,"b-tag #2");
+   VbbHcc_algoFirst_CutFlow_stack_11->GetXaxis()->SetBinLabel(7,"c-tag #1");
+   VbbHcc_algoFirst_CutFlow_stack_11->GetXaxis()->SetBinLabel(8,"c-tag #2");
+   VbbHcc_algoFirst_CutFlow_stack_11->GetXaxis()->SetRange(1,8);
+   VbbHcc_algoFirst_CutFlow_stack_11->GetXaxis()->SetLabelFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_11->GetXaxis()->SetTitleOffset(1);
+   VbbHcc_algoFirst_CutFlow_stack_11->GetXaxis()->SetTitleFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_11->GetYaxis()->SetLabelFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_11->GetYaxis()->SetTitleFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_11->GetZaxis()->SetLabelFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_11->GetZaxis()->SetTitleOffset(1);
+   VbbHcc_algoFirst_CutFlow_stack_11->GetZaxis()->SetTitleFont(42);
+   st->Add(VbbHcc_algoFirst_CutFlow_stack_11,"");
+   
+   TH1D *VbbHcc_algoFirst_CutFlow_stack_12 = new TH1D("VbbHcc_algoFirst_CutFlow_stack_12","",8,0,8);
+   VbbHcc_algoFirst_CutFlow_stack_12->SetBinContent(1,148.0808);
+   VbbHcc_algoFirst_CutFlow_stack_12->SetBinContent(2,147.7778);
+   VbbHcc_algoFirst_CutFlow_stack_12->SetBinContent(3,55.86831);
+   VbbHcc_algoFirst_CutFlow_stack_12->SetBinContent(4,2.99477);
+   VbbHcc_algoFirst_CutFlow_stack_12->SetBinContent(5,1.293319);
+   VbbHcc_algoFirst_CutFlow_stack_12->SetBinContent(6,0.6256834);
+   VbbHcc_algoFirst_CutFlow_stack_12->SetBinContent(7,0.3592885);
+   VbbHcc_algoFirst_CutFlow_stack_12->SetBinContent(8,0.1956759);
+   VbbHcc_algoFirst_CutFlow_stack_12->SetBinError(1,0.21065);
+   VbbHcc_algoFirst_CutFlow_stack_12->SetBinError(2,0.2104344);
+   VbbHcc_algoFirst_CutFlow_stack_12->SetBinError(3,0.1293883);
+   VbbHcc_algoFirst_CutFlow_stack_12->SetBinError(4,0.02995669);
+   VbbHcc_algoFirst_CutFlow_stack_12->SetBinError(5,0.01968633);
+   VbbHcc_algoFirst_CutFlow_stack_12->SetBinError(6,0.01369271);
+   VbbHcc_algoFirst_CutFlow_stack_12->SetBinError(7,0.01037609);
+   VbbHcc_algoFirst_CutFlow_stack_12->SetBinError(8,0.007657389);
+   VbbHcc_algoFirst_CutFlow_stack_12->SetEntries(1192016);
+
+   ci = TColor::GetColor("#00cc00");
+   VbbHcc_algoFirst_CutFlow_stack_12->SetFillColor(ci);
+
+   ci = TColor::GetColor("#000099");
+   VbbHcc_algoFirst_CutFlow_stack_12->SetLineColor(ci);
+   VbbHcc_algoFirst_CutFlow_stack_12->GetXaxis()->SetBinLabel(1,"Total");
+   VbbHcc_algoFirst_CutFlow_stack_12->GetXaxis()->SetBinLabel(2,"MET cut");
+   VbbHcc_algoFirst_CutFlow_stack_12->GetXaxis()->SetBinLabel(3,"jet cuts");
+   VbbHcc_algoFirst_CutFlow_stack_12->GetXaxis()->SetBinLabel(4,"triggers");
+   VbbHcc_algoFirst_CutFlow_stack_12->GetXaxis()->SetBinLabel(5,"b-tag #1");
+   VbbHcc_algoFirst_CutFlow_stack_12->GetXaxis()->SetBinLabel(6,"b-tag #2");
+   VbbHcc_algoFirst_CutFlow_stack_12->GetXaxis()->SetBinLabel(7,"c-tag #1");
+   VbbHcc_algoFirst_CutFlow_stack_12->GetXaxis()->SetBinLabel(8,"c-tag #2");
+   VbbHcc_algoFirst_CutFlow_stack_12->GetXaxis()->SetRange(1,8);
+   VbbHcc_algoFirst_CutFlow_stack_12->GetXaxis()->SetLabelFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_12->GetXaxis()->SetTitleOffset(1);
+   VbbHcc_algoFirst_CutFlow_stack_12->GetXaxis()->SetTitleFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_12->GetYaxis()->SetLabelFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_12->GetYaxis()->SetTitleFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_12->GetZaxis()->SetLabelFont(42);
+   VbbHcc_algoFirst_CutFlow_stack_12->GetZaxis()->SetTitleOffset(1);
+   VbbHcc_algoFirst_CutFlow_stack_12->GetZaxis()->SetTitleFont(42);
+   st->Add(VbbHcc_algoFirst_CutFlow_stack_12,"");
+   st->Draw("hist");
+   
+   TH1D *VbbHcc_algoFirst_CutFlow__11 = new TH1D("VbbHcc_algoFirst_CutFlow__11","",8,0,8);
+   VbbHcc_algoFirst_CutFlow__11->SetBinContent(1,6.229517e+08);
+   VbbHcc_algoFirst_CutFlow__11->SetBinContent(2,6.08307e+08);
+   VbbHcc_algoFirst_CutFlow__11->SetBinContent(3,1.716969e+08);
+   VbbHcc_algoFirst_CutFlow__11->SetBinContent(4,2.112727e+07);
+   VbbHcc_algoFirst_CutFlow__11->SetBinContent(5,7310833);
+   VbbHcc_algoFirst_CutFlow__11->SetBinContent(6,2570352);
+   VbbHcc_algoFirst_CutFlow__11->SetBinContent(7,944605);
+   VbbHcc_algoFirst_CutFlow__11->SetBinContent(8,295539);
+   VbbHcc_algoFirst_CutFlow__11->SetEntries(1.435204e+09);
+
+   ci = TColor::GetColor("#000099");
+   VbbHcc_algoFirst_CutFlow__11->SetLineColor(ci);
+   VbbHcc_algoFirst_CutFlow__11->SetLineWidth(2);
+   VbbHcc_algoFirst_CutFlow__11->SetMarkerStyle(20);
+   VbbHcc_algoFirst_CutFlow__11->SetMarkerSize(1.2);
+   VbbHcc_algoFirst_CutFlow__11->GetXaxis()->SetBinLabel(1,"Total");
+   VbbHcc_algoFirst_CutFlow__11->GetXaxis()->SetBinLabel(2,"MET cut");
+   VbbHcc_algoFirst_CutFlow__11->GetXaxis()->SetBinLabel(3,"jet cuts");
+   VbbHcc_algoFirst_CutFlow__11->GetXaxis()->SetBinLabel(4,"triggers");
+   VbbHcc_algoFirst_CutFlow__11->GetXaxis()->SetBinLabel(5,"b-tag #1");
+   VbbHcc_algoFirst_CutFlow__11->GetXaxis()->SetBinLabel(6,"b-tag #2");
+   VbbHcc_algoFirst_CutFlow__11->GetXaxis()->SetBinLabel(7,"c-tag #1");
+   VbbHcc_algoFirst_CutFlow__11->GetXaxis()->SetBinLabel(8,"c-tag #2");
+   VbbHcc_algoFirst_CutFlow__11->GetXaxis()->SetRange(1,8);
+   VbbHcc_algoFirst_CutFlow__11->GetXaxis()->SetLabelFont(42);
+   VbbHcc_algoFirst_CutFlow__11->GetXaxis()->SetTitleOffset(1);
+   VbbHcc_algoFirst_CutFlow__11->GetXaxis()->SetTitleFont(42);
+   VbbHcc_algoFirst_CutFlow__11->GetYaxis()->SetLabelFont(42);
+   VbbHcc_algoFirst_CutFlow__11->GetYaxis()->SetTitleFont(42);
+   VbbHcc_algoFirst_CutFlow__11->GetZaxis()->SetLabelFont(42);
+   VbbHcc_algoFirst_CutFlow__11->GetZaxis()->SetTitleOffset(1);
+   VbbHcc_algoFirst_CutFlow__11->GetZaxis()->SetTitleFont(42);
+   VbbHcc_algoFirst_CutFlow__11->Draw("same E");
+   
+   Double_t Graph_from_VbbHcc_algoFirst_CutFlow_fx1011[8] = { 0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.5 };
+   Double_t Graph_from_VbbHcc_algoFirst_CutFlow_fy1011[8] = { 1.797076e+12, 1.79696e+12, 3.918887e+09, 3.552417e+07, 8395028, 2622993, 866158.3, 221700.7 };
+   Double_t Graph_from_VbbHcc_algoFirst_CutFlow_fex1011[8] = { 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5 };
+   Double_t Graph_from_VbbHcc_algoFirst_CutFlow_fey1011[8] = { 1.838189e+08, 1.838145e+08, 2665057, 101939.8, 39784.9, 21643.34, 11584.56, 5857.953 };
+   TGraphErrors *gre = new TGraphErrors(8,Graph_from_VbbHcc_algoFirst_CutFlow_fx1011,Graph_from_VbbHcc_algoFirst_CutFlow_fy1011,Graph_from_VbbHcc_algoFirst_CutFlow_fex1011,Graph_from_VbbHcc_algoFirst_CutFlow_fey1011);
+   gre->SetName("Graph_from_VbbHcc_algoFirst_CutFlow");
+   gre->SetTitle("");
+
+   ci = TColor::GetColor("#333333");
+   gre->SetFillColor(ci);
+   gre->SetFillStyle(3013);
+
+   ci = TColor::GetColor("#000099");
+   gre->SetLineColor(ci);
+   
+   TH1F *Graph_Graph_from_VbbHcc_algoFirst_CutFlow1011 = new TH1F("Graph_Graph_from_VbbHcc_algoFirst_CutFlow1011","",100,0,8.8);
+   Graph_Graph_from_VbbHcc_algoFirst_CutFlow1011->SetMinimum(194258.5);
+   Graph_Graph_from_VbbHcc_algoFirst_CutFlow1011->SetMaximum(1.976986e+12);
+   Graph_Graph_from_VbbHcc_algoFirst_CutFlow1011->SetDirectory(nullptr);
+   Graph_Graph_from_VbbHcc_algoFirst_CutFlow1011->SetStats(0);
+
+   ci = TColor::GetColor("#000099");
+   Graph_Graph_from_VbbHcc_algoFirst_CutFlow1011->SetLineColor(ci);
+   Graph_Graph_from_VbbHcc_algoFirst_CutFlow1011->GetXaxis()->SetLabelFont(42);
+   Graph_Graph_from_VbbHcc_algoFirst_CutFlow1011->GetXaxis()->SetTitleOffset(1);
+   Graph_Graph_from_VbbHcc_algoFirst_CutFlow1011->GetXaxis()->SetTitleFont(42);
+   Graph_Graph_from_VbbHcc_algoFirst_CutFlow1011->GetYaxis()->SetLabelFont(42);
+   Graph_Graph_from_VbbHcc_algoFirst_CutFlow1011->GetYaxis()->SetTitleFont(42);
+   Graph_Graph_from_VbbHcc_algoFirst_CutFlow1011->GetZaxis()->SetLabelFont(42);
+   Graph_Graph_from_VbbHcc_algoFirst_CutFlow1011->GetZaxis()->SetTitleOffset(1);
+   Graph_Graph_from_VbbHcc_algoFirst_CutFlow1011->GetZaxis()->SetTitleFont(42);
+   gre->SetHistogram(Graph_Graph_from_VbbHcc_algoFirst_CutFlow1011);
+   
+   gre->Draw("2");
+   
+   TLegend *leg = new TLegend(0.58,0.42,0.89,0.87,NULL,"brNDC");
+   leg->SetBorderSize(0);
+   leg->SetTextSize(0.035);
+   leg->SetLineColor(1);
+   leg->SetLineStyle(1);
+   leg->SetLineWidth(2);
+   leg->SetFillColor(0);
+   leg->SetFillStyle(1001);
+   TLegendEntry *entry=leg->AddEntry("VbbHcc_algoFirst_CutFlow","Data (JetHT, 2018)","p");
+   entry->SetLineColor(1);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(1);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(42);
+   entry=leg->AddEntry("VbbHcc_algoFirst_CutFlow","ggZHcc","F");
+
+   ci = TColor::GetColor("#00cc00");
+   entry->SetFillColor(ci);
+   entry->SetFillStyle(1001);
+
+   ci = TColor::GetColor("#000099");
+   entry->SetLineColor(ci);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(42);
+   entry=leg->AddEntry("VbbHcc_algoFirst_CutFlow","ZHcc","F");
+
+   ci = TColor::GetColor("#cc0000");
+   entry->SetFillColor(ci);
+   entry->SetFillStyle(1001);
+
+   ci = TColor::GetColor("#000099");
+   entry->SetLineColor(ci);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(42);
+   entry=leg->AddEntry("VbbHcc_algoFirst_CutFlow","ggZHbb","F");
+
+   ci = TColor::GetColor("#0000cc");
+   entry->SetFillColor(ci);
+   entry->SetFillStyle(1001);
+
+   ci = TColor::GetColor("#000099");
+   entry->SetLineColor(ci);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(42);
+   entry=leg->AddEntry("VbbHcc_algoFirst_CutFlow","ZHbb","F");
+
+   ci = TColor::GetColor("#cccc00");
+   entry->SetFillColor(ci);
+   entry->SetFillStyle(1001);
+
+   ci = TColor::GetColor("#000099");
+   entry->SetLineColor(ci);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(42);
+   entry=leg->AddEntry("VbbHcc_algoFirst_CutFlow","ZZ","F");
+
+   ci = TColor::GetColor("#33ff99");
+   entry->SetFillColor(ci);
+   entry->SetFillStyle(1001);
+
+   ci = TColor::GetColor("#000099");
+   entry->SetLineColor(ci);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(42);
+   entry=leg->AddEntry("VbbHcc_algoFirst_CutFlow","WZ","F");
+
+   ci = TColor::GetColor("#3399ff");
+   entry->SetFillColor(ci);
+   entry->SetFillStyle(1001);
+
+   ci = TColor::GetColor("#000099");
+   entry->SetLineColor(ci);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(42);
+   entry=leg->AddEntry("VbbHcc_algoFirst_CutFlow","WW","F");
+
+   ci = TColor::GetColor("#9933ff");
+   entry->SetFillColor(ci);
+   entry->SetFillStyle(1001);
+
+   ci = TColor::GetColor("#000099");
+   entry->SetLineColor(ci);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(42);
+   entry=leg->AddEntry("VbbHcc_algoFirst_CutFlow","W + jets","F");
+
+   ci = TColor::GetColor("#ff99cc");
+   entry->SetFillColor(ci);
+   entry->SetFillStyle(1001);
+
+   ci = TColor::GetColor("#000099");
+   entry->SetLineColor(ci);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(42);
+   entry=leg->AddEntry("VbbHcc_algoFirst_CutFlow","Z + jets","F");
+
+   ci = TColor::GetColor("#00cccc");
+   entry->SetFillColor(ci);
+   entry->SetFillStyle(1001);
+
+   ci = TColor::GetColor("#000099");
+   entry->SetLineColor(ci);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(42);
+   entry=leg->AddEntry("VbbHcc_algoFirst_CutFlow","t#bar{t}","F");
+
+   ci = TColor::GetColor("#cc00cc");
+   entry->SetFillColor(ci);
+   entry->SetFillStyle(1001);
+
+   ci = TColor::GetColor("#000099");
+   entry->SetLineColor(ci);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(42);
+   entry=leg->AddEntry("VbbHcc_algoFirst_CutFlow","Single top","F");
+
+   ci = TColor::GetColor("#660066");
+   entry->SetFillColor(ci);
+   entry->SetFillStyle(1001);
+
+   ci = TColor::GetColor("#000099");
+   entry->SetLineColor(ci);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(42);
+   entry=leg->AddEntry("VbbHcc_algoFirst_CutFlow","QCD","F");
+
+   ci = TColor::GetColor("#ff6600");
+   entry->SetFillColor(ci);
+   entry->SetFillStyle(1001);
+
+   ci = TColor::GetColor("#000099");
+   entry->SetLineColor(ci);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(42);
+   entry=leg->AddEntry("Graph_from_VbbHcc_algoFirst_CutFlow","MC unc. (stat.)","fl");
+
+   ci = TColor::GetColor("#333333");
+   entry->SetFillColor(ci);
+   entry->SetFillStyle(3013);
+
+   ci = TColor::GetColor("#000099");
+   entry->SetLineColor(ci);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(42);
+   leg->Draw();
+   TLatex *   tex = new TLatex(0.25,0.937775,"CMS Work in Progress #sqrt{s} = 13 TeV, 59.7 fb^{-1}");
+   tex->SetNDC();
+   tex->SetTextFont(42);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   topPad->Modified();
+   CutFlow_algoFirst_18->cd();
+  
+// ------------>Primitives in pad: bottomPad
+   TPad *bottomPad = new TPad("bottomPad", "bottomPad",0,0,1,0.3);
+   bottomPad->Draw();
+   bottomPad->cd();
+   bottomPad->Range(-1.072578,-0.2774193,7.366936,1.658065);
+   bottomPad->SetFillColor(0);
+   bottomPad->SetBorderMode(0);
+   bottomPad->SetBorderSize(2);
+   bottomPad->SetTickx(1);
+   bottomPad->SetTicky(1);
+   bottomPad->SetLeftMargin(0.12709);
+   bottomPad->SetRightMargin(0.0434783);
+   bottomPad->SetTopMargin(0.03);
+   bottomPad->SetBottomMargin(0.35);
+   bottomPad->SetFrameBorderMode(0);
+   bottomPad->SetFrameBorderMode(0);
+   
+   TH1D *data_mc_ratio__12 = new TH1D("data_mc_ratio__12","",8,0,8);
+   data_mc_ratio__12->SetBinContent(1,0.0003466474);
+   data_mc_ratio__12->SetBinContent(2,0.0003385201);
+   data_mc_ratio__12->SetBinContent(3,0.04381268);
+   data_mc_ratio__12->SetBinContent(4,0.5947294);
+   data_mc_ratio__12->SetBinContent(5,0.8708527);
+   data_mc_ratio__12->SetBinContent(6,0.979931);
+   data_mc_ratio__12->SetBinContent(7,1.090569);
+   data_mc_ratio__12->SetBinContent(8,1.333054);
+   data_mc_ratio__12->SetBinError(1,1.388867e-08);
+   data_mc_ratio__12->SetBinError(2,1.372534e-08);
+   data_mc_ratio__12->SetBinError(3,3.343633e-06);
+   data_mc_ratio__12->SetBinError(4,0.0001293891);
+   data_mc_ratio__12->SetBinError(5,0.0003220782);
+   data_mc_ratio__12->SetBinError(6,0.0006112223);
+   data_mc_ratio__12->SetBinError(7,0.00112209);
+   data_mc_ratio__12->SetBinError(8,0.002452112);
+   data_mc_ratio__12->SetMinimum(0.4);
+   data_mc_ratio__12->SetMaximum(1.6);
+   data_mc_ratio__12->SetEntries(15611.86);
+   data_mc_ratio__12->SetStats(0);
+
+   ci = TColor::GetColor("#000099");
+   data_mc_ratio__12->SetLineColor(ci);
+   data_mc_ratio__12->SetLineWidth(2);
+   data_mc_ratio__12->SetMarkerStyle(20);
+   data_mc_ratio__12->SetMarkerSize(1.2);
+   data_mc_ratio__12->GetXaxis()->SetTitle(""Cut flow"");
+   data_mc_ratio__12->GetXaxis()->SetBinLabel(1,"Total");
+   data_mc_ratio__12->GetXaxis()->SetBinLabel(2,"MET cut");
+   data_mc_ratio__12->GetXaxis()->SetBinLabel(3,"jet cuts");
+   data_mc_ratio__12->GetXaxis()->SetBinLabel(4,"triggers");
+   data_mc_ratio__12->GetXaxis()->SetBinLabel(5,"b-tag #1");
+   data_mc_ratio__12->GetXaxis()->SetBinLabel(6,"b-tag #2");
+   data_mc_ratio__12->GetXaxis()->SetBinLabel(7,"c-tag #1");
+   data_mc_ratio__12->GetXaxis()->SetBinLabel(8,"c-tag #2");
+   data_mc_ratio__12->GetXaxis()->SetRange(1,7);
+   data_mc_ratio__12->GetXaxis()->SetLabelFont(42);
+   data_mc_ratio__12->GetXaxis()->SetLabelSize(0.12);
+   data_mc_ratio__12->GetXaxis()->SetTitleSize(0.12);
+   data_mc_ratio__12->GetXaxis()->SetTitleOffset(1.1);
+   data_mc_ratio__12->GetXaxis()->SetTitleFont(42);
+   data_mc_ratio__12->GetYaxis()->SetTitle("Data/MC");
+   data_mc_ratio__12->GetYaxis()->SetNdivisions(505);
+   data_mc_ratio__12->GetYaxis()->SetLabelFont(42);
+   data_mc_ratio__12->GetYaxis()->SetLabelSize(0.12);
+   data_mc_ratio__12->GetYaxis()->SetTitleSize(0.12);
+   data_mc_ratio__12->GetYaxis()->SetTitleOffset(0.5);
+   data_mc_ratio__12->GetYaxis()->SetTitleFont(42);
+   data_mc_ratio__12->GetZaxis()->SetLabelFont(42);
+   data_mc_ratio__12->GetZaxis()->SetTitleOffset(1);
+   data_mc_ratio__12->GetZaxis()->SetTitleFont(42);
+   data_mc_ratio__12->Draw("E1");
+   
+   Double_t Graph_from_mc_statistical_error_fx1012[8] = { 0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.5 };
+   Double_t Graph_from_mc_statistical_error_fy1012[8] = { 1, 1, 1, 1, 1, 1, 1, 1 };
+   Double_t Graph_from_mc_statistical_error_fex1012[8] = { 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5 };
+   Double_t Graph_from_mc_statistical_error_fey1012[8] = { 0.0001022878, 0.0001022919, 0.0006800546, 0.00286959, 0.004739103, 0.008251392, 0.01337464, 0.0264228 };
+   gre = new TGraphErrors(8,Graph_from_mc_statistical_error_fx1012,Graph_from_mc_statistical_error_fy1012,Graph_from_mc_statistical_error_fex1012,Graph_from_mc_statistical_error_fey1012);
+   gre->SetName("Graph_from_mc_statistical_error");
+   gre->SetTitle("");
+
+   ci = TColor::GetColor("#333333");
+   gre->SetFillColor(ci);
+   gre->SetFillStyle(3013);
+
+   ci = TColor::GetColor("#000099");
+   gre->SetLineColor(ci);
+   
+   TH1F *Graph_Graph_from_mc_statistical_error1012 = new TH1F("Graph_Graph_from_mc_statistical_error1012","",100,0,8.8);
+   Graph_Graph_from_mc_statistical_error1012->SetMinimum(0.9682926);
+   Graph_Graph_from_mc_statistical_error1012->SetMaximum(1.031707);
+   Graph_Graph_from_mc_statistical_error1012->SetDirectory(nullptr);
+   Graph_Graph_from_mc_statistical_error1012->SetStats(0);
+
+   ci = TColor::GetColor("#000099");
+   Graph_Graph_from_mc_statistical_error1012->SetLineColor(ci);
+   Graph_Graph_from_mc_statistical_error1012->GetXaxis()->SetLabelFont(42);
+   Graph_Graph_from_mc_statistical_error1012->GetXaxis()->SetTitleOffset(1);
+   Graph_Graph_from_mc_statistical_error1012->GetXaxis()->SetTitleFont(42);
+   Graph_Graph_from_mc_statistical_error1012->GetYaxis()->SetLabelFont(42);
+   Graph_Graph_from_mc_statistical_error1012->GetYaxis()->SetTitleFont(42);
+   Graph_Graph_from_mc_statistical_error1012->GetZaxis()->SetLabelFont(42);
+   Graph_Graph_from_mc_statistical_error1012->GetZaxis()->SetTitleOffset(1);
+   Graph_Graph_from_mc_statistical_error1012->GetZaxis()->SetTitleFont(42);
+   gre->SetHistogram(Graph_Graph_from_mc_statistical_error1012);
+   
+   gre->Draw("e2");
+   TLine *line = new TLine(0,1,7,1);
+   line->Draw();
+   bottomPad->Modified();
+   CutFlow_algoFirst_18->cd();
+   CutFlow_algoFirst_18->Modified();
+   CutFlow_algoFirst_18->cd();
+   CutFlow_algoFirst_18->SetSelected(CutFlow_algoFirst_18);
+}

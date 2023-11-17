@@ -60,7 +60,7 @@ print "Pulling settings and preferences..."
 
 ## Edit / change the following options as needed:
 years = ['16', '17', '18']
-years = ['17']
+#years = ['17']
 regions = ['tagOnly', 'algoFirst', 'tagFirst']
 useLogY = False
 outputDir = '../plot_results/Oct2023_updated/'
@@ -168,6 +168,8 @@ for r in regions:
   print ">>> Checking region r = ", r
   nums[r] = {}
   plotNames = cfg.get('Plots', plotCat).split(',')
+  
+  plotNames = ["CutFlow"]
   
   
   for plN in plotNames:
@@ -338,7 +340,7 @@ for r in regions:
     ]
     
     logY = useLogY
-    if 'CutFlow' in plN: logY = True
+   # if 'CutFlow' in plN: logY = True
     makeDataMCPlot(plots_process, plotNames_process, ## Plots
       plN + '_' + r + '_all', outputDir + '/All',
       xA_title, xA_range, 'MC unc. (stat.)', False,
