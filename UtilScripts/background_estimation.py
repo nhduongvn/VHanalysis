@@ -28,7 +28,7 @@ def getHist(plotName, sample_names, hist_files, lumiScales, debug = True):
     if debug: 
       print "Looking in ", sample_names[0], " for ", plotName, "(20",y,")"
     hOut[y] = hist_files[sample_names[0]][y][0].Get(plotName).Clone()
-    if sample_names[0] not in ['JetHT']:
+    if sample_names[0] not in ['JetHT', 'Data']:
       hOut[y].Scale(lumiScales[sample_names[0]][y][0])
     
     ## Add the other samples
@@ -39,7 +39,7 @@ def getHist(plotName, sample_names, hist_files, lumiScales, debug = True):
         if iS == 0 and fi == 0: continue
         
         h = hist_files[sample_names[iS]][y][fi].Get(plotName).Clone()
-        if sample_names[iS] not in ["JetHT"]:
+        if sample_names[iS] not in ["JetHT", "Data"]:
           scale = lumiScales[sample_names[iS]][y][fi]
           if debug:
             print "Scaling ", sample_names[iS], ", SF = ", scale
@@ -60,18 +60,18 @@ years = ['16', '17', '18']
 useLogY = False
 
 ## Input & Output file locations
-dirpath = '../condor_results/Oct2023_updated/NONE/'
-output_directory = '../plot_results/Oct2023_updated/'
+dirpath = '../condor_results/Nov2023_updated/NONE/'
+output_directory = '../plot_results/Nov2023_updated/'
 
 ## Variables we care about
 selection_methods = [
-  "tagOnly", "algoFirst", "tagFirst"
+  "tagOnly", "DHZFirst", "tagFirst"
 ]
 
 variables = [ "MH_v_MZ" ]
 
 ## Normal List of Samples 
-sampleList = [ 'JetHT', #'ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ', ## Jet HT & ZH(H->CC)
+sampleList = [ 'Data', #'ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ', ## Jet HT & ZH(H->CC)
   #'ZH_HToBB_ZToQQ', 'ggZH_HToBB_ZToQQ',               ## ZH(H->BB)
   'QCD_HT100to200_v9',
   'QCD_HT200to300_v9', 'QCD_HT300to500_v9',           ## QCD (200-Inf)
@@ -98,7 +98,7 @@ categories = [ "Data", "QCD" ]
 
 ## Samples Split into Categories
 category_samples = {
-  "Data": ['JetHT'],
+  "Data": ['Data'],
   "QCD": [ 'QCD_HT100to200_v9', 'QCD_HT200to300_v9', 
            'QCD_HT300to500_v9', 'QCD_HT500to700_v9', 
            'QCD_HT700to1000_v9', 'QCD_HT1000to1500_v9', 
@@ -171,7 +171,7 @@ for s in sampleList:
     ## Get other values of interest
     xSecTmps = ['1']*len(names)
     kfactor = ['1']*len(names)
-    if s not in ['JetHT']:
+    if s not in ['JetHT', 'Data']:
       xSecTmps = cfg.get(s, 'xSec_'+y).split(',')
     
     ## Get the proper information for this year
