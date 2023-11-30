@@ -246,6 +246,70 @@ void fill_trigger_efficiency(TriggerEffPlots* plots, std::vector<JetObj>& jets,
   } 
 }
 
+
+bool list_contains(std::vector<int> list, int value)
+{ return std::count(list.begin(), list.end(), value); }
+
+std::vector<int> get_valid_ids(std::vector<int> idxs, std::vector<int> invalid_idxs)
+{
+  std::vector<int> valid_idxs;
+  for (size_t i = 0; i < idxs.size(); ++i)
+  {
+    if (!list_contains(invalid_idxs, idxs[i])) valid_idxs.push_back(idxs[i]);
+    if (valid_idxs.size() >= 2) break;
+  }
+  return valid_idxs;
+}
+
+/* =======================
+ * [39] FIND VALID COMBOS
+ * =======================
+ * Find the proper combinations of jets that are allowed.*/
+std::vector<std::vector<int>> find_valid_combos(std::vector<int> bIdxs,
+  std::vector<int> cIdxs)
+{
+
+  std::vector<std::vector<int>> outs;
+
+  // Check to make sure we even have enough points to check.
+  if (bIdxs.size() >= 2 && cIdxs.size() >= 2) {
+
+    // Option #1 - choose the top two bIndices
+    int b0(bIdxs[0]), b1(bIdxs[1]);
+    std::vector<int> bs{b0, b1};
+    
+    // Get the top two c indices that are not in the bList.
+    std::vector<int> clist = get_valid_ids(cIdxs, bs);
+
+    // If we have a proper number of cIDs and none of them are -1,
+    // create the proper combination.
+    if (clist.size() >= 2 && !list_contains(clist,-1)) {
+      int c2(clist[0]); int c3(clist[1]);
+      outs.push_back({b0, b1, c2, c3});
+    }
+
+    // Option #2 - choose the top two cIndices
+    int c0(cIdxs[0]), c1(cIdxs[1]);
+    std::vector<int> cs{c0, c1};   
+ 
+    // Only check this way if there's overlap with the indices.
+    if (list_contains(cs, b0) || list_contains(cs, b1)) { 
+
+      // Get the top two b indices that are not in the cList.
+      std::vector<int> blist = get_valid_ids(bIdxs, cs);
+    
+      // If we have a proper number of bIDs and none of them are -1,
+      // create the proper combination.
+      if (blist.size() >= 2 && !list_contains(blist,-1)) {
+        int b2(blist[0]); int b3(blist[1]);
+        outs.push_back({b2, b3, c0, c1});
+      }
+    }  
+  }
+  return outs;
+};
+
+
 // == [40] ROOT Selector Methods ==============================================
 
 /* =================
@@ -1494,24 +1558,26 @@ void VH_selection::Process(Reader *r)
     for (int i = 0; i < 2; ++i) {
       bjets.push_back(jets3[chosenPairings.Hidx(i)]);
       cjets.push_back(jets3[chosenPairings.Zidx(i)]);
-    } 
+      bjets[i].ApplyRegression(5);
+      cjets[i].ApplyRegression(4);
+    }
     ZObj Z3(bjets); HiggsObj H3(cjets); 
 
     // Check our jets against tagging.  
-    bool passes_btag = true;
+    bool passes_btags = true;
     std::vector<bool> btag_passes;
     for (int i = 0; i < 2; ++i) {
-      bool passes = abs(bjets[i].m_flav) == 5;
+      bool passes = passes_btag(bjets[i], desired_cut_BvL);
       btag_passes.push_back(passes);
-      if (!passes) passes_btag = false;
+      if (!passes) passes_btags = false;
     }
 
-    bool passes_ctag = true;
+    bool passes_ctags = true;
     std::vector<bool> ctag_passes;
     for (int i = 0; i < 2; ++i) {
-      bool passes = abs(cjets[i].m_flav) == 4;
+      bool passes = passes_ctag(cjets[i], desired_cut_CvL, desired_cut_CvB);
       ctag_passes.push_back(passes);
-      if (!passes) passes_ctag = false;
+      if (!passes) passes_ctags = false;
     } 
 
     if (btag_passes[0] || force_pass_tagging) {
@@ -1523,11 +1589,88 @@ void VH_selection::Process(Reader *r)
           if (ctag_passes[1] || force_pass_tagging) {
             h_cutflow_evt_DHZfirst->Fill(7.5, generator_weight); // c-tag 2
             h_VH_DHZfirst->FillVH(Z3, H3, event_weight);
-            std::cout << "HERE we are..." << std::endl;
+            //std::cout << "HERE we are..." << std::endl;
           }
         }
       }
     }//end-checks-DHZfirst
+
+    // ====================================
+    // [42o] Tagging Prioritized Algorithm
+    // ====================================
+    std::vector<JetObj> jets4; jets4 = analysis_jets;
+    
+    // Check our jets and push them to the appropriate lists by
+    // checking if the tagging scores meet our desired cuts.
+    std::vector<std::pair<int,float> > jets_idx_BvL;
+    std::vector<std::pair<int,float> > jets_idx_CvL;
+    std::vector<std::pair<int,float> > jets_idx_CvL_2b1c;
+    bool already_tagged_c = false;
+
+    // For each jet...
+    for (size_t i = 0; i < jets4.size(); ++i) {
+      
+      float csv = jets4[i].m_deepCSV;
+      float cvl = jets4[i].m_deepCvL;
+
+      bool btag1 = passes_btag(jets4[i], desired_cut_BvL);
+      bool ctag1 = passes_ctag(jets4[i], desired_cut_CvL, desired_cut_CvB); 
+      //ctag1 = passes_btag(jets4[i], desired_BvL);
+
+      if (btag1 || force_pass_tagging) {
+        std::pair<int,float> pair0(i,csv);
+        jets_idx_BvL.push_back(pair0); 
+      }
+      if (ctag1 || force_pass_tagging){
+        std::pair<int,float> pair1(i,cvl);
+        jets_idx_CvL.push_back(pair1);
+        already_tagged_c = true;
+      }
+      
+      if (ctag1 || already_tagged_c) {
+        std::pair<int,float> pair2(i,cvl);
+        jets_idx_CvL_2b1c.push_back(pair2);
+      }
+    }
+  
+    // Sort the jets so that the largest tagging-scores
+    // are at the top of our lists.
+    std::sort(jets_idx_BvL.begin(), jets_idx_BvL.end(), sort_by_second_descend);
+    //std::sort(jets_idx_CvL.begin(), jets_idx_CvL.end(), sort_by_second_descend);
+    //std::sort(jets_idx_CvL_2b1c.begin(), jets_idx_CvL_2b1c.end(), sort_by_second_descend);
+
+    // Create the vectors containing of b- and c-jets indices
+    std::vector<int> bIndices;
+    std::vector<int> cIndices;
+    std::vector<int> cIndices_2b1c;
+
+    for (auto p : jets_idx_BvL){ bIndices.push_back(p.first); }
+    for (auto p : jets_idx_CvL){ cIndices.push_back(p.first); }
+    for (auto p : jets_idx_CvL_2b1c){ cIndices_2b1c.push_back(p.first); }
+ 
+    // Find appropriate combinations of jets.
+    std::vector<std::vector<int>> combos = find_valid_combos(bIndices, cIndices);
+    
+    // If there's more than one possible combo, let's check them.
+    if (combos.size() > 0)
+    {
+      std::vector<int> idxs = combos[0];
+      DHZObj proper_pairings(jets4, idxs[2], idxs[3], idxs[0], idxs[1]);
+      if (combos.size() > 1) proper_pairings = DHZ_algorithm(jets4);
+      h_cutflow_evt_tagFirst->Fill(4.5, generator_weight);
+
+      // Reconstruct the Z and Higgs bosons from the pairs
+      std::vector<JetObj> bjets, cjets;
+      for (int i = 0; i < 2; ++i) {
+        bjets.push_back(jets4[chosenPairings.Hidx(i)]);
+        cjets.push_back(jets4[chosenPairings.Zidx(i)]);
+        bjets[i].ApplyRegression(5);
+        cjets[i].ApplyRegression(4);
+      }
+      ZObj Z4(bjets); HiggsObj H4(cjets);
+      h_VH_tagFirst->FillVH(Z4, H4, event_weight);
+
+    }//end-tagging-prioritized
 
   }//end-analysis-area (jets >= 4)
 };// end Process

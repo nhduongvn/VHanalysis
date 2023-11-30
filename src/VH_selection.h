@@ -57,7 +57,7 @@ class VH_selection : public Selector
     // ===============
     std::vector<std::vector<int>> getDaughterIdxs_ZH(Reader* r);    
     bool sort_by_second(const std::pair<int,float> &a, const std::pair<int,float> &b);  
-    bool sort_by_second_descend(const std::pair<int,float> &a, const std::pair<int,float> &b);
+    //bool sort_by_second_descend(const std::pair<int,float> &a, const std::pair<int,float> &b);
     //std::vector<std::pair<int,float>> determine_proper_pairs(std::vector<JetObj>& genObjs, std::vector<JetObj>& jets); 
 
   /* PRIVATE: These are the objects that we want to keep restricted 
