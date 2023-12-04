@@ -101,9 +101,14 @@ class VH_selection : public Selector
     VHPlots *h_VH_MCjet_ideal;   
     VHPlots *h_VH_MCjet_DHZ;
     VHPlots *h_VH_MCjet_DHZ_noTag;   
+    
     VHPlots *h_VH_tagOnly;   // plots for selection methods
     VHPlots *h_VH_DHZfirst;
     VHPlots *h_VH_tagFirst;
+
+    VHPlots *h_VH_tagOnly_2b1c; // plots for versions with 2b1c tagging
+    VHPlots *h_VH_DHZfirst_2b1c;
+    VHPlots *h_VH_tagFirst_2b1c;
  
     // ====================
     // RecoPlots instances
