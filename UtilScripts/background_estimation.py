@@ -65,7 +65,7 @@ output_directory = '../plot_results/Nov2023_updated/'
 
 ## Variables we care about
 selection_methods = [
-  "tagOnly", "DHZFirst", "tagFirst"
+  "tagOnly", "DHZfirst", "tagFirst"
 ]
 
 variables = [ "MH_v_MZ" ]
@@ -109,7 +109,7 @@ category_samples = {
 region_sizes = {
   "CR": 20,#[25,20],
   "VR": 10,#[15,10],
-  "SR": 25,#[30,25],
+  "SR": 30,#25,#[30,25],
 }
 
 ## Config file we want to use
@@ -208,7 +208,7 @@ for sel in selection_methods:
   print "Selection Method: ", sel
   
   ## Get the proper plots
-  hName = "VbbHcc_" + sel + "_MH_v_MZ"
+  hName = "VH_" + sel + "_MH_v_MZ"
   print ">>> | Histogram name (v1): ", hName
   
   plots_2b2c_by_year = {}
@@ -216,7 +216,7 @@ for sel in selection_methods:
     plots_2b2c_by_year[cat] = getHist(hName, category_samples[cat],
       histFiles, lumiScales)
   
-  hName2 = "VbbHcc_" + sel + "_2b1c_MH_v_MZ"
+  hName2 = "VH_" + sel + "_2b1c_MH_v_MZ"
   print ">>> | Histogram name (v2): ", hName2
   
   plots_2b1c_by_year = {}

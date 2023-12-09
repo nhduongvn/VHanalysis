@@ -56,11 +56,11 @@ years = ['16', '17', '18']
 useLogY = False
 
 ## Input & Output file locations
-dirpath = '../condor_results/Oct2023_ZH/NONE/'
-output_directory = '../plot_results/Oct2023_ZH/'
+dirpath = '../condor_results/Nov2023_updated/NONE/'
+output_directory = '../plot_results/Nov2023_updated/'
 
 ## Variables we care about
-selection_methods = [ "MCjet_inRange"]
+selection_methods = [ "MCjet_ideal"]
 variables = [ "MH_v_MZ" ]
 
 ## Normal List of Samples 
@@ -81,7 +81,7 @@ category_samples = {
 region_sizes = {
   "CR": 20,#[25,20],
   "VR": 10,#[15,10],
-  "SR": 25,#[30,25],
+  "SR": 30,#[30,25],
 }
 
 desired_xRange = [20, 200]
@@ -183,7 +183,7 @@ for sel in selection_methods:
   print "Selection Method: ", sel
   
   ## Get the plots for the year desired
-  hName = "VbbHcc_" + sel + "_MH_v_MZ"
+  hName = "VH_" + sel + "_MH_v_MZ"
   print ">>> | Histogram name: ", hName
   
   plots_by_year = {}

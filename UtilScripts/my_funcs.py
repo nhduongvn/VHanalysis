@@ -1013,7 +1013,8 @@ def blind_regions(original_plot, regionsToKeep):
 def makeDataMCPlot(plots, plotNames, canvasName, outputDir = 'Test/', 
   xAxisTitle = 'M [GeV]', xAxisRange = [0,10], uncName = 'MC unc. (stat.)',
   normMC = True, logY = False, normBinWidth = -1, legendOrder = [],
-  minY_forLog = 0.01, lumi = '35.9', blindMass=False, massRegion=[75,140]):
+  minY_forLog = 0.01, lumi = '35.9', blindMass=False, massRegion=[75,140],
+  colors_to_use=colors):
   
   ## Make our canvas & modify it as possible
   c = ROOT.TCanvas(canvasName, canvasName, 600, 600)
@@ -1071,7 +1072,7 @@ def makeDataMCPlot(plots, plotNames, canvasName, outputDir = 'Test/',
   iColor = 0
   for i in range(len(plots)-1,0,-1):
     plots[i].Scale(normScale)
-    plots[i].SetFillColor(colors[iColor])
+    plots[i].SetFillColor(colors_to_use[iColor])
     iColor = iColor + 1
     if len(legendOrder) == 0: l.AddEntry(plots[i], plotNames[i], 'F')
   
@@ -1548,7 +1549,7 @@ def make2DplotWithRegions(plot, canvasName, plotDir, xAxis_title,
   el1 = ROOT.TEllipse(125, 91, SR_x, SR_y)
   el1.SetFillColorAlpha(ROOT.kWhite, 0)
   el1.SetFillStyle(1001)
-  el1.SetLineColor(ROOT.kWhite)
+  el1.SetLineColor(ROOT.kRed)
   el1.SetLineWidth(2)
   el1.Draw("same")
   
@@ -1562,7 +1563,7 @@ def make2DplotWithRegions(plot, canvasName, plotDir, xAxis_title,
   el2 = ROOT.TEllipse(125, 91, VR_x, VR_y)
   el2.SetFillColorAlpha(ROOT.kWhite, 0)
   el2.SetFillStyle(1001)
-  el2.SetLineColor(ROOT.kWhite)
+  el2.SetLineColor(ROOT.kRed)
   el2.SetLineWidth(2)
   el2.Draw("same")
   
@@ -1576,7 +1577,7 @@ def make2DplotWithRegions(plot, canvasName, plotDir, xAxis_title,
   el3 = ROOT.TEllipse(125, 91, CR_x, CR_y)
   el3.SetFillColorAlpha(ROOT.kWhite, 0)
   el3.SetFillStyle(1001)
-  el3.SetLineColor(ROOT.kWhite)
+  el3.SetLineColor(ROOT.kRed)
   el3.SetLineWidth(2)
   el3.Draw("same")
   

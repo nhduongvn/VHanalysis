@@ -57,8 +57,8 @@ years = ['16', '17', '18']
 useLogY = False
 
 ## Input & Output file locations
-dirpath = '../condor_results/Oct2023_ZH/NONE/'
-output_directory = '../plot_results/Oct2023_ZH/'
+dirpath = '../condor_results/Nov2023_updated/NONE/'
+output_directory = '../plot_results/Nov2023_updated/'
 
 ## Variables we care about
 selection_methods = [ "MCjet_inRange"]
@@ -147,7 +147,7 @@ for s in sampleList:
     ## Get other values of interest
     xSecTmps = ['1']*len(names)
     kfactor = ['1']*len(names)
-    if s not in ['JetHT']:
+    if s not in ['JetHT', 'Data']:
       xSecTmps = cfg.get(s, 'xSec_'+y).split(',')
     
     ## Get the proper information for this year
@@ -169,7 +169,7 @@ for s in sampleList:
     
     lumiScales[s][y] = [1]*len(names)
     for iN in range(len(fileNames[s][y])):
-      if s not in ['JetHT']:
+      if s not in ['JetHT', 'Data']:
         print ">>> |", s, y, iN, fileNames[s][y][iN]
         lumiScales[s][y][iN] = ScaleToLumi1(fileNames[s][y][iN],
           xSecs[s][y][iN], lumi)
@@ -179,7 +179,7 @@ print "\n>>> All files retrieved..."
 ## == Main Code ===============================================================
 
 ## Get the plots for the year desired
-hName = "VbbHcc_MCjet_inRange_MH_v_MZ"
+hName = "VH_MCjet_ideal_MH_v_MZ"
 print ">>> | Histogram name: ", hName
 
 plots_by_year = getHist(hName, ["ZH_HToCC_ZToQQ"], histFiles, lumiScales)
