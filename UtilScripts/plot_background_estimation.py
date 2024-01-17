@@ -451,7 +451,7 @@ for sel in selection_methods:
         plots_full[cat] = plots_to_modify[cat].Clone()
       
       plotNames_process = [
-        dataTitle, 'QCD', 'Single top', 't#bar{t}', 'Z + jets', 'W + jets',
+        dataTitle, 'QCD (Data-Driven Estimate)', 'Single top', 't#bar{t}', 'Z + jets', 'W + jets',
         'WW', 'WZ', 'ZZ', 'ZHbb', 'ggZHbb', 'ZHcc', 'ggZHcc'
       ]
       plots_process = []
@@ -467,6 +467,7 @@ for sel in selection_methods:
         logY=logY, lumi=lumiS[y], blindMass=True, massRegion=signal_regions[var])
       
       ## Now, do the version that is just the signal region
+      nRebin = 2
       plots_SR = {}
       plots_process = []
       for cat in categories:
@@ -474,14 +475,32 @@ for sel in selection_methods:
         for i in range(2):
           region = regions_to_blind["SR"][var]
           plots_SR[cat] = blind_region(plots_SR[cat], region[i][0], region[i][1])
-        plots_process.append(plots_SR[cat])
+        plots_process.append(plots_SR[cat].Clone().Rebin(nRebin))
         
       output_path = output_directory + "/20" + y + "/bckg_estimate/MC/SR/"
       logY = useLogY
       makeDataMCPlot(plots_process, plotNames_process,  ## Plots
-        var + "_" + sel + "_" + y, output_path,         ## Folders
+        var + "_" + sel + "_SR_" + y, output_path,         ## Folders
         xA_title, xA_range, 'MC unc. (stat.)', False,   ## Axes
         logY=logY, lumi=lumiS[y], blindMass=True, massRegion=signal_regions[var])
+      
+      
+      ## Now, do the version that is just the validation region
+      plots_VR = {}
+      plots_process = []
+      for cat in categories:
+        plots_VR[cat] = plots_full[cat].Clone()
+        for i in range(3):
+          region = regions_to_blind["VR"][var]
+          plots_VR[cat] = blind_region(plots_VR[cat], region[i][0], region[i][1])
+        plots_process.append(plots_VR[cat].Clone().Rebin(nRebin))
+      
+      output_path = output_directory + "/20" + y + "/bckg_estimate/MC/VR/"
+      logY = useLogY
+      makeDataMCPlot(plots_process, plotNames_process,  ## Plots
+        var + "_" + sel + "_VR_" + y, output_path,         ## Folders
+        xA_title, xA_range, 'MC unc. (stat.)', False,   ## Axes
+        logY=logY, lumi=lumiS[y], blindMass=False)
       
 
 ## 4. Sit back and relax.

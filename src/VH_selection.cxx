@@ -762,6 +762,9 @@ void VH_selection::Process(Reader *r)
   year = 18;
 #endif
 
+
+#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
+
   float trigger_SF = 1.0;
   // == ACTUAL CODE WILL GO HERE LATER ==
   h_event_weights->Fill("trigger", trigger_SF);
@@ -776,6 +779,9 @@ void VH_selection::Process(Reader *r)
   h_event_weights->Fill("ctag", ctag_calib);
 
   event_weight *= trigger_SF * btag_calib * ctag_calib;
+
+#endif
+
   h_event_weights->Fill("event", event_weight);
 
   // ================================================

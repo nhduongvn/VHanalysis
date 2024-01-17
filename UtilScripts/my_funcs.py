@@ -15,6 +15,26 @@ fill_colors = [46, 16, ROOT.kAzure + 1] #38
 years = ["16", "17", "18"]
 
 ###############################################################################
+## Distance from a Given Line
+###############################################################################
+
+## This assumes that the line is given in the form:
+## a*x + b*y + c = 0
+## and that the point we're interested in is:
+## (x0, y0)
+
+def distance_from_line(a, b, c, x0, y0):
+  numerator = abs(a * x0 + b * y0 + c)
+  denominator = sqrt(pow(a,2) + pow(b,2))
+  return numerator / denominator
+
+
+## Determine if we're in a distance from a given line:
+def within_line_range(a, b, c, x0, y0, r):
+  distance = distance_from_line(a, b, c, x0, y0)
+  return distance < r
+
+###############################################################################
 ## Is Point within Ellipse
 ###############################################################################
 
@@ -1014,7 +1034,7 @@ def makeDataMCPlot(plots, plotNames, canvasName, outputDir = 'Test/',
   xAxisTitle = 'M [GeV]', xAxisRange = [0,10], uncName = 'MC unc. (stat.)',
   normMC = True, logY = False, normBinWidth = -1, legendOrder = [],
   minY_forLog = 0.01, lumi = '35.9', blindMass=False, massRegion=[75,140],
-  colors_to_use=colors):
+  colors_to_use=colors, overlays=[]):
   
   ## Make our canvas & modify it as possible
   c = ROOT.TCanvas(canvasName, canvasName, 600, 600)
@@ -1079,6 +1099,11 @@ def makeDataMCPlot(plots, plotNames, canvasName, outputDir = 'Test/',
   for i in legendOrder:
     l.AddEntry(plots[i], plotNames[i], 'F')
   
+  for i in range(len(overlays)):
+    overlays[i]["plot"].SetLineColor(ROOT.kCyan-3)
+    overlays[i]["plot"].SetLineWidth(4)
+    l.AddEntry(overlays[i]["plot"], overlays[i]["name"], 'L')
+  
   ## Create the stack
   for i in range(1, len(plots)):
     allStack.Add(plots[i])
@@ -1107,11 +1132,12 @@ def makeDataMCPlot(plots, plotNames, canvasName, outputDir = 'Test/',
   binW = dataPlot.GetBinWidth(1)
   
   formatNum = ''
+  extra_bit = " GeV" if "mass" in canvasName else ""
   aNum = floor(binW*pow(10,3))-floor(binW*pow(10,2))*10
   if aNum >= 1: formatNum = '0.3f'
-  allStack.GetYaxis().SetTitle('Events/' + format(binW,formatNum))
+  allStack.GetYaxis().SetTitle('Events/' + format(binW,formatNum) + extra_bit)
   if normBinWidth >= 0:
-    allStack.GetYaxis().SetTitle('Events/' + str(normBinWidth))
+    allStack.GetYaxis().SetTitle('Events/' + str(normBinWidth) + extra_bit)
   
   allStack.GetYaxis().SetTitleSize(0.057)
   allStack.GetYaxis().SetTitleOffset(1.2)
@@ -1123,6 +1149,10 @@ def makeDataMCPlot(plots, plotNames, canvasName, outputDir = 'Test/',
     maxX = pow(10, 1./scaleTmp*log10(maxScaleFromPlots))
   allStack.SetMaximum(maxX)
   allStack.SetMinimum(minY_forLog)
+  
+  for i in range(len(overlays)):
+    overlay_plot = overlays[i]["plot"]
+    overlay_plot.Draw("same hist")
   
   dataPlot.Draw("same E")
   dataPlot.SetMarkerStyle(20)
@@ -1625,7 +1655,7 @@ def make2DplotWithRegions(plot, canvasName, plotDir, xAxis_title,
   print "Total Events: ", total
   print "============================="
   for key in percentages:
-    print key, ": events = ", event_multiplicity[key], " | ", percentages[key], "%"
+    print key, ": events = ", event_multiplicity[key], " | ", '{:,.3f}'.format(percentages[key]), "%"
   
   ## Check to make sure the directory exists &
   ## then print the proper files to the output
@@ -1698,5 +1728,76 @@ def makeGraphOverlays(canvasName, plotDir, x_data, y_data_series,
   c.Print(plotDir + '/' + canvasName + '.png')
   c.Print(plotDir + '/' + canvasName + '.pdf')
   c.Print(plotDir + '/' + canvasName + '.C')
+
+###############################################################################
+## Make 2D Plots with overlayed shapes
+###############################################################################
+def make2DplotWithShapes(plot, canvasName, plotDir, xAxis_title,
+  yAxis_title, debug=False, xRange = [], yRange = [], shapes = []):
   
+  ## Make our canvas & modify it as possible
+  c = ROOT.TCanvas(canvasName, canvasName, 600, 600)
+  c.SetFillStyle(4000)
+  c.SetFrameFillStyle(1000)
+  c.SetFrameFillColor(0)
   
+  ## Draw the 2D plot in the center pad
+  ROOT.gStyle.SetPalette(1)
+  plot.GetXaxis().SetTitle(xAxis_title)
+  if len(xRange) >= 2:
+    plot.GetXaxis().SetRange(xRange[0], xRange[1])
+  plot.GetYaxis().SetTitle(yAxis_title)
+  if len(yRange) >= 2:
+    plot.GetYaxis().SetRange(yRange[0], yRange[1])
+  plot.SetStats(0)
+  plot.Draw("COL")
+  
+  ## Draw each region based on the options given in the 'shapes' dictionary
+  for i in len(shapes):
+    shape_dict = shapes[i]
+    if not "shape" in shape_dict:
+      print "ERROR: 'shape' not given for shape #", i 
+      print ">>> shape #", i, " skipped..."
+      continue
+    
+    shape_name = shape_dict["shape"]
+    if not shape_name in ["circle", "line"]:
+      print "ERROR: ", shape_name, " not supported as a shape."
+      print ">>> shape #", i, " skipped..."
+      continue
+    
+    if shape_name == "circle":
+    
+      ## Get the parameters we need for a circle.
+      if not "center_x" in shape_dict:
+        print "ERROR: 'center_x' not found for this shape."
+        print ">>> shape #", i, "skipped..."
+        continue
+      center_x = shape_dict["center_x"]
+      
+      if not "center_y" in shape_dict:
+        print "ERROR: 'center_y' not found for this shape."
+        print ">>> shape #", i, "skipped..."
+        continue
+      center_y = shape_dict["center_y"]
+      
+      if not "radius" in shape_dict:
+        print "ERROR: 'radius' not found for this shape."
+        print ">>> shape #", i, "skipped..."
+        continue
+      radius = shape_dict["radius"]
+      
+      ## Build the shape that we want.
+      el = ROOT.TEllipse(center_x, center_y, radius, radius)
+      el.SetFillColorAlpha(ROOT.kWhite, 0)
+      el.SetFillStyle(1001)
+      el.SetLineColor(ROOT.kRed)
+      el.SetLineWidth(2)
+      el.Draw("same")
+      
+    elif shape_name == "line":
+      
+      li = ROOT.TLine(x0, y0, x1, y1)
+      li.Draw("same")
+    
+    

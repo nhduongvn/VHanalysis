@@ -4,7 +4,7 @@
 void H_mass_DHZfirst_SR_16()
 {
 //=========Macro generated from canvas: H_mass_DHZfirst_SR_16/H_mass_DHZfirst_SR_16
-//=========  (Fri Dec  8 12:19:25 2023) by ROOT version 6.28/04
+//=========  (Sat Dec  9 13:50:14 2023) by ROOT version 6.28/10
    TCanvas *H_mass_DHZfirst_SR_16 = new TCanvas("H_mass_DHZfirst_SR_16", "H_mass_DHZfirst_SR_16",0,0,600,600);
    H_mass_DHZfirst_SR_16->SetHighLightColor(2);
    H_mass_DHZfirst_SR_16->Range(0,0,1,1);
@@ -35,31 +35,31 @@ void H_mass_DHZfirst_SR_16()
    st->SetMinimum(0.01);
    st->SetMaximum(5928.873);
    
-   TH1F *st_stack_39 = new TH1F("st_stack_39","",1000,0,2000);
-   st_stack_39->SetMinimum(0.01);
-   st_stack_39->SetMaximum(5928.873);
-   st_stack_39->SetDirectory(nullptr);
-   st_stack_39->SetStats(0);
+   TH1F *st_stack_45 = new TH1F("st_stack_45","",1000,0,2000);
+   st_stack_45->SetMinimum(0.01);
+   st_stack_45->SetMaximum(5928.873);
+   st_stack_45->SetDirectory(nullptr);
+   st_stack_45->SetStats(0);
 
    Int_t ci;      // for color index setting
    TColor *color; // for color definition with alpha
    ci = TColor::GetColor("#000099");
-   st_stack_39->SetLineColor(ci);
-   st_stack_39->SetLineWidth(0);
-   st_stack_39->GetXaxis()->SetRange(1,150);
-   st_stack_39->GetXaxis()->SetLabelFont(42);
-   st_stack_39->GetXaxis()->SetTitleOffset(1);
-   st_stack_39->GetXaxis()->SetTitleFont(42);
-   st_stack_39->GetYaxis()->SetTitle("Events/2.0");
-   st_stack_39->GetYaxis()->SetLabelFont(42);
-   st_stack_39->GetYaxis()->SetLabelSize(0.05);
-   st_stack_39->GetYaxis()->SetTitleSize(0.057);
-   st_stack_39->GetYaxis()->SetTitleOffset(1.2);
-   st_stack_39->GetYaxis()->SetTitleFont(42);
-   st_stack_39->GetZaxis()->SetLabelFont(42);
-   st_stack_39->GetZaxis()->SetTitleOffset(1);
-   st_stack_39->GetZaxis()->SetTitleFont(42);
-   st->SetHistogram(st_stack_39);
+   st_stack_45->SetLineColor(ci);
+   st_stack_45->SetLineWidth(0);
+   st_stack_45->GetXaxis()->SetRange(1,150);
+   st_stack_45->GetXaxis()->SetLabelFont(42);
+   st_stack_45->GetXaxis()->SetTitleOffset(1);
+   st_stack_45->GetXaxis()->SetTitleFont(42);
+   st_stack_45->GetYaxis()->SetTitle("Events/2.0 GeV");
+   st_stack_45->GetYaxis()->SetLabelFont(42);
+   st_stack_45->GetYaxis()->SetLabelSize(0.05);
+   st_stack_45->GetYaxis()->SetTitleSize(0.057);
+   st_stack_45->GetYaxis()->SetTitleOffset(1.2);
+   st_stack_45->GetYaxis()->SetTitleFont(42);
+   st_stack_45->GetZaxis()->SetLabelFont(42);
+   st_stack_45->GetZaxis()->SetTitleOffset(1);
+   st_stack_45->GetZaxis()->SetTitleFont(42);
+   st->SetHistogram(st_stack_45);
    
    
    TH1D *VH_DHZfirst_2b1c_H_mass_stack_1 = new TH1D("VH_DHZfirst_2b1c_H_mass_stack_1","",1000,0,2000);
@@ -1105,28 +1105,28 @@ void H_mass_DHZfirst_SR_16()
    st->Add(VH_DHZfirst_2b1c_H_mass_stack_1,"");
    st->Draw("hist");
    
-   TH1D *VH_DHZfirst_H_mass__77 = new TH1D("VH_DHZfirst_H_mass__77","",1000,0,2000);
-   VH_DHZfirst_H_mass__77->SetBinContent(1000,2);
-   VH_DHZfirst_H_mass__77->SetBinContent(1001,2502);
-   VH_DHZfirst_H_mass__77->SetEntries(373867);
+   TH1D *VH_DHZfirst_H_mass__89 = new TH1D("VH_DHZfirst_H_mass__89","",1000,0,2000);
+   VH_DHZfirst_H_mass__89->SetBinContent(1000,2);
+   VH_DHZfirst_H_mass__89->SetBinContent(1001,2502);
+   VH_DHZfirst_H_mass__89->SetEntries(373867);
 
    ci = TColor::GetColor("#000099");
-   VH_DHZfirst_H_mass__77->SetLineColor(ci);
-   VH_DHZfirst_H_mass__77->SetLineWidth(2);
-   VH_DHZfirst_H_mass__77->SetMarkerStyle(20);
-   VH_DHZfirst_H_mass__77->SetMarkerSize(1.2);
-   VH_DHZfirst_H_mass__77->GetXaxis()->SetRange(1,2000);
-   VH_DHZfirst_H_mass__77->GetXaxis()->SetLabelFont(42);
-   VH_DHZfirst_H_mass__77->GetXaxis()->SetTitleOffset(1);
-   VH_DHZfirst_H_mass__77->GetXaxis()->SetTitleFont(42);
-   VH_DHZfirst_H_mass__77->GetYaxis()->SetLabelFont(42);
-   VH_DHZfirst_H_mass__77->GetYaxis()->SetTitleFont(42);
-   VH_DHZfirst_H_mass__77->GetZaxis()->SetLabelFont(42);
-   VH_DHZfirst_H_mass__77->GetZaxis()->SetTitleOffset(1);
-   VH_DHZfirst_H_mass__77->GetZaxis()->SetTitleFont(42);
-   VH_DHZfirst_H_mass__77->Draw("same E");
+   VH_DHZfirst_H_mass__89->SetLineColor(ci);
+   VH_DHZfirst_H_mass__89->SetLineWidth(2);
+   VH_DHZfirst_H_mass__89->SetMarkerStyle(20);
+   VH_DHZfirst_H_mass__89->SetMarkerSize(1.2);
+   VH_DHZfirst_H_mass__89->GetXaxis()->SetRange(1,2000);
+   VH_DHZfirst_H_mass__89->GetXaxis()->SetLabelFont(42);
+   VH_DHZfirst_H_mass__89->GetXaxis()->SetTitleOffset(1);
+   VH_DHZfirst_H_mass__89->GetXaxis()->SetTitleFont(42);
+   VH_DHZfirst_H_mass__89->GetYaxis()->SetLabelFont(42);
+   VH_DHZfirst_H_mass__89->GetYaxis()->SetTitleFont(42);
+   VH_DHZfirst_H_mass__89->GetZaxis()->SetLabelFont(42);
+   VH_DHZfirst_H_mass__89->GetZaxis()->SetTitleOffset(1);
+   VH_DHZfirst_H_mass__89->GetZaxis()->SetTitleFont(42);
+   VH_DHZfirst_H_mass__89->Draw("same E");
    
-   Double_t Graph_from_VH_DHZfirst_2b1c_H_mass_fx1077[1000] = { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33,
+   Double_t Graph_from_VH_DHZfirst_2b1c_H_mass_fx1089[1000] = { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33,
    35, 37, 39, 41, 43, 45, 47, 49, 51, 53, 55, 57, 59, 61, 63, 65,
    67, 69, 71, 73, 75, 77, 79, 81, 83, 85, 87, 89, 91, 93, 95, 97,
    99, 101, 103, 105, 107, 109, 111, 113, 115, 117, 119, 121, 123, 125, 127, 129,
@@ -1189,7 +1189,7 @@ void H_mass_DHZfirst_SR_16()
    1923, 1925, 1927, 1929, 1931, 1933, 1935, 1937, 1939, 1941, 1943, 1945, 1947, 1949, 1951, 1953,
    1955, 1957, 1959, 1961, 1963, 1965, 1967, 1969, 1971, 1973, 1975, 1977, 1979, 1981, 1983, 1985,
    1987, 1989, 1991, 1993, 1995, 1997, 1999 };
-   Double_t Graph_from_VH_DHZfirst_2b1c_H_mass_fy1077[1000] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+   Double_t Graph_from_VH_DHZfirst_2b1c_H_mass_fy1089[1000] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1328.524, 2653.267,
    2667.993, 2635.357, 2571.876, 2572.871, 2572.274, 2535.658, 2495.858, 2464.217, 2447.501, 2414.467, 2392.577, 2367.702, 2354.369, 2339.046, 2326.907, 2285.913,
@@ -1252,7 +1252,7 @@ void H_mass_DHZfirst_SR_16()
    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
    0, 0, 0, 0, 0, 0, 3.781 };
-   Double_t Graph_from_VH_DHZfirst_2b1c_H_mass_fex1077[1000] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+   Double_t Graph_from_VH_DHZfirst_2b1c_H_mass_fex1089[1000] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
@@ -1315,7 +1315,7 @@ void H_mass_DHZfirst_SR_16()
    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
    1, 1, 1, 1, 1, 1, 1 };
-   Double_t Graph_from_VH_DHZfirst_2b1c_H_mass_fey1077[1000] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.562857, 1.462345, 2.835314, 4.414034, 6.165789, 8.080968,
+   Double_t Graph_from_VH_DHZfirst_2b1c_H_mass_fey1089[1000] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.562857, 1.462345, 2.835314, 4.414034, 6.165789, 8.080968,
    10.21512, 12.18784, 14.31002, 15.96347, 17.68751, 19.35524, 20.57414, 21.44219, 22.18024, 22.64494, 23.13198, 23.45922, 23.66092, 23.7753, 23.86424, 23.64921,
    23.91811, 23.93797, 24.10694, 23.9826, 24.12583, 23.77363, 23.91811, 23.75113, 23.68016, 23.67515, 23.60143, 23.38991, 23.36026, 23.35348, 23.05396, 22.97825,
    23.04193, 22.90057, 22.62307, 22.62745, 22.62482, 22.46321, 22.28622, 22.14451, 22.06927, 21.91983, 21.82024, 21.70651, 21.64531, 21.57476, 21.5187, 21.32831,
@@ -1378,7 +1378,7 @@ void H_mass_DHZfirst_SR_16()
    1.349684, 1.48918, 1.334933, 1.421144, 1.364275, 1.515539, 1.274222, 1.242755, 1.448742, 1.407142, 1.604389, 1.407142, 1.640996, 1.421144, 1.393, 1.226718,
    1.448742, 1.462345, 1.55424, 1.334933, 1.258587, 1.502417, 1.378712, 1.364275, 1.435009, 1.48918, 1.107985, 1.48918, 1.364275, 1.435009, 1.448742, 1.462345,
    1.289667, 1.364275, 1.349684, 1.364275, 1.364275, 1.160359, 1.226718 };
-   TGraphErrors *gre = new TGraphErrors(1000,Graph_from_VH_DHZfirst_2b1c_H_mass_fx1077,Graph_from_VH_DHZfirst_2b1c_H_mass_fy1077,Graph_from_VH_DHZfirst_2b1c_H_mass_fex1077,Graph_from_VH_DHZfirst_2b1c_H_mass_fey1077);
+   TGraphErrors *gre = new TGraphErrors(1000,Graph_from_VH_DHZfirst_2b1c_H_mass_fx1089,Graph_from_VH_DHZfirst_2b1c_H_mass_fy1089,Graph_from_VH_DHZfirst_2b1c_H_mass_fex1089,Graph_from_VH_DHZfirst_2b1c_H_mass_fey1089);
    gre->SetName("Graph_from_VH_DHZfirst_2b1c_H_mass");
    gre->SetTitle("");
 
@@ -1389,23 +1389,23 @@ void H_mass_DHZfirst_SR_16()
    ci = TColor::GetColor("#000099");
    gre->SetLineColor(ci);
    
-   TH1F *Graph_Graph_from_VH_DHZfirst_2b1c_H_mass1077 = new TH1F("Graph_Graph_from_VH_DHZfirst_2b1c_H_mass1077","",1000,0,2200);
-   Graph_Graph_from_VH_DHZfirst_2b1c_H_mass1077->SetMinimum(-295.6419);
-   Graph_Graph_from_VH_DHZfirst_2b1c_H_mass1077->SetMaximum(2962.551);
-   Graph_Graph_from_VH_DHZfirst_2b1c_H_mass1077->SetDirectory(nullptr);
-   Graph_Graph_from_VH_DHZfirst_2b1c_H_mass1077->SetStats(0);
+   TH1F *Graph_Graph_from_VH_DHZfirst_2b1c_H_mass1089 = new TH1F("Graph_Graph_from_VH_DHZfirst_2b1c_H_mass1089","",1000,0,2200);
+   Graph_Graph_from_VH_DHZfirst_2b1c_H_mass1089->SetMinimum(-295.6419);
+   Graph_Graph_from_VH_DHZfirst_2b1c_H_mass1089->SetMaximum(2962.551);
+   Graph_Graph_from_VH_DHZfirst_2b1c_H_mass1089->SetDirectory(nullptr);
+   Graph_Graph_from_VH_DHZfirst_2b1c_H_mass1089->SetStats(0);
 
    ci = TColor::GetColor("#000099");
-   Graph_Graph_from_VH_DHZfirst_2b1c_H_mass1077->SetLineColor(ci);
-   Graph_Graph_from_VH_DHZfirst_2b1c_H_mass1077->GetXaxis()->SetLabelFont(42);
-   Graph_Graph_from_VH_DHZfirst_2b1c_H_mass1077->GetXaxis()->SetTitleOffset(1);
-   Graph_Graph_from_VH_DHZfirst_2b1c_H_mass1077->GetXaxis()->SetTitleFont(42);
-   Graph_Graph_from_VH_DHZfirst_2b1c_H_mass1077->GetYaxis()->SetLabelFont(42);
-   Graph_Graph_from_VH_DHZfirst_2b1c_H_mass1077->GetYaxis()->SetTitleFont(42);
-   Graph_Graph_from_VH_DHZfirst_2b1c_H_mass1077->GetZaxis()->SetLabelFont(42);
-   Graph_Graph_from_VH_DHZfirst_2b1c_H_mass1077->GetZaxis()->SetTitleOffset(1);
-   Graph_Graph_from_VH_DHZfirst_2b1c_H_mass1077->GetZaxis()->SetTitleFont(42);
-   gre->SetHistogram(Graph_Graph_from_VH_DHZfirst_2b1c_H_mass1077);
+   Graph_Graph_from_VH_DHZfirst_2b1c_H_mass1089->SetLineColor(ci);
+   Graph_Graph_from_VH_DHZfirst_2b1c_H_mass1089->GetXaxis()->SetLabelFont(42);
+   Graph_Graph_from_VH_DHZfirst_2b1c_H_mass1089->GetXaxis()->SetTitleOffset(1);
+   Graph_Graph_from_VH_DHZfirst_2b1c_H_mass1089->GetXaxis()->SetTitleFont(42);
+   Graph_Graph_from_VH_DHZfirst_2b1c_H_mass1089->GetYaxis()->SetLabelFont(42);
+   Graph_Graph_from_VH_DHZfirst_2b1c_H_mass1089->GetYaxis()->SetTitleFont(42);
+   Graph_Graph_from_VH_DHZfirst_2b1c_H_mass1089->GetZaxis()->SetLabelFont(42);
+   Graph_Graph_from_VH_DHZfirst_2b1c_H_mass1089->GetZaxis()->SetTitleOffset(1);
+   Graph_Graph_from_VH_DHZfirst_2b1c_H_mass1089->GetZaxis()->SetTitleFont(42);
+   gre->SetHistogram(Graph_Graph_from_VH_DHZfirst_2b1c_H_mass1089);
    
    gre->Draw("2");
    
@@ -1479,41 +1479,41 @@ void H_mass_DHZfirst_SR_16()
    bottomPad->SetFrameBorderMode(0);
    bottomPad->SetFrameBorderMode(0);
    
-   TH1D *data_mc_ratio__78 = new TH1D("data_mc_ratio__78","",1000,0,2000);
-   data_mc_ratio__78->SetBinContent(1000,0.5289606);
-   data_mc_ratio__78->SetBinContent(1001,1.066491);
-   data_mc_ratio__78->SetBinError(1000,0.3740316);
-   data_mc_ratio__78->SetBinError(1001,0.02347505);
-   data_mc_ratio__78->SetMinimum(0.4);
-   data_mc_ratio__78->SetMaximum(1.6);
-   data_mc_ratio__78->SetEntries(1.652174);
-   data_mc_ratio__78->SetStats(0);
+   TH1D *data_mc_ratio__90 = new TH1D("data_mc_ratio__90","",1000,0,2000);
+   data_mc_ratio__90->SetBinContent(1000,0.5289606);
+   data_mc_ratio__90->SetBinContent(1001,1.066491);
+   data_mc_ratio__90->SetBinError(1000,0.3740316);
+   data_mc_ratio__90->SetBinError(1001,0.02347505);
+   data_mc_ratio__90->SetMinimum(0.4);
+   data_mc_ratio__90->SetMaximum(1.6);
+   data_mc_ratio__90->SetEntries(1.652174);
+   data_mc_ratio__90->SetStats(0);
 
    ci = TColor::GetColor("#000099");
-   data_mc_ratio__78->SetLineColor(ci);
-   data_mc_ratio__78->SetLineWidth(2);
-   data_mc_ratio__78->SetMarkerStyle(20);
-   data_mc_ratio__78->SetMarkerSize(1.2);
-   data_mc_ratio__78->GetXaxis()->SetTitle("M_{H} [GeV]");
-   data_mc_ratio__78->GetXaxis()->SetRange(1,150);
-   data_mc_ratio__78->GetXaxis()->SetLabelFont(42);
-   data_mc_ratio__78->GetXaxis()->SetLabelSize(0.12);
-   data_mc_ratio__78->GetXaxis()->SetTitleSize(0.12);
-   data_mc_ratio__78->GetXaxis()->SetTitleOffset(1.1);
-   data_mc_ratio__78->GetXaxis()->SetTitleFont(42);
-   data_mc_ratio__78->GetYaxis()->SetTitle("Data/MC");
-   data_mc_ratio__78->GetYaxis()->SetNdivisions(505);
-   data_mc_ratio__78->GetYaxis()->SetLabelFont(42);
-   data_mc_ratio__78->GetYaxis()->SetLabelSize(0.12);
-   data_mc_ratio__78->GetYaxis()->SetTitleSize(0.12);
-   data_mc_ratio__78->GetYaxis()->SetTitleOffset(0.5);
-   data_mc_ratio__78->GetYaxis()->SetTitleFont(42);
-   data_mc_ratio__78->GetZaxis()->SetLabelFont(42);
-   data_mc_ratio__78->GetZaxis()->SetTitleOffset(1);
-   data_mc_ratio__78->GetZaxis()->SetTitleFont(42);
-   data_mc_ratio__78->Draw("E1");
+   data_mc_ratio__90->SetLineColor(ci);
+   data_mc_ratio__90->SetLineWidth(2);
+   data_mc_ratio__90->SetMarkerStyle(20);
+   data_mc_ratio__90->SetMarkerSize(1.2);
+   data_mc_ratio__90->GetXaxis()->SetTitle("M_{H} [GeV]");
+   data_mc_ratio__90->GetXaxis()->SetRange(1,150);
+   data_mc_ratio__90->GetXaxis()->SetLabelFont(42);
+   data_mc_ratio__90->GetXaxis()->SetLabelSize(0.12);
+   data_mc_ratio__90->GetXaxis()->SetTitleSize(0.12);
+   data_mc_ratio__90->GetXaxis()->SetTitleOffset(1.1);
+   data_mc_ratio__90->GetXaxis()->SetTitleFont(42);
+   data_mc_ratio__90->GetYaxis()->SetTitle("Data/MC");
+   data_mc_ratio__90->GetYaxis()->SetNdivisions(505);
+   data_mc_ratio__90->GetYaxis()->SetLabelFont(42);
+   data_mc_ratio__90->GetYaxis()->SetLabelSize(0.12);
+   data_mc_ratio__90->GetYaxis()->SetTitleSize(0.12);
+   data_mc_ratio__90->GetYaxis()->SetTitleOffset(0.5);
+   data_mc_ratio__90->GetYaxis()->SetTitleFont(42);
+   data_mc_ratio__90->GetZaxis()->SetLabelFont(42);
+   data_mc_ratio__90->GetZaxis()->SetTitleOffset(1);
+   data_mc_ratio__90->GetZaxis()->SetTitleFont(42);
+   data_mc_ratio__90->Draw("E1");
    
-   Double_t Graph_from_mc_statistical_error_fx1078[1000] = { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33,
+   Double_t Graph_from_mc_statistical_error_fx1090[1000] = { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33,
    35, 37, 39, 41, 43, 45, 47, 49, 51, 53, 55, 57, 59, 61, 63, 65,
    67, 69, 71, 73, 75, 77, 79, 81, 83, 85, 87, 89, 91, 93, 95, 97,
    99, 101, 103, 105, 107, 109, 111, 113, 115, 117, 119, 121, 123, 125, 127, 129,
@@ -1576,7 +1576,7 @@ void H_mass_DHZfirst_SR_16()
    1923, 1925, 1927, 1929, 1931, 1933, 1935, 1937, 1939, 1941, 1943, 1945, 1947, 1949, 1951, 1953,
    1955, 1957, 1959, 1961, 1963, 1965, 1967, 1969, 1971, 1973, 1975, 1977, 1979, 1981, 1983, 1985,
    1987, 1989, 1991, 1993, 1995, 1997, 1999 };
-   Double_t Graph_from_mc_statistical_error_fy1078[1000] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+   Double_t Graph_from_mc_statistical_error_fy1090[1000] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
@@ -1639,7 +1639,7 @@ void H_mass_DHZfirst_SR_16()
    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
    1, 1, 1, 1, 1, 1, 1 };
-   Double_t Graph_from_mc_statistical_error_fex1078[1000] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+   Double_t Graph_from_mc_statistical_error_fex1090[1000] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
@@ -1702,7 +1702,7 @@ void H_mass_DHZfirst_SR_16()
    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
    1, 1, 1, 1, 1, 1, 1 };
-   Double_t Graph_from_mc_statistical_error_fey1078[1000] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+   Double_t Graph_from_mc_statistical_error_fey1090[1000] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.01735306, 0.008660362,
    0.008636429, 0.008689741, 0.00879633, 0.008794629, 0.00879565, 0.008858929, 0.008929283, 0.008986427, 0.009017063, 0.009078538, 0.009119974, 0.009167755, 0.009193678, 0.009223742, 0.00924777, 0.009330323,
@@ -1765,7 +1765,7 @@ void H_mass_DHZfirst_SR_16()
    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
    0, 0, 0, 0, 0, 0, 0.3244428 };
-   gre = new TGraphErrors(1000,Graph_from_mc_statistical_error_fx1078,Graph_from_mc_statistical_error_fy1078,Graph_from_mc_statistical_error_fex1078,Graph_from_mc_statistical_error_fey1078);
+   gre = new TGraphErrors(1000,Graph_from_mc_statistical_error_fx1090,Graph_from_mc_statistical_error_fy1090,Graph_from_mc_statistical_error_fex1090,Graph_from_mc_statistical_error_fey1090);
    gre->SetName("Graph_from_mc_statistical_error");
    gre->SetTitle("");
 
@@ -1776,23 +1776,23 @@ void H_mass_DHZfirst_SR_16()
    ci = TColor::GetColor("#000099");
    gre->SetLineColor(ci);
    
-   TH1F *Graph_Graph_from_mc_statistical_error1078 = new TH1F("Graph_Graph_from_mc_statistical_error1078","",1000,0,2200);
-   Graph_Graph_from_mc_statistical_error1078->SetMinimum(0.6106686);
-   Graph_Graph_from_mc_statistical_error1078->SetMaximum(1.389331);
-   Graph_Graph_from_mc_statistical_error1078->SetDirectory(nullptr);
-   Graph_Graph_from_mc_statistical_error1078->SetStats(0);
+   TH1F *Graph_Graph_from_mc_statistical_error1090 = new TH1F("Graph_Graph_from_mc_statistical_error1090","",1000,0,2200);
+   Graph_Graph_from_mc_statistical_error1090->SetMinimum(0.6106686);
+   Graph_Graph_from_mc_statistical_error1090->SetMaximum(1.389331);
+   Graph_Graph_from_mc_statistical_error1090->SetDirectory(nullptr);
+   Graph_Graph_from_mc_statistical_error1090->SetStats(0);
 
    ci = TColor::GetColor("#000099");
-   Graph_Graph_from_mc_statistical_error1078->SetLineColor(ci);
-   Graph_Graph_from_mc_statistical_error1078->GetXaxis()->SetLabelFont(42);
-   Graph_Graph_from_mc_statistical_error1078->GetXaxis()->SetTitleOffset(1);
-   Graph_Graph_from_mc_statistical_error1078->GetXaxis()->SetTitleFont(42);
-   Graph_Graph_from_mc_statistical_error1078->GetYaxis()->SetLabelFont(42);
-   Graph_Graph_from_mc_statistical_error1078->GetYaxis()->SetTitleFont(42);
-   Graph_Graph_from_mc_statistical_error1078->GetZaxis()->SetLabelFont(42);
-   Graph_Graph_from_mc_statistical_error1078->GetZaxis()->SetTitleOffset(1);
-   Graph_Graph_from_mc_statistical_error1078->GetZaxis()->SetTitleFont(42);
-   gre->SetHistogram(Graph_Graph_from_mc_statistical_error1078);
+   Graph_Graph_from_mc_statistical_error1090->SetLineColor(ci);
+   Graph_Graph_from_mc_statistical_error1090->GetXaxis()->SetLabelFont(42);
+   Graph_Graph_from_mc_statistical_error1090->GetXaxis()->SetTitleOffset(1);
+   Graph_Graph_from_mc_statistical_error1090->GetXaxis()->SetTitleFont(42);
+   Graph_Graph_from_mc_statistical_error1090->GetYaxis()->SetLabelFont(42);
+   Graph_Graph_from_mc_statistical_error1090->GetYaxis()->SetTitleFont(42);
+   Graph_Graph_from_mc_statistical_error1090->GetZaxis()->SetLabelFont(42);
+   Graph_Graph_from_mc_statistical_error1090->GetZaxis()->SetTitleOffset(1);
+   Graph_Graph_from_mc_statistical_error1090->GetZaxis()->SetTitleFont(42);
+   gre->SetHistogram(Graph_Graph_from_mc_statistical_error1090);
    
    gre->Draw("e2");
    TLine *line = new TLine(0,1,300,1);

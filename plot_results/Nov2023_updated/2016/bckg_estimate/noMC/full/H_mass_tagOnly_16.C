@@ -4,7 +4,7 @@
 void H_mass_tagOnly_16()
 {
 //=========Macro generated from canvas: H_mass_tagOnly_16/H_mass_tagOnly_16
-//=========  (Fri Dec  8 12:19:05 2023) by ROOT version 6.28/04
+//=========  (Sat Dec  9 13:50:11 2023) by ROOT version 6.28/10
    TCanvas *H_mass_tagOnly_16 = new TCanvas("H_mass_tagOnly_16", "H_mass_tagOnly_16",0,0,600,600);
    H_mass_tagOnly_16->SetHighLightColor(2);
    H_mass_tagOnly_16->Range(0,0,1,1);
@@ -50,7 +50,7 @@ void H_mass_tagOnly_16()
    st_stack_1->GetXaxis()->SetLabelFont(42);
    st_stack_1->GetXaxis()->SetTitleOffset(1);
    st_stack_1->GetXaxis()->SetTitleFont(42);
-   st_stack_1->GetYaxis()->SetTitle("Events/4.0");
+   st_stack_1->GetYaxis()->SetTitle("Events/4.0 GeV");
    st_stack_1->GetYaxis()->SetLabelFont(42);
    st_stack_1->GetYaxis()->SetLabelSize(0.05);
    st_stack_1->GetYaxis()->SetTitleSize(0.057);

@@ -67,6 +67,7 @@ output_directory = '../plot_results/Nov2023_updated/'
 selection_methods = [
   "tagOnly", "DHZfirst", "tagFirst"
 ]
+selection_methods = [ "tagFirst" ]
 
 variables = [ "MH_v_MZ" ]
 

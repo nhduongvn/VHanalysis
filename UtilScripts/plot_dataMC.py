@@ -61,10 +61,10 @@ print "Pulling settings and preferences..."
 ## Edit / change the following options as needed:
 years = ['16', '17', '18']
 #years = ['17']
-regions = ['tagOnly', 'algoFirst', 'tagFirst']
+regions = ['tagOnly', 'DHZfirst', 'tagFirst']
 useLogY = False
-outputDir = '../plot_results/Oct2023_updated/'
-dirpath = '../condor_results/Oct2023_updated/NONE/'
+outputDir = '../plot_results/Nov2023_updated/'
+dirpath = '../condor_results/Nov2023_updated/NONE/'
 plotCat = 'VbbHcc_plot'
 
 #regions = ['']
@@ -169,14 +169,14 @@ for r in regions:
   nums[r] = {}
   plotNames = cfg.get('Plots', plotCat).split(',')
   
-  plotNames = ["CutFlow"]
+  #plotNames = ["CutFlow"]
   
   
   for plN in plotNames:
     
     plN = plN.strip(' ')
     print ">>>>>> Checking plot plN = ", plN
-    if r != '': hN = 'VbbHcc_' + r + '_' + plN
+    if r != '': hN = 'VH_' + r + '_' + plN
     else: hN = plN
     
     ## Get all desired plots

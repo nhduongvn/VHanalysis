@@ -196,6 +196,10 @@ for sel in selection_methods:
   ##########################
   
   for y in years:
+  
+    print "~~~~~~~~~~~~~~~~~~~~"
+    print "Year: 20", y
+    print "~~~~~~~~~~~~~~~~~~~~"
     
     ## Get the plots for this year. We want the main 2D plot
     ## and then from this plot, we wanna get the projections
