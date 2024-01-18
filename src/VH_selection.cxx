@@ -310,6 +310,64 @@ std::vector<std::vector<int>> find_valid_combos(std::vector<int> bIdxs,
 };
 
 
+/* =======================
+ * [39b] TRIGGER SF
+ * =======================
+ * Find the proper trigger SF for each year.*/
+float determine_trigger_SF(std::vector<JetObj>& jets, int year) {
+  float HT = 0.0;
+  for (auto it : jets) HT += it.Pt();
+
+  if (year == 16) {
+    if (HT < 100) return 1.0;
+    else if (HT < 200) return 1.0;
+    else if (HT < 250) return 1.0;
+    else if (HT < 300) return 0.584;
+    else if (HT < 350) return 0.638;
+    else if (HT < 400) return 0.644;
+    else if (HT < 450) return 0.629;
+    else if (HT < 500) return 0.718;
+    else if (HT < 550) return 0.673;
+    else if (HT < 600) return 0.733;
+    else if (HT < 800) return 0.772;
+    else if (HT < 1000) return 0.754;
+    else if (HT < 2000) return 0.800;
+  }
+  else if (year == 17) {
+    if (HT < 100) return 1.0;
+    else if (HT < 200) return 1.0;
+    else if (HT < 250) return 1.0;
+    else if (HT < 300) return 0.440;
+    else if (HT < 350) return 0.562;
+    else if (HT < 400) return 0.716;
+    else if (HT < 450) return 0.701;
+    else if (HT < 500) return 0.827;
+    else if (HT < 550) return 0.846;
+    else if (HT < 600) return 0.803;
+    else if (HT < 800) return 0.867;
+    else if (HT < 1000) return 0.951;
+    else if (HT < 2000) return 0.944;
+  }
+  else if (year == 18) {
+    if (HT < 100) return 1.0;
+    else if (HT < 200) return 1.0;
+    else if (HT < 250) return 0.476;
+    else if (HT < 300) return 0.498;
+    else if (HT < 350) return 0.682;
+    else if (HT < 400) return 0.924;
+    else if (HT < 450) return 1.019;
+    else if (HT < 500) return 1.052;
+    else if (HT < 550) return 0.989;
+    else if (HT < 600) return 1.115;
+    else if (HT < 800) return 1.027;
+    else if (HT < 1000) return 1.057;
+    else if (HT < 2000) return 1.014;
+  }
+
+  return 1.0;
+}
+
+
 // == [40] ROOT Selector Methods ==============================================
 
 /* =================
@@ -765,15 +823,14 @@ void VH_selection::Process(Reader *r)
 
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
 
-  float trigger_SF = 1.0;
-  // == ACTUAL CODE WILL GO HERE LATER ==
+  float trigger_SF = determine_trigger_SF(jets, year);
   h_event_weights->Fill("trigger", trigger_SF);
 
   // ====================================
   // [42e] Determine the tagging weights
   // ====================================
-  float btag_calib = 1.0;
-  float ctag_calib = 1.0;
+  float btag_calib = CalBtagWeight(jets, CUTS.GetStr("jet_main_btagWP"), m_btagUncType); 
+  float ctag_calib = CalCtagWeight(jets, CUTS.GetStr("jet_main_btagWP"), m_ctagUncType);
   // == ACTUAL CODE WILL GO HERE LATER ==
   h_event_weights->Fill("btag", btag_calib);
   h_event_weights->Fill("ctag", ctag_calib);

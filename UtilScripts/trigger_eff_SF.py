@@ -52,21 +52,43 @@ def getHist(pN, sample_name, fH, lS, printSamples=True):
     
   return hOut
 
+def record_efficencies(plots, bins, output_dir, sample):
+  
+  bin_str = "bins: "
+  for i in range(0, len(bins)):
+    bin_str += str(bins[i])
+    if i < len(bins) - 1:
+      bin_str += ", "
+  
+  eff_str = "\neff: "
+  eff_arr = []
+  for i in range(1, nBins+1):
+    trig_content = plots[0].GetBinContent(i)
+    ref_content = plots[1].GetBinContent(i)
+    if ref_content <= 0.0:
+      iEff = 1.0
+    else:
+      iEff = 1.0 * trig_content / ref_content
+    eff_str += str(iEff)
+    eff_arr.append(iEff)
+    if i < nBins: eff_str += ", "
+  
+  efficiencies[sample] = eff_arr
+  
+  output_file = output_dir + "/" + sample + "_eff_per_bin.txt"
+  with open(output_file, 'w') as f:
+    f.writelines([bin_str, eff_str])
+  print ">>> ", sample, " efficiencies printed to file."
+  print ">>> output_file = ", output_file
+
 ###############################################################################
-## MAIN CODE
+## SET SETTINGS
 ###############################################################################
 
-###############################
-## These you can edit / change
-###############################
+years = ['16', '17', '18']
+#years = ['18']
 
-## Years to run over
-#years = ['16', '17', '18']
-#years = ['16', '18']
-years = ['18']
-
-## Regions to go through
-regions = [ "_4b", "_3b", "_2b2c" ]
+regions = ["_4b", "_3b", "_2b2c"]
 region_name = {
   "_4b": "Tagging: 4 b-jets",
   "_3b": "Tagging: at least 3 b-jets",
@@ -80,26 +102,21 @@ useLogY = False
 resultpath = '../condor_results/Nov2023_updated/' ## Single Muon (2017) + MC
 plotFolder = '../plot_results/trigger_results_Nov2023/'
 
-#plotFolder = '../plot_results/trig_eff_better/'                ## SingleMuon
-#resultpath = '../condor_results/trigger_efficiency_NEWEST/'    ## SingleMuon
-#plotFolder = '../plot_results/trig_eff_2017fix/'
-#resultpath = '../condor_results/trigger_efficiency_2017fix/'
-#plotFolder = '../plot_results/trig_eff_ZH/'                    ## ZH
-#resultpath = '../condor_results/trigger_efficiency_ZH/'        ## ZH
-#plotFolder = '../plot_results/trig_eff_aug2023/'
-#resultpath = '../condor_results/updatedResults_july2023_w_Weight/'
+## Samples 
+sampleList = [
+  'SingleMuon', 'TTToHadronic','TTToSemiLeptonic','TTTo2L2Nu'
+]
 
-## Samples
-ss = [ "SingleMuon" ]  ## SingleMuon
-#ss = [ "TTTo2L2Nu", "TTToHadronic", "TTToSemiLeptonic"]
-#ss = [ ""]
-#ss = [ "ZH_HToCC_ZToQQ"]#, "ggZH_HToCC_ZToQQ" ]
-sampleName = "SingleMuon DATA"
-#sampleName = "ttbar MC"
-#sampleName = "ZH HToCC ZToQQ MC"
+sample_categories = [
+   'SingleMuon', 'TT'
+]
 
-## Triggers we're interested in
-categories = {
+categorySamples = {
+ 'SingleMuon': ["SingleMuon"],
+ 'TT': ['TTToHadronic','TTToSemiLeptonic','TTTo2L2Nu']
+}
+
+trigger_categories = {
   '16': ["trigger_2016_QuadJet", "trigger_2016_DoubleJet"],
   '17': ["trigger_2017_QuadJet", "trigger_2017B_QuadJet"],
   '18': ["trigger_2018_QuadJet"],
@@ -112,11 +129,7 @@ trigger_names = {
   '18': ["HLT_PTHT330PT30_QuadPFJet_75_60_45_40_TriplePFBTagDeepCSV_4p5"],
 }
 
-## Variables of interest
-variables = ["pt_jet0", "pt_jet1", "pt_jet2", "pt_jet3", 
-	"HT", "HTmod", "BvL", "CvL", "CvB"]
-variables = [ "HT" ]
-
+efficiencies = {}
 
 ################################
 ## Do not edit below this point
@@ -142,7 +155,7 @@ xSecs = {}
 lumiScales = {}
 fHist = {}
 
-for s in ss:
+for s in sampleList:
   
   fNames[s] = {}
   xSecs[s] = {}
@@ -185,9 +198,6 @@ for s in ss:
 
 nums = {}
 
-##############################################################
-## Develop the special binning we want for each variable
-##############################################################
 
 HT_binning = [0, 100]
 for i in range(200, 610, 50):
@@ -209,95 +219,102 @@ nBins_per_var = {
   "HTmod": len(HT_binning)-1
 }
 
-##############################################################
-## Go through each variable and year.
-##############################################################
+###############################################################################
+## MAIN CODE
+###############################################################################
 
-## Go through each region
+## Go through each type of tagging
 for r in regions:
   
-  ## Go through each variable of interest
-  for v in variables:
+  ## Go through each year
+  for y in years:
     
-    ## Go through each year
-    for y in years:
+    ## Get the triggers we're interested in.
+    triggers = trigger_names[y]
+    
+    for i in range(len(triggers)):
       
-      ## Get the triggers we're interested in.
-      triggers = trigger_names[y]
+      ## Combine the parts to get the histogram name
+      ## and then get the appropriate histograms
+      histName = trigger_categories[y][i] + r + "_HT"
+      histName_ref = histName + "_ref"
       
-      for i in range(len(triggers)):
+      hist_probes = {}
+      hist_refs = {}
+      for cat in sample_categories:
+        hist_probes[cat] = getHist(histName, categorySamples[cat],
+          fHist, lumiScales)
+        hist_refs[cat] = getHist(histName_ref, categorySamples[cat],
+          fHist, lumiScales)
+      
+      plN = "HT"
+      ## Get the plot information from the config file
+      tmps = cfg.get(plN, 'xAxisRange').split(',')
+      xA_range = []
+      if 'Pi' not in tmps[1]:
+        xA_range = [float(tmps[0]), float(tmps[1])]
+      else:
+        xA_range = [0, ROOT.TMath.Pi()]
+      xA_title = cfg.get(plN, 'xAxisTitle')
+      
+      nBins = nBins_per_var[plN]
+      bins = binning_per_var[plN]
+      
+      ## Plot the results for SingleMuon
+      plots = [
+        hist_probes["SingleMuon"][y].Clone().Rebin(nBins, "probeNew", bins),
+        hist_refs["SingleMuon"][y].Clone().Rebin(nBins, "refNew", bins)
+      ]
+      regionName = r[1:] if r != "" else "noTag"
+      canvas_name = "SingleMuon_HT_" + trigger_categories[y][i] + "_" + y + r
+      outputDir = plotFolder + '/20' + y + '/' + regionName
+      
+      print "output_dir = ", outputDir
+      print "canvas_name = ", canvas_name
+      
+      makeEfficiencyPlot(plots, "", canvas_name,
+        outputDir, xA_title, xA_range, "Efficiency",
+        triggers[i], y, region_name[r], "SingleMuon DATA")
+      
+      record_efficencies(plots, bins, outputDir, "SingleMuon")
+      
+      ## Plot the results for ttbar
+      plots = [
+        hist_probes["TT"][y].Clone().Rebin(nBins, "probeNew", bins),
+        hist_refs["TT"][y].Clone().Rebin(nBins, "refNew", bins)
+      ]
+      canvas_name = "ttbar_HT_" + trigger_categories[y][i] + "_" + y + r
+      print "canvas_name = ", canvas_name
+      
+      makeEfficiencyPlot(plots, "", canvas_name,
+        outputDir, xA_title, xA_range, "Efficiency",
+        triggers[i], y, region_name[r], "t#bar{t} MC")
+      
+      record_efficencies(plots, bins, outputDir, "TT")
+      
+      ## Calculate the scale factors
+            
+      bin_str = "bins: "
+      for j in range(0, len(bins)):
+        bin_str += str(bins[j])
+        if j < len(bins) - 1:
+          bin_str += ", "
+      
+      eff_str = "\neff: "
+      for j in range(0,len(bins) - 1):
         
-        ## Combine the parts to get the histogram name
-        ## and then get the appropriate histograms
-        histName = categories[y][i] + r + "_" + v
-        histName_ref = histName + "_ref"
-        hProbe = getHist(histName, ss, fHist, lumiScales)
-        hRef   = getHist(histName_ref, ss, fHist, lumiScales)
-        
-        plN = v
-        if v == "BvL": plN = "CSV"
-        if v == "HTmod": plN = "HT"
-        
-        ## Get the plot information from the config file
-        tmps = cfg.get(plN, 'xAxisRange').split(',')
-        xA_range = []
-        if 'Pi' not in tmps[1]:
-          xA_range = [float(tmps[0]), float(tmps[1])]
-        else:
-          xA_range = [0, ROOT.TMath.Pi()]
-        xA_title = cfg.get(plN, 'xAxisTitle')
-        
-        ## Get the rebinning information from above
-        nBins = nBins_per_var[plN]
-        bins = binning_per_var[plN]
-        plots = [
-          hProbe[y].Clone().Rebin(nBins, "probeNew", bins),
-          hRef[y].Clone().Rebin(nBins, "refNew", bins)
-        ]
-        
-        ## Make the canvas name & output directory
-        regionName = r[1:] if r != "" else "noTag"
-        canvas_name = v + "_" + categories[y][i] + "_" + y + r
-        outputdir = plotFolder + '/20' + y + '/' + regionName + '/' + sampleName
-        
-        print "canvas_name = ", canvas_name
-        print "outputdir   = ", outputdir
-        
-        makeEfficiencyPlot(plots, "", canvas_name,
-          outputdir, xA_title, xA_range, "Efficiency",
-          triggers[i], y, region_name[r], sampleName)
+        data_eff = efficiencies["SingleMuon"][j]
+        TT_eff = efficiencies["TT"][j]
+        SF = 1.0 * data_eff / TT_eff
+        print j, ": SF = ", SF
+        eff_str += str(SF)
+        if j < len(bins) - 1:
+          eff_str += ", "
+      
+      output_file = outputDir + "/trigger_SF_" + str(i) + ".txt"
+      with open(output_file, 'w') as f:
+        f.writelines([bin_str, eff_str])
+      print ">>> Trigger scale factors printed to file."
+      print ">>> output_file = ", output_file
 
-        ## We want to record the appropriate efficiencies into a text file
-        ## Go through bin by bin and store the values
-        
-        bin_str = "bins: "
-        ## For each bin...
-        for i in range(0, len(bins)):
-          
-          ## Add the bin value to a string for output
-          bin_str += str(bins[i])
-          if i < len(bins)-1:
-            bin_str += ", "
-        
-        eff_str = "\neff: "
-        ## For each of the n bins...
-        for i in range(1, nBins+1):
-          
-          ## Calculate the efficiency for this bin
-          trig_content = plots[0].GetBinConteSnt(i)
-          ref_content = plots[1].GetBinContent(i)
-          print (">>>>>>>> ", trig_content, "/", ref_content)
-          if ref_content <= 0.0:
-            iEff = 1.0
-          else: 
-            iEff = 1.0 * trig_content / ref_content
-          eff_str += str(iEff)
-          if i < nBins: eff_str += ", "
-        
-        ## Output the strings to text
-        output_file = outputdir + '/efficiency_per_bin.txt'
-        print ">>> Printing out the efficiencies to ", output_file
-        with open(output_file, 'w') as f:
-          f.writelines([bin_str, eff_str])
-          
-          
+      
