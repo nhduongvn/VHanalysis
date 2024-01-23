@@ -115,17 +115,17 @@ outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_
 outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/2024Jan/' + syst + '/'
 
 #Input data sets
-dataSet_list = sourceDir+"/Dataset_lists/datasets_NANOAODv9_MC.txt"
+#dataSet_list = sourceDir+"/Dataset_lists/datasets_NANOAODv9_MC.txt"
 #dataSet_list = sourceDir+"/Dataset_lists/datasets_WjetsHighBin_2018_MC.txt"
 #dataSet_list = sourceDir+"/Dataset_lists/datasets_JetHT_combined.txt"
-#dataSet_list = sourceDir+"/Dataset_lists/datasets_Data_combined.txt"
+dataSet_list = sourceDir+"/Dataset_lists/datasets_Data_combined.txt"
 #dataSet_list = sourceDir+"/Dataset_lists/datasets_BTagCSV_2017_separated.txt"
 #dataSet_list = sourceDir+"/Dataset_lists/datasets_SingleMuon.txt"
 #dataSet_list = sourceDir+"/Dataset_lists/datasets_JetHT_2018.txt"
-dataSet_lists = [sourceDir+"/Dataset_lists/datasets_NANOAODv9_MC.txt"]
+#dataSet_lists = [sourceDir+"/Dataset_lists/datasets_NANOAODv9_MC.txt"]
 #dataSet_lists = [sourceDir+"/Dataset_lists/datasets_WjetsHighBin_2018_MC.txt"]
 #dataSet_lists = [sourceDir+"/Dataset_lists/datasets_JetHT_combined.txt"]
-#dataSet_lists = [sourceDir+"/Dataset_lists/datasets_Data_combined.txt"]
+dataSet_lists = [sourceDir+"/Dataset_lists/datasets_Data_combined.txt"]
 #dataSet_lists = [sourceDir+"/Dataset_lists/datasets_BTagCSV_2017_separated.txt"]
 #dataSet_lists = [sourceDir+"/Dataset_lists/datasets_SingleMuon.txt"]
 #dataSet_lists = [sourceDir+"/Dataset_lists/datasets_JetHT_2018.txt"]
