@@ -113,6 +113,16 @@ region_sizes = {
   "SR": 30,#25,#[30,25],
 }
 
+alphas_per_region = {
+  "CR": {},
+  "VR": {}
+}
+
+alpha_unc_per_region = {
+  "CR": {},
+  "VR": {}
+}
+
 ## Config file we want to use
 config_file = '../Configs/config.ini'
 
@@ -328,6 +338,11 @@ for sel in selection_methods:
       rel_error_alpha = sqrt(sigma_2c + sigma_1c)
       unc_alpha[region] = rel_error_alpha * alphas[region]
       unc_percent_alpha[region] = unc_alpha[region] / alphas[region]
+      
+      #alpha_unc_per_region[region][y] = unc_alpha[region]
+      
+    #alphas_per_region["CR"][y] = alpha_CR
+    #alphas_per_region["VR"][y] = alpha_VR
        
     ## Output all of the information we're interested in
     print "==================================="
@@ -348,6 +363,10 @@ for sel in selection_methods:
     print "Data SR = ", events["2b2c"]["SR"]
     print "QCD (MC)= ", QCD_evts
     print "==================================="
+
+
+## Now, we can go variable by variable for plotting.
+
     
 
 ## == END OF FILE =============================================================

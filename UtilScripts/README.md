@@ -94,6 +94,10 @@ The following scripts are all useful for analyzing data and plotting results. Be
 
   It checks for variables that match the one we give as input and it prints out the NanoAODv9 declaration for them in the TSelector.
 
+- **proper_background_estimation.py**
+
+  We want a method that checks purely the QCD background. This method does so by subtracting the MC backgrounds from the data and then determining a QCD scale factor.
+
 ## Ignorable
 You can ignore the following folders:
 - myutils
