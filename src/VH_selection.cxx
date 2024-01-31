@@ -1518,8 +1518,8 @@ void VH_selection::Process(Reader *r)
     bool trigger = false;
 
 #if defined(MC_2016) || defined(DATA_2016)
-    trigger = (*(r->HLT_QuadJet45_TripleBTagCSV_p087) || 
-      *(r->HLT_DoubleJet90_Double30_TripleBTagCSV_p087));
+    trigger = (*(r->HLT_QuadJet45_TripleBTagCSV_p087));// || 
+    //  *(r->HLT_DoubleJet90_Double30_TripleBTagCSV_p087));
     //std::cout << "Checking the 2016 trigger!!!" << std::endl;
 #endif
 
