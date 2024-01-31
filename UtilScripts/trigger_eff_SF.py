@@ -86,7 +86,7 @@ def record_efficencies(plots, bins, output_dir, sample):
 ###############################################################################
 
 years = ['16', '17', '18']
-#years = ['18']
+years = ['16']
 
 regions = ["_4b", "_3b", "_2b2c"]
 region_name = {
@@ -123,8 +123,8 @@ trigger_categories = {
 }
 
 trigger_names = {
-  '16': ["HLT_QuadJet45_TripleBTagCSV_p087",
-         "HLT_DoubleJet90_Double30_TripleBTagCSV_p087"],
+  '16': ["HLT_QuadJet45_TripleBTagCSV_p087"],#,
+         #"HLT_DoubleJet90_Double30_TripleBTagCSV_p087"],
   '17': ["HLT_PFHT300PT30_QuadPFJet_75_60_45_40_TriplePFBTagCSV_3p0"],
   '18': ["HLT_PTHT330PT30_QuadPFJet_75_60_45_40_TriplePFBTagDeepCSV_4p5"],
 }
