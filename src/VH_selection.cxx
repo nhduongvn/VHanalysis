@@ -320,18 +320,18 @@ float determine_trigger_SF(std::vector<JetObj>& jets, int year) {
 
   if (year == 16) {
     if (HT < 100) return 1.0;
-    else if (HT < 200) return 1.0;
-    else if (HT < 250) return 1.0;
-    else if (HT < 300) return 0.584;
-    else if (HT < 350) return 0.638;
-    else if (HT < 400) return 0.644;
-    else if (HT < 450) return 0.629;
-    else if (HT < 500) return 0.718;
-    else if (HT < 550) return 0.673;
-    else if (HT < 600) return 0.733;
-    else if (HT < 800) return 0.772;
-    else if (HT < 1000) return 0.754;
-    else if (HT < 2000) return 0.800;
+    else if (HT < 200) return 4.707;
+    else if (HT < 250) return 0.554;
+    else if (HT < 300) return 0.613;
+    else if (HT < 350) return 0.639;
+    else if (HT < 400) return 0.641;
+    else if (HT < 450) return 0.624;
+    else if (HT < 500) return 0.698;
+    else if (HT < 550) return 0.676;
+    else if (HT < 600) return 0.735;
+    else if (HT < 800) return 0.775;
+    else if (HT < 1000) return 0.767;
+    else if (HT < 2000) return 0.804;
   }
   else if (year == 17) {
     if (HT < 100) return 1.0;
