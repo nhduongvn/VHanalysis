@@ -100,7 +100,7 @@ useLogY = False
 ## Input & Output
 #resultpath = '../condor_results/trigger_efficiency_NEWEST/' ## Single Muon (2016,18)
 resultpath = '../condor_results/Nov2023_updated/' ## Single Muon (2017) + MC
-plotFolder = '../plot_results/trigger_results_Nov2023/'
+plotFolder = '../plot_results/trigger_results_Nov2023/trig2_2016'
 
 ## Samples 
 sampleList = [
@@ -117,14 +117,15 @@ categorySamples = {
 }
 
 trigger_categories = {
-  '16': ["trigger_2016_QuadJet", "trigger_2016_DoubleJet"],
+  #'16': ["trigger_2016_QuadJet", "trigger_2016_DoubleJet"],
+  '16': ["trigger_2016_DoubleJet"],
   '17': ["trigger_2017_QuadJet", "trigger_2017B_QuadJet"],
   '18': ["trigger_2018_QuadJet"],
 }
 
 trigger_names = {
-  '16': ["HLT_QuadJet45_TripleBTagCSV_p087"],#,
-         #"HLT_DoubleJet90_Double30_TripleBTagCSV_p087"],
+  '16': [#"HLT_QuadJet45_TripleBTagCSV_p087"],#,
+         "HLT_DoubleJet90_Double30_TripleBTagCSV_p087"],
   '17': ["HLT_PFHT300PT30_QuadPFJet_75_60_45_40_TriplePFBTagCSV_3p0"],
   '18': ["HLT_PTHT330PT30_QuadPFJet_75_60_45_40_TriplePFBTagDeepCSV_4p5"],
 }

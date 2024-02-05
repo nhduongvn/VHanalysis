@@ -69,13 +69,14 @@ ROOT.gROOT.SetBatch(True)
 
 ## The years we want to check
 years = ['16', '17', '18']
+years = ['16']
 
 ## Do we want to use a logarithmic scale?
 useLogY = False
 
 ## Input & Output file locations
-dirpath = '../condor_results/2024Jan/NONE/'
-output_directory = '../plot_results/2024Jan/'
+dirpath = '../condor_results/2024Jan_mod2016/NONE/'
+output_directory = '../plot_results/2024Jan_mod2016/'
 
 ## Variables we care about
 selection_methods = [
@@ -178,7 +179,7 @@ CR_SF = {
     '18': 0.212
   },
   "tagFirst": {
-    '16': 0.366,#0.335,
+    '16': 0.369,#0.366,#0.335,
     '17': 0.416,#0.353,
     '18': 0.425 #0.360,
   }
