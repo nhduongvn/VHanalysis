@@ -75,8 +75,8 @@ years = ['16']
 useLogY = False
 
 ## Input & Output file locations
-dirpath = '../condor_results/2024Jan_mod2016/NONE/'
-output_directory = '../plot_results/2024Jan_mod2016/'
+dirpath = '../condor_results/2024Jan_double2016/NONE/'
+output_directory = '../plot_results/2024Jan_double2016/'
 
 ## Variables we care about
 selection_methods = [
@@ -179,7 +179,7 @@ CR_SF = {
     '18': 0.212
   },
   "tagFirst": {
-    '16': 0.369,#0.366,#0.335,
+    '16': 0.378,#0.369,#0.366,#0.335,
     '17': 0.416,#0.353,
     '18': 0.425 #0.360,
   }
@@ -197,7 +197,7 @@ CR_SF_unc = {
     '18': 0.002
   },
   "tagFirst": {
-    '16': 0.001,
+    '16': 0.002,#0.001,
     '17': 0.002,
     '18': 0.002#0.001
   }

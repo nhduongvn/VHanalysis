@@ -71,8 +71,8 @@ years = ['16']
 useLogY = False
 
 ## Input & Output file locations
-dirpath = '../condor_results/2024Jan_mod2016/NONE/'
-output_directory = '../plot_results/2024Jan_mod2016/'
+dirpath = '../condor_results/2024Jan_double2016/NONE/'
+output_directory = '../plot_results/2024Jan_double2016/'
 
 ## Variables we care about
 selection_methods = [
