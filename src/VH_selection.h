@@ -84,6 +84,13 @@ class VH_selection : public Selector
     TH1D* h_cutflow_evt_DHZfirst;
     TH1D* h_cutflow_evt_tagFirst;
 
+    TH1D* h_cutflow_trig_2016_QuadJet;
+    TH1D* h_cutflow_trig_2016_DoubleJet;
+    TH1D* h_cutflow_trig_2016_combo;
+    TH1D* h_cutflow_trig_2017_QuadJet;
+    TH1D* h_cutflow_trig_2017B_QuadJet;
+    TH1D* h_cutflow_trig_2018_QuadJet;
+
     // ======================
     // WeightPlot Instances
     // ======================
@@ -148,6 +155,11 @@ class VH_selection : public Selector
     TriggerEffPlots* h_trigger_2016_DoubleJet_4b;
     TriggerEffPlots* h_trigger_2016_DoubleJet_3b;
     TriggerEffPlots* h_trigger_2016_DoubleJet_2b2c;
+
+    TriggerEffPlots* h_trigger_2016_combo_4b;
+    TriggerEffPlots* h_trigger_2016_combo_3b;
+    TriggerEffPlots* h_trigger_2016_combo_2b2c;
+
     TriggerEffPlots* h_trigger_2017_QuadJet_4b;
     TriggerEffPlots* h_trigger_2017_QuadJet_3b;
     TriggerEffPlots* h_trigger_2017_QuadJet_2b2c;

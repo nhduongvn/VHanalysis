@@ -455,6 +455,9 @@ void VH_selection::SlaveBegin(Reader *r)
   h_cutflow_evt_tagFirst->GetXaxis()->SetBinLabel(4, "triggers");
   h_cutflow_evt_tagFirst->GetXaxis()->SetBinLabel(5, "tags cut");
 
+  // These are the cutflows for the triggers
+  h_cutflow_trig_2016_QuadJet;
+
   // These store our object weights
   h_event_weights = new WeightPlots("EventWeights");
   
@@ -511,6 +514,11 @@ void VH_selection::SlaveBegin(Reader *r)
   h_trigger_2016_DoubleJet_4b = new TriggerEffPlots("trigger_2016_DoubleJet_4b");
   h_trigger_2016_DoubleJet_3b = new TriggerEffPlots("trigger_2016_DoubleJet_3b");
   h_trigger_2016_DoubleJet_2b2c = new TriggerEffPlots("trigger_2016_DoubleJet_2b2c");
+
+  h_trigger_2016_combo_4b = new TriggerEffPlots("trigger_2016_combo_4b");
+  h_trigger_2016_combo_3b = new TriggerEffPlots("trigger_2016_combo_3b");
+  h_trigger_2016_combo_2b2c = new TriggerEffPlots("trigger_2016_combo_2b2c");  
+
   h_trigger_2017_QuadJet_4b = new TriggerEffPlots("trigger_2017_QuadJet_4b");
   h_trigger_2017_QuadJet_3b = new TriggerEffPlots("trigger_2017_QuadJet_3b");
   h_trigger_2017_QuadJet_2b2c = new TriggerEffPlots("trigger_2017_QuadJet_2b2c");
@@ -639,6 +647,14 @@ void VH_selection::SlaveBegin(Reader *r)
   for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
   tmp = h_trigger_2016_DoubleJet_2b2c->returnHisto();
   for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
+  
+  tmp = h_trigger_2016_combo_4b->returnHisto();
+  for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_trigger_2016_combo_3b->returnHisto();
+  for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_trigger_2016_combo_2b2c->returnHisto();
+  for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
+
   tmp = h_trigger_2017_QuadJet_4b->returnHisto();
   for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
   tmp = h_trigger_2017_QuadJet_3b->returnHisto();
@@ -1419,7 +1435,7 @@ void VH_selection::Process(Reader *r)
     // 2016 - QuadJet Trigger
     bool pass_probe = (*(r->HLT_QuadJet45_TripleBTagCSV_p087));
     
-    if (pT_criteria_met_2016v1 && muons.size() >= 1)
+    if (muons.size() >= 1)
     {
       
       if (properly_tagged_4B) 
@@ -1435,7 +1451,7 @@ void VH_selection::Process(Reader *r)
 
     // 2016 - DoubleJet Trigger
     pass_probe = (*(r->HLT_DoubleJet90_Double30_TripleBTagCSV_p087));
-    if (pT_criteria_met_2016v2 && muons.size() >= 1)
+    if (muons.size() >= 1)
     {
       if (properly_tagged_4B)
         fill_trigger_efficiency(h_trigger_2016_DoubleJet_4b, analysis_jets,
@@ -1448,6 +1464,22 @@ void VH_selection::Process(Reader *r)
           pass_reference, pass_probe, HTmod, event_weight);
     }
 
+    // 2016 - Combo Triggers
+    pass_probe = (*(r->HLT_QuadJet45_TripleBTagCSV_p087) ||
+      *(r->HLT_DoubleJet90_Double30_TripleBTagCSV_p087));
+    if (muons.size() >= 1)
+    {
+      if (properly_tagged_4B)
+        fill_trigger_efficiency(h_trigger_2016_combo_4b, analysis_jets,
+          pass_reference, pass_probe, HTmod, event_weight);
+      if (properly_tagged_3B)
+        fill_trigger_efficiency(h_trigger_2016_combo_3b, analysis_jets,
+          pass_reference, pass_probe, HTmod, event_weight);
+      if (properly_tagged_2b2c)
+        fill_trigger_efficiency(h_trigger_2016_combo_2b2c, analysis_jets,
+          pass_reference, pass_probe, HTmod, event_weight);
+    }
+
 #endif
 
 #if defined(MC_2017) || defined(DATA_2017)
@@ -1456,7 +1488,7 @@ void VH_selection::Process(Reader *r)
     // 2017 - QuadJet trigger (C-F)
     bool pass_probe = *(r->HLT_PFHT300PT30_QuadPFJet_75_60_45_40_TriplePFBTagCSV_3p0);
 
-    if (pT_criteria_met_2017_18 && muons.size() >= 1)
+    if (muons.size() >= 1)
     {
       if (properly_tagged_4B)
         fill_trigger_efficiency(h_trigger_2017_QuadJet_4b, analysis_jets,
@@ -1474,7 +1506,7 @@ void VH_selection::Process(Reader *r)
     // 2017 - QuadJet trigger (B)
     bool pass_probe = *(r->HLT_HT300PT30_QuadJet_75_60_45_40_TripeCSV_p07);
   
-    if (pT_criteria_met_2017_18 && muons.size() >= 1)
+    if (muons.size() >= 1)
     {
       if (properly_tagged_4B)
         fill_trigger_efficiency(h_trigger_2017B_QuadJet_4b, analysis_jets,
@@ -1495,7 +1527,7 @@ void VH_selection::Process(Reader *r)
   // 2018 - QuadJet Trigger
   bool pass_probe = *(r->HLT_PFHT330PT30_QuadPFJet_75_60_45_40_TriplePFBTagDeepCSV_4p5);
 
-  if (pT_criteria_met_2017_18 && muons.size() >= 1)
+  if (muons.size() >= 1)
   {
     if (properly_tagged_4B)
         fill_trigger_efficiency(h_trigger_2018_QuadJet_4b, analysis_jets,
@@ -1518,7 +1550,7 @@ void VH_selection::Process(Reader *r)
     bool trigger = false;
 
 #if defined(MC_2016) || defined(DATA_2016)
-    trigger = (//*(r->HLT_QuadJet45_TripleBTagCSV_p087) || 
+    trigger = (*(r->HLT_QuadJet45_TripleBTagCSV_p087) || 
      *(r->HLT_DoubleJet90_Double30_TripleBTagCSV_p087));
     //std::cout << "Checking the 2016 trigger!!!" << std::endl;
 #endif
