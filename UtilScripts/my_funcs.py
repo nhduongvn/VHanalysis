@@ -450,13 +450,15 @@ def makeRatioPlots(plots, plotNames, canvasName, plotDir, xAxisTitle, xAxisRange
   
   ## Set the colors appropriately so we can 
   ## differentiate between the two plots
-  plots[0].SetLineColor(colors[0])
-  plots[1].SetLineColor(colors[2])
+  plots[0].SetLineColor(ROOT.kBlack)
+  plots[1].SetLineColor(ROOT.kRed)
   
   ## Create a RatioPlot to compare the two
   rp = ROOT.TRatioPlot(plots[0], plots[1])
   plots[0].GetXaxis().SetTitle(xAxisTitle)
-  rp.Draw()
+  rp.SetH1DrawOpt("ape")
+  rp.SetH2DrawOpt("ape")
+  rp.Draw("ape")
   
   ## Update the canvas & modify the y-axis if appropriate
   c.Update()
@@ -472,7 +474,7 @@ def makeRatioPlots(plots, plotNames, canvasName, plotDir, xAxisTitle, xAxisRange
   
   ## Create the legend & add our entries to it
   p = rp.GetUpperPad()
-  l = ROOT.TLegend(0.52, 0.55, 0.89, 0.87)
+  l = ROOT.TLegend(0.8, 0.8, 0.89, 0.87)
   l.SetLineWidth(2)
   l.SetBorderSize(0)
   l.SetFillColor(0)
@@ -497,10 +499,10 @@ def makeRatioPlots(plots, plotNames, canvasName, plotDir, xAxisTitle, xAxisRange
   extraName = ''
   if logY: extraName = '_logY'
   preBit = ''
-  if normalize: preBit = 'NORM_'
-  c.Print(preBit + plotDir + '/' + cName + extraName + '.png')
-  c.Print(preBit + plotDir + '/' + cName + extraName + '.pdf')
-  c.Print(preBit + plotDir + '/' + cName + extraName + '.C')
+  #if normalize: preBit = 'NORM_'
+  c.Print(preBit + plotDir + '/' + canvasName + extraName + '.png')
+  c.Print(preBit + plotDir + '/' + canvasName + extraName + '.pdf')
+  c.Print(preBit + plotDir + '/' + canvasName + extraName + '.C')
   return c
 
 ###############################################################################

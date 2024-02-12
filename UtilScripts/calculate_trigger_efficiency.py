@@ -61,9 +61,9 @@ def getHist(pN, sample_name, fH, lS, printSamples=True):
 ###############################
 
 ## Years to run over
-#years = ['16', '17', '18']
+years = ['16', '17', '18']
 #years = ['16', '18']
-years = ['18']
+#years = ['18']
 
 ## Regions to go through
 regions = [ "_4b", "_3b", "_2b2c" ]

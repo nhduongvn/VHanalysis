@@ -8,7 +8,7 @@ import ConfigParser
 import array
 from math import *
 
-from my_funcs import makeEfficiencyPlot, makePlot
+from my_funcs import makeEfficiencyPlot, makePlot, makeRatioPlots
 
 ROOT.gROOT.SetBatch(True)
 
@@ -86,7 +86,7 @@ def record_efficencies(plots, bins, output_dir, sample):
 ###############################################################################
 
 years = ['16', '17', '18']
-years = ['16']
+#years = ['16']
 
 regions = ["_4b", "_3b", "_2b2c"]
 region_name = {
@@ -99,8 +99,8 @@ useLogY = False
 
 ## Input & Output
 #resultpath = '../condor_results/trigger_efficiency_NEWEST/' ## Single Muon (2016,18)
-resultpath = '../condor_results/Nov2023_updated/' ## Single Muon (2017) + MC
-plotFolder = '../plot_results/trigger_results_Nov2023/trig2_2016'
+resultpath = '../condor_results/2024Feb_trigger/' ## Single Muon (2017) + MC
+plotFolder = '../plot_results/2024Feb_trigger/'
 
 ## Samples 
 sampleList = [
@@ -117,15 +117,18 @@ categorySamples = {
 }
 
 trigger_categories = {
-  #'16': ["trigger_2016_QuadJet", "trigger_2016_DoubleJet"],
-  '16': ["trigger_2016_DoubleJet"],
+  '16': ["trigger_2016_QuadJet", "trigger_2016_DoubleJet", "trigger_2016_combo"],
+  #'16': ["trigger_2016_DoubleJet"],
+  #'16': ["trigger_2016_combo"],
   '17': ["trigger_2017_QuadJet", "trigger_2017B_QuadJet"],
   '18': ["trigger_2018_QuadJet"],
 }
 
 trigger_names = {
-  '16': [#"HLT_QuadJet45_TripleBTagCSV_p087"],#,
-         "HLT_DoubleJet90_Double30_TripleBTagCSV_p087"],
+  '16': ["HLT_QuadJet45_TripleBTagCSV_p087",
+         "HLT_DoubleJet90_Double30_TripleBTagCSV_p087",
+         "HLT_QuadJet45 || HLT_DoubleJet90_Double30"],
+  #'16': ["HLT_QuadJet45 || HLT_DoubleJet90_Double30"],
   '17': ["HLT_PFHT300PT30_QuadPFJet_75_60_45_40_TriplePFBTagCSV_3p0"],
   '18': ["HLT_PTHT330PT30_QuadPFJet_75_60_45_40_TriplePFBTagDeepCSV_4p5"],
 }
@@ -229,11 +232,19 @@ for r in regions:
   
   ## Go through each year
   for y in years:
+  
+    print "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+    print "Year = 20", y
+    print "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
     
     ## Get the triggers we're interested in.
     triggers = trigger_names[y]
     
     for i in range(len(triggers)):
+    
+      print "   >>>========================="
+      print "      trigger = ", triggers[i]
+      print "   >>>=========================\n"
       
       ## Combine the parts to get the histogram name
       ## and then get the appropriate histograms
@@ -261,11 +272,33 @@ for r in regions:
       nBins = nBins_per_var[plN]
       bins = binning_per_var[plN]
       
+      ## Plot the original plots for SingleMuon
+      plot = hist_probes["SingleMuon"][y].Clone().Rebin(nBins, "probeNew", bins)
+      regionName = r[1:] if r != "" else "noTag"
+      canvas_name = "SingleMuon_HT_Nevt_" + trigger_categories[y][i] + "_" + y + r
+      outputDir = plotFolder + '/20' + y + '/' + regionName
+      
+      makePlot(plot, "SingleMuon_HT_N", canvas_name, outputDir, xA_title, [0,2000], 
+        "Events/Bin", 1, False, lumiS[y], ROOT.kBlack, ROOT.kBlack)
+      
+      plot = hist_refs["SingleMuon"][y].Clone().Rebin(nBins, "refNew", bins)
+      canvas_name = "SingleMuon_HT_ref_Nevt_" + trigger_categories[y][i] + "_" + y + r
+      makePlot(plot, "SingleMuon_HT_ref_N", canvas_name, outputDir, xA_title, [0,2000], 
+        "Events/Bin", 1, False, lumiS[y], ROOT.kBlack, ROOT.kBlack)
+      
       ## Plot the results for SingleMuon
       plots = [
         hist_probes["SingleMuon"][y].Clone().Rebin(nBins, "probeNew", bins),
         hist_refs["SingleMuon"][y].Clone().Rebin(nBins, "refNew", bins)
       ]
+      
+      numerator = plots[0]
+      denominator = plots[1]
+      data_tgae = ROOT.TGraphAsymmErrors()
+      data_tgae.Divide(numerator, denominator, "cl=0.683 b(1,1) mode")
+      data_eff_plot = plots[0].Clone()
+      data_eff_plot.Divide(plots[1].Clone())
+      
       regionName = r[1:] if r != "" else "noTag"
       canvas_name = "SingleMuon_HT_" + trigger_categories[y][i] + "_" + y + r
       outputDir = plotFolder + '/20' + y + '/' + regionName
@@ -279,11 +312,29 @@ for r in regions:
       
       record_efficencies(plots, bins, outputDir, "SingleMuon")
       
+      ## Plot the references for ttbar
+      plot = hist_probes["TT"][y].Clone().Rebin(nBins, "probeNew", bins)
+      canvas_name = "ttbar_HT_ref_Nevt_" + trigger_categories[y][i] + "_" + y + r
+      makePlot(plot, "ttbar_HT_N", canvas_name, outputDir, xA_title, [0,2000], 
+        "Events/Bin", 1, False, lumiS[y], ROOT.kBlack, ROOT.kBlack)
+      
+      plot = hist_refs["TT"][y].Clone().Rebin(nBins, "refNew", bins)
+      canvas_name = "ttbar_HT_ref_Nevt_" + trigger_categories[y][i] + "_" + y + r
+      makePlot(plot, "ttbar_HT_ref_N", canvas_name, outputDir, xA_title, [0,2000], 
+        "Events/Bin", 1, False, lumiS[y], ROOT.kBlack, ROOT.kBlack)
+      
       ## Plot the results for ttbar
       plots = [
         hist_probes["TT"][y].Clone().Rebin(nBins, "probeNew", bins),
         hist_refs["TT"][y].Clone().Rebin(nBins, "refNew", bins)
       ]
+      numerator = plots[0]
+      denominator = plots[1]
+      MC_tgae = ROOT.TGraphAsymmErrors()
+      MC_tgae.Divide(numerator, denominator, "cl=0.683 b(1,1) mode")
+      MC_eff_plot = plots[0].Clone()
+      MC_eff_plot.Divide(plots[1].Clone())
+      
       canvas_name = "ttbar_HT_" + trigger_categories[y][i] + "_" + y + r
       print "canvas_name = ", canvas_name
       
@@ -292,6 +343,19 @@ for r in regions:
         triggers[i], y, region_name[r], "t#bar{t} MC")
       
       record_efficencies(plots, bins, outputDir, "TT")
+      
+      ## Make the Overlap between the Data and MC (SingleMuon vs. ttbar)
+      plots = [
+        #data_eff_plot, MC_eff_plot
+        data_tgae, MC_tgae
+      ]
+      plotNames = [
+        "SingleMuon (Data)", "t#bar{t} (MC)"
+      ]
+      canvas_name = "ratio_" + trigger_categories[y][i] + "_" + y + r
+      #makeRatioPlots(plots, plotNames, canvas_name, outputDir, 
+      #  xA_title, [0,2000], False)
+      
       
       ## Calculate the scale factors
             
@@ -306,7 +370,10 @@ for r in regions:
         
         data_eff = efficiencies["SingleMuon"][j]
         TT_eff = efficiencies["TT"][j]
-        SF = 1.0 * data_eff / TT_eff
+        if TT_eff > 0.0:
+          SF = 1.0 * data_eff / TT_eff
+        else:
+          SF = 1.0
         print j, ": SF = ", SF
         eff_str += str(SF)
         if j < len(bins) - 1:
