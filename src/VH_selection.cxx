@@ -320,48 +320,48 @@ float determine_trigger_SF(std::vector<JetObj>& jets, int year) {
 
   if (year == 16) {
     if (HT < 100) return 1.0;
-    else if (HT < 200) return 1.0;//4.707;
-    else if (HT < 250) return 1.0;//0.554;
-    else if (HT < 300) return 0.584;//0.613;
-    else if (HT < 350) return 0.638;//0.639;
-    else if (HT < 400) return 0.644;//0.641;
-    else if (HT < 450) return 0.629;//0.624;
-    else if (HT < 500) return 0.718;//0.698;
-    else if (HT < 550) return 0.673;//0.676;
-    else if (HT < 600) return 0.733;//0.735;
-    else if (HT < 800) return 0.772;//0.775;
-    else if (HT < 1000) return 0.754;//0.767;
-    else if (HT < 2000) return 0.800;//0.804;
+    else if (HT < 200) return 4.655;//1.0;//4.707;
+    else if (HT < 250) return 0.549;//1.0;//0.554;
+    else if (HT < 300) return 0.601;//0.584;//0.613;
+    else if (HT < 350) return 0.625;//0.638;//0.639;
+    else if (HT < 400) return 0.643;//0.644;//0.641;
+    else if (HT < 450) return 0.631;//0.629;//0.624;
+    else if (HT < 500) return 0.722;//0.718;//0.698;
+    else if (HT < 550) return 0.688;//0.673;//0.676;
+    else if (HT < 600) return 0.742;//0.733;//0.735;
+    else if (HT < 800) return 0.755;//0.772;//0.775;
+    else if (HT < 1000) return 0.763;//0.754;//0.767;
+    else if (HT < 2000) return 0.813;//0.800;//0.804;
   }
   else if (year == 17) {
     if (HT < 100) return 1.0;
     else if (HT < 200) return 1.0;
     else if (HT < 250) return 1.0;
     else if (HT < 300) return 0.440;
-    else if (HT < 350) return 0.562;
-    else if (HT < 400) return 0.716;
-    else if (HT < 450) return 0.701;
-    else if (HT < 500) return 0.827;
-    else if (HT < 550) return 0.846;
-    else if (HT < 600) return 0.803;
-    else if (HT < 800) return 0.867;
-    else if (HT < 1000) return 0.951;
-    else if (HT < 2000) return 0.944;
+    else if (HT < 350) return 0.568;//0.562;
+    else if (HT < 400) return 0.730;//0.716;
+    else if (HT < 450) return 0.718;//0.701;
+    else if (HT < 500) return 0.842;//0.827;
+    else if (HT < 550) return 0.867;//0.846;
+    else if (HT < 600) return 0.816;//0.803;
+    else if (HT < 800) return 0.884;//0.867;
+    else if (HT < 1000) return 0.969;//0.951;
+    else if (HT < 2000) return 0.963;//0.944;
   }
   else if (year == 18) {
     if (HT < 100) return 1.0;
     else if (HT < 200) return 1.0;
-    else if (HT < 250) return 0.476;
-    else if (HT < 300) return 0.498;
-    else if (HT < 350) return 0.682;
-    else if (HT < 400) return 0.924;
-    else if (HT < 450) return 1.019;
-    else if (HT < 500) return 1.052;
-    else if (HT < 550) return 0.989;
-    else if (HT < 600) return 1.115;
-    else if (HT < 800) return 1.027;
-    else if (HT < 1000) return 1.057;
-    else if (HT < 2000) return 1.014;
+    else if (HT < 250) return 0.498;//0.476;
+    else if (HT < 300) return 0.494;//0.498;
+    else if (HT < 350) return 0.706;//0.682;
+    else if (HT < 400) return 0.977;//0.924;
+    else if (HT < 450) return 1.069;//1.019;
+    else if (HT < 500) return 1.108;//1.052;
+    else if (HT < 550) return 1.022;//0.989;
+    else if (HT < 600) return 1.149;//1.115;
+    else if (HT < 800) return 1.068;//1.027;
+    else if (HT < 1000) return 1.101;//1.057;
+    else if (HT < 2000) return 1.078;//1.014;
   }
 
   return 1.0;
@@ -456,7 +456,11 @@ void VH_selection::SlaveBegin(Reader *r)
   h_cutflow_evt_tagFirst->GetXaxis()->SetBinLabel(5, "tags cut");
 
   // These are the cutflows for the triggers
-  h_cutflow_trig_2016_QuadJet;
+  h_evt_trig_2016 = new TH1D("evt_trig_2016", "", 4, 0, 4);
+  h_evt_trig_2016->GetXaxis()->SetBinLabel(1,"Total");
+  h_evt_trig_2016->GetXaxis()->SetBinLabel(2,"Passed Both");
+  h_evt_trig_2016->GetXaxis()->SetBinLabel(3,"Passed Quad");
+  h_evt_trig_2016->GetXaxis()->SetBinLabel(4,"Passed Double");
 
   // These store our object weights
   h_event_weights = new WeightPlots("EventWeights");
@@ -546,6 +550,8 @@ void VH_selection::SlaveBegin(Reader *r)
   r->GetOutputList()->Add(h_cutflow_evt_tagOnly);
   r->GetOutputList()->Add(h_cutflow_evt_DHZfirst);
   r->GetOutputList()->Add(h_cutflow_evt_tagFirst);
+
+  r->GetOutputList()->Add(h_evt_trig_2016);
 
   // Add our WeightPlots instances
   std::vector<TH1*> tmp = h_event_weights->returnHisto();
@@ -1552,6 +1558,13 @@ void VH_selection::Process(Reader *r)
 #if defined(MC_2016) || defined(DATA_2016)
     trigger = (*(r->HLT_QuadJet45_TripleBTagCSV_p087) || 
      *(r->HLT_DoubleJet90_Double30_TripleBTagCSV_p087));
+
+    h_evt_trig_2016->Fill(0.5, event_weight);
+    if (trigger) h_evt_trig_2016->Fill(1.5, event_weight);
+    if (*(r->HLT_QuadJet45_TripleBTagCSV_p087))
+      h_evt_trig_2016->Fill(2.5, event_weight);
+    if (*(r->HLT_DoubleJet90_Double30_TripleBTagCSV_p087))
+      h_evt_trig_2016->Fill(3.5, event_weight);
     //std::cout << "Checking the 2016 trigger!!!" << std::endl;
 #endif
 

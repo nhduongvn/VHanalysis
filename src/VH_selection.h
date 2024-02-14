@@ -84,12 +84,13 @@ class VH_selection : public Selector
     TH1D* h_cutflow_evt_DHZfirst;
     TH1D* h_cutflow_evt_tagFirst;
 
-    TH1D* h_cutflow_trig_2016_QuadJet;
-    TH1D* h_cutflow_trig_2016_DoubleJet;
-    TH1D* h_cutflow_trig_2016_combo;
-    TH1D* h_cutflow_trig_2017_QuadJet;
-    TH1D* h_cutflow_trig_2017B_QuadJet;
-    TH1D* h_cutflow_trig_2018_QuadJet;
+    TH1D* h_evt_trig_2016;
+    TH1D* h_evt_trig_2016_post;
+    //TH1D* h_cutflow_trig_2016_DoubleJet;
+    //TH1D* h_cutflow_trig_2016_combo;
+    //TH1D* h_cutflow_trig_2017_QuadJet;
+    //TH1D* h_cutflow_trig_2017B_QuadJet;
+    //TH1D* h_cutflow_trig_2018_QuadJet;
 
     // ======================
     // WeightPlot Instances
