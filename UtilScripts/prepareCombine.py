@@ -10,7 +10,7 @@ import sys,os
 import copy
 import math
 import ConfigParser
-import BetterConfigParser
+#import BetterConfigParser
 
 from my_funcs import *
 
@@ -43,7 +43,7 @@ def getHist(plot_name, sampleNames, hist_files, lumi_scales):
   for y in years:
     ## Get the first sample, first file
     hOut[y] = hist_files[sampleNames[0]][y][0].Get(plot_name).Clone() 
-    if sampleNames[0] not in ['JetHT']:
+    if sampleNames[0] not in ['JetHT', 'Data']:
       hOut[y].Scale(lumi_scales[sampleNames[0]][y][0])
     
     for iS in range(len(sampleNames)):
@@ -52,7 +52,7 @@ def getHist(plot_name, sampleNames, hist_files, lumi_scales):
         if iS == 0 and fi == 0: continue
         
         h = hist_files[sampleNames[iS]][y][fi].Get(plot_name).Clone()
-        if sampleNames[iS] not in ['JetHT']:
+        if sampleNames[iS] not in ['JetHT','Data']:
           h.Scale(lumi_scales[sampleNames[iS]][y][fi])
         hOut[y].Add(h)
   
@@ -207,7 +207,7 @@ def write_data_card(dc_name, in_file, systs='NONE'):
 
 ## == These values can be edited for the proper analysis ==
 years = ['16', '17', '18']
-regions = ['VbbHcc_tags']
+regions = ['VH_tagFirst']
 
 desired_samples = ['ZHcc', 'ZHbb', 'QCD', 'Top', 'VJ', 'VV']
 bkgr_xSec = [-1, -1, 1.2, 1.055, 1.05, 1.15]
@@ -219,7 +219,7 @@ highM = 200
 doCustomBinning = False
 xDiv = [40.,60.,80.,90.,100.,130.,160.,200.]
 
-ss = [ 'JetHT', 'ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ', ## Jet HT & ZH(H->CC)
+ss = [ 'Data', 'ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ', ## Jet HT & ZH(H->CC)
   'ZH_HToBB_ZToQQ', 'ggZH_HToBB_ZToQQ',               ## ZH(H->BB)
   'QCD_HT100to200_v9',
   'QCD_HT200to300_v9', 'QCD_HT300to500_v9',           ## QCD (200-Inf)
@@ -240,8 +240,8 @@ ss = [ 'JetHT', 'ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ', ## Jet HT & ZH(H->CC)
   'WW','WZ','ZZ'                                      ## VV
 ]
 
-out_file = ROOT.TFile("../histos_tags.root", "RECREATE")
-dc_name = '../tmp/dataCard_tags'
+out_file = ROOT.TFile("../histos_tags_2024.root", "RECREATE")
+dc_name = '../tmp/dataCard_tags_2024'
 
 ## ====================================
 ## == DO NOT MODIFY BELOW THIS POINT ==
@@ -279,7 +279,7 @@ for s in ss:
     print '>>>>>>>: ', len(names)
     xSecTmps = ['1']*len(names)   ## each name corresponds to a cross section
     kfactor = ['1']*len(names)
-    if s not in ['JetHT']:
+    if s not in ['JetHT', 'Data']:
       xSecTmps = cfg.get(s, 'xSec_'+y).split(',')
     
     fileNames[s][y] = []
@@ -301,7 +301,7 @@ for s in ss:
     
     lumiScales[s][y] = [1]*len(names)
     for iN in range(len(fileNames[s][y])):
-      if s not in ['JetHT']:
+      if s not in ['JetHT','Data']:
         print s, y, iN, fileNames[s][y][iN]
         lumiScales[s][y][iN] = scaleToLumi1(fileNames[s][y][iN],
           xSecs[s][y][iN], lumi)
@@ -317,7 +317,7 @@ for r in regions:
   print hN, plN
 
   ## Get the appropriate histograms (Data, Signal, Bckg)
-  hData = getHist(hN, ['JetHT'], histFiles, lumiScales)
+  hData = getHist(hN, ['Data'], histFiles, lumiScales)
   hZHcc = getHist(hN, ['ZH_HToCC_ZToQQ'], histFiles, lumiScales)
   hZHbb = getHist(hN, ['ZH_HToBB_ZToQQ'], histFiles, lumiScales)
   hggZHcc = getHist(hN, ['ggZH_HToCC_ZToQQ'], histFiles, lumiScales)
@@ -414,7 +414,7 @@ for r in regions:
   ## Get the number of events per sample (integrated)
   print "Getting the no. events per sample..."
   nums[r]['All'] = {}
-  nums[r]['All']['JetHT'] = getHistIntegral(hDataA,lowM,highM)
+  nums[r]['All']['Data'] = getHistIntegral(hDataA,lowM,highM)
   nums[r]['All']['ZH_HToCC_ZToQQ'] = getHistIntegral(hZHccA,lowM,highM)
   nums[r]['All']['ZH_HToBB_ZToQQ'] = getHistIntegral(hZHbbA,lowM,highM)
   nums[r]['All']['ggZH_HToCC_ZToQQ'] = getHistIntegral(hggZHccA,lowM,highM)
