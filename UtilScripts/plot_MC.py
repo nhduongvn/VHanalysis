@@ -60,17 +60,17 @@ print "Pulling settings and preferences..."
 
 ## Edit / change the following options as needed:
 years = ['18']
-regions = ['tagFirst']
+regions = ['tagFirst', 'tagOnly', 'DHZfirst']
 useLogY = False
 outputDir = '../plot_results/forRupul/'
-filepath = '../plots_for_Rupul.root'
+dirpath = '../condor_results/for_Rupul/'
 plotCats = ['VbbHcc_plot', 'VbbHcc_jet_plot']
 regionSpecific = [ True, False ]
 
-#regions = ['']
-#plotCat = 'Weight_plot'
-
 debug = True
+
+## Normal List of Samples 
+ss = [ 'ZH_HToCC_ZToQQ' ]
 
 ################################
 ## Do not edit below this point
@@ -82,8 +82,65 @@ config_file = '../Configs/config.ini'
 cfg = ConfigParser.ConfigParser()
 cfg.read(config_file)
 
-f = ROOT.TFile.Open(filepath, 'READ')
+## Get the lumi scales
+if debug: print ">>> Loading lumi scales..."
+lumiS = {}
+for y in years:
+  lumiTmp = float(cfg.get('General','lumi_'+y))/1000.0
+  lumiTmp = float("%.1f" % lumiTmp)
+  lumiS[y] = str(lumiTmp)
+print "lumi scales = ", lumiS
 
+## Retrieve necessary information from the desired samples
+print ">>> Retrieving file information..."
+fileNames = {}
+xSecs = {}
+lumiScales = {}
+histFiles = {}
+
+for s in ss:
+  
+  fileNames[s] = {}
+  xSecs[s] = {}
+  lumiScales[s] = {}
+  histFiles[s] = {}
+  
+  for y in years:
+    
+    lumi = float(cfg.get('General','lumi_'+y))
+    names = cfg.get(s,'file_'+y).split(',')
+    print '>>>>>>>>>: ', len(names)
+    xSecTmps = ['1']*len(names)
+    kfactor = ['1']*len(names)
+    if s not in ['JetHT','BTagCSV', 'Data']:
+      xSecTmps = cfg.get(s, 'xSec_'+y).split(',')
+    
+    fileNames[s][y] = []
+    xSecs[s][y] = []
+    histFiles[s][y] = []
+    
+    for iN in names:
+      fileNames[s][y].append(dirpath + '/' + iN)
+      histFiles[s][y].append(ROOT.TFile.Open(fileNames[s][y][-1],'READ'))
+    
+    print xSecTmps
+    for iS in xSecTmps:
+      if '*' in iS: iS = iS.split('*')
+      if len(iS) == 2:
+        xSecs[s][y].append(float(iS[0])*float(iS[1]))
+      else:
+        xSecs[s][y].append(float(iS))
+    
+    lumiScales[s][y] = [1]*len(names)
+    for iN in range(len(fileNames[s][y])):
+      if s not in ['JetHT','BTagCSV', 'Data']:
+        print s, y, iN, fileNames[s][y][iN]
+        lumiScales[s][y][iN] = scaleToLumi1(fileNames[s][y][iN], xSecs[s][y][iN], lumi)
+
+nums = {}
+print "All files retrieved..."
+
+## Go through each plot category of interest
 for i in range(len(plotCats)):
   
   plotCat = plotCats[i]
@@ -104,6 +161,8 @@ for i in range(len(plotCats)):
       else: hN = plN
       if not regionSpecific[i]: hN = "Jets_cut_" + plN
       
+      plot = getHist(hN, ['ZH_HToCC_ZToQQ'], histFiles, lumiScales)[years[0]]
+      
       tmps = cfg.get(plN, 'xAxisRange').split(',')
       xA_range = []
       if 'Pi' not in tmps[1]:
@@ -114,7 +173,6 @@ for i in range(len(plotCats)):
       xA_title = cfg.get(plN, 'xAxisTitle')
       nRebin = int(cfg.get(plN, 'rebin'))
       
-      plot = f.Get(hN)
       print "hist = ", hN 
       #print(xA_range)
       
@@ -123,7 +181,7 @@ for i in range(len(plotCats)):
         logY = True
       
       makePlot(plot.Clone().Rebin(nRebin), hN, plN,
-        outputDir, xA_title, xA_range, logY, lumi="--")
+        outputDir + "/" + r, xA_title, xA_range, logY, lumi="--")
       #makePlot(plot, hN, plN, outputDir, 
       #  xA_title, [], "Events/" + str(nRebin) + " GeV",
       #  nRebin, logY, "--", ROOT.kBlack, ROOT.kBlue, 
