@@ -224,67 +224,55 @@ def makeGausFit(plot, plotName, canvasName, plotDir, fitRange,
 ###############################################################################
 ## Make Plot Function
 ###############################################################################
-def makePlot(iPlot, plotName, canvasName, plotDir, xAxisTitle, xAxisRange, 
-  yAxisTitle, rebin, logY, lumi, line_color, fill_color, fill=False, yRange=[],
-  is2D = False, showStats=False, textForPlot = "", blindMass=False, massRegion=[75,140]):
+def makePlot(plot, plotName, canvasName, outputDir = 'Test/',
+  xAxisTitle = 'M [GeV]', xAxisRange = [0,10], logY = False,
+  lumi = '35.9'):
   
-  ## Make the canvas
-  if not showStats: ROOT.gStyle.SetOptStat(0)
+  ROOT.gStyle.SetOptStat(0)
+  
+  ## Make our canvas & modify it as possible
   c = ROOT.TCanvas(canvasName, canvasName, 600, 600)
+  c.SetFillStyle(4000)
+  c.SetFrameFillStyle(1000)
+  c.SetFrameFillColor(0)
   c.SetLeftMargin(0.15)
   c.cd()
   
-  ## Adjust the axes if necessary
-  if len(yRange) >= 2:
-    print "<<< UPDATING Y-RANGE OF PLOT >>>"
-    iPlot.GetYaxis().SetRange(yRange[0],yRange[1])
-  if len(xAxisRange) >= 2:
-    iPlot.GetXaxis().SetRange(xAxisRange[0],xAxisRange[1])
-  
-  if blindMass:
-    mL = massRegion[0]
-    mH = massRegion[1]
-    ## Remove any data that's not in the range we want
-    ## Basically, go through bin by bin and if it's contents
-    ## don't meet the range we want, ignore it.
-    plot = blind_region(iPlot, mL, mH)
-  else:
-    plot = iPlot
-  
-  ## Appropriately modify the plot
-  if fill: plot.SetFillColor(fill_color)
-  plot.SetLineColor(line_color)
-  if is2D:
-    plot.RebinX(rebin)
-    plot.RebinY(rebin)
-  else: plot.Rebin(rebin)
-  if is2D: plot.Draw("colz")
-  else: plot.Draw("HIST")
+  ## Draw our plot onto the canvas & modify it as necessary
+  plot.Draw("hist")
+  plot.GetXaxis().SetRangeUser(xAxisRange[0], xAxisRange[1])
   plot.GetXaxis().SetTitle(xAxisTitle)
-  plot.GetYaxis().SetTitle(yAxisTitle)
-
-  myText('CMS Work in Progress #sqrt{s} = 13 TeV, '+lumi+' fb^{-1}',
-    0.25, 0.937775, 0.8) 
- 
-  ## Update the canvas & modify the y-axis if appropriate
-  c.Update()
-  if logY and not is2D: c.SetLogy()
+  binW = plot.GetBinWidth(1)
   
-  ## Check to make sure the directory exists &
-  ## then print the proper files to the output
-  dirExists = os.path.exists(plotDir)
+  formatNum = ''
+  extra_bit = ""
+  if "mass" in canvasName or "pt" in canvasName:
+    extra_bit = " GeV"
+  aNum = floor(binW*pow(10,3))-floor(binW*pow(10,2))*10
+  if aNum >= 1: formatNum = '0.3f'
+  plot.GetYaxis().SetTitle('Events/' + format(binW,formatNum) + extra_bit)
+  
+  plot.GetYaxis().SetTitleSize(0.057)
+  plot.GetYaxis().SetTitleOffset(1.2)
+  plot.GetYaxis().SetLabelSize(0.05)
+  
+  myText('CMS Work in Progress #sqrt{s} = 13 TeV, '+ lumi+' fb^{-1}', 0.25, 0.937775, 0.8)
+  
+  # Output the plot
+  dirExists = os.path.exists(outputDir)
   if not dirExists:
     print "Warning: output directory does not exist."
-    os.makedirs(plotDir)
+    os.makedirs(outputDir)
     print ">>> directory created."
   
-  ## Print out the plot appropriately
-  extraName = ''
-  if logY: extraName = '_logY'
-  fullpath = plotDir + '/' + canvasName + extraName
-  c.Print(fullpath + '.png')
-  c.Print(fullpath + '.pdf')
-  c.Print(fullpath + '.C')
+  extraBit = ''
+  if logY: extraBit = '_logY'
+  
+  c.Print(outputDir + '/' + canvasName + extraBit + '.png')
+  c.Print(outputDir + '/' + canvasName + extraBit + '.pdf')
+  c.Print(outputDir + '/' + canvasName + extraBit + '.eps')
+  c.Print(outputDir + '/' + canvasName + extraBit + '.C')
+  
   return c
 
 ###############################################################################

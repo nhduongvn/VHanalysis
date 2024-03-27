@@ -65,6 +65,7 @@ useLogY = False
 outputDir = '../plot_results/forRupul/'
 filepath = '../plots_for_Rupul.root'
 plotCats = ['VbbHcc_plot', 'VbbHcc_jet_plot']
+regionSpecific = [ True, False ]
 
 #regions = ['']
 #plotCat = 'Weight_plot'
@@ -99,8 +100,9 @@ for i in range(len(plotCats)):
       
       plN = plN.strip(' ')
       print ">>>>>> Checking plot plN = ", plN
-      if r != '': hN = 'VH_' + r + '_' + plN
+      if r != '' or regionSpecific[i]: hN = 'VH_' + r + '_' + plN
       else: hN = plN
+      if not regionSpecific[i]: hN = "Jets_cut_" + plN
       
       tmps = cfg.get(plN, 'xAxisRange').split(',')
       xA_range = []
@@ -116,10 +118,16 @@ for i in range(len(plotCats)):
       print "hist = ", hN 
       #print(xA_range)
       
-      makePlot(plot, hN, plN, outputDir, 
-        xA_title, [], "Events/" + str(nRebin) + " GeV",
-        nRebin, False, "lumi", ROOT.kBlack, ROOT.kBlue, 
-        fill=True)
+      logY = False
+      if "pT" in plN or "pt" in plN:
+        logY = True
+      
+      makePlot(plot.Clone().Rebin(nRebin), hN, plN,
+        outputDir, xA_title, xA_range, logY, lumi="--")
+      #makePlot(plot, hN, plN, outputDir, 
+      #  xA_title, [], "Events/" + str(nRebin) + " GeV",
+      #  nRebin, logY, "--", ROOT.kBlack, ROOT.kBlue, 
+      # fill=True)
     
     
 
