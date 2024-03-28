@@ -1759,7 +1759,7 @@ void VH_selection::Process(Reader *r)
       
       if (ctagged || force_pass_tagging) {
         std::pair<int,float> pair1(i,cvl);
-        jets_idx_CvL.push_back1(pair1);
+        jets_idx_CvL.push_back(pair1);
         already_tagged_c = true;
       }
       
