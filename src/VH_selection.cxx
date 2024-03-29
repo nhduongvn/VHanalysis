@@ -38,6 +38,23 @@ VH_selection::~VH_selection() { }
 
 // == [30] Custom Methods =====================================================
 
+
+/* ========================
+ * [30.1] VECTOR TO STRING
+ * ========================
+ * This method converts a vector to a string for output. */ 
+std::string vector_to_string(std::vector<int> list)
+{
+  std::string output = "{ ";
+  for (size_t i = 0; i < list.size(); ++i)
+  {
+    output += std::to_string(list[i]) + ", ";
+  }
+  output += "}";
+  
+  return output;
+}
+
 /* ======================
  * [31] Get DAUGHTER IDS
  * ======================
@@ -533,6 +550,13 @@ void VH_selection::SlaveBegin(Reader *r)
   h_trigger_2018_QuadJet_3b = new TriggerEffPlots("trigger_2018_QuadJet_3b");
   h_trigger_2018_QuadJet_2b2c = new TriggerEffPlots("trigger_2018_QuadJet_2b2c");
 
+  h_nCombos = new TH1D("VH_tagFirst_nCombos", "", 4, -0.5, 3.5);
+  h_pt_cand_b0 = new TH1D("VH_tagFirst_pt_cand_b0", "", 2000, 0, 2000);
+  h_pt_cand_b1 = new TH1D("VH_tagFirst_pt_cand_b1", "", 2000, 0, 2000);
+  h_pt_cand_c0 = new TH1D("VH_tagFirst_pt_cand_c0", "", 2000, 0, 2000);
+  h_pt_cand_c1 = new TH1D("VH_tagFirst_pt_cand_c1", "", 2000, 0, 2000);
+
+
   // ===========================================
   // [41b] Return all of our plots for analysis
   // ===========================================
@@ -552,6 +576,12 @@ void VH_selection::SlaveBegin(Reader *r)
   r->GetOutputList()->Add(h_cutflow_evt_tagFirst);
 
   r->GetOutputList()->Add(h_evt_trig_2016);
+
+  r->GetOutputList()->Add(h_nCombos);
+  r->GetOutputList()->Add(h_pt_cand_b0);
+  r->GetOutputList()->Add(h_pt_cand_b1);
+  r->GetOutputList()->Add(h_pt_cand_c0);
+  r->GetOutputList()->Add(h_pt_cand_c1);
 
   // Add our WeightPlots instances
   std::vector<TH1*> tmp = h_event_weights->returnHisto();
@@ -1739,18 +1769,18 @@ void VH_selection::Process(Reader *r)
     std::vector<std::pair<int,float> > jets_idx_BvL;
     std::vector<std::pair<int,float> > jets_idx_CvL;
     std::vector<std::pair<int,float> > jets_idx_CvL_2b1c;
-    bool already_tagged_c = false;
-    
-    // For each jet...
+    bool already_tagged_c = false;    
+
     for (size_t i = 0; i < jets4.size(); ++i)
     {
+
       // Check the tagging requirements
       bool btagged = passes_btag(jets4[i], desired_cut_BvL);
       bool ctagged = passes_ctag(jets4[i], desired_cut_CvL, desired_cut_CvB);
       
       // If they pass our tagging requirements, add to the list
       float csv = jets4[i].m_deepCSV;
-      float cvl = jets4[i].m_deepCvL;
+      float cvl = jets4[i].m_deepCvL; 
       
       if (btagged || force_pass_tagging) {
         std::pair<int,float> pair0(i,csv);
@@ -1767,60 +1797,69 @@ void VH_selection::Process(Reader *r)
         std::pair<int,float> pair2(i,cvl);
         jets_idx_CvL_2b1c.push_back(pair2);
       }
-      
-    }//end-for
-    
-    // Sort the jets so that the largest tagging scores 
-    // are at the top of our list.
+
+    }//end-for 
+
+    // We want to check for every valid combo of the jets that have
+    // passed the tagging. If there's only the one pairing, we will
+    // choose that pairing. Otherwise, we use the DHZ algorithm to
+    // select the proper pairing of jets.
     std::sort(jets_idx_BvL.begin(), jets_idx_BvL.end(), sort_by_second_descend);
     std::sort(jets_idx_CvL.begin(), jets_idx_CvL.end(), sort_by_second_descend);
     std::sort(jets_idx_CvL_2b1c.begin(), jets_idx_CvL_2b1c.end(),
       sort_by_second_descend);
-
-    // Create the vectors containing of b- and c-jets indices
+    
+    // Create the vectors containing of b- and c-jet indices
     std::vector<int> bIndices;
     std::vector<int> cIndices;
     std::vector<int> cIndices_2b1c;
-
+    
     for (auto p : jets_idx_BvL){ bIndices.push_back(p.first); }
     for (auto p : jets_idx_CvL){ cIndices.push_back(p.first); }
     for (auto p : jets_idx_CvL_2b1c){ cIndices_2b1c.push_back(p.first); }
-    
-    // Find appropriate combinations of jets.
+
+    // Find the appropriate combinations of jets.
     std::vector<std::vector<int>> combos = find_valid_combos(bIndices, cIndices);
-    
-    // If there's more than one possible combo, let's check them.
+   
+    h_nCombos->Fill(combos.size(), event_weight);
     if (combos.size() > 0)
     {
-      std::vector<int> idxs = combos[0];
-      DHZObj proper_pairings(jets4, idxs[0], idxs[1], idxs[2], idxs[3]);
+      /*std::cout << "combos.size() = " << combos.size() << std::endl;
+      for (size_t j = 0; j < combos.size(); ++j)
+      {
+        std::cout << ">>> " << j << ": " << vector_to_string(combos[j]) << std::endl;
+      }*/
+      
+      // Set the default to be our first option & fill the temp plots
+      // that we're interested in.
+      std::vector<int> idx = combos[0];
+      int Zidx0 = 0, Zidx1 = 1, Hidx0 = 2, Hidx1 = 3;
+      DHZObj proper_pairings(jets4, idx[Hidx0], idx[Hidx1], idx[Zidx0], idx[Zidx1]);
       if (combos.size() > 1) proper_pairings = DHZ_algorithm(jets4);
       h_cutflow_evt_tagFirst->Fill(4.5, generator_weight);
-      
+
       // Reconstruct the Z and Higgs bosons from the pairs
       std::vector<JetObj> bjets, cjets;
-      for(int i = 0; i < 2; ++i) {
+      for (int i = 0; i < 2; ++i) {
         bjets.push_back(jets4[proper_pairings.Hidx(i)]);
         bjets[i].ApplyRegression(5);
-        
+
         cjets.push_back(jets4[proper_pairings.Zidx(i)]);
         cjets[i].ApplyRegression(4);
-      }
+      }  
       ZObj Z4(bjets); HiggsObj H4(cjets);
       h_VH_tagFirst->FillVH(Z4, H4, event_weight);
-      
-    }//end-combo-if
-    
+    }//end-if
+
     // Now, do the 2b1c version
-    std::vector<std::vector<int>> combos_2b1c = find_valid_combos(bIndices,
-      cIndices_2b1c);
-    
-    if (combos_2b1c.size() > 0) 
+    std::vector<std::vector<int>> combos_2b1c = find_valid_combos(bIndices, cIndices_2b1c);
+    if (combos_2b1c.size() > 0)
     {
-      std::vector<int> idxs = combos_2b1c[0];
-      DHZObj proper_pairings(jets4, idxs[0], idxs[1], idxs[2], idxs[3]);
-      if (combos.size() > 1) proper_pairings = DHZ_algorithm(jets4);
-      h_cutflow_evt_tagFirst->Fill(4.5, generator_weight);
+      std::vector<int> idx = combos_2b1c[0];
+      int Zidx0 = 0, Zidx1 = 1, Hidx0 = 2, Hidx1 = 3;
+      DHZObj proper_pairings(jets4, idx[Hidx0], idx[Hidx1], idx[Zidx0], idx[Zidx1]);
+      if (combos_2b1c.size() > 1) proper_pairings = DHZ_algorithm(jets4);
+      //h_cutflow_evt_tagFirst->Fill(4.5, generator_weight);
       
       // Reconstruct the Z and Higgs bosons from the pairs
       std::vector<JetObj> bjets, cjets;
@@ -1833,9 +1872,7 @@ void VH_selection::Process(Reader *r)
       }
       ZObj Z4(bjets); HiggsObj H4(cjets);
       h_VH_tagFirst_2b1c->FillVH(Z4, H4, event_weight);
-      
-    }//end-combo-2b1c-if
-    
+    }//end-if
     
   }//end-analysis-area (jets >= 4)
 };// end Process

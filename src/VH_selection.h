@@ -92,6 +92,13 @@ class VH_selection : public Selector
     //TH1D* h_cutflow_trig_2017B_QuadJet;
     //TH1D* h_cutflow_trig_2018_QuadJet;
 
+    // Test Plots
+    TH1D* h_nCombos;
+    TH1D* h_pt_cand_b0;
+    TH1D* h_pt_cand_b1;
+    TH1D* h_pt_cand_c0;
+    TH1D* h_pt_cand_c1;
+
     // ======================
     // WeightPlot Instances
     // ======================
