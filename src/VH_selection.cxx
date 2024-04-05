@@ -555,7 +555,9 @@ void VH_selection::SlaveBegin(Reader *r)
   h_pt_cand_b1 = new TH1D("VH_tagFirst_pt_cand_b1", "", 2000, 0, 2000);
   h_pt_cand_c0 = new TH1D("VH_tagFirst_pt_cand_c0", "", 2000, 0, 2000);
   h_pt_cand_c1 = new TH1D("VH_tagFirst_pt_cand_c1", "", 2000, 0, 2000);
-
+  h_pt_cand_Z = new TH1D("VH_tagFirst_pt_cand_Z", "", 2000, 0, 2000);
+  h_pt_cand_H = new TH1D("VH_tagFirst_pt_cand_H", "", 2000, 0, 2000);
+  h_pt_cand_H_vs_Z = new TH2D("VH_tagFirst_pt_cand_H_vs_Z", "", 2000,0,2000, 2000,0,2000);
 
   // ===========================================
   // [41b] Return all of our plots for analysis
@@ -582,6 +584,9 @@ void VH_selection::SlaveBegin(Reader *r)
   r->GetOutputList()->Add(h_pt_cand_b1);
   r->GetOutputList()->Add(h_pt_cand_c0);
   r->GetOutputList()->Add(h_pt_cand_c1);
+  r->GetOutputList()->Add(h_pt_cand_Z);
+  r->GetOutputList()->Add(h_pt_cand_H);
+  r->GetOutputList()->Add(h_pt_cand_H_vs_Z);
 
   // Add our WeightPlots instances
   std::vector<TH1*> tmp = h_event_weights->returnHisto();
@@ -1819,8 +1824,8 @@ void VH_selection::Process(Reader *r)
     for (auto p : jets_idx_CvL_2b1c){ cIndices_2b1c.push_back(p.first); }
 
     // Find the appropriate combinations of jets.
-    std::vector<std::vector<int>> combos = find_valid_combos(bIndices, cIndices);
-   
+    std::vector<std::vector<int>> combos = find_valid_combos(bIndices, cIndices);  
+ 
     h_nCombos->Fill(combos.size(), event_weight);
     if (combos.size() > 0)
     {
@@ -1834,17 +1839,46 @@ void VH_selection::Process(Reader *r)
       // that we're interested in.
       std::vector<int> idx = combos[0];
       int Zidx0 = 0, Zidx1 = 1, Hidx0 = 2, Hidx1 = 3;
+      //std::cout << idx[0] << " " << idx[1] << " " << idx[2] << " " << idx[3] << std::endl;
       DHZObj proper_pairings(jets4, idx[Hidx0], idx[Hidx1], idx[Zidx0], idx[Zidx1]);
       if (combos.size() > 1) proper_pairings = DHZ_algorithm(jets4);
       h_cutflow_evt_tagFirst->Fill(4.5, generator_weight);
 
+      // Temporary Check: Candidates check
+      h_pt_cand_b0->Fill(jets4[proper_pairings.Zidx(0)].Pt());
+      h_pt_cand_b1->Fill(jets4[proper_pairings.Zidx(1)].Pt());
+      h_pt_cand_c0->Fill(jets4[proper_pairings.Hidx(0)].Pt());
+      h_pt_cand_c1->Fill(jets4[proper_pairings.Hidx(1)].Pt());      
+      
+      TLorentzVector Zvec = jets4[proper_pairings.Zidx(0)].m_lvec + jets4[proper_pairings.Zidx(1)].m_lvec;      
+      TLorentzVector Hvec = jets4[proper_pairings.Hidx(0)].m_lvec + jets4[proper_pairings.Hidx(1)].m_lvec;
+      h_pt_cand_Z->Fill(Zvec.Pt());
+      h_pt_cand_H->Fill(Hvec.Pt());
+      h_pt_cand_H_vs_Z->Fill(Hvec.Pt(), Zvec.Pt());
+
+      std::vector<std::vector<int>> proper_indices;
+      if (combos.size() > 1)
+      {
+        std::vector<int> bIDs{proper_pairings.Zidx(0), proper_pairings.Zidx(1)};
+        std::vector<int> cIDs{proper_pairings.Hidx(0), proper_pairings.Hidx(1)};
+        proper_indices.push_back(bIDs);
+        proper_indices.push_back(cIDs);
+      }
+      else
+      {
+        std::vector<int> bIDs{idx[Zidx0], idx[Zidx1]};
+        std::vector<int> cIDs{idx[Hidx0], idx[Hidx1]};
+        proper_indices.push_back(bIDs);
+        proper_indices.push_back(cIDs);
+      }
+
       // Reconstruct the Z and Higgs bosons from the pairs
       std::vector<JetObj> bjets, cjets;
       for (int i = 0; i < 2; ++i) {
-        bjets.push_back(jets4[proper_pairings.Hidx(i)]);
+        bjets.push_back(jets4[proper_indices[0][i]]);
         bjets[i].ApplyRegression(5);
 
-        cjets.push_back(jets4[proper_pairings.Zidx(i)]);
+        cjets.push_back(jets4[proper_indices[1][i]]);
         cjets[i].ApplyRegression(4);
       }  
       ZObj Z4(bjets); HiggsObj H4(cjets);

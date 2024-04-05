@@ -98,6 +98,9 @@ class VH_selection : public Selector
     TH1D* h_pt_cand_b1;
     TH1D* h_pt_cand_c0;
     TH1D* h_pt_cand_c1;
+    TH1D* h_pt_cand_Z;
+    TH1D* h_pt_cand_H;
+    TH2D* h_pt_cand_H_vs_Z;
 
     // ======================
     // WeightPlot Instances

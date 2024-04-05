@@ -77,7 +77,7 @@ def make_input_file_list(nFile, outDir_file_list, file_list_name):
 
 
 #///////////////////////////////////////////////////////////////////
-runMode = 1 #0: submit, 1: check output and hadd output file
+runMode = 0 #0: submit, 1: check output and hadd output file
 
 submit = True # for testing setup or executing submission 
 debug = False   # just run on 10000 
@@ -100,19 +100,19 @@ condorRunDir = '/uscmst1b_scratch/lpc1/lpcphys/peteryou/Output_VH/mediumWP_updat
 condorRunDir = '/uscmst1b_scratch/lpc1/lpcphys/peteryou/Output_VH/trigger_efficiency_ZH/'
 condorRunDir = '/uscmst1b_scratch/lpc1/lpcphys/peteryou/Output_VH/Aug2023_addedTtagSF/'
 condorRunDir = '/uscmst1b_scratch/lpc1/lpcphys/peteryou/Output_VH/Nov2023_updated/'
-condorRunDir = '/uscmst1b_scratch/lpc1/lpcphys/peteryou/Output_VH/2024Feb/'
+condorRunDir = '/uscmst1b_scratch/lpc1/lpcphys/peteryou/Output_VH/2024Apr/'
 outputDir_eos = '/store/user/peteryou/Output_VH/mediumWP_updates042023/'+syst+'/' 
 outputDir_eos = '/store/user/peteryou/Output_VH/trigger_efficiency_ZH/'+syst+'/'
 outputDir_eos = '/store/user/peteryou/Output_VH/Aug2023_addedTagSF'
 outputDir_eos = '/store/user/peteryou/Output_VH/Nov2023_updated'
-outputDir_eos = '/store/user/peteryou/Output_VH/2024Feb/'
+outputDir_eos = '/store/user/peteryou/Output_VH/2024Apr/'
 #outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/new_condor_results/' + syst + '/'
 #outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/newest_condor_results/' + syst + '/'
 outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/mediumWP_updates042023/' + syst + '/'
 outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/trigger_efficiency_ZH/' + syst + '/'
 outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Aug2023_addedTagSF/' + syst + '/'
 outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Nov2023_updated/' + syst + '/'
-outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/2024Feb/' + syst + '/'
+outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/2024Apr/' + syst + '/'
 
 #Input data sets
 dataSet_list = sourceDir+"/Dataset_lists/datasets_NANOAODv9_MC.txt"
