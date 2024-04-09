@@ -226,7 +226,7 @@ def makeGausFit(plot, plotName, canvasName, plotDir, fitRange,
 ###############################################################################
 def makePlot(plot, plotName, canvasName, outputDir = 'Test/',
   xAxisTitle = 'M [GeV]', xAxisRange = [0,10], logY = False,
-  lumi = '35.9'):
+  lumi = '35.9', blindSignal=False, signalRegion=[75,110]):
   
   ROOT.gStyle.SetOptStat(0)
   

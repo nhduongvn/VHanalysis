@@ -63,8 +63,8 @@ years = ['16', '17', '18']
 #years = ['17']
 regions = ['tagOnly', 'DHZfirst', 'tagFirst']
 useLogY = False
-outputDir = '../plot_results/Nov2023_updated/'
-dirpath = '../condor_results/Nov2023_updated/NONE/'
+outputDir = '../plot_results/2024Apr/dataMC/'
+dirpath = '../condor_results/2024Apr/NONE/'
 plotCat = 'VbbHcc_plot'
 
 #regions = ['']
@@ -232,8 +232,8 @@ for r in regions:
       ## If 2017, remove the problematic bin ~40-60 GeV
       if y in ['17']:
         if plN in ["H_mass", "Z_mass"]:
-          low = 40 if plN == "H_mass" else 50
-          high = 50 if plN == "H_mass" else 60
+          low = 290# if plN == "H_mass" else 50
+          high = 300# if plN == "H_mass" else 60
           hQCD[y] = blind_region(hQCD[y], low, high)
       
       plots_process = [

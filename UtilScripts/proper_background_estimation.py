@@ -71,14 +71,16 @@ years = ['16', '17', '18']
 useLogY = False
 
 ## Input & Output file locations
-dirpath = '../condor_results/2024Feb_trigger/NONE/'
-output_directory = '../plot_results/2024Feb_trigger/'
+dirpath = '../condor_results/2024Apr/NONE/'
+output_directory = '../plot_results/2024Apr/background_estimation/'
 
 ## Variables we care about
 selection_methods = [
   "tagOnly", "DHZfirst", "tagFirst"
 ]
 selection_methods = [ "tagFirst" ]
+selection_methods = [ "tagOnly" ]
+selection_methods = [ "DHZfirst" ]
 
 plot_category = 'VbbHcc_plot'
 

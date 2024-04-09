@@ -59,11 +59,13 @@ def getHist(plotName, sample_names, hist_files, lumiScales):
 print "Pulling settings and preferences..."
 
 ## Edit / change the following options as needed:
-years = ['18']
+years = ['16','17','18']
 regions = ['tagFirst', 'tagOnly', 'DHZfirst']
+#regions = ['MCjet_ideal']
 useLogY = False
-outputDir = '../plot_results/forRupul/'
-dirpath = '../condor_results/for_Rupul/'
+outputDir = '../plot_results/2024Apr/MCsignal/'
+dirpath = '../condor_results/2024Apr/NONE/'
+#dirpath = '../'
 plotCats = ['VbbHcc_plot', 'VbbHcc_jet_plot']
 regionSpecific = [ True, False ]
 
@@ -161,27 +163,31 @@ for i in range(len(plotCats)):
       else: hN = plN
       if not regionSpecific[i]: hN = "Jets_cut_" + plN
       
-      plot = getHist(hN, ['ZH_HToCC_ZToQQ'], histFiles, lumiScales)[years[0]]
+      plots = getHist(hN, ['ZH_HToCC_ZToQQ'], histFiles, lumiScales)
       
-      tmps = cfg.get(plN, 'xAxisRange').split(',')
-      xA_range = []
-      if 'Pi' not in tmps[1]:
-        xA_range = [float(tmps[0]), float(tmps[1])]
-      else:
-        xA_range = [0, ROOT.TMath.Pi()]
+      for y in years:
       
-      xA_title = cfg.get(plN, 'xAxisTitle')
-      nRebin = int(cfg.get(plN, 'rebin'))
+        plot = plots[y]
+        
+        tmps = cfg.get(plN, 'xAxisRange').split(',')
+        xA_range = []
+        if 'Pi' not in tmps[1]:
+          xA_range = [float(tmps[0]), float(tmps[1])]
+        else:
+          xA_range = [0, ROOT.TMath.Pi()]
+        
+        xA_title = cfg.get(plN, 'xAxisTitle')
+        nRebin = int(cfg.get(plN, 'rebin'))
+        
+        print "hist = ", hN 
+        #print(xA_range)
       
-      print "hist = ", hN 
-      #print(xA_range)
+        logY = False
+        if "pT" in plN or "pt" in plN:
+          logY = True
       
-      logY = False
-      if "pT" in plN or "pt" in plN:
-        logY = True
-      
-      makePlot(plot.Clone().Rebin(nRebin), hN, plN,
-        outputDir + "/" + r, xA_title, xA_range, logY, lumi="--")
+        makePlot(plot.Clone().Rebin(nRebin), hN, plN + "_" + r + "_" + y,
+          outputDir + "/20" + y + "/" + r, xA_title, xA_range, logY, lumi=lumiS[y])
       #makePlot(plot, hN, plN, outputDir, 
       #  xA_title, [], "Events/" + str(nRebin) + " GeV",
       #  nRebin, logY, "--", ROOT.kBlack, ROOT.kBlue, 

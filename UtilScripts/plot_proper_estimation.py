@@ -69,20 +69,20 @@ ROOT.gROOT.SetBatch(True)
 
 ## The years we want to check
 years = ['16', '17', '18']
-years = ['16']
+#years = ['16']
 
 ## Do we want to use a logarithmic scale?
 useLogY = False
 
 ## Input & Output file locations
-dirpath = '../condor_results/2024Jan_double2016/NONE/'
-output_directory = '../plot_results/2024Jan_double2016/'
+dirpath = '../condor_results/2024Apr/NONE/'
+output_directory = '../plot_results/2024Apr/background_estimation'
 
 ## Variables we care about
 selection_methods = [
   "tagOnly", "DHZfirst", "tagFirst"
 ]
-selection_methods = ["tagFirst"]
+#selection_methods = ["tagFirst"]
 
 plot_category = 'VbbHcc_plot'
 
@@ -169,19 +169,19 @@ signal_regions = {
 ## Keep track of the scale factors we got from each region
 CR_SF = {
   "tagOnly": {
-    '16': 0.292,
-    '17': 0.346,
-    '18': 0.367
+    '16': 0.286,
+    '17': 0.330,
+    '18': 0.349
   },
   "DHZfirst": {
-    '16': 0.199,
+    '16': 0.198,
     '17': 0.204,
-    '18': 0.212
+    '18': 0.216
   },
   "tagFirst": {
-    '16': 0.378,#0.369,#0.366,#0.335,
-    '17': 0.416,#0.353,
-    '18': 0.425 #0.360,
+    '16': 0.401,#0.369,#0.366,#0.335,
+    '17': 0.476,#0.353,
+    '18': 0.489 #0.360,
   }
 }
 
@@ -193,12 +193,12 @@ CR_SF_unc = {
   },
   "DHZfirst": {
     '16': 0.001,
-    '17': 0.002,
+    '17': 0.003,
     '18': 0.002
   },
   "tagFirst": {
-    '16': 0.002,#0.001,
-    '17': 0.002,
+    '16': 0.001,#0.001,
+    '17': 0.003,
     '18': 0.002#0.001
   }
 }
