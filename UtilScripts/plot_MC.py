@@ -59,12 +59,13 @@ def getHist(plotName, sample_names, hist_files, lumiScales):
 print "Pulling settings and preferences..."
 
 ## Edit / change the following options as needed:
-years = ['16','17','18']
+#years = ['16','17','18']
+years = ['18']
 regions = ['tagFirst', 'tagOnly', 'DHZfirst']
 #regions = ['MCjet_ideal']
 useLogY = False
-outputDir = '../plot_results/2024Apr/MCsignal/'
-dirpath = '../condor_results/2024Apr/NONE/'
+outputDir = '../plot_results/2024Apr/MCsignal_test/'
+dirpath = '../condor_results/2024Apr_sample/'
 #dirpath = '../'
 plotCats = ['VbbHcc_plot', 'VbbHcc_jet_plot']
 regionSpecific = [ True, False ]
@@ -73,6 +74,9 @@ debug = True
 
 ## Normal List of Samples 
 ss = [ 'ZH_HToCC_ZToQQ' ]
+ss = [ 'QCD_HT100to200_v9' ]#, 'QCD_HT200to300_v9',
+      # 'QCD_HT300to500_v9', 'QCD_HT500to700_v9', 'QCD_HT700to1000_v9', 
+       #'QCD_HT1000to1500_v9', 'QCD_HT1500to2000_v9', 'QCD_HT2000toInf_v9']
 
 ################################
 ## Do not edit below this point
@@ -107,6 +111,7 @@ for s in ss:
   lumiScales[s] = {}
   histFiles[s] = {}
   
+  print(years)
   for y in years:
     
     lumi = float(cfg.get('General','lumi_'+y))
@@ -123,7 +128,9 @@ for s in ss:
     
     for iN in names:
       fileNames[s][y].append(dirpath + '/' + iN)
-      histFiles[s][y].append(ROOT.TFile.Open(fileNames[s][y][-1],'READ'))
+      fName = fileNames[s][y][-1]
+      print(fName)
+      histFiles[s][y].append(ROOT.TFile.Open(fName,'READ'))
     
     print xSecTmps
     for iS in xSecTmps:
@@ -163,7 +170,7 @@ for i in range(len(plotCats)):
       else: hN = plN
       if not regionSpecific[i]: hN = "Jets_cut_" + plN
       
-      plots = getHist(hN, ['ZH_HToCC_ZToQQ'], histFiles, lumiScales)
+      plots = getHist(hN, ss, histFiles, lumiScales)
       
       for y in years:
       
@@ -187,7 +194,7 @@ for i in range(len(plotCats)):
           logY = True
       
         makePlot(plot.Clone().Rebin(nRebin), hN, plN + "_" + r + "_" + y,
-          outputDir + "/20" + y + "/" + r, xA_title, xA_range, logY, lumi=lumiS[y])
+          outputDir + "/20" + y + "/" + r, xA_title, xA_range, logY, lumi="--")#lumiS[y])
       #makePlot(plot, hN, plN, outputDir, 
       #  xA_title, [], "Events/" + str(nRebin) + " GeV",
       #  nRebin, logY, "--", ROOT.kBlack, ROOT.kBlue, 
