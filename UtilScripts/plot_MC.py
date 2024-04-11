@@ -61,7 +61,8 @@ print "Pulling settings and preferences..."
 ## Edit / change the following options as needed:
 #years = ['16','17','18']
 years = ['18']
-regions = ['tagFirst', 'tagOnly', 'DHZfirst']
+regions = ['tagFirst', 'tagOnly', 'DHZfirst', 
+	'DHZfirst_noTag', 'tagFirst_2combo' ]
 #regions = ['MCjet_ideal']
 useLogY = False
 outputDir = '../plot_results/2024Apr/MCsignal_test/'
@@ -73,10 +74,10 @@ regionSpecific = [ True, False ]
 debug = True
 
 ## Normal List of Samples 
-ss = [ 'ZH_HToCC_ZToQQ' ]
-ss = [ 'QCD_HT100to200_v9' ]#, 'QCD_HT200to300_v9',
-      # 'QCD_HT300to500_v9', 'QCD_HT500to700_v9', 'QCD_HT700to1000_v9', 
-       #'QCD_HT1000to1500_v9', 'QCD_HT1500to2000_v9', 'QCD_HT2000toInf_v9']
+#ss = [ 'ZH_HToCC_ZToQQ' ]
+ss = [ 'QCD_HT100to200_v9', 'QCD_HT200to300_v9',
+       'QCD_HT300to500_v9', 'QCD_HT500to700_v9', 'QCD_HT700to1000_v9', 
+       'QCD_HT1000to1500_v9', 'QCD_HT1500to2000_v9', 'QCD_HT2000toInf_v9']
 
 ################################
 ## Do not edit below this point
@@ -114,6 +115,7 @@ for s in ss:
   print(years)
   for y in years:
     
+    print("y = ", y)
     lumi = float(cfg.get('General','lumi_'+y))
     names = cfg.get(s,'file_'+y).split(',')
     print '>>>>>>>>>: ', len(names)
@@ -129,6 +131,7 @@ for s in ss:
     for iN in names:
       fileNames[s][y].append(dirpath + '/' + iN)
       fName = fileNames[s][y][-1]
+      print(">>>>>> ", iN)
       print(fName)
       histFiles[s][y].append(ROOT.TFile.Open(fName,'READ'))
     

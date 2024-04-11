@@ -4,11 +4,11 @@
 void Sphericity_DHZfirst_18()
 {
 //=========Macro generated from canvas: Sphericity_DHZfirst_18/Sphericity_DHZfirst_18
-//=========  (Tue Apr  9 15:53:53 2024) by ROOT version 6.28/10
+//=========  (Thu Apr 11 14:04:09 2024) by ROOT version 6.28/10
    TCanvas *Sphericity_DHZfirst_18 = new TCanvas("Sphericity_DHZfirst_18", "Sphericity_DHZfirst_18",0,0,600,600);
    gStyle->SetOptStat(0);
    Sphericity_DHZfirst_18->SetHighLightColor(2);
-   Sphericity_DHZfirst_18->Range(-0.2,-0.13125,1.133333,1.18125);
+   Sphericity_DHZfirst_18->Range(-0.2,-26841.07,1.133333,241569.6);
    Sphericity_DHZfirst_18->SetFillColor(0);
    Sphericity_DHZfirst_18->SetFillStyle(4000);
    Sphericity_DHZfirst_18->SetBorderMode(0);
@@ -20,6 +20,15 @@ void Sphericity_DHZfirst_18()
    Sphericity_DHZfirst_18->SetFrameBorderMode(0);
    
    TH1D *VH_DHZfirst_Sphericity__63 = new TH1D("VH_DHZfirst_Sphericity__63","",25,0,1);
+   VH_DHZfirst_Sphericity__63->SetBinContent(1,204503.4);
+   VH_DHZfirst_Sphericity__63->SetBinContent(2,47909.33);
+   VH_DHZfirst_Sphericity__63->SetBinContent(3,9983.71);
+   VH_DHZfirst_Sphericity__63->SetBinContent(4,21441.67);
+   VH_DHZfirst_Sphericity__63->SetBinError(1,179506.7);
+   VH_DHZfirst_Sphericity__63->SetBinError(2,20348.91);
+   VH_DHZfirst_Sphericity__63->SetBinError(3,7667.815);
+   VH_DHZfirst_Sphericity__63->SetBinError(4,19300.43);
+   VH_DHZfirst_Sphericity__63->SetEntries(46);
 
    Int_t ci;      // for color index setting
    TColor *color; // for color definition with alpha

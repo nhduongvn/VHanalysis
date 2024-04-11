@@ -4,11 +4,11 @@
 void Z_dR_Bj1_DHZfirst_18()
 {
 //=========Macro generated from canvas: Z_dR_Bj1_DHZfirst_18/Z_dR_Bj1_DHZfirst_18
-//=========  (Tue Apr  9 15:53:53 2024) by ROOT version 6.28/10
+//=========  (Thu Apr 11 14:04:09 2024) by ROOT version 6.28/10
    TCanvas *Z_dR_Bj1_DHZfirst_18 = new TCanvas("Z_dR_Bj1_DHZfirst_18", "Z_dR_Bj1_DHZfirst_18",0,0,600,600);
    gStyle->SetOptStat(0);
    Z_dR_Bj1_DHZfirst_18->SetHighLightColor(2);
-   Z_dR_Bj1_DHZfirst_18->Range(-1.2,-0.13125,6.8,1.18125);
+   Z_dR_Bj1_DHZfirst_18->Range(-1.2,-8117.424,6.8,73056.81);
    Z_dR_Bj1_DHZfirst_18->SetFillColor(0);
    Z_dR_Bj1_DHZfirst_18->SetFillStyle(4000);
    Z_dR_Bj1_DHZfirst_18->SetBorderMode(0);
@@ -20,6 +20,41 @@ void Z_dR_Bj1_DHZfirst_18()
    Z_dR_Bj1_DHZfirst_18->SetFrameBorderMode(0);
    
    TH1D *VH_DHZfirst_Z_dR_Bj1__62 = new TH1D("VH_DHZfirst_Z_dR_Bj1__62","",30,0,6);
+   VH_DHZfirst_Z_dR_Bj1__62->SetBinContent(2,8882.944);
+   VH_DHZfirst_Z_dR_Bj1__62->SetBinContent(3,61847.04);
+   VH_DHZfirst_Z_dR_Bj1__62->SetBinContent(4,16280.99);
+   VH_DHZfirst_Z_dR_Bj1__62->SetBinContent(5,8882.944);
+   VH_DHZfirst_Z_dR_Bj1__62->SetBinContent(6,2183.925);
+   VH_DHZfirst_Z_dR_Bj1__62->SetBinContent(7,17087.01);
+   VH_DHZfirst_Z_dR_Bj1__62->SetBinContent(8,305.7868);
+   VH_DHZfirst_Z_dR_Bj1__62->SetBinContent(9,1048.234);
+   VH_DHZfirst_Z_dR_Bj1__62->SetBinContent(10,829.904);
+   VH_DHZfirst_Z_dR_Bj1__62->SetBinContent(11,1572.352);
+   VH_DHZfirst_Z_dR_Bj1__62->SetBinContent(12,524.1172);
+   VH_DHZfirst_Z_dR_Bj1__62->SetBinContent(13,1048.234);
+   VH_DHZfirst_Z_dR_Bj1__62->SetBinContent(14,524.1172);
+   VH_DHZfirst_Z_dR_Bj1__62->SetBinContent(16,305.7868);
+   VH_DHZfirst_Z_dR_Bj1__62->SetBinContent(18,829.904);
+   VH_DHZfirst_Z_dR_Bj1__62->SetBinContent(19,524.1172);
+   VH_DHZfirst_Z_dR_Bj1__62->SetBinContent(28,524.1172);
+   VH_DHZfirst_Z_dR_Bj1__62->SetBinError(2,7366.74);
+   VH_DHZfirst_Z_dR_Bj1__62->SetBinError(3,61020.15);
+   VH_DHZfirst_Z_dR_Bj1__62->SetBinError(4,10374.29);
+   VH_DHZfirst_Z_dR_Bj1__62->SetBinError(5,7366.74);
+   VH_DHZfirst_Z_dR_Bj1__62->SetBinError(6,1005.538);
+   VH_DHZfirst_Z_dR_Bj1__62->SetBinError(7,10399.64);
+   VH_DHZfirst_Z_dR_Bj1__62->SetBinError(8,305.7868);
+   VH_DHZfirst_Z_dR_Bj1__62->SetBinError(9,741.2136);
+   VH_DHZfirst_Z_dR_Bj1__62->SetBinError(10,606.7985);
+   VH_DHZfirst_Z_dR_Bj1__62->SetBinError(11,907.7976);
+   VH_DHZfirst_Z_dR_Bj1__62->SetBinError(12,524.1172);
+   VH_DHZfirst_Z_dR_Bj1__62->SetBinError(13,741.2136);
+   VH_DHZfirst_Z_dR_Bj1__62->SetBinError(14,524.1172);
+   VH_DHZfirst_Z_dR_Bj1__62->SetBinError(16,305.7868);
+   VH_DHZfirst_Z_dR_Bj1__62->SetBinError(18,606.7985);
+   VH_DHZfirst_Z_dR_Bj1__62->SetBinError(19,524.1172);
+   VH_DHZfirst_Z_dR_Bj1__62->SetBinError(28,524.1172);
+   VH_DHZfirst_Z_dR_Bj1__62->SetEntries(46);
 
    Int_t ci;      // for color index setting
    TColor *color; // for color definition with alpha

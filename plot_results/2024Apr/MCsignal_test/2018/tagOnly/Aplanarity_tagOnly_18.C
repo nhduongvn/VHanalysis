@@ -4,11 +4,11 @@
 void Aplanarity_tagOnly_18()
 {
 //=========Macro generated from canvas: Aplanarity_tagOnly_18/Aplanarity_tagOnly_18
-//=========  (Tue Apr  9 15:53:52 2024) by ROOT version 6.28/10
+//=========  (Thu Apr 11 14:04:08 2024) by ROOT version 6.28/10
    TCanvas *Aplanarity_tagOnly_18 = new TCanvas("Aplanarity_tagOnly_18", "Aplanarity_tagOnly_18",0,0,600,600);
    gStyle->SetOptStat(0);
    Aplanarity_tagOnly_18->SetHighLightColor(2);
-   Aplanarity_tagOnly_18->Range(-0.2,-0.13125,1.133333,1.18125);
+   Aplanarity_tagOnly_18->Range(-0.2,-404356.9,1.133333,3639212);
    Aplanarity_tagOnly_18->SetFillColor(0);
    Aplanarity_tagOnly_18->SetFillStyle(4000);
    Aplanarity_tagOnly_18->SetBorderMode(0);
@@ -20,6 +20,21 @@ void Aplanarity_tagOnly_18()
    Aplanarity_tagOnly_18->SetFrameBorderMode(0);
    
    TH1D *VH_tagOnly_Aplanarity__40 = new TH1D("VH_tagOnly_Aplanarity__40","",50,0,1);
+   VH_tagOnly_Aplanarity__40->SetBinContent(1,3080814);
+   VH_tagOnly_Aplanarity__40->SetBinContent(2,134207.4);
+   VH_tagOnly_Aplanarity__40->SetBinContent(3,16830.22);
+   VH_tagOnly_Aplanarity__40->SetBinContent(4,22086.66);
+   VH_tagOnly_Aplanarity__40->SetBinContent(6,2402.916);
+   VH_tagOnly_Aplanarity__40->SetBinContent(8,419.7394);
+   VH_tagOnly_Aplanarity__40->SetBinContent(9,383.8705);
+   VH_tagOnly_Aplanarity__40->SetBinError(1,583036.3);
+   VH_tagOnly_Aplanarity__40->SetBinError(2,45387.15);
+   VH_tagOnly_Aplanarity__40->SetBinError(3,5751.585);
+   VH_tagOnly_Aplanarity__40->SetBinError(4,16018.41);
+   VH_tagOnly_Aplanarity__40->SetBinError(6,2151.564);
+   VH_tagOnly_Aplanarity__40->SetBinError(8,419.7394);
+   VH_tagOnly_Aplanarity__40->SetBinError(9,383.8705);
+   VH_tagOnly_Aplanarity__40->SetEntries(780);
 
    Int_t ci;      // for color index setting
    TColor *color; // for color definition with alpha

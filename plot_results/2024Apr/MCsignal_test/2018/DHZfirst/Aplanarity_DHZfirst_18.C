@@ -4,11 +4,11 @@
 void Aplanarity_DHZfirst_18()
 {
 //=========Macro generated from canvas: Aplanarity_DHZfirst_18/Aplanarity_DHZfirst_18
-//=========  (Tue Apr  9 15:53:53 2024) by ROOT version 6.28/10
+//=========  (Thu Apr 11 14:04:09 2024) by ROOT version 6.28/10
    TCanvas *Aplanarity_DHZfirst_18 = new TCanvas("Aplanarity_DHZfirst_18", "Aplanarity_DHZfirst_18",0,0,600,600);
    gStyle->SetOptStat(0);
    Aplanarity_DHZfirst_18->SetHighLightColor(2);
-   Aplanarity_DHZfirst_18->Range(-0.2,-0.13125,1.133333,1.18125);
+   Aplanarity_DHZfirst_18->Range(-0.2,-34728.94,1.133333,312560.4);
    Aplanarity_DHZfirst_18->SetFillColor(0);
    Aplanarity_DHZfirst_18->SetFillStyle(4000);
    Aplanarity_DHZfirst_18->SetBorderMode(0);
@@ -20,6 +20,11 @@ void Aplanarity_DHZfirst_18()
    Aplanarity_DHZfirst_18->SetFrameBorderMode(0);
    
    TH1D *VH_DHZfirst_Aplanarity__64 = new TH1D("VH_DHZfirst_Aplanarity__64","",50,0,1);
+   VH_DHZfirst_Aplanarity__64->SetBinContent(1,264601.4);
+   VH_DHZfirst_Aplanarity__64->SetBinContent(2,19236.66);
+   VH_DHZfirst_Aplanarity__64->SetBinError(1,180825.8);
+   VH_DHZfirst_Aplanarity__64->SetBinError(2,19236.66);
+   VH_DHZfirst_Aplanarity__64->SetEntries(46);
 
    Int_t ci;      // for color index setting
    TColor *color; // for color definition with alpha

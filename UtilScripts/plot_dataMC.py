@@ -62,6 +62,7 @@ print "Pulling settings and preferences..."
 years = ['16', '17', '18']
 #years = ['17']
 regions = ['tagOnly', 'DHZfirst', 'tagFirst']
+regions = ['tagFirst']
 useLogY = False
 outputDir = '../plot_results/2024Apr/dataMC/'
 dirpath = '../condor_results/2024Apr/NONE/'
@@ -170,6 +171,7 @@ for r in regions:
   plotNames = cfg.get('Plots', plotCat).split(',')
   
   #plotNames = ["CutFlow"]
+ # plotNames = ["nCombos"]
   
   
   for plN in plotNames:
@@ -267,6 +269,7 @@ for r in regions:
       
       logY = useLogY
       if 'CutFlow' in plN: logY = True
+      if 'nCombos' in plN: logY = True
       makeDataMCPlot(plots_process, plotNames_process, ## Plots
         plN + '_' + r + '_' + y, outputDir + '/20'+y,  ## folders
         xA_title, xA_range, 'MC unc. (stat.)', False,  ## axes

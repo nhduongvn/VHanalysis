@@ -4,11 +4,11 @@
 void H_jetmass_JEC_tagFirst_18()
 {
 //=========Macro generated from canvas: H_jetmass_JEC_tagFirst_18/H_jetmass_JEC_tagFirst_18
-//=========  (Tue Apr  9 15:53:52 2024) by ROOT version 6.28/10
+//=========  (Thu Apr 11 14:04:08 2024) by ROOT version 6.28/10
    TCanvas *H_jetmass_JEC_tagFirst_18 = new TCanvas("H_jetmass_JEC_tagFirst_18", "H_jetmass_JEC_tagFirst_18",0,0,600,600);
    gStyle->SetOptStat(0);
    H_jetmass_JEC_tagFirst_18->SetHighLightColor(2);
-   H_jetmass_JEC_tagFirst_18->Range(-60,-0.13125,340,1.18125);
+   H_jetmass_JEC_tagFirst_18->Range(-60,-68706.12,340,618355.1);
    H_jetmass_JEC_tagFirst_18->SetFillColor(0);
    H_jetmass_JEC_tagFirst_18->SetFillStyle(4000);
    H_jetmass_JEC_tagFirst_18->SetBorderMode(0);
@@ -20,6 +20,89 @@ void H_jetmass_JEC_tagFirst_18()
    H_jetmass_JEC_tagFirst_18->SetFrameBorderMode(0);
    
    TH1D *VH_tagFirst_H_jetmass_JEC__20 = new TH1D("VH_tagFirst_H_jetmass_JEC__20","",150,0,300);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(2,8057.459);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(3,13714.63);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(4,286903.4);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(5,279164.6);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(6,469352.5);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(7,523475.2);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(8,167904.4);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(9,239352.8);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(10,516861.3);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(11,107789.9);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(12,333184.8);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(13,52077.15);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(14,28751.34);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(15,15222.28);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(16,50169.41);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(17,173512.5);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(18,19760.4);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(19,9528.886);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(20,7243.762);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(21,6075.327);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(22,9539.317);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(23,4232.504);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(24,5724.141);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(25,1221.244);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(26,250885.6);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(27,2491.589);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(29,337.3318);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(30,408.6412);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(31,938.5929);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(32,662.8817);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(33,839.0991);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(34,2129.658);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(35,867.8414);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(37,614.2069);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(38,337.8968);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(42,877.3532);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(43,495.7074);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(47,400.8116);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(49,381.4545);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(55,249.8734);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinContent(62,613.0646);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(2,7355.618);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(3,6301.185);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(4,128459.1);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(5,78080.64);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(6,217591.2);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(7,216726.8);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(8,65570.78);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(9,172373.7);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(10,240565.9);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(11,33721.23);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(12,248669.7);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(13,13717.06);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(14,5604.067);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(15,7792.307);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(16,19249.75);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(17,156297.1);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(18,4950.143);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(19,3321.693);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(20,2335.874);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(21,2178.727);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(22,3262.592);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(23,1565.884);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(24,2056.62);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(25,863.5717);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(26,249103.9);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(27,1170.417);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(29,337.3318);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(30,408.6412);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(31,766.0778);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(32,662.8817);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(33,839.0991);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(34,1270.686);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(35,867.8414);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(37,614.2069);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(38,337.8968);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(42,877.3532);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(43,495.7074);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(47,400.8116);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(49,381.4545);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(55,249.8734);
+   VH_tagFirst_H_jetmass_JEC__20->SetBinError(62,613.0646);
+   VH_tagFirst_H_jetmass_JEC__20->SetEntries(846);
 
    Int_t ci;      // for color index setting
    TColor *color; // for color definition with alpha
