@@ -127,7 +127,10 @@ class VH_selection : public Selector
     VHPlots *h_VH_tagOnly_2b1c; // plots for versions with 2b1c tagging
     VHPlots *h_VH_DHZfirst_2b1c;
     VHPlots *h_VH_tagFirst_2b1c;
- 
+
+    VHPlots *h_VH_tagFirst_2combo; 
+    VHPlots *h_VH_DHZfirst_noTag;
+
     // ====================
     // RecoPlots instances
     // ====================

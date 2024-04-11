@@ -503,6 +503,9 @@ void VH_selection::SlaveBegin(Reader *r)
   h_VH_DHZfirst_2b1c = new VHPlots("VH_DHZfirst_2b1c");
   h_VH_tagFirst_2b1c = new VHPlots("VH_tagFirst_2b1c");
 
+  h_VH_tagFirst_2combo = new VHPlots("VH_tagFirst_2combo");
+  h_VH_DHZfirst_noTag = new VHPlots("VH_DHZfirst_noTag");
+
   // These store the comparisons of partons & their jets
   h_reco_minDR = new RecoPlots("Reco_minDR");
   h_reco_minDR_under30 = new RecoPlots("Reco_minDR_under30");
@@ -626,6 +629,10 @@ void VH_selection::SlaveBegin(Reader *r)
   tmp = h_VH_tagFirst_2b1c->returnHisto();
   for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
 
+  tmp = h_VH_tagFirst_2combo->returnHisto();
+  for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_DHZfirst_noTag->returnHisto();
+  for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
 
   // Add our RecoPlot instances
   tmp = h_reco_minDR->returnHisto();
@@ -1744,6 +1751,8 @@ void VH_selection::Process(Reader *r)
       if (!passes) passes_ctags = false;
     } 
 
+    h_VH_DHZfirst_noTag->FillVH(Z3, H3, event_weight);
+
     if (btag_passes[0] || force_pass_tagging) {
       h_cutflow_evt_DHZfirst->Fill(4.5, generator_weight); // b-tag 1
       if (btag_passes[1] || force_pass_tagging) {
@@ -1883,6 +1892,10 @@ void VH_selection::Process(Reader *r)
       }  
       ZObj Z4(bjets); HiggsObj H4(cjets);
       h_VH_tagFirst->FillVH(Z4, H4, event_weight);
+      if (combos.size() > 1)
+      {
+        h_VH_tagFirst_2combo->FillVH(Z4, H4, event_weight);
+      }
     }//end-if
 
     // Now, do the 2b1c version
