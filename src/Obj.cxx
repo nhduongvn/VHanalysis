@@ -371,7 +371,7 @@ class DHZObj
         m_jets[m_indices[1][1]].m_lvec);
  
       // Make sure that H is the higher pT pairing
-      if (v0.Pt() > v1.Pt()){ 
+      if (v0.Pt() > v1.Pt() && false){ 
         m_Hvec = v0; m_Zvec = v1; 
         m_Hidx = 0; m_Zidx = 1;
       }
