@@ -101,6 +101,14 @@ class WeightPlots
         "", NBIN_WEIGHT, X_WEIGHT[0], X_WEIGHT[1]);
       h_event_weight = new TH1D(name + "_event_weight",
         "", NBIN_WEIGHT, X_WEIGHT[0], X_WEIGHT[1]);
+      
+      h_generator_weight->Sumw2();
+      h_pileup_SF->Sumw2();
+      h_l1_prefire_weight->Sumw2(); 
+      h_trigger_SF->Sumw2();
+      h_btag_calib->Sumw2();
+      h_ctag_calib->Sumw2();
+      h_event_weight->Sumw2();
     };
     virtual ~WeightPlots() {};
 
@@ -185,6 +193,11 @@ class RegressionPlots
         NBIN_REGRESSION, X_REGRESSION[0], X_REGRESSION[1]);
       h_resolution_cJet = new TH1D(name + "_resolution_cJet", "",
         NBIN_REGRESSION, X_REGRESSION[0], X_REGRESSION[1]);
+      
+      h_correction_bJet->Sumw2();
+      h_correction_cJet->Sumw2();
+      h_resolution_bJet->Sumw2();
+      h_resolution_cJet->Sumw2();
     };
     virtual ~RegressionPlots() {};
     
@@ -249,13 +262,13 @@ class BosonPlots
     {
       // Plots related to the reconstructed Boson object
       h_pt = new TH1D(name + "_pt", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);    
-      h_eta = new TH1D(name + "_eta", "", NBIN_ETA, X_ETA[0], X_ETA[1]);
-      h_phi = new TH1D(name + "_phi", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
-      h_mass = new TH1D(name + "_mass", "", NBIN_M, X_M[0], X_M[1]);
-      h_dR = new TH1D(name + "_dR", "", NBIN_DR, X_DR[0], X_DR[1]);
-      h_dPhi = new TH1D(name + "_dPhi", "", NBIN_DPHI, X_DPHI[0], X_DPHI[1]);
-      h_dR_Bj0 = new TH1D(name + "_dR_Bj0", "", NBIN_DR, X_DR[0], X_DR[1]);
-      h_dR_Bj1 = new TH1D(name + "_dR_Bj1", "", NBIN_DR, X_DR[0], X_DR[1]);
+      h_eta = new TH1D(name + "_eta", "", NBIN_ETA, X_ETA[0], X_ETA[1]);          
+      h_phi = new TH1D(name + "_phi", "", NBIN_PHI, X_PHI[0], X_PHI[1]);          
+      h_mass = new TH1D(name + "_mass", "", NBIN_M, X_M[0], X_M[1]);             
+      h_dR = new TH1D(name + "_dR", "", NBIN_DR, X_DR[0], X_DR[1]);               
+      h_dPhi = new TH1D(name + "_dPhi", "", NBIN_DPHI, X_DPHI[0], X_DPHI[1]);     
+      h_dR_Bj0 = new TH1D(name + "_dR_Bj0", "", NBIN_DR, X_DR[0], X_DR[1]);  
+      h_dR_Bj1 = new TH1D(name + "_dR_Bj1", "", NBIN_DR, X_DR[0], X_DR[1]); 
       
       // Plots related to the jets that reconstruct the object
       h_pt_jet0 = new TH1D(name + "_pt_jet0", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
@@ -267,12 +280,27 @@ class BosonPlots
       h_phi_jet0 = new TH1D(name + "_phi_jet0", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
       h_phi_jet1 = new TH1D(name + "_phi_jet1", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
       h_phi_jet2 = new TH1D(name + "_phi_jet2", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
-
       h_jetpt_noJEC = new TH1D(name + "_jetpt_noJEC", "", 300, 0, 300);
       h_jetpt_JEC = new TH1D(name + "_jetpt_JEC", "", 300, 0, 300);
       h_jetmass_noJEC = new TH1D(name + "_jetmass_noJEC", "", 300, 0, 300);
       h_jetmass_JEC = new TH1D(name + "_jetmass_JEC", "", 300, 0, 300);
-
+      
+      h_pt->Sumw2();
+      h_eta->Sumw2();
+      h_phi->Sumw2();
+      //h_mass->Sumw2();
+      h_dR->Sumw2();
+      h_dPhi->Sumw2();
+      h_dR_Bj0->Sumw2();
+      h_dR_Bj1->Sumw2();
+      
+      h_pt_jet0->Sumw2();  h_pt_jet1->Sumw2();  h_pt_jet2->Sumw2();
+      h_eta_jet0->Sumw2(); h_eta_jet1->Sumw2(); h_eta_jet2->Sumw2();
+      h_phi_jet0->Sumw2(); h_phi_jet1->Sumw2(); h_phi_jet2->Sumw2();
+      h_jetpt_noJEC->Sumw2();
+      h_jetpt_JEC->Sumw2();
+      h_jetmass_noJEC->Sumw2();
+      h_jetmass_JEC->Sumw2();
     };
     virtual ~BosonPlots() {};
 
@@ -375,11 +403,9 @@ class VHPlots
       // Plots related to MET
       h_MET = new TH1D(name + "_MET", "", 300, 0, 300);
 
-      // Plots related to jets
-      
       // Plots related to bosons / reconstructed object
-      h_Z = new BosonPlots(name + "_Z");
-      h_H = new BosonPlots(name + "_H");
+      h_Z = new BosonPlots(name + "_Z"); //h_Z->Sumw2();
+      h_H = new BosonPlots(name + "_H"); //h_H->Sumw2();
       h_dPhi_HZ = new TH1D(name + "_dPhi_HZ", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
       h_dR_HZ = new TH1D(name + "_dR_HZ", "", NBIN_DR, X_DR[0], X_DR[1]);
 
@@ -391,19 +417,31 @@ class VHPlots
       h_dH = new TH1D(name + "_dH", "", NBIN_DH, X_DH[0], X_DH[1]);
       h_MH_v_MZ = new TH2D(name + "_MH_v_MZ", "", 2000, 0, 2000, 2000, 0, 2000);
       h_MH_v_MZ_all = new TH2D(name + "_MH_v_MZ_all", "", 2000, 0, 2000, 2000, 0, 2000);
-
       h_MZ_v_flav = new TH2D(name + "_MZ_v_flav", "", 20, 0, 200, 15, 0, 15);
       h_dR_v_flav = new TH2D(name + "_dR_v_flav", "", 20, 0, 20, 15, 0, 15);
-
       h_MH_v_dR = new TH2D(name + "_MH_v_dR", "", 20, 0, 200, 60, 0, 6);
       h_MZ_v_dR = new TH2D(name + "_MZ_v_dR", "", 20, 0, 200, 60, 0, 6);
-
       h_Sphericity = new TH1D(name + "_Sphericity", "", 100, 0, 1);
       h_Aplanarity = new TH1D(name + "_Aplanarity", "", 100, 0, 1);
-
       h_HT = new TH1D(name + "_HT", "", 2000, 0, 2000);
       h_HTmod = new TH1D(name + "_HTmod", "", 2000, 0, 2000);
+
+      h_MET->Sumw2();
+      h_dPhi_HZ->Sumw2();
+      h_dR_HZ->Sumw2();
+      
+      h_DHZ->Sumw2(); h_DHZ0->Sumw2(); h_DHZ1->Sumw2(); h_DHZ2->Sumw2();
+      h_dH->Sumw2();
+      h_MH_v_MZ->Sumw2(); h_MH_v_MZ_all->Sumw2();
+      h_MZ_v_flav->Sumw2(); h_dR_v_flav->Sumw2();
+      h_MH_v_dR->Sumw2(); h_MZ_v_dR->Sumw2();
+      h_Sphericity->Sumw2();
+      h_Aplanarity->Sumw2();
+      h_HT->Sumw2();
+      h_HTmod->Sumw2();
+      
     };
+
     virtual ~VHPlots(){};
 
     // ===============
@@ -590,6 +628,9 @@ class JetPlots
       h_CSV = new TH1D(name + "_CSV", "", 100, 0, 1);
       h_CvL = new TH1D(name + "_CvL", "", 100, 0, 1);
       h_CvB = new TH1D(name + "_CvB", "", 100, 0, 1);
+      
+      h_nJet->Sumw2(); h_pt->Sumw2(); h_eta->Sumw2();
+      h_phi->Sumw2(); h_CSV->Sumw2(); h_CvL->Sumw2(); h_CvB->Sumw2();
 
       // Initialize the leading jet plots
       h_pt_jet0 = new TH1D(name + "_pt_jet0", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
@@ -604,37 +645,57 @@ class JetPlots
       h_phi_jet1 = new TH1D(name + "_phi_jet1", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
       h_phi_jet2 = new TH1D(name + "_phi_jet2", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
       h_phi_jet3 = new TH1D(name + "_phi_jet3", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
+      
+      h_pt_jet0->Sumw2(); h_eta_jet0->Sumw2(); h_phi_jet0->Sumw2();
+      h_pt_jet1->Sumw2(); h_eta_jet1->Sumw2(); h_phi_jet1->Sumw2();
+      h_pt_jet2->Sumw2(); h_eta_jet2->Sumw2(); h_phi_jet2->Sumw2();
+      h_pt_jet3->Sumw2(); h_eta_jet3->Sumw2(); h_phi_jet3->Sumw2();
 
       // Initialize the tagging plots
       //h_nL_loose = new TH1D(name + "_nL_loose", "", 10, -0.5, 9.5);
       //h_nL_medium = new TH1D(name + "_nL_medium", "", 10, -0.5, 9.5);
-      h_nB_loose = new TH1D(name + "_nB_loose", "", 10, -0.5, 9.5);
-      h_nB_medium = new TH1D(name + "_nB_medium", "", 10, -0.5, 9.5);
-      h_nC_loose = new TH1D(name + "_nC_loose", "", 10, -0.5, 9.5);
-      h_nC_medium = new TH1D(name + "_nC_medium", "", 10, -0.5, 9.5);
-      h_nBoth_loose = new TH1D(name + "_nBoth_loose", "", 10, -0.5, 9.5);
-      h_nBoth_medium = new TH1D(name + "_nBoth_medium", "", 10, -0.5, 9.5);
+      h_nB_loose = new TH1D(name + "_nB_loose", "", 10, -0.5, 9.5);   
+      h_nB_medium = new TH1D(name + "_nB_medium", "", 10, -0.5, 9.5); 
+      h_nC_loose = new TH1D(name + "_nC_loose", "", 10, -0.5, 9.5);   
+      h_nC_medium = new TH1D(name + "_nC_medium", "", 10, -0.5, 9.5); 
+      h_nBoth_loose = new TH1D(name + "_nBoth_loose", "", 10, -0.5, 9.5); 
+      h_nBoth_medium = new TH1D(name + "_nBoth_medium", "", 10, -0.5, 9.5); 
+      
+      h_nB_loose->Sumw2(); h_nB_medium->Sumw2();
+      h_nC_loose->Sumw2(); h_nC_medium->Sumw2();
+      h_nBoth_loose->Sumw2(); h_nBoth_medium->Sumw2();
 
-      h_pt_ljets = new TH1D(name + "_pt_ljets", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      h_pt_ljets = new TH1D(name + "_pt_ljets", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]); 
       h_pt_ljet0 = new TH1D(name + "_pt_ljet0", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
-      h_pt_ljet1 = new TH1D(name + "_pt_ljet1", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      h_pt_ljet1 = new TH1D(name + "_pt_ljet1", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]); 
       h_pt_ljet2 = new TH1D(name + "_pt_ljet2", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
-      h_pt_ljet3 = new TH1D(name + "_pt_ljet3", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
-      h_pt_bjets = new TH1D(name + "_pt_bjets", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
-      h_pt_bjet0 = new TH1D(name + "_pt_bjet0", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
-      h_pt_bjet1 = new TH1D(name + "_pt_bjet1", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
-      h_pt_bjet2 = new TH1D(name + "_pt_bjet2", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
-      h_pt_bjet3 = new TH1D(name + "_pt_bjet3", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
-      h_pt_cjets = new TH1D(name + "_pt_cjets", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
-      h_pt_cjet0 = new TH1D(name + "_pt_cjet0", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
-      h_pt_cjet1 = new TH1D(name + "_pt_cjet1", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
-      h_pt_cjet2 = new TH1D(name + "_pt_cjet2", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      h_pt_ljet3 = new TH1D(name + "_pt_ljet3", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]); 
+      h_pt_bjets = new TH1D(name + "_pt_bjets", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]); 
+      h_pt_bjet0 = new TH1D(name + "_pt_bjet0", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]); 
+      h_pt_bjet1 = new TH1D(name + "_pt_bjet1", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]); 
+      h_pt_bjet2 = new TH1D(name + "_pt_bjet2", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]); 
+      h_pt_bjet3 = new TH1D(name + "_pt_bjet3", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]); 
+      h_pt_cjets = new TH1D(name + "_pt_cjets", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]); 
+      h_pt_cjet0 = new TH1D(name + "_pt_cjet0", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]); 
+      h_pt_cjet1 = new TH1D(name + "_pt_cjet1", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]); 
+      h_pt_cjet2 = new TH1D(name + "_pt_cjet2", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]); 
       h_pt_cjet3 = new TH1D(name + "_pt_cjet3", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
+      
+      h_pt_ljets->Sumw2(); h_pt_ljet0->Sumw2(); h_pt_ljet1->Sumw2(); 
+      h_pt_ljet2->Sumw2(); h_pt_ljet3->Sumw2();
+      h_pt_bjets->Sumw2(); h_pt_bjet0->Sumw2(); h_pt_bjet1->Sumw2(); 
+      h_pt_bjet2->Sumw2(); h_pt_bjet3->Sumw2();
+      h_pt_cjets->Sumw2(); h_pt_cjet0->Sumw2(); h_pt_cjet1->Sumw2(); 
+      h_pt_cjet2->Sumw2(); h_pt_cjet3->Sumw2();
 
-      h_bRegCorr = new TH1D(name + "_bRegCorr", "", 200, 0, 2);
-      h_cRegCorr = new TH1D(name + "_cRegCorr", "", 200, 0, 2);
-      h_bRegRes  = new TH1D(name + "_bRegRes", "", 200, 0, 2);
-      h_cRegRes  = new TH1D(name + "_cRegRes", "", 200, 0, 2); 
+      h_bRegCorr = new TH1D(name + "_bRegCorr", "", 200, 0, 2); 
+      h_cRegCorr = new TH1D(name + "_cRegCorr", "", 200, 0, 2); 
+      h_bRegRes  = new TH1D(name + "_bRegRes", "", 200, 0, 2);  
+      h_cRegRes  = new TH1D(name + "_cRegRes", "", 200, 0, 2);
+      
+      h_bRegCorr->Sumw2(); h_cRegCorr->Sumw2();
+      h_bRegRes->Sumw2();  h_cRegRes->Sumw2();
+
     };
     virtual ~JetPlots() {};
 
@@ -862,20 +923,31 @@ class RecoPlots
       
       h_dR_b_v_bjets = new TH1D(name + "_dR_b_v_bjets", "", 700, 0, 7);
       h_dR_b_v_bjet0 = new TH1D(name + "_dR_b_v_bjet0", "", 700, 0, 7);
-      h_dR_b_v_bjet1 = new TH1D(name + "_dR_b_v_bjet1", "", 700, 0, 7);
+      h_dR_b_v_bjet1 = new TH1D(name + "_dR_b_v_bjet1", "", 700, 0, 7);    
       
+      h_dR_b_v_bjets->Sumw2(); 
+      h_dR_b_v_bjet0->Sumw2();
+      h_dR_b_v_bjet1->Sumw2(); 
+
       h_dR_c_v_cjets = new TH1D(name + "_dR_c_v_cjets", "", 700, 0, 7);
       h_dR_c_v_cjet0 = new TH1D(name + "_dR_c_v_cjet0", "", 700, 0, 7);
       h_dR_c_v_cjet1 = new TH1D(name + "_dR_c_v_cjet1", "", 700, 0, 7);
       
+      h_dR_c_v_cjets->Sumw2();
+      h_dR_c_v_cjet0->Sumw2();
+      h_dR_c_v_cjet1->Sumw2();
+
       h_pTratio_all  = new TH1D(name + "_pTratio_all", "", 400, -2, 2);
       h_pTratio_bjets = new TH1D(name + "_pTratio_bjets", "", 400, -2, 2);
       h_pTratio_bjet0 = new TH1D(name + "_pTratio_bjet0", "", 400, -2, 2);
       h_pTratio_bjet1 = new TH1D(name + "_pTratio_bjet1", "", 400, -2, 2);
-      
       h_pTratio_cjets = new TH1D(name + "_pTratio_cjets", "", 400, -2, 2);
       h_pTratio_cjet0 = new TH1D(name + "_pTratio_cjet0", "", 400, -2, 2);
       h_pTratio_cjet1 = new TH1D(name + "_pTratio_cjet1", "", 400, -2, 2);
+      
+      h_pTratio_all->Sumw2();
+      h_pTratio_bjets->Sumw2(); h_pTratio_bjet0->Sumw2(); h_pTratio_bjet1->Sumw2();
+      h_pTratio_cjets->Sumw2(); h_pTratio_cjet0->Sumw2(); h_pTratio_cjet1->Sumw2();
     };
 
     // Methods
@@ -979,19 +1051,29 @@ class TriggerEffPlots
         TString hName = name + "_pt_jet" + std::to_string(i);
         h_pt_jets[i] = new TH1D(hName, "", 500, 0, 500);
         h_pt_jets_ref[i] = new TH1D(hName + "_ref", "", 500, 0, 500);   
+        
+        h_pt_jets[i]->Sumw2();
+        h_pt_jets_ref[i]->Sumw2();
       }
 
-      h_HT = new TH1D(name + "_HT", "", 2000, 0, 2000);
+      h_HT = new TH1D(name + "_HT", "", 2000, 0, 2000); 
       h_HT_ref = new TH1D(name + "_HT_ref", "", 2000, 0, 2000);
-      h_HTmod = new TH1D(name + "_HTmod", "", 2000, 0, 2000);
+      h_HTmod = new TH1D(name + "_HTmod", "", 2000, 0, 2000); 
       h_HTmod_ref = new TH1D(name + "_HTmod_ref", "", 2000, 0, 2000);
+      
+      h_HT->Sumw2(); h_HT_ref->Sumw2();
+      h_HTmod->Sumw2(); h_HTmod_ref->Sumw2();
 
       h_BvL = new TH1D(name + "_BvL", "", 100, 0, 1);
-      h_BvL_ref = new TH1D(name + "_BvL_ref", "", 100, 0, 1);
-      h_CvL = new TH1D(name + "_CvL", "", 100, 0, 1);
+      h_BvL_ref = new TH1D(name + "_BvL_ref", "", 100, 0, 1); 
+      h_CvL = new TH1D(name + "_CvL", "", 100, 0, 1); 
       h_CvL_ref = new TH1D(name + "_CvL_ref", "", 100, 0, 1);
-      h_CvB = new TH1D(name + "_CvB", "", 100, 0, 1);
+      h_CvB = new TH1D(name + "_CvB", "", 100, 0, 1); 
       h_CvB_ref = new TH1D(name + "_CvB_ref", "", 100, 0, 1);
+      
+      h_BvL->Sumw2(); h_BvL_ref->Sumw2();
+      h_CvL->Sumw2(); h_CvL_ref->Sumw2();
+      h_CvB->Sumw2(); h_CvB_ref->Sumw2();
     };
 
     // Fill the appropriate histograms

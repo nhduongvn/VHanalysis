@@ -64,7 +64,7 @@ years = ['16', '17', '18']
 regions = ['tagOnly', 'DHZfirst', 'tagFirst']
 regions = ['tagFirst']
 useLogY = False
-outputDir = '../plot_results/2024Apr/dataMC/'
+outputDir = '../plot_results/2024Apr_new/dataMC/'
 dirpath = '../condor_results/2024Apr/NONE/'
 plotCat = 'VbbHcc_plot'
 

@@ -102,6 +102,14 @@ class VH_selection : public Selector
     TH1D* h_pt_cand_H;
     TH2D* h_pt_cand_H_vs_Z;
 
+    TH1D* h_motherID_cc;
+    TH1D* h_motherID_bb;
+    TH1D* h_motherID_c0;
+    TH1D* h_motherID_c1;
+    TH1D* h_motherID_b0;
+    TH1D* h_motherID_b1;
+    TH1D* h_motherID_region_c;
+
     // ======================
     // WeightPlot Instances
     // ======================
@@ -129,7 +137,9 @@ class VH_selection : public Selector
     VHPlots *h_VH_tagFirst_2b1c;
 
     VHPlots *h_VH_tagFirst_2combo; 
+    VHPlots *h_VH_tagFirst_1combo;
     VHPlots *h_VH_DHZfirst_noTag;
+    VHPlots *h_VH_DHZfirst_2b;
 
     // ====================
     // RecoPlots instances

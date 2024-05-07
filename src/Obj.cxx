@@ -393,8 +393,8 @@ class DHZObj
     float ZPt() { return m_Zvec.Pt(); }
     float ZM() { return m_Zvec.M(); }
     float DPhi() { return m_Zvec.DeltaPhi(m_Hvec); }
-    float Hidx(int i) { return m_indices[m_Hidx][i]; }
-    float Zidx(int i) { return m_indices[m_Zidx][i]; }
+    int Hidx(int i) { return m_indices[m_Hidx][i]; }
+    int Zidx(int i) { return m_indices[m_Zidx][i]; }
 
     bool H_has_cjet0(float desired_CvL, float desired_CvB) {
       float cvl0 = m_jets[Hidx(0)].m_deepCvL;

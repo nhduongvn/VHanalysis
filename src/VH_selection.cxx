@@ -396,6 +396,7 @@ float determine_trigger_SF(std::vector<JetObj>& jets, int year) {
 */
 void VH_selection::SlaveBegin(Reader *r) 
 {
+  //TH1::SetDefaultSumw2();
 
   // =================================
   // [41a] Initialize our event plots
@@ -407,26 +408,29 @@ void VH_selection::SlaveBegin(Reader *r)
   bin 3 = total event weight
   genWeight (= bin2 - bin1)*/
   h_evt = new TH1D("Nevt", "", 4, -1.5, 2.5);
-
   h_MET = new TH1D("MET", "", 2000, 0, 2000);
-  h_HT = new TH1D("HT", "", 2000, 0, 2000);
+  h_HT = new TH1D("HT", "", 2000, 0, 2000);  
+
+  h_evt->Sumw2();
+  h_MET->Sumw2();
+  h_HT->Sumw2();
 
   // CutFlows will be set up here
-  h_cutflow_elec = new TH1D("CutFlow_elec", "", 5, 0, 5);
+  h_cutflow_elec = new TH1D("CutFlow_elec", "", 5, 0, 5); 
   h_cutflow_elec->GetXaxis()->SetBinLabel(1, "Total");
   h_cutflow_elec->GetXaxis()->SetBinLabel(2, "pT cut");
   h_cutflow_elec->GetXaxis()->SetBinLabel(3, "eta cut");
   h_cutflow_elec->GetXaxis()->SetBinLabel(4, "etaSC cut");
   h_cutflow_elec->GetXaxis()->SetBinLabel(5, "loose ID cut");
 
-  h_cutflow_muon = new TH1D("CutFlow_muon", "", 5, 0, 5);
+  h_cutflow_muon = new TH1D("CutFlow_muon", "", 5, 0, 5); 
   h_cutflow_muon->GetXaxis()->SetBinLabel(1, "Total");
   h_cutflow_muon->GetXaxis()->SetBinLabel(2, "pT cut");
   h_cutflow_muon->GetXaxis()->SetBinLabel(3, "eta cut");
   h_cutflow_muon->GetXaxis()->SetBinLabel(4, "loose ID cut");
   h_cutflow_muon->GetXaxis()->SetBinLabel(5, "iso cut");
 
-  h_cutflow_jet = new TH1D("CutFlow_jet", "", 5, 0, 5);
+  h_cutflow_jet = new TH1D("CutFlow_jet", "", 5, 0, 5); 
   h_cutflow_jet->GetXaxis()->SetBinLabel(1, "Total");
   h_cutflow_jet->GetXaxis()->SetBinLabel(2, "pT cut");
   h_cutflow_jet->GetXaxis()->SetBinLabel(3, "eta cut");
@@ -479,11 +483,23 @@ void VH_selection::SlaveBegin(Reader *r)
   h_evt_trig_2016->GetXaxis()->SetBinLabel(3,"Passed Quad");
   h_evt_trig_2016->GetXaxis()->SetBinLabel(4,"Passed Double");
 
+  h_cutflow_elec->Sumw2();
+  h_cutflow_muon->Sumw2();
+  h_cutflow_jet->Sumw2();
+  h_cutflow_evt_MC->Sumw2();
+  h_cutflow_evt_MCjet_DHZ->Sumw2();
+  h_cutflow_evt_tagOnly->Sumw2();
+  h_cutflow_evt_DHZfirst->Sumw2();
+  h_cutflow_evt_tagFirst->Sumw2();
+  h_evt_trig_2016->Sumw2();
+
   // These store our object weights
   h_event_weights = new WeightPlots("EventWeights");
-  
+  //h_event_weights->Sumw2();  
+
   // These store our jet regression values
   h_jet_regressions = new RegressionPlots("JetRegression");
+  //h_jet_regressions->Sumw2();
 
   // These store the event results
   h_VH_MC = new VHPlots("VH_MC");
@@ -504,7 +520,9 @@ void VH_selection::SlaveBegin(Reader *r)
   h_VH_tagFirst_2b1c = new VHPlots("VH_tagFirst_2b1c");
 
   h_VH_tagFirst_2combo = new VHPlots("VH_tagFirst_2combo");
+  h_VH_tagFirst_1combo = new VHPlots("VH_tagFirsT_1combo");
   h_VH_DHZfirst_noTag = new VHPlots("VH_DHZfirst_noTag");
+  h_VH_DHZfirst_2b = new VHPlots("VH_DHZfirst_2b");
 
   // These store the comparisons of partons & their jets
   h_reco_minDR = new RecoPlots("Reco_minDR");
@@ -554,13 +572,31 @@ void VH_selection::SlaveBegin(Reader *r)
   h_trigger_2018_QuadJet_2b2c = new TriggerEffPlots("trigger_2018_QuadJet_2b2c");
 
   h_nCombos = new TH1D("VH_tagFirst_nCombos", "", 4, -0.5, 3.5);
-  h_pt_cand_b0 = new TH1D("VH_tagFirst_pt_cand_b0", "", 2000, 0, 2000);
-  h_pt_cand_b1 = new TH1D("VH_tagFirst_pt_cand_b1", "", 2000, 0, 2000);
-  h_pt_cand_c0 = new TH1D("VH_tagFirst_pt_cand_c0", "", 2000, 0, 2000);
-  h_pt_cand_c1 = new TH1D("VH_tagFirst_pt_cand_c1", "", 2000, 0, 2000);
-  h_pt_cand_Z = new TH1D("VH_tagFirst_pt_cand_Z", "", 2000, 0, 2000);
-  h_pt_cand_H = new TH1D("VH_tagFirst_pt_cand_H", "", 2000, 0, 2000);
-  h_pt_cand_H_vs_Z = new TH2D("VH_tagFirst_pt_cand_H_vs_Z", "", 2000,0,2000, 2000,0,2000);
+  h_pt_cand_b0 = new TH1D("VH_tagFirst_pt_cand_b0", "", 2000, 0, 2000); 
+  h_pt_cand_b1 = new TH1D("VH_tagFirst_pt_cand_b1", "", 2000, 0, 2000); 
+  h_pt_cand_c0 = new TH1D("VH_tagFirst_pt_cand_c0", "", 2000, 0, 2000); 
+  h_pt_cand_c1 = new TH1D("VH_tagFirst_pt_cand_c1", "", 2000, 0, 2000); 
+  h_pt_cand_Z = new TH1D("VH_tagFirst_pt_cand_Z", "", 2000, 0, 2000); 
+  h_pt_cand_H = new TH1D("VH_tagFirst_pt_cand_H", "", 2000, 0, 2000); 
+  h_pt_cand_H_vs_Z = new TH2D("VH_tagFirst_pt_cand_H_vs_Z", "", 2000,0,2000, 2000,0,2000); 
+  
+  h_nCombos->Sumw2();
+  h_pt_cand_b0->Sumw2();
+  h_pt_cand_b1->Sumw2();
+  h_pt_cand_c0->Sumw2();
+  h_pt_cand_c1->Sumw2();
+  h_pt_cand_Z->Sumw2();
+  h_pt_cand_H->Sumw2();
+  h_pt_cand_H_vs_Z->Sumw2();
+
+  h_motherID_cc = new TH1D("motherID_cc", "", 40, -0.5, 39.5);
+  h_motherID_bb = new TH1D("motherID_bb", "", 40, -0.5, 39.5);
+  h_motherID_c0 = new TH1D("motherID_c0", "", 40, -0.5, 39.5);
+  h_motherID_c1 = new TH1D("motherID_c1", "", 40, -0.5, 39.5);
+  h_motherID_b0 = new TH1D("motherID_b0", "", 40, -0.5, 39.5);
+  h_motherID_b1 = new TH1D("motherID_b1", "", 40, -0.5, 39.5);
+  
+  h_motherID_region_c = new TH1D("motherID_region_c", "", 40, -0.5, 39.5);
 
   // ===========================================
   // [41b] Return all of our plots for analysis
@@ -590,6 +626,14 @@ void VH_selection::SlaveBegin(Reader *r)
   r->GetOutputList()->Add(h_pt_cand_Z);
   r->GetOutputList()->Add(h_pt_cand_H);
   r->GetOutputList()->Add(h_pt_cand_H_vs_Z);
+
+  r->GetOutputList()->Add(h_motherID_cc);
+  r->GetOutputList()->Add(h_motherID_bb);
+  r->GetOutputList()->Add(h_motherID_c0);
+  r->GetOutputList()->Add(h_motherID_c1);
+  r->GetOutputList()->Add(h_motherID_b0);
+  r->GetOutputList()->Add(h_motherID_b1);
+  r->GetOutputList()->Add(h_motherID_region_c);
 
   // Add our WeightPlots instances
   std::vector<TH1*> tmp = h_event_weights->returnHisto();
@@ -631,7 +675,11 @@ void VH_selection::SlaveBegin(Reader *r)
 
   tmp = h_VH_tagFirst_2combo->returnHisto();
   for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_tagFirst_1combo->returnHisto();
+  for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
   tmp = h_VH_DHZfirst_noTag->returnHisto();
+  for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_DHZfirst_2b->returnHisto();
   for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
 
   // Add our RecoPlot instances
@@ -1059,8 +1107,73 @@ void VH_selection::Process(Reader *r)
     HiggsObj MC_H(MC_cjets);
  
     h_VH_MC->FillVH(MC_Z, MC_H, event_weight);
-  } 
+  }
 
+  std::vector<int> Idxs_c;
+  std::vector<int> Idxs_b;
+  for (unsigned i = 0; i < *(r->nGenPart); ++i)
+  {
+    int flav = (r->GenPart_pdgId)[i];  
+    if (abs(flav) == 5) Idxs_b.push_back(i);
+    if (abs(flav) == 4) Idxs_c.push_back(i);
+  }
+
+  std::vector<int> mothersB;
+  std::vector<int> mothersC;
+  for (unsigned i = 0; i < Idxs_c.size(); ++i) 
+  {
+    int idx = Idxs_c[i];
+    int motherIdx = (r->GenPart_genPartIdxMother)[idx];
+    int motherPdg = abs((r->GenPart_pdgId)[motherIdx]);
+
+    //std::cout << "motherIdx c #" << i << ": " << motherIdx << std::endl;   
+ 
+    mothersC.push_back(motherPdg); 
+    h_motherID_cc->Fill(motherPdg, generator_weight);
+    if (i == 0) h_motherID_c0->Fill(motherPdg, generator_weight);
+    if (i == 1) h_motherID_c1->Fill(motherPdg, generator_weight); 
+  }
+  //std::cout << "================================" << std::endl;
+
+  for (unsigned i = 0; i < Idxs_b.size(); ++i)
+  {
+    int idx = Idxs_b[i];
+    int motherIdx = (r->GenPart_genPartIdxMother)[idx];
+    int motherPdg = abs((r->GenPart_pdgId)[motherIdx]);
+
+    mothersB.push_back(motherPdg);
+    h_motherID_bb->Fill(motherPdg, generator_weight);
+    if (i == 0) h_motherID_b0->Fill(motherPdg, generator_weight);
+    if (i == 1) h_motherID_b1->Fill(motherPdg, generator_weight);
+  }
+
+  if (Idxs_b.size() >= 2 && Idxs_c.size() >= 2)
+  {
+    std::vector<JetObj> MC_bjets;
+    std::vector<JetObj> MC_cjets;
+    
+    for (int i = 0; i < 2; ++i)
+    {
+      int idx = Idxs_b[i];
+      JetObj bj((r->GenPart_pt)[idx], (r->GenPart_eta)[idx],
+                (r->GenPart_phi)[idx], (r->GenPart_mass)[idx],
+                 5, 0., 0.);
+      MC_bjets.push_back(bj);
+
+      int idx2 = Idxs_c[i];
+      JetObj cj((r->GenPart_pt)[idx2], (r->GenPart_eta)[idx2],
+                (r->GenPart_phi)[idx2], (r->GenPart_mass)[idx2],
+                 4, 0., 0.);
+      MC_cjets.push_back(cj);
+    }
+
+    HiggsObj higg(MC_cjets);
+    if (higg.M() >= 75 && higg.M() < 85)
+    {
+      h_motherID_region_c->Fill(mothersC[0]);
+      h_motherID_region_c->Fill(mothersC[1]);
+    }  
+  }
 #endif 
 
   // ==================================
@@ -1069,7 +1182,7 @@ void VH_selection::Process(Reader *r)
 
   std::vector<JetObj> genObjs_bJet;
   std::vector<JetObj> genObjs_cJet;
-  bool found_MCjets = false;
+  //bool found_MCjets = false;
 
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
 
@@ -1307,20 +1420,20 @@ void VH_selection::Process(Reader *r)
         h_reco_DHZ_noTag_under30->Fill(genObjs_b, bjets, genObjs_c, cjets, event_weight);
 
       // Check our jets against tagging.
-      bool passes_btag = true;
+      //bool passes_btag = true;
       std::vector<bool> btag_passes;
       for (int i = 0; i < 2; ++i) {
         bool passes = abs(bjets[i].m_flav) == 5;
         btag_passes.push_back(passes);
-        if (!passes) passes_btag = false;
+        //if (!passes) passes_btag = false;
       }
 
-      bool passes_ctag = true;
+      //bool passes_ctag = true;
       std::vector<bool> ctag_passes;
       for (int i = 0; i < 2; ++i) {
         bool passes = abs(cjets[i].m_flav) == 4;
         ctag_passes.push_back(passes);
-        if (!passes) passes_ctag = false;
+        //if (!passes) passes_ctag = false;
       }
 
       if (btag_passes[0]) {
@@ -1447,11 +1560,11 @@ void VH_selection::Process(Reader *r)
     
     // Both triggers for 2017-18 require the following pT cuts:
     // 1. > 75 GeV, 2. > 60 GeV, 3. > 45 GeV, 4. > 40 GeV
-    float cuts[4] = { 75.0, 60.0, 45.0, 40.0 };
+    /*float cuts[4] = { 75.0, 60.0, 45.0, 40.0 };
     bool pT_criteria_met_2017_18 = true;
     for (size_t i = 0; i < 4; ++i) {
       if (jets2017_18[i].Pt() <= cuts[i]) pT_criteria_met_2017_18 = false;
-    }
+    }*/
 
 #endif
 
@@ -1469,8 +1582,8 @@ void VH_selection::Process(Reader *r)
     // Use the following booleans if we want to (for some reason)
     // ignore the reference trigger or check how events are 
     // selected without the trigger requirement. 
-    bool ignore_ref = false;
-    bool ignore_trigger_check = false;
+    //bool ignore_ref = false;
+    //bool ignore_trigger_check = false;
 
     for (size_t i = 0; i < muons.size(); ++i)
       HTmod += muons[i].Pt();
@@ -1735,20 +1848,20 @@ void VH_selection::Process(Reader *r)
     ZObj Z3(bjets); HiggsObj H3(cjets); 
 
     // Check our jets against tagging.  
-    bool passes_btags = true;
+    //bool passes_btags = true;
     std::vector<bool> btag_passes;
     for (int i = 0; i < 2; ++i) {
       bool passes = passes_btag(bjets[i], desired_cut_BvL);
       btag_passes.push_back(passes);
-      if (!passes) passes_btags = false;
+      //if (!passes) passes_btags = false;
     }
 
-    bool passes_ctags = true;
+    //bool passes_ctags = true;
     std::vector<bool> ctag_passes;
     for (int i = 0; i < 2; ++i) {
       bool passes = passes_ctag(cjets[i], desired_cut_CvL, desired_cut_CvB);
       ctag_passes.push_back(passes);
-      if (!passes) passes_ctags = false;
+      //if (!passes) passes_ctags = false;
     } 
 
     h_VH_DHZfirst_noTag->FillVH(Z3, H3, event_weight);
@@ -1757,6 +1870,9 @@ void VH_selection::Process(Reader *r)
       h_cutflow_evt_DHZfirst->Fill(4.5, generator_weight); // b-tag 1
       if (btag_passes[1] || force_pass_tagging) {
         h_cutflow_evt_DHZfirst->Fill(5.5, generator_weight); // b-tag 2
+        
+        h_VH_DHZfirst_2b->FillVH(Z3, H3, event_weight);
+        
         if (ctag_passes[0] || force_pass_tagging) {
           h_cutflow_evt_DHZfirst->Fill(6.5, generator_weight); // c-tag 1
           if (ctag_passes[1] || force_pass_tagging) {
@@ -1895,6 +2011,10 @@ void VH_selection::Process(Reader *r)
       if (combos.size() > 1)
       {
         h_VH_tagFirst_2combo->FillVH(Z4, H4, event_weight);
+      }
+      else
+      {
+        h_VH_tagFirst_1combo->FillVH(Z4, H4, event_weight);
       }
     }//end-if
 

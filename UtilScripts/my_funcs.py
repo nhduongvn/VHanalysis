@@ -256,6 +256,9 @@ def makePlot(plot, plotName, canvasName, outputDir = 'Test/',
   plot.GetYaxis().SetTitleOffset(1.2)
   plot.GetYaxis().SetLabelSize(0.05)
   
+  if logY:
+    c.SetLogy()
+  
   myText('CMS Work in Progress #sqrt{s} = 13 TeV, '+ lumi+' fb^{-1}', 0.25, 0.937775, 0.8)
   
   # Output the plot

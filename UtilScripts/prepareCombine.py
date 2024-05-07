@@ -212,9 +212,9 @@ regions = ['VH_DHZfirst']
 desired_samples = ['ZHcc', 'ZHbb', 'QCD', 'Top', 'VJ', 'VV']
 bkgr_xSec = [-1, -1, 1.2, 1.055, 1.05, 1.15]
 
-nRebin = 20
-lowM = 40
-highM = 200
+nRebin = 10
+lowM = 70#40
+highM = 170#200
 
 doCustomBinning = False
 xDiv = [40.,60.,80.,90.,100.,130.,160.,200.]
@@ -240,8 +240,8 @@ ss = [ 'Data', 'ZH_HToCC_ZToQQ', 'ggZH_HToCC_ZToQQ', ## Jet HT & ZH(H->CC)
   'WW','WZ','ZZ'                                      ## VV
 ]
 
-out_file = ROOT.TFile("../histos_DHZfirst.root", "RECREATE")
-dc_name = '../tmp/dataCard_DHZfirst'
+out_file = ROOT.TFile("../tmp/Combine/histos_DHZfirst_window.root", "RECREATE")
+dc_name = '../tmp/Combine/dataCard_DHZfirst_window'
 
 ## ====================================
 ## == DO NOT MODIFY BELOW THIS POINT ==
