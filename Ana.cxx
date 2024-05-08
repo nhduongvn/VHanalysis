@@ -1,6 +1,7 @@
 #include <fstream>
 #include <iostream>
-#include <boost/algorithm/string.hpp>
+#include <sstream>
+//#include <boost/algorithm/string.hpp>
 
 #include "StdArg.hpp"
 #include "src/Reader.h" 
@@ -44,8 +45,16 @@ void SetParameters(std::string fName, glob::Parameters& para) {
       
       std::vector<std::string> cont ;
       std::vector<std::string> cont_no_space ;
-      std::string delim(" ") ;
-      boost::split(cont, line, boost::is_any_of(delim));
+      //std::string delim(" ") ;
+      //boost::split(cont, line, boost::is_any_of(delim));
+      
+      std::stringstream ss(line);
+      std::string token;
+      char delimiter = ' ';
+      while (getline(ss, token, delimiter)) {
+        cont.push_back(token);
+      }
+
       for (size_t i = 0 ; i < cont.size() ; ++i) {
         //std::cout << "\n" << cont[i] << cont[i].find(" ") << " " << std::string::npos;
         if (cont[i].find_first_not_of(' ') != std::string::npos) {

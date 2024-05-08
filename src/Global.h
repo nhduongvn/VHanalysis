@@ -11,7 +11,6 @@
 #include <iostream>   // Std input/output
 #include <algorithm>  // Functions designed to be used on ranges of elements
 #include <vector>     // Vector lists
-#include "boost/variant.hpp"
 
 //== Main namespace ===========================================================
 namespace glob {

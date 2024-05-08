@@ -47,7 +47,7 @@ def write_condor_config(workDir, sample_format, sample_subformat, nanoaod_format
   f.write('#!/bin/bash \n')
   f.write('echo $SHELL \n')
   f.write('source /cvmfs/cms.cern.ch/cmsset_default.sh \n')
-  f.write('export SCRAM_ARCH=slc7_amd64_gcc820 \n')
+  f.write('export SCRAM_ARCH=el9_amd64_gcc12 \n')
   f.write('eval `scramv1 project CMSSW CMSSW_14_0_6` \n')
   f.write('cd CMSSW_14_0_6/src/ \n')
   f.write('eval `scramv1 runtime -sh` \n') # cmsenv is an alias not on the workers
@@ -96,14 +96,14 @@ def make_input_file_list(nFile, outDir_file_list, file_list_name):
 # /////////////////////////////////////////////////////////////////////////////
 # Settings
 # /////////////////////////////////////////////////////////////////////////////
-runMode = 0     # 0 : submit, 1 : check output and hadd output file
+runMode = 1     # 0 : submit, 1 : check output and hadd output file
 submit = True   # for testing setup or executing submission
 debug = False   # just run on 10000
 haddData = True # use to combine DATA runs back together
 
 syst = 'NONE'   # NONE, PUU, PUD
 if len(sys.argv) > 1:
-    syst = sys.argv[1]
+  syst = sys.argv[1]
 centralGenWeight = 0
 
 # Paths, Locations (CHANGE THESE)
@@ -158,14 +158,17 @@ if check_for_user_input:
 # /////////////////////////////////////////////////////////////////////////////
 samples_input = []
 if len(sys.argv) > 2:
-    samples_input = sys.argv[2].split(',')
+  samples_input = sys.argv[2].split(',')
 
 # Add all samples together
 lines = []
 for dS_list in dataSet_lists:
-    with open(dataSet_list) as json_file:
-        samples = json.load(json_file)
-        lines = lines + list(samples.keys())
+  json_file = open(dataSet_list)
+  samples = json.load(json_file)
+  lines = lines + list(samples.keys())
+
+#for i in range(len(lines)):
+#  print(i, ": ", lines[i])
 
 sample_format = ''
 nanoaod_format= ''
@@ -184,11 +187,13 @@ for line in lines:
     work_dir = condorRunDir+'/condor_run_'+syst+'/' + data_name + '_' + dir_affix
   
   sample_subformat = data_name.split('_')[-2] + '_' + data_name.split('_')[-1]
-  if 'DATA' in sample_subformat:
-    sample_format = sample_subformat[:-1]
-  else:
-    sample_format = sample_subformat
-  
+  print("sample_subformat = ", sample_subformat)
+  ##if 'DATA' in sample_subformat:
+  ##  sample_format = sample_subformat[:-1]
+  ##else:
+  ##  sample_format = sample_subformat
+  sample_format = sample_subformat
+
   nanoaod_format='NANOAODV9'
   dir_final_rootFile = outputDir_eos + '/' + data_name
 

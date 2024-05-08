@@ -1,0 +1,708 @@
+Ana.cxx:#include <boost/algorithm/string.hpp>
+Ana.cxx:      boost::split(cont, line, boost::is_any_of(delim));
+Configs/config.ini:VbbHcc_boosted_plot = pt_jet,pt_jet0,pt_jet1,ZMass,HMass
+Configs/config.ini:VbbHcc_boosted_twojets_plot = pt_jet,pt_jet0,pt_jet1,m_jet,m_jet0,m_jet1
+Configs/config.ini:Hcc_boosted_plot = pt_jet,m_jet,CutFlow
+Configs/config.ini:VbbHcc_boosted_select1_plot = HMass,HPt,ZMass,ZPt,CutFlow
+Configs/config.ini:VbbHcc_boosted_select2_plot = HMass,HPt,ZMass,ZPt,CutFlow
+DuongFiles/VbbHcc_selector.cxx:  h_evt = new TH1D("Nevt_VbbHcc_boosted","",4,-1.5,2.5) ; //bin 1: total negative weight events, bin 2: total positive weight events, bin 3: total event weighted by genWeight (= bin2 - bin1, if genWeight are always -1,1
+DuongFiles/VbbHcc_selector.cxx:  h_cutFlow = new TH1D("CutFlow_VbbHcc_boosted","",4,0,4) ;
+DuongFiles/VbbHcc_selector.cxx:  //cut flow to select a boosted jet targetting Hcc
+DuongFiles/VbbHcc_selector.cxx:  h_cutFlow_hcc = new TH1D("CutFlow_Hcc_boosted","",7,0,7) ;
+DuongFiles/VbbHcc_selector.cxx:  //cut flow to select a boosted jet targetting VbbHcc using CvL and BvL chosing max CvL first 
+DuongFiles/VbbHcc_selector.cxx:  h_cutFlow_VbbHcc_select1 = new TH1D("CutFlow_VbbHcc_boosted_select1","",8,0,8) ;
+DuongFiles/VbbHcc_selector.cxx:  //cut flow to select a boosted jet targetting Hcc
+DuongFiles/VbbHcc_selector.cxx:  h_cutFlow_VbbHcc_select2 = new TH1D("CutFlow_VbbHcc_boosted_select2","",8,0,8) ;
+DuongFiles/VbbHcc_selector.cxx:  h_VbbHcc_twojets = new VHBoostedPlots("VbbHcc_boosted_twojets");
+DuongFiles/VbbHcc_selector.cxx:  h_VbbHcc = new VHBoostedPlots("VbbHcc_boosted");
+DuongFiles/VbbHcc_selector.cxx:  h_Hcc = new HBoostedPlots("Hcc_boosted");
+DuongFiles/VbbHcc_selector.cxx:  h_VbbHcc_select1 = new VHBoostedPlots("VbbHcc_boosted_select1");
+DuongFiles/VbbHcc_selector.cxx:  h_VbbHcc_select2 = new VHBoostedPlots("VbbHcc_boosted_select2");
+DuongFiles/VbbHcc_selector.cxx:  h_VbbHcc_select3 = new VHBoostedPlots("VbbHcc_boosted_select3");
+DuongFiles/VbbHcc_selector.cxx:  //cut flow to select a boosted jet targetting VbbHcc using CvL and BvL, choosing max BvL first 
+DuongFiles/VbbHcc_selector.cxx:  h_cutFlow_VbbHcc_select3 = new TH1D("CutFlow_VbbHcc_boosted_select3","",8,0,8) ;
+DuongFiles/VbbHcc_selector.cxx:  //fill VHboosted selection 1
+DuongFiles/VbbHcc_selector.cxx:  //fill VHboosted selection 2
+DuongFiles/VbbHcc_selector.cxx:  //VHboosted
+DuongFiles/old_selector.cxx:  h_evt = new TH1D("Nevt_VbbHcc_boosted","",4,-1.5,2.5) ; //bin 1: total negative weight events, bin 2: total positive weight events, bin 3: total event weighted by genWeight (= bin2 - bin1, if genWeight are always -1,1
+DuongFiles/old_selector.cxx:  h_cutFlow = new TH1D("CutFlow_VbbHcc_boosted","",4,0,4) ;
+DuongFiles/old_selector.cxx:  //cut flow to select a boosted jet targetting Hcc
+DuongFiles/old_selector.cxx:  h_cutFlow_hcc = new TH1D("CutFlow_Hcc_boosted","",7,0,7) ;
+DuongFiles/old_selector.cxx:  //cut flow to select a boosted jet targetting VbbHcc using CvL and BvL chosing max CvL first 
+DuongFiles/old_selector.cxx:  h_cutFlow_VbbHcc_select1 = new TH1D("CutFlow_VbbHcc_boosted_select1","",8,0,8) ;
+DuongFiles/old_selector.cxx:  //cut flow to select a boosted jet targetting Hcc
+DuongFiles/old_selector.cxx:  h_cutFlow_VbbHcc_select2 = new TH1D("CutFlow_VbbHcc_boosted_select2","",8,0,8) ;
+DuongFiles/old_selector.cxx:  h_VbbHcc_twojets = new VHBoostedPlots("VbbHcc_boosted_twojets");
+DuongFiles/old_selector.cxx:  h_VbbHcc = new VHBoostedPlots("VbbHcc_boosted");
+DuongFiles/old_selector.cxx:  h_Hcc = new HBoostedPlots("Hcc_boosted");
+DuongFiles/old_selector.cxx:  h_VbbHcc_select1 = new VHBoostedPlots("VbbHcc_boosted_select1");
+DuongFiles/old_selector.cxx:  h_VbbHcc_select2 = new VHBoostedPlots("VbbHcc_boosted_select2");
+DuongFiles/old_selector.cxx:  h_VbbHcc_select3 = new VHBoostedPlots("VbbHcc_boosted_select3");
+DuongFiles/old_selector.cxx:  //cut flow to select a boosted jet targetting VbbHcc using CvL and BvL, choosing max BvL first 
+DuongFiles/old_selector.cxx:  h_cutFlow_VbbHcc_select3 = new TH1D("CutFlow_VbbHcc_boosted_select3","",8,0,8) ;
+DuongFiles/old_selector.cxx:  //fill VHboosted selection 1
+DuongFiles/old_selector.cxx:  //fill VHboosted selection 2
+DuongFiles/old_selector.cxx:  //VHboosted
+UtilScripts/branches.txt:*Br   18 :nboostedTau :                                                      *
+UtilScripts/branches.txt:*Br   19 :boostedTau_chargedIso : Float_t charged isolation                  *
+UtilScripts/branches.txt:*Br   20 :boostedTau_eta : Float_t eta                                       *
+UtilScripts/branches.txt:*Br   21 :boostedTau_leadTkDeltaEta :                                        *
+UtilScripts/branches.txt:*Br   22 :boostedTau_leadTkDeltaPhi :                                        *
+UtilScripts/branches.txt:*Br   23 :boostedTau_leadTkPtOverTauPt :                                     *
+UtilScripts/branches.txt:*Br   24 :boostedTau_mass : Float_t mass                                     *
+UtilScripts/branches.txt:*Br   25 :boostedTau_neutralIso : Float_t neutral (photon) isolation         *
+UtilScripts/branches.txt:*Br   26 :boostedTau_phi : Float_t phi                                       *
+UtilScripts/branches.txt:*Br   27 :boostedTau_photonsOutsideSignalCone :                              *
+UtilScripts/branches.txt:*Br   28 :boostedTau_pt : Float_t pt                                         *
+UtilScripts/branches.txt:*Br   29 :boostedTau_puCorr : Float_t pileup correction                      *
+UtilScripts/branches.txt:*Br   30 :boostedTau_rawAntiEle2018 :                                        *
+UtilScripts/branches.txt:*Br   31 :boostedTau_rawIso :                                                *
+UtilScripts/branches.txt:*Br   32 :boostedTau_rawIsodR03 :                                            *
+UtilScripts/branches.txt:*Br   33 :boostedTau_rawMVAnewDM2017v2 :                                     *
+UtilScripts/branches.txt:*Br   34 :boostedTau_rawMVAoldDM2017v2 :                                     *
+UtilScripts/branches.txt:*Br   35 :boostedTau_rawMVAoldDMdR032017v2 :                                 *
+UtilScripts/branches.txt:*Br   36 :boostedTau_charge : Int_t electric charge                          *
+UtilScripts/branches.txt:*Br   37 :boostedTau_decayMode : Int_t decayMode()                           *
+UtilScripts/branches.txt:*Br   38 :boostedTau_jetIdx : Int_t index of the associated jet (-1 if none) *
+UtilScripts/branches.txt:*Br   39 :boostedTau_rawAntiEleCat2018 :                                     *
+UtilScripts/branches.txt:*Br   40 :boostedTau_idAntiEle2018 :                                         *
+UtilScripts/branches.txt:*Br   41 :boostedTau_idAntiMu : UChar_t Anti-muon discriminator V3: :        *
+UtilScripts/branches.txt:*Br   42 :boostedTau_idMVAnewDM2017v2 :                                      *
+UtilScripts/branches.txt:*Br   43 :boostedTau_idMVAoldDM2017v2 :                                      *
+UtilScripts/branches.txt:*Br   44 :boostedTau_idMVAoldDMdR032017v2 :                                  *
+UtilScripts/branches.txt:*         | UInt_t slimmedJetsAK8, i.e. ak8 fat jets for boosted analysis    *
+UtilScripts/branches.txt:*         | UInt_t slimmedJetsAK8, i.e. ak8 fat jets for boosted analysis    *
+UtilScripts/branches.txt:*Br  579 :boostedTau_genPartIdx :                                            *
+UtilScripts/branches.txt:*Br  580 :boostedTau_genPartFlav :                                           *
+grep: UtilScripts/myutils/Ratio_C.so: binary file matches
+UtilScripts/myutils/TMVAGui.C:                 "Plots to monitor boosting and pruning of decision trees (macro BDTControlPlots.C)",
+UtilScripts/myutils/TMVAGui.C:                 "Plots to monitor boosting of general classifiers (macro BoostControlPlots.C)",
+UtilScripts/old/config_duong.ini:VbbHcc_boosted_plot = pt_jet,pt_jet0,pt_jet1,ZMass,HMass
+UtilScripts/old/config_duong.ini:VbbHcc_boosted_twojets_plot = pt_jet,pt_jet0,pt_jet1,m_jet,m_jet0,m_jet1
+UtilScripts/old/config_duong.ini:Hcc_boosted_plot = pt_jet,m_jet,CutFlow
+UtilScripts/old/config_duong.ini:VbbHcc_boosted_select1_plot = HMass,HPt,ZMass,ZPt,CutFlow
+UtilScripts/old/config_duong.ini:VbbHcc_boosted_select2_plot = HMass,HPt,ZMass,ZPt,CutFlow
+UtilScripts/old/config_duong.ini:VbbHcc_boosted_select3_plot = HMass,HPt,ZMass,ZPt,DPhiZH,DEtaZH,CutFlow
+UtilScripts/old/config_duong.ini:VbbHcc_boosted_select4_plot = HMass,HPt,ZMass,ZPt,DPhiZH,DEtaZH,CutFlow
+UtilScripts/old/config_duong.ini:VbbHcc_boosted_qcd_plot = HMass,HPt,ZMass,ZPt,DPhiZH,DEtaZH,CutFlow
+UtilScripts/old/plot_dataMC.py:#regions = ['VbbHcc_boosted_twojets']
+UtilScripts/old/plot_dataMC.py:#regions = ['VbbHcc_boosted_select1','VbbHcc_boosted_select2']
+UtilScripts/prepareCombine_Duong.py:#regions = ['VbbHcc_boosted_PN_med_CR1_qcd']
+UtilScripts/prepareCombine_Duong.py:regions = ['VbbHcc_boosted_PN_med_VR_qcd']
+UtilScripts/prepareCombine_Duong.py:        lumiScales[s][y][iN] = utl_func.scaleToLumi1(fNames[s][y][iN],xSecs[s][y][iN],lumi,'Nevt_VbbHcc_boosted')
+VariableLists/DATA_2016.h:   TTreeReaderValue<UInt_t> nboostedTau = {fReader, "nboostedTau"};
+VariableLists/DATA_2016.h:   TTreeReaderArray<Float_t> boostedTau_chargedIso = {fReader, "boostedTau_chargedIso"};
+VariableLists/DATA_2016.h:   TTreeReaderArray<Float_t> boostedTau_eta = {fReader, "boostedTau_eta"};
+VariableLists/DATA_2016.h:   TTreeReaderArray<Float_t> boostedTau_leadTkDeltaEta = {fReader, "boostedTau_leadTkDeltaEta"};
+VariableLists/DATA_2016.h:   TTreeReaderArray<Float_t> boostedTau_leadTkDeltaPhi = {fReader, "boostedTau_leadTkDeltaPhi"};
+VariableLists/DATA_2016.h:   TTreeReaderArray<Float_t> boostedTau_leadTkPtOverTauPt = {fReader, "boostedTau_leadTkPtOverTauPt"};
+VariableLists/DATA_2016.h:   TTreeReaderArray<Float_t> boostedTau_mass = {fReader, "boostedTau_mass"};
+VariableLists/DATA_2016.h:   TTreeReaderArray<Float_t> boostedTau_neutralIso = {fReader, "boostedTau_neutralIso"};
+VariableLists/DATA_2016.h:   TTreeReaderArray<Float_t> boostedTau_phi = {fReader, "boostedTau_phi"};
+VariableLists/DATA_2016.h:   TTreeReaderArray<Float_t> boostedTau_photonsOutsideSignalCone = {fReader, "boostedTau_photonsOutsideSignalCone"};
+VariableLists/DATA_2016.h:   TTreeReaderArray<Float_t> boostedTau_pt = {fReader, "boostedTau_pt"};
+VariableLists/DATA_2016.h:   TTreeReaderArray<Float_t> boostedTau_puCorr = {fReader, "boostedTau_puCorr"};
+VariableLists/DATA_2016.h:   TTreeReaderArray<Float_t> boostedTau_rawAntiEle2018 = {fReader, "boostedTau_rawAntiEle2018"};
+VariableLists/DATA_2016.h:   TTreeReaderArray<Float_t> boostedTau_rawIso = {fReader, "boostedTau_rawIso"};
+VariableLists/DATA_2016.h:   TTreeReaderArray<Float_t> boostedTau_rawIsodR03 = {fReader, "boostedTau_rawIsodR03"};
+VariableLists/DATA_2016.h:   TTreeReaderArray<Float_t> boostedTau_rawMVAnewDM2017v2 = {fReader, "boostedTau_rawMVAnewDM2017v2"};
+VariableLists/DATA_2016.h:   TTreeReaderArray<Float_t> boostedTau_rawMVAoldDM2017v2 = {fReader, "boostedTau_rawMVAoldDM2017v2"};
+VariableLists/DATA_2016.h:   TTreeReaderArray<Float_t> boostedTau_rawMVAoldDMdR032017v2 = {fReader, "boostedTau_rawMVAoldDMdR032017v2"};
+VariableLists/DATA_2016.h:   TTreeReaderArray<Int_t> boostedTau_charge = {fReader, "boostedTau_charge"};
+VariableLists/DATA_2016.h:   TTreeReaderArray<Int_t> boostedTau_decayMode = {fReader, "boostedTau_decayMode"};
+VariableLists/DATA_2016.h:   TTreeReaderArray<Int_t> boostedTau_jetIdx = {fReader, "boostedTau_jetIdx"};
+VariableLists/DATA_2016.h:   TTreeReaderArray<Int_t> boostedTau_rawAntiEleCat2018 = {fReader, "boostedTau_rawAntiEleCat2018"};
+VariableLists/DATA_2016.h:   TTreeReaderArray<UChar_t> boostedTau_idAntiEle2018 = {fReader, "boostedTau_idAntiEle2018"};
+VariableLists/DATA_2016.h:   TTreeReaderArray<UChar_t> boostedTau_idAntiMu = {fReader, "boostedTau_idAntiMu"};
+VariableLists/DATA_2016.h:   TTreeReaderArray<UChar_t> boostedTau_idMVAnewDM2017v2 = {fReader, "boostedTau_idMVAnewDM2017v2"};
+VariableLists/DATA_2016.h:   TTreeReaderArray<UChar_t> boostedTau_idMVAoldDM2017v2 = {fReader, "boostedTau_idMVAoldDM2017v2"};
+VariableLists/DATA_2016.h:   TTreeReaderArray<UChar_t> boostedTau_idMVAoldDMdR032017v2 = {fReader, "boostedTau_idMVAoldDMdR032017v2"};
+VariableLists/DATA_2016.txt:nboostedTau
+VariableLists/DATA_2016.txt:boostedTau_chargedIso
+VariableLists/DATA_2016.txt:boostedTau_eta
+VariableLists/DATA_2016.txt:boostedTau_leadTkDeltaEta
+VariableLists/DATA_2016.txt:boostedTau_leadTkDeltaPhi
+VariableLists/DATA_2016.txt:boostedTau_leadTkPtOverTauPt
+VariableLists/DATA_2016.txt:boostedTau_mass
+VariableLists/DATA_2016.txt:boostedTau_neutralIso
+VariableLists/DATA_2016.txt:boostedTau_phi
+VariableLists/DATA_2016.txt:boostedTau_photonsOutsideSignalCone
+VariableLists/DATA_2016.txt:boostedTau_pt
+VariableLists/DATA_2016.txt:boostedTau_puCorr
+VariableLists/DATA_2016.txt:boostedTau_rawAntiEle2018
+VariableLists/DATA_2016.txt:boostedTau_rawIso
+VariableLists/DATA_2016.txt:boostedTau_rawIsodR03
+VariableLists/DATA_2016.txt:boostedTau_rawMVAnewDM2017v2
+VariableLists/DATA_2016.txt:boostedTau_rawMVAoldDM2017v2
+VariableLists/DATA_2016.txt:boostedTau_rawMVAoldDMdR032017v2
+VariableLists/DATA_2016.txt:boostedTau_charge
+VariableLists/DATA_2016.txt:boostedTau_decayMode
+VariableLists/DATA_2016.txt:boostedTau_jetIdx
+VariableLists/DATA_2016.txt:boostedTau_rawAntiEleCat2018
+VariableLists/DATA_2016.txt:boostedTau_idAntiEle2018
+VariableLists/DATA_2016.txt:boostedTau_idAntiMu
+VariableLists/DATA_2016.txt:boostedTau_idMVAnewDM2017v2
+VariableLists/DATA_2016.txt:boostedTau_idMVAoldDM2017v2
+VariableLists/DATA_2016.txt:boostedTau_idMVAoldDMdR032017v2
+VariableLists/DATA_2017.h:   TTreeReaderValue<UInt_t> nboostedTau = {fReader, "nboostedTau"};
+VariableLists/DATA_2017.h:   TTreeReaderArray<Float_t> boostedTau_chargedIso = {fReader, "boostedTau_chargedIso"};
+VariableLists/DATA_2017.h:   TTreeReaderArray<Float_t> boostedTau_eta = {fReader, "boostedTau_eta"};
+VariableLists/DATA_2017.h:   TTreeReaderArray<Float_t> boostedTau_leadTkDeltaEta = {fReader, "boostedTau_leadTkDeltaEta"};
+VariableLists/DATA_2017.h:   TTreeReaderArray<Float_t> boostedTau_leadTkDeltaPhi = {fReader, "boostedTau_leadTkDeltaPhi"};
+VariableLists/DATA_2017.h:   TTreeReaderArray<Float_t> boostedTau_leadTkPtOverTauPt = {fReader, "boostedTau_leadTkPtOverTauPt"};
+VariableLists/DATA_2017.h:   TTreeReaderArray<Float_t> boostedTau_mass = {fReader, "boostedTau_mass"};
+VariableLists/DATA_2017.h:   TTreeReaderArray<Float_t> boostedTau_neutralIso = {fReader, "boostedTau_neutralIso"};
+VariableLists/DATA_2017.h:   TTreeReaderArray<Float_t> boostedTau_phi = {fReader, "boostedTau_phi"};
+VariableLists/DATA_2017.h:   TTreeReaderArray<Float_t> boostedTau_photonsOutsideSignalCone = {fReader, "boostedTau_photonsOutsideSignalCone"};
+VariableLists/DATA_2017.h:   TTreeReaderArray<Float_t> boostedTau_pt = {fReader, "boostedTau_pt"};
+VariableLists/DATA_2017.h:   TTreeReaderArray<Float_t> boostedTau_puCorr = {fReader, "boostedTau_puCorr"};
+VariableLists/DATA_2017.h:   TTreeReaderArray<Float_t> boostedTau_rawAntiEle2018 = {fReader, "boostedTau_rawAntiEle2018"};
+VariableLists/DATA_2017.h:   TTreeReaderArray<Float_t> boostedTau_rawIso = {fReader, "boostedTau_rawIso"};
+VariableLists/DATA_2017.h:   TTreeReaderArray<Float_t> boostedTau_rawIsodR03 = {fReader, "boostedTau_rawIsodR03"};
+VariableLists/DATA_2017.h:   TTreeReaderArray<Float_t> boostedTau_rawMVAnewDM2017v2 = {fReader, "boostedTau_rawMVAnewDM2017v2"};
+VariableLists/DATA_2017.h:   TTreeReaderArray<Float_t> boostedTau_rawMVAoldDM2017v2 = {fReader, "boostedTau_rawMVAoldDM2017v2"};
+VariableLists/DATA_2017.h:   TTreeReaderArray<Float_t> boostedTau_rawMVAoldDMdR032017v2 = {fReader, "boostedTau_rawMVAoldDMdR032017v2"};
+VariableLists/DATA_2017.h:   TTreeReaderArray<Int_t> boostedTau_charge = {fReader, "boostedTau_charge"};
+VariableLists/DATA_2017.h:   TTreeReaderArray<Int_t> boostedTau_decayMode = {fReader, "boostedTau_decayMode"};
+VariableLists/DATA_2017.h:   TTreeReaderArray<Int_t> boostedTau_jetIdx = {fReader, "boostedTau_jetIdx"};
+VariableLists/DATA_2017.h:   TTreeReaderArray<Int_t> boostedTau_rawAntiEleCat2018 = {fReader, "boostedTau_rawAntiEleCat2018"};
+VariableLists/DATA_2017.h:   TTreeReaderArray<UChar_t> boostedTau_idAntiEle2018 = {fReader, "boostedTau_idAntiEle2018"};
+VariableLists/DATA_2017.h:   TTreeReaderArray<UChar_t> boostedTau_idAntiMu = {fReader, "boostedTau_idAntiMu"};
+VariableLists/DATA_2017.h:   TTreeReaderArray<UChar_t> boostedTau_idMVAnewDM2017v2 = {fReader, "boostedTau_idMVAnewDM2017v2"};
+VariableLists/DATA_2017.h:   TTreeReaderArray<UChar_t> boostedTau_idMVAoldDM2017v2 = {fReader, "boostedTau_idMVAoldDM2017v2"};
+VariableLists/DATA_2017.h:   TTreeReaderArray<UChar_t> boostedTau_idMVAoldDMdR032017v2 = {fReader, "boostedTau_idMVAoldDMdR032017v2"};
+VariableLists/DATA_2017.txt:nboostedTau
+VariableLists/DATA_2017.txt:boostedTau_chargedIso
+VariableLists/DATA_2017.txt:boostedTau_eta
+VariableLists/DATA_2017.txt:boostedTau_leadTkDeltaEta
+VariableLists/DATA_2017.txt:boostedTau_leadTkDeltaPhi
+VariableLists/DATA_2017.txt:boostedTau_leadTkPtOverTauPt
+VariableLists/DATA_2017.txt:boostedTau_mass
+VariableLists/DATA_2017.txt:boostedTau_neutralIso
+VariableLists/DATA_2017.txt:boostedTau_phi
+VariableLists/DATA_2017.txt:boostedTau_photonsOutsideSignalCone
+VariableLists/DATA_2017.txt:boostedTau_pt
+VariableLists/DATA_2017.txt:boostedTau_puCorr
+VariableLists/DATA_2017.txt:boostedTau_rawAntiEle2018
+VariableLists/DATA_2017.txt:boostedTau_rawIso
+VariableLists/DATA_2017.txt:boostedTau_rawIsodR03
+VariableLists/DATA_2017.txt:boostedTau_rawMVAnewDM2017v2
+VariableLists/DATA_2017.txt:boostedTau_rawMVAoldDM2017v2
+VariableLists/DATA_2017.txt:boostedTau_rawMVAoldDMdR032017v2
+VariableLists/DATA_2017.txt:boostedTau_charge
+VariableLists/DATA_2017.txt:boostedTau_decayMode
+VariableLists/DATA_2017.txt:boostedTau_jetIdx
+VariableLists/DATA_2017.txt:boostedTau_rawAntiEleCat2018
+VariableLists/DATA_2017.txt:boostedTau_idAntiEle2018
+VariableLists/DATA_2017.txt:boostedTau_idAntiMu
+VariableLists/DATA_2017.txt:boostedTau_idMVAnewDM2017v2
+VariableLists/DATA_2017.txt:boostedTau_idMVAoldDM2017v2
+VariableLists/DATA_2017.txt:boostedTau_idMVAoldDMdR032017v2
+VariableLists/DATA_2017B.h:   TTreeReaderValue<UInt_t> nboostedTau = {fReader, "nboostedTau"};
+VariableLists/DATA_2017B.h:   TTreeReaderArray<Float_t> boostedTau_chargedIso = {fReader, "boostedTau_chargedIso"};
+VariableLists/DATA_2017B.h:   TTreeReaderArray<Float_t> boostedTau_eta = {fReader, "boostedTau_eta"};
+VariableLists/DATA_2017B.h:   TTreeReaderArray<Float_t> boostedTau_leadTkDeltaEta = {fReader, "boostedTau_leadTkDeltaEta"};
+VariableLists/DATA_2017B.h:   TTreeReaderArray<Float_t> boostedTau_leadTkDeltaPhi = {fReader, "boostedTau_leadTkDeltaPhi"};
+VariableLists/DATA_2017B.h:   TTreeReaderArray<Float_t> boostedTau_leadTkPtOverTauPt = {fReader, "boostedTau_leadTkPtOverTauPt"};
+VariableLists/DATA_2017B.h:   TTreeReaderArray<Float_t> boostedTau_mass = {fReader, "boostedTau_mass"};
+VariableLists/DATA_2017B.h:   TTreeReaderArray<Float_t> boostedTau_neutralIso = {fReader, "boostedTau_neutralIso"};
+VariableLists/DATA_2017B.h:   TTreeReaderArray<Float_t> boostedTau_phi = {fReader, "boostedTau_phi"};
+VariableLists/DATA_2017B.h:   TTreeReaderArray<Float_t> boostedTau_photonsOutsideSignalCone = {fReader, "boostedTau_photonsOutsideSignalCone"};
+VariableLists/DATA_2017B.h:   TTreeReaderArray<Float_t> boostedTau_pt = {fReader, "boostedTau_pt"};
+VariableLists/DATA_2017B.h:   TTreeReaderArray<Float_t> boostedTau_puCorr = {fReader, "boostedTau_puCorr"};
+VariableLists/DATA_2017B.h:   TTreeReaderArray<Float_t> boostedTau_rawAntiEle2018 = {fReader, "boostedTau_rawAntiEle2018"};
+VariableLists/DATA_2017B.h:   TTreeReaderArray<Float_t> boostedTau_rawIso = {fReader, "boostedTau_rawIso"};
+VariableLists/DATA_2017B.h:   TTreeReaderArray<Float_t> boostedTau_rawIsodR03 = {fReader, "boostedTau_rawIsodR03"};
+VariableLists/DATA_2017B.h:   TTreeReaderArray<Float_t> boostedTau_rawMVAnewDM2017v2 = {fReader, "boostedTau_rawMVAnewDM2017v2"};
+VariableLists/DATA_2017B.h:   TTreeReaderArray<Float_t> boostedTau_rawMVAoldDM2017v2 = {fReader, "boostedTau_rawMVAoldDM2017v2"};
+VariableLists/DATA_2017B.h:   TTreeReaderArray<Float_t> boostedTau_rawMVAoldDMdR032017v2 = {fReader, "boostedTau_rawMVAoldDMdR032017v2"};
+VariableLists/DATA_2017B.h:   TTreeReaderArray<Int_t> boostedTau_charge = {fReader, "boostedTau_charge"};
+VariableLists/DATA_2017B.h:   TTreeReaderArray<Int_t> boostedTau_decayMode = {fReader, "boostedTau_decayMode"};
+VariableLists/DATA_2017B.h:   TTreeReaderArray<Int_t> boostedTau_jetIdx = {fReader, "boostedTau_jetIdx"};
+VariableLists/DATA_2017B.h:   TTreeReaderArray<Int_t> boostedTau_rawAntiEleCat2018 = {fReader, "boostedTau_rawAntiEleCat2018"};
+VariableLists/DATA_2017B.h:   TTreeReaderArray<UChar_t> boostedTau_idAntiEle2018 = {fReader, "boostedTau_idAntiEle2018"};
+VariableLists/DATA_2017B.h:   TTreeReaderArray<UChar_t> boostedTau_idAntiMu = {fReader, "boostedTau_idAntiMu"};
+VariableLists/DATA_2017B.h:   TTreeReaderArray<UChar_t> boostedTau_idMVAnewDM2017v2 = {fReader, "boostedTau_idMVAnewDM2017v2"};
+VariableLists/DATA_2017B.h:   TTreeReaderArray<UChar_t> boostedTau_idMVAoldDM2017v2 = {fReader, "boostedTau_idMVAoldDM2017v2"};
+VariableLists/DATA_2017B.h:   TTreeReaderArray<UChar_t> boostedTau_idMVAoldDMdR032017v2 = {fReader, "boostedTau_idMVAoldDMdR032017v2"};
+VariableLists/DATA_2017B.txt:nboostedTau
+VariableLists/DATA_2017B.txt:boostedTau_chargedIso
+VariableLists/DATA_2017B.txt:boostedTau_eta
+VariableLists/DATA_2017B.txt:boostedTau_leadTkDeltaEta
+VariableLists/DATA_2017B.txt:boostedTau_leadTkDeltaPhi
+VariableLists/DATA_2017B.txt:boostedTau_leadTkPtOverTauPt
+VariableLists/DATA_2017B.txt:boostedTau_mass
+VariableLists/DATA_2017B.txt:boostedTau_neutralIso
+VariableLists/DATA_2017B.txt:boostedTau_phi
+VariableLists/DATA_2017B.txt:boostedTau_photonsOutsideSignalCone
+VariableLists/DATA_2017B.txt:boostedTau_pt
+VariableLists/DATA_2017B.txt:boostedTau_puCorr
+VariableLists/DATA_2017B.txt:boostedTau_rawAntiEle2018
+VariableLists/DATA_2017B.txt:boostedTau_rawIso
+VariableLists/DATA_2017B.txt:boostedTau_rawIsodR03
+VariableLists/DATA_2017B.txt:boostedTau_rawMVAnewDM2017v2
+VariableLists/DATA_2017B.txt:boostedTau_rawMVAoldDM2017v2
+VariableLists/DATA_2017B.txt:boostedTau_rawMVAoldDMdR032017v2
+VariableLists/DATA_2017B.txt:boostedTau_charge
+VariableLists/DATA_2017B.txt:boostedTau_decayMode
+VariableLists/DATA_2017B.txt:boostedTau_jetIdx
+VariableLists/DATA_2017B.txt:boostedTau_rawAntiEleCat2018
+VariableLists/DATA_2017B.txt:boostedTau_idAntiEle2018
+VariableLists/DATA_2017B.txt:boostedTau_idAntiMu
+VariableLists/DATA_2017B.txt:boostedTau_idMVAnewDM2017v2
+VariableLists/DATA_2017B.txt:boostedTau_idMVAoldDM2017v2
+VariableLists/DATA_2017B.txt:boostedTau_idMVAoldDMdR032017v2
+VariableLists/DATA_2017C.h:   TTreeReaderValue<UInt_t> nboostedTau = {fReader, "nboostedTau"};
+VariableLists/DATA_2017C.h:   TTreeReaderArray<Float_t> boostedTau_chargedIso = {fReader, "boostedTau_chargedIso"};
+VariableLists/DATA_2017C.h:   TTreeReaderArray<Float_t> boostedTau_eta = {fReader, "boostedTau_eta"};
+VariableLists/DATA_2017C.h:   TTreeReaderArray<Float_t> boostedTau_leadTkDeltaEta = {fReader, "boostedTau_leadTkDeltaEta"};
+VariableLists/DATA_2017C.h:   TTreeReaderArray<Float_t> boostedTau_leadTkDeltaPhi = {fReader, "boostedTau_leadTkDeltaPhi"};
+VariableLists/DATA_2017C.h:   TTreeReaderArray<Float_t> boostedTau_leadTkPtOverTauPt = {fReader, "boostedTau_leadTkPtOverTauPt"};
+VariableLists/DATA_2017C.h:   TTreeReaderArray<Float_t> boostedTau_mass = {fReader, "boostedTau_mass"};
+VariableLists/DATA_2017C.h:   TTreeReaderArray<Float_t> boostedTau_neutralIso = {fReader, "boostedTau_neutralIso"};
+VariableLists/DATA_2017C.h:   TTreeReaderArray<Float_t> boostedTau_phi = {fReader, "boostedTau_phi"};
+VariableLists/DATA_2017C.h:   TTreeReaderArray<Float_t> boostedTau_photonsOutsideSignalCone = {fReader, "boostedTau_photonsOutsideSignalCone"};
+VariableLists/DATA_2017C.h:   TTreeReaderArray<Float_t> boostedTau_pt = {fReader, "boostedTau_pt"};
+VariableLists/DATA_2017C.h:   TTreeReaderArray<Float_t> boostedTau_puCorr = {fReader, "boostedTau_puCorr"};
+VariableLists/DATA_2017C.h:   TTreeReaderArray<Float_t> boostedTau_rawAntiEle2018 = {fReader, "boostedTau_rawAntiEle2018"};
+VariableLists/DATA_2017C.h:   TTreeReaderArray<Float_t> boostedTau_rawIso = {fReader, "boostedTau_rawIso"};
+VariableLists/DATA_2017C.h:   TTreeReaderArray<Float_t> boostedTau_rawIsodR03 = {fReader, "boostedTau_rawIsodR03"};
+VariableLists/DATA_2017C.h:   TTreeReaderArray<Float_t> boostedTau_rawMVAnewDM2017v2 = {fReader, "boostedTau_rawMVAnewDM2017v2"};
+VariableLists/DATA_2017C.h:   TTreeReaderArray<Float_t> boostedTau_rawMVAoldDM2017v2 = {fReader, "boostedTau_rawMVAoldDM2017v2"};
+VariableLists/DATA_2017C.h:   TTreeReaderArray<Float_t> boostedTau_rawMVAoldDMdR032017v2 = {fReader, "boostedTau_rawMVAoldDMdR032017v2"};
+VariableLists/DATA_2017C.h:   TTreeReaderArray<Int_t> boostedTau_charge = {fReader, "boostedTau_charge"};
+VariableLists/DATA_2017C.h:   TTreeReaderArray<Int_t> boostedTau_decayMode = {fReader, "boostedTau_decayMode"};
+VariableLists/DATA_2017C.h:   TTreeReaderArray<Int_t> boostedTau_jetIdx = {fReader, "boostedTau_jetIdx"};
+VariableLists/DATA_2017C.h:   TTreeReaderArray<Int_t> boostedTau_rawAntiEleCat2018 = {fReader, "boostedTau_rawAntiEleCat2018"};
+VariableLists/DATA_2017C.h:   TTreeReaderArray<UChar_t> boostedTau_idAntiEle2018 = {fReader, "boostedTau_idAntiEle2018"};
+VariableLists/DATA_2017C.h:   TTreeReaderArray<UChar_t> boostedTau_idAntiMu = {fReader, "boostedTau_idAntiMu"};
+VariableLists/DATA_2017C.h:   TTreeReaderArray<UChar_t> boostedTau_idMVAnewDM2017v2 = {fReader, "boostedTau_idMVAnewDM2017v2"};
+VariableLists/DATA_2017C.h:   TTreeReaderArray<UChar_t> boostedTau_idMVAoldDM2017v2 = {fReader, "boostedTau_idMVAoldDM2017v2"};
+VariableLists/DATA_2017C.h:   TTreeReaderArray<UChar_t> boostedTau_idMVAoldDMdR032017v2 = {fReader, "boostedTau_idMVAoldDMdR032017v2"};
+VariableLists/DATA_2017C.txt:nboostedTau
+VariableLists/DATA_2017C.txt:boostedTau_chargedIso
+VariableLists/DATA_2017C.txt:boostedTau_eta
+VariableLists/DATA_2017C.txt:boostedTau_leadTkDeltaEta
+VariableLists/DATA_2017C.txt:boostedTau_leadTkDeltaPhi
+VariableLists/DATA_2017C.txt:boostedTau_leadTkPtOverTauPt
+VariableLists/DATA_2017C.txt:boostedTau_mass
+VariableLists/DATA_2017C.txt:boostedTau_neutralIso
+VariableLists/DATA_2017C.txt:boostedTau_phi
+VariableLists/DATA_2017C.txt:boostedTau_photonsOutsideSignalCone
+VariableLists/DATA_2017C.txt:boostedTau_pt
+VariableLists/DATA_2017C.txt:boostedTau_puCorr
+VariableLists/DATA_2017C.txt:boostedTau_rawAntiEle2018
+VariableLists/DATA_2017C.txt:boostedTau_rawIso
+VariableLists/DATA_2017C.txt:boostedTau_rawIsodR03
+VariableLists/DATA_2017C.txt:boostedTau_rawMVAnewDM2017v2
+VariableLists/DATA_2017C.txt:boostedTau_rawMVAoldDM2017v2
+VariableLists/DATA_2017C.txt:boostedTau_rawMVAoldDMdR032017v2
+VariableLists/DATA_2017C.txt:boostedTau_charge
+VariableLists/DATA_2017C.txt:boostedTau_decayMode
+VariableLists/DATA_2017C.txt:boostedTau_jetIdx
+VariableLists/DATA_2017C.txt:boostedTau_rawAntiEleCat2018
+VariableLists/DATA_2017C.txt:boostedTau_idAntiEle2018
+VariableLists/DATA_2017C.txt:boostedTau_idAntiMu
+VariableLists/DATA_2017C.txt:boostedTau_idMVAnewDM2017v2
+VariableLists/DATA_2017C.txt:boostedTau_idMVAoldDM2017v2
+VariableLists/DATA_2017C.txt:boostedTau_idMVAoldDMdR032017v2
+VariableLists/DATA_2017D.h:   TTreeReaderValue<UInt_t> nboostedTau = {fReader, "nboostedTau"};
+VariableLists/DATA_2017D.h:   TTreeReaderArray<Float_t> boostedTau_chargedIso = {fReader, "boostedTau_chargedIso"};
+VariableLists/DATA_2017D.h:   TTreeReaderArray<Float_t> boostedTau_eta = {fReader, "boostedTau_eta"};
+VariableLists/DATA_2017D.h:   TTreeReaderArray<Float_t> boostedTau_leadTkDeltaEta = {fReader, "boostedTau_leadTkDeltaEta"};
+VariableLists/DATA_2017D.h:   TTreeReaderArray<Float_t> boostedTau_leadTkDeltaPhi = {fReader, "boostedTau_leadTkDeltaPhi"};
+VariableLists/DATA_2017D.h:   TTreeReaderArray<Float_t> boostedTau_leadTkPtOverTauPt = {fReader, "boostedTau_leadTkPtOverTauPt"};
+VariableLists/DATA_2017D.h:   TTreeReaderArray<Float_t> boostedTau_mass = {fReader, "boostedTau_mass"};
+VariableLists/DATA_2017D.h:   TTreeReaderArray<Float_t> boostedTau_neutralIso = {fReader, "boostedTau_neutralIso"};
+VariableLists/DATA_2017D.h:   TTreeReaderArray<Float_t> boostedTau_phi = {fReader, "boostedTau_phi"};
+VariableLists/DATA_2017D.h:   TTreeReaderArray<Float_t> boostedTau_photonsOutsideSignalCone = {fReader, "boostedTau_photonsOutsideSignalCone"};
+VariableLists/DATA_2017D.h:   TTreeReaderArray<Float_t> boostedTau_pt = {fReader, "boostedTau_pt"};
+VariableLists/DATA_2017D.h:   TTreeReaderArray<Float_t> boostedTau_puCorr = {fReader, "boostedTau_puCorr"};
+VariableLists/DATA_2017D.h:   TTreeReaderArray<Float_t> boostedTau_rawAntiEle2018 = {fReader, "boostedTau_rawAntiEle2018"};
+VariableLists/DATA_2017D.h:   TTreeReaderArray<Float_t> boostedTau_rawIso = {fReader, "boostedTau_rawIso"};
+VariableLists/DATA_2017D.h:   TTreeReaderArray<Float_t> boostedTau_rawIsodR03 = {fReader, "boostedTau_rawIsodR03"};
+VariableLists/DATA_2017D.h:   TTreeReaderArray<Float_t> boostedTau_rawMVAnewDM2017v2 = {fReader, "boostedTau_rawMVAnewDM2017v2"};
+VariableLists/DATA_2017D.h:   TTreeReaderArray<Float_t> boostedTau_rawMVAoldDM2017v2 = {fReader, "boostedTau_rawMVAoldDM2017v2"};
+VariableLists/DATA_2017D.h:   TTreeReaderArray<Float_t> boostedTau_rawMVAoldDMdR032017v2 = {fReader, "boostedTau_rawMVAoldDMdR032017v2"};
+VariableLists/DATA_2017D.h:   TTreeReaderArray<Int_t> boostedTau_charge = {fReader, "boostedTau_charge"};
+VariableLists/DATA_2017D.h:   TTreeReaderArray<Int_t> boostedTau_decayMode = {fReader, "boostedTau_decayMode"};
+VariableLists/DATA_2017D.h:   TTreeReaderArray<Int_t> boostedTau_jetIdx = {fReader, "boostedTau_jetIdx"};
+VariableLists/DATA_2017D.h:   TTreeReaderArray<Int_t> boostedTau_rawAntiEleCat2018 = {fReader, "boostedTau_rawAntiEleCat2018"};
+VariableLists/DATA_2017D.h:   TTreeReaderArray<UChar_t> boostedTau_idAntiEle2018 = {fReader, "boostedTau_idAntiEle2018"};
+VariableLists/DATA_2017D.h:   TTreeReaderArray<UChar_t> boostedTau_idAntiMu = {fReader, "boostedTau_idAntiMu"};
+VariableLists/DATA_2017D.h:   TTreeReaderArray<UChar_t> boostedTau_idMVAnewDM2017v2 = {fReader, "boostedTau_idMVAnewDM2017v2"};
+VariableLists/DATA_2017D.h:   TTreeReaderArray<UChar_t> boostedTau_idMVAoldDM2017v2 = {fReader, "boostedTau_idMVAoldDM2017v2"};
+VariableLists/DATA_2017D.h:   TTreeReaderArray<UChar_t> boostedTau_idMVAoldDMdR032017v2 = {fReader, "boostedTau_idMVAoldDMdR032017v2"};
+VariableLists/DATA_2017D.txt:nboostedTau
+VariableLists/DATA_2017D.txt:boostedTau_chargedIso
+VariableLists/DATA_2017D.txt:boostedTau_eta
+VariableLists/DATA_2017D.txt:boostedTau_leadTkDeltaEta
+VariableLists/DATA_2017D.txt:boostedTau_leadTkDeltaPhi
+VariableLists/DATA_2017D.txt:boostedTau_leadTkPtOverTauPt
+VariableLists/DATA_2017D.txt:boostedTau_mass
+VariableLists/DATA_2017D.txt:boostedTau_neutralIso
+VariableLists/DATA_2017D.txt:boostedTau_phi
+VariableLists/DATA_2017D.txt:boostedTau_photonsOutsideSignalCone
+VariableLists/DATA_2017D.txt:boostedTau_pt
+VariableLists/DATA_2017D.txt:boostedTau_puCorr
+VariableLists/DATA_2017D.txt:boostedTau_rawAntiEle2018
+VariableLists/DATA_2017D.txt:boostedTau_rawIso
+VariableLists/DATA_2017D.txt:boostedTau_rawIsodR03
+VariableLists/DATA_2017D.txt:boostedTau_rawMVAnewDM2017v2
+VariableLists/DATA_2017D.txt:boostedTau_rawMVAoldDM2017v2
+VariableLists/DATA_2017D.txt:boostedTau_rawMVAoldDMdR032017v2
+VariableLists/DATA_2017D.txt:boostedTau_charge
+VariableLists/DATA_2017D.txt:boostedTau_decayMode
+VariableLists/DATA_2017D.txt:boostedTau_jetIdx
+VariableLists/DATA_2017D.txt:boostedTau_rawAntiEleCat2018
+VariableLists/DATA_2017D.txt:boostedTau_idAntiEle2018
+VariableLists/DATA_2017D.txt:boostedTau_idAntiMu
+VariableLists/DATA_2017D.txt:boostedTau_idMVAnewDM2017v2
+VariableLists/DATA_2017D.txt:boostedTau_idMVAoldDM2017v2
+VariableLists/DATA_2017D.txt:boostedTau_idMVAoldDMdR032017v2
+VariableLists/DATA_2017E.h:   TTreeReaderValue<UInt_t> nboostedTau = {fReader, "nboostedTau"};
+VariableLists/DATA_2017E.h:   TTreeReaderArray<Float_t> boostedTau_chargedIso = {fReader, "boostedTau_chargedIso"};
+VariableLists/DATA_2017E.h:   TTreeReaderArray<Float_t> boostedTau_eta = {fReader, "boostedTau_eta"};
+VariableLists/DATA_2017E.h:   TTreeReaderArray<Float_t> boostedTau_leadTkDeltaEta = {fReader, "boostedTau_leadTkDeltaEta"};
+VariableLists/DATA_2017E.h:   TTreeReaderArray<Float_t> boostedTau_leadTkDeltaPhi = {fReader, "boostedTau_leadTkDeltaPhi"};
+VariableLists/DATA_2017E.h:   TTreeReaderArray<Float_t> boostedTau_leadTkPtOverTauPt = {fReader, "boostedTau_leadTkPtOverTauPt"};
+VariableLists/DATA_2017E.h:   TTreeReaderArray<Float_t> boostedTau_mass = {fReader, "boostedTau_mass"};
+VariableLists/DATA_2017E.h:   TTreeReaderArray<Float_t> boostedTau_neutralIso = {fReader, "boostedTau_neutralIso"};
+VariableLists/DATA_2017E.h:   TTreeReaderArray<Float_t> boostedTau_phi = {fReader, "boostedTau_phi"};
+VariableLists/DATA_2017E.h:   TTreeReaderArray<Float_t> boostedTau_photonsOutsideSignalCone = {fReader, "boostedTau_photonsOutsideSignalCone"};
+VariableLists/DATA_2017E.h:   TTreeReaderArray<Float_t> boostedTau_pt = {fReader, "boostedTau_pt"};
+VariableLists/DATA_2017E.h:   TTreeReaderArray<Float_t> boostedTau_puCorr = {fReader, "boostedTau_puCorr"};
+VariableLists/DATA_2017E.h:   TTreeReaderArray<Float_t> boostedTau_rawAntiEle2018 = {fReader, "boostedTau_rawAntiEle2018"};
+VariableLists/DATA_2017E.h:   TTreeReaderArray<Float_t> boostedTau_rawIso = {fReader, "boostedTau_rawIso"};
+VariableLists/DATA_2017E.h:   TTreeReaderArray<Float_t> boostedTau_rawIsodR03 = {fReader, "boostedTau_rawIsodR03"};
+VariableLists/DATA_2017E.h:   TTreeReaderArray<Float_t> boostedTau_rawMVAnewDM2017v2 = {fReader, "boostedTau_rawMVAnewDM2017v2"};
+VariableLists/DATA_2017E.h:   TTreeReaderArray<Float_t> boostedTau_rawMVAoldDM2017v2 = {fReader, "boostedTau_rawMVAoldDM2017v2"};
+VariableLists/DATA_2017E.h:   TTreeReaderArray<Float_t> boostedTau_rawMVAoldDMdR032017v2 = {fReader, "boostedTau_rawMVAoldDMdR032017v2"};
+VariableLists/DATA_2017E.h:   TTreeReaderArray<Int_t> boostedTau_charge = {fReader, "boostedTau_charge"};
+VariableLists/DATA_2017E.h:   TTreeReaderArray<Int_t> boostedTau_decayMode = {fReader, "boostedTau_decayMode"};
+VariableLists/DATA_2017E.h:   TTreeReaderArray<Int_t> boostedTau_jetIdx = {fReader, "boostedTau_jetIdx"};
+VariableLists/DATA_2017E.h:   TTreeReaderArray<Int_t> boostedTau_rawAntiEleCat2018 = {fReader, "boostedTau_rawAntiEleCat2018"};
+VariableLists/DATA_2017E.h:   TTreeReaderArray<UChar_t> boostedTau_idAntiEle2018 = {fReader, "boostedTau_idAntiEle2018"};
+VariableLists/DATA_2017E.h:   TTreeReaderArray<UChar_t> boostedTau_idAntiMu = {fReader, "boostedTau_idAntiMu"};
+VariableLists/DATA_2017E.h:   TTreeReaderArray<UChar_t> boostedTau_idMVAnewDM2017v2 = {fReader, "boostedTau_idMVAnewDM2017v2"};
+VariableLists/DATA_2017E.h:   TTreeReaderArray<UChar_t> boostedTau_idMVAoldDM2017v2 = {fReader, "boostedTau_idMVAoldDM2017v2"};
+VariableLists/DATA_2017E.h:   TTreeReaderArray<UChar_t> boostedTau_idMVAoldDMdR032017v2 = {fReader, "boostedTau_idMVAoldDMdR032017v2"};
+VariableLists/DATA_2017E.txt:nboostedTau
+VariableLists/DATA_2017E.txt:boostedTau_chargedIso
+VariableLists/DATA_2017E.txt:boostedTau_eta
+VariableLists/DATA_2017E.txt:boostedTau_leadTkDeltaEta
+VariableLists/DATA_2017E.txt:boostedTau_leadTkDeltaPhi
+VariableLists/DATA_2017E.txt:boostedTau_leadTkPtOverTauPt
+VariableLists/DATA_2017E.txt:boostedTau_mass
+VariableLists/DATA_2017E.txt:boostedTau_neutralIso
+VariableLists/DATA_2017E.txt:boostedTau_phi
+VariableLists/DATA_2017E.txt:boostedTau_photonsOutsideSignalCone
+VariableLists/DATA_2017E.txt:boostedTau_pt
+VariableLists/DATA_2017E.txt:boostedTau_puCorr
+VariableLists/DATA_2017E.txt:boostedTau_rawAntiEle2018
+VariableLists/DATA_2017E.txt:boostedTau_rawIso
+VariableLists/DATA_2017E.txt:boostedTau_rawIsodR03
+VariableLists/DATA_2017E.txt:boostedTau_rawMVAnewDM2017v2
+VariableLists/DATA_2017E.txt:boostedTau_rawMVAoldDM2017v2
+VariableLists/DATA_2017E.txt:boostedTau_rawMVAoldDMdR032017v2
+VariableLists/DATA_2017E.txt:boostedTau_charge
+VariableLists/DATA_2017E.txt:boostedTau_decayMode
+VariableLists/DATA_2017E.txt:boostedTau_jetIdx
+VariableLists/DATA_2017E.txt:boostedTau_rawAntiEleCat2018
+VariableLists/DATA_2017E.txt:boostedTau_idAntiEle2018
+VariableLists/DATA_2017E.txt:boostedTau_idAntiMu
+VariableLists/DATA_2017E.txt:boostedTau_idMVAnewDM2017v2
+VariableLists/DATA_2017E.txt:boostedTau_idMVAoldDM2017v2
+VariableLists/DATA_2017E.txt:boostedTau_idMVAoldDMdR032017v2
+VariableLists/DATA_2017F.h:   TTreeReaderValue<UInt_t> nboostedTau = {fReader, "nboostedTau"};
+VariableLists/DATA_2017F.h:   TTreeReaderArray<Float_t> boostedTau_chargedIso = {fReader, "boostedTau_chargedIso"};
+VariableLists/DATA_2017F.h:   TTreeReaderArray<Float_t> boostedTau_eta = {fReader, "boostedTau_eta"};
+VariableLists/DATA_2017F.h:   TTreeReaderArray<Float_t> boostedTau_leadTkDeltaEta = {fReader, "boostedTau_leadTkDeltaEta"};
+VariableLists/DATA_2017F.h:   TTreeReaderArray<Float_t> boostedTau_leadTkDeltaPhi = {fReader, "boostedTau_leadTkDeltaPhi"};
+VariableLists/DATA_2017F.h:   TTreeReaderArray<Float_t> boostedTau_leadTkPtOverTauPt = {fReader, "boostedTau_leadTkPtOverTauPt"};
+VariableLists/DATA_2017F.h:   TTreeReaderArray<Float_t> boostedTau_mass = {fReader, "boostedTau_mass"};
+VariableLists/DATA_2017F.h:   TTreeReaderArray<Float_t> boostedTau_neutralIso = {fReader, "boostedTau_neutralIso"};
+VariableLists/DATA_2017F.h:   TTreeReaderArray<Float_t> boostedTau_phi = {fReader, "boostedTau_phi"};
+VariableLists/DATA_2017F.h:   TTreeReaderArray<Float_t> boostedTau_photonsOutsideSignalCone = {fReader, "boostedTau_photonsOutsideSignalCone"};
+VariableLists/DATA_2017F.h:   TTreeReaderArray<Float_t> boostedTau_pt = {fReader, "boostedTau_pt"};
+VariableLists/DATA_2017F.h:   TTreeReaderArray<Float_t> boostedTau_puCorr = {fReader, "boostedTau_puCorr"};
+VariableLists/DATA_2017F.h:   TTreeReaderArray<Float_t> boostedTau_rawAntiEle2018 = {fReader, "boostedTau_rawAntiEle2018"};
+VariableLists/DATA_2017F.h:   TTreeReaderArray<Float_t> boostedTau_rawIso = {fReader, "boostedTau_rawIso"};
+VariableLists/DATA_2017F.h:   TTreeReaderArray<Float_t> boostedTau_rawIsodR03 = {fReader, "boostedTau_rawIsodR03"};
+VariableLists/DATA_2017F.h:   TTreeReaderArray<Float_t> boostedTau_rawMVAnewDM2017v2 = {fReader, "boostedTau_rawMVAnewDM2017v2"};
+VariableLists/DATA_2017F.h:   TTreeReaderArray<Float_t> boostedTau_rawMVAoldDM2017v2 = {fReader, "boostedTau_rawMVAoldDM2017v2"};
+VariableLists/DATA_2017F.h:   TTreeReaderArray<Float_t> boostedTau_rawMVAoldDMdR032017v2 = {fReader, "boostedTau_rawMVAoldDMdR032017v2"};
+VariableLists/DATA_2017F.h:   TTreeReaderArray<Int_t> boostedTau_charge = {fReader, "boostedTau_charge"};
+VariableLists/DATA_2017F.h:   TTreeReaderArray<Int_t> boostedTau_decayMode = {fReader, "boostedTau_decayMode"};
+VariableLists/DATA_2017F.h:   TTreeReaderArray<Int_t> boostedTau_jetIdx = {fReader, "boostedTau_jetIdx"};
+VariableLists/DATA_2017F.h:   TTreeReaderArray<Int_t> boostedTau_rawAntiEleCat2018 = {fReader, "boostedTau_rawAntiEleCat2018"};
+VariableLists/DATA_2017F.h:   TTreeReaderArray<UChar_t> boostedTau_idAntiEle2018 = {fReader, "boostedTau_idAntiEle2018"};
+VariableLists/DATA_2017F.h:   TTreeReaderArray<UChar_t> boostedTau_idAntiMu = {fReader, "boostedTau_idAntiMu"};
+VariableLists/DATA_2017F.h:   TTreeReaderArray<UChar_t> boostedTau_idMVAnewDM2017v2 = {fReader, "boostedTau_idMVAnewDM2017v2"};
+VariableLists/DATA_2017F.h:   TTreeReaderArray<UChar_t> boostedTau_idMVAoldDM2017v2 = {fReader, "boostedTau_idMVAoldDM2017v2"};
+VariableLists/DATA_2017F.h:   TTreeReaderArray<UChar_t> boostedTau_idMVAoldDMdR032017v2 = {fReader, "boostedTau_idMVAoldDMdR032017v2"};
+VariableLists/DATA_2017F.txt:nboostedTau
+VariableLists/DATA_2017F.txt:boostedTau_chargedIso
+VariableLists/DATA_2017F.txt:boostedTau_eta
+VariableLists/DATA_2017F.txt:boostedTau_leadTkDeltaEta
+VariableLists/DATA_2017F.txt:boostedTau_leadTkDeltaPhi
+VariableLists/DATA_2017F.txt:boostedTau_leadTkPtOverTauPt
+VariableLists/DATA_2017F.txt:boostedTau_mass
+VariableLists/DATA_2017F.txt:boostedTau_neutralIso
+VariableLists/DATA_2017F.txt:boostedTau_phi
+VariableLists/DATA_2017F.txt:boostedTau_photonsOutsideSignalCone
+VariableLists/DATA_2017F.txt:boostedTau_pt
+VariableLists/DATA_2017F.txt:boostedTau_puCorr
+VariableLists/DATA_2017F.txt:boostedTau_rawAntiEle2018
+VariableLists/DATA_2017F.txt:boostedTau_rawIso
+VariableLists/DATA_2017F.txt:boostedTau_rawIsodR03
+VariableLists/DATA_2017F.txt:boostedTau_rawMVAnewDM2017v2
+VariableLists/DATA_2017F.txt:boostedTau_rawMVAoldDM2017v2
+VariableLists/DATA_2017F.txt:boostedTau_rawMVAoldDMdR032017v2
+VariableLists/DATA_2017F.txt:boostedTau_charge
+VariableLists/DATA_2017F.txt:boostedTau_decayMode
+VariableLists/DATA_2017F.txt:boostedTau_jetIdx
+VariableLists/DATA_2017F.txt:boostedTau_rawAntiEleCat2018
+VariableLists/DATA_2017F.txt:boostedTau_idAntiEle2018
+VariableLists/DATA_2017F.txt:boostedTau_idAntiMu
+VariableLists/DATA_2017F.txt:boostedTau_idMVAnewDM2017v2
+VariableLists/DATA_2017F.txt:boostedTau_idMVAoldDM2017v2
+VariableLists/DATA_2017F.txt:boostedTau_idMVAoldDMdR032017v2
+VariableLists/DATA_2018.h:   TTreeReaderValue<UInt_t> nboostedTau = {fReader, "nboostedTau"};
+VariableLists/DATA_2018.h:   TTreeReaderArray<Float_t> boostedTau_chargedIso = {fReader, "boostedTau_chargedIso"};
+VariableLists/DATA_2018.h:   TTreeReaderArray<Float_t> boostedTau_eta = {fReader, "boostedTau_eta"};
+VariableLists/DATA_2018.h:   TTreeReaderArray<Float_t> boostedTau_leadTkDeltaEta = {fReader, "boostedTau_leadTkDeltaEta"};
+VariableLists/DATA_2018.h:   TTreeReaderArray<Float_t> boostedTau_leadTkDeltaPhi = {fReader, "boostedTau_leadTkDeltaPhi"};
+VariableLists/DATA_2018.h:   TTreeReaderArray<Float_t> boostedTau_leadTkPtOverTauPt = {fReader, "boostedTau_leadTkPtOverTauPt"};
+VariableLists/DATA_2018.h:   TTreeReaderArray<Float_t> boostedTau_mass = {fReader, "boostedTau_mass"};
+VariableLists/DATA_2018.h:   TTreeReaderArray<Float_t> boostedTau_neutralIso = {fReader, "boostedTau_neutralIso"};
+VariableLists/DATA_2018.h:   TTreeReaderArray<Float_t> boostedTau_phi = {fReader, "boostedTau_phi"};
+VariableLists/DATA_2018.h:   TTreeReaderArray<Float_t> boostedTau_photonsOutsideSignalCone = {fReader, "boostedTau_photonsOutsideSignalCone"};
+VariableLists/DATA_2018.h:   TTreeReaderArray<Float_t> boostedTau_pt = {fReader, "boostedTau_pt"};
+VariableLists/DATA_2018.h:   TTreeReaderArray<Float_t> boostedTau_puCorr = {fReader, "boostedTau_puCorr"};
+VariableLists/DATA_2018.h:   TTreeReaderArray<Float_t> boostedTau_rawAntiEle2018 = {fReader, "boostedTau_rawAntiEle2018"};
+VariableLists/DATA_2018.h:   TTreeReaderArray<Float_t> boostedTau_rawIso = {fReader, "boostedTau_rawIso"};
+VariableLists/DATA_2018.h:   TTreeReaderArray<Float_t> boostedTau_rawIsodR03 = {fReader, "boostedTau_rawIsodR03"};
+VariableLists/DATA_2018.h:   TTreeReaderArray<Float_t> boostedTau_rawMVAnewDM2017v2 = {fReader, "boostedTau_rawMVAnewDM2017v2"};
+VariableLists/DATA_2018.h:   TTreeReaderArray<Float_t> boostedTau_rawMVAoldDM2017v2 = {fReader, "boostedTau_rawMVAoldDM2017v2"};
+VariableLists/DATA_2018.h:   TTreeReaderArray<Float_t> boostedTau_rawMVAoldDMdR032017v2 = {fReader, "boostedTau_rawMVAoldDMdR032017v2"};
+VariableLists/DATA_2018.h:   TTreeReaderArray<Int_t> boostedTau_charge = {fReader, "boostedTau_charge"};
+VariableLists/DATA_2018.h:   TTreeReaderArray<Int_t> boostedTau_decayMode = {fReader, "boostedTau_decayMode"};
+VariableLists/DATA_2018.h:   TTreeReaderArray<Int_t> boostedTau_jetIdx = {fReader, "boostedTau_jetIdx"};
+VariableLists/DATA_2018.h:   TTreeReaderArray<Int_t> boostedTau_rawAntiEleCat2018 = {fReader, "boostedTau_rawAntiEleCat2018"};
+VariableLists/DATA_2018.h:   TTreeReaderArray<UChar_t> boostedTau_idAntiEle2018 = {fReader, "boostedTau_idAntiEle2018"};
+VariableLists/DATA_2018.h:   TTreeReaderArray<UChar_t> boostedTau_idAntiMu = {fReader, "boostedTau_idAntiMu"};
+VariableLists/DATA_2018.h:   TTreeReaderArray<UChar_t> boostedTau_idMVAnewDM2017v2 = {fReader, "boostedTau_idMVAnewDM2017v2"};
+VariableLists/DATA_2018.h:   TTreeReaderArray<UChar_t> boostedTau_idMVAoldDM2017v2 = {fReader, "boostedTau_idMVAoldDM2017v2"};
+VariableLists/DATA_2018.h:   TTreeReaderArray<UChar_t> boostedTau_idMVAoldDMdR032017v2 = {fReader, "boostedTau_idMVAoldDMdR032017v2"};
+VariableLists/DATA_2018.txt:nboostedTau
+VariableLists/DATA_2018.txt:boostedTau_chargedIso
+VariableLists/DATA_2018.txt:boostedTau_eta
+VariableLists/DATA_2018.txt:boostedTau_leadTkDeltaEta
+VariableLists/DATA_2018.txt:boostedTau_leadTkDeltaPhi
+VariableLists/DATA_2018.txt:boostedTau_leadTkPtOverTauPt
+VariableLists/DATA_2018.txt:boostedTau_mass
+VariableLists/DATA_2018.txt:boostedTau_neutralIso
+VariableLists/DATA_2018.txt:boostedTau_phi
+VariableLists/DATA_2018.txt:boostedTau_photonsOutsideSignalCone
+VariableLists/DATA_2018.txt:boostedTau_pt
+VariableLists/DATA_2018.txt:boostedTau_puCorr
+VariableLists/DATA_2018.txt:boostedTau_rawAntiEle2018
+VariableLists/DATA_2018.txt:boostedTau_rawIso
+VariableLists/DATA_2018.txt:boostedTau_rawIsodR03
+VariableLists/DATA_2018.txt:boostedTau_rawMVAnewDM2017v2
+VariableLists/DATA_2018.txt:boostedTau_rawMVAoldDM2017v2
+VariableLists/DATA_2018.txt:boostedTau_rawMVAoldDMdR032017v2
+VariableLists/DATA_2018.txt:boostedTau_charge
+VariableLists/DATA_2018.txt:boostedTau_decayMode
+VariableLists/DATA_2018.txt:boostedTau_jetIdx
+VariableLists/DATA_2018.txt:boostedTau_rawAntiEleCat2018
+VariableLists/DATA_2018.txt:boostedTau_idAntiEle2018
+VariableLists/DATA_2018.txt:boostedTau_idAntiMu
+VariableLists/DATA_2018.txt:boostedTau_idMVAnewDM2017v2
+VariableLists/DATA_2018.txt:boostedTau_idMVAoldDM2017v2
+VariableLists/DATA_2018.txt:boostedTau_idMVAoldDMdR032017v2
+VariableLists/MC_2016.h:   TTreeReaderValue<UInt_t> nboostedTau = {fReader, "nboostedTau"};
+VariableLists/MC_2016.h:   TTreeReaderArray<Float_t> boostedTau_chargedIso = {fReader, "boostedTau_chargedIso"};
+VariableLists/MC_2016.h:   TTreeReaderArray<Float_t> boostedTau_eta = {fReader, "boostedTau_eta"};
+VariableLists/MC_2016.h:   TTreeReaderArray<Float_t> boostedTau_leadTkDeltaEta = {fReader, "boostedTau_leadTkDeltaEta"};
+VariableLists/MC_2016.h:   TTreeReaderArray<Float_t> boostedTau_leadTkDeltaPhi = {fReader, "boostedTau_leadTkDeltaPhi"};
+VariableLists/MC_2016.h:   TTreeReaderArray<Float_t> boostedTau_leadTkPtOverTauPt = {fReader, "boostedTau_leadTkPtOverTauPt"};
+VariableLists/MC_2016.h:   TTreeReaderArray<Float_t> boostedTau_mass = {fReader, "boostedTau_mass"};
+VariableLists/MC_2016.h:   TTreeReaderArray<Float_t> boostedTau_neutralIso = {fReader, "boostedTau_neutralIso"};
+VariableLists/MC_2016.h:   TTreeReaderArray<Float_t> boostedTau_phi = {fReader, "boostedTau_phi"};
+VariableLists/MC_2016.h:   TTreeReaderArray<Float_t> boostedTau_photonsOutsideSignalCone = {fReader, "boostedTau_photonsOutsideSignalCone"};
+VariableLists/MC_2016.h:   TTreeReaderArray<Float_t> boostedTau_pt = {fReader, "boostedTau_pt"};
+VariableLists/MC_2016.h:   TTreeReaderArray<Float_t> boostedTau_puCorr = {fReader, "boostedTau_puCorr"};
+VariableLists/MC_2016.h:   TTreeReaderArray<Float_t> boostedTau_rawAntiEle2018 = {fReader, "boostedTau_rawAntiEle2018"};
+VariableLists/MC_2016.h:   TTreeReaderArray<Float_t> boostedTau_rawIso = {fReader, "boostedTau_rawIso"};
+VariableLists/MC_2016.h:   TTreeReaderArray<Float_t> boostedTau_rawIsodR03 = {fReader, "boostedTau_rawIsodR03"};
+VariableLists/MC_2016.h:   TTreeReaderArray<Float_t> boostedTau_rawMVAnewDM2017v2 = {fReader, "boostedTau_rawMVAnewDM2017v2"};
+VariableLists/MC_2016.h:   TTreeReaderArray<Float_t> boostedTau_rawMVAoldDM2017v2 = {fReader, "boostedTau_rawMVAoldDM2017v2"};
+VariableLists/MC_2016.h:   TTreeReaderArray<Float_t> boostedTau_rawMVAoldDMdR032017v2 = {fReader, "boostedTau_rawMVAoldDMdR032017v2"};
+VariableLists/MC_2016.h:   TTreeReaderArray<Int_t> boostedTau_charge = {fReader, "boostedTau_charge"};
+VariableLists/MC_2016.h:   TTreeReaderArray<Int_t> boostedTau_decayMode = {fReader, "boostedTau_decayMode"};
+VariableLists/MC_2016.h:   TTreeReaderArray<Int_t> boostedTau_jetIdx = {fReader, "boostedTau_jetIdx"};
+VariableLists/MC_2016.h:   TTreeReaderArray<Int_t> boostedTau_rawAntiEleCat2018 = {fReader, "boostedTau_rawAntiEleCat2018"};
+VariableLists/MC_2016.h:   TTreeReaderArray<UChar_t> boostedTau_idAntiEle2018 = {fReader, "boostedTau_idAntiEle2018"};
+VariableLists/MC_2016.h:   TTreeReaderArray<UChar_t> boostedTau_idAntiMu = {fReader, "boostedTau_idAntiMu"};
+VariableLists/MC_2016.h:   TTreeReaderArray<UChar_t> boostedTau_idMVAnewDM2017v2 = {fReader, "boostedTau_idMVAnewDM2017v2"};
+VariableLists/MC_2016.h:   TTreeReaderArray<UChar_t> boostedTau_idMVAoldDM2017v2 = {fReader, "boostedTau_idMVAoldDM2017v2"};
+VariableLists/MC_2016.h:   TTreeReaderArray<UChar_t> boostedTau_idMVAoldDMdR032017v2 = {fReader, "boostedTau_idMVAoldDMdR032017v2"};
+VariableLists/MC_2016.h:   TTreeReaderArray<Int_t> boostedTau_genPartIdx = {fReader, "boostedTau_genPartIdx"};
+VariableLists/MC_2016.h:   TTreeReaderArray<UChar_t> boostedTau_genPartFlav = {fReader, "boostedTau_genPartFlav"};
+VariableLists/MC_2016.txt:nboostedTau
+VariableLists/MC_2016.txt:boostedTau_chargedIso
+VariableLists/MC_2016.txt:boostedTau_eta
+VariableLists/MC_2016.txt:boostedTau_leadTkDeltaEta
+VariableLists/MC_2016.txt:boostedTau_leadTkDeltaPhi
+VariableLists/MC_2016.txt:boostedTau_leadTkPtOverTauPt
+VariableLists/MC_2016.txt:boostedTau_mass
+VariableLists/MC_2016.txt:boostedTau_neutralIso
+VariableLists/MC_2016.txt:boostedTau_phi
+VariableLists/MC_2016.txt:boostedTau_photonsOutsideSignalCone
+VariableLists/MC_2016.txt:boostedTau_pt
+VariableLists/MC_2016.txt:boostedTau_puCorr
+VariableLists/MC_2016.txt:boostedTau_rawAntiEle2018
+VariableLists/MC_2016.txt:boostedTau_rawIso
+VariableLists/MC_2016.txt:boostedTau_rawIsodR03
+VariableLists/MC_2016.txt:boostedTau_rawMVAnewDM2017v2
+VariableLists/MC_2016.txt:boostedTau_rawMVAoldDM2017v2
+VariableLists/MC_2016.txt:boostedTau_rawMVAoldDMdR032017v2
+VariableLists/MC_2016.txt:boostedTau_charge
+VariableLists/MC_2016.txt:boostedTau_decayMode
+VariableLists/MC_2016.txt:boostedTau_jetIdx
+VariableLists/MC_2016.txt:boostedTau_rawAntiEleCat2018
+VariableLists/MC_2016.txt:boostedTau_idAntiEle2018
+VariableLists/MC_2016.txt:boostedTau_idAntiMu
+VariableLists/MC_2016.txt:boostedTau_idMVAnewDM2017v2
+VariableLists/MC_2016.txt:boostedTau_idMVAoldDM2017v2
+VariableLists/MC_2016.txt:boostedTau_idMVAoldDMdR032017v2
+VariableLists/MC_2016.txt:boostedTau_genPartIdx
+VariableLists/MC_2016.txt:boostedTau_genPartFlav
+VariableLists/MC_2017.h:   TTreeReaderValue<UInt_t> nboostedTau = {fReader, "nboostedTau"};
+VariableLists/MC_2017.h:   TTreeReaderArray<Float_t> boostedTau_chargedIso = {fReader, "boostedTau_chargedIso"};
+VariableLists/MC_2017.h:   TTreeReaderArray<Float_t> boostedTau_eta = {fReader, "boostedTau_eta"};
+VariableLists/MC_2017.h:   TTreeReaderArray<Float_t> boostedTau_leadTkDeltaEta = {fReader, "boostedTau_leadTkDeltaEta"};
+VariableLists/MC_2017.h:   TTreeReaderArray<Float_t> boostedTau_leadTkDeltaPhi = {fReader, "boostedTau_leadTkDeltaPhi"};
+VariableLists/MC_2017.h:   TTreeReaderArray<Float_t> boostedTau_leadTkPtOverTauPt = {fReader, "boostedTau_leadTkPtOverTauPt"};
+VariableLists/MC_2017.h:   TTreeReaderArray<Float_t> boostedTau_mass = {fReader, "boostedTau_mass"};
+VariableLists/MC_2017.h:   TTreeReaderArray<Float_t> boostedTau_neutralIso = {fReader, "boostedTau_neutralIso"};
+VariableLists/MC_2017.h:   TTreeReaderArray<Float_t> boostedTau_phi = {fReader, "boostedTau_phi"};
+VariableLists/MC_2017.h:   TTreeReaderArray<Float_t> boostedTau_photonsOutsideSignalCone = {fReader, "boostedTau_photonsOutsideSignalCone"};
+VariableLists/MC_2017.h:   TTreeReaderArray<Float_t> boostedTau_pt = {fReader, "boostedTau_pt"};
+VariableLists/MC_2017.h:   TTreeReaderArray<Float_t> boostedTau_puCorr = {fReader, "boostedTau_puCorr"};
+VariableLists/MC_2017.h:   TTreeReaderArray<Float_t> boostedTau_rawAntiEle2018 = {fReader, "boostedTau_rawAntiEle2018"};
+VariableLists/MC_2017.h:   TTreeReaderArray<Float_t> boostedTau_rawIso = {fReader, "boostedTau_rawIso"};
+VariableLists/MC_2017.h:   TTreeReaderArray<Float_t> boostedTau_rawIsodR03 = {fReader, "boostedTau_rawIsodR03"};
+VariableLists/MC_2017.h:   TTreeReaderArray<Float_t> boostedTau_rawMVAnewDM2017v2 = {fReader, "boostedTau_rawMVAnewDM2017v2"};
+VariableLists/MC_2017.h:   TTreeReaderArray<Float_t> boostedTau_rawMVAoldDM2017v2 = {fReader, "boostedTau_rawMVAoldDM2017v2"};
+VariableLists/MC_2017.h:   TTreeReaderArray<Float_t> boostedTau_rawMVAoldDMdR032017v2 = {fReader, "boostedTau_rawMVAoldDMdR032017v2"};
+VariableLists/MC_2017.h:   TTreeReaderArray<Int_t> boostedTau_charge = {fReader, "boostedTau_charge"};
+VariableLists/MC_2017.h:   TTreeReaderArray<Int_t> boostedTau_decayMode = {fReader, "boostedTau_decayMode"};
+VariableLists/MC_2017.h:   TTreeReaderArray<Int_t> boostedTau_jetIdx = {fReader, "boostedTau_jetIdx"};
+VariableLists/MC_2017.h:   TTreeReaderArray<Int_t> boostedTau_rawAntiEleCat2018 = {fReader, "boostedTau_rawAntiEleCat2018"};
+VariableLists/MC_2017.h:   TTreeReaderArray<UChar_t> boostedTau_idAntiEle2018 = {fReader, "boostedTau_idAntiEle2018"};
+VariableLists/MC_2017.h:   TTreeReaderArray<UChar_t> boostedTau_idAntiMu = {fReader, "boostedTau_idAntiMu"};
+VariableLists/MC_2017.h:   TTreeReaderArray<UChar_t> boostedTau_idMVAnewDM2017v2 = {fReader, "boostedTau_idMVAnewDM2017v2"};
+VariableLists/MC_2017.h:   TTreeReaderArray<UChar_t> boostedTau_idMVAoldDM2017v2 = {fReader, "boostedTau_idMVAoldDM2017v2"};
+VariableLists/MC_2017.h:   TTreeReaderArray<UChar_t> boostedTau_idMVAoldDMdR032017v2 = {fReader, "boostedTau_idMVAoldDMdR032017v2"};
+VariableLists/MC_2017.h:   TTreeReaderArray<Int_t> boostedTau_genPartIdx = {fReader, "boostedTau_genPartIdx"};
+VariableLists/MC_2017.h:   TTreeReaderArray<UChar_t> boostedTau_genPartFlav = {fReader, "boostedTau_genPartFlav"};
+VariableLists/MC_2017.txt:nboostedTau
+VariableLists/MC_2017.txt:boostedTau_chargedIso
+VariableLists/MC_2017.txt:boostedTau_eta
+VariableLists/MC_2017.txt:boostedTau_leadTkDeltaEta
+VariableLists/MC_2017.txt:boostedTau_leadTkDeltaPhi
+VariableLists/MC_2017.txt:boostedTau_leadTkPtOverTauPt
+VariableLists/MC_2017.txt:boostedTau_mass
+VariableLists/MC_2017.txt:boostedTau_neutralIso
+VariableLists/MC_2017.txt:boostedTau_phi
+VariableLists/MC_2017.txt:boostedTau_photonsOutsideSignalCone
+VariableLists/MC_2017.txt:boostedTau_pt
+VariableLists/MC_2017.txt:boostedTau_puCorr
+VariableLists/MC_2017.txt:boostedTau_rawAntiEle2018
+VariableLists/MC_2017.txt:boostedTau_rawIso
+VariableLists/MC_2017.txt:boostedTau_rawIsodR03
+VariableLists/MC_2017.txt:boostedTau_rawMVAnewDM2017v2
+VariableLists/MC_2017.txt:boostedTau_rawMVAoldDM2017v2
+VariableLists/MC_2017.txt:boostedTau_rawMVAoldDMdR032017v2
+VariableLists/MC_2017.txt:boostedTau_charge
+VariableLists/MC_2017.txt:boostedTau_decayMode
+VariableLists/MC_2017.txt:boostedTau_jetIdx
+VariableLists/MC_2017.txt:boostedTau_rawAntiEleCat2018
+VariableLists/MC_2017.txt:boostedTau_idAntiEle2018
+VariableLists/MC_2017.txt:boostedTau_idAntiMu
+VariableLists/MC_2017.txt:boostedTau_idMVAnewDM2017v2
+VariableLists/MC_2017.txt:boostedTau_idMVAoldDM2017v2
+VariableLists/MC_2017.txt:boostedTau_idMVAoldDMdR032017v2
+VariableLists/MC_2017.txt:boostedTau_genPartIdx
+VariableLists/MC_2017.txt:boostedTau_genPartFlav
+VariableLists/MC_2018.h:   TTreeReaderValue<UInt_t> nboostedTau = {fReader, "nboostedTau"};
+VariableLists/MC_2018.h:   TTreeReaderArray<Float_t> boostedTau_chargedIso = {fReader, "boostedTau_chargedIso"};
+VariableLists/MC_2018.h:   TTreeReaderArray<Float_t> boostedTau_eta = {fReader, "boostedTau_eta"};
+VariableLists/MC_2018.h:   TTreeReaderArray<Float_t> boostedTau_leadTkDeltaEta = {fReader, "boostedTau_leadTkDeltaEta"};
+VariableLists/MC_2018.h:   TTreeReaderArray<Float_t> boostedTau_leadTkDeltaPhi = {fReader, "boostedTau_leadTkDeltaPhi"};
+VariableLists/MC_2018.h:   TTreeReaderArray<Float_t> boostedTau_leadTkPtOverTauPt = {fReader, "boostedTau_leadTkPtOverTauPt"};
+VariableLists/MC_2018.h:   TTreeReaderArray<Float_t> boostedTau_mass = {fReader, "boostedTau_mass"};
+VariableLists/MC_2018.h:   TTreeReaderArray<Float_t> boostedTau_neutralIso = {fReader, "boostedTau_neutralIso"};
+VariableLists/MC_2018.h:   TTreeReaderArray<Float_t> boostedTau_phi = {fReader, "boostedTau_phi"};
+VariableLists/MC_2018.h:   TTreeReaderArray<Float_t> boostedTau_photonsOutsideSignalCone = {fReader, "boostedTau_photonsOutsideSignalCone"};
+VariableLists/MC_2018.h:   TTreeReaderArray<Float_t> boostedTau_pt = {fReader, "boostedTau_pt"};
+VariableLists/MC_2018.h:   TTreeReaderArray<Float_t> boostedTau_puCorr = {fReader, "boostedTau_puCorr"};
+VariableLists/MC_2018.h:   TTreeReaderArray<Float_t> boostedTau_rawAntiEle2018 = {fReader, "boostedTau_rawAntiEle2018"};
+VariableLists/MC_2018.h:   TTreeReaderArray<Float_t> boostedTau_rawIso = {fReader, "boostedTau_rawIso"};
+VariableLists/MC_2018.h:   TTreeReaderArray<Float_t> boostedTau_rawIsodR03 = {fReader, "boostedTau_rawIsodR03"};
+VariableLists/MC_2018.h:   TTreeReaderArray<Float_t> boostedTau_rawMVAnewDM2017v2 = {fReader, "boostedTau_rawMVAnewDM2017v2"};
+VariableLists/MC_2018.h:   TTreeReaderArray<Float_t> boostedTau_rawMVAoldDM2017v2 = {fReader, "boostedTau_rawMVAoldDM2017v2"};
+VariableLists/MC_2018.h:   TTreeReaderArray<Float_t> boostedTau_rawMVAoldDMdR032017v2 = {fReader, "boostedTau_rawMVAoldDMdR032017v2"};
+VariableLists/MC_2018.h:   TTreeReaderArray<Int_t> boostedTau_charge = {fReader, "boostedTau_charge"};
+VariableLists/MC_2018.h:   TTreeReaderArray<Int_t> boostedTau_decayMode = {fReader, "boostedTau_decayMode"};
+VariableLists/MC_2018.h:   TTreeReaderArray<Int_t> boostedTau_jetIdx = {fReader, "boostedTau_jetIdx"};
+VariableLists/MC_2018.h:   TTreeReaderArray<Int_t> boostedTau_rawAntiEleCat2018 = {fReader, "boostedTau_rawAntiEleCat2018"};
+VariableLists/MC_2018.h:   TTreeReaderArray<UChar_t> boostedTau_idAntiEle2018 = {fReader, "boostedTau_idAntiEle2018"};
+VariableLists/MC_2018.h:   TTreeReaderArray<UChar_t> boostedTau_idAntiMu = {fReader, "boostedTau_idAntiMu"};
+VariableLists/MC_2018.h:   TTreeReaderArray<UChar_t> boostedTau_idMVAnewDM2017v2 = {fReader, "boostedTau_idMVAnewDM2017v2"};
+VariableLists/MC_2018.h:   TTreeReaderArray<UChar_t> boostedTau_idMVAoldDM2017v2 = {fReader, "boostedTau_idMVAoldDM2017v2"};
+VariableLists/MC_2018.h:   TTreeReaderArray<UChar_t> boostedTau_idMVAoldDMdR032017v2 = {fReader, "boostedTau_idMVAoldDMdR032017v2"};
+VariableLists/MC_2018.h:   TTreeReaderArray<Int_t> boostedTau_genPartIdx = {fReader, "boostedTau_genPartIdx"};
+VariableLists/MC_2018.h:   TTreeReaderArray<UChar_t> boostedTau_genPartFlav = {fReader, "boostedTau_genPartFlav"};
+VariableLists/MC_2018.txt:nboostedTau
+VariableLists/MC_2018.txt:boostedTau_chargedIso
+VariableLists/MC_2018.txt:boostedTau_eta
+VariableLists/MC_2018.txt:boostedTau_leadTkDeltaEta
+VariableLists/MC_2018.txt:boostedTau_leadTkDeltaPhi
+VariableLists/MC_2018.txt:boostedTau_leadTkPtOverTauPt
+VariableLists/MC_2018.txt:boostedTau_mass
+VariableLists/MC_2018.txt:boostedTau_neutralIso
+VariableLists/MC_2018.txt:boostedTau_phi
+VariableLists/MC_2018.txt:boostedTau_photonsOutsideSignalCone
+VariableLists/MC_2018.txt:boostedTau_pt
+VariableLists/MC_2018.txt:boostedTau_puCorr
+VariableLists/MC_2018.txt:boostedTau_rawAntiEle2018
+VariableLists/MC_2018.txt:boostedTau_rawIso
+VariableLists/MC_2018.txt:boostedTau_rawIsodR03
+VariableLists/MC_2018.txt:boostedTau_rawMVAnewDM2017v2
+VariableLists/MC_2018.txt:boostedTau_rawMVAoldDM2017v2
+VariableLists/MC_2018.txt:boostedTau_rawMVAoldDMdR032017v2
+VariableLists/MC_2018.txt:boostedTau_charge
+VariableLists/MC_2018.txt:boostedTau_decayMode
+VariableLists/MC_2018.txt:boostedTau_jetIdx
+VariableLists/MC_2018.txt:boostedTau_rawAntiEleCat2018
+VariableLists/MC_2018.txt:boostedTau_idAntiEle2018
+VariableLists/MC_2018.txt:boostedTau_idAntiMu
+VariableLists/MC_2018.txt:boostedTau_idMVAnewDM2017v2
+VariableLists/MC_2018.txt:boostedTau_idMVAoldDM2017v2
+VariableLists/MC_2018.txt:boostedTau_idMVAoldDMdR032017v2
+VariableLists/MC_2018.txt:boostedTau_genPartIdx
+VariableLists/MC_2018.txt:boostedTau_genPartFlav
+grep: main: binary file matches
+src/BTagCalibrationStandalone.h: * measurement_type:    e.g. comb, ttbar, di-mu, boosted, ...
+src/really_old/old_Global.h:#include "boost/variant.hpp"
+src/Global.h:#include "boost/variant.hpp"
+yaml-cpp/include/yaml-cpp/noncopyable.h:// this is basically boost::noncopyable
+yaml-cpp/test/gtest-1.8.0/googlemock/README.md:refer to the Boost website (http://www.boost.org/) for how to obtain
+yaml-cpp/test/gtest-1.8.0/googlemock/include/gmock/internal/gmock-internal-utils.h:// Mapping from booleans to types. Similar to boost::bool_<kValue> and
+yaml-cpp/test/gtest-1.8.0/googletest/include/gtest/internal/gtest-port.h:// Inspired by boost/config/stdlib/dinkumware.hpp
+yaml-cpp/test/gtest-1.8.0/googletest/include/gtest/internal/gtest-port.h:// Inspired by boost/config/stdlib/libstdcpp3.hpp,
+yaml-cpp/test/gtest-1.8.0/googletest/include/gtest/internal/gtest-port.h:// This prevents <boost/tr1/detail/config.hpp>, which defines
