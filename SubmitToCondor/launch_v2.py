@@ -31,8 +31,8 @@ def write_condor_config(workDir,sample_format, sample_subformat, nanoaod_format,
   f.write('echo $SHELL \n')
   f.write('source /cvmfs/cms.cern.ch/cmsset_default.sh \n')
   f.write('export SCRAM_ARCH=slc7_amd64_gcc820 \n')
-  f.write('eval `scramv1 project CMSSW CMSSW_10_6_4` \n')
-  f.write('cd CMSSW_10_6_4/src/ \n')
+  f.write('eval `scramv1 project CMSSW CMSSW_14_0_6` \n')
+  f.write('cd CMSSW_14_0_6/src/ \n')
   f.write('eval `scramv1 runtime -sh` \n') # cmsenv is an alias not on the workers
   f.write('echo "CMSSW: "$CMSSW_BASE \n')
   f.write('cd ${_CONDOR_SCRATCH_DIR} \n')
@@ -94,8 +94,8 @@ condorRunDir = '/uscmst1b_scratch/lpc1/lpctrig/duong//Output_VH/' #directory to 
 outputDir_eos = '/store/user/duong/Output_VH/'+syst+'/'
 outputDir_scratch = '/uscmst1b_scratch/lpc1/lpctrig/duong//Output_VH/'+syst+'/'
 
-sourceDir = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/'
-#condorRunDir = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/SubmitToCondor/condor/'
+sourceDir = '/uscms_data/d3/peteryou/CMSSW_14_0_6/src/VHanalysis/'
+#condorRunDir = '/uscms_data/d3/peteryou/CMSSW_14_0_6/src/VHanalysis/SubmitToCondor/condor/'
 condorRunDir = '/uscmst1b_scratch/lpc1/lpcphys/peteryou/Output_VH/mediumWP_updates042023/'
 condorRunDir = '/uscmst1b_scratch/lpc1/lpcphys/peteryou/Output_VH/trigger_efficiency_ZH/'
 condorRunDir = '/uscmst1b_scratch/lpc1/lpcphys/peteryou/Output_VH/Aug2023_addedTtagSF/'
@@ -106,13 +106,13 @@ outputDir_eos = '/store/user/peteryou/Output_VH/trigger_efficiency_ZH/'+syst+'/'
 outputDir_eos = '/store/user/peteryou/Output_VH/Aug2023_addedTagSF'
 outputDir_eos = '/store/user/peteryou/Output_VH/Nov2023_updated'
 outputDir_eos = '/store/user/peteryou/Output_VH/2024May/'
-#outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/new_condor_results/' + syst + '/'
-#outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/newest_condor_results/' + syst + '/'
-outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/mediumWP_updates042023/' + syst + '/'
-outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/trigger_efficiency_ZH/' + syst + '/'
-outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Aug2023_addedTagSF/' + syst + '/'
-outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/Nov2023_updated/' + syst + '/'
-outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/condor_results/2024May/' + syst + '/'
+#outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_14_0_6/src/VHanalysis/new_condor_results/' + syst + '/'
+#outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_14_0_6/src/VHanalysis/newest_condor_results/' + syst + '/'
+outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_14_0_6/src/VHanalysis/condor_results/mediumWP_updates042023/' + syst + '/'
+outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_14_0_6/src/VHanalysis/condor_results/trigger_efficiency_ZH/' + syst + '/'
+outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_14_0_6/src/VHanalysis/condor_results/Aug2023_addedTagSF/' + syst + '/'
+outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_14_0_6/src/VHanalysis/condor_results/Nov2023_updated/' + syst + '/'
+outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_14_0_6/src/VHanalysis/condor_results/2024May/' + syst + '/'
 
 #Input data sets
 dataSet_list = sourceDir+"/Dataset_lists/datasets_NANOAODv9_MC.txt"

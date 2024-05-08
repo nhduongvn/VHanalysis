@@ -1,6 +1,7 @@
 // Do NOT change. Changes will be lost next time file is generated
 
 #define R__DICTIONARY_FILENAME Processor_dict
+#define R__NO_DEPRECATION
 
 /*******************************************************************/
 #include <stddef.h>
@@ -9,7 +10,7 @@
 #include <string.h>
 #include <assert.h>
 #define G__DICTIONARY
-#include "RConfig.h"
+#include "ROOT/RConfig.hxx"
 #include "TClass.h"
 #include "TDictAttributeMap.h"
 #include "TInterpreter.h"
@@ -33,16 +34,16 @@
 
 #include "TDataMember.h"
 
-// Since CINT ignores the std namespace, we need to do so in this file.
-namespace std {} using namespace std;
-
 // Header files passed as explicit arguments
 #include "src/Processor.h"
 
 // Header files passed via #pragma extra_include
 
+// The generated code does not explicitly qualify STL entities
+namespace std {} using namespace std;
+
 namespace ROOT {
-   static void *new_Processor(void *p = 0);
+   static void *new_Processor(void *p = nullptr);
    static void *newArray_Processor(Long_t size, void *p);
    static void delete_Processor(void *p);
    static void deleteArray_Processor(void *p);
@@ -52,8 +53,8 @@ namespace ROOT {
    // Function generating the singleton type initializer
    static TGenericClassInfo *GenerateInitInstanceLocal(const ::Processor*)
    {
-      ::Processor *ptr = 0;
-      static ::TVirtualIsAProxy* isa_proxy = new ::TInstrumentedIsAProxy< ::Processor >(0);
+      ::Processor *ptr = nullptr;
+      static ::TVirtualIsAProxy* isa_proxy = new ::TInstrumentedIsAProxy< ::Processor >(nullptr);
       static ::ROOT::TGenericClassInfo 
          instance("Processor", ::Processor::Class_Version(), "src/Processor.h", 22,
                   typeid(::Processor), ::ROOT::Internal::DefineBehavior(ptr, ptr),
@@ -69,14 +70,14 @@ namespace ROOT {
    }
    TGenericClassInfo *GenerateInitInstance(const ::Processor*)
    {
-      return GenerateInitInstanceLocal((::Processor*)0);
+      return GenerateInitInstanceLocal(static_cast<::Processor*>(nullptr));
    }
    // Static variable to force the class initialization
-   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal((const ::Processor*)0x0); R__UseDummy(_R__UNIQUE_DICT_(Init));
+   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal(static_cast<const ::Processor*>(nullptr)); R__UseDummy(_R__UNIQUE_DICT_(Init));
 } // end of namespace ROOT
 
 //______________________________________________________________________________
-atomic_TClass_ptr Processor::fgIsA(0);  // static to hold class pointer
+atomic_TClass_ptr Processor::fgIsA(nullptr);  // static to hold class pointer
 
 //______________________________________________________________________________
 const char *Processor::Class_Name()
@@ -87,26 +88,26 @@ const char *Processor::Class_Name()
 //______________________________________________________________________________
 const char *Processor::ImplFileName()
 {
-   return ::ROOT::GenerateInitInstanceLocal((const ::Processor*)0x0)->GetImplFileName();
+   return ::ROOT::GenerateInitInstanceLocal((const ::Processor*)nullptr)->GetImplFileName();
 }
 
 //______________________________________________________________________________
 int Processor::ImplFileLine()
 {
-   return ::ROOT::GenerateInitInstanceLocal((const ::Processor*)0x0)->GetImplFileLine();
+   return ::ROOT::GenerateInitInstanceLocal((const ::Processor*)nullptr)->GetImplFileLine();
 }
 
 //______________________________________________________________________________
 TClass *Processor::Dictionary()
 {
-   fgIsA = ::ROOT::GenerateInitInstanceLocal((const ::Processor*)0x0)->GetClass();
+   fgIsA = ::ROOT::GenerateInitInstanceLocal((const ::Processor*)nullptr)->GetClass();
    return fgIsA;
 }
 
 //______________________________________________________________________________
 TClass *Processor::Class()
 {
-   if (!fgIsA.load()) { R__LOCKGUARD(gInterpreterMutex); fgIsA = ::ROOT::GenerateInitInstanceLocal((const ::Processor*)0x0)->GetClass(); }
+   if (!fgIsA.load()) { R__LOCKGUARD(gInterpreterMutex); fgIsA = ::ROOT::GenerateInitInstanceLocal((const ::Processor*)nullptr)->GetClass(); }
    return fgIsA;
 }
 
@@ -128,14 +129,14 @@ namespace ROOT {
    }
    // Wrapper around operator delete
    static void delete_Processor(void *p) {
-      delete ((::Processor*)p);
+      delete (static_cast<::Processor*>(p));
    }
    static void deleteArray_Processor(void *p) {
-      delete [] ((::Processor*)p);
+      delete [] (static_cast<::Processor*>(p));
    }
    static void destruct_Processor(void *p) {
       typedef ::Processor current_t;
-      ((current_t*)p)->~current_t();
+      (static_cast<current_t*>(p))->~current_t();
    }
    // Wrapper around a custom streamer member function.
    static void streamer_Processor(TBuffer &buf, void *obj) {
@@ -147,42 +148,40 @@ namespace {
   void TriggerDictionaryInitialization_Processor_dict_Impl() {
     static const char* headers[] = {
 "src/Processor.h",
-0
+nullptr
     };
     static const char* includePaths[] = {
-"/cvmfs/cms.cern.ch/slc7_amd64_gcc820/lcg/root/6.14.09/include",
-"/uscms_data/d3/peteryou/CMSSW_10_6_4/src/VHanalysis/",
-0
+"/cvmfs/cms.cern.ch/el9_amd64_gcc12/lcg/root/6.30.03-ca7ca986842b225f6fc22ae84d705ed8/include/",
+"/uscms_data/d3/peteryou/CMSSW_14_0_6/src/VHanalysis/",
+nullptr
     };
     static const char* fwdDeclCode = R"DICTFWDDCLS(
 #line 1 "Processor_dict dictionary forward declarations' payload"
 #pragma clang diagnostic ignored "-Wkeyword-compat"
 #pragma clang diagnostic ignored "-Wignored-attributes"
 #pragma clang diagnostic ignored "-Wreturn-type-c-linkage"
-extern int __Cling_Autoloading_Map;
+extern int __Cling_AutoLoading_Map;
 class __attribute__((annotate("$clingAutoload$src/Processor.h")))  Processor;
 )DICTFWDDCLS";
     static const char* payloadCode = R"DICTPAYLOAD(
 #line 1 "Processor_dict dictionary payload"
 
-#ifndef G__VECTOR_HAS_CLASS_ITERATOR
-  #define G__VECTOR_HAS_CLASS_ITERATOR 1
-#endif
 
 #define _BACKWARD_BACKWARD_WARNING_H
+// Inline headers
 #include "src/Processor.h"
 
 #undef  _BACKWARD_BACKWARD_WARNING_H
 )DICTPAYLOAD";
-    static const char* classesHeaders[]={
+    static const char* classesHeaders[] = {
 "Processor", payloadCode, "@",
-nullptr};
-
+nullptr
+};
     static bool isInitialized = false;
     if (!isInitialized) {
       TROOT::RegisterModule("Processor_dict",
         headers, includePaths, payloadCode, fwdDeclCode,
-        TriggerDictionaryInitialization_Processor_dict_Impl, {}, classesHeaders, /*has no C++ module*/false);
+        TriggerDictionaryInitialization_Processor_dict_Impl, {}, classesHeaders, /*hasCxxModule*/false);
       isInitialized = true;
     }
   }
