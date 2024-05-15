@@ -217,15 +217,13 @@ DHZObj DHZ_algorithm(std::vector<JetObj>& jets)
  * [37] TAGGING-CHECK METHODS
  * ===========================
  * The following methods check against our tagging requirements.*/
- 
-  // == passes_btag - checks that a jet is b-tagged ==
+
+/* == passes_btag == */
 bool passes_btag(JetObj& jet, float CSV_cut) {
   return jet.m_deepCSV > CSV_cut;
 }
 
-
-// == are_bjets - takes a list of jets and checks that they're all b-jets ==
-// == (given a certain cut)                                               ==
+/* == are_bjets == */
 bool are_bjets(std::vector<JetObj>& jets, float CSV_cut) {
   for (auto it : jets) {     
     if (!passes_btag(it, CSV_cut)) return false;
@@ -233,15 +231,14 @@ bool are_bjets(std::vector<JetObj>& jets, float CSV_cut) {
   return true;
 }
 
-// == passes_ctag - checks that a jet is c-tagged == 
+/* == passes_ctag == */ 
 bool passes_ctag(JetObj& jet, float CvL_cut, float CvB_cut) {
   bool passes_CvL = jet.m_deepCvL > CvL_cut;
   bool passes_CvB = jet.m_deepCvB > CvB_cut;
   return passes_CvL && passes_CvB;
 }
 
-// == are_cjets - takes a list of jets and checks that they're all c-jets ==
-// == (given a certain cut)                                               == 
+/* == are_cjets == */
 bool are_cjets(std::vector<JetObj>& jets, float CvL_cut, float CvB_cut) {
   for (auto it : jets) {
     if (!passes_ctag(it, CvL_cut, CvB_cut)) return false;
@@ -326,7 +323,6 @@ std::vector<std::vector<int>> find_valid_combos(std::vector<int> bIdxs,
   return outs;
 };
 
-
 /* =======================
  * [39b] TRIGGER SF
  * =======================
@@ -384,7 +380,6 @@ float determine_trigger_SF(std::vector<JetObj>& jets, int year) {
   return 1.0;
 }
 
-
 // == [40] ROOT Selector Methods ==============================================
 
 /* =================
@@ -410,12 +405,13 @@ void VH_selection::SlaveBegin(Reader *r)
   h_evt = new TH1D("Nevt", "", 4, -1.5, 2.5);
   h_MET = new TH1D("MET", "", 2000, 0, 2000);
   h_HT = new TH1D("HT", "", 2000, 0, 2000);  
-
   h_evt->Sumw2();
   h_MET->Sumw2();
   h_HT->Sumw2();
 
-  // CutFlows will be set up here
+  // == CutFlows will be set up here ==
+
+  // Cutflow for electrons (useless?)
   h_cutflow_elec = new TH1D("CutFlow_elec", "", 5, 0, 5); 
   h_cutflow_elec->GetXaxis()->SetBinLabel(1, "Total");
   h_cutflow_elec->GetXaxis()->SetBinLabel(2, "pT cut");
@@ -423,6 +419,7 @@ void VH_selection::SlaveBegin(Reader *r)
   h_cutflow_elec->GetXaxis()->SetBinLabel(4, "etaSC cut");
   h_cutflow_elec->GetXaxis()->SetBinLabel(5, "loose ID cut");
 
+  // Cutflow for muons (useless?)
   h_cutflow_muon = new TH1D("CutFlow_muon", "", 5, 0, 5); 
   h_cutflow_muon->GetXaxis()->SetBinLabel(1, "Total");
   h_cutflow_muon->GetXaxis()->SetBinLabel(2, "pT cut");
@@ -430,6 +427,7 @@ void VH_selection::SlaveBegin(Reader *r)
   h_cutflow_muon->GetXaxis()->SetBinLabel(4, "loose ID cut");
   h_cutflow_muon->GetXaxis()->SetBinLabel(5, "iso cut");
 
+  // Cutflow for jets (useful!!!)
   h_cutflow_jet = new TH1D("CutFlow_jet", "", 5, 0, 5); 
   h_cutflow_jet->GetXaxis()->SetBinLabel(1, "Total");
   h_cutflow_jet->GetXaxis()->SetBinLabel(2, "pT cut");
@@ -437,18 +435,12 @@ void VH_selection::SlaveBegin(Reader *r)
   h_cutflow_jet->GetXaxis()->SetBinLabel(4, "puID req");
   h_cutflow_jet->GetXaxis()->SetBinLabel(5, "iso req");
 
+  // Cutflow for MC (feels useless)
   h_cutflow_evt_MC = new TH1D("CutFlow_evt_MC", "", 2, 0, 2);
   h_cutflow_evt_MC->GetXaxis()->SetBinLabel(1, "Total");
   h_cutflow_evt_MC->GetXaxis()->SetBinLabel(2, "Passed daughter selection");
 
-  h_cutflow_evt_MCjet_DHZ = new TH1D("CutFlow_evt_MCjet_DHZ", "", 6, 0, 6);
-  h_cutflow_evt_MCjet_DHZ->GetXaxis()->SetBinLabel(1, "Total");
-  h_cutflow_evt_MCjet_DHZ->GetXaxis()->SetBinLabel(2, "Jet Mult.");
-  h_cutflow_evt_MCjet_DHZ->GetXaxis()->SetBinLabel(3, "b-tag #1");
-  h_cutflow_evt_MCjet_DHZ->GetXaxis()->SetBinLabel(4, "b-tag #2");
-  h_cutflow_evt_MCjet_DHZ->GetXaxis()->SetBinLabel(5, "c-tag #1");
-  h_cutflow_evt_MCjet_DHZ->GetXaxis()->SetBinLabel(6, "c-tag #2");
-
+  // Cutflow for Tagging Only (useful!!!)
   h_cutflow_evt_tagOnly = new TH1D("CutFlow_evt_tagOnly", "", 8, 0, 8);
   h_cutflow_evt_tagOnly->GetXaxis()->SetBinLabel(1, "Total");
   h_cutflow_evt_tagOnly->GetXaxis()->SetBinLabel(2, "MET cut");
@@ -459,6 +451,7 @@ void VH_selection::SlaveBegin(Reader *r)
   h_cutflow_evt_tagOnly->GetXaxis()->SetBinLabel(7, "c-tag #1");
   h_cutflow_evt_tagOnly->GetXaxis()->SetBinLabel(8, "c-tag #2");
 
+  // Cutflow for Mass-Prioritized (useful!!!)
   h_cutflow_evt_DHZfirst = new TH1D("CutFlow_evt_DHZfirst", "", 8, 0, 8);
   h_cutflow_evt_DHZfirst->GetXaxis()->SetBinLabel(1, "Total");
   h_cutflow_evt_DHZfirst->GetXaxis()->SetBinLabel(2, "MET cut");
@@ -469,6 +462,7 @@ void VH_selection::SlaveBegin(Reader *r)
   h_cutflow_evt_DHZfirst->GetXaxis()->SetBinLabel(7, "c-tag #1");
   h_cutflow_evt_DHZfirst->GetXaxis()->SetBinLabel(8, "c-tag #2");
 
+  // Cutflow for Tagging Prioritized (useful!!!)
   h_cutflow_evt_tagFirst = new TH1D("CutFlow_evt_tagFirst", "", 5, 0, 5);
   h_cutflow_evt_tagFirst->GetXaxis()->SetBinLabel(1, "Total");
   h_cutflow_evt_tagFirst->GetXaxis()->SetBinLabel(2, "MET cut");
@@ -476,71 +470,38 @@ void VH_selection::SlaveBegin(Reader *r)
   h_cutflow_evt_tagFirst->GetXaxis()->SetBinLabel(4, "triggers");
   h_cutflow_evt_tagFirst->GetXaxis()->SetBinLabel(5, "tags cut");
 
-  // These are the cutflows for the triggers
-  h_evt_trig_2016 = new TH1D("evt_trig_2016", "", 4, 0, 4);
-  h_evt_trig_2016->GetXaxis()->SetBinLabel(1,"Total");
-  h_evt_trig_2016->GetXaxis()->SetBinLabel(2,"Passed Both");
-  h_evt_trig_2016->GetXaxis()->SetBinLabel(3,"Passed Quad");
-  h_evt_trig_2016->GetXaxis()->SetBinLabel(4,"Passed Double");
-
+  // Make sure the Sumw2 is on (should be by default)
   h_cutflow_elec->Sumw2();
   h_cutflow_muon->Sumw2();
   h_cutflow_jet->Sumw2();
   h_cutflow_evt_MC->Sumw2();
-  h_cutflow_evt_MCjet_DHZ->Sumw2();
   h_cutflow_evt_tagOnly->Sumw2();
   h_cutflow_evt_DHZfirst->Sumw2();
   h_cutflow_evt_tagFirst->Sumw2();
-  h_evt_trig_2016->Sumw2();
-
+  
   // These store our object weights
   h_event_weights = new WeightPlots("EventWeights");
-  //h_event_weights->Sumw2();  
 
   // These store our jet regression values
   h_jet_regressions = new RegressionPlots("JetRegression");
-  //h_jet_regressions->Sumw2();
 
-  // These store the event results
-  h_VH_MC = new VHPlots("VH_MC");
-  h_VH_MCjet_minDR = new VHPlots("VH_MCjet_minDR");
-  h_VH_MCjet_minDR_noTag = new VHPlots("VH_MCjet_minDR_noTag");
-  h_VH_MCjet_dRcollect = new VHPlots("VH_MCjet_dRcollect");
-  h_VH_MCjet_dRcollect_noTag = new VHPlots("VH_MCjet_dRcollect_noTag");
-  h_VH_MCjet_ideal = new VHPlots("VH_MCjet_ideal");
-  h_VH_MCjet_DHZ = new VHPlots("VH_MCjet_DHZ");
-  h_VH_MCjet_DHZ_noTag = new VHPlots("VH_MCjet_DHZ_noTag");
+  // == These store the event results ==
+  h_VH_MC = new VHPlots("VH_MC");                 // MC
 
-  h_VH_tagOnly = new VHPlots("VH_tagOnly");
-  h_VH_DHZfirst = new VHPlots("VH_DHZfirst");
+  h_VH_tagOnly = new VHPlots("VH_tagOnly");       // Assignment Methods
+  h_VH_DHZfirst = new VHPlots("VH_DHZfirst");     // (Typical Signal)
   h_VH_tagFirst = new VHPlots("VH_tagFirst");
 
-  h_VH_tagOnly_2b1c = new VHPlots("VH_tagOnly_2b1c");
-  h_VH_DHZfirst_2b1c = new VHPlots("VH_DHZfirst_2b1c");
+  h_VH_tagOnly_2b1c = new VHPlots("VH_tagOnly_2b1c");   // Assignment Methods
+  h_VH_DHZfirst_2b1c = new VHPlots("VH_DHZfirst_2b1c"); // (Background Estimation)
   h_VH_tagFirst_2b1c = new VHPlots("VH_tagFirst_2b1c");
 
-  h_VH_tagFirst_2combo = new VHPlots("VH_tagFirst_2combo");
-  h_VH_tagFirst_1combo = new VHPlots("VH_tagFirsT_1combo");
+  h_VH_tagFirst_2combo = new VHPlots("VH_tagFirst_2combo"); // Assignment Methods
+  h_VH_tagFirst_1combo = new VHPlots("VH_tagFirsT_1combo"); // (Sanity Checks)
   h_VH_DHZfirst_noTag = new VHPlots("VH_DHZfirst_noTag");
   h_VH_DHZfirst_2b = new VHPlots("VH_DHZfirst_2b");
 
-  // These store the comparisons of partons & their jets
-  h_reco_minDR = new RecoPlots("Reco_minDR");
-  h_reco_minDR_under30 = new RecoPlots("Reco_minDR_under30");
-  h_reco_minDR_noTag = new RecoPlots("Reco_minDR_noTag");
-  h_reco_minDR_noTag_under30 = new RecoPlots("Reco_minDR_noTag_under30");
-  h_reco_dRcollect = new RecoPlots("Reco_dRcollect");
-  h_reco_dRcollect_under30 = new RecoPlots("Reco_dRcollect_under30");
-  h_reco_dRcollect_noTag = new RecoPlots("Reco_dRcollect_noTag");
-  h_reco_dRcollect_noTag_under30 = new RecoPlots("Reco_dRcoolect_noTag_under30");
-  h_reco_ideal = new RecoPlots("Reco_ideal");
-  h_reco_ideal_under30 = new RecoPlots("Reco_ideal_under30");
-  h_reco_DHZ = new RecoPlots("Reco_DHZ");
-  h_reco_DHZ_under30 = new RecoPlots("Reco_DHZ_under30");
-  h_reco_DHZ_noTag = new RecoPlots("Reco_DHZ_noTag");
-  h_reco_DHZ_noTag_under30 = new RecoPlots("Reco_DHZ_noTag_under30");
-
-  // These store information on jets
+  // == These store information on jets ==
   h_jets_gen_all = new JetPlots("Jets_gen_all");
   h_jets_gen_cut = new JetPlots("Jets_gen_cut");
   h_jets_gen_l = new JetPlots("Jets_gen_l");
@@ -549,28 +510,7 @@ void VH_selection::SlaveBegin(Reader *r)
   h_jets_all = new JetPlots("Jets_all");
   h_jets_cut = new JetPlots("Jets_cut");
 
-  // These store the information and calculations for trigger efficiency
-  h_trigger_2016_QuadJet_4b = new TriggerEffPlots("trigger_2016_QuadJet_4b");
-  h_trigger_2016_QuadJet_3b = new TriggerEffPlots("trigger_2016_QuadJet_3b"); 
-  h_trigger_2016_QuadJet_2b2c = new TriggerEffPlots("trigger_2016_QuadJet_2b2c");
-  h_trigger_2016_DoubleJet_4b = new TriggerEffPlots("trigger_2016_DoubleJet_4b");
-  h_trigger_2016_DoubleJet_3b = new TriggerEffPlots("trigger_2016_DoubleJet_3b");
-  h_trigger_2016_DoubleJet_2b2c = new TriggerEffPlots("trigger_2016_DoubleJet_2b2c");
-
-  h_trigger_2016_combo_4b = new TriggerEffPlots("trigger_2016_combo_4b");
-  h_trigger_2016_combo_3b = new TriggerEffPlots("trigger_2016_combo_3b");
-  h_trigger_2016_combo_2b2c = new TriggerEffPlots("trigger_2016_combo_2b2c");  
-
-  h_trigger_2017_QuadJet_4b = new TriggerEffPlots("trigger_2017_QuadJet_4b");
-  h_trigger_2017_QuadJet_3b = new TriggerEffPlots("trigger_2017_QuadJet_3b");
-  h_trigger_2017_QuadJet_2b2c = new TriggerEffPlots("trigger_2017_QuadJet_2b2c");
-  h_trigger_2017B_QuadJet_4b = new TriggerEffPlots("trigger_2017B_QuadJet_4b");
-  h_trigger_2017B_QuadJet_3b = new TriggerEffPlots("trigger_2017B_QuadJet_3b");
-  h_trigger_2017B_QuadJet_2b2c = new TriggerEffPlots("trigger_2017B_QuadJet_2b2c");
-  h_trigger_2018_QuadJet_4b = new TriggerEffPlots("trigger_2018_QuadJet_4b");
-  h_trigger_2018_QuadJet_3b = new TriggerEffPlots("trigger_2018_QuadJet_3b");
-  h_trigger_2018_QuadJet_2b2c = new TriggerEffPlots("trigger_2018_QuadJet_2b2c");
-
+  // == These are used for tests on Tagging Prioritized ==
   h_nCombos = new TH1D("VH_tagFirst_nCombos", "", 4, -0.5, 3.5);
   h_pt_cand_b0 = new TH1D("VH_tagFirst_pt_cand_b0", "", 2000, 0, 2000); 
   h_pt_cand_b1 = new TH1D("VH_tagFirst_pt_cand_b1", "", 2000, 0, 2000); 
@@ -588,16 +528,7 @@ void VH_selection::SlaveBegin(Reader *r)
   h_pt_cand_Z->Sumw2();
   h_pt_cand_H->Sumw2();
   h_pt_cand_H_vs_Z->Sumw2();
-
-  h_motherID_cc = new TH1D("motherID_cc", "", 40, -0.5, 39.5);
-  h_motherID_bb = new TH1D("motherID_bb", "", 40, -0.5, 39.5);
-  h_motherID_c0 = new TH1D("motherID_c0", "", 40, -0.5, 39.5);
-  h_motherID_c1 = new TH1D("motherID_c1", "", 40, -0.5, 39.5);
-  h_motherID_b0 = new TH1D("motherID_b0", "", 40, -0.5, 39.5);
-  h_motherID_b1 = new TH1D("motherID_b1", "", 40, -0.5, 39.5);
   
-  h_motherID_region_c = new TH1D("motherID_region_c", "", 40, -0.5, 39.5);
-
   // ===========================================
   // [41b] Return all of our plots for analysis
   // ===========================================
@@ -611,12 +542,9 @@ void VH_selection::SlaveBegin(Reader *r)
   r->GetOutputList()->Add(h_cutflow_jet);
  
   r->GetOutputList()->Add(h_cutflow_evt_MC);
-  r->GetOutputList()->Add(h_cutflow_evt_MCjet_DHZ);
   r->GetOutputList()->Add(h_cutflow_evt_tagOnly);
   r->GetOutputList()->Add(h_cutflow_evt_DHZfirst);
   r->GetOutputList()->Add(h_cutflow_evt_tagFirst);
-
-  r->GetOutputList()->Add(h_evt_trig_2016);
 
   r->GetOutputList()->Add(h_nCombos);
   r->GetOutputList()->Add(h_pt_cand_b0);
@@ -626,15 +554,7 @@ void VH_selection::SlaveBegin(Reader *r)
   r->GetOutputList()->Add(h_pt_cand_Z);
   r->GetOutputList()->Add(h_pt_cand_H);
   r->GetOutputList()->Add(h_pt_cand_H_vs_Z);
-
-  r->GetOutputList()->Add(h_motherID_cc);
-  r->GetOutputList()->Add(h_motherID_bb);
-  r->GetOutputList()->Add(h_motherID_c0);
-  r->GetOutputList()->Add(h_motherID_c1);
-  r->GetOutputList()->Add(h_motherID_b0);
-  r->GetOutputList()->Add(h_motherID_b1);
-  r->GetOutputList()->Add(h_motherID_region_c);
-
+  
   // Add our WeightPlots instances
   std::vector<TH1*> tmp = h_event_weights->returnHisto();
   for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
@@ -643,23 +563,13 @@ void VH_selection::SlaveBegin(Reader *r)
   tmp = h_jet_regressions->returnHisto();
   for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
 
-  // Add our VHPlots instances
+  // == Add our VHPlots instances ==
+
+  // General MC Selection
   tmp = h_VH_MC->returnHisto();
   for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_VH_MCjet_minDR->returnHisto();
-  for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_VH_MCjet_minDR_noTag->returnHisto();
-  for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_VH_MCjet_dRcollect->returnHisto();
-  for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_VH_MCjet_dRcollect_noTag->returnHisto();
-  for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_VH_MCjet_ideal->returnHisto();
-  for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_VH_MCjet_DHZ->returnHisto();
-  for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_VH_MCjet_DHZ_noTag->returnHisto();
-  for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
+
+  // Actual Data Algorithms
   tmp = h_VH_tagOnly->returnHisto();
   for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
   tmp = h_VH_DHZfirst->returnHisto();
@@ -682,37 +592,6 @@ void VH_selection::SlaveBegin(Reader *r)
   tmp = h_VH_DHZfirst_2b->returnHisto();
   for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
 
-  // Add our RecoPlot instances
-  tmp = h_reco_minDR->returnHisto();
-  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_reco_minDR_under30->returnHisto();
-  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_reco_minDR_noTag->returnHisto();
-  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_reco_minDR_noTag_under30->returnHisto();
-  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_reco_dRcollect->returnHisto();
-  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_reco_dRcollect_under30->returnHisto();
-  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_reco_dRcollect_noTag->returnHisto();
-  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_reco_dRcollect_noTag_under30->returnHisto();
-  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_reco_ideal->returnHisto();
-  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_reco_ideal_under30->returnHisto();
-  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_reco_DHZ->returnHisto();
-  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_reco_DHZ_under30->returnHisto();
-  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_reco_DHZ_noTag->returnHisto();
-  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_reco_DHZ_noTag_under30->returnHisto();
-  for(size_t i=0; i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-
-
   // Add our JetPlots instances
   tmp = h_jets_gen_all->returnHisto();
   for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
@@ -728,48 +607,7 @@ void VH_selection::SlaveBegin(Reader *r)
   for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
   tmp = h_jets_cut->returnHisto();
   for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
-
-
-  // Add our TriggerEffPlots instances
-  tmp = h_trigger_2016_QuadJet_4b->returnHisto();
-  for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_trigger_2016_QuadJet_3b->returnHisto();
-  for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_trigger_2016_QuadJet_2b2c->returnHisto();
-  for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_trigger_2016_DoubleJet_4b->returnHisto();
-  for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_trigger_2016_DoubleJet_3b->returnHisto();
-  for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_trigger_2016_DoubleJet_2b2c->returnHisto();
-  for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
   
-  tmp = h_trigger_2016_combo_4b->returnHisto();
-  for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_trigger_2016_combo_3b->returnHisto();
-  for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_trigger_2016_combo_2b2c->returnHisto();
-  for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
-
-  tmp = h_trigger_2017_QuadJet_4b->returnHisto();
-  for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_trigger_2017_QuadJet_3b->returnHisto();
-  for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_trigger_2017_QuadJet_2b2c->returnHisto();
-  for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_trigger_2017B_QuadJet_4b->returnHisto();
-  for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_trigger_2017B_QuadJet_3b->returnHisto();
-  for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_trigger_2017B_QuadJet_2b2c->returnHisto();
-  for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_trigger_2018_QuadJet_4b->returnHisto();
-  for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_trigger_2018_QuadJet_3b->returnHisto();
-  for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_trigger_2018_QuadJet_2b2c->returnHisto();
-  for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
-
 };// end slaveBegin
 
 
@@ -787,6 +625,7 @@ void VH_selection::SlaveBegin(Reader *r)
 */
 void VH_selection::Process(Reader *r)
 {
+  
   // ==================================
   // [42a] Determine the Event Weights
   // ==================================
@@ -849,7 +688,6 @@ void VH_selection::Process(Reader *r)
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
   event_weight *= generator_weight * pileup_SF * l1_prefire_weight;
 #endif
-
   
   // ==================================
   // [42b] Determine our working point
@@ -861,7 +699,7 @@ void VH_selection::Process(Reader *r)
   float desired_cut_BvL = CUTS.Get<float>("BvL_mediumWP_deepJet");
   float desired_cut_CvL = CUTS.Get<float>("CvL_mediumWP_deepJet");
   float desired_cut_CvB = CUTS.Get<float>("CvB_mediumWP_deepJet");
-
+  
   // ======================================
   // [42c] Reconstruct the Jets
   // ======================================
@@ -1109,362 +947,20 @@ void VH_selection::Process(Reader *r)
     h_VH_MC->FillVH(MC_Z, MC_H, event_weight);
   }
 
-  std::vector<int> Idxs_c;
-  std::vector<int> Idxs_b;
-  for (unsigned i = 0; i < *(r->nGenPart); ++i)
-  {
-    int flav = (r->GenPart_pdgId)[i];  
-    if (abs(flav) == 5) Idxs_b.push_back(i);
-    if (abs(flav) == 4) Idxs_c.push_back(i);
-  }
-
-  std::vector<int> mothersB;
-  std::vector<int> mothersC;
-  for (unsigned i = 0; i < Idxs_c.size(); ++i) 
-  {
-    int idx = Idxs_c[i];
-    int motherIdx = (r->GenPart_genPartIdxMother)[idx];
-    int motherPdg = abs((r->GenPart_pdgId)[motherIdx]);
-
-    //std::cout << "motherIdx c #" << i << ": " << motherIdx << std::endl;   
- 
-    mothersC.push_back(motherPdg); 
-    h_motherID_cc->Fill(motherPdg, generator_weight);
-    if (i == 0) h_motherID_c0->Fill(motherPdg, generator_weight);
-    if (i == 1) h_motherID_c1->Fill(motherPdg, generator_weight); 
-  }
-  //std::cout << "================================" << std::endl;
-
-  for (unsigned i = 0; i < Idxs_b.size(); ++i)
-  {
-    int idx = Idxs_b[i];
-    int motherIdx = (r->GenPart_genPartIdxMother)[idx];
-    int motherPdg = abs((r->GenPart_pdgId)[motherIdx]);
-
-    mothersB.push_back(motherPdg);
-    h_motherID_bb->Fill(motherPdg, generator_weight);
-    if (i == 0) h_motherID_b0->Fill(motherPdg, generator_weight);
-    if (i == 1) h_motherID_b1->Fill(motherPdg, generator_weight);
-  }
-
-  if (Idxs_b.size() >= 2 && Idxs_c.size() >= 2)
-  {
-    std::vector<JetObj> MC_bjets;
-    std::vector<JetObj> MC_cjets;
-    
-    for (int i = 0; i < 2; ++i)
-    {
-      int idx = Idxs_b[i];
-      JetObj bj((r->GenPart_pt)[idx], (r->GenPart_eta)[idx],
-                (r->GenPart_phi)[idx], (r->GenPart_mass)[idx],
-                 5, 0., 0.);
-      MC_bjets.push_back(bj);
-
-      int idx2 = Idxs_c[i];
-      JetObj cj((r->GenPart_pt)[idx2], (r->GenPart_eta)[idx2],
-                (r->GenPart_phi)[idx2], (r->GenPart_mass)[idx2],
-                 4, 0., 0.);
-      MC_cjets.push_back(cj);
-    }
-
-    HiggsObj higg(MC_cjets);
-    if (higg.M() >= 75 && higg.M() < 85)
-    {
-      h_motherID_region_c->Fill(mothersC[0]);
-      h_motherID_region_c->Fill(mothersC[1]);
-    }  
-  }
 #endif 
 
-  // ==================================
-  // [42i] Determine the MC truth jets
-  // ==================================
-
-  std::vector<JetObj> genObjs_bJet;
-  std::vector<JetObj> genObjs_cJet;
-  //bool found_MCjets = false;
-
-#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
-
-  // Only check for the proper jets if we know we have b-jets.
-  // The file is H->cc and Z->QQ, where QQ is not always bb.
-  if (is_VbbHcc_event)
-  {
-
-    // Make a list of the gen jets that we can pull from
-    std::vector<JetObj> genJets_all;
-    std::vector<JetObj> genJets_cut;
-    std::vector<JetObj> genJets_l;
-    std::vector<JetObj> genJets_b;
-    std::vector<JetObj> genJets_c;
-
-    int nL = 0, nC = 0, nB = 0, nGlu = 0;
-    for (unsigned int i = 0; i < *(r->nGenJet); ++i)
-    {
-      // Build a jet from the information
-      Int_t flavor = (r->GenJet_partonFlavour)[i];
-      Float_t eta = (r->GenJet_eta)[i];
-      Float_t pt = (r->GenJet_pt)[i];
-      Float_t phi = (r->GenJet_phi)[i];
-      Float_t mass = (r->GenJet_mass)[i];
+  // ===================================
+  // NOTE: MC jet selection methods have
+  // been moved to its own selector to
+  // save space.
+  // ===================================
   
-      JetObj gjet(pt, eta, phi, mass, flavor, 0, 0);
-      genJets_all.push_back(gjet);
-
-      // Check to see if our jet matches our cuts
-      if (pt < CUTS.Get<float>("jet_pt") || fabs(eta) > CUTS.Get<float>("jet_eta"))
-        continue;
-      
-      // Sort the jets based on flavor
-      genJets_cut.push_back(gjet); 
-      if (abs(flavor) <= 3) { genJets_l.push_back(gjet); nL++; }
-      else if (abs(flavor) == 4) { genJets_c.push_back(gjet); nC++; }
-      else if (abs(flavor) == 5) { genJets_b.push_back(gjet); nB++; }
-      else if (abs(flavor) == 21) { genJets_l.push_back(gjet); nGlu++; }
-    }   
-    
-    h_jets_gen_all->Fill(genJets_all, event_weight);
-    h_jets_gen_cut->Fill(genJets_cut, event_weight);
-    h_jets_gen_l->Fill(genJets_l, event_weight);
-    h_jets_gen_b->Fill(genJets_b, event_weight);
-    h_jets_gen_c->Fill(genJets_c, event_weight);
-
-    // We've got our four different methods we want to go through.
-    Float_t dR_cut = 0.4;    
-
-    // == [42i-1] METHOD #1 - dR Separation (w/ Tagging)
-    /* This method matches each parton to the nearest properly
-     * -tagged jet, i.e. b-partons to b-jets, etc. */
-    if (genJets_c.size() >= 2 && genJets_b.size() >= 2)
-    {
-      // Make a copy of the jets
-      std::vector<JetObj> cjets = genJets_c;
-      std::vector<JetObj> bjets = genJets_b;
-
-      // Find the b-jets closest to the b-quarks  
-      std::vector<std::pair<int,float>> b_pairs = determine_proper_pairs(genObjs_b, bjets);
-      std::vector<JetObj> chosen_b;
-      chosen_b.push_back(bjets[b_pairs[0].first]);
-      chosen_b.push_back(bjets[b_pairs[1].first]);
-      ZObj Z(chosen_b);
-
-      std::vector<std::pair<int,float>> c_pairs = determine_proper_pairs(genObjs_c, cjets);
-      std::vector<JetObj> chosen_c;
-      chosen_c.push_back(cjets[c_pairs[0].first]);
-      chosen_c.push_back(cjets[c_pairs[1].first]);
-      HiggsObj H(chosen_c);
-
-      h_VH_MCjet_minDR->FillVH(Z, H, event_weight); 
-      h_reco_minDR->Fill(genObjs_b, chosen_b, genObjs_c, chosen_c, event_weight);
-      if (Z.M() < 30.0 || H.M() < 30.0)
-        h_reco_minDR_under30->Fill(genObjs_b, chosen_b, genObjs_c, chosen_c, event_weight);
-    }
-
-    // == [42i-2] METHOD #2 - dR Separation (w/o Tagging)
-    if (genJets_cut.size() >= 4)
-    {
-      // Make a copy of the jets
-      std::vector<JetObj> alljets = genJets_cut;
-
-      // Go through the b-partons & compare to the jets
-      std::vector<std::pair<int,float>> b_pairs = determine_proper_pairs(genObjs_b, alljets);
-      std::vector<JetObj> chosen_b;
-      int idx0 = b_pairs[0].first, idx1 = b_pairs[1].first;
-      chosen_b.push_back(alljets[idx0]);
-      chosen_b.push_back(alljets[idx1]);
-      ZObj Z(chosen_b);
-
-      // Remove the chosen jets so that they don't get used again
-      if (idx0 > idx1) 
-      { alljets.erase(alljets.begin() + idx0); alljets.erase(alljets.begin() + idx1); }
-      else
-      { alljets.erase(alljets.begin() + idx1); alljets.erase(alljets.begin() + idx0); }
-
-      // Do the same for the c-partons
-      std::vector<std::pair<int,float>> c_pairs = determine_proper_pairs(genObjs_c, alljets);
-      std::vector<JetObj> chosen_c;
-      chosen_c.push_back(alljets[c_pairs[0].first]);
-      chosen_c.push_back(alljets[c_pairs[1].first]);
-      HiggsObj H(chosen_c);
-
-      h_VH_MCjet_minDR_noTag->FillVH(Z, H, event_weight);
-      h_reco_minDR_noTag->Fill(genObjs_b, chosen_b, genObjs_c, chosen_c, event_weight);
-      if (Z.M() < 30.0 || H.M() < 30.0)
-        h_reco_minDR_noTag_under30->Fill(genObjs_b, chosen_b, genObjs_c, chosen_c, event_weight);
-
-    }
-
-    // == [42i-3] METHOD #3 - dR collection (w/ Tagging)
-    if (genJets_c.size() >= 2 && genJets_b.size() >= 2)
-    {
- 
-      std::vector<JetObj> opts_c = genJets_c;
-      std::vector<JetObj> opts_b = genJets_b;     
- 
-      // For each parton, take in any jets within a range
-      JetObj bjet0 = collect_jets(genObjs_b[0], opts_b, dR_cut);
-      JetObj bjet1 = collect_jets(genObjs_b[1], opts_b, dR_cut);
-      JetObj cjet0 = collect_jets(genObjs_c[0], opts_c, dR_cut);
-      JetObj cjet1 = collect_jets(genObjs_c[1], opts_c, dR_cut);
-      std::vector<JetObj> bjets{bjet0, bjet1};
-      std::vector<JetObj> cjets{cjet0, cjet1};
-
-      // Check to make sure that we properly found each jet.
-      // Each jet is required to be > 45 GeV, so if we have
-      // values less than this, we did not find jets.
-      bool found_jets = true;
-      if (bjet0.Pt() < 45.0 || bjet1.Pt() < 45.0 ||
-      cjet0.Pt() < 45.0 || cjet1.Pt() < 45.0) found_jets = false;
-
-      // From these pairs, reconstruct the proper bosons
-      // and fill our desired methods
-      if (found_jets)
-      {
-        ZObj Z(bjets); HiggsObj H(cjets);
-        h_VH_MCjet_dRcollect->FillVH(Z, H, event_weight);
-        h_reco_dRcollect->Fill(genObjs_b, bjets, genObjs_c, cjets, event_weight);
-        if (Z.M() < 30.0 || H.M() < 30.0)
-          h_reco_dRcollect_under30->Fill(genObjs_b, bjets, genObjs_c, cjets, event_weight); 
-      }
-    }
-
-    // == [42i-4] METHOD #4 - dR collection (w/o Tagging)
-    if (genJets_cut.size() >= 4)
-    {
-      std::vector<JetObj> jetOpts = genJets_cut;
-      JetObj bjet0 = collect_jets(genObjs_b[0], jetOpts, dR_cut);
-      JetObj bjet1 = collect_jets(genObjs_b[1], jetOpts, dR_cut);
-      JetObj cjet0 = collect_jets(genObjs_c[0], jetOpts, dR_cut);
-      JetObj cjet1 = collect_jets(genObjs_c[1], jetOpts, dR_cut);
-      std::vector<JetObj> bjets{bjet0, bjet1};
-      std::vector<JetObj> cjets{cjet0, cjet1};
-      
-      bool found_jets = true;
-      if (bjet0.Pt() < 45.0 || bjet1.Pt() < 45.0 ||
-      cjet0.Pt() < 45.0 || cjet1.Pt() < 45.0) found_jets = false;
-
-      if (found_jets)
-      {
-        ZObj Z(bjets); HiggsObj H(cjets);
-        h_VH_MCjet_dRcollect_noTag->FillVH(Z, H, event_weight);
-        h_reco_dRcollect_noTag->Fill(genObjs_b, bjets, genObjs_c, cjets, event_weight);
-        if (Z.M() < 30.0 || H.M() < 30.0)
-          h_reco_dRcollect_noTag_under30->Fill(genObjs_b, bjets, genObjs_c, cjets, event_weight);
-      }
-    }
-
-    // == [42i-5] METHOD #5 - ideal 
-    if (genJets_cut.size() >= 4)
-    {
-      std::vector<JetObj> alljets = genJets_cut;
-      // Check if each parton is isolated with one jet
-      float nB0 = count_jets(genObjs_b[0], alljets, dR_cut);
-      float nB1 = count_jets(genObjs_b[1], alljets, dR_cut);
-      float nC0 = count_jets(genObjs_c[0], alljets, dR_cut);
-      float nC1 = count_jets(genObjs_c[1], alljets, dR_cut);
-      if (nB0 == 1 && nB1 == 1 && nC0 == 1 && nC1 == 1)
-      {
-        std::vector<std::pair<int,float>> b_pairs = determine_proper_pairs(genObjs_b, alljets);
-        std::vector<JetObj> chosen_b;
-        int idx0 = b_pairs[0].first, idx1 = b_pairs[1].first;
-        chosen_b.push_back(alljets[idx0]);
-        chosen_b.push_back(alljets[idx1]);
-        ZObj Z(chosen_b);
-  
-        // Remove the chosen jets so that they don't get used again
-        if (idx0 > idx1)
-        { alljets.erase(alljets.begin() + idx0); alljets.erase(alljets.begin() + idx1); }
-        else
-        { alljets.erase(alljets.begin() + idx1); alljets.erase(alljets.begin() + idx0); }
-  
-        // Do the same for the c-partons
-        std::vector<std::pair<int,float>> c_pairs = determine_proper_pairs(genObjs_c, alljets);
-        std::vector<JetObj> chosen_c;
-        chosen_c.push_back(alljets[c_pairs[0].first]);
-        chosen_c.push_back(alljets[c_pairs[1].first]);
-        HiggsObj H(chosen_c);
-        
-        h_VH_MCjet_ideal->FillVH(Z, H, event_weight);
-        h_reco_ideal->Fill(genObjs_b, chosen_b, genObjs_c, chosen_c, event_weight);
-        if (Z.M() < 30.0 || H.M() < 30.0) 
-          h_reco_ideal_under30->Fill(genObjs_b, chosen_b, genObjs_c, chosen_c, event_weight);  
-      }
-    }
-
-    h_cutflow_evt_MCjet_DHZ->Fill(0.5, event_weight); // All Events
-
-    // == [42i-6] METHOD #6 - DHZ algorithm
-    if (genJets_cut.size() >= 4)
-    {
-      //std::cout << "Checking MCjets against DHZ" << std::endl;
-      h_cutflow_evt_MCjet_DHZ->Fill(1.5, event_weight); // No. Jets
-      // For convenience, sort our jets by pT
-      std::vector<JetObj> jetOpts = genJets_cut;
-      std::sort(jetOpts.begin(), jetOpts.end(), JetObj::JetCompPt());
-      
-      // Run over the DHZ algorithm & get the chosen pair.
-      DHZObj chosenPairings = DHZ_algorithm(jetOpts);
-      
-      // Reconstruct the options form this choice
-      std::vector<JetObj> bjets, cjets;
-      for (int i = 0; i < 2; ++i) {
-        bjets.push_back(jetOpts[chosenPairings.Hidx(i)]);
-        cjets.push_back(jetOpts[chosenPairings.Zidx(i)]);
-      }
-      ZObj Z(bjets);
-      HiggsObj H(cjets);
-
-      h_VH_MCjet_DHZ_noTag->FillVH(Z, H, event_weight);
-      h_reco_DHZ_noTag->Fill(genObjs_b, bjets, genObjs_c, cjets, event_weight);
-      if (Z.M() < 30 || H.M() < 30)
-        h_reco_DHZ_noTag_under30->Fill(genObjs_b, bjets, genObjs_c, cjets, event_weight);
-
-      // Check our jets against tagging.
-      //bool passes_btag = true;
-      std::vector<bool> btag_passes;
-      for (int i = 0; i < 2; ++i) {
-        bool passes = abs(bjets[i].m_flav) == 5;
-        btag_passes.push_back(passes);
-        //if (!passes) passes_btag = false;
-      }
-
-      //bool passes_ctag = true;
-      std::vector<bool> ctag_passes;
-      for (int i = 0; i < 2; ++i) {
-        bool passes = abs(cjets[i].m_flav) == 4;
-        ctag_passes.push_back(passes);
-        //if (!passes) passes_ctag = false;
-      }
-
-      if (btag_passes[0]) {
-        h_cutflow_evt_MCjet_DHZ->Fill(2.5, event_weight); // b-jet #1
-        if (btag_passes[1]) {
-          h_cutflow_evt_MCjet_DHZ->Fill(3.5, event_weight); // b-jet #2
-        
-          if(ctag_passes[0])
-          {
-            h_cutflow_evt_MCjet_DHZ->Fill(4.5, event_weight); // c-jet #1
-            if (ctag_passes[1]) {
-              h_cutflow_evt_MCjet_DHZ->Fill(5.5, event_weight); // c-jet #2
-              h_VH_MCjet_DHZ->FillVH(Z, H, event_weight);
-              h_reco_DHZ->Fill(genObjs_b, bjets, genObjs_c, cjets, event_weight);
-              if (Z.M() < 30 || H.M() < 30)
-                h_reco_DHZ_under30->Fill(genObjs_b, bjets, genObjs_c, cjets, event_weight);
-            }
-          }
-        }
-      }
-    }//end-method-6 (DHZ) 
-
-  }//end-VbbHcc check
-#endif
-
   /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   * All the actual analyses start below this point. They will use
   * our selected jets. The area below will house the trigger studies
   * as well as the event selections.
   * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-  
+
   // All cutflows need to show the total events
   h_cutflow_evt_tagOnly->Fill(0.5, generator_weight);
   h_cutflow_evt_DHZfirst->Fill(0.5, generator_weight);
@@ -1495,214 +991,15 @@ void VH_selection::Process(Reader *r)
     for (size_t i = 0; i < analysis_jets.size(); ++i)
       HT += analysis_jets[i].m_lvec.Pt();
     float HTmod = *(r->MET_pt);
+
+    // ======================================
+    // NOTE: Trigger efficiency calculations
+    // has been removed from this file and
+    // moved into its own file for saving
+    // space.
+    // ======================================
+
     
-    // =========================================
-    // [42k] Calculate the trigger efficiencies 
-    // =========================================
-    /* In these efficiency calculations, we want to know what the flavors are
-     * as a check against our analysis requirements, so we need to tag each
-     * jet. We will assume that b takes priority over c in terms of double
-     * tagging. */
-    bool has_bjets = false, has_cjets = false;
-    
-    // Check if the two highest b-tags pass our requirement
-    std::vector<JetObj> jets_copy = analysis_jets;
-    std::vector<JetObj> jets_copy2 = analysis_jets;
-    std::sort(jets_copy.begin(), jets_copy.end(), JetObj::JetCompBtag());
-    std::sort(jets_copy2.begin(), jets_copy2.end(), JetObj::JetCompBtag());
-    std::vector<JetObj> bTagged { jets_copy[0], jets_copy[1] };
-    jets_copy.erase(jets_copy.begin() + 1); jets_copy.erase(jets_copy.begin()+0);
-    jets_copy2.erase(jets_copy2.begin()+1); jets_copy2.erase(jets_copy2.begin()+0);
-    has_bjets = are_bjets(bTagged, desired_cut_BvL);
-
-    // Check if the two highest c-tags pass our requirement
-    // (or in the other case if we have two more b-tags).
-    std::sort(jets_copy2.begin(), jets_copy2.end(), JetObj::JetCompCtag());
-    std::vector<JetObj> bTagged2 { jets_copy[0], jets_copy[1] };
-    std::vector<JetObj> cTagged { jets_copy2[0], jets_copy2[1] };
-    jets_copy.erase(jets_copy.begin()+1); jets_copy.erase(jets_copy.begin()+0);
-    jets_copy2.erase(jets_copy2.begin()+1); jets_copy2.erase(jets_copy2.begin()+0);
-    has_cjets = are_cjets(cTagged, desired_cut_CvL, desired_cut_CvB);
-    bool has_more_bjets = are_bjets(bTagged2, desired_cut_BvL);
-
-    bool properly_tagged_4B = has_bjets && has_more_bjets;
-    bool properly_tagged_3B = has_bjets && passes_btag(bTagged2[0], desired_cut_BvL);
-    bool properly_tagged_2b2c = has_bjets && has_cjets;
- 
-    // For each year, we want to make sure that we pass all the criteria we're
-    // interested in. We've already got a variable to handle tagging. We need
-    // varaibles (per year) for pT cuts.
-
-#if defined(MC_2016) || defined(DATA_2016)
-
-    std::vector<JetObj> jets2016 = analysis_jets;
-    std::sort(jets2016.begin(), jets2016.end(), JetObj::JetCompPt());
-
-    // Trigger #1 - make sure all jets have pT > 45 GeV
-    bool pT_criteria_met_2016v1 = true;
-    for (size_t i = 0; i < jets2016.size(); ++i){
-      if (jets2016[i].Pt() <= 45) pT_criteria_met_2016v1 = false;
-    }
-
-    // Trigger #2 - make sure two jets have pT > 90 GeV and two have pT > 30 GeV
-    bool pT_criteria_met_2016v2 = true;
-    for (size_t i = 0; i < 2; ++i) {
-      if (jets2016[i].Pt() <= 90) pT_criteria_met_2016v2 = false;
-      if (jets2016[2+i].Pt() <= 30) pT_criteria_met_2016v2 = false;
-    }
-
-#endif 
-
-#if defined(MC_2017) || defined(DATA_2017) || defined(MC_2018) || defined(DATA_2018)
-
-    std::vector<JetObj> jets2017_18 = analysis_jets;
-    std::sort(jets2017_18.begin(), jets2017_18.end(), JetObj::JetCompPt());
-    
-    // Both triggers for 2017-18 require the following pT cuts:
-    // 1. > 75 GeV, 2. > 60 GeV, 3. > 45 GeV, 4. > 40 GeV
-    /*float cuts[4] = { 75.0, 60.0, 45.0, 40.0 };
-    bool pT_criteria_met_2017_18 = true;
-    for (size_t i = 0; i < 4; ++i) {
-      if (jets2017_18[i].Pt() <= cuts[i]) pT_criteria_met_2017_18 = false;
-    }*/
-
-#endif
-
-    /* To check our trigger efficiencies, we use a reference trigger
-    *  and check how often we pass our probe triggers.
-    *  Reference Trigger - HLT_IsoMu24
-    *  Probe Triggers:
-    *  2016 - HLT_QuadJet45_TripleBTagCSV_p087 OR
-    *         HLT_DoubleJet90_Double30_TripleBTagCSV_p087      
-    *  2017 - HLT_PFHT300PT30_QuadPFJet_75_60_45_40_TriplePFBTagCSV_3p0 (C-F)
-              HLT_HT300PT30_QuadJet_75_60_45_40_TripeCSV_p07 (B)
-    *  2018 - HLT_PFHT330PT30_QuadPFJet_75_60_45_40_TriplePFBTagDeepCSV_4p5
-    */
-    
-    // Use the following booleans if we want to (for some reason)
-    // ignore the reference trigger or check how events are 
-    // selected without the trigger requirement. 
-    //bool ignore_ref = false;
-    //bool ignore_trigger_check = false;
-
-    for (size_t i = 0; i < muons.size(); ++i)
-      HTmod += muons[i].Pt();
-
-    bool pass_reference = (*(r->HLT_IsoMu24));
-    
-    // Go year by year with the same process
-#if defined(MC_2016) || defined(DATA_2016) 
-
-    // 2016 - QuadJet Trigger
-    bool pass_probe = (*(r->HLT_QuadJet45_TripleBTagCSV_p087));
-    
-    if (muons.size() >= 1)
-    {
-      
-      if (properly_tagged_4B) 
-        fill_trigger_efficiency(h_trigger_2016_QuadJet_4b, analysis_jets,
-          pass_reference, pass_probe, HTmod, event_weight);
-      if (properly_tagged_3B)
-        fill_trigger_efficiency(h_trigger_2016_QuadJet_3b, analysis_jets,
-          pass_reference, pass_probe, HTmod, event_weight);
-      if (properly_tagged_2b2c)
-        fill_trigger_efficiency(h_trigger_2016_QuadJet_2b2c, analysis_jets,
-          pass_reference, pass_probe, HTmod, event_weight);
-    }
-
-    // 2016 - DoubleJet Trigger
-    pass_probe = (*(r->HLT_DoubleJet90_Double30_TripleBTagCSV_p087));
-    if (muons.size() >= 1)
-    {
-      if (properly_tagged_4B)
-        fill_trigger_efficiency(h_trigger_2016_DoubleJet_4b, analysis_jets,
-          pass_reference, pass_probe, HTmod, event_weight);
-      if (properly_tagged_3B)
-        fill_trigger_efficiency(h_trigger_2016_DoubleJet_3b, analysis_jets,
-          pass_reference, pass_probe, HTmod, event_weight);
-      if (properly_tagged_2b2c)
-        fill_trigger_efficiency(h_trigger_2016_DoubleJet_2b2c, analysis_jets,
-          pass_reference, pass_probe, HTmod, event_weight);
-    }
-
-    // 2016 - Combo Triggers
-    pass_probe = (*(r->HLT_QuadJet45_TripleBTagCSV_p087) ||
-      *(r->HLT_DoubleJet90_Double30_TripleBTagCSV_p087));
-    if (muons.size() >= 1)
-    {
-      if (properly_tagged_4B)
-        fill_trigger_efficiency(h_trigger_2016_combo_4b, analysis_jets,
-          pass_reference, pass_probe, HTmod, event_weight);
-      if (properly_tagged_3B)
-        fill_trigger_efficiency(h_trigger_2016_combo_3b, analysis_jets,
-          pass_reference, pass_probe, HTmod, event_weight);
-      if (properly_tagged_2b2c)
-        fill_trigger_efficiency(h_trigger_2016_combo_2b2c, analysis_jets,
-          pass_reference, pass_probe, HTmod, event_weight);
-    }
-
-#endif
-
-#if defined(MC_2017) || defined(DATA_2017)
-
-  #if !defined(DATA_2017B)
-    // 2017 - QuadJet trigger (C-F)
-    bool pass_probe = *(r->HLT_PFHT300PT30_QuadPFJet_75_60_45_40_TriplePFBTagCSV_3p0);
-
-    if (muons.size() >= 1)
-    {
-      if (properly_tagged_4B)
-        fill_trigger_efficiency(h_trigger_2017_QuadJet_4b, analysis_jets,
-          pass_reference, pass_probe, HTmod, event_weight);
-      if (properly_tagged_3B)
-        fill_trigger_efficiency(h_trigger_2017_QuadJet_3b, analysis_jets,
-          pass_reference, pass_probe, HTmod, event_weight);
-      if (properly_tagged_2b2c)
-        fill_trigger_efficiency(h_trigger_2017_QuadJet_2b2c, analysis_jets,
-          pass_reference, pass_probe, HTmod, event_weight);
-    }
-  #endif
-
-  #if defined(DATA_2017B)
-    // 2017 - QuadJet trigger (B)
-    bool pass_probe = *(r->HLT_HT300PT30_QuadJet_75_60_45_40_TripeCSV_p07);
-  
-    if (muons.size() >= 1)
-    {
-      if (properly_tagged_4B)
-        fill_trigger_efficiency(h_trigger_2017B_QuadJet_4b, analysis_jets,
-          pass_reference, pass_probe, HTmod, event_weight);
-      if (properly_tagged_3B)
-        fill_trigger_efficiency(h_trigger_2017B_QuadJet_3b, analysis_jets,
-          pass_reference, pass_probe, HTmod, event_weight);
-      if (properly_tagged_2b2c)
-        fill_trigger_efficiency(h_trigger_2017B_QuadJet_2b2c, analysis_jets,
-          pass_reference, pass_probe, HTmod, event_weight);
-    }
-  #endif
-
-#endif
-
-#if defined(MC_2018) || defined(DATA_2018)
-
-  // 2018 - QuadJet Trigger
-  bool pass_probe = *(r->HLT_PFHT330PT30_QuadPFJet_75_60_45_40_TriplePFBTagDeepCSV_4p5);
-
-  if (muons.size() >= 1)
-  {
-    if (properly_tagged_4B)
-        fill_trigger_efficiency(h_trigger_2018_QuadJet_4b, analysis_jets,
-          pass_reference, pass_probe, HTmod, event_weight);
-      if (properly_tagged_3B)
-        fill_trigger_efficiency(h_trigger_2018_QuadJet_3b, analysis_jets,
-          pass_reference, pass_probe, HTmod, event_weight);
-      if (properly_tagged_2b2c)
-        fill_trigger_efficiency(h_trigger_2018_QuadJet_2b2c, analysis_jets,
-          pass_reference, pass_probe, HTmod, event_weight);
-  }
-
-#endif
-
     // =====================================
     // [42l] Make sure we pass our triggers
     // =====================================
@@ -1723,13 +1020,14 @@ void VH_selection::Process(Reader *r)
     //std::cout << "Checking the 2016 trigger!!!" << std::endl;
 #endif
 
-#if defined(MC_2017) || defined(DATA_2017)
-  /*f !defined(DATA_2017B)
+#if defined(MC_2017) || defined(DATA_2017) 
+  /*if !defined(DATA_2017B)
     trigger = *(r->HLT_PFHT300PT30_QuadPFJet_75_60_45_40_TriplePFBTagCSV_3p0);
   #endif
   #if defined(DATA_2017B)
     trigger = *(r->HLT_HT300PT30_QuadJet_75_60_45_40_TripeCSV_p07);
   #endif*/
+  
   trigger = *(r->HLT_PFHT300PT30_QuadPFJet_75_60_45_40_TriplePFBTagCSV_3p0);
   //std::cout << "Checking the 2017 trigger!!!" << std::endl;
 #endif
@@ -1953,18 +1251,12 @@ void VH_selection::Process(Reader *r)
  
     h_nCombos->Fill(combos.size(), event_weight);
     if (combos.size() > 0)
-    {
-      /*std::cout << "combos.size() = " << combos.size() << std::endl;
-      for (size_t j = 0; j < combos.size(); ++j)
-      {
-        std::cout << ">>> " << j << ": " << vector_to_string(combos[j]) << std::endl;
-      }*/
-      
+    {      
       // Set the default to be our first option & fill the temp plots
       // that we're interested in.
       std::vector<int> idx = combos[0];
       int Zidx0 = 0, Zidx1 = 1, Hidx0 = 2, Hidx1 = 3;
-      //std::cout << idx[0] << " " << idx[1] << " " << idx[2] << " " << idx[3] << std::endl;
+      
       DHZObj proper_pairings(jets4, idx[Hidx0], idx[Hidx1], idx[Zidx0], idx[Zidx1]);
       if (combos.size() > 1) proper_pairings = DHZ_algorithm(jets4);
       h_cutflow_evt_tagFirst->Fill(4.5, generator_weight);
@@ -2042,8 +1334,9 @@ void VH_selection::Process(Reader *r)
     }//end-if
     
   }//end-analysis-area (jets >= 4)
+  
+  
 };// end Process
-
 
 /* ===============
  * [43] TERMINATE

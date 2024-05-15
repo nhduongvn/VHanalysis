@@ -35,6 +35,7 @@ def write_condor_config(workDir, sample_format, sample_subformat, nanoaod_format
   f.write('Output = ctagana_$(Cluster)_$(Process).stdout \n')
   f.write('Error = ctagana_$(Cluster)_$(Process).stderr \n')
   f.write('Log = ctagana_$(Cluster)_$(Process).log \n')
+  #f.write('request_memory = 4100 \n')
   f.write('notify_user = ${LOGNAME}@FNAL.GOV \n')
   f.write('+LENGTH="SHORT" \n')
   #f.write('x509userproxy = /tmp/x509up_u12772 \n')
@@ -48,6 +49,7 @@ def write_condor_config(workDir, sample_format, sample_subformat, nanoaod_format
   f.write('echo $SHELL \n')
   f.write('source /cvmfs/cms.cern.ch/cmsset_default.sh \n')
   f.write('export SCRAM_ARCH=el9_amd64_gcc12 \n')
+  f.write('export X509_CERT_DIR=/cvmfs/grid.cern.ch/etc/grid-security/certificates/ \n')
   f.write('eval `scramv1 project CMSSW CMSSW_14_0_6` \n')
   f.write('cd CMSSW_14_0_6/src/ \n')
   f.write('eval `scramv1 runtime -sh` \n') # cmsenv is an alias not on the workers
@@ -96,7 +98,7 @@ def make_input_file_list(nFile, outDir_file_list, file_list_name):
 # /////////////////////////////////////////////////////////////////////////////
 # Settings
 # /////////////////////////////////////////////////////////////////////////////
-runMode = 1     # 0 : submit, 1 : check output and hadd output file
+runMode = 0     # 0 : submit, 1 : check output and hadd output file
 submit = True   # for testing setup or executing submission
 debug = False   # just run on 10000
 haddData = True # use to combine DATA runs back together
@@ -115,8 +117,10 @@ outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_14_0_6/src/VHanalysis/condor_
 # Input data sets
 dataSet_list = sourceDir+"/Dataset_lists/datasets_NANOAODv9_MC.txt"
 dataSet_list = sourceDir+"/Dataset_lists/datasets_Data_combined.txt"
+#dataSet_list = sourceDir+"/Dataset_lists/datasets_JetHT_2018.txt"
 dataSet_lists = [sourceDir+"/Dataset_lists/datasets_NANOAODv9_MC.txt"]
 dataSet_lists = [sourceDir+"/Dataset_lists/datasets_Data_combined.txt"]
+#dataSet_lists = [sourceDir+"/Dataset_lists/datasets_JetHT_2018.txt"]
 
 nFile = 2
 dir_file_list = sourceDir+'/FileLists/'

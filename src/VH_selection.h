@@ -86,11 +86,6 @@ class VH_selection : public Selector
 
     TH1D* h_evt_trig_2016;
     TH1D* h_evt_trig_2016_post;
-    //TH1D* h_cutflow_trig_2016_DoubleJet;
-    //TH1D* h_cutflow_trig_2016_combo;
-    //TH1D* h_cutflow_trig_2017_QuadJet;
-    //TH1D* h_cutflow_trig_2017B_QuadJet;
-    //TH1D* h_cutflow_trig_2018_QuadJet;
 
     // Test Plots
     TH1D* h_nCombos;
@@ -102,14 +97,6 @@ class VH_selection : public Selector
     TH1D* h_pt_cand_H;
     TH2D* h_pt_cand_H_vs_Z;
 
-    TH1D* h_motherID_cc;
-    TH1D* h_motherID_bb;
-    TH1D* h_motherID_c0;
-    TH1D* h_motherID_c1;
-    TH1D* h_motherID_b0;
-    TH1D* h_motherID_b1;
-    TH1D* h_motherID_region_c;
-
     // ======================
     // WeightPlot Instances
     // ======================
@@ -119,15 +106,8 @@ class VH_selection : public Selector
     // =================
     // VHPlot instances
     // =================
-    VHPlots* h_VH_MC;         // plots for MC truth selection
-    VHPlots* h_VH_MCjet_minDR;  // plots for MC truth jet selections
-    VHPlots* h_VH_MCjet_minDR_noTag;
-    VHPlots* h_VH_MCjet_dRcollect;
-    VHPlots* h_VH_MCjet_dRcollect_noTag;
-    VHPlots *h_VH_MCjet_ideal;   
-    VHPlots *h_VH_MCjet_DHZ;
-    VHPlots *h_VH_MCjet_DHZ_noTag;   
-    
+
+    VHPlots* h_VH_MC;         // plots for MC truth selection    
     VHPlots *h_VH_tagOnly;   // plots for selection methods
     VHPlots *h_VH_DHZfirst;
     VHPlots *h_VH_tagFirst;
@@ -170,29 +150,6 @@ class VH_selection : public Selector
     JetPlots* h_jets_gen_b;
     JetPlots* h_jets_gen_c;
 
-    // ==========================
-    // TriggerEffPlots instances
-    // ==========================
-    TriggerEffPlots* h_trigger_2016_QuadJet_4b;
-    TriggerEffPlots* h_trigger_2016_QuadJet_3b;
-    TriggerEffPlots* h_trigger_2016_QuadJet_2b2c;
-    TriggerEffPlots* h_trigger_2016_DoubleJet_4b;
-    TriggerEffPlots* h_trigger_2016_DoubleJet_3b;
-    TriggerEffPlots* h_trigger_2016_DoubleJet_2b2c;
-
-    TriggerEffPlots* h_trigger_2016_combo_4b;
-    TriggerEffPlots* h_trigger_2016_combo_3b;
-    TriggerEffPlots* h_trigger_2016_combo_2b2c;
-
-    TriggerEffPlots* h_trigger_2017_QuadJet_4b;
-    TriggerEffPlots* h_trigger_2017_QuadJet_3b;
-    TriggerEffPlots* h_trigger_2017_QuadJet_2b2c;
-    TriggerEffPlots* h_trigger_2017B_QuadJet_4b;
-    TriggerEffPlots* h_trigger_2017B_QuadJet_3b;
-    TriggerEffPlots* h_trigger_2017B_QuadJet_2b2c;
-    TriggerEffPlots* h_trigger_2018_QuadJet_4b;
-    TriggerEffPlots* h_trigger_2018_QuadJet_3b;
-    TriggerEffPlots* h_trigger_2018_QuadJet_2b2c;
 };
 
 // == [  ] END OF FILE ========================================================
