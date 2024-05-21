@@ -7,7 +7,8 @@ from array import array
 from math import *
 
 
-sys.path.append('/uscms_data/d3/duong/CMSSW/CMSSW_7_6_5/src/ZplusC/python/')
+#sys.path.append('/uscms_data/d3/duong/CMSSW/CMSSW_7_6_5/src/ZplusC/python/')
+sys.path.append('/uscms_data/d3/duong/CMSSW/CMSSW_7_6_5/src/ZplusC/python3/myutils/')
 
 colors = [416+1, 632+1, 600+1, 400+1, 840+1, 860+1, 880+1, 900+1, 432+1, 616+1, 616+3, 800+7] #Red, green, blue, yellow, orange,cyan,magnetan 
 colors_zj = [416+3, 416+2, 416+1] 
