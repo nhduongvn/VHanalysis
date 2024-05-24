@@ -1,0 +1,135 @@
+#ifdef __CLING__
+#pragma cling optimize(0)
+#endif
+void Z_jetmass_noJEC_ZHcc_tagOnly_18()
+{
+//=========Macro generated from canvas: Z_jetmass_noJEC_ZHcc_tagOnly_18/Z_jetmass_noJEC_ZHcc_tagOnly_18
+//=========  (Fri May 24 12:42:24 2024) by ROOT version 6.28/10
+   TCanvas *Z_jetmass_noJEC_ZHcc_tagOnly_18 = new TCanvas("Z_jetmass_noJEC_ZHcc_tagOnly_18", "Z_jetmass_noJEC_ZHcc_tagOnly_18",0,0,600,600);
+   gStyle->SetOptStat(0);
+   Z_jetmass_noJEC_ZHcc_tagOnly_18->SetHighLightColor(2);
+   Z_jetmass_noJEC_ZHcc_tagOnly_18->Range(-60,-0.1027048,340,0.924343);
+   Z_jetmass_noJEC_ZHcc_tagOnly_18->SetFillColor(0);
+   Z_jetmass_noJEC_ZHcc_tagOnly_18->SetFillStyle(4000);
+   Z_jetmass_noJEC_ZHcc_tagOnly_18->SetBorderMode(0);
+   Z_jetmass_noJEC_ZHcc_tagOnly_18->SetBorderSize(2);
+   Z_jetmass_noJEC_ZHcc_tagOnly_18->SetLeftMargin(0.15);
+   Z_jetmass_noJEC_ZHcc_tagOnly_18->SetFrameFillStyle(1000);
+   Z_jetmass_noJEC_ZHcc_tagOnly_18->SetFrameBorderMode(0);
+   Z_jetmass_noJEC_ZHcc_tagOnly_18->SetFrameFillStyle(1000);
+   Z_jetmass_noJEC_ZHcc_tagOnly_18->SetFrameBorderMode(0);
+   
+   TH1D *VH_tagOnly_Z_jetmass_noJEC__1383 = new TH1D("VH_tagOnly_Z_jetmass_noJEC__1383","",150,0,300);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(3,0.03946668);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(4,0.2266021);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(5,0.6529723);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(6,0.7825126);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(7,0.6230838);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(8,0.4748612);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(9,0.3192069);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(10,0.2721563);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(11,0.1824842);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(12,0.1351543);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(13,0.08460217);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(14,0.08479462);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(15,0.04814302);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(16,0.03831868);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(17,0.02394037);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(18,0.03282106);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(19,0.013483);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(20,0.008096023);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(21,0.01413705);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(22,0.008374381);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(23,0.005685318);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(24,0.005672366);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(25,0.004518948);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(26,0.007754257);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(28,0.002610555);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(29,0.002276387);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(31,0.002643217);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(32,0.0008199763);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(33,0.000821642);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(34,0.0006796652);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(35,0.0002903229);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(36,0.0005392818);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(37,0.001463668);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(41,0.0009575321);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(42,0.003209975);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(43,0.0003432186);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(44,0.001902819);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(45,0.0007340483);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(46,0.003147934);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(48,0.0003121067);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinContent(51,0.0008756893);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(3,0.009881237);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(4,0.02809604);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(5,0.03885504);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(6,0.04837245);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(7,0.04009376);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(8,0.04406345);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(9,0.02627546);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(10,0.0270375);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(11,0.02074405);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(12,0.01882939);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(13,0.01351502);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(14,0.0156534);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(15,0.01245598);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(16,0.01017693);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(17,0.008222793);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(18,0.008556078);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(19,0.00517854);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(20,0.00278107);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(21,0.007707608);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(22,0.00510321);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(23,0.003625659);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(24,0.003627613);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(25,0.003149169);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(26,0.006113595);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(28,0.002363998);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(29,0.001221905);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(31,0.002643217);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(32,0.0006007181);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(33,0.0005923593);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(34,0.0006796652);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(35,0.0002903229);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(36,0.0005392818);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(37,0.0008772442);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(41,0.0005976248);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(42,0.003209975);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(43,0.0003432186);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(44,0.0009955177);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(45,0.0005368669);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(46,0.002666379);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(48,0.0003121067);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetBinError(51,0.00061961);
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetEntries(4239);
+
+   Int_t ci;      // for color index setting
+   TColor *color; // for color definition with alpha
+   ci = TColor::GetColor("#000099");
+   VH_tagOnly_Z_jetmass_noJEC__1383->SetLineColor(ci);
+   VH_tagOnly_Z_jetmass_noJEC__1383->GetXaxis()->SetTitle("b-jet mass [GeV]");
+   VH_tagOnly_Z_jetmass_noJEC__1383->GetXaxis()->SetRange(1,150);
+   VH_tagOnly_Z_jetmass_noJEC__1383->GetXaxis()->SetLabelFont(42);
+   VH_tagOnly_Z_jetmass_noJEC__1383->GetXaxis()->SetTitleOffset(1);
+   VH_tagOnly_Z_jetmass_noJEC__1383->GetXaxis()->SetTitleFont(42);
+   VH_tagOnly_Z_jetmass_noJEC__1383->GetYaxis()->SetTitle("Events/2.0 GeV");
+   VH_tagOnly_Z_jetmass_noJEC__1383->GetYaxis()->SetLabelFont(42);
+   VH_tagOnly_Z_jetmass_noJEC__1383->GetYaxis()->SetLabelSize(0.05);
+   VH_tagOnly_Z_jetmass_noJEC__1383->GetYaxis()->SetTitleSize(0.057);
+   VH_tagOnly_Z_jetmass_noJEC__1383->GetYaxis()->SetTitleOffset(1.2);
+   VH_tagOnly_Z_jetmass_noJEC__1383->GetYaxis()->SetTitleFont(42);
+   VH_tagOnly_Z_jetmass_noJEC__1383->GetZaxis()->SetLabelFont(42);
+   VH_tagOnly_Z_jetmass_noJEC__1383->GetZaxis()->SetTitleOffset(1);
+   VH_tagOnly_Z_jetmass_noJEC__1383->GetZaxis()->SetTitleFont(42);
+   VH_tagOnly_Z_jetmass_noJEC__1383->Draw("hist");
+   TLatex *   tex = new TLatex(0.25,0.937775,"CMS Work in Progress #sqrt{s} = 13 TeV, 59.7 fb^{-1}");
+   tex->SetNDC();
+   tex->SetTextFont(42);
+   tex->SetTextSize(0.04);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   Z_jetmass_noJEC_ZHcc_tagOnly_18->Modified();
+   Z_jetmass_noJEC_ZHcc_tagOnly_18->cd();
+   Z_jetmass_noJEC_ZHcc_tagOnly_18->SetSelected(Z_jetmass_noJEC_ZHcc_tagOnly_18);
+}

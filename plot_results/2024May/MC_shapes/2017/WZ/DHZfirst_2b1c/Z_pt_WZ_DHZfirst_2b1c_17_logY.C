@@ -4,7 +4,7 @@
 void Z_pt_WZ_DHZfirst_2b1c_17_logY()
 {
 //=========Macro generated from canvas: Z_pt_WZ_DHZfirst_2b1c_17/Z_pt_WZ_DHZfirst_2b1c_17
-//=========  (Thu May 23 20:49:19 2024) by ROOT version 6.28/10
+//=========  (Fri May 24 12:43:01 2024) by ROOT version 6.28/10
    TCanvas *Z_pt_WZ_DHZfirst_2b1c_17 = new TCanvas("Z_pt_WZ_DHZfirst_2b1c_17", "Z_pt_WZ_DHZfirst_2b1c_17",0,0,600,600);
    gStyle->SetOptStat(0);
    Z_pt_WZ_DHZfirst_2b1c_17->SetHighLightColor(2);

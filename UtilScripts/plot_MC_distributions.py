@@ -68,7 +68,7 @@ useLogY = False
 outputDir = '../plot_results/2024May/MC_shapes/'
 dirpath = '../condor_results/2024May/NONE/'
 #dirpath = '../'
-plotCats = ['VbbHcc_plot']
+plotCats = ['VbbHcc_plot', 'VbbHcc_jet_plot']
 regionSpecific = [ True, False ]
 
 debug = True
@@ -242,8 +242,10 @@ for i in range(len(plotCats)):
           print "hist = ", hN 
           #print(xA_range)
         
-          logY = True
+          logY = False
           if "pT" in plN or "pt" in plN:
+            logY = True
+          if "nJet" in plN:
             logY = True
       
           makePlot(plot.Clone().Rebin(nRebin), hN, plN + "_" + cat + "_" + r + "_" + y,
