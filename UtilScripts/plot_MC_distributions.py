@@ -65,8 +65,8 @@ regions = ['tagFirst', 'tagOnly', 'DHZfirst',
 	"tagFirst_2b1c", "tagOnly_2b1c", "DHZfirst_2b1c"]
 #regions = ['MCjet_ideal']
 useLogY = False
-outputDir = '../plot_results/2024Apr/MC_shapes/'
-dirpath = '../condor_results/2024Apr/NONE/'
+outputDir = '../plot_results/2024May/MC_shapes/'
+dirpath = '../condor_results/2024May/NONE/'
 #dirpath = '../'
 plotCats = ['VbbHcc_plot']
 regionSpecific = [ True, False ]
@@ -207,9 +207,9 @@ for i in range(len(plotCats)):
   for r in regions:
     
     print ">>> Checking region r = ", r
-    #plotNames = cfg.get('Plots', plotCat).split(',')
-    plotNames = [ "H_mass", "Z_mass"]
-    plotNames = [ "CutFlow" ]
+    plotNames = cfg.get('Plots', plotCat).split(',')
+    #plotNames = [ "H_mass", "Z_mass"]
+    #plotNames = [ "CutFlow" ]
     
     for plN in plotNames:
       
@@ -219,7 +219,7 @@ for i in range(len(plotCats)):
       else: hN = plN
       if not regionSpecific[i]: hN = "Jets_cut_" + plN
       
-      hN = "CutFlow_evt_" + r
+      #hN = "CutFlow_evt_" + r
       
       for cat in categories:
         
@@ -245,7 +245,6 @@ for i in range(len(plotCats)):
           logY = True
           if "pT" in plN or "pt" in plN:
             logY = True
-          
       
           makePlot(plot.Clone().Rebin(nRebin), hN, plN + "_" + cat + "_" + r + "_" + y,
             outputDir + "/20" + y + "/" + cat + "/" + r, xA_title, xA_range, logY, lumiS[y])

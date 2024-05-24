@@ -1,0 +1,82 @@
+#ifdef __CLING__
+#pragma cling optimize(0)
+#endif
+void Sphericity_WJets_DHZfirst_18_logY()
+{
+//=========Macro generated from canvas: Sphericity_WJets_DHZfirst_18/Sphericity_WJets_DHZfirst_18
+//=========  (Thu May 23 20:48:51 2024) by ROOT version 6.28/10
+   TCanvas *Sphericity_WJets_DHZfirst_18 = new TCanvas("Sphericity_WJets_DHZfirst_18", "Sphericity_WJets_DHZfirst_18",0,0,600,600);
+   gStyle->SetOptStat(0);
+   Sphericity_WJets_DHZfirst_18->SetHighLightColor(2);
+   Sphericity_WJets_DHZfirst_18->Range(-0.2,-2.673496,1.133333,3.561734);
+   Sphericity_WJets_DHZfirst_18->SetFillColor(0);
+   Sphericity_WJets_DHZfirst_18->SetFillStyle(4000);
+   Sphericity_WJets_DHZfirst_18->SetBorderMode(0);
+   Sphericity_WJets_DHZfirst_18->SetBorderSize(2);
+   Sphericity_WJets_DHZfirst_18->SetLogy();
+   Sphericity_WJets_DHZfirst_18->SetLeftMargin(0.15);
+   Sphericity_WJets_DHZfirst_18->SetFrameFillStyle(1000);
+   Sphericity_WJets_DHZfirst_18->SetFrameBorderMode(0);
+   Sphericity_WJets_DHZfirst_18->SetFrameFillStyle(1000);
+   Sphericity_WJets_DHZfirst_18->SetFrameBorderMode(0);
+   
+   TH1D *VH_DHZfirst_Sphericity__1872 = new TH1D("VH_DHZfirst_Sphericity__1872","",25,0,1);
+   VH_DHZfirst_Sphericity__1872->SetBinContent(1,457.7857);
+   VH_DHZfirst_Sphericity__1872->SetBinContent(2,398.2882);
+   VH_DHZfirst_Sphericity__1872->SetBinContent(3,249.5667);
+   VH_DHZfirst_Sphericity__1872->SetBinContent(4,174.5824);
+   VH_DHZfirst_Sphericity__1872->SetBinContent(5,58.03421);
+   VH_DHZfirst_Sphericity__1872->SetBinContent(6,23.70049);
+   VH_DHZfirst_Sphericity__1872->SetBinContent(7,7.079495);
+   VH_DHZfirst_Sphericity__1872->SetBinContent(8,6.440833);
+   VH_DHZfirst_Sphericity__1872->SetBinContent(9,0.01782611);
+   VH_DHZfirst_Sphericity__1872->SetBinContent(10,5.426928);
+   VH_DHZfirst_Sphericity__1872->SetBinContent(11,0.4508845);
+   VH_DHZfirst_Sphericity__1872->SetBinContent(12,0.3566307);
+   VH_DHZfirst_Sphericity__1872->SetBinContent(13,0.04980793);
+   VH_DHZfirst_Sphericity__1872->SetBinContent(17,0.6131666);
+   VH_DHZfirst_Sphericity__1872->SetBinError(1,32.29855);
+   VH_DHZfirst_Sphericity__1872->SetBinError(2,29.36701);
+   VH_DHZfirst_Sphericity__1872->SetBinError(3,36.11004);
+   VH_DHZfirst_Sphericity__1872->SetBinError(4,29.06581);
+   VH_DHZfirst_Sphericity__1872->SetBinError(5,7.80908);
+   VH_DHZfirst_Sphericity__1872->SetBinError(6,3.763363);
+   VH_DHZfirst_Sphericity__1872->SetBinError(7,1.977642);
+   VH_DHZfirst_Sphericity__1872->SetBinError(8,4.002338);
+   VH_DHZfirst_Sphericity__1872->SetBinError(9,0.01782611);
+   VH_DHZfirst_Sphericity__1872->SetBinError(10,5.175497);
+   VH_DHZfirst_Sphericity__1872->SetBinError(11,0.4508845);
+   VH_DHZfirst_Sphericity__1872->SetBinError(12,0.260145);
+   VH_DHZfirst_Sphericity__1872->SetBinError(13,0.04980793);
+   VH_DHZfirst_Sphericity__1872->SetBinError(17,0.6131666);
+   VH_DHZfirst_Sphericity__1872->SetEntries(3529);
+
+   Int_t ci;      // for color index setting
+   TColor *color; // for color definition with alpha
+   ci = TColor::GetColor("#000099");
+   VH_DHZfirst_Sphericity__1872->SetLineColor(ci);
+   VH_DHZfirst_Sphericity__1872->GetXaxis()->SetTitle("Sphericity");
+   VH_DHZfirst_Sphericity__1872->GetXaxis()->SetRange(1,25);
+   VH_DHZfirst_Sphericity__1872->GetXaxis()->SetLabelFont(42);
+   VH_DHZfirst_Sphericity__1872->GetXaxis()->SetTitleOffset(1);
+   VH_DHZfirst_Sphericity__1872->GetXaxis()->SetTitleFont(42);
+   VH_DHZfirst_Sphericity__1872->GetYaxis()->SetTitle("Events/0.04");
+   VH_DHZfirst_Sphericity__1872->GetYaxis()->SetLabelFont(42);
+   VH_DHZfirst_Sphericity__1872->GetYaxis()->SetLabelSize(0.05);
+   VH_DHZfirst_Sphericity__1872->GetYaxis()->SetTitleSize(0.057);
+   VH_DHZfirst_Sphericity__1872->GetYaxis()->SetTitleOffset(1.2);
+   VH_DHZfirst_Sphericity__1872->GetYaxis()->SetTitleFont(42);
+   VH_DHZfirst_Sphericity__1872->GetZaxis()->SetLabelFont(42);
+   VH_DHZfirst_Sphericity__1872->GetZaxis()->SetTitleOffset(1);
+   VH_DHZfirst_Sphericity__1872->GetZaxis()->SetTitleFont(42);
+   VH_DHZfirst_Sphericity__1872->Draw("hist");
+   TLatex *   tex = new TLatex(0.25,0.937775,"CMS Work in Progress #sqrt{s} = 13 TeV, 59.7 fb^{-1}");
+   tex->SetNDC();
+   tex->SetTextFont(42);
+   tex->SetTextSize(0.04);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   Sphericity_WJets_DHZfirst_18->Modified();
+   Sphericity_WJets_DHZfirst_18->cd();
+   Sphericity_WJets_DHZfirst_18->SetSelected(Sphericity_WJets_DHZfirst_18);
+}

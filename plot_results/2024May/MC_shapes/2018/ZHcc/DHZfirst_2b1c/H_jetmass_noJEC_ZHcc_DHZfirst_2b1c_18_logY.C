@@ -1,0 +1,132 @@
+#ifdef __CLING__
+#pragma cling optimize(0)
+#endif
+void H_jetmass_noJEC_ZHcc_DHZfirst_2b1c_18_logY()
+{
+//=========Macro generated from canvas: H_jetmass_noJEC_ZHcc_DHZfirst_2b1c_18/H_jetmass_noJEC_ZHcc_DHZfirst_2b1c_18
+//=========  (Thu May 23 20:49:27 2024) by ROOT version 6.28/10
+   TCanvas *H_jetmass_noJEC_ZHcc_DHZfirst_2b1c_18 = new TCanvas("H_jetmass_noJEC_ZHcc_DHZfirst_2b1c_18", "H_jetmass_noJEC_ZHcc_DHZfirst_2b1c_18",0,0,600,600);
+   gStyle->SetOptStat(0);
+   H_jetmass_noJEC_ZHcc_DHZfirst_2b1c_18->SetHighLightColor(2);
+   H_jetmass_noJEC_ZHcc_DHZfirst_2b1c_18->Range(-60,-4.240165,340,0.1214274);
+   H_jetmass_noJEC_ZHcc_DHZfirst_2b1c_18->SetFillColor(0);
+   H_jetmass_noJEC_ZHcc_DHZfirst_2b1c_18->SetFillStyle(4000);
+   H_jetmass_noJEC_ZHcc_DHZfirst_2b1c_18->SetBorderMode(0);
+   H_jetmass_noJEC_ZHcc_DHZfirst_2b1c_18->SetBorderSize(2);
+   H_jetmass_noJEC_ZHcc_DHZfirst_2b1c_18->SetLogy();
+   H_jetmass_noJEC_ZHcc_DHZfirst_2b1c_18->SetLeftMargin(0.15);
+   H_jetmass_noJEC_ZHcc_DHZfirst_2b1c_18->SetFrameFillStyle(1000);
+   H_jetmass_noJEC_ZHcc_DHZfirst_2b1c_18->SetFrameBorderMode(0);
+   H_jetmass_noJEC_ZHcc_DHZfirst_2b1c_18->SetFrameFillStyle(1000);
+   H_jetmass_noJEC_ZHcc_DHZfirst_2b1c_18->SetFrameBorderMode(0);
+   
+   TH1D *VH_DHZfirst_2b1c_H_jetmass_noJEC__4143 = new TH1D("VH_DHZfirst_2b1c_H_jetmass_noJEC__4143","",150,0,300);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinContent(3,0.0003259522);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinContent(4,0.006902252);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinContent(5,0.02914665);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinContent(6,0.1064259);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinContent(7,0.1746845);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinContent(8,0.242028);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinContent(9,0.2556932);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinContent(10,0.2415318);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinContent(11,0.1870294);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinContent(12,0.1491866);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinContent(13,0.1040975);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinContent(14,0.09814598);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinContent(15,0.07277558);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinContent(16,0.06028592);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinContent(17,0.03013255);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinContent(18,0.05001458);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinContent(19,0.02694782);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinContent(20,0.02841546);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinContent(21,0.0115567);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinContent(22,0.01400327);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinContent(23,0.01281385);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinContent(24,0.007372072);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinContent(25,0.007305074);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinContent(26,0.00394822);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinContent(27,0.005229387);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinContent(28,0.01158252);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinContent(29,0.005480183);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinContent(30,0.0003726856);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinContent(31,0.002618137);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinContent(32,0.003803042);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinContent(33,0.002783582);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinContent(34,0.0005981701);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinContent(36,0.0004731527);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinContent(37,0.002438165);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinContent(45,0.002378946);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinContent(46,0.001262225);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinContent(47,0.002593007);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinContent(51,0.0003857082);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinContent(54,0.0003140685);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinError(3,0.0003259522);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinError(4,0.003943077);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinError(5,0.007189031);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinError(6,0.01606111);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinError(7,0.02158452);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinError(8,0.0223041);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinError(9,0.02612446);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinError(10,0.02295939);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinError(11,0.01998775);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinError(12,0.0190358);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinError(13,0.01472233);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinError(14,0.01539399);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinError(15,0.01233206);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinError(16,0.01185582);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinError(17,0.00744607);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinError(18,0.01053441);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinError(19,0.006765021);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinError(20,0.007524323);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinError(21,0.004910579);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinError(22,0.005145473);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinError(23,0.006085602);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinError(24,0.004042557);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinError(25,0.004174989);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinError(26,0.001710634);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinError(27,0.004335916);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinError(28,0.005825391);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinError(29,0.003190148);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinError(30,0.0003726856);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinError(31,0.002248453);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinError(32,0.002885058);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinError(33,0.002783582);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinError(34,0.0005981701);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinError(36,0.0004731527);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinError(37,0.002438165);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinError(45,0.002378946);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinError(46,0.0009026104);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinError(47,0.002593007);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinError(51,0.0003857082);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetBinError(54,0.0003140685);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetEntries(2033);
+
+   Int_t ci;      // for color index setting
+   TColor *color; // for color definition with alpha
+   ci = TColor::GetColor("#000099");
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->SetLineColor(ci);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->GetXaxis()->SetTitle("c-jet mass [GeV]");
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->GetXaxis()->SetRange(1,150);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->GetXaxis()->SetLabelFont(42);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->GetXaxis()->SetTitleOffset(1);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->GetXaxis()->SetTitleFont(42);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->GetYaxis()->SetTitle("Events/2.0 GeV");
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->GetYaxis()->SetLabelFont(42);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->GetYaxis()->SetLabelSize(0.05);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->GetYaxis()->SetTitleSize(0.057);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->GetYaxis()->SetTitleOffset(1.2);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->GetYaxis()->SetTitleFont(42);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->GetZaxis()->SetLabelFont(42);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->GetZaxis()->SetTitleOffset(1);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->GetZaxis()->SetTitleFont(42);
+   VH_DHZfirst_2b1c_H_jetmass_noJEC__4143->Draw("hist");
+   TLatex *   tex = new TLatex(0.25,0.937775,"CMS Work in Progress #sqrt{s} = 13 TeV, 59.7 fb^{-1}");
+   tex->SetNDC();
+   tex->SetTextFont(42);
+   tex->SetTextSize(0.04);
+   tex->SetLineWidth(2);
+   tex->Draw();
+   H_jetmass_noJEC_ZHcc_DHZfirst_2b1c_18->Modified();
+   H_jetmass_noJEC_ZHcc_DHZfirst_2b1c_18->cd();
+   H_jetmass_noJEC_ZHcc_DHZfirst_2b1c_18->SetSelected(H_jetmass_noJEC_ZHcc_DHZfirst_2b1c_18);
+}
