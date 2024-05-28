@@ -69,7 +69,7 @@ ROOT.gROOT.SetBatch(True)
 
 ## The years we want to check
 years = ['16', '17', '18']
-#years = ['16']
+years = ['18']
 
 ## Do we want to use a logarithmic scale?
 useLogY = False
@@ -82,7 +82,7 @@ output_directory = '../plot_results/2024May/background_estimation'
 selection_methods = [
   "tagOnly", "DHZfirst", "tagFirst"
 ]
-#selection_methods = ["tagFirst"]
+selection_methods = ["tagOnly"]
 
 plot_category = 'VbbHcc_plot'
 
@@ -176,7 +176,7 @@ CR_SF = {
   "tagOnly": {
     '16': 0.292,
     '17': 0.343,
-    '18': 0.367
+    '18': 0.350
   },
   "tagFirst": {
     '16': 0.374,#0.369,#0.366,#0.335,

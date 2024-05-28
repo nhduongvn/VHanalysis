@@ -65,7 +65,7 @@ ROOT.gROOT.SetBatch(True)
 
 ## The years we want to check
 years = ['16', '17', '18']
-#years = ['16']
+years = ['18']
 
 ## Do we want to use a logarithmic scale?
 useLogY = False
@@ -79,7 +79,7 @@ selection_methods = [
   "tagOnly", "DHZfirst", "tagFirst"
 ]
 selection_methods = [ "tagFirst" ]
-#selection_methods = [ "tagOnly" ]
+selection_methods = [ "tagOnly" ]
 #selection_methods = [ "DHZfirst" ]
 
 plot_category = 'VbbHcc_plot'
@@ -195,7 +195,7 @@ config_file = '../Configs/config.ini'
 
 ## Debug mode control
 debug_mode = True
-subtract_other_backgrounds = False
+subtract_other_backgrounds = True
 
 ## == Main Setup ==============================================================
 
@@ -407,5 +407,17 @@ for sel in selection_methods:
       print "N(2b1c) = ", evt_2b1c
       print "alpha   = ", alpha, " +/- ", unc_alpha, " | ", per_alpha*100, "%"
       print "N_pred  = ", N_predict, " +/- ", unc_N, " | ", per_N*100, "%"
+      print "[N_SR]  = ", events["2b2c"]["SR"]
+      
+      if region == "CR":
+        N_2b1c_VR = events["2b1c"]["VR"]
+        N_VR_pred = N_2b1c_VR * alpha
+        sigma_N = pow(sqrt(N_2b1c_VR)/N_2b1c_VR,2)
+        rel_error = sqrt(sigma_N + sigma1 + sigma2)
+        unc_N_VR = rel_error * N_VR_pred
+        
+        print "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        print "N_pred (VR) = ", N_VR_pred, "+/-", unc_N_VR
+        print "N_act (VR) = ", events["2b2c"]["VR"]
     
 

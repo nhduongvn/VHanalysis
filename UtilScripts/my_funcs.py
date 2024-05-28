@@ -308,17 +308,18 @@ def makeOverlapPlot(plots, plotNames, canvasName, plotDir, xAxisTitle, xAxisRang
     if fill: plots[i].SetFillColor(fill_colors[i])
     if normalize: plots[i].Scale(1./plots[i].Integral())
     plots[i].SetLineColor(custom_colors[i])
-    #plots[i].Rebin(rebin)
+    plots[i].Rebin(rebin)
     plots[i].SetLineWidth(2)
     l.AddEntry(plots[i], plotNames[i], 'F')
     allStack.Add(plots[i])
   
   ## Draw the plots (and legend) & modify the axes
   if stack: allStack.Draw("HIST")
-  else: allStack.Draw("nostack,HIST")
+  else: allStack.Draw("nostack HIST")
   
   allStack.GetXaxis().SetTitle(xAxisTitle)
   allStack.GetYaxis().SetTitle(yAxisTitle)
+  allStack.GetXaxis().SetRangeUser(xAxisRange[0], xAxisRange[1])
   l.Draw()
   
   ## Update the canvas & modify the y-axis if appropriate
