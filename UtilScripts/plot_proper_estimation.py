@@ -16,7 +16,7 @@ import sys, os
 import ROOT
 import ConfigParser
 from math import *
-from my_funcs import ScaleToLumi1, makeDataMCPlot, blind_region
+from my_funcs import ScaleToLumi1, makeDataMCPlot, blind_region, makePlot
 
 ## == < Useful Methods > ======================================================
 
@@ -465,6 +465,18 @@ for sel in selection_methods:
         xA_title, xA_range, 'MC unc. (stat.)', False,
         logY=logY, lumi=lumiS[y], blindMass=True, massRegion=signal_regions[var],
         colors_to_use=colors)
+      
+      plots_process[0].SetFillColor(ROOT.kBlue)
+      makePlot(plots_process[0], plotNames_process[0], 
+        var + "_" + sel + "_2b2c_" + y, outputDir = output_path + "/separate/",
+        xAxisTitle = 'm_{cc} [GeV]', xAxisRange = [0,300], logY = False,
+        lumi = '35.9', blindSignal=True, signalRegion=[95,155])
+      
+      plots_process[1].SetFillColor(ROOT.kBlue)
+      makePlot(plots_process[1], plotNames_process[1], 
+        var + "_" + sel + "_2b1c_" + y, outputDir = output_path + "/separate/",
+        xAxisTitle = 'm_{cc} [GeV]', xAxisRange = [0,300], logY = False,
+        lumi = '35.9', blindSignal=False, signalRegion=[95,155])
       
 ## == < MC versions > =========================================================
 

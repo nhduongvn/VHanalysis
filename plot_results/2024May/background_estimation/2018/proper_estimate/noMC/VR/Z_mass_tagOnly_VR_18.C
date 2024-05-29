@@ -4,8 +4,9 @@
 void Z_mass_tagOnly_VR_18()
 {
 //=========Macro generated from canvas: Z_mass_tagOnly_VR_18/Z_mass_tagOnly_VR_18
-//=========  (Tue May 28 14:46:58 2024) by ROOT version 6.28/10
+//=========  (Tue May 28 15:50:28 2024) by ROOT version 6.28/10
    TCanvas *Z_mass_tagOnly_VR_18 = new TCanvas("Z_mass_tagOnly_VR_18", "Z_mass_tagOnly_VR_18",0,0,600,600);
+   gStyle->SetOptStat(0);
    Z_mass_tagOnly_VR_18->SetHighLightColor(2);
    Z_mass_tagOnly_VR_18->Range(0,0,1,1);
    Z_mass_tagOnly_VR_18->SetFillColor(0);
@@ -1090,36 +1091,36 @@ void Z_mass_tagOnly_VR_18()
    st->Add(VH_tagOnly_2b1c_Z_mass_stack_1,"");
    st->Draw("hist");
    
-   TH1D *VH_tagOnly_Z_mass__21 = new TH1D("VH_tagOnly_Z_mass__21","",1000,0,2000);
-   VH_tagOnly_Z_mass__21->SetBinContent(26,16000);
-   VH_tagOnly_Z_mass__21->SetBinContent(27,17192);
-   VH_tagOnly_Z_mass__21->SetBinContent(28,18248);
-   VH_tagOnly_Z_mass__21->SetBinContent(29,19264);
-   VH_tagOnly_Z_mass__21->SetBinContent(30,20100);
-   VH_tagOnly_Z_mass__21->SetBinContent(61,14660);
-   VH_tagOnly_Z_mass__21->SetBinContent(62,14387);
-   VH_tagOnly_Z_mass__21->SetBinContent(63,14267);
-   VH_tagOnly_Z_mass__21->SetBinContent(64,14096);
-   VH_tagOnly_Z_mass__21->SetBinContent(65,13985);
-   VH_tagOnly_Z_mass__21->SetBinContent(1000,83);
-   VH_tagOnly_Z_mass__21->SetBinContent(1001,41179);
-   VH_tagOnly_Z_mass__21->SetEntries(2828694);
+   TH1D *VH_tagOnly_Z_mass__23 = new TH1D("VH_tagOnly_Z_mass__23","",1000,0,2000);
+   VH_tagOnly_Z_mass__23->SetBinContent(26,16000);
+   VH_tagOnly_Z_mass__23->SetBinContent(27,17192);
+   VH_tagOnly_Z_mass__23->SetBinContent(28,18248);
+   VH_tagOnly_Z_mass__23->SetBinContent(29,19264);
+   VH_tagOnly_Z_mass__23->SetBinContent(30,20100);
+   VH_tagOnly_Z_mass__23->SetBinContent(61,14660);
+   VH_tagOnly_Z_mass__23->SetBinContent(62,14387);
+   VH_tagOnly_Z_mass__23->SetBinContent(63,14267);
+   VH_tagOnly_Z_mass__23->SetBinContent(64,14096);
+   VH_tagOnly_Z_mass__23->SetBinContent(65,13985);
+   VH_tagOnly_Z_mass__23->SetBinContent(1000,83);
+   VH_tagOnly_Z_mass__23->SetBinContent(1001,41179);
+   VH_tagOnly_Z_mass__23->SetEntries(2828694);
 
    ci = TColor::GetColor("#000099");
-   VH_tagOnly_Z_mass__21->SetLineColor(ci);
-   VH_tagOnly_Z_mass__21->SetLineWidth(2);
-   VH_tagOnly_Z_mass__21->SetMarkerStyle(20);
-   VH_tagOnly_Z_mass__21->SetMarkerSize(1.2);
-   VH_tagOnly_Z_mass__21->GetXaxis()->SetRange(1,2000);
-   VH_tagOnly_Z_mass__21->GetXaxis()->SetLabelFont(42);
-   VH_tagOnly_Z_mass__21->GetXaxis()->SetTitleOffset(1);
-   VH_tagOnly_Z_mass__21->GetXaxis()->SetTitleFont(42);
-   VH_tagOnly_Z_mass__21->GetYaxis()->SetLabelFont(42);
-   VH_tagOnly_Z_mass__21->GetYaxis()->SetTitleFont(42);
-   VH_tagOnly_Z_mass__21->GetZaxis()->SetLabelFont(42);
-   VH_tagOnly_Z_mass__21->GetZaxis()->SetTitleOffset(1);
-   VH_tagOnly_Z_mass__21->GetZaxis()->SetTitleFont(42);
-   VH_tagOnly_Z_mass__21->Draw("same E");
+   VH_tagOnly_Z_mass__23->SetLineColor(ci);
+   VH_tagOnly_Z_mass__23->SetLineWidth(2);
+   VH_tagOnly_Z_mass__23->SetMarkerStyle(20);
+   VH_tagOnly_Z_mass__23->SetMarkerSize(1.2);
+   VH_tagOnly_Z_mass__23->GetXaxis()->SetRange(1,2000);
+   VH_tagOnly_Z_mass__23->GetXaxis()->SetLabelFont(42);
+   VH_tagOnly_Z_mass__23->GetXaxis()->SetTitleOffset(1);
+   VH_tagOnly_Z_mass__23->GetXaxis()->SetTitleFont(42);
+   VH_tagOnly_Z_mass__23->GetYaxis()->SetLabelFont(42);
+   VH_tagOnly_Z_mass__23->GetYaxis()->SetTitleFont(42);
+   VH_tagOnly_Z_mass__23->GetZaxis()->SetLabelFont(42);
+   VH_tagOnly_Z_mass__23->GetZaxis()->SetTitleOffset(1);
+   VH_tagOnly_Z_mass__23->GetZaxis()->SetTitleFont(42);
+   VH_tagOnly_Z_mass__23->Draw("same E");
    
    Double_t Graph_from_VH_tagOnly_2b1c_Z_mass_fx1021[1000] = { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33,
    35, 37, 39, 41, 43, 45, 47, 49, 51, 53, 55, 57, 59, 61, 63, 65,
@@ -1474,59 +1475,59 @@ void Z_mass_tagOnly_VR_18()
    bottomPad->SetFrameBorderMode(0);
    bottomPad->SetFrameBorderMode(0);
    
-   TH1D *data_mc_ratio__22 = new TH1D("data_mc_ratio__22","",1000,0,2000);
-   data_mc_ratio__22->SetBinContent(26,1.092268);
-   data_mc_ratio__22->SetBinContent(27,1.071553);
-   data_mc_ratio__22->SetBinContent(28,1.060479);
-   data_mc_ratio__22->SetBinContent(29,1.062456);
-   data_mc_ratio__22->SetBinContent(30,1.053905);
-   data_mc_ratio__22->SetBinContent(61,1.217707);
-   data_mc_ratio__22->SetBinContent(62,1.215203);
-   data_mc_ratio__22->SetBinContent(63,1.218689);
-   data_mc_ratio__22->SetBinContent(64,1.229169);
-   data_mc_ratio__22->SetBinContent(65,1.234236);
-   data_mc_ratio__22->SetBinContent(1000,1.134803);
-   data_mc_ratio__22->SetBinContent(1001,1.169713);
-   data_mc_ratio__22->SetBinError(26,0.008635135);
-   data_mc_ratio__22->SetBinError(27,0.008172413);
-   data_mc_ratio__22->SetBinError(28,0.007850448);
-   data_mc_ratio__22->SetBinError(29,0.007654869);
-   data_mc_ratio__22->SetBinError(30,0.007433671);
-   data_mc_ratio__22->SetBinError(61,0.01005717);
-   data_mc_ratio__22->SetBinError(62,0.01013127);
-   data_mc_ratio__22->SetBinError(63,0.01020297);
-   data_mc_ratio__22->SetBinError(64,0.01035294);
-   data_mc_ratio__22->SetBinError(65,0.01043679);
-   data_mc_ratio__22->SetBinError(1000,0.1245608);
-   data_mc_ratio__22->SetBinError(1001,0.006981575);
-   data_mc_ratio__22->SetMinimum(0.4);
-   data_mc_ratio__22->SetMaximum(1.6);
-   data_mc_ratio__22->SetEntries(5190.65);
-   data_mc_ratio__22->SetStats(0);
+   TH1D *data_mc_ratio__24 = new TH1D("data_mc_ratio__24","",1000,0,2000);
+   data_mc_ratio__24->SetBinContent(26,1.092268);
+   data_mc_ratio__24->SetBinContent(27,1.071553);
+   data_mc_ratio__24->SetBinContent(28,1.060479);
+   data_mc_ratio__24->SetBinContent(29,1.062456);
+   data_mc_ratio__24->SetBinContent(30,1.053905);
+   data_mc_ratio__24->SetBinContent(61,1.217707);
+   data_mc_ratio__24->SetBinContent(62,1.215203);
+   data_mc_ratio__24->SetBinContent(63,1.218689);
+   data_mc_ratio__24->SetBinContent(64,1.229169);
+   data_mc_ratio__24->SetBinContent(65,1.234236);
+   data_mc_ratio__24->SetBinContent(1000,1.134803);
+   data_mc_ratio__24->SetBinContent(1001,1.169713);
+   data_mc_ratio__24->SetBinError(26,0.008635135);
+   data_mc_ratio__24->SetBinError(27,0.008172413);
+   data_mc_ratio__24->SetBinError(28,0.007850448);
+   data_mc_ratio__24->SetBinError(29,0.007654869);
+   data_mc_ratio__24->SetBinError(30,0.007433671);
+   data_mc_ratio__24->SetBinError(61,0.01005717);
+   data_mc_ratio__24->SetBinError(62,0.01013127);
+   data_mc_ratio__24->SetBinError(63,0.01020297);
+   data_mc_ratio__24->SetBinError(64,0.01035294);
+   data_mc_ratio__24->SetBinError(65,0.01043679);
+   data_mc_ratio__24->SetBinError(1000,0.1245608);
+   data_mc_ratio__24->SetBinError(1001,0.006981575);
+   data_mc_ratio__24->SetMinimum(0.4);
+   data_mc_ratio__24->SetMaximum(1.6);
+   data_mc_ratio__24->SetEntries(5190.65);
+   data_mc_ratio__24->SetStats(0);
 
    ci = TColor::GetColor("#000099");
-   data_mc_ratio__22->SetLineColor(ci);
-   data_mc_ratio__22->SetLineWidth(2);
-   data_mc_ratio__22->SetMarkerStyle(20);
-   data_mc_ratio__22->SetMarkerSize(1.2);
-   data_mc_ratio__22->GetXaxis()->SetTitle("M_{Z} [GeV]");
-   data_mc_ratio__22->GetXaxis()->SetRange(1,150);
-   data_mc_ratio__22->GetXaxis()->SetLabelFont(42);
-   data_mc_ratio__22->GetXaxis()->SetLabelSize(0.12);
-   data_mc_ratio__22->GetXaxis()->SetTitleSize(0.12);
-   data_mc_ratio__22->GetXaxis()->SetTitleOffset(1.1);
-   data_mc_ratio__22->GetXaxis()->SetTitleFont(42);
-   data_mc_ratio__22->GetYaxis()->SetTitle("Data/MC");
-   data_mc_ratio__22->GetYaxis()->SetNdivisions(505);
-   data_mc_ratio__22->GetYaxis()->SetLabelFont(42);
-   data_mc_ratio__22->GetYaxis()->SetLabelSize(0.12);
-   data_mc_ratio__22->GetYaxis()->SetTitleSize(0.12);
-   data_mc_ratio__22->GetYaxis()->SetTitleOffset(0.5);
-   data_mc_ratio__22->GetYaxis()->SetTitleFont(42);
-   data_mc_ratio__22->GetZaxis()->SetLabelFont(42);
-   data_mc_ratio__22->GetZaxis()->SetTitleOffset(1);
-   data_mc_ratio__22->GetZaxis()->SetTitleFont(42);
-   data_mc_ratio__22->Draw("E1");
+   data_mc_ratio__24->SetLineColor(ci);
+   data_mc_ratio__24->SetLineWidth(2);
+   data_mc_ratio__24->SetMarkerStyle(20);
+   data_mc_ratio__24->SetMarkerSize(1.2);
+   data_mc_ratio__24->GetXaxis()->SetTitle("M_{Z} [GeV]");
+   data_mc_ratio__24->GetXaxis()->SetRange(1,150);
+   data_mc_ratio__24->GetXaxis()->SetLabelFont(42);
+   data_mc_ratio__24->GetXaxis()->SetLabelSize(0.12);
+   data_mc_ratio__24->GetXaxis()->SetTitleSize(0.12);
+   data_mc_ratio__24->GetXaxis()->SetTitleOffset(1.1);
+   data_mc_ratio__24->GetXaxis()->SetTitleFont(42);
+   data_mc_ratio__24->GetYaxis()->SetTitle("Data/MC");
+   data_mc_ratio__24->GetYaxis()->SetNdivisions(505);
+   data_mc_ratio__24->GetYaxis()->SetLabelFont(42);
+   data_mc_ratio__24->GetYaxis()->SetLabelSize(0.12);
+   data_mc_ratio__24->GetYaxis()->SetTitleSize(0.12);
+   data_mc_ratio__24->GetYaxis()->SetTitleOffset(0.5);
+   data_mc_ratio__24->GetYaxis()->SetTitleFont(42);
+   data_mc_ratio__24->GetZaxis()->SetLabelFont(42);
+   data_mc_ratio__24->GetZaxis()->SetTitleOffset(1);
+   data_mc_ratio__24->GetZaxis()->SetTitleFont(42);
+   data_mc_ratio__24->Draw("E1");
    
    Double_t Graph_from_mc_statistical_error_fx1022[1000] = { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33,
    35, 37, 39, 41, 43, 45, 47, 49, 51, 53, 55, 57, 59, 61, 63, 65,

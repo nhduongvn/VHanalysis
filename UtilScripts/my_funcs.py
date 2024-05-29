@@ -231,12 +231,15 @@ def makePlot(plot, plotName, canvasName, outputDir = 'Test/',
   ROOT.gStyle.SetOptStat(0)
   
   ## Make our canvas & modify it as possible
-  c = ROOT.TCanvas(canvasName, canvasName, 600, 600)
+  c = ROOT.TCanvas(canvasName, canvasName, 800, 600)
   c.SetFillStyle(4000)
   c.SetFrameFillStyle(1000)
   c.SetFrameFillColor(0)
   c.SetLeftMargin(0.15)
   c.cd()
+  
+  if blindSignal:
+    plot = blind_region(plot, signalRegion[0], signalRegion[1])
   
   ## Draw our plot onto the canvas & modify it as necessary
   plot.Draw("hist")

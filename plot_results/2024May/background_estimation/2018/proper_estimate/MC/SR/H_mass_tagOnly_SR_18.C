@@ -4,8 +4,9 @@
 void H_mass_tagOnly_SR_18()
 {
 //=========Macro generated from canvas: H_mass_tagOnly_SR_18/H_mass_tagOnly_SR_18
-//=========  (Tue May 28 14:46:58 2024) by ROOT version 6.28/10
+//=========  (Tue May 28 15:50:27 2024) by ROOT version 6.28/10
    TCanvas *H_mass_tagOnly_SR_18 = new TCanvas("H_mass_tagOnly_SR_18", "H_mass_tagOnly_SR_18",0,0,600,600);
+   gStyle->SetOptStat(0);
    H_mass_tagOnly_SR_18->SetHighLightColor(2);
    H_mass_tagOnly_SR_18->Range(0,0,1,1);
    H_mass_tagOnly_SR_18->SetFillColor(0);
@@ -9289,26 +9290,26 @@ void H_mass_tagOnly_SR_18()
    st->Add(VH_tagOnly_H_mass_stack_12,"");
    st->Draw("hist");
    
-   TH1D *VH_tagOnly_H_mass__13 = new TH1D("VH_tagOnly_H_mass__13","",1000,0,2000);
-   VH_tagOnly_H_mass__13->SetBinContent(1000,75);
-   VH_tagOnly_H_mass__13->SetBinContent(1001,38939);
-   VH_tagOnly_H_mass__13->SetEntries(2827694);
+   TH1D *VH_tagOnly_H_mass__15 = new TH1D("VH_tagOnly_H_mass__15","",1000,0,2000);
+   VH_tagOnly_H_mass__15->SetBinContent(1000,75);
+   VH_tagOnly_H_mass__15->SetBinContent(1001,38939);
+   VH_tagOnly_H_mass__15->SetEntries(2827694);
 
    ci = TColor::GetColor("#000099");
-   VH_tagOnly_H_mass__13->SetLineColor(ci);
-   VH_tagOnly_H_mass__13->SetLineWidth(2);
-   VH_tagOnly_H_mass__13->SetMarkerStyle(20);
-   VH_tagOnly_H_mass__13->SetMarkerSize(1.2);
-   VH_tagOnly_H_mass__13->GetXaxis()->SetRange(1,2000);
-   VH_tagOnly_H_mass__13->GetXaxis()->SetLabelFont(42);
-   VH_tagOnly_H_mass__13->GetXaxis()->SetTitleOffset(1);
-   VH_tagOnly_H_mass__13->GetXaxis()->SetTitleFont(42);
-   VH_tagOnly_H_mass__13->GetYaxis()->SetLabelFont(42);
-   VH_tagOnly_H_mass__13->GetYaxis()->SetTitleFont(42);
-   VH_tagOnly_H_mass__13->GetZaxis()->SetLabelFont(42);
-   VH_tagOnly_H_mass__13->GetZaxis()->SetTitleOffset(1);
-   VH_tagOnly_H_mass__13->GetZaxis()->SetTitleFont(42);
-   VH_tagOnly_H_mass__13->Draw("same E");
+   VH_tagOnly_H_mass__15->SetLineColor(ci);
+   VH_tagOnly_H_mass__15->SetLineWidth(2);
+   VH_tagOnly_H_mass__15->SetMarkerStyle(20);
+   VH_tagOnly_H_mass__15->SetMarkerSize(1.2);
+   VH_tagOnly_H_mass__15->GetXaxis()->SetRange(1,2000);
+   VH_tagOnly_H_mass__15->GetXaxis()->SetLabelFont(42);
+   VH_tagOnly_H_mass__15->GetXaxis()->SetTitleOffset(1);
+   VH_tagOnly_H_mass__15->GetXaxis()->SetTitleFont(42);
+   VH_tagOnly_H_mass__15->GetYaxis()->SetLabelFont(42);
+   VH_tagOnly_H_mass__15->GetYaxis()->SetTitleFont(42);
+   VH_tagOnly_H_mass__15->GetZaxis()->SetLabelFont(42);
+   VH_tagOnly_H_mass__15->GetZaxis()->SetTitleOffset(1);
+   VH_tagOnly_H_mass__15->GetZaxis()->SetTitleFont(42);
+   VH_tagOnly_H_mass__15->Draw("same E");
    
    Double_t Graph_from_VH_tagOnly_H_mass_fx1013[1000] = { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33,
    35, 37, 39, 41, 43, 45, 47, 49, 51, 53, 55, 57, 59, 61, 63, 65,
@@ -9817,39 +9818,39 @@ void H_mass_tagOnly_SR_18()
    bottomPad->SetFrameBorderMode(0);
    bottomPad->SetFrameBorderMode(0);
    
-   TH1D *data_mc_ratio__14 = new TH1D("data_mc_ratio__14","",1000,0,2000);
-   data_mc_ratio__14->SetBinContent(1000,1.11299);
-   data_mc_ratio__14->SetBinContent(1001,1.054655);
-   data_mc_ratio__14->SetBinError(1000,0.128517);
-   data_mc_ratio__14->SetBinError(1001,0.006333096);
-   data_mc_ratio__14->SetMinimum(0.4);
-   data_mc_ratio__14->SetMaximum(1.6);
-   data_mc_ratio__14->SetEntries(35.5597);
-   data_mc_ratio__14->SetStats(0);
+   TH1D *data_mc_ratio__16 = new TH1D("data_mc_ratio__16","",1000,0,2000);
+   data_mc_ratio__16->SetBinContent(1000,1.11299);
+   data_mc_ratio__16->SetBinContent(1001,1.054655);
+   data_mc_ratio__16->SetBinError(1000,0.128517);
+   data_mc_ratio__16->SetBinError(1001,0.006333096);
+   data_mc_ratio__16->SetMinimum(0.4);
+   data_mc_ratio__16->SetMaximum(1.6);
+   data_mc_ratio__16->SetEntries(35.5597);
+   data_mc_ratio__16->SetStats(0);
 
    ci = TColor::GetColor("#000099");
-   data_mc_ratio__14->SetLineColor(ci);
-   data_mc_ratio__14->SetLineWidth(2);
-   data_mc_ratio__14->SetMarkerStyle(20);
-   data_mc_ratio__14->SetMarkerSize(1.2);
-   data_mc_ratio__14->GetXaxis()->SetTitle("M_{H} [GeV]");
-   data_mc_ratio__14->GetXaxis()->SetRange(1,150);
-   data_mc_ratio__14->GetXaxis()->SetLabelFont(42);
-   data_mc_ratio__14->GetXaxis()->SetLabelSize(0.12);
-   data_mc_ratio__14->GetXaxis()->SetTitleSize(0.12);
-   data_mc_ratio__14->GetXaxis()->SetTitleOffset(1.1);
-   data_mc_ratio__14->GetXaxis()->SetTitleFont(42);
-   data_mc_ratio__14->GetYaxis()->SetTitle("Data/MC");
-   data_mc_ratio__14->GetYaxis()->SetNdivisions(505);
-   data_mc_ratio__14->GetYaxis()->SetLabelFont(42);
-   data_mc_ratio__14->GetYaxis()->SetLabelSize(0.12);
-   data_mc_ratio__14->GetYaxis()->SetTitleSize(0.12);
-   data_mc_ratio__14->GetYaxis()->SetTitleOffset(0.5);
-   data_mc_ratio__14->GetYaxis()->SetTitleFont(42);
-   data_mc_ratio__14->GetZaxis()->SetLabelFont(42);
-   data_mc_ratio__14->GetZaxis()->SetTitleOffset(1);
-   data_mc_ratio__14->GetZaxis()->SetTitleFont(42);
-   data_mc_ratio__14->Draw("E1");
+   data_mc_ratio__16->SetLineColor(ci);
+   data_mc_ratio__16->SetLineWidth(2);
+   data_mc_ratio__16->SetMarkerStyle(20);
+   data_mc_ratio__16->SetMarkerSize(1.2);
+   data_mc_ratio__16->GetXaxis()->SetTitle("M_{H} [GeV]");
+   data_mc_ratio__16->GetXaxis()->SetRange(1,150);
+   data_mc_ratio__16->GetXaxis()->SetLabelFont(42);
+   data_mc_ratio__16->GetXaxis()->SetLabelSize(0.12);
+   data_mc_ratio__16->GetXaxis()->SetTitleSize(0.12);
+   data_mc_ratio__16->GetXaxis()->SetTitleOffset(1.1);
+   data_mc_ratio__16->GetXaxis()->SetTitleFont(42);
+   data_mc_ratio__16->GetYaxis()->SetTitle("Data/MC");
+   data_mc_ratio__16->GetYaxis()->SetNdivisions(505);
+   data_mc_ratio__16->GetYaxis()->SetLabelFont(42);
+   data_mc_ratio__16->GetYaxis()->SetLabelSize(0.12);
+   data_mc_ratio__16->GetYaxis()->SetTitleSize(0.12);
+   data_mc_ratio__16->GetYaxis()->SetTitleOffset(0.5);
+   data_mc_ratio__16->GetYaxis()->SetTitleFont(42);
+   data_mc_ratio__16->GetZaxis()->SetLabelFont(42);
+   data_mc_ratio__16->GetZaxis()->SetTitleOffset(1);
+   data_mc_ratio__16->GetZaxis()->SetTitleFont(42);
+   data_mc_ratio__16->Draw("E1");
    
    Double_t Graph_from_mc_statistical_error_fx1014[1000] = { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33,
    35, 37, 39, 41, 43, 45, 47, 49, 51, 53, 55, 57, 59, 61, 63, 65,
