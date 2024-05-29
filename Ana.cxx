@@ -283,7 +283,13 @@ int main(int argc, char *argv[]) {
   //add all selectors to processors
   for (std::vector<Selector*>::iterator it = sels.begin() ; it != sels.end() ; it++) ana.addSelector(*it) ;
   std::cout << "\n Selections added" << std::endl; 
-  chain->Process(&ana,"",intlastentry,intfirstentry) ;
-  std::cout << "\n End processing" << std::endl;
+  try {
+    chain->Process(&ana,"",intlastentry,intfirstentry) ;
+    std::cout << "\n End processing" << std::endl;
+    chain->Reset(); // close file to prevent crash on TNetX
+  }
+  catch(const std::exception& e) {
+    std::cout << "Exception " << e.what() << std::endl;
+  }
   return 0 ;
 }

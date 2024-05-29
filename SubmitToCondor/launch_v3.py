@@ -98,7 +98,7 @@ def make_input_file_list(nFile, outDir_file_list, file_list_name):
 # /////////////////////////////////////////////////////////////////////////////
 # Settings
 # /////////////////////////////////////////////////////////////////////////////
-runMode = 0     # 0 : submit, 1 : check output and hadd output file
+runMode = 1     # 0 : submit, 1 : check output and hadd output file
 submit = True   # for testing setup or executing submission
 debug = False   # just run on 10000
 haddData = True # use to combine DATA runs back together
@@ -115,11 +115,11 @@ outputDir_eos = '/store/user/peteryou/Output_VH/2024May/'
 outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_14_0_6/src/VHanalysis/condor_results/2024May/' + syst + '/'
 
 # Input data sets
-#dataSet_list = sourceDir+"/Dataset_lists/datasets_NANOAODv9_MC.txt"
-dataSet_list = sourceDir+"/Dataset_lists/datasets_Data_combined.txt"
+dataSet_list = sourceDir+"/Dataset_lists/datasets_NANOAODv9_MC.txt"
+#dataSet_list = sourceDir+"/Dataset_lists/datasets_Data_combined.txt"
 #dataSet_list = sourceDir+"/Dataset_lists/datasets_JetHT_2018.txt"
-#dataSet_lists = [sourceDir+"/Dataset_lists/datasets_NANOAODv9_MC.txt"]
-dataSet_lists = [sourceDir+"/Dataset_lists/datasets_Data_combined.txt"]
+dataSet_lists = [sourceDir+"/Dataset_lists/datasets_NANOAODv9_MC.txt"]
+#dataSet_lists = [sourceDir+"/Dataset_lists/datasets_Data_combined.txt"]
 #dataSet_lists = [sourceDir+"/Dataset_lists/datasets_JetHT_2018.txt"]
 
 nFile = 2

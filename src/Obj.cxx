@@ -295,8 +295,9 @@ class BosonObj : public GenObj
     }
     
     float DPhi() { 
-      float dphi = Dphi(m_jets[0].Phi(), m_jets[1].Phi());
-      return DphiC(dphi);
+      //float dphi = Dphi(m_jets[0].Phi(), m_jets[1].Phi());
+      //return DphiC(dphi);
+      return m_jets[0].Vec4().DeltaPhi(m_jets[1].Vec4());
     }
     
     void SetBosonID(int id) { bosonID = id; }

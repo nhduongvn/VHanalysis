@@ -344,6 +344,58 @@ void VH_selection::SlaveBegin(Reader *r)
   h_cutflow_evt_tagFirst->GetXaxis()->SetBinLabel(3, "Jet Mult.");
   h_cutflow_evt_tagFirst->GetXaxis()->SetBinLabel(4, "triggers");
   h_cutflow_evt_tagFirst->GetXaxis()->SetBinLabel(5, "tags cut");
+
+  // Cutflows for Tagging Only Test Cases
+  h_cutflow_evt_tagOnly_dRbb = new TH1D("CutFlow_evt_tagOnly_dRbb", "", 9, 0, 9);
+  h_cutflow_evt_tagOnly_dRbb->GetXaxis()->SetBinLabel(1, "Total");
+  h_cutflow_evt_tagOnly_dRbb->GetXaxis()->SetBinLabel(2, "MET cut");
+  h_cutflow_evt_tagOnly_dRbb->GetXaxis()->SetBinLabel(3, "Jet Mult.");
+  h_cutflow_evt_tagOnly_dRbb->GetXaxis()->SetBinLabel(4, "Triggers");
+  h_cutflow_evt_tagOnly_dRbb->GetXaxis()->SetBinLabel(5, "b-tag #1");
+  h_cutflow_evt_tagOnly_dRbb->GetXaxis()->SetBinLabel(6, "b-tag #2");
+  h_cutflow_evt_tagOnly_dRbb->GetXaxis()->SetBinLabel(7, "c-tag #1");
+  h_cutflow_evt_tagOnly_dRbb->GetXaxis()->SetBinLabel(8, "c-tag #2");
+  h_cutflow_evt_tagOnly_dRbb->GetXaxis()->SetBinLabel(9, "dRbb");
+
+  h_cutflow_evt_tagOnly_dRcc = new TH1D("CutFlow_evt_tagOnly_dRcc", "", 9, 0, 9);
+  h_cutflow_evt_tagOnly_dRcc->GetXaxis()->SetBinLabel(1, "Total");
+  h_cutflow_evt_tagOnly_dRcc->GetXaxis()->SetBinLabel(2, "MET cut");
+  h_cutflow_evt_tagOnly_dRcc->GetXaxis()->SetBinLabel(3, "Jet Mult.");
+  h_cutflow_evt_tagOnly_dRcc->GetXaxis()->SetBinLabel(4, "Triggers");
+  h_cutflow_evt_tagOnly_dRcc->GetXaxis()->SetBinLabel(5, "b-tag #1");
+  h_cutflow_evt_tagOnly_dRcc->GetXaxis()->SetBinLabel(6, "b-tag #2");
+  h_cutflow_evt_tagOnly_dRcc->GetXaxis()->SetBinLabel(7, "c-tag #1");
+  h_cutflow_evt_tagOnly_dRcc->GetXaxis()->SetBinLabel(8, "c-tag #2");
+  h_cutflow_evt_tagOnly_dRcc->GetXaxis()->SetBinLabel(9, "dRcc");
+
+  h_cutflow_evt_tagOnly_dRboth_bc = new TH1D("CutFlow_evt_tagOnly_dRboth_bc", "", 10, 0, 10);
+  h_cutflow_evt_tagOnly_dRboth_bc->GetXaxis()->SetBinLabel(1, "Total");
+  h_cutflow_evt_tagOnly_dRboth_bc->GetXaxis()->SetBinLabel(2, "MET cut");
+  h_cutflow_evt_tagOnly_dRboth_bc->GetXaxis()->SetBinLabel(3, "Jet Mult.");
+  h_cutflow_evt_tagOnly_dRboth_bc->GetXaxis()->SetBinLabel(4, "Triggers");
+  h_cutflow_evt_tagOnly_dRboth_bc->GetXaxis()->SetBinLabel(5, "b-tag #1");
+  h_cutflow_evt_tagOnly_dRboth_bc->GetXaxis()->SetBinLabel(6, "b-tag #2");
+  h_cutflow_evt_tagOnly_dRboth_bc->GetXaxis()->SetBinLabel(7, "c-tag #1");
+  h_cutflow_evt_tagOnly_dRboth_bc->GetXaxis()->SetBinLabel(8, "c-tag #2");
+  h_cutflow_evt_tagOnly_dRboth_bc->GetXaxis()->SetBinLabel(9, "dRbb");
+  h_cutflow_evt_tagOnly_dRboth_bc->GetXaxis()->SetBinLabel(10, "dRcc");
+
+  h_cutflow_evt_tagOnly_dRboth_cb = new TH1D("CutFlow_evt_tagOnly_dRboth_cb", "", 10, 0, 10);
+  h_cutflow_evt_tagOnly_dRboth_cb->GetXaxis()->SetBinLabel(1, "Total");
+  h_cutflow_evt_tagOnly_dRboth_cb->GetXaxis()->SetBinLabel(2, "MET cut");
+  h_cutflow_evt_tagOnly_dRboth_cb->GetXaxis()->SetBinLabel(3, "Jet Mult.");
+  h_cutflow_evt_tagOnly_dRboth_cb->GetXaxis()->SetBinLabel(4, "Triggers");
+  h_cutflow_evt_tagOnly_dRboth_cb->GetXaxis()->SetBinLabel(5, "b-tag #1");
+  h_cutflow_evt_tagOnly_dRboth_cb->GetXaxis()->SetBinLabel(6, "b-tag #2");
+  h_cutflow_evt_tagOnly_dRboth_cb->GetXaxis()->SetBinLabel(7, "c-tag #1");
+  h_cutflow_evt_tagOnly_dRboth_cb->GetXaxis()->SetBinLabel(8, "c-tag #2");
+  h_cutflow_evt_tagOnly_dRboth_cb->GetXaxis()->SetBinLabel(9, "dRcc");
+  h_cutflow_evt_tagOnly_dRboth_cb->GetXaxis()->SetBinLabel(10, "dRbb");
+  
+  h_cutflow_evt_tagOnly_dRbb->Sumw2();
+  h_cutflow_evt_tagOnly_dRcc->Sumw2();
+  h_cutflow_evt_tagOnly_dRboth_bc->Sumw2();
+  h_cutflow_evt_tagOnly_dRboth_cb->Sumw2();
   
   h_cutflow_elec->Sumw2();
   h_cutflow_muon->Sumw2();
@@ -378,6 +430,11 @@ void VH_selection::SlaveBegin(Reader *r)
   h_VH_tagFirst_1combo = new VHPlots("VH_tagFirsT_1combo"); // (Sanity Checks)
   h_VH_DHZfirst_noTag = new VHPlots("VH_DHZfirst_noTag");
   h_VH_DHZfirst_2b = new VHPlots("VH_DHZfirst_2b");
+
+  h_VH_tagOnly_dRbb = new VHPlots("VH_tagOnly_dRbb");
+  h_VH_tagOnly_dRcc = new VHPlots("VH_tagOnly_dRcc");
+  h_VH_tagOnly_dRboth_bc = new VHPlots("VH_tagOnly_dRboth_bc");
+  h_VH_tagOnly_dRboth_cb = new VHPlots("VH_tagOnly_dRboth_cb");
   
   // ===============================
   // [42] - Return all of our plots
@@ -397,6 +454,11 @@ void VH_selection::SlaveBegin(Reader *r)
   r->GetOutputList()->Add(h_cutflow_evt_tagOnly);
   r->GetOutputList()->Add(h_cutflow_evt_tagFirst);
   r->GetOutputList()->Add(h_cutflow_evt_DHZfirst);
+
+  r->GetOutputList()->Add(h_cutflow_evt_tagOnly_dRbb);
+  r->GetOutputList()->Add(h_cutflow_evt_tagOnly_dRcc);
+  r->GetOutputList()->Add(h_cutflow_evt_tagOnly_dRboth_bc);
+  r->GetOutputList()->Add(h_cutflow_evt_tagOnly_dRboth_cb);
   
   // ~~ Event Weights ~~
   std::vector<TH1*> tmp = h_event_weights->returnHisto();
@@ -436,6 +498,15 @@ void VH_selection::SlaveBegin(Reader *r)
   tmp = h_VH_DHZfirst_noTag->returnHisto();
   for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
   tmp = h_VH_DHZfirst_2b->returnHisto();
+  for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
+
+  tmp = h_VH_tagOnly_dRbb->returnHisto();
+  for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_tagOnly_dRcc->returnHisto();
+  for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_tagOnly_dRboth_bc->returnHisto();
+  for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VH_tagOnly_dRboth_cb->returnHisto();
   for (size_t i = 0; i < tmp.size(); ++i) r->GetOutputList()->Add(tmp[i]);
 };
 //end-slave-begin
@@ -776,6 +847,11 @@ void VH_selection::Process(Reader *r)
   h_cutflow_evt_DHZfirst->Fill(0.5, generator_weight);
   h_cutflow_evt_tagFirst->Fill(0.5, generator_weight);
 
+  h_cutflow_evt_tagOnly_dRbb->Fill(0.5, generator_weight);
+  h_cutflow_evt_tagOnly_dRcc->Fill(0.5, generator_weight);
+  h_cutflow_evt_tagOnly_dRboth_bc->Fill(0.5, generator_weight);
+  h_cutflow_evt_tagOnly_dRboth_cb->Fill(0.5, generator_weight);
+  
   // Check to see if we pass the MET cut
   float MET = *(r->MET_pt);
   h_MET->Fill(MET, event_weight);
@@ -785,12 +861,22 @@ void VH_selection::Process(Reader *r)
   h_cutflow_evt_DHZfirst->Fill(1.5, generator_weight);
   h_cutflow_evt_tagFirst->Fill(1.5, generator_weight);
 
+  h_cutflow_evt_tagOnly_dRbb->Fill(1.5, generator_weight);
+  h_cutflow_evt_tagOnly_dRcc->Fill(1.5, generator_weight);
+  h_cutflow_evt_tagOnly_dRboth_bc->Fill(1.5, generator_weight);
+  h_cutflow_evt_tagOnly_dRboth_cb->Fill(1.5, generator_weight);
+
   // Check to see if we have the appropriate number of jets
   if (analysis_jets.size() < 4) return;
   h_cutflow_evt_tagOnly->Fill(2.5, generator_weight);
   h_cutflow_evt_DHZfirst->Fill(2.5, generator_weight);
   h_cutflow_evt_tagFirst->Fill(2.5, generator_weight);
 
+  h_cutflow_evt_tagOnly_dRbb->Fill(2.5, generator_weight);
+  h_cutflow_evt_tagOnly_dRcc->Fill(2.5, generator_weight);
+  h_cutflow_evt_tagOnly_dRboth_bc->Fill(2.5, generator_weight);
+  h_cutflow_evt_tagOnly_dRboth_cb->Fill(2.5, generator_weight);
+  
   // Calculate the HT in two versions:
   // 1. sum(jet pT)
   // 2. sum(jet pT) + MET
@@ -828,6 +914,12 @@ void VH_selection::Process(Reader *r)
   h_cutflow_evt_DHZfirst->Fill(3.5, generator_weight);
   h_cutflow_evt_tagFirst->Fill(3.5, generator_weight);
 
+  h_cutflow_evt_tagOnly_dRbb->Fill(3.5, generator_weight);
+  h_cutflow_evt_tagOnly_dRcc->Fill(3.5, generator_weight);
+  h_cutflow_evt_tagOnly_dRboth_bc->Fill(3.5, generator_weight);
+  h_cutflow_evt_tagOnly_dRboth_cb->Fill(3.5, generator_weight);
+
+  
   // ===============================
   // [57] - Tagging Only Assignment
   // ===============================
@@ -849,9 +941,18 @@ void VH_selection::Process(Reader *r)
   if (btag1 || force_pass_tagging)
   {
     h_cutflow_evt_tagOnly->Fill(4.5, generator_weight);
+    h_cutflow_evt_tagOnly_dRbb->Fill(4.5, generator_weight);
+    h_cutflow_evt_tagOnly_dRcc->Fill(4.5, generator_weight);
+    h_cutflow_evt_tagOnly_dRboth_bc->Fill(4.5, generator_weight);
+    h_cutflow_evt_tagOnly_dRboth_cb->Fill(4.5, generator_weight);
+
     if (btag2 || force_pass_tagging)
     {
       h_cutflow_evt_tagOnly->Fill(5.5, generator_weight);
+      h_cutflow_evt_tagOnly_dRbb->Fill(5.5, generator_weight);
+      h_cutflow_evt_tagOnly_dRcc->Fill(5.5, generator_weight);
+      h_cutflow_evt_tagOnly_dRboth_bc->Fill(5.5, generator_weight);
+      h_cutflow_evt_tagOnly_dRboth_cb->Fill(5.5, generator_weight);
 
       bjets2[0].ApplyRegression(5);
       bjets2[1].ApplyRegression(5);
@@ -868,14 +969,53 @@ void VH_selection::Process(Reader *r)
       if (ctag1 || force_pass_tagging)
       {
         h_cutflow_evt_tagOnly->Fill(6.5, generator_weight); // c-cut #1
+	h_cutflow_evt_tagOnly_dRbb->Fill(6.5, generator_weight);
+        h_cutflow_evt_tagOnly_dRcc->Fill(6.5, generator_weight);
+        h_cutflow_evt_tagOnly_dRboth_bc->Fill(6.5, generator_weight);
+        h_cutflow_evt_tagOnly_dRboth_cb->Fill(6.5, generator_weight);
+
         if (ctag2 || force_pass_tagging)
         {
           h_cutflow_evt_tagOnly->Fill(7.5, generator_weight); // c-cut #2
-
+          h_cutflow_evt_tagOnly_dRbb->Fill(7.5, generator_weight);
+          h_cutflow_evt_tagOnly_dRcc->Fill(7.5, generator_weight);
+          h_cutflow_evt_tagOnly_dRboth_bc->Fill(7.5, generator_weight);
+          h_cutflow_evt_tagOnly_dRboth_cb->Fill(7.5, generator_weight);
+	  
           cjets2[0].ApplyRegression(4); cjets2[1].ApplyRegression(4);
           HiggsObj H2(cjets2);
 
 	  h_VH_tagOnly->FillVH(Z2, H2, event_weight);
+
+	  // Now check the versions that involve a dR cut
+	  if (H2.DeltaR() < 2.0)
+	  {
+	    h_cutflow_evt_tagOnly_dRcc->Fill(8.5, generator_weight);
+	    h_cutflow_evt_tagOnly_dRboth_cb->Fill(8.5, generator_weight);
+            h_VH_tagOnly_dRcc->FillVH(Z2, H2, event_weight);
+
+	    if (Z2.DeltaR() < 2.0)
+	    {
+              h_cutflow_evt_tagOnly_dRboth_cb->Fill(9.5, generator_weight);
+	      h_VH_tagOnly_dRboth_cb->FillVH(Z2, H2, event_weight);
+	    }//end-dRbb
+	    
+	  }//end-dRcc
+
+	  if (Z2.DeltaR() < 2.0)
+	  {
+            h_cutflow_evt_tagOnly_dRbb->Fill(8.5, generator_weight);
+            h_cutflow_evt_tagOnly_dRboth_bc->Fill(8.5, generator_weight);
+            h_VH_tagOnly_dRbb->FillVH(Z2, H2, event_weight);
+
+            if (Z2.DeltaR() < 2.0)
+            {
+              h_cutflow_evt_tagOnly_dRboth_bc->Fill(9.5, generator_weight);
+              h_VH_tagOnly_dRboth_bc->FillVH(Z2, H2, event_weight);
+            }//end-dRcc  
+	  }//end-dRbb
+
+	  
 	}//end-ctag-2
       }//end-ctag-1
 

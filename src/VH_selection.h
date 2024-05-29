@@ -72,6 +72,11 @@ class VH_selection : public Selector
     TH1D* h_cutflow_evt_tagFirst;
     TH1D* h_cutflow_evt_DHZfirst;
 
+    TH1D* h_cutflow_evt_tagOnly_dRbb;
+    TH1D* h_cutflow_evt_tagOnly_dRcc;
+    TH1D* h_cutflow_evt_tagOnly_dRboth_bc;
+    TH1D* h_cutflow_evt_tagOnly_dRboth_cb;
+  
     // ~~ Trigger Checks ~~
     TH1D* h_evt_trig_2016;
     TH1D* h_evt_trig_2016_post;
@@ -104,7 +109,11 @@ class VH_selection : public Selector
     VHPlots *h_VH_tagFirst_1combo;
     VHPlots *h_VH_DHZfirst_noTag;
     VHPlots *h_VH_DHZfirst_2b;
-  
+
+    VHPlots *h_VH_tagOnly_dRbb;
+    VHPlots *h_VH_tagOnly_dRcc;
+    VHPlots *h_VH_tagOnly_dRboth_bc;
+    VHPlots *h_VH_tagOnly_dRboth_cb;
 };
 //end-of-class
 
