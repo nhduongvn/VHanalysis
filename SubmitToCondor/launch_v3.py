@@ -35,7 +35,7 @@ def write_condor_config(workDir, sample_format, sample_subformat, nanoaod_format
   f.write('Output = ctagana_$(Cluster)_$(Process).stdout \n')
   f.write('Error = ctagana_$(Cluster)_$(Process).stderr \n')
   f.write('Log = ctagana_$(Cluster)_$(Process).log \n')
-  #f.write('request_memory = 4100 \n')
+  f.write('request_memory = 4100 \n')
   f.write('notify_user = ${LOGNAME}@FNAL.GOV \n')
   f.write('+LENGTH="SHORT" \n')
   #f.write('x509userproxy = /tmp/x509up_u12772 \n')
@@ -110,9 +110,9 @@ centralGenWeight = 0
 
 # Paths, Locations (CHANGE THESE)
 sourceDir = '/uscms_data/d3/peteryou/CMSSW_14_0_6/src/VHanalysis/'
-condorRunDir = '/uscmst1b_scratch/lpc1/lpcphys/peteryou/Output_VH/2024May/'
-outputDir_eos = '/store/user/peteryou/Output_VH/2024May/'
-outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_14_0_6/src/VHanalysis/condor_results/2024May/' + syst + '/'
+condorRunDir = '/uscmst1b_scratch/lpc1/lpcphys/peteryou/Output_VH/2024June/'
+outputDir_eos = '/store/user/peteryou/Output_VH/2024June/'
+outputDir_scratch = '/uscms_data/d3/peteryou/CMSSW_14_0_6/src/VHanalysis/condor_results/2024June/' + syst + '/'
 
 # Input data sets
 dataSet_list = sourceDir+"/Dataset_lists/datasets_NANOAODv9_MC.txt"
