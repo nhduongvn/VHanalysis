@@ -1,2 +1,0 @@
-python nano_postproc_test_MC.py -N 100 Tmp/ root:://cmsxrootd.fnal.gov///store/mc/RunIISummer20UL18NanoAODv9/QCD_HT200to300_TuneCP5_13TeV-madgraphMLM-pythia8/NANOAODSIM/106X_upgrade2018_realistic_v16_L1v1-v1/2830000/B888BF3D-72B0-7C46-8D08-C0C5B29BE214.root
-python nano_postproc_test_data.py -N 100 Tmp/ root:://cmsxrootd.fnal.gov///store/data/Run2018D/JetHT/NANOAOD/UL2018_MiniAODv2_NanoAODv9-v2/2430000/0D8712FF-9DF0-0341-A6CE-A2B4BAB4C176.root
