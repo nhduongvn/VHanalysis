@@ -1,13 +1,13 @@
 #include <fstream>
 #include <iostream>
-#include <boost/algorithm/string.hpp>
+//#include <boost/algorithm/string.hpp>
 
 #include "StdArg.hpp"
 #include "src/Reader.h" 
 #include "src/Processor.h"
 #include "src/Selector.h"
-#include "src/VH_selection.h"
 #include "src/VbbHcc_selector.h"
+#include "src/VbbHcc_triggerSel.h"
 
 #include "src/Global.h"
 
@@ -45,8 +45,16 @@ void SetParameters(std::string fName, glob::Parameters& para) {
       
       std::vector<std::string> cont ;
       std::vector<std::string> cont_no_space ;
-      std::string delim(" ") ;
-      boost::split(cont, line, boost::is_any_of(delim));
+      //std::string delim(" ") ;
+      
+      //boost::split(cont, line, boost::is_any_of(delim));
+      std::stringstream ss(line);
+      std::string token;
+      char delimiter = ' ';
+      while (getline(ss, token, delimiter)) {
+        cont.push_back(token);
+      }
+      
       for (size_t i = 0 ; i < cont.size() ; ++i) {
         //std::cout << "\n" << cont[i] << cont[i].find(" ") << " " << std::string::npos;
         if (cont[i].find_first_not_of(' ') != std::string::npos) {
@@ -172,18 +180,26 @@ int main(int argc, char *argv[]) {
   std::vector<Selector*> sels;
   
   //Selection for VH 
-  VH_selection sel ;
+  //VH_selection sel ;
   VbbHcc_selector VbbHcc_sel ;
+  VbbHcc_sel.SetDataInfo(isData,year); //need to unify SetDataInfo for ana and this
+  VbbHcc_triggerSel VbbHcc_triggerSel;
 
   std::string fName_puSF;
   std::string fName_PUjetID_SF;
   std::string fName_PUjetID_eff;
+  std::string fName_xbb_xcc_eff("CalibData/xcc_qcd_weights.root"); //to calculate the weight for QCD xcc xbb
+  std::string fName_triggerSF("CalibData/trigger_turn_on.root"); //to calculate the weight for QCD xcc xbb
  
   //Syst
-  if (syst == "L1PREFIRINGU") sel.SetL1prefiring("l1prefiringu");
-  if (syst == "L1PREFIRINGD") sel.SetL1prefiring("l1prefiringd");
-  if (syst == "L1PREFIRINGU") VbbHcc_sel.SetL1prefiring("l1prefiringu");
-  if (syst == "L1PREFIRINGD") VbbHcc_sel.SetL1prefiring("l1prefiringd");
+  //if (syst == "L1PREFIRINGU") sel.SetL1prefiring("l1prefiringu");
+  //if (syst == "L1PREFIRINGD") sel.SetL1prefiring("l1prefiringd");
+  if (syst == "L1PREFIRINGU") {
+    VbbHcc_sel.SetL1prefiring("l1prefiringu");
+  }
+  if (syst == "L1PREFIRINGD") {
+    VbbHcc_sel.SetL1prefiring("l1prefiringd");
+  }
   std::string jetPUidUncType = "central";
   if (syst == "JETPUIDU") jetPUidUncType = "up";
   if (syst == "JETPUIDD") jetPUidUncType = "down";
@@ -205,6 +221,16 @@ int main(int argc, char *argv[]) {
   if (syst == "PUU") fName_puSF = "CalibData/2018_pileup_ratio_up.root";
   if (syst == "PUD") fName_puSF = "CalibData/2018_pileup_ratio_down.root";
 #endif
+  VbbHcc_sel.SetJetMetSyst("central");
+  if (syst == "JESU") VbbHcc_sel.SetJetMetSyst("jesu");
+  if (syst == "JESD") VbbHcc_sel.SetJetMetSyst("jesd");
+  if (syst == "JERU") VbbHcc_sel.SetJetMetSyst("jeru");
+  if (syst == "JERD") VbbHcc_sel.SetJetMetSyst("jerd");
+  VbbHcc_sel.SetHFtagUncType("central");
+  if (syst == "TAG_BBU") VbbHcc_sel.SetHFtagUncType("bbup");
+  if (syst == "TAG_BBD") VbbHcc_sel.SetHFtagUncType("bbdown");
+  if (syst == "TAG_CCU") VbbHcc_sel.SetHFtagUncType("ccup");
+  if (syst == "TAG_CCD") VbbHcc_sel.SetHFtagUncType("ccdown");
 
 #if defined(DATA_2016)
   //TODO: update to UL
@@ -220,28 +246,46 @@ int main(int argc, char *argv[]) {
 #endif
 
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
-  sel.SetCentralGenWeight(centralGenWeight);
-  sel.SetPileupSF(fName_puSF);
+  //sel.SetCentralGenWeight(centralGenWeight);
+  //sel.SetPileupSF(fName_puSF);
   VbbHcc_sel.SetCentralGenWeight(centralGenWeight);
   VbbHcc_sel.SetPileupSF(fName_puSF);
+  VbbHcc_triggerSel.SetCentralGenWeight(centralGenWeight);
+  VbbHcc_triggerSel.SetPileupSF(fName_puSF);
   fName_PUjetID_SF = "CalibData/scalefactorsPUID_81Xtraining.root";
   fName_PUjetID_eff = "CalibData/effcyPUID_81Xtraining.root";
-  sel.SetPUjetidCalib(fName_PUjetID_SF,fName_PUjetID_eff,jetPUidUncType); //pileup jet ID SF
+  //sel.SetPUjetidCalib(fName_PUjetID_SF,fName_PUjetID_eff,jetPUidUncType); //pileup jet ID SF
   VbbHcc_sel.SetPUjetidCalib(fName_PUjetID_SF,fName_PUjetID_eff,jetPUidUncType); //pileup jet ID SF
+  VbbHcc_sel.SetXbbXccEff(fName_xbb_xcc_eff);
+  VbbHcc_sel.SetTriggerSF(fName_triggerSF);
+  VbbHcc_triggerSel.SetPUjetidCalib(fName_PUjetID_SF,fName_PUjetID_eff,jetPUidUncType); //pileup jet ID SF
 #endif
 #if defined(DATA_2016) || defined(DATA_2017) || defined(DATA_2018)
-  sel.SetLumiMaskFilter(fName_lumiMaskFilter);
+  //sel.SetLumiMaskFilter(fName_lumiMaskFilter);
   VbbHcc_sel.SetLumiMaskFilter(fName_lumiMaskFilter);
+  VbbHcc_triggerSel.SetLumiMaskFilter(fName_lumiMaskFilter);
 #endif
 
+  std::string fName_n2b1_cut = "CalibData/n2b1_cut.root"; 
+  VbbHcc_sel.Setn2b1Cut(fName_n2b1_cut);
+  VbbHcc_triggerSel.Setn2b1Cut(fName_n2b1_cut);
 
-  sels.push_back(&sel) ;
+
+  //sels.push_back(&sel) ;
   sels.push_back(&VbbHcc_sel);
+  sels.push_back(&VbbHcc_triggerSel);
   
   //add all selectors to processors
   for (std::vector<Selector*>::iterator it = sels.begin() ; it != sels.end() ; it++) ana.addSelector(*it) ;
   std::cout << "\n Selections added" << std::endl; 
-  chain->Process(&ana,"",intlastentry,intfirstentry) ;
-  std::cout << "\n End processing" << std::endl;
+  try {
+    chain->Process(&ana,"",intlastentry,intfirstentry) ;
+    std::cout << "\n End processing" << std::endl;
+    chain->Reset(); //Close file now to prevent crash on TNetX...
+  }
+  catch (const std::exception& e) {
+    std::cout << "Exception " << e.what() << endl;
+  }
+
   return 0 ;
 }

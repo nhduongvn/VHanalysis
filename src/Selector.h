@@ -11,6 +11,7 @@
 
 #include "TFile.h"
 #include "TH2F.h"
+#include "TGraphAsymmErrors.h"
 
 #include "TRandom3.h"
 #include <math.h>
@@ -35,9 +36,13 @@ class Selector
   virtual void SetMuonEffCorr(std::vector<std::string> fName_trig, std::vector<std::string> fName_ID, std::vector<std::string> fName_iso, std::vector<float> w_trig, std::vector<float> w_ID, std::vector<float> w_iso, std::string muonUncType) ;
   virtual void SetLumiMaskFilter(std::string fName_lumiMaskFilter);
   virtual void SetPileupSF(std::string fName_puSF);
+  virtual void SetXbbXccEff(std::string fName_xbb_xcc_eff);
+  virtual void SetTriggerSF(std::string fName_triggerSF);
+
   virtual float PileupSF(int nTrueInt);
   virtual std::vector<float> GetSF_2DHist(float x, float y, std::vector<TH2F*> h, std::vector<float> w);
   virtual float CalBtagWeight(std::vector<JetObj>& jets, std::string jet_main_bTagWP="deepCSVT", std::string uncType="central") ;
+  virtual float CalBtagWeightBoosted(std::pair<float,bool> jet_bb, std::pair<float,bool> jet_cc, std::string uncType);
   virtual float CalEleSF(LepObj e1, LepObj e2);
   virtual float CalSingleEleSF(LepObj e1);
   virtual float CalMuonSF_id_iso(LepObj e1, LepObj e2);
@@ -48,12 +53,16 @@ class Selector
   virtual void SetPUjetidCalib(std::string fName_PUjetID_SF,std::string fName_PUjetID_eff,std::string jetPUidUncType);
   virtual float PUjetWeight(std::vector<JetObj>& jets) ;
 
+  virtual float Get_xccbb_weight(std::vector<JetObjBoosted>& fatJets, int idx_excludedJet, std::string type);
+  virtual float GetTrigSF(float jetPt) ;
+
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
   //virtual unsigned MatchGenLep(Reader* r, LepObj lep, int pdgId) ;
 #endif
   //virtual float MuonRcSF(Reader* r, LepObj lep, int pdgId) ;
 
   virtual void SetJetMetSyst(std::string jetmetsystType) {m_jetmetSystType = jetmetsystType;};
+  virtual void SetHFtagUncType(std::string hfTagUncType) {m_hfTagUncType = hfTagUncType;};
   virtual void SetL1prefiring(std::string l1prefiringType) {m_l1prefiringType = l1prefiringType;};
   virtual void SetPdfScaleSyst(std::string pdfScaleSystType) {
     m_nScale = 0;
@@ -71,6 +80,9 @@ class Selector
     float k(125./91);
     return fabs(mH-k*mZ)/sqrt(1+k*k);
   }
+
+  virtual void Setn2b1Cut(std::string fName_n2b1_cut);
+  virtual float Getn2b1Cut(float pt, float rho);
 
   double m_centralGenWeight;
 
@@ -97,6 +109,10 @@ class Selector
   std::vector<float> m_muonIso_w ;
   std::vector<float> m_muonID_w ;
 
+  std::map<std::string, std::vector<TH2D*> > m_hEff_xbb_xcc; 
+
+  TGraphAsymmErrors* m_hTrig_SF;
+
   std::string m_btagUncType;
   std::string m_eleUncType;
   std::string m_muonUncType;
@@ -104,6 +120,7 @@ class Selector
   std::string m_l1prefiringType;
   std::string m_jetPUidUncType;
   std::string m_modelUncType;
+  std::string m_hfTagUncType;
 
   unsigned m_nScale;
   unsigned m_iPdfStart;
@@ -113,6 +130,8 @@ class Selector
 
   TFile* PUjetID_SF;
   TFile* PUjetID_eff;
+
+  TH2D* m_hn2b1;
 
 };
 #endif

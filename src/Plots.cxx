@@ -6,6 +6,7 @@
 #include "TH1.h"
 #include "TH1D.h"
 #include "TH2D.h"
+#include "TH3D.h"
 #include "TMath.h"
 #include "TLorentzVector.h"
 #include <TTreeReaderArray.h>
@@ -174,17 +175,27 @@ class VHBoostedPlots
       h_phi_jet0 = new TH1D(name + "_phi_jet0", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
       h_m_jet0 = new TH1D(name + "_m_jet0", "", NBIN_M_J, X_M_J[0], X_M_J[1]);
       h_flav_jet0 = new TH1D(name + "_flav_jet0", "", 10, 0, 10);
-      h_hftagDis_beforeCut_jet0 = new TH1D(name + "_HFtagDis_beforeCut_jet0", "", 1000, 0, 1);
-      h_hftagDis_jet0 = new TH1D(name + "_HFtagDis_jet0", "", 1000, 0, 1);
       
       h_pt_jet1 = new TH1D(name + "_pt_jet1", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
       h_eta_jet1 = new TH1D(name + "_eta_jet1", "", NBIN_ETA, X_ETA[0], X_ETA[1]);
       h_phi_jet1 = new TH1D(name + "_phi_jet1", "", NBIN_PHI, X_PHI[0], X_PHI[1]);
       h_m_jet1 = new TH1D(name + "_m_jet1", "", NBIN_M_J, X_M_J[0], X_M_J[1]);
       h_flav_jet1 = new TH1D(name + "_flav_jet1", "", 10, 0, 10);
-      h_hftagDis_jet1 = new TH1D(name + "_HFtagDis_jet1", "", 1000, 0, 1);
-      h_hftagDis_beforeCut_jet1 = new TH1D(name + "_HFtagDis_beforeCut_jet1", "", 1000, 0, 1);
 
+      h_bbTagDis_beforeCut = new TH1D(name + "_bbTagDis_beforeCut", "", 1000, 0, 1);
+      h_ccTagDis_beforeCut = new TH1D(name + "_ccTagDis_beforeCut", "", 1000, 0, 1);
+      h_bbTagDis = new TH1D(name + "_bbTagDis", "", 1000, 0, 1);
+      h_ccTagDis = new TH1D(name + "_ccTagDis", "", 1000, 0, 1);
+      h_NextraJet_beforeCut = new TH1D(name+"_NextraJet_beforeCut","",10,0,10);
+      h_MET_beforeCut = new TH1D(name+"_MET_beforeCut","",1000,0,1000);
+      h_MET_beforeCut_1 = new TH1D(name+"_MET_beforeCut_1","",1000,0,1000);
+      h_MET = new TH1D(name+"_MET","",1000,0,1000);
+      h_ccPN_TopvsQCD= new TH1D(name + "_ccPN_TopvsQCD", "", 1000, 0, 1);
+      h_ccPN_WvsQCD= new TH1D(name + "_ccPN_WvsQCD", "", 1000, 0, 1);
+      h_ccPN_ZvsQCD= new TH1D(name + "_ccPN_ZvsQCD", "", 1000, 0, 1);
+      h_bbPN_TopvsQCD= new TH1D(name + "_bbPN_TopvsQCD", "", 1000, 0, 1);
+      h_bbPN_WvsQCD= new TH1D(name + "_bbPN_WvsQCD", "", 1000, 0, 1);
+      h_bbPN_ZvsQCD= new TH1D(name + "_bbPN_ZvsQCD", "", 1000, 0, 1);
       h_HPt = new TH1D(name + "_HPt", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
       h_HEta = new TH1D(name + "_HEta", "", NBIN_ETA, X_ETA[0], X_ETA[1]);
       h_HMass = new TH1D(name + "_HMass", "", NBIN_M_H, X_M_H[0], X_M_H[1]);
@@ -208,12 +219,10 @@ class VHBoostedPlots
       h_phi_jet0->Sumw2();
       h_m_jet0->Sumw2();
       h_flav_jet0->Sumw2();
-      h_hftagDis_jet0->Sumw2();
       h_pt_jet1->Sumw2();
       h_eta_jet1->Sumw2();
       h_phi_jet1->Sumw2();
       h_m_jet1->Sumw2();
-      h_hftagDis_jet1->Sumw2();
       h_flav_jet1->Sumw2();
       h_HPt->Sumw2();
       h_HEta->Sumw2();
@@ -227,6 +236,20 @@ class VHBoostedPlots
       h_DEta->Sumw2();
       h_DPhi->Sumw2();
       h_DR->Sumw2();
+      h_bbTagDis_beforeCut->Sumw2();
+      h_bbTagDis->Sumw2();
+      h_ccTagDis_beforeCut->Sumw2();
+      h_ccTagDis->Sumw2();
+      h_NextraJet_beforeCut->Sumw2();
+      h_MET_beforeCut->Sumw2();
+      h_MET_beforeCut_1->Sumw2();
+      h_MET->Sumw2();
+      h_ccPN_TopvsQCD->Sumw2();
+      h_ccPN_WvsQCD->Sumw2();
+      h_ccPN_ZvsQCD->Sumw2();
+      h_bbPN_TopvsQCD->Sumw2();
+      h_bbPN_WvsQCD->Sumw2();
+      h_bbPN_ZvsQCD->Sumw2();
     } ;
 
     // Fill the general histograms.
@@ -268,7 +291,6 @@ class VHBoostedPlots
         h_eta_jet0->Fill(jets[idx_0].m_lvec.Eta(), w);
         h_phi_jet0->Fill(jets[idx_0].m_lvec.Phi(), w); 
         h_m_jet0->Fill(jets[idx_0].m_lvec.M(), w); 
-        h_hftagDis_jet0->Fill(jets[idx_0].m_PN_Xbb, w); 
         h_flav_jet0->Fill(jets[idx_0].m_flav, w); 
       }
       if (idx_1>=0) {
@@ -276,7 +298,6 @@ class VHBoostedPlots
         h_eta_jet1->Fill(jets[idx_1].m_lvec.Eta(), w);
         h_phi_jet1->Fill(jets[idx_1].m_lvec.Phi(), w); 
         h_m_jet1->Fill(jets[idx_1].m_lvec.M(), w); 
-        h_hftagDis_jet1->Fill(jets[idx_0].m_PN_Xcc, w); 
         h_flav_jet1->Fill(jets[idx_1].m_flav, w); 
       }
     }
@@ -301,6 +322,20 @@ class VHBoostedPlots
       histolist.push_back(h_phi_jet1);
       histolist.push_back(h_m_jet1);
       histolist.push_back(h_flav_jet1);
+      histolist.push_back(h_bbTagDis_beforeCut);
+      histolist.push_back(h_bbTagDis);
+      histolist.push_back(h_ccTagDis_beforeCut);
+      histolist.push_back(h_ccTagDis);
+      histolist.push_back(h_NextraJet_beforeCut);
+      histolist.push_back(h_MET_beforeCut);
+      histolist.push_back(h_MET_beforeCut_1);
+      histolist.push_back(h_MET);
+      histolist.push_back(h_ccPN_TopvsQCD);
+      histolist.push_back(h_ccPN_WvsQCD);
+      histolist.push_back(h_ccPN_ZvsQCD);
+      histolist.push_back(h_bbPN_TopvsQCD);
+      histolist.push_back(h_bbPN_WvsQCD);
+      histolist.push_back(h_bbPN_ZvsQCD);
      
       // V and H plots
       histolist.push_back(h_HMass);
@@ -319,8 +354,20 @@ class VHBoostedPlots
       return histolist;
     }
     
-    TH1D* h_hftagDis_beforeCut_jet0;
-    TH1D* h_hftagDis_beforeCut_jet1;
+    TH1D* h_bbTagDis_beforeCut;
+    TH1D* h_ccTagDis_beforeCut;
+    TH1D* h_bbTagDis;
+    TH1D* h_ccTagDis;
+    TH1D* h_NextraJet_beforeCut;
+    TH1D* h_MET_beforeCut;
+    TH1D* h_MET_beforeCut_1;
+    TH1D* h_MET;
+    TH1D* h_ccPN_TopvsQCD;
+    TH1D* h_ccPN_WvsQCD;
+    TH1D* h_ccPN_ZvsQCD;
+    TH1D* h_bbPN_TopvsQCD;
+    TH1D* h_bbPN_WvsQCD;
+    TH1D* h_bbPN_ZvsQCD;
 
   protected:
     // Variables
@@ -354,13 +401,11 @@ class VHBoostedPlots
     TH1D* h_phi_jet0;
     TH1D* h_m_jet0;
     TH1D* h_flav_jet0;
-    TH1D* h_hftagDis_jet0;
     TH1D* h_pt_jet1;
     TH1D* h_eta_jet1;
     TH1D* h_phi_jet1;
     TH1D* h_m_jet1;
     TH1D* h_flav_jet1;
-    TH1D* h_hftagDis_jet1;
 } ;
 
 class HBoostedPlots
@@ -411,4 +456,43 @@ class HBoostedPlots
     TH1D* h_phi_jet;
     TH1D* h_m_jet;
 } ;
+
+// Main Plots class
+class BoostedJetEffPlots 
+{
+
+  public:
+    // Constructor
+    BoostedJetEffPlots(TString name) : m_name(name) {
+      h_pt_eta_m_pass = new TH3D(name + "_pt_eta_mass_pass", "", 100,200,1200,8,0,2.5,30,40,340); 
+      h_pt_eta_m_tot = new TH3D(name + "_pt_eta_mass_tot", "", 100,200,1200,8,0,2.5,30,40,340);
+      h_pt_eta_m_pass->Sumw2();
+      h_pt_eta_m_tot->Sumw2();
+    } ;
+
+    // Fill stuff about jets.
+    void Fill(JetObjBoosted& jet, bool doPass, float w=1) {
+      h_pt_eta_m_tot->Fill(jet.m_lvec.Pt(), jet.m_lvec.Eta(), jet.m_lvec.M(), w);
+      if (doPass) h_pt_eta_m_pass->Fill(jet.m_lvec.Pt(), jet.m_lvec.Eta(), jet.m_lvec.M(), w);
+    }
+
+    // Return a list of all the histograms.
+    std::vector<TH1*> returnHisto() {
+      std::vector<TH1*> histolist;
+ 
+      // Jet-Related Plots
+      histolist.push_back(h_pt_eta_m_pass);
+      histolist.push_back(h_pt_eta_m_tot);
+
+      return histolist;
+    }
+
+  protected:
+    // Variables
+    TString m_name;
+    
+    TH3D* h_pt_eta_m_pass;
+    TH3D* h_pt_eta_m_tot;
+} ;
+
 #endif

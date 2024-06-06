@@ -42,13 +42,13 @@ class JetObj { // Jets
     virtual ~JetObj() {} ;
 
     // IsLepton - checks to make sure our jet isn't actually a lepton
-    bool IsLepton(std::vector<LepObj>& leps) {
+    bool IsLepton(std::vector<LepObj>& leps, float dRcut=0.4) {
       float minDr = 1000 ;
       for (std::vector<LepObj>::iterator it = leps.begin() ; it != leps.end() ; ++it) {
         float dRtmp = m_lvec.DeltaR(it->m_lvec) ;
         if (dRtmp < minDr) minDr = dRtmp ;
       }
-      return minDr <= 0.4 ;
+      return minDr <= dRcut ;
     }
 
     // SetSV - determines the best secondary vertex for the jet
@@ -79,12 +79,15 @@ class JetObjBoosted: public JetObj {
   
   public:
   
-    JetObjBoosted(float pt, float eta, float phi, float mass, unsigned flav, float DDCvB, float DDCvL, float DDBvL, float DT_ZHccvsQCD, float DT_ZbbvsQCD, float PN_Xcc, float PN_Xbb, float n2b1, float PUjetID):
+    JetObjBoosted(float pt, float eta, float phi, float mass, unsigned flav, float DDCvB, float DDCvL, float DDBvL, float DT_ZHccvsQCD, float DT_ZbbvsQCD, float PN_Xcc, float PN_Xbb, float PN_TopvsQCD, float PN_WvsQCD, float PN_ZvsQCD, float n2b1, float PUjetID):
     JetObj(pt, eta, phi, mass, flav, -1, PUjetID), 
     m_DDCvB(DDCvB), m_DDCvL(DDCvL), m_DDBvL(DDBvL), 
     m_DT_ZHccvsQCD(DT_ZHccvsQCD), m_DT_ZbbvsQCD(DT_ZbbvsQCD),
     m_PN_Xcc(PN_Xcc),
     m_PN_Xbb(PN_Xbb),
+    m_PN_TopvsQCD(PN_TopvsQCD),
+    m_PN_WvsQCD(PN_WvsQCD),
+    m_PN_ZvsQCD(PN_ZvsQCD),
     m_n2b1(n2b1) {
       m_rho = -10;
       if(pt>0 && mass>0) m_rho = 2*log(mass/pt);
@@ -97,6 +100,9 @@ class JetObjBoosted: public JetObj {
     float m_DT_ZbbvsQCD;//FatJet_deepTagMD_ZbbvsQCD
     float m_PN_Xbb;//XbbVsQCD: FatJet_particleNetMD_Xbb/(FatJet_particleNetMD_Xbb+FatJet_particleNetMD_QCD)
     float m_PN_Xcc;//XccVsQCD: FatJet_particleNetMD_Xcc/(FatJet_particleNetMD_Xcc+FatJet_particleNetMD_QCD)
+    float m_PN_TopvsQCD;
+    float m_PN_WvsQCD;
+    float m_PN_ZvsQCD;
     float m_n2b1;
     float m_rho;
 } ;

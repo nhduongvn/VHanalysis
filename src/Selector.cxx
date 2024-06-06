@@ -49,6 +49,24 @@ void Selector::SetEleEffCorr(std::vector<std::string> fName_trig,std::string fNa
   m_eleUncType = eleUncType;
 }
 
+void Selector::Setn2b1Cut(std::string fName_n2b1_cut) {
+  TFile* fCut = new TFile(fName_n2b1_cut.c_str(),"READ");
+  m_hn2b1 = (TH2D*)fCut->Get("Cut");
+  m_hn2b1->SetDirectory(0);
+}
+
+float Selector::Getn2b1Cut(float rho_in, float pt_in) {
+  
+  double pt = pt_in;
+  double rho = rho_in;
+  if (pt > 1000) pt = 999;
+  if (rho > -1.5) rho = -1.51;
+  if (rho < -6) rho = -5.99;
+  int iB = m_hn2b1->FindFixBin(rho,pt);
+  return m_hn2b1->GetBinContent(iB);
+
+}
+
 //multiple inputs to deal with different SFs for different run periods 
 void Selector::SetMuonEffCorr(std::vector<std::string> fName_trig, std::vector<std::string> fName_ID, std::vector<std::string> fName_iso, std::vector<float> w_trig, std::vector<float> w_ID, std::vector<float> w_iso, std::string muonUncType) {
   std::string trigN("IsoMu24_OR_IsoTkMu24_PtEtaBins/abseta_pt_ratio");
@@ -102,6 +120,55 @@ void Selector::SetPileupSF(std::string fName_puSF) {
   TFile* f = new TFile(fName_puSF.c_str(),"READ") ;
   m_hSF_pu = (TH1D*)f->Get("pileup_ratio") ;
   m_hSF_pu->SetDirectory(0);
+}
+
+void Selector::SetXbbXccEff(std::string fName_xbb_xcc_eff) {
+  TFile* f = new TFile(fName_xbb_xcc_eff.c_str(),"READ") ;
+  std::string y = "16"; //FIXME add 2016_preVFP and add xbb
+  if (m_year == "2017") y = "17";
+  if (m_year == "2018") y = "18";
+  std::string hN = "xcc_bb_pt_mass_sf_" + y;
+  std::vector<TH2D*> hTmps;
+  hTmps.push_back((TH2D*)f->Get(hN.c_str())) ;
+  hN = "xcc_cc_pt_mass_sf_" + y;
+  hTmps.push_back((TH2D*)f->Get(hN.c_str())) ;
+  hN = "xcc_light_pt_mass_sf_" + y;
+  hTmps.push_back((TH2D*)f->Get(hN.c_str())) ;
+  m_hEff_xbb_xcc["xcc"] = hTmps;
+  for(auto h:m_hEff_xbb_xcc["xcc"]) h->SetDirectory(0);
+}
+
+float Selector::Get_xccbb_weight(std::vector<JetObjBoosted>& fatJets, int idx_excludedJet, std::string type="xcc") {
+  float w = 1;
+  for(unsigned iJ = 0; iJ < fatJets.size();++iJ) {
+    float m = fatJets[iJ].m_lvec.M();
+    float pt = fatJets[iJ].m_lvec.Pt(); 
+    int iB = m_hEff_xbb_xcc[type][0]->FindFixBin(m,pt); //note m = x-axis, pt = y-axis
+    if (iJ != idx_excludedJet) {
+      int iFlav = 0;
+      if (fatJets[iJ].m_flav == 4) iFlav = 1;
+      if (fatJets[iJ].m_flav != 4 && fatJets[iJ].m_flav != 5) iFlav = 2;
+      //std::cout << "\n" << iFlav << " " << m << " " << pt << " " << m_hEff_xbb_xcc[type][iFlav]->GetBinContent(iB);
+      w *= 1-m_hEff_xbb_xcc[type][iFlav]->GetBinContent(iB);
+    }
+  }
+  //std::cout << "\n w: " << 1-w << " " << fatJets.size();
+  return 1-w;
+}
+
+void Selector::SetTriggerSF(std::string fName_triggerSF) {
+  TFile* f = new TFile(fName_triggerSF.c_str(),"READ") ;
+  std::string y = "16"; //FIXME add 2016_preVFP and add xbb
+  if (m_year == "2017") y = "17";
+  if (m_year == "2018") y = "18";
+  std::string hN = "trig_SF_HLT_Soup_data_" + y;
+  m_hTrig_SF = (TGraphAsymmErrors*)f->Get(hN.c_str());
+}
+
+float Selector::GetTrigSF(float jetPt) {
+  unsigned iB = m_hTrig_SF->GetXaxis()->FindFixBin(jetPt);
+  //std::cout << "\n " << m_hTrig_SF->GetName() << " " << jetPt << " " << iB << " " << m_hTrig_SF->GetPointY(iB);
+  return m_hTrig_SF->GetPointY(iB);
 }
 
 float Selector::PileupSF(int nTrueInt) {
@@ -221,6 +288,44 @@ float Selector::CalBtagWeight(std::vector<JetObj>& jets, std::string jet_main_bt
   float sf(1.) ;
   if (pMC > 0) sf = pData/pMC ;
   return sf ;
+}
+
+float Selector::CalBtagWeightBoosted(std::pair<float,bool> jet_bb, std::pair<float,bool> jet_cc, std::string uncType) {
+   //Table 18 and 22
+   std::vector<std::vector<float>> sf_bb_all = {{1.029,1.070,1.077},{1.006,1.051,0.991},{0.966,1.033,1.010}};
+   std::vector<std::vector<float>> sf_cc_all = {{1.005,1.130,0.982},{1.464,1.198,1.203},{1.098,1.003,1.031}};
+   std::vector<std::vector<float>> sf_bb_eru_all = {{0.051,0.066,0.067},{0.052,0.056,0.038},{0.056,0.030,0.030}};
+   std::vector<std::vector<float>> sf_bb_erd_all = {{0.045,0.062,0.059},{0.052,0.055,0.043},{0.057,0.025,0.035}};
+   std::vector<std::vector<float>> sf_cc_eru_all = {{0.182,0.185,0.181},{0.426,0.268,0.230},{0.234,0.131,0.126}};
+   std::vector<std::vector<float>> sf_cc_erd_all = {{0.157,0.196,0.148},{0.422,0.262,0.227},{0.188,0.119,0.107}};
+   int yearBin(0);
+   if(m_year == "2017") yearBin = 1;
+   if(m_year == "2018") yearBin = 2;
+   float sf_bb(1.0);
+   float sf_cc(1.0);
+   int ptbin(0);
+   if(jet_bb.first >= 500 && jet_bb.first < 600) ptbin = 1;
+   if(jet_bb.first >= 600) ptbin = 2;
+   float eff_bb(0.5); //FIXME
+   float sf_bb_tmp = sf_bb_all[yearBin][ptbin];
+   if(uncType=="bbup") sf_bb_tmp += sf_bb_eru_all[yearBin][ptbin];
+   if(uncType=="bbdown") sf_bb_tmp -= sf_bb_erd_all[yearBin][ptbin];
+   if(jet_bb.second) sf_bb = sf_bb_tmp;
+   else sf_bb = (1-eff_bb*sf_bb_tmp)/(1-eff_bb);
+   
+   if(jet_cc.first >= 500 && jet_cc.first < 600) ptbin = 1;
+   if(jet_cc.first >= 600) ptbin = 2;
+   float eff_cc(0.5); //FIXME
+   float sf_cc_tmp = sf_cc_all[yearBin][ptbin];
+   if(uncType=="ccup") sf_cc_tmp += sf_cc_eru_all[yearBin][ptbin];
+   if(uncType=="ccdown") sf_cc_tmp -= sf_cc_erd_all[yearBin][ptbin];
+   if(jet_cc.second) sf_cc = sf_cc_tmp;
+   else sf_cc = (1-eff_cc*sf_cc_tmp)/(1-eff_cc);
+   
+   //std::cout << "\n" << uncType << " " << sf_bb_tmp << " " << sf_cc_tmp;
+
+   return sf_bb*sf_cc;
+
 }
 
 //Get scale factors from a list of calibration histograms h (each histo corresponds to a run periods, for example muon in 2016 has scale factors for B->F and G->H sets. w are weights for each sets 
@@ -550,6 +655,7 @@ float Selector::CalTrigSF_singleLepton(int id, LepObj lep1, TLorentzVector trigO
   
   return trigSF ;
 }
+
 /*
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
 unsigned Selector::MatchGenLep(Reader* r, LepObj lep, int pdgId) {
@@ -568,7 +674,6 @@ unsigned Selector::MatchGenLep(Reader* r, LepObj lep, int pdgId) {
   }
   return indO ;
 }
-
 #endif
 
 float Selector::MuonRcSF(Reader* r, LepObj lep, int pdgId) {
@@ -586,5 +691,6 @@ float Selector::MuonRcSF(Reader* r, LepObj lep, int pdgId) {
   }
 #endif
   return sf ;
-}*/
+}
+*/
 

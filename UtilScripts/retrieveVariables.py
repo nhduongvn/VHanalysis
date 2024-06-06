@@ -4,7 +4,7 @@ import ROOT
 ## == Necessary variables =====================================================
 
 ## Data types we want to search
-datatypes = [ "DATA_2016", "DATA_2017", "DATA_2018",
+datatypes = [ "DATA_2016", "DATA_2017", "DATA_2017F", "DATA_2018",
               "MC_2016",   "MC_2017",   "MC_2018"]
 
 ## Variables for each year
@@ -12,6 +12,8 @@ files = {
   "DATA_2016": "root:://cmsxrootd.fnal.gov///store/data/Run2016B/JetHT/NANOAOD/ver2_HIPM_UL2016_MiniAODv2_NanoAODv9-v2/2520000/E8D052D8-0446-A046-B45F-2882BF34D4DB.root",
 
   "DATA_2017": "root:://cmsxrootd.fnal.gov///store/data/Run2017B/JetHT/NANOAOD/UL2017_MiniAODv2_NanoAODv9-v1/120000/62E9EA6D-8AD2-CC42-B2FD-2817FECF47F0.root",
+
+  "DATA_2017F": "root:://cmsxrootd.fnal.gov///store/data/Run2017F/JetHT/NANOAOD/UL2017_MiniAODv2_NanoAODv9-v1/280000/8B4ECDF4-3A63-574B-9663-729A79E9CB2A.root",
 
   "DATA_2018": "root:://cmsxrootd.fnal.gov///store/data/Run2018B/JetHT/NANOAOD/UL2018_MiniAODv2_NanoAODv9-v1/120000/A4258CED-A995-AC4E-B50C-50CD7FCA4A94.root",
 
@@ -23,7 +25,7 @@ files = {
 }
 
 ## Directories
-outputdir = "../VariableLists/"
+outputdir = "../VariableLists/Tmp"
 
 ## Debug options
 debug = True
@@ -52,7 +54,7 @@ for datatype in datatypes:
         nBranches = len(names)
 	
 	## Generate the selector so we have the code.
-	tree.MakeSelector(outputdir + datatype)
+	tree.MakeSelector(outputdir + "/" + datatype)
 	print "Created TSelector for ", datatype
 	print ">>> ", outputdir + datatype + ".C"
 	print ">>> ", outputdir + datatype + ".h"

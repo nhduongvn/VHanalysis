@@ -1,12 +1,16 @@
-jet_eta 2.4 float
+jet_eta 2.5 float
 jet_pt  30  float
+jet_eta_ak08 2.5 float
+jet_pt_ak08 400 float
 jet_main_btagWP   deepCSVT string
-lep_eta 2.4 float
-lep_pt0 35 float
-lep_pt1 25 float
+ele_dz_b 0.1  float
+ele_dz_e 0.2  float
+ele_d0_b 0.05 float
+ele_d0_e 0.1  float
 //cuts for leptons used in overlap removal
 lep_jetOverlap_pt 25 float
 lep_jetOverlap_eta 2.5 float
-ZMassL 71 float
-ZMassH 111 float
 muon_iso 0.15 float
+muon_iso_0p25 0.25 float
+lep_pt 25 float
+lep_eta 2.5 float

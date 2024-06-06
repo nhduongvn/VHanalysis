@@ -36,13 +36,60 @@ public :
    TTreeReaderValue<Float_t> L1PreFiringWeight_Nom = {fReader, "L1PreFiringWeight_Nom"};
    TTreeReaderValue<Float_t> L1PreFiringWeight_Up = {fReader, "L1PreFiringWeight_Up"};
 #endif
-   
+///////////////////////////////////////////////
+//Trigger
+///////////////////////////////////////////////
+#if defined(MC_2016) || defined(DATA_2016)
+   TTreeReaderValue<Bool_t> HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p20 = {fReader, "HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p20"};
+   TTreeReaderValue<Bool_t> HLT_AK8PFJet360_TrimMass30 = {fReader, "HLT_AK8PFJet360_TrimMass30"};
+   TTreeReaderValue<Bool_t> HLT_AK8PFJet450 = {fReader, "HLT_AK8PFJet450"};
+   TTreeReaderValue<Bool_t> HLT_PFJet450 = {fReader, "HLT_PFJet450"};
+   TTreeReaderValue<Bool_t> HLT_AK8PFHT700_TrimR0p1PT0p03Mass50 = {fReader, "HLT_AK8PFHT700_TrimR0p1PT0p03Mass50"};
+   TTreeReaderValue<Bool_t> HLT_PFHT900 = {fReader, "HLT_PFHT900"};
+   TTreeReaderValue<Bool_t> HLT_IsoMu24 = {fReader, "HLT_IsoMu24"};
+   TTreeReaderValue<Bool_t> HLT_IsoTkMu24 = {fReader, "HLT_IsoTkMu24"};
+   TTreeReaderValue<Bool_t> HLT_Mu50 = {fReader, "HLT_Mu50"};
+   TTreeReaderValue<Bool_t> HLT_TkMu50 = {fReader, "HLT_TkMu50"};
+  #if defined(MC_2016) || !defined(DATA_2016H)
+   TTreeReaderValue<Bool_t> HLT_PFHT800 = {fReader, "HLT_PFHT800"};
+  #endif
+#endif
+#if defined(MC_2017) || defined(DATA_2017)
+   TTreeReaderValue<Bool_t> HLT_AK8PFJet500 = {fReader, "HLT_AK8PFJet500"};
+   TTreeReaderValue<Bool_t> HLT_PFJet500 = {fReader, "HLT_PFJet500"};
+   TTreeReaderValue<Bool_t> HLT_PFHT1050 = {fReader, "HLT_PFHT1050"};
+   TTreeReaderValue<Bool_t> HLT_Mu27 = {fReader, "HLT_Mu27"};
+   TTreeReaderValue<Bool_t> HLT_IsoMu27 = {fReader, "HLT_IsoMu27"};
+   TTreeReaderValue<Bool_t> HLT_Mu50 = {fReader, "HLT_Mu50"};
+//   TTreeReaderValue<Bool_t> HLT_OldMu100 = {fReader, "HLT_OldMu100"};
+//   TTreeReaderValue<Bool_t> HLT_TkMu100 = {fReader, "HLT_TkMu100"};
+  #if defined(MC_2017) || !defined(DATA_2017B)
+   TTreeReaderValue<Bool_t> HLT_AK8PFJet400_TrimMass30 = {fReader, "HLT_AK8PFJet400_TrimMass30"};
+   TTreeReaderValue<Bool_t> HLT_AK8PFHT800_TrimMass50 = {fReader, "HLT_AK8PFHT800_TrimMass50"};
+  #endif
+  #if defined(MC_2017) || defined(DATA_2017F)
+   TTreeReaderValue<Bool_t> HLT_AK8PFJet330_PFAK8BTagCSV_p17 = {fReader, "HLT_AK8PFJet330_PFAK8BTagCSV_p17"};
+  #endif
+#endif
+#if defined(MC_2018) || defined(DATA_2018)
+   TTreeReaderValue<Bool_t> HLT_AK8PFJet330_TrimMass30_PFAK8BoostedDoubleB_np4 = {fReader, "HLT_AK8PFJet330_TrimMass30_PFAK8BoostedDoubleB_np4"};
+   TTreeReaderValue<Bool_t> HLT_AK8PFJet400_TrimMass30 = {fReader, "HLT_AK8PFJet400_TrimMass30"};
+   TTreeReaderValue<Bool_t> HLT_AK8PFJet500 = {fReader, "HLT_AK8PFJet500"};
+   TTreeReaderValue<Bool_t> HLT_PFJet500 = {fReader, "HLT_PFJet500"};
+   TTreeReaderValue<Bool_t> HLT_AK8PFHT800_TrimMass50 = {fReader, "HLT_AK8PFHT800_TrimMass50"};
+   TTreeReaderValue<Bool_t> HLT_PFHT1050 = {fReader, "HLT_PFHT1050"};
+   TTreeReaderValue<Bool_t> HLT_IsoMu24 = {fReader, "HLT_IsoMu24"};
+   TTreeReaderValue<Bool_t> HLT_Mu50 = {fReader, "HLT_Mu50"};
+   TTreeReaderValue<Bool_t> HLT_OldMu100 = {fReader, "HLT_OldMu100"};
+   TTreeReaderValue<Bool_t> HLT_TkMu100 = {fReader, "HLT_TkMu100"};
+#endif
    //Jet
    TTreeReaderValue<UInt_t> nJet = {fReader, "nJet"};
    TTreeReaderArray<Float_t> Jet_pt = {fReader, "Jet_pt"};
    TTreeReaderArray<Float_t> Jet_eta = {fReader, "Jet_eta"};
    TTreeReaderArray<Float_t> Jet_phi = {fReader, "Jet_phi"};
    TTreeReaderArray<Float_t> Jet_mass = {fReader, "Jet_mass"};
+   TTreeReaderArray<Int_t> Jet_jetId = {fReader, "Jet_jetId"};
    TTreeReaderArray<Float_t> Jet_btagDeepB = {fReader, "Jet_btagDeepB"};
    TTreeReaderArray<Float_t> Jet_btagDeepFlavB = {fReader, "Jet_btagDeepFlavB"};
    TTreeReaderArray<Float_t> Jet_puIdDisc = {fReader, "Jet_puIdDisc"};
@@ -67,23 +114,111 @@ public :
    TTreeReaderArray<Float_t> FatJet_particleNetMD_Xbb = {fReader, "FatJet_particleNetMD_Xbb"};
    TTreeReaderArray<Float_t> FatJet_particleNetMD_Xcc = {fReader, "FatJet_particleNetMD_Xcc"};
    TTreeReaderArray<Float_t> FatJet_particleNetMD_Xqq = {fReader, "FatJet_particleNetMD_Xqq"};
+   TTreeReaderArray<Float_t> FatJet_particleNet_TvsQCD = {fReader, "FatJet_particleNet_TvsQCD"};
+   TTreeReaderArray<Float_t> FatJet_particleNet_WvsQCD = {fReader, "FatJet_particleNet_WvsQCD"};
+   TTreeReaderArray<Float_t> FatJet_particleNet_ZvsQCD = {fReader, "FatJet_particleNet_ZvsQCD"};
 #endif
    TTreeReaderArray<Float_t> FatJet_deepTagMD_ZHccvsQCD = {fReader, "FatJet_deepTagMD_ZHccvsQCD"};
    TTreeReaderArray<Float_t> FatJet_deepTagMD_ZbbvsQCD = {fReader, "FatJet_deepTagMD_ZbbvsQCD"};
-   
+
+#if defined(POSTPROC) && (defined(MC_2016) || defined(MC_2017) || defined(MC_2018))
+  TTreeReaderArray<Float_t> FatJet_pt_raw = {fReader, "FatJet_pt_raw"};
+  TTreeReaderArray<Float_t> FatJet_pt_nom = {fReader, "FatJet_pt_nom"};
+  TTreeReaderArray<Float_t> FatJet_mass_raw = {fReader, "FatJet_mass_raw"};
+  TTreeReaderArray<Float_t> FatJet_mass_nom = {fReader, "FatJet_mass_nom"};
+  TTreeReaderArray<Float_t> FatJet_corr_JEC = {fReader, "FatJet_corr_JEC"};
+  TTreeReaderArray<Float_t> FatJet_corr_JER = {fReader, "FatJet_corr_JER"};
+  TTreeReaderArray<Float_t> FatJet_corr_JMS = {fReader, "FatJet_corr_JMS"};
+  TTreeReaderArray<Float_t> FatJet_corr_JMR = {fReader, "FatJet_corr_JMR"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_raw = {fReader, "FatJet_msoftdrop_raw"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_nom = {fReader, "FatJet_msoftdrop_nom"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_corr_JMR = {fReader, "FatJet_msoftdrop_corr_JMR"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_corr_JMS = {fReader, "FatJet_msoftdrop_corr_JMS"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_corr_PUPPI = {fReader, "FatJet_msoftdrop_corr_PUPPI"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_tau21DDT_nom = {fReader, "FatJet_msoftdrop_tau21DDT_nom"};
+  TTreeReaderArray<Float_t> FatJet_pt_jesTotalUp = {fReader, "FatJet_pt_jesTotalUp"};
+  TTreeReaderArray<Float_t> FatJet_pt_jesTotalDown = {fReader, "FatJet_pt_jesTotalDown"};
+  TTreeReaderArray<Float_t> FatJet_pt_jer0Up = {fReader, "FatJet_pt_jer0Up"};
+  TTreeReaderArray<Float_t> FatJet_pt_jer0Down = {fReader, "FatJet_pt_jer0Down"};
+  TTreeReaderArray<Float_t> FatJet_pt_jer1Up = {fReader, "FatJet_pt_jer1Up"};
+  TTreeReaderArray<Float_t> FatJet_pt_jer1Down = {fReader, "FatJet_pt_jer1Down"};
+  TTreeReaderArray<Float_t> FatJet_pt_jer2Up = {fReader, "FatJet_pt_jer2Up"};
+  TTreeReaderArray<Float_t> FatJet_pt_jer2Down = {fReader, "FatJet_pt_jer2Down"};
+  TTreeReaderArray<Float_t> FatJet_pt_jer3Up = {fReader, "FatJet_pt_jer3Up"};
+  TTreeReaderArray<Float_t> FatJet_pt_jer3Down = {fReader, "FatJet_pt_jer3Down"};
+  TTreeReaderArray<Float_t> FatJet_pt_jer4Up = {fReader, "FatJet_pt_jer4Up"};
+  TTreeReaderArray<Float_t> FatJet_pt_jer4Down = {fReader, "FatJet_pt_jer4Down"};
+  TTreeReaderArray<Float_t> FatJet_mass_jesTotalUp = {fReader, "FatJet_mass_jesTotalUp"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_jesTotalUp = {fReader, "FatJet_msoftdrop_jesTotalUp"};
+  TTreeReaderArray<Float_t> FatJet_mass_jesTotalDown = {fReader, "FatJet_mass_jesTotalDown"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_jesTotalDown = {fReader, "FatJet_msoftdrop_jesTotalDown"};
+  TTreeReaderArray<Float_t> FatJet_mass_jer0Up = {fReader, "FatJet_mass_jer0Up"};
+  TTreeReaderArray<Float_t> FatJet_mass_jer1Up = {fReader, "FatJet_mass_jer1Up"};
+  TTreeReaderArray<Float_t> FatJet_mass_jer2Up = {fReader, "FatJet_mass_jer2Up"};
+  TTreeReaderArray<Float_t> FatJet_mass_jer3Up = {fReader, "FatJet_mass_jer3Up"};
+  TTreeReaderArray<Float_t> FatJet_mass_jer4Up = {fReader, "FatJet_mass_jer4Up"};
+  TTreeReaderArray<Float_t> FatJet_mass_jer5Up = {fReader, "FatJet_mass_jer5Up"};
+  TTreeReaderArray<Float_t> FatJet_mass_jmrUp = {fReader, "FatJet_mass_jmrUp"};
+  TTreeReaderArray<Float_t> FatJet_mass_jmsUp = {fReader, "FatJet_mass_jmsUp"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_jer0Up = {fReader, "FatJet_msoftdrop_jer0Up"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_tau21DDT_jer0Up = {fReader, "FatJet_msoftdrop_tau21DDT_jer0Up"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_jer1Up = {fReader, "FatJet_msoftdrop_jer1Up"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_tau21DDT_jer1Up = {fReader, "FatJet_msoftdrop_tau21DDT_jer1Up"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_jer2Up = {fReader, "FatJet_msoftdrop_jer2Up"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_tau21DDT_jer2Up = {fReader, "FatJet_msoftdrop_tau21DDT_jer2Up"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_jer3Up = {fReader, "FatJet_msoftdrop_jer3Up"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_tau21DDT_jer3Up = {fReader, "FatJet_msoftdrop_tau21DDT_jer3Up"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_jer4Up = {fReader, "FatJet_msoftdrop_jer4Up"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_tau21DDT_jer4Up = {fReader, "FatJet_msoftdrop_tau21DDT_jer4Up"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_jer5Up = {fReader, "FatJet_msoftdrop_jer5Up"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_tau21DDT_jer5Up = {fReader, "FatJet_msoftdrop_tau21DDT_jer5Up"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_jmrUp = {fReader, "FatJet_msoftdrop_jmrUp"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_jmsUp = {fReader, "FatJet_msoftdrop_jmsUp"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_tau21DDT_jmrUp = {fReader, "FatJet_msoftdrop_tau21DDT_jmrUp"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_tau21DDT_jmsUp = {fReader, "FatJet_msoftdrop_tau21DDT_jmsUp"};
+  TTreeReaderArray<Float_t> FatJet_mass_jer0Down = {fReader, "FatJet_mass_jer0Down"};
+  TTreeReaderArray<Float_t> FatJet_mass_jer1Down = {fReader, "FatJet_mass_jer1Down"};
+  TTreeReaderArray<Float_t> FatJet_mass_jer2Down = {fReader, "FatJet_mass_jer2Down"};
+  TTreeReaderArray<Float_t> FatJet_mass_jer3Down = {fReader, "FatJet_mass_jer3Down"};
+  TTreeReaderArray<Float_t> FatJet_mass_jer4Down = {fReader, "FatJet_mass_jer4Down"};
+  TTreeReaderArray<Float_t> FatJet_mass_jer5Down = {fReader, "FatJet_mass_jer5Down"};
+  TTreeReaderArray<Float_t> FatJet_mass_jmrDown = {fReader, "FatJet_mass_jmrDown"};
+  TTreeReaderArray<Float_t> FatJet_mass_jmsDown = {fReader, "FatJet_mass_jmsDown"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_jer0Down = {fReader, "FatJet_msoftdrop_jer0Down"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_tau21DDT_jer0Down = {fReader, "FatJet_msoftdrop_tau21DDT_jer0Down"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_jer1Down = {fReader, "FatJet_msoftdrop_jer1Down"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_tau21DDT_jer1Down = {fReader, "FatJet_msoftdrop_tau21DDT_jer1Down"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_jer2Down = {fReader, "FatJet_msoftdrop_jer2Down"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_tau21DDT_jer2Down = {fReader, "FatJet_msoftdrop_tau21DDT_jer2Down"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_jer3Down = {fReader, "FatJet_msoftdrop_jer3Down"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_tau21DDT_jer3Down = {fReader, "FatJet_msoftdrop_tau21DDT_jer3Down"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_jer4Down = {fReader, "FatJet_msoftdrop_jer4Down"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_tau21DDT_jer4Down = {fReader, "FatJet_msoftdrop_tau21DDT_jer4Down"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_jer5Down = {fReader, "FatJet_msoftdrop_jer5Down"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_tau21DDT_jer5Down = {fReader, "FatJet_msoftdrop_tau21DDT_jer5Down"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_jmrDown = {fReader, "FatJet_msoftdrop_jmrDown"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_jmsDown = {fReader, "FatJet_msoftdrop_jmsDown"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_tau21DDT_jmrDown = {fReader, "FatJet_msoftdrop_tau21DDT_jmrDown"};
+  TTreeReaderArray<Float_t> FatJet_msoftdrop_tau21DDT_jmsDown = {fReader, "FatJet_msoftdrop_tau21DDT_jmsDown"};
+#endif
 
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
-   TTreeReaderValue<Float_t> Pileup_nTrueInt = {fReader, "Pileup_nTrueInt"};
-   TTreeReaderValue<Float_t> genWeight = {fReader, "genWeight"};
-   TTreeReaderArray<Int_t> Jet_hadronFlavour = {fReader, "Jet_hadronFlavour"};
-   TTreeReaderArray<Int_t> FatJet_hadronFlavour = {fReader, "FatJet_hadronFlavour"};
-   TTreeReaderValue<UInt_t> nGenPart = {fReader, "nGenPart"};
-   TTreeReaderArray<Float_t> GenPart_eta = {fReader, "GenPart_eta"};
-   TTreeReaderArray<Float_t> GenPart_mass = {fReader, "GenPart_mass"};
-   TTreeReaderArray<Float_t> GenPart_phi = {fReader, "GenPart_phi"};
-   TTreeReaderArray<Float_t> GenPart_pt = {fReader, "GenPart_pt"};
-   TTreeReaderArray<Int_t> GenPart_genPartIdxMother = {fReader, "GenPart_genPartIdxMother"};
-   TTreeReaderArray<Int_t> GenPart_pdgId = {fReader, "GenPart_pdgId"};
+  TTreeReaderValue<Float_t> Pileup_nTrueInt = {fReader, "Pileup_nTrueInt"};
+  TTreeReaderValue<Float_t> genWeight = {fReader, "genWeight"};
+  TTreeReaderArray<Int_t> Jet_hadronFlavour = {fReader, "Jet_hadronFlavour"};
+  TTreeReaderArray<Int_t> FatJet_hadronFlavour = {fReader, "FatJet_hadronFlavour"};
+  TTreeReaderValue<UInt_t> nGenPart = {fReader, "nGenPart"};
+  TTreeReaderArray<Float_t> GenPart_eta = {fReader, "GenPart_eta"};
+  TTreeReaderArray<Float_t> GenPart_mass = {fReader, "GenPart_mass"};
+  TTreeReaderArray<Float_t> GenPart_phi = {fReader, "GenPart_phi"};
+  TTreeReaderArray<Float_t> GenPart_pt = {fReader, "GenPart_pt"};
+  TTreeReaderArray<Int_t> GenPart_genPartIdxMother = {fReader, "GenPart_genPartIdxMother"};
+  TTreeReaderArray<Int_t> GenPart_pdgId = {fReader, "GenPart_pdgId"};
+  //TTreeReaderArray<Int_t> GenPart_status = {fReader, "GenPart_status"};
+  //TTreeReaderArray<Int_t> GenPart_statusFlags = {fReader, "GenPart_statusFlags"};
+  //TTreeReaderValue<UInt_t> nGenJet = {fReader, "nGenJet"};
+  //TTreeReaderArray<Float_t> GenJet_eta = {fReader, "GenJet_eta"};
+  //TTreeReaderArray<Float_t> GenJet_pt = {fReader, "GenJet_pt"};
 #endif
 
    // Electron
@@ -95,6 +230,8 @@ public :
    TTreeReaderArray<Int_t> Electron_charge = {fReader, "Electron_charge"};
    TTreeReaderArray<Float_t> Electron_deltaEtaSC = {fReader, "Electron_deltaEtaSC"};
    TTreeReaderArray<Int_t> Electron_cutBased = {fReader, "Electron_cutBased"};
+   TTreeReaderArray<Float_t> Electron_dz = {fReader, "Electron_dz"};
+   TTreeReaderArray<Float_t> Electron_dxy = {fReader, "Electron_dxy"};
 
    // Muon
    TTreeReaderValue<UInt_t> nMuon = {fReader, "nMuon"};
@@ -105,6 +242,7 @@ public :
    TTreeReaderArray<Int_t> Muon_charge = {fReader, "Muon_charge"};
    TTreeReaderArray<Float_t> Muon_pfRelIso04_all = {fReader, "Muon_pfRelIso04_all"};
    TTreeReaderArray<Bool_t> Muon_mediumId = {fReader, "Muon_mediumId"};
+   TTreeReaderArray<Bool_t> Muon_looseId = {fReader, "Muon_looseId"};
 
    //MET
    TTreeReaderValue<Float_t> MET_pt = {fReader, "MET_pt"};
