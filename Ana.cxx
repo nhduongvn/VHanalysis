@@ -273,8 +273,11 @@ int main(int argc, char *argv[]) {
 
   //sels.push_back(&sel) ;
   sels.push_back(&VbbHcc_sel);
+
+#if defined(POSTPROC) 
   sels.push_back(&VbbHcc_triggerSel);
-  
+#endif 
+
   //add all selectors to processors
   for (std::vector<Selector*>::iterator it = sels.begin() ; it != sels.end() ; it++) ana.addSelector(*it) ;
   std::cout << "\n Selections added" << std::endl; 

@@ -171,6 +171,7 @@ int VbbHcc_triggerSel::NextraJet(std::vector<JetObjBoosted>& fatJets, std::vecto
 
 void VbbHcc_triggerSel::Process(Reader* r) {
 
+#if !defined(POSTPROC)
   //Weights
   float genWeight = 1.;
   float puSF = 1.;
@@ -591,7 +592,8 @@ void VbbHcc_triggerSel::Process(Reader* r) {
 #endif
   }
 
-
+//endif for !defined(POSTPROC)
+#endif
 
 
 } //end Process
