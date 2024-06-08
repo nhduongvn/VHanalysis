@@ -30,7 +30,7 @@ mydict:
 	@rootcint Reader_dict.cxx -c src/Reader.h
 	@rootcint Processor_dict.cxx -c src/Processor.h
 
-main:	Ana.cxx Global.o Reader.o Processor.o BTagCalibrationStandalone.o LumiMaskFilter.o Reader_dict.o Processor_dict.o Selector.o VbbHcc_selector.o VbbHcc_triggerSel.o 
+main:	Ana.cxx Global.o Reader.o Processor.o BTagCalibrationStandalone.o LumiMaskFilter.o Reader_dict.o Processor_dict.o Selector.o VbbHcc_selector.o VbbHcc_selector_unc.o VbbHcc_triggerSel.o 
 	#$(CXX) $(CXXFLAGS) $(ROOTGLIBS) $^ -o $@
 	$(CXX) $(CXXFLAGS) $(ROOTGLIBS) $^ -o $@ yaml-cpp/build/libyaml-cpp.a
 

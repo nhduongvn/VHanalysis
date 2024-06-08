@@ -7,6 +7,7 @@
 #include "src/Processor.h"
 #include "src/Selector.h"
 #include "src/VbbHcc_selector.h"
+#include "src/VbbHcc_selector_unc.h"
 #include "src/VbbHcc_triggerSel.h"
 
 #include "src/Global.h"
@@ -181,8 +182,12 @@ int main(int argc, char *argv[]) {
   
   //Selection for VH 
   //VH_selection sel ;
+
   VbbHcc_selector VbbHcc_sel ;
+  VbbHcc_selector_unc VbbHcc_sel_unc ;
+
   VbbHcc_sel.SetDataInfo(isData,year); //need to unify SetDataInfo for ana and this
+  VbbHcc_sel_unc.SetDataInfo(isData,year); //need to unify SetDataInfo for ana and this
   VbbHcc_triggerSel VbbHcc_triggerSel;
 
   std::string fName_puSF;
@@ -196,9 +201,11 @@ int main(int argc, char *argv[]) {
   //if (syst == "L1PREFIRINGD") sel.SetL1prefiring("l1prefiringd");
   if (syst == "L1PREFIRINGU") {
     VbbHcc_sel.SetL1prefiring("l1prefiringu");
+    VbbHcc_sel_unc.SetL1prefiring("l1prefiringu");
   }
   if (syst == "L1PREFIRINGD") {
     VbbHcc_sel.SetL1prefiring("l1prefiringd");
+    VbbHcc_sel_unc.SetL1prefiring("l1prefiringd");
   }
   std::string jetPUidUncType = "central";
   if (syst == "JETPUIDU") jetPUidUncType = "up";
@@ -222,15 +229,17 @@ int main(int argc, char *argv[]) {
   if (syst == "PUD") fName_puSF = "CalibData/2018_pileup_ratio_down.root";
 #endif
   VbbHcc_sel.SetJetMetSyst("central");
-  if (syst == "JESU") VbbHcc_sel.SetJetMetSyst("jesu");
-  if (syst == "JESD") VbbHcc_sel.SetJetMetSyst("jesd");
-  if (syst == "JERU") VbbHcc_sel.SetJetMetSyst("jeru");
-  if (syst == "JERD") VbbHcc_sel.SetJetMetSyst("jerd");
+  VbbHcc_sel_unc.SetJetMetSyst("central");
+  if (syst == "JESU") VbbHcc_sel_unc.SetJetMetSyst("jesu");
+  if (syst == "JESD") VbbHcc_sel_unc.SetJetMetSyst("jesd");
+  if (syst == "JERU") VbbHcc_sel_unc.SetJetMetSyst("jeru");
+  if (syst == "JERD") VbbHcc_sel_unc.SetJetMetSyst("jerd");
   VbbHcc_sel.SetHFtagUncType("central");
-  if (syst == "TAG_BBU") VbbHcc_sel.SetHFtagUncType("bbup");
-  if (syst == "TAG_BBD") VbbHcc_sel.SetHFtagUncType("bbdown");
-  if (syst == "TAG_CCU") VbbHcc_sel.SetHFtagUncType("ccup");
-  if (syst == "TAG_CCD") VbbHcc_sel.SetHFtagUncType("ccdown");
+  VbbHcc_sel_unc.SetHFtagUncType("central");
+  if (syst == "TAG_BBU") VbbHcc_sel_unc.SetHFtagUncType("bbup");
+  if (syst == "TAG_BBD") VbbHcc_sel_unc.SetHFtagUncType("bbdown");
+  if (syst == "TAG_CCU") VbbHcc_sel_unc.SetHFtagUncType("ccup");
+  if (syst == "TAG_CCD") VbbHcc_sel_unc.SetHFtagUncType("ccdown");
 
 #if defined(DATA_2016)
   //TODO: update to UL
@@ -250,6 +259,8 @@ int main(int argc, char *argv[]) {
   //sel.SetPileupSF(fName_puSF);
   VbbHcc_sel.SetCentralGenWeight(centralGenWeight);
   VbbHcc_sel.SetPileupSF(fName_puSF);
+  VbbHcc_sel_unc.SetCentralGenWeight(centralGenWeight);
+  VbbHcc_sel_unc.SetPileupSF(fName_puSF);
   VbbHcc_triggerSel.SetCentralGenWeight(centralGenWeight);
   VbbHcc_triggerSel.SetPileupSF(fName_puSF);
   fName_PUjetID_SF = "CalibData/scalefactorsPUID_81Xtraining.root";
@@ -258,25 +269,32 @@ int main(int argc, char *argv[]) {
   VbbHcc_sel.SetPUjetidCalib(fName_PUjetID_SF,fName_PUjetID_eff,jetPUidUncType); //pileup jet ID SF
   VbbHcc_sel.SetXbbXccEff(fName_xbb_xcc_eff);
   VbbHcc_sel.SetTriggerSF(fName_triggerSF);
+  VbbHcc_sel_unc.SetPUjetidCalib(fName_PUjetID_SF,fName_PUjetID_eff,jetPUidUncType); //pileup jet ID SF
+  VbbHcc_sel_unc.SetXbbXccEff(fName_xbb_xcc_eff);
+  VbbHcc_sel_unc.SetTriggerSF(fName_triggerSF);
   VbbHcc_triggerSel.SetPUjetidCalib(fName_PUjetID_SF,fName_PUjetID_eff,jetPUidUncType); //pileup jet ID SF
 #endif
 #if defined(DATA_2016) || defined(DATA_2017) || defined(DATA_2018)
   //sel.SetLumiMaskFilter(fName_lumiMaskFilter);
   VbbHcc_sel.SetLumiMaskFilter(fName_lumiMaskFilter);
+  VbbHcc_sel_unc.SetLumiMaskFilter(fName_lumiMaskFilter);
   VbbHcc_triggerSel.SetLumiMaskFilter(fName_lumiMaskFilter);
 #endif
 
   std::string fName_n2b1_cut = "CalibData/n2b1_cut.root"; 
   VbbHcc_sel.Setn2b1Cut(fName_n2b1_cut);
+  VbbHcc_sel_unc.Setn2b1Cut(fName_n2b1_cut);
   VbbHcc_triggerSel.Setn2b1Cut(fName_n2b1_cut);
 
 
   //sels.push_back(&sel) ;
+#if !defined(POSTPROC)
   sels.push_back(&VbbHcc_sel);
-
-#if defined(POSTPROC) 
   sels.push_back(&VbbHcc_triggerSel);
-#endif 
+#else
+  sels.push_back(&VbbHcc_sel_unc);
+#endif
+
 
   //add all selectors to processors
   for (std::vector<Selector*>::iterator it = sels.begin() ; it != sels.end() ; it++) ana.addSelector(*it) ;
