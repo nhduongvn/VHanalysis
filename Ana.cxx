@@ -12,6 +12,8 @@
 
 #include "src/Global.h"
 
+#include "correction.h"
+
 std::vector<std::string> splitNames(const std::string& files, std::string sep = ",")
 {
   std::vector<std::string> fileList;

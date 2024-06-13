@@ -4,6 +4,7 @@ CXX	= g++
 ROOTCFLAGS   	:= $(shell root-config --cflags)
 ROOTLIBS     	:= $(shell root-config --libs)
 ROOTGLIBS    	:= $(shell root-config --glibs)
+CORLIBS       := $(shell correction config --cflags --ldflags --rpath)
 
 #FORMAT: MC_2016, MC_2017, MC_2018, DATA_2016, DATA_2017, DATA_2018
 #SUBFORMAT: MC_DUMMY, MC_DUMMY, MC_DUMMY, DATA_2016B, ..., DATA_2017B, ..., DATA_2018B, ...
@@ -32,7 +33,7 @@ mydict:
 
 main:	Ana.cxx Global.o Reader.o Processor.o BTagCalibrationStandalone.o LumiMaskFilter.o Reader_dict.o Processor_dict.o Selector.o VbbHcc_selector.o VbbHcc_selector_unc.o VbbHcc_triggerSel.o 
 	#$(CXX) $(CXXFLAGS) $(ROOTGLIBS) $^ -o $@
-	$(CXX) $(CXXFLAGS) $(ROOTGLIBS) $^ -o $@ yaml-cpp/build/libyaml-cpp.a
+	$(CXX) $(CXXFLAGS) $(ROOTGLIBS) $(CORLIBS) $^ -o $@ yaml-cpp/build/libyaml-cpp.a
 
 #main:	Ana.cxx Global.o Reader.o Processor.o Reader_dict.o Processor_dict.o Selector.o ZbSelection.o
 #	$(CXX) $(CXXFLAGS) $(ROOTGLIBS) $^ -o $@
