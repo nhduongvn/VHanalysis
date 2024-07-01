@@ -39,6 +39,7 @@ def write_condor_config(workDir, sample_format, sample_subformat, nanoaod_format
   f.write('notify_user = ${LOGNAME}@FNAL.GOV \n')
   f.write('+LENGTH="SHORT" \n')
   #f.write('x509userproxy = /tmp/x509up_u12772 \n')
+f.write('request_memory = 4100 \n')
   f.write('x509userproxy = $ENV(X509_USER_PROXY) \n')
   tmp = 'Queue ' + str(nJob) + '\n'
   f.write(tmp)
