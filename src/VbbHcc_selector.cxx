@@ -34,6 +34,7 @@ VbbHcc_selector::~VbbHcc_selector() {
   if(h_VbbHcc_select3) delete h_VbbHcc_select3;
   if(h_VbbHcc_select4) delete h_VbbHcc_select4;
   if(h_VbbHcc_PN_med) delete h_VbbHcc_PN_med;
+  if(h_VbbHcc_PN_med_zmass_deltaPhi) delete h_VbbHcc_PN_med_zmass_deltaPhi;
   if(h_VbbHcc_PN_med_xccWeight) delete h_VbbHcc_PN_med_xccWeight;
   if(h_VbbHcc_PN_med_qcdCR) delete h_VbbHcc_PN_med_qcdCR;
   if(h_VbbHcc_PN_med_topCR_pass) delete h_VbbHcc_PN_med_topCR_pass;
@@ -46,7 +47,10 @@ VbbHcc_selector::~VbbHcc_selector() {
   if(h_VbbHcc_qcd_1) delete h_VbbHcc_qcd_1;
   if(h_VbbHcc_qcd_2) delete h_VbbHcc_qcd_2;
   if(h_VbbHcc_qcd_3) delete h_VbbHcc_qcd_3;
-  if(h_Hcc) delete h_Hcc;
+  
+  if(h_VccHcc_PN_med) delete h_VccHcc_PN_med;
+  if(h_VccHcc_PN_med_zmass_deltaPhi) delete h_VccHcc_PN_med_zmass_deltaPhi;
+
   if(h_eff_xbb_bb) delete h_eff_xbb_bb;
   if(h_eff_xbb_cc) delete h_eff_xbb_cc;
   if(h_eff_xbb_light) delete h_eff_xbb_light;
@@ -127,7 +131,7 @@ void VbbHcc_selector::SlaveBegin(Reader* r) {
   h_cutFlow_VbbHcc_select4->GetXaxis()->SetBinLabel(6,"Jet n2b1");
   h_cutFlow_VbbHcc_select4->GetXaxis()->SetBinLabel(7,"Jet BvL");
   h_cutFlow_VbbHcc_select4->GetXaxis()->SetBinLabel(8,"Jet CvL");
-  h_cutFlow_VbbHcc_PN_med = new TH1D("CutFlow_VbbHcc_boosted_PN_med","",10,0,10) ;
+  h_cutFlow_VbbHcc_PN_med = new TH1D("CutFlow_VbbHcc_boosted_PN_med","",12,0,12) ;
   h_cutFlow_VbbHcc_PN_med->GetXaxis()->SetBinLabel(1,"Total");
   h_cutFlow_VbbHcc_PN_med->GetXaxis()->SetBinLabel(2,"Lumi");
   h_cutFlow_VbbHcc_PN_med->GetXaxis()->SetBinLabel(3,"Jet kin");
@@ -138,10 +142,25 @@ void VbbHcc_selector::SlaveBegin(Reader* r) {
   h_cutFlow_VbbHcc_PN_med->GetXaxis()->SetBinLabel(8,"Extra jets");
   h_cutFlow_VbbHcc_PN_med->GetXaxis()->SetBinLabel(9,"pT_miss");
   h_cutFlow_VbbHcc_PN_med->GetXaxis()->SetBinLabel(10,"Trigger");
+  h_cutFlow_VbbHcc_PN_med->GetXaxis()->SetBinLabel(11,"DeltaPhi");
+  h_cutFlow_VbbHcc_PN_med->GetXaxis()->SetBinLabel(12,"ZMass");
+  
+  h_cutFlow_VccHcc_PN_med = new TH1D("CutFlow_VccHcc_boosted_PN_med","",12,0,12) ;
+  h_cutFlow_VccHcc_PN_med->GetXaxis()->SetBinLabel(1,"Total");
+  h_cutFlow_VccHcc_PN_med->GetXaxis()->SetBinLabel(2,"Lumi");
+  h_cutFlow_VccHcc_PN_med->GetXaxis()->SetBinLabel(3,"Jet kin");
+  h_cutFlow_VccHcc_PN_med->GetXaxis()->SetBinLabel(4,"Jet rho");
+  h_cutFlow_VccHcc_PN_med->GetXaxis()->SetBinLabel(5,"Jet n2b1");
+  h_cutFlow_VccHcc_PN_med->GetXaxis()->SetBinLabel(6,"Jet Zcc");
+  h_cutFlow_VccHcc_PN_med->GetXaxis()->SetBinLabel(7,"Jet Hcc");
+  h_cutFlow_VccHcc_PN_med->GetXaxis()->SetBinLabel(8,"Extra jets");
+  h_cutFlow_VccHcc_PN_med->GetXaxis()->SetBinLabel(9,"pT_miss");
+  h_cutFlow_VccHcc_PN_med->GetXaxis()->SetBinLabel(10,"Trigger");
+  h_cutFlow_VccHcc_PN_med->GetXaxis()->SetBinLabel(11,"DeltaPhi");
+  h_cutFlow_VccHcc_PN_med->GetXaxis()->SetBinLabel(12,"ZMass");
 
   h_VbbHcc_twojets = new VHBoostedPlots("VbbHcc_boosted_twojets");
   h_VbbHcc = new VHBoostedPlots("VbbHcc_boosted");
-  h_Hcc = new HBoostedPlots("Hcc_boosted");
   h_VbbHcc_select1 = new VHBoostedPlots("VbbHcc_boosted_select1");
   h_VbbHcc_select2 = new VHBoostedPlots("VbbHcc_boosted_select2");
   h_VbbHcc_select3 = new VHBoostedPlots("VbbHcc_boosted_select3");
@@ -151,6 +170,7 @@ void VbbHcc_selector::SlaveBegin(Reader* r) {
   h_VbbHcc_qcd_2= new VHBoostedPlots("VbbHcc_boosted_qcd_2");
   h_VbbHcc_qcd_3= new VHBoostedPlots("VbbHcc_boosted_qcd_3");
   h_VbbHcc_PN_med = new VHBoostedPlots("VbbHcc_boosted_PN_med");
+  h_VbbHcc_PN_med_zmass_deltaPhi = new VHBoostedPlots("VbbHcc_boosted_PN_med_zmass_deltaPhi");
   h_VbbHcc_PN_med_xccWeight = new VHBoostedPlots("VbbHcc_boosted_PN_med_xccWeight");
   h_VbbHcc_PN_med_qcdCR = new VHBoostedPlots("VbbHcc_boosted_PN_med_qcdCR");
   h_VbbHcc_PN_med_topCR_pass = new VHBoostedPlots("VbbHcc_boosted_PN_med_topCR_pass");
@@ -160,10 +180,13 @@ void VbbHcc_selector::SlaveBegin(Reader* r) {
   h_VbbHcc_PN_med_topCR1_pass = new VHBoostedPlots("VbbHcc_boosted_PN_med_topCR1_pass");
   h_VbbHcc_PN_med_topCR1_fail = new VHBoostedPlots("VbbHcc_boosted_PN_med_topCR1_fail");
   
+  h_VccHcc_PN_med = new VHBoostedPlots("VccHcc_boosted_PN_med");
+  h_VccHcc_PN_med_zmass_deltaPhi = new VHBoostedPlots("VccHcc_boosted_PN_med_zmass_deltaPhi");
   //test H and Z mass from MC truth
   h_test_MZ = new TH1D("MZbb_MCtruth","",200,0,200);
   h_test_MH = new TH1D("MHcc_MCtruth","",200,0,200);
   h_NextraJet = new TH1D("NextraJet","",10,0,10);
+  h_NextraJet_VccHcc = new TH1D("NextraJet_VccHcc","",10,0,10);
   h_triggerCheck = new TH1D("TriggerCheck","",3,0,3);
   h_ljpt = new TH1D("h_ljpt","",3000,0,3000);
   h_ljpt_gen = new TH1D("h_ljpt_gen","",3000,0,3000);
@@ -200,6 +223,8 @@ void VbbHcc_selector::SlaveBegin(Reader* r) {
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_VbbHcc_PN_med->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VbbHcc_PN_med_zmass_deltaPhi->returnHisto() ;
+  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_VbbHcc_PN_med_xccWeight->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_VbbHcc_PN_med_qcdCR->returnHisto() ;
@@ -216,7 +241,9 @@ void VbbHcc_selector::SlaveBegin(Reader* r) {
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_VbbHcc_PN_med_topCR1_fail->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
-  tmp = h_Hcc->returnHisto() ;
+  tmp = h_VccHcc_PN_med->returnHisto() ;
+  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  tmp = h_VccHcc_PN_med_zmass_deltaPhi->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_eff_xbb_bb->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
@@ -250,6 +277,7 @@ void VbbHcc_selector::SlaveBegin(Reader* r) {
   r->GetOutputList()->Add(h_cutFlow_VbbHcc_select3) ;
   r->GetOutputList()->Add(h_cutFlow_VbbHcc_select4) ;
   r->GetOutputList()->Add(h_cutFlow_VbbHcc_PN_med) ;
+  r->GetOutputList()->Add(h_cutFlow_VccHcc_PN_med) ;
   r->GetOutputList()->Add(h_test_MZ);
   r->GetOutputList()->Add(h_test_MH);
   r->GetOutputList()->Add(h_NextraJet);
@@ -343,6 +371,7 @@ void VbbHcc_selector::Process(Reader* r) {
   h_cutFlow_VbbHcc_select3->Fill(0.5,evtW);
   h_cutFlow_VbbHcc_select4->Fill(0.5,evtW);
   h_cutFlow_VbbHcc_PN_med->Fill(0.5,evtW);
+  h_cutFlow_VccHcc_PN_med->Fill(0.5,evtW);
 
 #if defined(DATA_2016) || defined(DATA_2017) || defined(DATA_2018)
   h_evt->Fill(-1) ;
@@ -357,6 +386,7 @@ void VbbHcc_selector::Process(Reader* r) {
   h_cutFlow_VbbHcc_select3->Fill(1.5,evtW);
   h_cutFlow_VbbHcc_select4->Fill(1.5,evtW);
   h_cutFlow_VbbHcc_PN_med->Fill(1.5,evtW);
+  h_cutFlow_VccHcc_PN_med->Fill(1.5,evtW);
 
   //std::cout << "\n Data type: " << m_isData ;
   //std::cout << "\n Number of jets: " << *(r->nJet) ;
@@ -498,6 +528,7 @@ void VbbHcc_selector::Process(Reader* r) {
     h_cutFlow_VbbHcc_select3->Fill(2.5,evtW);
     h_cutFlow_VbbHcc_select4->Fill(2.5,evtW);
     h_cutFlow_VbbHcc_PN_med->Fill(2.5,evtW);
+    h_cutFlow_VccHcc_PN_med->Fill(2.5,evtW);
     for (auto i:idx_tmps) {
       if(jets[i].m_rho > -6 && jets[i].m_rho < -2.1) idx_tmps_1.push_back(i);
     }
@@ -565,6 +596,7 @@ void VbbHcc_selector::Process(Reader* r) {
     h_cutFlow_VbbHcc_select3->Fill(4.5,evtW);
     h_cutFlow_VbbHcc_select4->Fill(4.5,evtW);
     h_cutFlow_VbbHcc_PN_med->Fill(3.5,evtW);
+    h_cutFlow_VccHcc_PN_med->Fill(3.5,evtW);
     for (auto i:idx_tmps_1) {
       //std::cout << "\n" << jets[i].m_lvec.Pt() << " " << jets[i].m_rho << " " << Getn2b1Cut(jets[i].m_rho,jets[i].m_lvec.Pt());
       if(jets[i].m_n2b1 < Getn2b1Cut(jets[i].m_rho,jets[i].m_lvec.Pt())) idx_tmps_2.push_back(i);
@@ -579,6 +611,7 @@ void VbbHcc_selector::Process(Reader* r) {
   for(auto i:idx_tmps_2) {
     if(!filled) {
       h_cutFlow_VbbHcc_PN_med->Fill(4.5,evtW);
+      h_cutFlow_VccHcc_PN_med->Fill(4.5,evtW);
       filled=true;
     }
     if(jets[i].m_PN_Xbb>max_Xbb) {
@@ -647,29 +680,39 @@ void VbbHcc_selector::Process(Reader* r) {
   float evtW_tag = evtW*tagW;
   //float evtW_tag = evtW;
 
+  bool isZbbHcc(false);
   if(idx_bb>=0) {
     float trigSF=1;
     if(idx_cc>=0) {
       h_VbbHcc_PN_med->h_bbTagDis_beforeCut->Fill(jets[idx_bb].m_PN_Xbb,evtW_tag);
       h_VbbHcc_PN_med->h_ccTagDis_beforeCut->Fill(jets[idx_cc].m_PN_Xcc,evtW_tag);
       float jetPtMax = std::max(jets[idx_bb].m_lvec.Pt(),jets[idx_cc].m_lvec.Pt());
+      float jetPtMin = std::min(jets[idx_bb].m_lvec.Pt(),jets[idx_cc].m_lvec.Pt());
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018) 
-      trigSF = GetTrigSF(jetPtMax);
+      trigSF = GetTrigSF(jetPtMax,jetPtMin);
+      //float trigSFtmp = GetTrigSF(jetPtMax);
+      //std::cout << "\n " << jetPtMax << " " << jetPtMin << " " << trigSF << " " << trigSFtmp;
 #endif
     }
+    float evtW_tag_trig = evtW_tag*trigSF;
     if (jets[idx_bb].m_PN_Xbb>=XbbCut) {
       h_cutFlow_VbbHcc_PN_med->Fill(5.5,evtW_tag);
       if(idx_cc>=0) {
-        std::vector<JetObjBoosted> jet_VbbZcc{jets[idx_bb], jets[idx_cc]};
+        std::vector<JetObjBoosted> jet_VbbHcc{jets[idx_bb], jets[idx_cc]};
         ZObj Z(jets[idx_bb]);
         HObj H(jets[idx_cc]);
         if (nExtraJet < 2 && passMET && trigger) {
           float xcc_weight = 1.0 ;
+          float tagWtmp = 1.0;
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018) 
-          xcc_weight = Get_xccbb_weight(jets,idx_bb,"xcc");
+          xcc_weight = Get_xccbb_weight(jets,idx_bb,XbbCut,XccCut,"xcc");
+          auto jet_bb = std::make_pair(jets[idx_bb].m_lvec.Pt(),true);
+          tagWtmp = CalBtagWeightBoosted(jet_bb,"xbb",m_hfTagUncType);
 #endif
-          h_VbbHcc_PN_med_xccWeight->Fill(H,Z,evtW*xcc_weight*trigSF);
-          h_VbbHcc_PN_med_xccWeight->FillJets(jet_VbbZcc,evtW*xcc_weight*trigSF);
+          float w = evtW*trigSF*tagWtmp*xcc_weight;
+
+          h_VbbHcc_PN_med_xccWeight->Fill(H,Z,w);
+          h_VbbHcc_PN_med_xccWeight->FillJets(jet_VbbHcc,w);
         }
         if (jets[idx_cc].m_PN_Xcc>=XccCut) {
           h_cutFlow_VbbHcc_PN_med->Fill(6.5,evtW_tag);
@@ -687,28 +730,41 @@ void VbbHcc_selector::Process(Reader* r) {
             if (passMET) {
               h_cutFlow_VbbHcc_PN_med->Fill(8.5,evtW_tag);
               if (trigger) {
+                isZbbHcc = true;
                 h_nb_1->Fill(nb);
                 h_nB_1->Fill(nB);
                 h_nbB_1->Fill(nb+nB);
-                h_cutFlow_VbbHcc_PN_med->Fill(9.5,evtW_tag*trigSF);
-                h_VbbHcc_PN_med->Fill(H,Z,evtW_tag*trigSF);
-                h_VbbHcc_PN_med->FillJets(jet_VbbZcc,evtW_tag*trigSF);
-                h_VbbHcc_PN_med->h_bbTagDis->Fill(jets[idx_bb].m_PN_Xbb,evtW_tag*trigSF);
-                h_VbbHcc_PN_med->h_ccTagDis->Fill(jets[idx_cc].m_PN_Xcc,evtW_tag*trigSF);
-                h_VbbHcc_PN_med->h_MET->Fill(*(r->MET_pt),evtW_tag*trigSF);
+                //std::cout << "\n TagW: " << jets[idx_bb].m_lvec.Pt() << " " << jets[idx_bb].m_PN_Xbb << " " << jets[idx_cc].m_lvec.Pt() << " " << jets[idx_cc].m_PN_Xcc << " " << evtW << " " << trigSF << " " << tagW << " " << evtW_tag_trig;
+                h_cutFlow_VbbHcc_PN_med->Fill(9.5,evtW_tag_trig);
+                h_VbbHcc_PN_med->Fill(H,Z,evtW_tag_trig);
+                h_VbbHcc_PN_med->FillJets(jet_VbbHcc,evtW_tag_trig);
+                h_VbbHcc_PN_med->h_bbTagDis->Fill(jets[idx_bb].m_PN_Xbb,evtW_tag_trig);
+                h_VbbHcc_PN_med->h_ccTagDis->Fill(jets[idx_cc].m_PN_Xcc,evtW_tag_trig);
+                h_VbbHcc_PN_med->h_MET->Fill(*(r->MET_pt),evtW_tag_trig);
+                
+                float deltaPhi = jets[idx_bb].m_lvec.DeltaPhi(jets[idx_cc].m_lvec);
+                if (deltaPhi > 2.5) {
+                  h_cutFlow_VbbHcc_PN_med->Fill(10.5,evtW_tag_trig);
+                  if (jets[idx_bb].m_lvec.M() < 120 && jets[idx_bb].m_lvec.M() > 60) 
+                  {
+                    h_cutFlow_VbbHcc_PN_med->Fill(11.5,evtW_tag_trig);
+                    h_VbbHcc_PN_med_zmass_deltaPhi->Fill(H,Z,evtW_tag_trig);
+                    h_VbbHcc_PN_med_zmass_deltaPhi->FillJets(jet_VbbHcc,evtW_tag_trig);
+                  }
+                }
               }
             }
           }
           //top CR
           else { //nExtraJet >= 2
             if (passMET && trigger) {
-              h_VbbHcc_PN_med_topCR_pass->h_ccPN_TopvsQCD->Fill(jets[idx_cc].m_PN_TopvsQCD,evtW_tag*trigSF);
-              h_VbbHcc_PN_med_topCR_pass->h_bbPN_TopvsQCD->Fill(jets[idx_bb].m_PN_TopvsQCD,evtW_tag*trigSF);
+              h_VbbHcc_PN_med_topCR_pass->h_ccPN_TopvsQCD->Fill(jets[idx_cc].m_PN_TopvsQCD,evtW_tag_trig);
+              h_VbbHcc_PN_med_topCR_pass->h_bbPN_TopvsQCD->Fill(jets[idx_bb].m_PN_TopvsQCD,evtW_tag_trig);
               if(jets[idx_cc].m_PN_TopvsQCD > 0.2 && jets[idx_bb].m_PN_TopvsQCD > 0.2) {
-                h_VbbHcc_PN_med_topCR_pass->Fill(H,Z,evtW_tag*trigSF);
-                h_VbbHcc_PN_med_topCR_pass->FillJets(jet_VbbZcc,evtW_tag*trigSF);
-                h_VbbHcc_PN_med_topCR_pass->h_bbTagDis->Fill(jets[idx_bb].m_PN_Xbb,evtW_tag*trigSF);
-                h_VbbHcc_PN_med_topCR_pass->h_ccTagDis->Fill(jets[idx_cc].m_PN_Xcc,evtW_tag*trigSF);
+                h_VbbHcc_PN_med_topCR_pass->Fill(H,Z,evtW_tag_trig);
+                h_VbbHcc_PN_med_topCR_pass->FillJets(jet_VbbHcc,evtW_tag_trig);
+                h_VbbHcc_PN_med_topCR_pass->h_bbTagDis->Fill(jets[idx_bb].m_PN_Xbb,evtW_tag_trig);
+                h_VbbHcc_PN_med_topCR_pass->h_ccTagDis->Fill(jets[idx_cc].m_PN_Xcc,evtW_tag_trig);
               }
             }
           }
@@ -722,28 +778,29 @@ void VbbHcc_selector::Process(Reader* r) {
     //invert bb or cc
     ZObj Z(jets[idx_bb]);
     HObj H(jets[idx_cc]);
-    std::vector<JetObjBoosted> jet_VbbZcc{jets[idx_bb], jets[idx_cc]};
+    std::vector<JetObjBoosted> jet_VbbHcc{jets[idx_bb], jets[idx_cc]};
     float trigSF = 1;
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018) 
     float jetPtMax = std::max(jets[idx_bb].m_lvec.Pt(),jets[idx_cc].m_lvec.Pt());
-    trigSF = GetTrigSF(jetPtMax);
+    float jetPtMin = std::max(jets[idx_bb].m_lvec.Pt(),jets[idx_cc].m_lvec.Pt());
+    trigSF = GetTrigSF(jetPtMax,jetPtMin);
 #endif
-
+    float evtW_trig = evtW*trigSF;
     //CR
     if((jets[idx_bb].m_PN_Xbb>=0.9 && jets[idx_bb].m_PN_Xbb<XbbCut && jets[idx_cc].m_PN_Xcc>=XccCut) ||
         (jets[idx_cc].m_PN_Xcc>=0.9 && jets[idx_cc].m_PN_Xcc<XccCut && jets[idx_bb].m_PN_Xbb>=XbbCut)) {
       if(passMET && nExtraJet < 2 && trigger) {
-        h_VbbHcc_PN_med_qcdCR->Fill(H,Z,evtW_tag*trigSF);
-        h_VbbHcc_PN_med_qcdCR->FillJets(jet_VbbZcc,evtW_tag*trigSF);
-        h_VbbHcc_PN_med_qcdCR->h_bbTagDis->Fill(jets[idx_bb].m_PN_Xbb,evtW_tag*trigSF);
-        h_VbbHcc_PN_med_qcdCR->h_ccTagDis->Fill(jets[idx_cc].m_PN_Xcc,evtW_tag*trigSF);
+        h_VbbHcc_PN_med_qcdCR->Fill(H,Z,evtW_trig);
+        h_VbbHcc_PN_med_qcdCR->FillJets(jet_VbbHcc,evtW_trig);
+        h_VbbHcc_PN_med_qcdCR->h_bbTagDis->Fill(jets[idx_bb].m_PN_Xbb,evtW_trig);
+        h_VbbHcc_PN_med_qcdCR->h_ccTagDis->Fill(jets[idx_cc].m_PN_Xcc,evtW_trig);
       }
       if(passMET && trigger && nExtraJet >= 2) {
         if(jets[idx_cc].m_PN_TopvsQCD > 0.2 && jets[idx_bb].m_PN_TopvsQCD > 0.2) {
-          h_VbbHcc_PN_med_topCR_fail->Fill(H,Z,evtW_tag*trigSF);
-          h_VbbHcc_PN_med_topCR_fail->FillJets(jet_VbbZcc,evtW_tag*trigSF);
-          h_VbbHcc_PN_med_topCR_fail->h_bbTagDis->Fill(jets[idx_bb].m_PN_Xbb,evtW_tag*trigSF);
-          h_VbbHcc_PN_med_topCR_fail->h_ccTagDis->Fill(jets[idx_cc].m_PN_Xcc,evtW_tag*trigSF);
+          h_VbbHcc_PN_med_topCR_fail->Fill(H,Z,evtW_trig);
+          h_VbbHcc_PN_med_topCR_fail->FillJets(jet_VbbHcc,evtW_trig);
+          h_VbbHcc_PN_med_topCR_fail->h_bbTagDis->Fill(jets[idx_bb].m_PN_Xbb,evtW_trig);
+          h_VbbHcc_PN_med_topCR_fail->h_ccTagDis->Fill(jets[idx_cc].m_PN_Xcc,evtW_trig);
         }
       }
     }
@@ -751,18 +808,18 @@ void VbbHcc_selector::Process(Reader* r) {
     if((jets[idx_bb].m_PN_Xbb>=0.85 && jets[idx_bb].m_PN_Xbb<0.9) &&
         (jets[idx_cc].m_PN_Xcc>=0.85 && jets[idx_cc].m_PN_Xcc<0.9)) {
       if(passMET && nExtraJet < 2 && trigger) {
-        h_VbbHcc_PN_med_VR->Fill(H,Z,evtW_tag*trigSF);
-        h_VbbHcc_PN_med_VR->FillJets(jet_VbbZcc,evtW_tag*trigSF);
-        h_VbbHcc_PN_med_VR->h_bbTagDis->Fill(jets[idx_bb].m_PN_Xbb,evtW_tag*trigSF);
-        h_VbbHcc_PN_med_VR->h_ccTagDis->Fill(jets[idx_cc].m_PN_Xcc,evtW_tag*trigSF);
+        h_VbbHcc_PN_med_VR->Fill(H,Z,evtW_trig);
+        h_VbbHcc_PN_med_VR->FillJets(jet_VbbHcc,evtW_trig);
+        h_VbbHcc_PN_med_VR->h_bbTagDis->Fill(jets[idx_bb].m_PN_Xbb,evtW_trig);
+        h_VbbHcc_PN_med_VR->h_ccTagDis->Fill(jets[idx_cc].m_PN_Xcc,evtW_trig);
       }
       //top in VR
       if(passMET && trigger && nExtraJet >= 2) {
         if(jets[idx_cc].m_PN_TopvsQCD > 0.2 && jets[idx_bb].m_PN_TopvsQCD > 0.2) {
-          h_VbbHcc_PN_med_topCR1_pass->Fill(H,Z,evtW_tag*trigSF);
-          h_VbbHcc_PN_med_topCR1_pass->FillJets(jet_VbbZcc,evtW_tag*trigSF);
-          h_VbbHcc_PN_med_topCR1_pass->h_bbTagDis->Fill(jets[idx_bb].m_PN_Xbb,evtW_tag*trigSF);
-          h_VbbHcc_PN_med_topCR1_pass->h_ccTagDis->Fill(jets[idx_cc].m_PN_Xcc,evtW_tag*trigSF);
+          h_VbbHcc_PN_med_topCR1_pass->Fill(H,Z,evtW_trig);
+          h_VbbHcc_PN_med_topCR1_pass->FillJets(jet_VbbHcc,evtW_trig);
+          h_VbbHcc_PN_med_topCR1_pass->h_bbTagDis->Fill(jets[idx_bb].m_PN_Xbb,evtW_trig);
+          h_VbbHcc_PN_med_topCR1_pass->h_ccTagDis->Fill(jets[idx_cc].m_PN_Xcc,evtW_trig);
         }
       }
     }
@@ -772,22 +829,135 @@ void VbbHcc_selector::Process(Reader* r) {
         (jets[idx_cc].m_PN_Xcc>=0.8 && jets[idx_cc].m_PN_Xcc<0.85 &&
           jets[idx_bb].m_PN_Xbb>=0.85 && jets[idx_bb].m_PN_Xbb<0.9)) {
       if(passMET && nExtraJet < 2 && trigger) {
-        h_VbbHcc_PN_med_qcdCR1->Fill(H,Z,evtW_tag*trigSF);
-        h_VbbHcc_PN_med_qcdCR1->FillJets(jet_VbbZcc,evtW_tag*trigSF);
-        h_VbbHcc_PN_med_qcdCR1->h_bbTagDis->Fill(jets[idx_bb].m_PN_Xbb,evtW_tag*trigSF);
-        h_VbbHcc_PN_med_qcdCR1->h_ccTagDis->Fill(jets[idx_cc].m_PN_Xcc,evtW_tag*trigSF);
+        h_VbbHcc_PN_med_qcdCR1->Fill(H,Z,evtW_trig);
+        h_VbbHcc_PN_med_qcdCR1->FillJets(jet_VbbHcc,evtW_trig);
+        h_VbbHcc_PN_med_qcdCR1->h_bbTagDis->Fill(jets[idx_bb].m_PN_Xbb,evtW_trig);
+        h_VbbHcc_PN_med_qcdCR1->h_ccTagDis->Fill(jets[idx_cc].m_PN_Xcc,evtW_trig);
       }
       //top CR1
       if(passMET && trigger && nExtraJet >= 2) {
         if(jets[idx_cc].m_PN_TopvsQCD > 0.2 && jets[idx_bb].m_PN_TopvsQCD > 0.2) {
-          h_VbbHcc_PN_med_topCR1_fail->Fill(H,Z,evtW_tag*trigSF);
-          h_VbbHcc_PN_med_topCR1_fail->FillJets(jet_VbbZcc,evtW_tag*trigSF);
-          h_VbbHcc_PN_med_topCR1_fail->h_bbTagDis->Fill(jets[idx_bb].m_PN_Xbb,evtW_tag*trigSF);
-          h_VbbHcc_PN_med_topCR1_fail->h_ccTagDis->Fill(jets[idx_cc].m_PN_Xcc,evtW_tag*trigSF);
+          h_VbbHcc_PN_med_topCR1_fail->Fill(H,Z,evtW_trig);
+          h_VbbHcc_PN_med_topCR1_fail->FillJets(jet_VbbHcc,evtW_trig);
+          h_VbbHcc_PN_med_topCR1_fail->h_bbTagDis->Fill(jets[idx_bb].m_PN_Xbb,evtW_trig);
+          h_VbbHcc_PN_med_topCR1_fail->h_ccTagDis->Fill(jets[idx_cc].m_PN_Xcc,evtW_trig);
         }
       }
     }
   }
+ 
+
+  //////////////////////////////////////////////////////////////////
+  //ZccHcc
+  //////////////////////////////////////////////////////////////////
+
+  max_Xcc = -10;
+  idx_cc_1 = -1;
+  for(auto i:idx_tmps_2) {
+    if(jets[i].m_PN_Xcc > max_Xcc) {
+      max_Xcc = jets[i].m_PN_Xcc;
+      idx_cc_1 = i;
+    }
+  }
+  max_Xcc = -10;
+  int idx_cc_2 = -1;
+  for(auto i:idx_tmps_2) {
+    if (i != idx_cc_1) {
+      if(jets[i].m_PN_Xcc > max_Xcc) {
+        max_Xcc = jets[i].m_PN_Xcc;
+        idx_cc_2 = i;
+      }
+    }
+  }
+  
+  //ZccHcc events
+  if (idx_cc_1 > -1 && idx_cc_2 > -1 && !isZbbHcc) {
+    //tagging scale
+    tagW = 1.0;
+    auto jet_cc_1 = std::make_pair(jets[idx_cc_1].m_lvec.Pt(),false);
+    if(jets[idx_cc_1].m_PN_Xcc >= XccCut) jet_cc_1.second = true;
+    auto jet_cc_2 = std::make_pair(jets[idx_cc_2].m_lvec.Pt(),false);
+    if(jets[idx_cc_2].m_PN_Xcc >= XccCut) jet_cc_2.second = true;
+    tagW = CalCtagWeightBoosted(jet_cc_1,jet_cc_2,m_hfTagUncType);
+
+    float evtW_tag = evtW*tagW;
+
+    h_cutFlow_VbbHcc_PN_med->Fill(5.5,evtW_tag);
+    
+    //now do the ambugity resolve
+    std::vector<std::vector<int>> idx_cand; //index of H and Z candidates
+    idx_cand.push_back({idx_cc_1, idx_cc_2});
+    //calculate the DH 
+    std::vector<std::pair<std::vector<int>,float>> dhs_idx_cand;
+    for(auto idx : idx_cand) {
+      float dh=DH(jets[idx[1]].m_lvec.M(),jets[idx[0]].m_lvec.M());//mH,mZ
+      std::vector<int> tmp = {idx[0],idx[1]};
+      dhs_idx_cand.push_back(std::make_pair(tmp,dh));//Z,H
+    }
+    
+    sort(dhs_idx_cand.begin(),dhs_idx_cand.end(),sortbysecdesc1);
+    if(dhs_idx_cand.size()>0) {
+      int idx_Z = dhs_idx_cand.back().first[0]; //pick the cand has smallest DH
+      int idx_H = dhs_idx_cand.back().first[1]; 
+      if(idx_Z>=0) {
+        float trigSF=1;
+        if(idx_H>=0) {
+          float jetPtMax = std::max(jets[idx_Z].m_lvec.Pt(),jets[idx_H].m_lvec.Pt());
+          float jetPtMin = std::max(jets[idx_Z].m_lvec.Pt(),jets[idx_H].m_lvec.Pt());
+#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018) 
+          trigSF = GetTrigSF(jetPtMax,jetPtMin);
+#endif  
+        }
+        if (jets[idx_Z].m_PN_Xcc>=XccCut) {
+          h_cutFlow_VccHcc_PN_med->Fill(5.5,evtW_tag);
+          if(idx_H>=0) {
+            std::vector<JetObjBoosted> jet_VccHcc{jets[idx_Z], jets[idx_H]};
+            ZObj Z(jets[idx_Z]);
+            HObj H(jets[idx_H]);
+            if (jets[idx_H].m_PN_Xcc>=XccCut) {
+              h_cutFlow_VccHcc_PN_med->Fill(6.5,evtW_tag);
+              h_NextraJet_VccHcc->Fill(nExtraJet,evtW_tag);
+              ///////////////////////////////////
+              //>>>>>>>>>>>>SR VccHcc>>>>>>>>>>>>>>>>>>>
+              ///////////////////////////////////
+              h_VccHcc_PN_med->h_NextraJet_beforeCut->Fill(nExtraJet,evtW_tag); 
+              h_VccHcc_PN_med->h_MET_beforeCut_1->Fill(*(r->MET_pt),evtW_tag);
+              //top quarks suppression
+              if (nExtraJet < 2) {
+                h_cutFlow_VccHcc_PN_med->Fill(7.5,evtW_tag);
+                //now fill histograms
+                h_VccHcc_PN_med->h_MET_beforeCut->Fill(*(r->MET_pt),evtW_tag);
+                if (passMET) {
+                  h_cutFlow_VccHcc_PN_med->Fill(8.5,evtW_tag);
+                  if (trigger) {
+                    float evtW_tag_trig = evtW_tag*trigSF;
+                    h_cutFlow_VccHcc_PN_med->Fill(9.5,evtW_tag_trig);
+                    h_VccHcc_PN_med->Fill(H,Z,evtW_tag_trig);
+                    h_VccHcc_PN_med->FillJets(jet_VccHcc,evtW_tag_trig);
+                    h_VccHcc_PN_med->h_bbTagDis->Fill(jets[idx_Z].m_PN_Xcc,evtW_tag_trig);
+                    h_VccHcc_PN_med->h_ccTagDis->Fill(jets[idx_H].m_PN_Xcc,evtW_tag_trig);
+                    h_VccHcc_PN_med->h_MET->Fill(*(r->MET_pt),evtW_tag_trig);
+                    
+                    float deltaPhi = jets[idx_Z].m_lvec.DeltaPhi(jets[idx_H].m_lvec);
+                    if (deltaPhi > 2.5) {
+                      h_cutFlow_VccHcc_PN_med->Fill(10.5,evtW_tag_trig);
+                      if (jets[idx_Z].m_lvec.M() < 120 && jets[idx_Z].m_lvec.M() > 60) 
+                      {
+                        h_cutFlow_VccHcc_PN_med->Fill(11.5,evtW_tag_trig);
+                        h_VccHcc_PN_med_zmass_deltaPhi->Fill(H,Z,evtW_tag_trig);
+                        h_VccHcc_PN_med_zmass_deltaPhi->FillJets(jet_VccHcc,evtW_tag_trig);
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
 
   ///////////////////////////
   //efficiency of b,c,ljet

@@ -1,7 +1,7 @@
 jet_eta 2.5 float
 jet_pt  30  float
 jet_eta_ak08 2.5 float
-jet_pt_ak08 400 float
+jet_pt_ak08 450 float
 jet_main_btagWP   deepCSVT string
 ele_dz_b 0.1  float
 ele_dz_e 0.2  float

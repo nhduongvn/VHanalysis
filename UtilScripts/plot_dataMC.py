@@ -78,7 +78,7 @@ correctFilterEff = False #only used for postProcessing
 doBlindData = True 
 blindRange = [75,140]
 
-doUseReweightForQCD = True
+doUseReweightForQCD = True 
 
 doCustomBinning_MH = True 
 #xDiv_MH = [40.,60.,80.,90.,100.,130.,160.,200.]
@@ -104,6 +104,7 @@ binError_MH = [14.524979842, 14.6705438854, 9.64396617479, 10.4968651727, 16.981
 #regions = ['VbbHcc_boosted_select3','VbbHcc_boosted_select4','VbbHcc_boosted_PN_med']
 #regions = ['VbbHcc_boosted_select3','VbbHcc_boosted_select4']
 #regions = ['VbbHcc_boosted_select2']
+#regions = ['VbbHcc_boosted_PN_med','VccHcc_boosted_PN_med']
 regions = ['VbbHcc_boosted_PN_med']
 summary_eventCount_name = 'summary_eventCount_VH_tmp.txt'
 
@@ -116,7 +117,7 @@ use_bEnriched_BGenFilter = False
 
 #create directory to store plots
 #plotFolder = '../SystematicUncTmp/'
-plotFolder = '../Plot_tmp/'
+plotFolder = '../Plot_tmp_trigSF/'
 if doUseReweightForQCD: plotFolder = '../Plots_tmp_qcdReweight/'
 if use_bEnriched_BGenFilter: plotFolder = '../Test_bEnriched_BGenFilter/'
 
@@ -221,6 +222,7 @@ for r in regions:
     if 'qcd' in r and 'CutFlow' in plN: continue
 
     hDat = getHist(hN,['JetHT'],fHist,lumiScales)
+    print(" ", hN)
     hZHcc = getHist(hN,['ZH_HToCC_ZToQQ'],fHist,lumiScales)
     hZHbb = getHist(hN,['ZH_HToBB_ZToQQ'],fHist,lumiScales)
     hggZHcc = getHist(hN,['ggZH_HToCC_ZToQQ'],fHist,lumiScales)

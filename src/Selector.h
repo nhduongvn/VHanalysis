@@ -42,7 +42,9 @@ class Selector
   virtual float PileupSF(int nTrueInt);
   virtual std::vector<float> GetSF_2DHist(float x, float y, std::vector<TH2F*> h, std::vector<float> w);
   virtual float CalBtagWeight(std::vector<JetObj>& jets, std::string jet_main_bTagWP="deepCSVT", std::string uncType="central") ;
+  virtual float CalBtagWeightBoosted(std::pair<float,bool> jet, std::string jetType, std::string uncType);
   virtual float CalBtagWeightBoosted(std::pair<float,bool> jet_bb, std::pair<float,bool> jet_cc, std::string uncType);
+  virtual float CalCtagWeightBoosted(std::pair<float,bool> jet_1, std::pair<float,bool> jet_2, std::string uncType);
   virtual float CalEleSF(LepObj e1, LepObj e2);
   virtual float CalSingleEleSF(LepObj e1);
   virtual float CalMuonSF_id_iso(LepObj e1, LepObj e2);
@@ -53,8 +55,9 @@ class Selector
   virtual void SetPUjetidCalib(std::string fName_PUjetID_SF,std::string fName_PUjetID_eff,std::string jetPUidUncType);
   virtual float PUjetWeight(std::vector<JetObj>& jets) ;
 
-  virtual float Get_xccbb_weight(std::vector<JetObjBoosted>& fatJets, int idx_excludedJet, std::string type);
+  virtual float Get_xccbb_weight(std::vector<JetObjBoosted>& fatJets, int idx_excludedJet, float XbbCut, float XccCut, std::string type);
   virtual float GetTrigSF(float jetPt) ;
+  virtual float GetTrigSF(float jetPt1, float jetPt2) ; //Pt1 > Pt2
 
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
   //virtual unsigned MatchGenLep(Reader* r, LepObj lep, int pdgId) ;
@@ -112,6 +115,7 @@ class Selector
   std::map<std::string, std::vector<TH2D*> > m_hEff_xbb_xcc; 
 
   TGraphAsymmErrors* m_hTrig_SF;
+  TH2D* m_hTrig_SF_2D;
 
   std::string m_btagUncType;
   std::string m_eleUncType;

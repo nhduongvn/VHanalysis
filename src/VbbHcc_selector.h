@@ -50,9 +50,11 @@ private:
   TH1D* h_cutFlow_VbbHcc_select3;
   TH1D* h_cutFlow_VbbHcc_select4;
   TH1D* h_cutFlow_VbbHcc_PN_med;
+  TH1D* h_cutFlow_VccHcc_PN_med;
   TH1D* h_test_MH;
   TH1D* h_test_MZ;
   TH1D* h_NextraJet;
+  TH1D* h_NextraJet_VccHcc;
   TH1D* h_triggerCheck;
   TH1D* h_ljpt;
   TH1D* h_ljpt_gen;
@@ -65,6 +67,7 @@ private:
   VHBoostedPlots* h_VbbHcc_select3;
   VHBoostedPlots* h_VbbHcc_select4;
   VHBoostedPlots* h_VbbHcc_PN_med; //using particle net medium WP
+  VHBoostedPlots* h_VbbHcc_PN_med_zmass_deltaPhi; //using particle net medium WP
   VHBoostedPlots* h_VbbHcc_PN_med_xccWeight; //using particle net medium WP
   VHBoostedPlots* h_VbbHcc_PN_med_qcdCR; //control regions used in QCD bkg estimation in SR using particle net medium WP
   VHBoostedPlots* h_VbbHcc_PN_med_topCR_pass; //top control regions passing SR tagging requirements using particle net medium WP
@@ -77,7 +80,10 @@ private:
   VHBoostedPlots* h_VbbHcc_qcd_1;
   VHBoostedPlots* h_VbbHcc_qcd_2;
   VHBoostedPlots* h_VbbHcc_qcd_3;
-  HBoostedPlots* h_Hcc;
+
+  VHBoostedPlots* h_VccHcc_PN_med; //using particle net medium WP
+  VHBoostedPlots* h_VccHcc_PN_med_zmass_deltaPhi; //using particle net medium WP
+
   BoostedJetEffPlots* h_eff_xbb_bb;
   BoostedJetEffPlots* h_eff_xbb_cc;
   BoostedJetEffPlots* h_eff_xbb_light;

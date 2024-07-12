@@ -666,7 +666,7 @@ void VbbHcc_selector_unc::Process(Reader* r) {
         if (nExtraJet < 2 && passMET && trigger) {
           float xcc_weight = 1.0 ;
 #if defined(MC_2016) || defined(MC_2017) || defined(MC_2018) 
-          xcc_weight = Get_xccbb_weight(jets,idx_bb,"xcc");
+          xcc_weight = Get_xccbb_weight(jets,idx_bb,XbbCut,XccCut,"xcc");
 #endif
           h_VbbHcc_PN_med_xccWeight->Fill(H,Z,evtW*xcc_weight*trigSF);
           h_VbbHcc_PN_med_xccWeight->FillJets(jet_VbbZcc,evtW*xcc_weight*trigSF);
