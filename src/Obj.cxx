@@ -79,12 +79,13 @@ class JetObjBoosted: public JetObj {
   
   public:
   
-    JetObjBoosted(float pt, float eta, float phi, float mass, unsigned flav, float DDCvB, float DDCvL, float DDBvL, float DT_ZHccvsQCD, float DT_ZbbvsQCD, float PN_Xcc, float PN_Xbb, float PN_TopvsQCD, float PN_WvsQCD, float PN_ZvsQCD, float n2b1, float PUjetID):
+    JetObjBoosted(float pt, float eta, float phi, float mass, unsigned flav, float DDCvB, float DDCvL, float DDBvL, float DT_ZHccvsQCD, float DT_ZbbvsQCD, float PN_Xcc, float PN_Xbb, float PN_pQCD, float PN_TopvsQCD, float PN_WvsQCD, float PN_ZvsQCD, float n2b1, float PUjetID):
     JetObj(pt, eta, phi, mass, flav, -1, PUjetID), 
     m_DDCvB(DDCvB), m_DDCvL(DDCvL), m_DDBvL(DDBvL), 
     m_DT_ZHccvsQCD(DT_ZHccvsQCD), m_DT_ZbbvsQCD(DT_ZbbvsQCD),
     m_PN_Xcc(PN_Xcc),
     m_PN_Xbb(PN_Xbb),
+    m_PN_pQCD(PN_pQCD),
     m_PN_TopvsQCD(PN_TopvsQCD),
     m_PN_WvsQCD(PN_WvsQCD),
     m_PN_ZvsQCD(PN_ZvsQCD),
@@ -100,6 +101,7 @@ class JetObjBoosted: public JetObj {
     float m_DT_ZbbvsQCD;//FatJet_deepTagMD_ZbbvsQCD
     float m_PN_Xbb;//XbbVsQCD: FatJet_particleNetMD_Xbb/(FatJet_particleNetMD_Xbb+FatJet_particleNetMD_QCD)
     float m_PN_Xcc;//XccVsQCD: FatJet_particleNetMD_Xcc/(FatJet_particleNetMD_Xcc+FatJet_particleNetMD_QCD)
+    float m_PN_pQCD;
     float m_PN_TopvsQCD;
     float m_PN_WvsQCD;
     float m_PN_ZvsQCD;

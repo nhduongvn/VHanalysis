@@ -25,13 +25,13 @@ public :
    TTree          *fChain = 0;   //!pointer to the analyzed TTree or TChain
    
    // Readers to access the data (delete the ones you do not need).
-#if defined(DATA_2016) || defined(DATA_2017) || defined(DATA_2018)
+#if defined(DATA_2016PRE) || defined(DATA_2016) || defined(DATA_2017) || defined(DATA_2018)
    TTreeReaderValue<UInt_t> run = {fReader, "run"};
    TTreeReaderValue<UInt_t> luminosityBlock = {fReader, "luminosityBlock"};
    TTreeReaderValue<ULong64_t> event = {fReader, "event"};
 #endif
 
-#if defined(MC_2016) || defined(MC_2017)
+#if defined(MC_2016PRE) || defined(MC_2016) || defined(MC_2017)
    TTreeReaderValue<Float_t> L1PreFiringWeight_Dn = {fReader, "L1PreFiringWeight_Dn"};
    TTreeReaderValue<Float_t> L1PreFiringWeight_Nom = {fReader, "L1PreFiringWeight_Nom"};
    TTreeReaderValue<Float_t> L1PreFiringWeight_Up = {fReader, "L1PreFiringWeight_Up"};
@@ -39,7 +39,7 @@ public :
 ///////////////////////////////////////////////
 //Trigger
 ///////////////////////////////////////////////
-#if defined(MC_2016) || defined(DATA_2016)
+#if defined(MC_2016PRE) || defined(MC_2016) || defined(DATA_2016PRE) || defined(DATA_2016)
    TTreeReaderValue<Bool_t> HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p20 = {fReader, "HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p20"};
    TTreeReaderValue<Bool_t> HLT_AK8PFJet360_TrimMass30 = {fReader, "HLT_AK8PFJet360_TrimMass30"};
    TTreeReaderValue<Bool_t> HLT_AK8PFJet450 = {fReader, "HLT_AK8PFJet450"};
@@ -52,7 +52,7 @@ public :
    TTreeReaderValue<Bool_t> HLT_Mu50 = {fReader, "HLT_Mu50"};
    TTreeReaderValue<Bool_t> HLT_TkMu50 = {fReader, "HLT_TkMu50"};
   #endif
-  #if defined(MC_2016) || !defined(DATA_2016H)
+  #if !defined(DATA_2016H)
    TTreeReaderValue<Bool_t> HLT_PFHT800 = {fReader, "HLT_PFHT800"};
   #endif
 #endif
@@ -127,7 +127,7 @@ public :
    TTreeReaderArray<Float_t> FatJet_deepTagMD_ZHccvsQCD = {fReader, "FatJet_deepTagMD_ZHccvsQCD"};
    TTreeReaderArray<Float_t> FatJet_deepTagMD_ZbbvsQCD = {fReader, "FatJet_deepTagMD_ZbbvsQCD"};
 
-#if defined(POSTPROC) && (defined(MC_2016) || defined(MC_2017) || defined(MC_2018))
+#if defined(POSTPROC) && (defined(MC_2016PRE) || defined(MC_2016) || defined(MC_2017) || defined(MC_2018))
   TTreeReaderArray<Float_t> FatJet_pt_raw = {fReader, "FatJet_pt_raw"};
   TTreeReaderArray<Float_t> FatJet_pt_nom = {fReader, "FatJet_pt_nom"};
   TTreeReaderArray<Float_t> FatJet_mass_raw = {fReader, "FatJet_mass_raw"};
@@ -208,7 +208,7 @@ public :
   TTreeReaderArray<Float_t> FatJet_msoftdrop_tau21DDT_jmsDown = {fReader, "FatJet_msoftdrop_tau21DDT_jmsDown"};
 #endif
 
-#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
+#if defined(MC_2016PRE) || defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
   TTreeReaderValue<Float_t> Pileup_nTrueInt = {fReader, "Pileup_nTrueInt"};
   TTreeReaderValue<Float_t> genWeight = {fReader, "genWeight"};
   TTreeReaderArray<Int_t> Jet_hadronFlavour = {fReader, "Jet_hadronFlavour"};

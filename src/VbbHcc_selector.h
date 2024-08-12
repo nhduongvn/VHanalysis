@@ -34,6 +34,12 @@ private:
   
   TH1D* h_evt_all;
   TH1D* h_evt;
+  TH1D* h_evtW_ZccHcc;
+  TH1D* h_tagW_ZccHcc;
+  TH1D* h_trigW_ZccHcc;
+  TH1D* h_evtW_VHcc;
+  TH1D* h_tagW_VHcc;
+  TH1D* h_trigW_VHcc;
   TH1D* h_bStatus_noMother;
   TH1D* h_bStatus_hasMother;
   TH1D* h_nb;
@@ -50,11 +56,15 @@ private:
   TH1D* h_cutFlow_VbbHcc_select3;
   TH1D* h_cutFlow_VbbHcc_select4;
   TH1D* h_cutFlow_VbbHcc_PN_med;
+  TH1D* h_cutFlow_ZccHcc_PN_med;
+  TH1D* h_cutFlow_VHcc_PN_med;
   TH1D* h_cutFlow_VccHcc_PN_med;
   TH1D* h_test_MH;
   TH1D* h_test_MZ;
   TH1D* h_NextraJet;
   TH1D* h_NextraJet_VccHcc;
+  TH1D* h_NextraJet_ZccHcc;
+  TH1D* h_NextraJet_VHcc;
   TH1D* h_triggerCheck;
   TH1D* h_ljpt;
   TH1D* h_ljpt_gen;
@@ -83,13 +93,11 @@ private:
 
   VHBoostedPlots* h_VccHcc_PN_med; //using particle net medium WP
   VHBoostedPlots* h_VccHcc_PN_med_zmass_deltaPhi; //using particle net medium WP
+  VHBoostedPlots* h_ZccHcc_PN_med; //using particle net medium WP
+  VHBoostedPlots* h_ZccHcc_PN_med_zmass_deltaPhi; //using particle net medium WP
+  VHBoostedPlots* h_VHcc_PN_med; //using particle net medium WP
+  VHBoostedPlots* h_VHcc_PN_med_zmass_deltaPhi; //using particle net medium WP
 
-  BoostedJetEffPlots* h_eff_xbb_bb;
-  BoostedJetEffPlots* h_eff_xbb_cc;
-  BoostedJetEffPlots* h_eff_xbb_light;
-  BoostedJetEffPlots* h_eff_xcc_bb;
-  BoostedJetEffPlots* h_eff_xcc_cc;
-  BoostedJetEffPlots* h_eff_xcc_light;
 } ;
 
 #endif

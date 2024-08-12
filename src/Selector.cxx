@@ -124,7 +124,8 @@ void Selector::SetPileupSF(std::string fName_puSF) {
 
 void Selector::SetXbbXccEff(std::string fName_xbb_xcc_eff) {
   TFile* f = new TFile(fName_xbb_xcc_eff.c_str(),"READ") ;
-  std::string y = "16"; //FIXME add 2016_preVFP and add xbb
+  std::string y = "16"; 
+  if (m_year == "2016PRE") y = "16_preVFP";
   if (m_year == "2017") y = "17";
   if (m_year == "2018") y = "18";
   std::string hN = "xcc_bb_pt_mass_sf_" + y;
@@ -137,6 +138,24 @@ void Selector::SetXbbXccEff(std::string fName_xbb_xcc_eff) {
   m_hEff_xbb_xcc["xcc"] = hTmps;
   for(auto h:m_hEff_xbb_xcc["xcc"]) h->SetDirectory(0);
 }
+
+void Selector::SetXbbXccEff1D(std::string fName_xbb_xcc_eff) {
+  TFile* f = new TFile(fName_xbb_xcc_eff.c_str(),"READ") ;
+  std::string y = "16"; 
+  if (m_year == "2016PRE") y = "16_preVFP";
+  if (m_year == "2017") y = "17";
+  if (m_year == "2018") y = "18";
+  std::string hN = "xcc_bb_pt_eff_" + y;
+  std::vector<TH1D*> hTmps;
+  hTmps.push_back((TH1D*)f->Get(hN.c_str())) ;
+  hN = "xcc_cc_pt_eff_" + y;
+  hTmps.push_back((TH1D*)f->Get(hN.c_str())) ;
+  hN = "xcc_light_pt_eff_" + y;
+  hTmps.push_back((TH1D*)f->Get(hN.c_str())) ;
+  m_hEff1D_xbb_xcc["xcc"] = hTmps;
+  for(auto h:m_hEff1D_xbb_xcc["xcc"]) h->SetDirectory(0);
+}
+
 
 float Selector::Get_xccbb_weight(std::vector<JetObjBoosted>& fatJets, int idx_excludedJet, float XbbCut, float XccCut, std::string type="xcc") {
   float w = 1;
@@ -164,6 +183,7 @@ float Selector::Get_xccbb_weight(std::vector<JetObjBoosted>& fatJets, int idx_ex
 void Selector::SetTriggerSF(std::string fName_triggerSF) {
   TFile* f = new TFile(fName_triggerSF.c_str(),"READ") ;
   std::string y = "16"; //FIXME add 2016_preVFP and add xbb
+  if (m_year == "2016PRE") y = "16_preVFP";
   if (m_year == "2017") y = "17";
   if (m_year == "2018") y = "18";
   std::string hN = "trig_SF_HLT_Soup_data_" + y;
@@ -313,6 +333,7 @@ float Selector::CalBtagWeightBoosted(std::pair<float,bool> jet, std::string jetT
    std::vector<std::vector<float>> sf_bb_erd_all = {{0.045,0.062,0.059},{0.052,0.055,0.043},{0.057,0.025,0.035}};
    std::vector<std::vector<float>> sf_cc_eru_all = {{0.182,0.185,0.181},{0.426,0.268,0.230},{0.234,0.131,0.126}};
    std::vector<std::vector<float>> sf_cc_erd_all = {{0.157,0.196,0.148},{0.422,0.262,0.227},{0.188,0.119,0.107}};
+   //FIXME add 2016PRE
    int yearBin(0);
    if(m_year == "2017") yearBin = 1;
    if(m_year == "2018") yearBin = 2;
@@ -354,6 +375,7 @@ float Selector::CalBtagWeightBoosted(std::pair<float,bool> jet_bb, std::pair<flo
    std::vector<std::vector<float>> sf_bb_erd_all = {{0.045,0.062,0.059},{0.052,0.055,0.043},{0.057,0.025,0.035}};
    std::vector<std::vector<float>> sf_cc_eru_all = {{0.182,0.185,0.181},{0.426,0.268,0.230},{0.234,0.131,0.126}};
    std::vector<std::vector<float>> sf_cc_erd_all = {{0.157,0.196,0.148},{0.422,0.262,0.227},{0.188,0.119,0.107}};
+   //FIXME add 2016PRE
    int yearBin(0);
    if(m_year == "2017") yearBin = 1;
    if(m_year == "2018") yearBin = 2;
@@ -384,29 +406,51 @@ float Selector::CalBtagWeightBoosted(std::pair<float,bool> jet_bb, std::pair<flo
 
 }
 
-float Selector::CalCtagWeightBoosted(std::pair<float,bool> jet_1, std::pair<float,bool> jet_2, std::string uncType) {
+float Selector::CalCtagWeightBoosted(std::pair<JetObjBoosted,bool> jet_1, std::pair<JetObjBoosted,bool> jet_2, std::string tagType, std::string uncType) {
    //Table 18 and 22
-   std::vector<std::vector<float>> sf_cc_all = {{1.005,1.130,0.982},{1.464,1.198,1.203},{1.098,1.003,1.031}};
-   std::vector<std::vector<float>> sf_cc_eru_all = {{0.182,0.185,0.181},{0.426,0.268,0.230},{0.234,0.131,0.126}};
-   std::vector<std::vector<float>> sf_cc_erd_all = {{0.157,0.196,0.148},{0.422,0.262,0.227},{0.188,0.119,0.107}};
+   //std::vector<std::vector<float>> sf_cc_all = {{1.005,1.130,0.982},{1.464,1.198,1.203},{1.098,1.003,1.031}};
+   //std::vector<std::vector<float>> sf_cc_eru_all = {{0.182,0.185,0.181},{0.426,0.268,0.230},{0.234,0.131,0.126}};
+   //std::vector<std::vector<float>> sf_cc_erd_all = {{0.157,0.196,0.148},{0.422,0.262,0.227},{0.188,0.119,0.107}};
+   //std::vector<std::vector<float>> sf_cc_all = {{1.006,1.150,0.991},{1.252,0.937,1.243},{1.439,1.231,1.142},{1.061,0.999,1.011}}; //post = 2016, pre = 2016PRE, 2017, 2018
+   //std::vector<std::vector<float>> sf_cc_eru_all = {{0.178,0.171,0.184},{0.184,0,108,0.241},{0.396,0.295,0.182},{0.163,0.118,0.114}};
+   //std::vector<std::vector<float>> sf_cc_erd_all = {{0.135,0.180,0.162},{0.176,0.098,0.259},{0.402,0.288,0.173},{0.131,0.107,0.094}};
+   std::vector<std::vector<float>> sf_cc_all = {{0.9,0.95,0.85},{1.05,0.9,1.1},{1.0,1.0,1.0},{0.95,0.95,0.95}}; //post = 2016, pre = 2016PRE, 2017, 2018
+   std::vector<std::vector<float>> sf_cc_eru_all = {{0.178,0.171,0.184},{0.184,0,108,0.241},{0.396,0.295,0.182},{0.163,0.118,0.114}};
+   std::vector<std::vector<float>> sf_cc_erd_all = {{0.135,0.180,0.162},{0.176,0.098,0.259},{0.402,0.288,0.173},{0.131,0.107,0.094}};
    int yearBin(0);
-   if(m_year == "2017") yearBin = 1;
-   if(m_year == "2018") yearBin = 2;
+   if(m_year == "2016PRE") yearBin = 1;
+   if(m_year == "2017") yearBin = 2;
+   if(m_year == "2018") yearBin = 3;
    float sf_cc_1(1.0);
    float sf_cc_2(1.0);
+   float jet_1_pt = jet_1.first.m_lvec.Pt();
+   //bb = 0, cc = 1, light = 2
+   int iFlav = 0;
+   if (jet_1.first.m_flav == 4) iFlav = 1;
+   if (jet_1.first.m_flav != 4 && jet_1.first.m_flav != 5) iFlav = 2;
    int ptbin(0);
-   if(jet_1.first >= 500 && jet_1.first < 600) ptbin = 1;
-   if(jet_1.first >= 600) ptbin = 2;
-   float eff_cc(0.5); //FIXME
+   if(jet_1_pt >= 500 && jet_1_pt < 600) ptbin = 1;
+   if(jet_1_pt >= 600) ptbin = 2;
+   
+   int iB = m_hEff1D_xbb_xcc[tagType][0]->FindFixBin(jet_1_pt); 
+   float eff_cc = m_hEff1D_xbb_xcc[tagType][iFlav]->GetBinContent(iB);
    float sf_cc_tmp = sf_cc_all[yearBin][ptbin];
    if(uncType=="ccup") sf_cc_tmp += sf_cc_eru_all[yearBin][ptbin];
    if(uncType=="ccdown") sf_cc_tmp -= sf_cc_erd_all[yearBin][ptbin];
    if(jet_1.second) sf_cc_1 = sf_cc_tmp;
    else sf_cc_1 = (1-eff_cc*sf_cc_tmp)/(1-eff_cc);
    
-   if(jet_2.first >= 500 && jet_2.first < 600) ptbin = 1;
-   if(jet_2.first >= 600) ptbin = 2;
-   eff_cc = 0.5; //FIXME
+
+   float jet_2_pt = jet_2.first.m_lvec.Pt();
+   iB = m_hEff1D_xbb_xcc[tagType][0]->FindFixBin(jet_2_pt); 
+   iFlav = 0;
+   if (jet_2.first.m_flav == 4) iFlav = 1;
+   if (jet_2.first.m_flav != 4 && jet_2.first.m_flav != 5) iFlav = 2;
+   ptbin = 0;
+   if(jet_2_pt >= 500 && jet_2_pt < 600) ptbin = 1;
+   if(jet_2_pt >= 600) ptbin = 2;
+
+   eff_cc = m_hEff1D_xbb_xcc[tagType][iFlav]->GetBinContent(iB);
    sf_cc_tmp = sf_cc_all[yearBin][ptbin];
    if(uncType=="ccup") sf_cc_tmp += sf_cc_eru_all[yearBin][ptbin];
    if(uncType=="ccdown") sf_cc_tmp -= sf_cc_erd_all[yearBin][ptbin];
@@ -528,7 +572,7 @@ float Selector::CalMuonSF_id_iso(LepObj e1, LepObj e2) {
   float err(0.0);
   float errID(0.0);
   float errIso(0.0);
-#ifdef MC_2016
+#if defined(MC_2016PRE) || defined(MC_2016)
   //////////////
   //ID
   //////////////
@@ -604,7 +648,7 @@ float Selector::CalSingleMuonSF_id_iso(LepObj e1) {
   float err(0.0);
   float errID(0.0);
   float errIso(0.0);
-#ifdef MC_2016
+#if defined(MC_2016PRE) || defined(MC_2016)
   //////////////
   //ID
   //////////////

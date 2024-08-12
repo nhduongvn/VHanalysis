@@ -123,7 +123,7 @@ void VbbHcc_triggerSel::SlaveBegin(Reader* r) {
   }
 }
 
-#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018) 
+#if defined(MC_2016PRE) || defined(MC_2016) || defined(MC_2017) || defined(MC_2018) 
 std::vector<std::vector<int> > VbbHcc_triggerSel::DauIdxs_ZH(Reader* r) {
   //vector to store indexes of H and Z daughters
   std::vector<std::vector<int> > dauIdxs;
@@ -178,7 +178,7 @@ void VbbHcc_triggerSel::Process(Reader* r) {
   float l1preW = 1.;
   int nB(0);
   int nb(0);
-#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
+#if defined(MC_2016PRE) || defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
   if (*(r->genWeight) < 0) genWeight = -1.;
   if (*(r->genWeight) == 0) genWeight = 0;
   if (m_centralGenWeight != 0) genWeight = *(r->genWeight)/m_centralGenWeight; //use central gen weight to normalize gen weight
@@ -191,7 +191,7 @@ void VbbHcc_triggerSel::Process(Reader* r) {
   puSF = PileupSF(*(r->Pileup_nTrueInt));
 #endif
 
-#if defined(MC_2016) || defined(MC_2017)
+#if defined(MC_2016PRE) || defined(MC_2016) || defined(MC_2017)
   l1preW = *(r->L1PreFiringWeight_Nom);
   //std::cout << "\nPrefiring: " << l1preW;
 #endif
@@ -199,7 +199,7 @@ void VbbHcc_triggerSel::Process(Reader* r) {
   float evtW = 1. ;
   if (!m_isData) evtW *= genWeight*puSF*l1preW;
 
-#if defined(DATA_2016) || defined(DATA_2017) || defined(DATA_2018)
+#if defined(DATA_2016PRE) || defined(DATA_2016) || defined(DATA_2017) || defined(DATA_2018)
   //h_evt->Fill(-1) ;
   if (!m_lumiFilter.Pass(*(r->run),*(r->luminosityBlock))) return;
   //h_evt->Fill(1) ;
@@ -251,7 +251,7 @@ void VbbHcc_triggerSel::Process(Reader* r) {
   std::vector<JetObjBoosted> jets ;
   for (unsigned int i = 0 ; i < *(r->nFatJet) ; ++i) {
     int jetFlav = -1 ;
-#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
+#if defined(MC_2016PRE) || defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
     jetFlav = (r->FatJet_hadronFlavour)[i];
 #endif
     float totXcc = (r->FatJet_particleNetMD_Xcc)[i]+(r->FatJet_particleNetMD_QCD)[i];
@@ -269,7 +269,7 @@ void VbbHcc_triggerSel::Process(Reader* r) {
     JetObjBoosted jet(jetPt,(r->FatJet_eta)[i],(r->FatJet_phi)[i],(r->FatJet_mass)[i],jetFlav,
         (r->FatJet_btagDDCvB)[i],(r->FatJet_btagDDCvL)[i], (r->FatJet_btagDDBvL)[i], 
         (r->FatJet_deepTagMD_ZHccvsQCD)[i],(r->FatJet_deepTagMD_ZbbvsQCD)[i],
-        Xcc,Xbb,
+        Xcc,Xbb,(r->FatJet_particleNetMD_QCD)[i],
         (r->FatJet_particleNet_TvsQCD)[i],
         (r->FatJet_particleNet_WvsQCD)[i],
         (r->FatJet_particleNet_ZvsQCD)[i],
@@ -288,7 +288,7 @@ void VbbHcc_triggerSel::Process(Reader* r) {
   for (unsigned int i = 0 ; i < *(r->nJet) ; ++i) {
     
     int jetFlav = -1 ;
-#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
+#if defined(MC_2016PRE) || defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
     jetFlav = (r->Jet_hadronFlavour)[i];
 #endif 
     
@@ -357,7 +357,7 @@ void VbbHcc_triggerSel::Process(Reader* r) {
   
   bool trigger_muon(false);
 
-#if defined(MC_2016) || defined(DATA_2016)
+#if defined(MC_2016PRE) || defined(MC_2016) || defined(DATA_2016PRE) || defined(DATA_2016)
    trigger =  *(r->HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p20) ||
      *(r->HLT_AK8PFJet360_TrimMass30) ||
      *(r->HLT_AK8PFJet450) ||
@@ -373,7 +373,7 @@ void VbbHcc_triggerSel::Process(Reader* r) {
 
   trigger_muon = *(r->HLT_IsoMu24) || *(r->HLT_IsoTkMu24) || *(r->HLT_Mu50) || *(r->HLT_TkMu50);
  
-  #if defined(MC_2016) || !defined(DATA_2016H)
+  #if !defined(DATA_2016H)
    trigger = trigger || *(r->HLT_PFHT800);
    trig_results["HLT_PFHT800"] = *(r->HLT_PFHT800);
   #endif
@@ -431,13 +431,13 @@ void VbbHcc_triggerSel::Process(Reader* r) {
   if(trigger_muon) {
 
 //only apply at least one muon for data
-#if defined(DATA_2016) || defined(DATA_2017) || defined(DATA_2018)
+#if defined(DATA_2016PRE) || defined(DATA_2016) || defined(DATA_2017) || defined(DATA_2018)
     if (muons_trigger.size()>0) {
 #endif    
 
 //now set trigger names
 //2016      
-#if defined(MC_2016) || defined(DATA_2016)
+#if defined(MC_2016PRE) || defined(MC_2016) || defined(DATA_2016PRE) || defined(DATA_2016)
       std::vector<std::string> trigNames;
       trigNames.push_back("HLT_Soup");
       trigNames.push_back("HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p20");
@@ -446,7 +446,7 @@ void VbbHcc_triggerSel::Process(Reader* r) {
       trigNames.push_back("HLT_AK8PFJet450");
       trigNames.push_back("HLT_PFHT900");
       trigNames.push_back("HLT_PFJet450");
-  #if defined(MC_2016) || !defined(DATA_2016H)
+  #if !defined(DATA_2016H)
       trigNames.push_back("HLT_PFHT800");
   #endif
 #endif
@@ -587,7 +587,7 @@ void VbbHcc_triggerSel::Process(Reader* r) {
       }
       */
 
-#if defined(DATA_2016) || defined(DATA_2017) || defined(DATA_2018)
+#if defined(DATA_2016PRE) || defined(DATA_2016) || defined(DATA_2017) || defined(DATA_2018)
     }
 #endif
   }

@@ -14,9 +14,15 @@
 //using particle net tagger
 ///////////////////////////////////////
 #if defined(DATA_2016) || defined(MC_2016)
-const float XccCut = 0.9743;//2016 post  FIXME add pre
-const float XbbCut = 0.9735;//2016 post  FIXME add pre
+const float XccCut = 0.9743;
+const float XbbCut = 0.9735;
 #endif
+
+#if defined(DATA_2016PRE) || defined(MC_2016PRE)
+const float XccCut = 0.9751;
+const float XbbCut = 0.9737;
+#endif
+
 #if defined(DATA_2017) || defined(MC_2017)
 const float  XccCut = 0.9765; 
 const float  XbbCut = 0.9714;
@@ -258,7 +264,7 @@ void VbbHcc_selector_unc::SlaveBegin(Reader* r) {
   r->GetOutputList()->Add(h_ljpt_gen);
 }
 
-#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018) 
+#if defined(MC_2016PRE) || defined(MC_2016) || defined(MC_2017) || defined(MC_2018) 
 std::vector<std::vector<int> > VbbHcc_selector_unc::DauIdxs_ZH(Reader* r) {
   //vector to store indexes of H and Z daughters
   std::vector<std::vector<int> > dauIdxs;
@@ -313,7 +319,7 @@ void VbbHcc_selector_unc::Process(Reader* r) {
   float l1preW = 1.;
   int nB(0);
   int nb(0);
-#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
+#if defined(MC_2016PRE) || defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
   if (*(r->genWeight) < 0) genWeight = -1.;
   if (*(r->genWeight) == 0) genWeight = 0;
   if (m_centralGenWeight != 0) genWeight = *(r->genWeight)/m_centralGenWeight; //use central gen weight to normalize gen weight
@@ -326,7 +332,7 @@ void VbbHcc_selector_unc::Process(Reader* r) {
   puSF = PileupSF(*(r->Pileup_nTrueInt));
 #endif
 
-#if defined(MC_2016) || defined(MC_2017)
+#if defined(MC_2016PRE) || defined(MC_2016) || defined(MC_2017)
   l1preW = *(r->L1PreFiringWeight_Nom);
   //std::cout << "\nPrefiring: " << l1preW;
   if (m_l1prefiringType == "l1prefiringu") l1preW = *(r->L1PreFiringWeight_Up);
@@ -344,7 +350,7 @@ void VbbHcc_selector_unc::Process(Reader* r) {
   h_cutFlow_VbbHcc_select4->Fill(0.5,evtW);
   h_cutFlow_VbbHcc_PN_med->Fill(0.5,evtW);
 
-#if defined(DATA_2016) || defined(DATA_2017) || defined(DATA_2018)
+#if defined(DATA_2016PRE) || defined(DATA_2016) || defined(DATA_2017) || defined(DATA_2018)
   h_evt->Fill(-1) ;
   if (!m_lumiFilter.Pass(*(r->run),*(r->luminosityBlock))) return;
   h_evt->Fill(1) ;
@@ -400,7 +406,7 @@ void VbbHcc_selector_unc::Process(Reader* r) {
   std::vector<JetObjBoosted> jets ;
   for (unsigned int i = 0 ; i < *(r->nFatJet) ; ++i) {
     int jetFlav = -1 ;
-#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
+#if defined(MC_2016PRE) || defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
     jetFlav = (r->FatJet_hadronFlavour)[i];
 #endif
     float totXcc = (r->FatJet_particleNetMD_Xcc)[i]+(r->FatJet_particleNetMD_QCD)[i];
@@ -416,7 +422,7 @@ void VbbHcc_selector_unc::Process(Reader* r) {
     jetPt = (r->FatJet_pt_nom)[i];
 #endif
     //std::cout << "\n Jet pt: " << jetPt;
-#if defined(POSTPROC) && (defined(MC_2016) || defined(MC_2017) || defined(MC_2018))
+#if defined(POSTPROC) && (defined(MC_2016PRE) || defined(MC_2016) || defined(MC_2017) || defined(MC_2018))
     if (m_jetmetSystType == "jesu") jetPt = (r->FatJet_pt_jesTotalUp)[i];
     if (m_jetmetSystType == "jesd") jetPt = (r->FatJet_pt_jesTotalDown)[i];
     if (m_jetmetSystType == "jer0u") jetPt = (r->FatJet_pt_jer0Up)[i];
@@ -435,7 +441,7 @@ void VbbHcc_selector_unc::Process(Reader* r) {
     JetObjBoosted jet(jetPt,(r->FatJet_eta)[i],(r->FatJet_phi)[i],(r->FatJet_mass)[i],jetFlav,
         (r->FatJet_btagDDCvB)[i],(r->FatJet_btagDDCvL)[i], (r->FatJet_btagDDBvL)[i], 
         (r->FatJet_deepTagMD_ZHccvsQCD)[i],(r->FatJet_deepTagMD_ZbbvsQCD)[i],
-        Xcc,Xbb,
+        Xcc,Xbb,(r->FatJet_particleNetMD_QCD)[i],
         (r->FatJet_particleNet_TvsQCD)[i],
         (r->FatJet_particleNet_WvsQCD)[i],
         (r->FatJet_particleNet_ZvsQCD)[i],
@@ -455,7 +461,7 @@ void VbbHcc_selector_unc::Process(Reader* r) {
   for (unsigned int i = 0 ; i < *(r->nJet) ; ++i) {
     
     int jetFlav = -1 ;
-#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
+#if defined(MC_2016PRE) || defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
     jetFlav = (r->Jet_hadronFlavour)[i];
 #endif 
     
@@ -507,7 +513,7 @@ void VbbHcc_selector_unc::Process(Reader* r) {
   //Trigger results, will be applied in selection
   ////////////////////////////////////////////////////
   bool trigger(false); 
-#if defined(MC_2016) || defined(DATA_2016)
+#if defined(MC_2016PRE) || defined(MC_2016) || defined(DATA_2016PRE) || defined(DATA_2016)
    trigger =  *(r->HLT_AK8DiPFJet280_200_TrimMass30_BTagCSV_p20) ||
      *(r->HLT_AK8PFJet360_TrimMass30) ||
      *(r->HLT_AK8PFJet450) ||
@@ -515,7 +521,7 @@ void VbbHcc_selector_unc::Process(Reader* r) {
      *(r->HLT_AK8PFHT700_TrimR0p1PT0p03Mass50) ||
      *(r->HLT_PFHT900);
    h_triggerCheck->Fill(0.5);
-  #if defined(MC_2016) || !defined(DATA_2016H)
+  #if !defined(DATA_2016H)
    trigger = trigger || *(r->HLT_PFHT800);
    h_triggerCheck->Fill(1.5);
   #endif
@@ -653,7 +659,7 @@ void VbbHcc_selector_unc::Process(Reader* r) {
       h_VbbHcc_PN_med->h_bbTagDis_beforeCut->Fill(jets[idx_bb].m_PN_Xbb,evtW_tag);
       h_VbbHcc_PN_med->h_ccTagDis_beforeCut->Fill(jets[idx_cc].m_PN_Xcc,evtW_tag);
       float jetPtMax = std::max(jets[idx_bb].m_lvec.Pt(),jets[idx_cc].m_lvec.Pt());
-#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018) 
+#if defined(MC_2016PRE) || defined(MC_2016) || defined(MC_2017) || defined(MC_2018) 
       trigSF = GetTrigSF(jetPtMax);
 #endif
     }
@@ -665,7 +671,7 @@ void VbbHcc_selector_unc::Process(Reader* r) {
         HObj H(jets[idx_cc]);
         if (nExtraJet < 2 && passMET && trigger) {
           float xcc_weight = 1.0 ;
-#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018) 
+#if defined(MC_2016PRE) || defined(MC_2016) || defined(MC_2017) || defined(MC_2018) 
           xcc_weight = Get_xccbb_weight(jets,idx_bb,XbbCut,XccCut,"xcc");
 #endif
           h_VbbHcc_PN_med_xccWeight->Fill(H,Z,evtW*xcc_weight*trigSF);
@@ -724,7 +730,7 @@ void VbbHcc_selector_unc::Process(Reader* r) {
     HObj H(jets[idx_cc]);
     std::vector<JetObjBoosted> jet_VbbZcc{jets[idx_bb], jets[idx_cc]};
     float trigSF = 1;
-#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018) 
+#if defined(MC_2016PRE) || defined(MC_2016) || defined(MC_2017) || defined(MC_2018) 
     float jetPtMax = std::max(jets[idx_bb].m_lvec.Pt(),jets[idx_cc].m_lvec.Pt());
     trigSF = GetTrigSF(jetPtMax);
 #endif

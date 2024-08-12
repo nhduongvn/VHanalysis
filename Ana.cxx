@@ -9,6 +9,7 @@
 #include "src/VbbHcc_selector.h"
 #include "src/VbbHcc_selector_unc.h"
 #include "src/VbbHcc_triggerSel.h"
+#include "src/Efficiency_selector.h"
 
 #include "src/Global.h"
 
@@ -93,7 +94,7 @@ int main(int argc, char *argv[]) {
   for (int i=0;i<argc;i++) std::cout << argv[i] << " ";
   std::cout << endl;
   std::cout << "======================================================================" << std::endl;
-  arg.keys << "-in" << "-filelist" << "-cfg" << "-out" << "-data" << "-year" << "-syst" << "-centralGenWeight" 
+  arg.keys << "-in" << "-filelist" << "-cfg" << "-out" << "-data" << "-year" << "-xccEffFileName" << "-syst" << "-centralGenWeight" 
            << "-firstentry" << "-lastentry" ; 
   arg.Process();
 
@@ -145,6 +146,9 @@ int main(int argc, char *argv[]) {
   if (arg.Key("-lastentry")) intlastentry = arg.Get<int>("-lastentry");
   if (arg.Key("-syst")) syst = arg.Get<string>("-syst");
 
+  std::string xccEffFileName = "";
+  if (arg.Key("-xccEffFileName")) xccEffFileName = arg.Get<string>("-xccEffFileName");
+
   if(intisdata!=0) isData=true;
   
   std::cout << "\n=================================" << std::endl ;
@@ -191,11 +195,13 @@ int main(int argc, char *argv[]) {
   VbbHcc_sel.SetDataInfo(isData,year); //need to unify SetDataInfo for ana and this
   //VbbHcc_sel_unc.SetDataInfo(isData,year); //need to unify SetDataInfo for ana and this
   VbbHcc_triggerSel VbbHcc_triggerSel;
-
+  //Efficiency_selector Eff_sel ;
+  
   std::string fName_puSF;
   std::string fName_PUjetID_SF;
   std::string fName_PUjetID_eff;
-  std::string fName_xbb_xcc_eff("CalibData/xcc_qcd_weights.root"); //to calculate the weight for QCD xcc xbb
+  std::string fName_xbb_xcc_sf("CalibData/xcc_qcd_weights.root"); //to calculate the weight for QCD xcc xbb
+  std::string fName_xbb_xcc_eff(xccEffFileName); //to calculate the weight for QCD xcc xbb
   std::string fName_triggerSF("CalibData/trigger_turn_on.root"); //to calculate the weight for QCD xcc xbb
  
   //Syst
@@ -213,7 +219,7 @@ int main(int argc, char *argv[]) {
   if (syst == "JETPUIDU") jetPUidUncType = "up";
   if (syst == "JETPUIDD") jetPUidUncType = "down";
 
-#ifdef MC_2016
+#if defined(MC_2016PRE) || defined(MC_2016) 
   fName_puSF = "CalibData/2016_pileup_ratio.root";
   if (syst == "PUU") fName_puSF = "CalibData/2016_pileup_ratio_up.root";
   if (syst == "PUD") fName_puSF = "CalibData/2016_pileup_ratio_down.root";
@@ -243,20 +249,20 @@ int main(int argc, char *argv[]) {
   //if (syst == "TAG_CCU") VbbHcc_sel_unc.SetHFtagUncType("ccup");
   //if (syst == "TAG_CCD") VbbHcc_sel_unc.SetHFtagUncType("ccdown");
 
-#if defined(DATA_2016)
-  //TODO: update to UL
-  std::string fName_lumiMaskFilter("CalibData/Cert_271036-284044_13TeV_23Sep2016ReReco_Collisions16_JSON.txt");
+#if defined(DATA_2016PRE) || defined(DATA_2016)
+  //std::string fName_lumiMaskFilter("CalibData/Cert_271036-284044_13TeV_23Sep2016ReReco_Collisions16_JSON.txt");
+  std::string fName_lumiMaskFilter("CalibData/Cert_271036-284044_13TeV_Legacy2016_Collisions16_JSON.txt");
 #endif
 #if defined(DATA_2017)
-  //TODO: update to UL
-  std::string fName_lumiMaskFilter("CalibData/Cert_294927-306462_13TeV_EOY2017ReReco_Collisions17_JSON.txt");
+  //std::string fName_lumiMaskFilter("CalibData/Cert_294927-306462_13TeV_EOY2017ReReco_Collisions17_JSON.txt");
+  std::string fName_lumiMaskFilter("CalibData/Cert_294927-306462_13TeV_UL2017_Collisions17_GoldenJSON.txt");
 #endif
 #if defined(DATA_2018)
-  //TODO: update to UL
-  std::string fName_lumiMaskFilter("CalibData/Cert_314472-325175_13TeV_17SeptEarlyReReco2018ABC_PromptEraD_Collisions18_JSON.txt");
+  //std::string fName_lumiMaskFilter("CalibData/Cert_314472-325175_13TeV_17SeptEarlyReReco2018ABC_PromptEraD_Collisions18_JSON.txt");
+  std::string fName_lumiMaskFilter("CalibData/Cert_314472-325175_13TeV_Legacy2018_Collisions18_JSON.txt");
 #endif
 
-#if defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
+#if defined(MC_2016PRE) || defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
   //sel.SetCentralGenWeight(centralGenWeight);
   //sel.SetPileupSF(fName_puSF);
   VbbHcc_sel.SetCentralGenWeight(centralGenWeight);
@@ -269,14 +275,15 @@ int main(int argc, char *argv[]) {
   fName_PUjetID_eff = "CalibData/effcyPUID_81Xtraining.root";
   //sel.SetPUjetidCalib(fName_PUjetID_SF,fName_PUjetID_eff,jetPUidUncType); //pileup jet ID SF
   VbbHcc_sel.SetPUjetidCalib(fName_PUjetID_SF,fName_PUjetID_eff,jetPUidUncType); //pileup jet ID SF
-  VbbHcc_sel.SetXbbXccEff(fName_xbb_xcc_eff);
+  VbbHcc_sel.SetXbbXccEff(fName_xbb_xcc_sf);
+  VbbHcc_sel.SetXbbXccEff1D(fName_xbb_xcc_eff);
   VbbHcc_sel.SetTriggerSF(fName_triggerSF);
   //VbbHcc_sel_unc.SetPUjetidCalib(fName_PUjetID_SF,fName_PUjetID_eff,jetPUidUncType); //pileup jet ID SF
   //VbbHcc_sel_unc.SetXbbXccEff(fName_xbb_xcc_eff);
   //VbbHcc_sel_unc.SetTriggerSF(fName_triggerSF);
   VbbHcc_triggerSel.SetPUjetidCalib(fName_PUjetID_SF,fName_PUjetID_eff,jetPUidUncType); //pileup jet ID SF
 #endif
-#if defined(DATA_2016) || defined(DATA_2017) || defined(DATA_2018)
+#if defined(DATA_2016PRE) || defined(DATA_2016) || defined(DATA_2017) || defined(DATA_2018)
   //sel.SetLumiMaskFilter(fName_lumiMaskFilter);
   VbbHcc_sel.SetLumiMaskFilter(fName_lumiMaskFilter);
   //VbbHcc_sel_unc.SetLumiMaskFilter(fName_lumiMaskFilter);
@@ -289,7 +296,8 @@ int main(int argc, char *argv[]) {
   VbbHcc_triggerSel.Setn2b1Cut(fName_n2b1_cut);
 
   sels.push_back(&VbbHcc_sel);
-  sels.push_back(&VbbHcc_triggerSel);
+  //sels.push_back(&Eff_sel);
+  //sels.push_back(&VbbHcc_triggerSel);
 
   //sels.push_back(&sel) ;
 //#if !defined(POSTPROC)

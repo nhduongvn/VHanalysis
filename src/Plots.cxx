@@ -184,6 +184,7 @@ class VHBoostedPlots
 
       h_bbTagDis_beforeCut = new TH1D(name + "_bbTagDis_beforeCut", "", 1000, 0, 1);
       h_ccTagDis_beforeCut = new TH1D(name + "_ccTagDis_beforeCut", "", 1000, 0, 1);
+      h_pQCD_beforeCut = new TH1D(name + "_pQCD_beforeCut", "", 1000, 0, 1);
       h_bbTagDis = new TH1D(name + "_bbTagDis", "", 1000, 0, 1);
       h_ccTagDis = new TH1D(name + "_ccTagDis", "", 1000, 0, 1);
       h_NextraJet_beforeCut = new TH1D(name+"_NextraJet_beforeCut","",10,0,10);
@@ -240,6 +241,7 @@ class VHBoostedPlots
       h_bbTagDis->Sumw2();
       h_ccTagDis_beforeCut->Sumw2();
       h_ccTagDis->Sumw2();
+      h_pQCD_beforeCut->Sumw2();
       h_NextraJet_beforeCut->Sumw2();
       h_MET_beforeCut->Sumw2();
       h_MET_beforeCut_1->Sumw2();
@@ -326,6 +328,7 @@ class VHBoostedPlots
       histolist.push_back(h_bbTagDis);
       histolist.push_back(h_ccTagDis_beforeCut);
       histolist.push_back(h_ccTagDis);
+      histolist.push_back(h_pQCD_beforeCut);
       histolist.push_back(h_NextraJet_beforeCut);
       histolist.push_back(h_MET_beforeCut);
       histolist.push_back(h_MET_beforeCut_1);
@@ -356,6 +359,7 @@ class VHBoostedPlots
     
     TH1D* h_bbTagDis_beforeCut;
     TH1D* h_ccTagDis_beforeCut;
+    TH1D* h_pQCD_beforeCut;
     TH1D* h_bbTagDis;
     TH1D* h_ccTagDis;
     TH1D* h_NextraJet_beforeCut;
