@@ -75,8 +75,13 @@ years = ['16_preVFP','16','17','18']
 
 correctFilterEff = False #only used for postProcessing 
 
-doBlindData = True 
+doBlindData = False 
 blindRange = [75,140]
+
+#use to get event yield tables. Only count events within lowM-highM
+lowM = 50
+highM = 200
+
 
 doUseReweightForQCD = False 
 
@@ -97,7 +102,7 @@ binError_MH = [14.524979842, 14.6705438854, 9.64396617479, 10.4968651727, 16.981
 #regions = ['VbbHcc_boosted_select3','VbbHcc_boosted_select4','VbbHcc_boosted_qcd','VbbHcc_boosted_qcd_1','VbbHcc_boosted_qcd_2','VbbHcc_boosted_qcd_3']
 #regions = ['VbbHcc_boosted_PN_med','VbbHcc_boosted_PN_med_CR_qcd','VbbHcc_boosted_PN_med_VR_qcd','VbbHcc_boosted_PN_med_CR1_qcd','VbbHcc_boosted_PN_med_CR_top']
 #regions = ['VbbHcc_boosted_PN_med','VbbHcc_boosted_PN_med_CR_top']
-#regions = ['VbbHcc_boosted_PN_med_CR_top']
+#regions = ['VbbHcc_boosted_PN_med']
 #regions = ['VbbHcc_boosted_PN_med','VbbHcc_boosted_PN_med_CR_top']
 #regions = ['VbbHcc_boosted_PN_med_topCR_pass','VbbHcc_boosted_PN_med_topCR_fail']
 #regions = ['VbbHcc_boosted_PN_med','VbbHcc_boosted_PN_med_qcdCR','VbbHcc_boosted_PN_med_topCR_pass','VbbHcc_boosted_PN_med_topCR_fail']
@@ -106,7 +111,9 @@ binError_MH = [14.524979842, 14.6705438854, 9.64396617479, 10.4968651727, 16.981
 #regions = ['VbbHcc_boosted_select2']
 #regions = ['VbbHcc_boosted_PN_med']
 #regions = ['ZccHcc_boosted_PN_med_zmass_deltaPhi']
-regions = ['ZccHcc_boosted_PN_med','VHcc_boosted_PN_med']
+#regions = ['ZccHcc_boosted_PN_med','VHcc_boosted_PN_med']
+#regions = ['ZccHcc_boosted_PN_med_topCR_pass']
+regions = ['ZccHcc_boosted_PN_med','VHcc_boosted_PN_med','VHcc_boosted_PN_med_topCR_pass']
 #regions = ['VHcc_boosted_PN_med']
 summary_eventCount_name = 'summary_eventCount_VH_tmp.txt'
 
@@ -119,8 +126,8 @@ use_bEnriched_BGenFilter = False
 
 #create directory to store plots
 #plotFolder = '../SystematicUncTmp/'
-plotFolder = '../Plots_tmp_newTagWeight/'
-if doUseReweightForQCD: plotFolder = '../Plots_tmp_qcdReweight/'
+plotFolder = '../Plots_tmp/'
+if doUseReweightForQCD: plotFolder = '../Plots_tmp_qcdReweight_improveWeighting_lepVeto_msoftdrop/'
 if use_bEnriched_BGenFilter: plotFolder = '../Test_bEnriched_BGenFilter/'
 
 ##################################################
@@ -262,8 +269,6 @@ for r in regions:
       #get number of events
       if 'HMass' in plN:
         nums[r][y] = {}
-        lowM = 50
-        highM = 200
         nums[r][y]['JetHT'] = getHistIntegral(hDat[y],lowM,highM)
         nums[r][y]['ZH_HToCC_ZToQQ'] = getHistIntegral(hZHcc[y],lowM,highM)
         nums[r][y]['ZH_HToBB_ZToQQ'] = getHistIntegral(hZHbb[y],lowM,highM)
@@ -283,11 +288,10 @@ for r in regions:
       #for y in ['17']:
       tmps = cfg.get(plN,'xAxisRange').split(',')
       xA_range = []
-      if 'Pi' not in tmps[1]:
-        xA_range = [float(tmps[0]),float(tmps[1])]
-      else:
-        #xA_range = [-ROOT.TMath.Pi(),ROOT.TMath.Pi()]
-        xA_range = [0,ROOT.TMath.Pi()]
+      for i in [0,1]:
+        if 'Pi' in tmps[i]: xA_range.append(ROOT.TMath.Pi())
+        else: xA_range.append(float(tmps[i]))
+      
       xA_title = cfg.get(plN,'xAxisTitle')
       nRebin = int(cfg.get(plN,'rebin'))
       
@@ -313,7 +317,8 @@ for r in regions:
 
       #utl_func.makeStackPlot(plots_process, plotNames_process, plN + '_' + r +'_'+y, plotFolder + '/20'+y, xA_title, xA_range, 'MC unc. (stat.)', False, lumi=lumiS[y])
       logY=False
-      if 'CutFlow' in plN or 'ccTagDis' in plN or 'bbTagDis' in plN or 'bbPN' in plN or 'ccPN' in plN: logY=True
+      #if 'CutFlow' in plN or 'ccTagDis' in plN or 'bbTagDis' in plN or 'bbPN' in plN or 'ccPN' in plN: logY=True
+      if 'CutFlow' in plN or 'ccTagDis' in plN or 'bbTagDis' in plN: logY=True
       #utl_func.makeStackPlot(plots_process, plotNames_process, plN + '_' + r +'_'+y, plotFolder + '/20'+y+'_QCDv9', xA_title, xA_range, 'MC unc. (stat.)', False, logY=logY, lumi=lumiS[y])
       normBinWidth = -1
       if makePostfit_MH and plN=="HMass": normBinWidth = 1
@@ -468,7 +473,8 @@ for r in regions:
     plotNames_process = [dataTitle, 'QCD', 'Single top', 't#bar{t}','Z + jets', 'W + jets', 'WW', 'WZ', 'ZZ', 'ZHbb', 'ggZHbb', 'ZHcc', 'ggZHcc']
 
     logY=False
-    if 'CutFlow' in plN or 'ccTagDis' in plN or 'bbTagDis' in plN or 'bbPN' in plN or 'ccPN' in plN: logY=True
+    #if 'CutFlow' in plN or 'ccTagDis' in plN or 'bbTagDis' in plN or 'bbPN' in plN or 'ccPN' in plN: logY=True
+    if 'CutFlow' in plN or 'ccTagDis' in plN or 'bbTagDis' in plN: logY=True
     outPlotName = plN + '_' + r +'_all'
     if doCustomBinning_MH and 'HMass' in plN and 'VR' in r: 
       outPlotName = plN + '_' + r +'_customBin'

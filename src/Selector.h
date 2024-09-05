@@ -43,9 +43,9 @@ class Selector
   virtual float PileupSF(int nTrueInt);
   virtual std::vector<float> GetSF_2DHist(float x, float y, std::vector<TH2F*> h, std::vector<float> w);
   virtual float CalBtagWeight(std::vector<JetObj>& jets, std::string jet_main_bTagWP="deepCSVT", std::string uncType="central") ;
-  virtual float CalBtagWeightBoosted(std::pair<float,bool> jet, std::string jetType, std::string uncType);
+  virtual float CalTagWeightBoosted_1jet(std::pair<float,bool> jet, int jet_flav, std::string tagType, std::string uncType);
   virtual float CalBtagWeightBoosted(std::pair<float,bool> jet_bb, std::pair<float,bool> jet_cc, std::string uncType);
-  virtual float CalCtagWeightBoosted(std::pair<JetObjBoosted,bool> jet_1, std::pair<JetObjBoosted,bool> jet_2, std::string tagType, std::string uncType);
+  virtual float CalCtagWeightBoosted(std::pair<JetObjBoosted,bool> jet_1, std::pair<JetObjBoosted,bool> jet_2, std::string uncType);
   virtual float CalEleSF(LepObj e1, LepObj e2);
   virtual float CalSingleEleSF(LepObj e1);
   virtual float CalMuonSF_id_iso(LepObj e1, LepObj e2);

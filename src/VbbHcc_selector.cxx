@@ -18,27 +18,32 @@
 const float XccCut = 0.9743;//2016 post
 const float XbbCut = 0.9735;//2016 post
 //const float pQCDcut = 0.0681;
-const float pQCDcut = 0.0741;
+//const float pQCDcut = 0.0741;
+const float deepFlavBCut = 0.2489;
 #endif
 
 #if defined(DATA_2016PRE) || defined(MC_2016PRE)
 const float XccCut = 0.9751;
 const float XbbCut = 0.9737;
 //const float pQCDcut = 0.0541;
-const float pQCDcut = 0.0741;
+//const float pQCDcut = 0.0741;
+const float deepFlavBCut = 0.2598;
 #endif
 
 #if defined(DATA_2017) || defined(MC_2017)
 const float  XccCut = 0.9765; 
 const float  XbbCut = 0.9714;
 //const float pQCDcut = 0.0541;
-const float pQCDcut = 0.0741;
+//const float pQCDcut = 0.0741;
+const float deepFlavBCut = 0.3040;
 #endif
 #if defined(DATA_2018) || defined(MC_2018)
 const float XccCut = 0.9777;
 const float XbbCut = 0.9734;
-const float pQCDcut = 0.0741;
+//const float pQCDcut = 0.0741;
+const float deepFlavBCut = 0.2783;
 #endif
+const float pQCDcut = 0.0741;
 
 VbbHcc_selector::~VbbHcc_selector() {
   if(h_VbbHcc) delete h_VbbHcc;
@@ -66,9 +71,15 @@ VbbHcc_selector::~VbbHcc_selector() {
   if(h_VccHcc_PN_med_zmass_deltaPhi) delete h_VccHcc_PN_med_zmass_deltaPhi;
   if(h_ZccHcc_PN_med) delete h_ZccHcc_PN_med;
   if(h_ZccHcc_PN_med_zmass_deltaPhi) delete h_ZccHcc_PN_med_zmass_deltaPhi;
+  if(h_ZccHcc_PN_med_xccWeight) delete h_ZccHcc_PN_med_xccWeight;
+  if(h_ZccHcc_PN_med_qcdCR) delete h_ZccHcc_PN_med_qcdCR;
+  if(h_ZccHcc_PN_med_topCR_pass) delete h_ZccHcc_PN_med_topCR_pass;
+  if(h_ZccHcc_PN_med_topCR_fail) delete h_ZccHcc_PN_med_topCR_fail;
   if(h_VHcc_PN_med) delete h_VHcc_PN_med;
   if(h_VHcc_PN_med_zmass_deltaPhi) delete h_VHcc_PN_med_zmass_deltaPhi;
-
+  if(h_VHcc_PN_med_qcdCR) delete h_VHcc_PN_med_qcdCR;
+  if(h_VHcc_PN_med_topCR_pass) delete h_VHcc_PN_med_topCR_pass;
+  if(h_VHcc_PN_med_topCR_fail) delete h_VHcc_PN_med_topCR_fail;
 } 
 
 void VbbHcc_selector::SlaveBegin(Reader* r) {
@@ -191,33 +202,39 @@ void VbbHcc_selector::SlaveBegin(Reader* r) {
   h_cutFlow_VccHcc_PN_med->GetXaxis()->SetBinLabel(11,"DeltaPhi");
   h_cutFlow_VccHcc_PN_med->GetXaxis()->SetBinLabel(12,"ZMass");
 
-  h_cutFlow_ZccHcc_PN_med = new TH1D("CutFlow_ZccHcc_boosted_PN_med","",12,0,12) ;
+  h_cutFlow_ZccHcc_PN_med = new TH1D("CutFlow_ZccHcc_boosted_PN_med","",15,0,15) ;
   h_cutFlow_ZccHcc_PN_med->GetXaxis()->SetBinLabel(1,"Total");
   h_cutFlow_ZccHcc_PN_med->GetXaxis()->SetBinLabel(2,"Lumi");
-  h_cutFlow_ZccHcc_PN_med->GetXaxis()->SetBinLabel(3,"Jet kin");
-  h_cutFlow_ZccHcc_PN_med->GetXaxis()->SetBinLabel(4,"Jet rho");
-  h_cutFlow_ZccHcc_PN_med->GetXaxis()->SetBinLabel(5,"Jet n2b1");
-  h_cutFlow_ZccHcc_PN_med->GetXaxis()->SetBinLabel(6,"Jet Zcc");
-  h_cutFlow_ZccHcc_PN_med->GetXaxis()->SetBinLabel(7,"Jet Hcc");
-  h_cutFlow_ZccHcc_PN_med->GetXaxis()->SetBinLabel(8,"Extra jets");
-  h_cutFlow_ZccHcc_PN_med->GetXaxis()->SetBinLabel(9,"pT_miss");
-  h_cutFlow_ZccHcc_PN_med->GetXaxis()->SetBinLabel(10,"Trigger");
-  h_cutFlow_ZccHcc_PN_med->GetXaxis()->SetBinLabel(11,"DeltaPhi");
-  h_cutFlow_ZccHcc_PN_med->GetXaxis()->SetBinLabel(12,"ZMass");
+  h_cutFlow_ZccHcc_PN_med->GetXaxis()->SetBinLabel(3,"EleVeto");
+  h_cutFlow_ZccHcc_PN_med->GetXaxis()->SetBinLabel(4,"MuonVeto");
+  h_cutFlow_ZccHcc_PN_med->GetXaxis()->SetBinLabel(5,"TauVeto");
+  h_cutFlow_ZccHcc_PN_med->GetXaxis()->SetBinLabel(6,"Jet kin");
+  h_cutFlow_ZccHcc_PN_med->GetXaxis()->SetBinLabel(7,"Jet rho");
+  h_cutFlow_ZccHcc_PN_med->GetXaxis()->SetBinLabel(8,"2 jets, ptCut");
+  h_cutFlow_ZccHcc_PN_med->GetXaxis()->SetBinLabel(9,"Jet Hcc");
+  h_cutFlow_ZccHcc_PN_med->GetXaxis()->SetBinLabel(10,"Jet Zcc");
+  h_cutFlow_ZccHcc_PN_med->GetXaxis()->SetBinLabel(11,"Extra jets");
+  h_cutFlow_ZccHcc_PN_med->GetXaxis()->SetBinLabel(12,"pT_miss");
+  h_cutFlow_ZccHcc_PN_med->GetXaxis()->SetBinLabel(13,"Trigger");
+  h_cutFlow_ZccHcc_PN_med->GetXaxis()->SetBinLabel(14,"DeltaPhi");
+  h_cutFlow_ZccHcc_PN_med->GetXaxis()->SetBinLabel(15,"ZMass");
 
-  h_cutFlow_VHcc_PN_med = new TH1D("CutFlow_VHcc_boosted_PN_med","",12,0,12) ;
+  h_cutFlow_VHcc_PN_med = new TH1D("CutFlow_VHcc_boosted_PN_med","",15,0,15) ;
   h_cutFlow_VHcc_PN_med->GetXaxis()->SetBinLabel(1,"Total");
   h_cutFlow_VHcc_PN_med->GetXaxis()->SetBinLabel(2,"Lumi");
-  h_cutFlow_VHcc_PN_med->GetXaxis()->SetBinLabel(3,"Jet kin");
-  h_cutFlow_VHcc_PN_med->GetXaxis()->SetBinLabel(4,"Jet rho");
-  h_cutFlow_VHcc_PN_med->GetXaxis()->SetBinLabel(5,"Jet n2b1");
-  h_cutFlow_VHcc_PN_med->GetXaxis()->SetBinLabel(6,"Jet Vqq");
-  h_cutFlow_VHcc_PN_med->GetXaxis()->SetBinLabel(7,"Jet Hcc");
-  h_cutFlow_VHcc_PN_med->GetXaxis()->SetBinLabel(8,"Extra jets");
-  h_cutFlow_VHcc_PN_med->GetXaxis()->SetBinLabel(9,"pT_miss");
-  h_cutFlow_VHcc_PN_med->GetXaxis()->SetBinLabel(10,"Trigger");
-  h_cutFlow_VHcc_PN_med->GetXaxis()->SetBinLabel(11,"DeltaPhi");
-  h_cutFlow_VHcc_PN_med->GetXaxis()->SetBinLabel(12,"VMass");
+  h_cutFlow_VHcc_PN_med->GetXaxis()->SetBinLabel(3,"EleVeto");
+  h_cutFlow_VHcc_PN_med->GetXaxis()->SetBinLabel(4,"MuonVeto");
+  h_cutFlow_VHcc_PN_med->GetXaxis()->SetBinLabel(5,"TauVeto");
+  h_cutFlow_VHcc_PN_med->GetXaxis()->SetBinLabel(6,"Jet kin");
+  h_cutFlow_VHcc_PN_med->GetXaxis()->SetBinLabel(7,"Jet rho");
+  h_cutFlow_VHcc_PN_med->GetXaxis()->SetBinLabel(8,"2 jets, ptCut");
+  h_cutFlow_VHcc_PN_med->GetXaxis()->SetBinLabel(9,"Jet Vqq");
+  h_cutFlow_VHcc_PN_med->GetXaxis()->SetBinLabel(10,"Jet Hcc");
+  h_cutFlow_VHcc_PN_med->GetXaxis()->SetBinLabel(11,"Extra jets");
+  h_cutFlow_VHcc_PN_med->GetXaxis()->SetBinLabel(12,"pT_miss");
+  h_cutFlow_VHcc_PN_med->GetXaxis()->SetBinLabel(13,"Trigger");
+  h_cutFlow_VHcc_PN_med->GetXaxis()->SetBinLabel(14,"DeltaPhi");
+  h_cutFlow_VHcc_PN_med->GetXaxis()->SetBinLabel(15,"VMass");
 
   h_VbbHcc_twojets = new VHBoostedPlots("VbbHcc_boosted_twojets");
   h_VbbHcc = new VHBoostedPlots("VbbHcc_boosted");
@@ -244,8 +261,16 @@ void VbbHcc_selector::SlaveBegin(Reader* r) {
   h_VccHcc_PN_med_zmass_deltaPhi = new VHBoostedPlots("VccHcc_boosted_PN_med_zmass_deltaPhi");
   h_ZccHcc_PN_med = new VHBoostedPlots("ZccHcc_boosted_PN_med");
   h_ZccHcc_PN_med_zmass_deltaPhi = new VHBoostedPlots("ZccHcc_boosted_PN_med_zmass_deltaPhi");
+  h_ZccHcc_PN_med_xccWeight = new VHBoostedPlots("ZccHcc_boosted_PN_med_xccWeight");
+  h_ZccHcc_PN_med_qcdCR = new VHBoostedPlots("ZccHcc_boosted_PN_med_qcdCR");
+  h_ZccHcc_PN_med_topCR_fail = new VHBoostedPlots("ZccHcc_boosted_PN_med_topCR_fail");
+  h_ZccHcc_PN_med_topCR_pass = new VHBoostedPlots("ZccHcc_boosted_PN_med_topCR_pass");
   h_VHcc_PN_med = new VHBoostedPlots("VHcc_boosted_PN_med");
   h_VHcc_PN_med_zmass_deltaPhi = new VHBoostedPlots("VHcc_boosted_PN_med_vmass_deltaPhi");
+  h_VHcc_PN_med_qcdCR = new VHBoostedPlots("VHcc_boosted_PN_med_qcdCR");
+  h_VHcc_PN_med_topCR_fail = new VHBoostedPlots("VHcc_boosted_PN_med_topCR_fail");
+  h_VHcc_PN_med_topCR_pass = new VHBoostedPlots("VHcc_boosted_PN_med_topCR_pass");
+
   //test H and Z mass from MC truth
   h_test_MZ = new TH1D("MZbb_MCtruth","",200,0,200);
   h_test_MH = new TH1D("MHcc_MCtruth","",200,0,200);
@@ -308,11 +333,33 @@ void VbbHcc_selector::SlaveBegin(Reader* r) {
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_ZccHcc_PN_med_zmass_deltaPhi->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+
+  tmp = h_ZccHcc_PN_med_xccWeight->returnHisto() ;
+  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  
+  tmp = h_ZccHcc_PN_med_qcdCR->returnHisto() ;
+  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+ 
+  tmp = h_ZccHcc_PN_med_topCR_fail->returnHisto() ;
+  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+
+  tmp = h_ZccHcc_PN_med_topCR_pass->returnHisto() ;
+  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+  
   tmp = h_VHcc_PN_med->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   tmp = h_VHcc_PN_med_zmass_deltaPhi->returnHisto() ;
   for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
   
+  tmp = h_VHcc_PN_med_qcdCR->returnHisto() ;
+  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+ 
+  tmp = h_VHcc_PN_med_topCR_fail->returnHisto() ;
+  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+
+  tmp = h_VHcc_PN_med_topCR_pass->returnHisto() ;
+  for(size_t i=0;i<tmp.size();i++) r->GetOutputList()->Add(tmp[i]);
+
   r->GetOutputList()->Add(h_evt_all) ;
   r->GetOutputList()->Add(h_evt) ;
   r->GetOutputList()->Add(h_evtW_ZccHcc) ;
@@ -464,6 +511,7 @@ void VbbHcc_selector::Process(Reader* r) {
   
   //=============Get objects============= 
   std::vector<LepObj> eles_jetOverlap ;
+  std::vector<LepObj> eles_lepVeto ;
   for (unsigned int i = 0 ; i < *(r->nElectron) ; ++i) {
     
     float etaSC = (r->Electron_eta)[i]+(r->Electron_deltaEtaSC[i]) ;
@@ -475,14 +523,20 @@ void VbbHcc_selector::Process(Reader* r) {
     if ((fabs(etaSC) >= 1.4442) && (fabs(dz) > CUTS.Get<float>("ele_dz_e") || fabs(dxy) > CUTS.Get<float>("ele_d0_e"))) continue;
     int eleId = r->Electron_cutBased[i] ; //cut-based ID Fall17 V2 (0:fail, 1:veto, 2:loose, 3:medium, 4:tight)
     //electron for electron jet overlap removal
-    if (ele.m_lvec.Pt() > CUTS.Get<float>("lep_jetOverlap_pt") && fabs(ele.m_lvec.Eta()) < CUTS.Get<float>("lep_jetOverlap_eta")) {
+    if (ele.m_lvec.Pt() > CUTS.Get<float>("lep_jetOverlap_pt") && fabs(ele.m_lvec.Eta()) < CUTS.Get<float>("ele_eta")) {
       if (eleId >= 4) { //tightId for jet removal
         eles_jetOverlap.push_back(ele) ;
+      }
+    }
+    if (ele.m_lvec.Pt() > CUTS.Get<float>("lep_veto_pt") && fabs(ele.m_lvec.Eta()) < CUTS.Get<float>("ele_eta")) {
+      if (eleId >= 2) { //loose for lepton veto
+        eles_lepVeto.push_back(ele) ;
       }
     }
   }
 
   std::vector<LepObj> muons_jetOverlap ;
+  std::vector<LepObj> muons_lepVeto ;
   for (unsigned int i = 0 ; i < *(r->nMuon) ; ++i) {
     LepObj muon((r->Muon_pt)[i],(r->Muon_eta)[i],-1,(r->Muon_phi)[i],(r->Muon_mass)[i],i,(r->Muon_charge)[i],(r->Muon_pfRelIso04_all)[i]) ;
     //float sf_rc = MuonRcSF(r, muon, 13) ;
@@ -490,10 +544,28 @@ void VbbHcc_selector::Process(Reader* r) {
     muon.m_lvec.SetPtEtaPhiM(muon.m_lvec.Pt()*sf_rc,muon.m_lvec.Eta(),muon.m_lvec.Phi(),muon.m_lvec.M()) ;
     //muon for muon jet overlap removal
     if (muon.m_lvec.Pt() > CUTS.Get<float>("lep_jetOverlap_pt") && fabs(muon.m_lvec.Eta()) < CUTS.Get<float>("lep_jetOverlap_eta")) {
-      if (r-> Muon_mediumId[i] > 0 && r->Muon_pfRelIso04_all[i] < CUTS.Get<float>("muon_iso")) {
+      if (r->Muon_mediumId[i] > 0 && r->Muon_pfRelIso04_all[i] < CUTS.Get<float>("muon_iso")) {
         muons_jetOverlap.push_back(muon) ;
       }
     }
+    if (muon.m_lvec.Pt() > CUTS.Get<float>("lep_veto_pt") && fabs(muon.m_lvec.Eta()) < CUTS.Get<float>("muon_eta")) {
+      if (r->Muon_looseId[i] > 0 && r->Muon_pfRelIso04_all[i] < CUTS.Get<float>("muon_iso_0p25")) {
+        muons_lepVeto.push_back(muon) ;
+      }
+    }
+  }
+  
+  std::vector<LepObj> taus_lepVeto ;
+  for (unsigned int i = 0 ; i < *(r->nTau) ; ++i) {
+    LepObj tau((r->Tau_pt)[i],(r->Tau_eta)[i],-1,(r->Tau_phi)[i],(r->Tau_mass)[i],i,(r->Tau_charge)[i],(r->Tau_chargedIso)[i]) ;
+    //int wp = 32;
+    //bool passTauId = (((r->Tau_idDeepTau2017v2p1VSe)[i] >= wp) && ((r->Tau_idDeepTau2017v2p1VSjet)[i] >= wp) && ((r->Tau_idDeepTau2017v2p1VSmu)[i] >= wp));
+    bool passTauId = ((((r->Tau_idDeepTau2017v2p1VSe)[i] & (1<<3)) != 0) && (((r->Tau_idDeepTau2017v2p1VSjet)[i] & (1<<3)) !=0) && (((r->Tau_idDeepTau2017v2p1VSmu)[i] & (1<<3)) !=0));
+    //std::cout << "\n Tau id: " << std::bitset<8>((r->Tau_idDeepTau2017v2p1VSe)[i]) << " " << std::bitset<8>((r->Tau_idDeepTau2017v2p1VSjet)[i]) << " " << std::bitset<8>((r->Tau_idDeepTau2017v2p1VSmu)[i]) << " " << passTauId;
+    if (tau.m_lvec.Pt() > CUTS.Get<float>("tau_veto_pt") && fabs(tau.m_lvec.Eta()) < CUTS.Get<float>("tau_eta") &&
+        (r->Tau_decayMode)[i] != 5 && (r->Tau_decayMode)[i] != 6 && (r->Tau_decayMode)[i] != 7 && passTauId)
+        //((((r->Tau_idDeepTau2017v2p1VSe)[i] & (1<<5)) != 0) || (((r->Tau_idDeepTau2017v2p1VSjet)[i] & (1<<5)) !=0) || (((r->Tau_idDeepTau2017v2p1VSmu)[i] & (1<<5)) !=0)))
+      taus_lepVeto.push_back(tau);
   }
   
   //ak08 jets
@@ -532,7 +604,8 @@ void VbbHcc_selector::Process(Reader* r) {
 #endif
     //std::cout << " " << jetPt;
     
-    JetObjBoosted jet(jetPt,(r->FatJet_eta)[i],(r->FatJet_phi)[i],(r->FatJet_mass)[i],jetFlav,
+    //JetObjBoosted jet(jetPt,(r->FatJet_eta)[i],(r->FatJet_phi)[i],(r->FatJet_mass)[i],jetFlav,
+    JetObjBoosted jet(jetPt,(r->FatJet_eta)[i],(r->FatJet_phi)[i],(r->FatJet_msoftdrop)[i],jetFlav,
         (r->FatJet_btagDDCvB)[i],(r->FatJet_btagDDCvL)[i], (r->FatJet_btagDDBvL)[i], 
         (r->FatJet_deepTagMD_ZHccvsQCD)[i],(r->FatJet_deepTagMD_ZbbvsQCD)[i],
         Xcc,Xbb,(r->FatJet_particleNetMD_QCD)[i],
@@ -552,6 +625,7 @@ void VbbHcc_selector::Process(Reader* r) {
 
   //ak04 jets
   std::vector<JetObj> ak4Jets;
+  int nBjet(0); 
   for (unsigned int i = 0 ; i < *(r->nJet) ; ++i) {
     
     int jetFlav = -1 ;
@@ -561,7 +635,7 @@ void VbbHcc_selector::Process(Reader* r) {
     
     float jetPt = (r->Jet_pt)[i];
 
-    JetObj jet(jetPt,(r->Jet_eta)[i],(r->Jet_phi)[i],(r->Jet_mass)[i],jetFlav,(r->Jet_btagDeepB)[i],(r->Jet_puIdDisc)[i]) ;
+    JetObj jet(jetPt,(r->Jet_eta)[i],(r->Jet_phi)[i],(r->Jet_mass)[i],jetFlav,(r->Jet_btagDeepFlavB)[i],(r->Jet_puIdDisc)[i]) ;
 
     if (jet.m_lvec.Pt() < CUTS.Get<float>("jet_pt") || fabs(jet.m_lvec.Eta()) > CUTS.Get<float>("jet_eta")) continue ;
     
@@ -573,10 +647,26 @@ void VbbHcc_selector::Process(Reader* r) {
     if (jet.m_lvec.Pt()<50 && jet.m_lvec.Pt()>30 && (r->Jet_puIdDisc)[i]<0.61 ) continue;
 	  
     ak4Jets.push_back(jet) ;
+    if (jet.m_deepFlavB > deepFlavBCut) nBjet += 1;
   }
 
   if(ak4Jets.size()>0) h_ljpt->Fill(ak4Jets[0].m_lvec.Pt(),genWeight);
  
+  bool passLepVeto(false);
+  if (eles_lepVeto.size()==0) {
+    h_cutFlow_ZccHcc_PN_med->Fill(2.5,evtW);
+    h_cutFlow_VHcc_PN_med->Fill(2.5,evtW);
+    if(muons_lepVeto.size()==0) {
+      h_cutFlow_ZccHcc_PN_med->Fill(3.5,evtW);
+      h_cutFlow_VHcc_PN_med->Fill(3.5,evtW);
+      if (taus_lepVeto.size()==0) {
+        h_cutFlow_ZccHcc_PN_med->Fill(4.5,evtW);
+        h_cutFlow_VHcc_PN_med->Fill(4.5,evtW);
+        passLepVeto = true;
+      }
+    }
+  }
+
   //////////////////////////////////////////
   //HBoosted
   //////////////////////////////////////////
@@ -599,8 +689,8 @@ void VbbHcc_selector::Process(Reader* r) {
     h_cutFlow_VbbHcc_select4->Fill(2.5,evtW);
     h_cutFlow_VbbHcc_PN_med->Fill(2.5,evtW);
     h_cutFlow_VccHcc_PN_med->Fill(2.5,evtW);
-    h_cutFlow_ZccHcc_PN_med->Fill(2.5,evtW);
-    h_cutFlow_VHcc_PN_med->Fill(2.5,evtW);
+    h_cutFlow_ZccHcc_PN_med->Fill(5.5,evtW);
+    h_cutFlow_VHcc_PN_med->Fill(5.5,evtW);
     for (auto i:idx_tmps) {
       if(jets[i].m_rho > -6 && jets[i].m_rho < -2.1) idx_tmps_1.push_back(i);
     }
@@ -670,8 +760,8 @@ void VbbHcc_selector::Process(Reader* r) {
     h_cutFlow_VbbHcc_select4->Fill(4.5,evtW);
     h_cutFlow_VbbHcc_PN_med->Fill(3.5,evtW);
     h_cutFlow_VccHcc_PN_med->Fill(3.5,evtW);
-    h_cutFlow_ZccHcc_PN_med->Fill(3.5,evtW);
-    h_cutFlow_VHcc_PN_med->Fill(3.5,evtW);
+    h_cutFlow_ZccHcc_PN_med->Fill(6.5,evtW);
+    h_cutFlow_VHcc_PN_med->Fill(6.5,evtW);
     for (auto i:idx_tmps_1) {
       //std::cout << "\n" << jets[i].m_lvec.Pt() << " " << jets[i].m_rho << " " << Getn2b1Cut(jets[i].m_rho,jets[i].m_lvec.Pt());
       //if(jets[i].m_n2b1 < Getn2b1Cut(jets[i].m_rho,jets[i].m_lvec.Pt())) idx_tmps_2.push_back(i);
@@ -696,10 +786,8 @@ void VbbHcc_selector::Process(Reader* r) {
     //std::cout << "\n";
     //for(auto i : idx_pn_cc) std::cout << " (" << i.first << " " << i.second << ") ";
   //}
-  
-  if (idx_pn_cc.size() >= 2) {
-    h_cutFlow_ZccHcc_PN_med->Fill(4.5,evtW);
-    h_cutFlow_VHcc_PN_med->Fill(4.5,evtW);
+   
+  if (passLepVeto && (idx_pn_cc.size() >= 2)) { 
     //now do ambugity resolve using DH method
     //calculate the DH 
     std::vector<std::pair<std::vector<int>,float>> dhs_idx_cand;
@@ -722,7 +810,7 @@ void VbbHcc_selector::Process(Reader* r) {
     auto jet_Z = std::make_pair(jets[idx_Z],false);
     if(jets[idx_Z].m_PN_Xcc >= XccCut) jet_Z.second = true;
 #if defined(MC_2016PRE) || defined(MC_2016) || defined(MC_2017) || defined(MC_2018) 
-    tagW = CalCtagWeightBoosted(jet_H,jet_Z,"xcc",m_hfTagUncType);
+    tagW = CalCtagWeightBoosted(jet_H,jet_Z,m_hfTagUncType);
 #endif  
     float evtW_tag = evtW*tagW;
     
@@ -735,23 +823,47 @@ void VbbHcc_selector::Process(Reader* r) {
 
     //std::cout << "\n Weights: " << evtW << " " << tagW << " " << evtW_tag << " " << trigSF ;
 
+    ZObj Z(jets[idx_Z]);
+    HObj H(jets[idx_H]);
+    std::vector<JetObjBoosted> jet_ZccHcc{jets[idx_Z], jets[idx_H]};
+    
     //number of extra jets
     int nExtraJet = -1;
     std::vector<JetObjBoosted> tmp1{jets[idx_Z],jets[idx_H]};
     nExtraJet = NextraJet(tmp1, ak4Jets); 
-
-    h_ZccHcc_PN_med->h_bbTagDis_beforeCut->Fill(jets[idx_Z].m_PN_Xcc,evtW_tag); 
-    if (jets[idx_Z].m_PN_Xcc>=XccCut) {
-      //////////////////////
-      //evtW_tag = evtW; //////////////////////////////////////////////////////////????FIXME HERE!!!!!!
-      h_cutFlow_ZccHcc_PN_med->Fill(5.5,evtW_tag);
+    
+    float evtW_tag_trig = evtW_tag*trigSF;
+    
+    //ZccHcc
+    if (jets[idx_Z].m_lvec.Pt()>450 && jets[idx_H].m_lvec.Pt()>450) {
+      h_cutFlow_ZccHcc_PN_med->Fill(7.5,evtW);
       h_ZccHcc_PN_med->h_ccTagDis_beforeCut->Fill(jets[idx_H].m_PN_Xcc,evtW_tag); 
-      if(idx_H>=0) {
-        std::vector<JetObjBoosted> jet_ZccHcc{jets[idx_Z], jets[idx_H]};
-        ZObj Z(jets[idx_Z]);
-        HObj H(jets[idx_H]);
-        if (jets[idx_H].m_PN_Xcc>=XccCut) {
-          h_cutFlow_ZccHcc_PN_med->Fill(6.5,evtW_tag);
+      if (jets[idx_H].m_PN_Xcc>=XccCut) {
+        //////////////////////
+        //evtW_tag = evtW; //////////////////////////////////////////////////////////????FIXME HERE!!!!!!
+        h_cutFlow_ZccHcc_PN_med->Fill(8.5,evtW_tag);
+        
+        if(nExtraJet < 2 && passMET && trigger) {
+          float xcc_weight = 1.0 ;
+          float tagWtmp = 1.0;
+#if defined(MC_2016PRE) || defined(MC_2016) || defined(MC_2017) || defined(MC_2018) 
+          xcc_weight = Get_xccbb_weight(jets,idx_H,XbbCut,XccCut,"xcc");
+          auto jet_H = std::make_pair(jets[idx_H].m_lvec.Pt(),true);
+          tagWtmp = CalTagWeightBoosted_1jet(jet_H, jets[idx_H].m_flav, "xcc", m_hfTagUncType);
+#endif
+          //float w = evtW*trigSF*tagWtmp*xcc_weight;
+          float w = evtW*trigSF*tagW*xcc_weight;
+          
+          //std::cout << "\n Weights 1: " << evtW << " " << trigSF << " " << tagWtmp << " " << xcc_weight ;
+
+          h_ZccHcc_PN_med_xccWeight->Fill(H,Z,w);
+          h_ZccHcc_PN_med_xccWeight->FillJets(jet_ZccHcc,w);
+        }
+
+        //std::vector<JetObjBoosted> jet_ZccHcc{jets[idx_Z], jets[idx_H]};
+        h_ZccHcc_PN_med->h_bbTagDis_beforeCut->Fill(jets[idx_Z].m_PN_Xcc,evtW_tag); 
+        if (jets[idx_Z].m_PN_Xcc>=XccCut) {
+          h_cutFlow_ZccHcc_PN_med->Fill(9.5,evtW_tag);
           h_NextraJet_ZccHcc->Fill(nExtraJet,evtW_tag);
           ///////////////////////////////////
           //>>>>>>>>>>>>SR ZccHcc>>>>>>>>>>>>>>>>>>>
@@ -760,17 +872,16 @@ void VbbHcc_selector::Process(Reader* r) {
           h_ZccHcc_PN_med->h_MET_beforeCut_1->Fill(*(r->MET_pt),evtW_tag);
           //top quarks suppression
           if (nExtraJet < 2) {
-            h_cutFlow_ZccHcc_PN_med->Fill(7.5,evtW_tag);
+            h_cutFlow_ZccHcc_PN_med->Fill(10.5,evtW_tag);
             //now fill histograms
             h_ZccHcc_PN_med->h_MET_beforeCut->Fill(*(r->MET_pt),evtW_tag);
             if (passMET) {
-              h_cutFlow_ZccHcc_PN_med->Fill(8.5,evtW_tag);
+              h_cutFlow_ZccHcc_PN_med->Fill(11.5,evtW_tag);
               if (trigger) {
                 h_evtW_ZccHcc->Fill(evtW);
                 h_tagW_ZccHcc->Fill(tagW);
                 h_trigW_ZccHcc->Fill(trigSF);
-                float evtW_tag_trig = evtW_tag*trigSF;
-                h_cutFlow_ZccHcc_PN_med->Fill(9.5,evtW_tag_trig);
+                h_cutFlow_ZccHcc_PN_med->Fill(12.5,evtW_tag_trig);
                 h_ZccHcc_PN_med->Fill(H,Z,evtW_tag_trig);
                 h_ZccHcc_PN_med->FillJets(jet_ZccHcc,evtW_tag_trig);
                 h_ZccHcc_PN_med->h_bbTagDis->Fill(jets[idx_Z].m_PN_Xcc,evtW_tag_trig);
@@ -779,10 +890,10 @@ void VbbHcc_selector::Process(Reader* r) {
                 
                 float deltaPhi = jets[idx_Z].m_lvec.DeltaPhi(jets[idx_H].m_lvec);
                 if (deltaPhi > 2.5) {
-                  h_cutFlow_ZccHcc_PN_med->Fill(10.5,evtW_tag_trig);
+                  h_cutFlow_ZccHcc_PN_med->Fill(13.5,evtW_tag_trig);
                   if (jets[idx_Z].m_lvec.M() < 120 && jets[idx_Z].m_lvec.M() > 60) 
                   {
-                    h_cutFlow_ZccHcc_PN_med->Fill(11.5,evtW_tag_trig);
+                    h_cutFlow_ZccHcc_PN_med->Fill(14.5,evtW_tag_trig);
                     h_ZccHcc_PN_med_zmass_deltaPhi->Fill(H,Z,evtW_tag_trig);
                     h_ZccHcc_PN_med_zmass_deltaPhi->FillJets(jet_ZccHcc,evtW_tag_trig);
                   }
@@ -791,66 +902,140 @@ void VbbHcc_selector::Process(Reader* r) {
             }
           }
         }
+      } //SR
+      
+      //fail CR 
+      if (jets[idx_H].m_PN_Xcc<XccCut && jets[idx_Z].m_PN_Xcc>=XccCut) {
+        if(passMET && trigger) { 
+          if (nExtraJet < 2) {
+            h_ZccHcc_PN_med_qcdCR->Fill(H,Z,evtW_tag_trig);
+            h_ZccHcc_PN_med_qcdCR->FillJets(jet_ZccHcc,evtW_tag_trig);
+            h_ZccHcc_PN_med_qcdCR->h_bbTagDis->Fill(jets[idx_Z].m_PN_Xcc,evtW_tag_trig);
+            h_ZccHcc_PN_med_qcdCR->h_ccTagDis->Fill(jets[idx_H].m_PN_Xcc,evtW_tag_trig);
+            h_ZccHcc_PN_med_qcdCR->h_MET->Fill(*(r->MET_pt),evtW_tag_trig);
+          }
+        }
+      } //end fail CR 
+    }//end ZccHcc
+    
+    //top CR
+    if (jets[idx_Z].m_lvec.Pt()>350 && jets[idx_H].m_lvec.Pt()>350) {
+      if (nExtraJet >= 2 && passMET && trigger) {
+        if (jets[idx_H].m_PN_Xcc>=XccCut && jets[idx_Z].m_PN_Xcc>=XccCut) {
+          h_ZccHcc_PN_med_topCR_pass->h_ccPN_TopvsQCD->Fill(jets[idx_H].m_PN_TopvsQCD,evtW_tag_trig);
+          h_ZccHcc_PN_med_topCR_pass->h_bbPN_TopvsQCD->Fill(jets[idx_Z].m_PN_TopvsQCD,evtW_tag_trig);
+          if(nBjet > -1 && jets[idx_Z].m_PN_TopvsQCD > 0.02) {
+            h_ZccHcc_PN_med_topCR_pass->Fill(H,Z,evtW_tag_trig);
+            h_ZccHcc_PN_med_topCR_pass->FillJets(jet_ZccHcc,evtW_tag_trig);
+            h_ZccHcc_PN_med_topCR_pass->h_bbTagDis->Fill(jets[idx_Z].m_PN_Xcc,evtW_tag_trig);
+            h_ZccHcc_PN_med_topCR_pass->h_ccTagDis->Fill(jets[idx_H].m_PN_Xcc,evtW_tag_trig);
+          }
+        }
+        if (jets[idx_H].m_PN_Xcc<XccCut && jets[idx_Z].m_PN_Xcc>=XccCut) {
+          if(nBjet > -1 && jets[idx_Z].m_PN_TopvsQCD > 0.02) {
+            h_ZccHcc_PN_med_topCR_fail->Fill(H,Z,evtW_tag_trig);
+            h_ZccHcc_PN_med_topCR_fail->FillJets(jet_ZccHcc,evtW_tag_trig);
+            h_ZccHcc_PN_med_topCR_fail->h_bbTagDis->Fill(jets[idx_Z].m_PN_Xcc,evtW_tag_trig);
+            h_ZccHcc_PN_med_topCR_fail->h_ccTagDis->Fill(jets[idx_H].m_PN_Xcc,evtW_tag_trig);
+          }
+        }
       }
     }
 
+
+
     //not tagged Zcc
-    //if (jets[idx_pn_cc[0]first].m_PN_Xcc > XccCut && jets[idx_pn_cc[1].first].m_PN_Xcc < XccCut) { //one jet passing 
     idx_H = idx_pn_cc[0].first; //assign leading PN_cc for idx_H
     int idx_V = idx_pn_cc[1].first; 
+    ZObj V = ZObj(jets[idx_V]);
+    H = HObj(jets[idx_H]);
+    std::vector<JetObjBoosted> jet_VHcc{jets[idx_V], jets[idx_H]};
     ///////////////////////////////////////////////////////////////////////FIXME HERE////////////////////
     //evtW_tag = evtW;
-    if (jets[idx_V].m_PN_Xcc < XccCut)
-      h_VHcc_PN_med->h_pQCD_beforeCut->Fill(jets[idx_V].m_PN_pQCD,evtW_tag); 
-    if (jets[idx_V].m_PN_pQCD<pQCDcut)
-      h_VHcc_PN_med->h_bbTagDis_beforeCut->Fill(jets[idx_V].m_PN_Xcc,evtW_tag); 
-    if (jets[idx_V].m_PN_Xcc < XccCut && jets[idx_V].m_PN_pQCD<pQCDcut) { //tag V-jet, 2-prong cut 
-      h_cutFlow_VHcc_PN_med->Fill(5.5,evtW_tag);
-      h_VHcc_PN_med->h_ccTagDis_beforeCut->Fill(jets[idx_H].m_PN_Xcc,evtW_tag); 
-      if (jets[idx_H].m_PN_Xcc>XccCut) {
-        h_cutFlow_VHcc_PN_med->Fill(6.5,evtW_tag);
-        std::vector<JetObjBoosted> jet_VHcc{jets[idx_V], jets[idx_H]};
-        ZObj V(jets[idx_V]);
-        HObj H(jets[idx_H]);
-        h_NextraJet_VHcc->Fill(nExtraJet,evtW_tag);
-        ///////////////////////////////////
-        //>>>>>>>>>>>>SR VHcc>>>>>>>>>>>>>>>>>>>
+    if (jets[idx_V].m_lvec.Pt()>200 && jets[idx_H].m_lvec.Pt()>450) {
+      h_cutFlow_VHcc_PN_med->Fill(7.5,evtW);
+      if (jets[idx_V].m_PN_Xcc < XccCut)
+        h_VHcc_PN_med->h_pQCD_beforeCut->Fill(jets[idx_V].m_PN_pQCD,evtW_tag); 
+      if (jets[idx_V].m_PN_pQCD<pQCDcut)
+        h_VHcc_PN_med->h_bbTagDis_beforeCut->Fill(jets[idx_V].m_PN_Xcc,evtW_tag); 
+      if (jets[idx_V].m_PN_Xcc < XccCut && jets[idx_V].m_PN_pQCD<pQCDcut) { //tag V-jet, 2-prong cut 
+        h_cutFlow_VHcc_PN_med->Fill(8.5,evtW_tag);
+        h_VHcc_PN_med->h_ccTagDis_beforeCut->Fill(jets[idx_H].m_PN_Xcc,evtW_tag); 
+        if (jets[idx_H].m_PN_Xcc>XccCut) {
+          h_cutFlow_VHcc_PN_med->Fill(9.5,evtW_tag);
+          h_NextraJet_VHcc->Fill(nExtraJet,evtW_tag);
           ///////////////////////////////////
-        h_VHcc_PN_med->h_NextraJet_beforeCut->Fill(nExtraJet,evtW_tag); 
-        h_VHcc_PN_med->h_MET_beforeCut_1->Fill(*(r->MET_pt),evtW_tag);
-        //top quarks suppression
-        if (nExtraJet < 2) {
-          h_cutFlow_VHcc_PN_med->Fill(7.5,evtW_tag);
-          //now fill histograms
-          h_VHcc_PN_med->h_MET_beforeCut->Fill(*(r->MET_pt),evtW_tag);
-          if (passMET) {
-            h_cutFlow_VHcc_PN_med->Fill(8.5,evtW_tag);
-            if (trigger) {
-              float evtW_tag_trig = evtW_tag*trigSF;
-              h_evtW_VHcc->Fill(evtW);
-              h_tagW_VHcc->Fill(tagW);
-              h_trigW_VHcc->Fill(trigSF);
-              h_cutFlow_VHcc_PN_med->Fill(9.5,evtW_tag_trig);
-              h_VHcc_PN_med->Fill(H,V,evtW_tag_trig);
-              h_VHcc_PN_med->FillJets(jet_VHcc,evtW_tag_trig);
-              h_VHcc_PN_med->h_bbTagDis->Fill(jets[idx_V].m_PN_Xcc,evtW_tag_trig);
-              h_VHcc_PN_med->h_ccTagDis->Fill(jets[idx_H].m_PN_Xcc,evtW_tag_trig);
-              h_VHcc_PN_med->h_MET->Fill(*(r->MET_pt),evtW_tag_trig);
-              
-              float deltaPhi = jets[idx_V].m_lvec.DeltaPhi(jets[idx_H].m_lvec);
-              if (deltaPhi > 2.5) {
-                h_cutFlow_VHcc_PN_med->Fill(10.5,evtW_tag_trig);
-                if (jets[idx_V].m_lvec.M() < 120 && jets[idx_V].m_lvec.M() > 60) 
-                {
-                  h_cutFlow_VHcc_PN_med->Fill(11.5,evtW_tag_trig);
-                  h_VHcc_PN_med_zmass_deltaPhi->Fill(H,V,evtW_tag_trig);
-                  h_VHcc_PN_med_zmass_deltaPhi->FillJets(jet_VHcc,evtW_tag_trig);
+          //>>>>>>>>>>>>SR VHcc>>>>>>>>>>>>>>>>>>>
+            ///////////////////////////////////
+          h_VHcc_PN_med->h_NextraJet_beforeCut->Fill(nExtraJet,evtW_tag); 
+          h_VHcc_PN_med->h_MET_beforeCut_1->Fill(*(r->MET_pt),evtW_tag);
+          //top quarks suppression
+          if (nExtraJet < 2) {
+            h_cutFlow_VHcc_PN_med->Fill(10.5,evtW_tag);
+            //now fill histograms
+            h_VHcc_PN_med->h_MET_beforeCut->Fill(*(r->MET_pt),evtW_tag);
+            if (passMET) {
+              h_cutFlow_VHcc_PN_med->Fill(11.5,evtW_tag);
+              if (trigger) {
+                float evtW_tag_trig = evtW_tag*trigSF;
+                h_evtW_VHcc->Fill(evtW);
+                h_tagW_VHcc->Fill(tagW);
+                h_trigW_VHcc->Fill(trigSF);
+                h_cutFlow_VHcc_PN_med->Fill(12.5,evtW_tag_trig);
+                h_VHcc_PN_med->Fill(H,V,evtW_tag_trig);
+                h_VHcc_PN_med->FillJets(jet_VHcc,evtW_tag_trig);
+                h_VHcc_PN_med->h_bbTagDis->Fill(jets[idx_V].m_PN_Xcc,evtW_tag_trig);
+                h_VHcc_PN_med->h_ccTagDis->Fill(jets[idx_H].m_PN_Xcc,evtW_tag_trig);
+                h_VHcc_PN_med->h_MET->Fill(*(r->MET_pt),evtW_tag_trig);
+                
+                float deltaPhi = jets[idx_V].m_lvec.DeltaPhi(jets[idx_H].m_lvec);
+                if (deltaPhi > 2.5) {
+                  h_cutFlow_VHcc_PN_med->Fill(13.5,evtW_tag_trig);
+                  if (jets[idx_V].m_lvec.M() < 120 && jets[idx_V].m_lvec.M() > 60) 
+                  {
+                    h_cutFlow_VHcc_PN_med->Fill(14.5,evtW_tag_trig);
+                    h_VHcc_PN_med_zmass_deltaPhi->Fill(H,V,evtW_tag_trig);
+                    h_VHcc_PN_med_zmass_deltaPhi->FillJets(jet_VHcc,evtW_tag_trig);
+                  }
                 }
               }
             }
           }
-        }
-      }
+          //top CR
+          else { //nExtraJet >= 2
+            if (passMET && trigger) {
+              h_VHcc_PN_med_topCR_pass->h_ccPN_TopvsQCD->Fill(jets[idx_H].m_PN_TopvsQCD,evtW_tag_trig);
+              h_VHcc_PN_med_topCR_pass->h_bbPN_TopvsQCD->Fill(jets[idx_Z].m_PN_TopvsQCD,evtW_tag_trig);
+              if(nBjet > -1 && jets[idx_Z].m_PN_TopvsQCD > 0.02) {
+                h_VHcc_PN_med_topCR_pass->Fill(H,Z,evtW_tag_trig);
+                h_VHcc_PN_med_topCR_pass->FillJets(jet_VHcc,evtW_tag_trig);
+                h_VHcc_PN_med_topCR_pass->h_bbTagDis->Fill(jets[idx_Z].m_PN_Xcc,evtW_tag_trig);
+                h_VHcc_PN_med_topCR_pass->h_ccTagDis->Fill(jets[idx_H].m_PN_Xcc,evtW_tag_trig);
+              }
+            }
+          }
+        } //SR VHcc
+        //fail CR 
+        if (jets[idx_H].m_PN_Xcc<XccCut) {
+          if(passMET && trigger) { 
+            if (nExtraJet < 2) {
+              h_VHcc_PN_med_qcdCR->Fill(H,Z,evtW_tag_trig);
+              h_VHcc_PN_med_qcdCR->FillJets(jet_VHcc,evtW_tag_trig);
+              h_VHcc_PN_med_qcdCR->h_bbTagDis->Fill(jets[idx_Z].m_PN_Xcc,evtW_tag_trig);
+              h_VHcc_PN_med_qcdCR->h_ccTagDis->Fill(jets[idx_H].m_PN_Xcc,evtW_tag_trig);
+              h_VHcc_PN_med_qcdCR->h_MET->Fill(*(r->MET_pt),evtW_tag_trig);
+            }
+            else {
+              if(nBjet > -1 && jets[idx_Z].m_PN_TopvsQCD > 0.02) {
+                h_VHcc_PN_med_topCR_fail->Fill(H,Z,evtW_tag_trig);
+                h_VHcc_PN_med_topCR_fail->FillJets(jet_VHcc,evtW_tag_trig);
+                h_VHcc_PN_med_topCR_fail->h_bbTagDis->Fill(jets[idx_Z].m_PN_Xcc,evtW_tag_trig);
+                h_VHcc_PN_med_topCR_fail->h_ccTagDis->Fill(jets[idx_H].m_PN_Xcc,evtW_tag_trig);
+              }
+            }
+          }
+        } //end fail CR 
+      } //V-tag
     }
   }
 
@@ -957,7 +1142,7 @@ void VbbHcc_selector::Process(Reader* r) {
 #if defined(MC_2016PRE) || defined(MC_2016) || defined(MC_2017) || defined(MC_2018) 
           xcc_weight = Get_xccbb_weight(jets,idx_bb,XbbCut,XccCut,"xcc");
           auto jet_bb = std::make_pair(jets[idx_bb].m_lvec.Pt(),true);
-          tagWtmp = CalBtagWeightBoosted(jet_bb,"xbb",m_hfTagUncType);
+          tagWtmp = CalTagWeightBoosted_1jet(jet_bb,jets[idx_bb].m_flav,"xbb",m_hfTagUncType);
 #endif
           float w = evtW*trigSF*tagWtmp*xcc_weight;
 
@@ -1129,7 +1314,7 @@ void VbbHcc_selector::Process(Reader* r) {
     auto jet_cc_2 = std::make_pair(jets[idx_cc_2],false);
     if(jets[idx_cc_2].m_PN_Xcc >= XccCut) jet_cc_2.second = true;
 #if defined(MC_2016PRE) || defined(MC_2016) || defined(MC_2017) || defined(MC_2018) 
-    tagW = CalCtagWeightBoosted(jet_cc_1,jet_cc_2,"xcc",m_hfTagUncType);
+    tagW = CalCtagWeightBoosted(jet_cc_1,jet_cc_2,m_hfTagUncType);
 #endif  
 
     float evtW_tag = evtW*tagW;

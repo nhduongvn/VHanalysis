@@ -95,6 +95,13 @@ private:
   VHBoostedPlots* h_VccHcc_PN_med_zmass_deltaPhi; //using particle net medium WP
   VHBoostedPlots* h_ZccHcc_PN_med; //using particle net medium WP
   VHBoostedPlots* h_ZccHcc_PN_med_zmass_deltaPhi; //using particle net medium WP
+  VHBoostedPlots* h_ZccHcc_PN_med_xccWeight; //using particle net medium WP
+  VHBoostedPlots* h_ZccHcc_PN_med_qcdCR; //control regions used in QCD bkg estimation in SR using particle net medium WP
+  VHBoostedPlots* h_ZccHcc_PN_med_topCR_fail; //top control regions fail SR tagging requirements using particle net medium WP
+  VHBoostedPlots* h_ZccHcc_PN_med_topCR_pass; //top control regions passing SR tagging requirements using particle net medium WP
+  VHBoostedPlots* h_VHcc_PN_med_qcdCR; //control regions used in QCD bkg estimation in SR using particle net medium WP
+  VHBoostedPlots* h_VHcc_PN_med_topCR_fail; //top control regions fail SR tagging requirements using particle net medium WP
+  VHBoostedPlots* h_VHcc_PN_med_topCR_pass; //top control regions passing SR tagging requirements using particle net medium WP
   VHBoostedPlots* h_VHcc_PN_med; //using particle net medium WP
   VHBoostedPlots* h_VHcc_PN_med_zmass_deltaPhi; //using particle net medium WP
 

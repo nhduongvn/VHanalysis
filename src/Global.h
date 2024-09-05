@@ -24,10 +24,15 @@ namespace glob {
         parameterNames.push_back("ele_d0_e") ;
         parameterNames.push_back("lep_jetOverlap_pt");
         parameterNames.push_back("lep_jetOverlap_eta");
-        parameterNames.push_back("lep_pt") ;
-        parameterNames.push_back("lep_eta") ;
+        //parameterNames.push_back("lep_pt") ;
+        //parameterNames.push_back("lep_eta") ;
+        parameterNames.push_back("lep_veto_pt") ;
+        parameterNames.push_back("tau_veto_pt") ;
+        parameterNames.push_back("muon_eta") ;
         parameterNames.push_back("muon_iso");
         parameterNames.push_back("muon_iso_0p25");
+        parameterNames.push_back("ele_eta") ;
+        parameterNames.push_back("tau_eta") ;
       } ;
       
       //passing a constant string https://stackoverflow.com/questions/4475634/c-pass-a-string
@@ -46,10 +51,15 @@ namespace glob {
           else if (name == "ele_d0_e") return ele_d0_e;
           else if (name == "lep_jetOverlap_pt") return lep_jetOverlap_pt;
           else if (name == "lep_jetOverlap_eta") return lep_jetOverlap_eta;
-          else if (name == "lep_pt") return lep_pt ;
-          else if (name == "lep_eta") return lep_eta ;
+          else if (name == "muon_eta") return muon_eta ;
+          //else if (name == "lep_pt") return lep_pt ;
+          //else if (name == "lep_eta") return lep_eta ;
+          else if (name == "tau_veto_pt") return tau_veto_pt ;
+          else if (name == "lep_veto_pt") return lep_veto_pt ;
           else if (name == "muon_iso") return muon_iso;
           else if (name == "muon_iso_0p25") return muon_iso_0p25;
+          else if (name == "ele_eta") return ele_eta;
+          else if (name == "tau_eta") return tau_eta;
           else {
             std::cout << "\n The parameter, " << name << ", is in the parameter list but found no value for it." << std::endl ;
             exit(1) ;
@@ -108,14 +118,24 @@ namespace glob {
               lep_jetOverlap_pt = val;
             else if(name=="lep_jetOverlap_eta")
               lep_jetOverlap_eta = val;
-            else if(name=="lep_pt")
-              lep_pt = val;
-            else if(name=="lep_eta")
-              lep_eta = val;
+            else if(name=="lep_veto_pt")
+              lep_veto_pt = val;
+            else if(name=="tau_veto_pt")
+              tau_veto_pt = val;
+            else if(name=="muon_eta")
+              muon_eta = val;
+            //else if(name=="lep_pt")
+              //lep_pt = val;
+            //else if(name=="lep_eta")
+              //lep_eta = val;
             else if(name=="muon_iso")
               muon_iso = val;
             else if(name=="muon_iso_0p25")
               muon_iso_0p25 = val;
+            else if(name=="ele_eta")
+              ele_eta = val;
+            else if(name=="tau_eta")
+              tau_eta = val;
             else {  
               std::cout << "\n The parameter, " << name << ", is in the list of parameters but it's values is not set." << std::endl; 
               exit(1);
@@ -137,10 +157,15 @@ namespace glob {
       float ele_d0_e;
       float lep_jetOverlap_pt;
       float lep_jetOverlap_eta;
-      float lep_pt;
-      float lep_eta;
+      //float lep_pt;
+      //float lep_eta;
+      float lep_veto_pt;
+      float tau_veto_pt;
+      float muon_eta;
       float muon_iso;
       float muon_iso_0p25;
+      float ele_eta;
+      float tau_eta;
       std::vector<std::string> initializedVars ;
       std::vector<std::string> parameterNames ;
 

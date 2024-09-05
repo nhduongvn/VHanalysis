@@ -107,6 +107,7 @@ public :
    TTreeReaderArray<Float_t> FatJet_phi = {fReader, "FatJet_phi"};
    TTreeReaderArray<Float_t> FatJet_mass = {fReader, "FatJet_mass"};
    TTreeReaderArray<Float_t> FatJet_n2b1 = {fReader, "FatJet_n2b1"};
+   TTreeReaderArray<Float_t> FatJet_msoftdrop = {fReader, "FatJet_msoftdrop"};
 #if defined(NANOAODV7)
    TTreeReaderArray<Float_t> FatJet_btagDDCvB = {fReader, "FatJet_btagDDCvB"};
    TTreeReaderArray<Float_t> FatJet_btagDDCvL = {fReader, "FatJet_btagDDCvL"};
@@ -251,6 +252,19 @@ public :
 #if !defined(POSTPROC)
    TTreeReaderArray<Bool_t> Muon_looseId = {fReader, "Muon_looseId"};
 #endif
+
+   //Tau
+   TTreeReaderValue<UInt_t> nTau = {fReader, "nTau"};
+   TTreeReaderArray<Float_t> Tau_eta = {fReader, "Tau_eta"};
+   TTreeReaderArray<Float_t> Tau_pt = {fReader, "Tau_pt"};
+   TTreeReaderArray<Float_t> Tau_phi = {fReader, "Tau_phi"};
+   TTreeReaderArray<Float_t> Tau_mass = {fReader, "Tau_mass"};
+   TTreeReaderArray<Int_t> Tau_charge = {fReader, "Tau_charge"};
+   TTreeReaderArray<Float_t> Tau_chargedIso = {fReader, "Tau_chargedIso"};
+   TTreeReaderArray<Int_t> Tau_decayMode = {fReader, "Tau_decayMode"};
+   TTreeReaderArray<UChar_t> Tau_idDeepTau2017v2p1VSe = {fReader, "Tau_idDeepTau2017v2p1VSe"};
+   TTreeReaderArray<UChar_t> Tau_idDeepTau2017v2p1VSjet = {fReader, "Tau_idDeepTau2017v2p1VSjet"};
+   TTreeReaderArray<UChar_t> Tau_idDeepTau2017v2p1VSmu = {fReader, "Tau_idDeepTau2017v2p1VSmu"};
 
    //MET
    TTreeReaderValue<Float_t> MET_pt = {fReader, "MET_pt"};

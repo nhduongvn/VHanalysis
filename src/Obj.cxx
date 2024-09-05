@@ -35,7 +35,7 @@ class JetObj { // Jets
   public:
     
     // Constructor & Deconstructor
-    JetObj(float pt, float eta, float phi, float mass, unsigned flav, float deepCSV, float PUjetID) : m_flav(flav), m_deepCSV(deepCSV), m_puid(PUjetID)  {
+    JetObj(float pt, float eta, float phi, float mass, unsigned flav, float deepFlavB, float PUjetID) : m_flav(flav), m_deepFlavB(deepFlavB), m_puid(PUjetID)  {
               m_lvec.SetPtEtaPhiM(pt, eta, phi, mass) ;
     } ;
 
@@ -68,7 +68,7 @@ class JetObj { // Jets
     // Variables
     TLorentzVector m_lvec ; // 4-vector
     unsigned m_flav;       // jet flavor
-    float m_deepCSV;
+    float m_deepFlavB;
     unsigned m_svIdx;      // SV index
     float m_mSV;            // SV mass
     float m_puid;           // PU ID
