@@ -8,6 +8,8 @@
 #include "Selector.h"
 #include "Plots.cxx"
 
+#include <random>
+
 //The Selection does not have Begin, since we do not have anything to do at the begining (overall) at client
 //The histograms, ..., are booked and added to output list at SlaveBegin
 //We need to have terminate since we might want to do overall tasks related to this selection only. At termination, all inforamtion from slaves is added. Example task is cutflow for this selection, which need information from all slaves.
@@ -26,10 +28,14 @@ public:
   std::vector<std::vector<int> > DauIdxs_ZH(Reader* r);
   static bool sortbysecdesc(const std::pair<int,float> &a, const std::pair<int,float> &b);
   static bool sortbysecdesc1(const std::pair<std::vector<int>,float> &a, const std::pair<std::vector<int>,float> &b);
-  int NextraJet(std::vector<JetObjBoosted>& fatJets, std::vector<JetObj>& jets);
+  std::vector<JetObj> NextraJet(std::vector<JetObjBoosted>& fatJets, std::vector<JetObj>& jets);
+  
+  double CalculateJESunc(std::map<std::string, float> jetMap, JESUncPlots* plots, int var, bool isData=false);
 
 
 private:
+
+  std::mt19937 m_random_generator;
   //histograms
   
   TH1D* h_evt_all;
@@ -99,11 +105,15 @@ private:
   VHBoostedPlots* h_ZccHcc_PN_med_qcdCR; //control regions used in QCD bkg estimation in SR using particle net medium WP
   VHBoostedPlots* h_ZccHcc_PN_med_topCR_fail; //top control regions fail SR tagging requirements using particle net medium WP
   VHBoostedPlots* h_ZccHcc_PN_med_topCR_pass; //top control regions passing SR tagging requirements using particle net medium WP
+  VHBoostedPlots* h_ZccHcc_PN_med_VjetCR_pass; //Vjet control regions passing SR tagging requirements using particle net medium WP
   VHBoostedPlots* h_VHcc_PN_med_qcdCR; //control regions used in QCD bkg estimation in SR using particle net medium WP
   VHBoostedPlots* h_VHcc_PN_med_topCR_fail; //top control regions fail SR tagging requirements using particle net medium WP
   VHBoostedPlots* h_VHcc_PN_med_topCR_pass; //top control regions passing SR tagging requirements using particle net medium WP
+  VHBoostedPlots* h_VHcc_PN_med_VjetCR_pass; //top control regions passing SR tagging requirements using particle net medium WP
   VHBoostedPlots* h_VHcc_PN_med; //using particle net medium WP
   VHBoostedPlots* h_VHcc_PN_med_zmass_deltaPhi; //using particle net medium WP
+
+  JESUncPlots* h_jesUnc;
 
 } ;
 

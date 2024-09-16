@@ -16,6 +16,10 @@ namespace glob {
         parameterNames.push_back("jet_pt") ;
         parameterNames.push_back("jet_eta") ;
         parameterNames.push_back("jet_main_btagWP") ;
+        parameterNames.push_back("jet_deepFlavBM_2016PRE") ;
+        parameterNames.push_back("jet_deepFlavBM_2016") ;
+        parameterNames.push_back("jet_deepFlavBM_2017") ;
+        parameterNames.push_back("jet_deepFlavBM_2018") ;
         parameterNames.push_back("jet_pt_ak08") ;
         parameterNames.push_back("jet_eta_ak08") ;
         parameterNames.push_back("ele_dz_b") ;
@@ -42,6 +46,10 @@ namespace glob {
       //float Get(const std::string& name) {
         if (std::count(parameterNames.begin(),parameterNames.end(),name)) {
           if (name == "jet_pt") return jet_pt ;
+          else if (name == "jet_deepFlavBM_2016PRE") return jet_deepFlavBM_2016PRE ;
+          else if (name == "jet_deepFlavBM_2016") return jet_deepFlavBM_2016;
+          else if (name == "jet_deepFlavBM_2017") return jet_deepFlavBM_2017;
+          else if (name == "jet_deepFlavBM_2018") return jet_deepFlavBM_2018;
           else if (name == "jet_eta") return jet_eta ;
           else if (name == "jet_pt_ak08") return jet_pt_ak08 ;
           else if (name == "jet_eta_ak08") return jet_eta_ak08 ;
@@ -102,6 +110,14 @@ namespace glob {
               jet_eta = val;
             else if(name=="jet_main_btagWP")
               jet_main_btagWP = val;
+            else if(name=="jet_deepFlavBM_2016PRE")
+              jet_deepFlavBM_2016PRE = val;
+            else if(name=="jet_deepFlavBM_2016")
+              jet_deepFlavBM_2016 = val;
+            else if(name=="jet_deepFlavBM_2017")
+              jet_deepFlavBM_2017 = val;
+            else if(name=="jet_deepFlavBM_2018")
+              jet_deepFlavBM_2018 = val;
             else if(name=="jet_pt_ak08")
               jet_pt_ak08 = val;
             else if(name=="jet_eta_ak08")
@@ -149,6 +165,10 @@ namespace glob {
       float jet_pt ;
       float jet_eta ;
       std::string jet_main_btagWP ;
+      float jet_deepFlavBM_2016PRE;
+      float jet_deepFlavBM_2016;
+      float jet_deepFlavBM_2017;
+      float jet_deepFlavBM_2018;
       float jet_pt_ak08;
       float jet_eta_ak08; 
       float ele_dz_b;

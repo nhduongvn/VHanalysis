@@ -73,7 +73,11 @@ throw std::exception();
   }
 
   // make parameters
-  unsigned op = stoi(vec[0]);
+  //unsigned op = stoi(vec[0]);
+  unsigned op ;
+  if (vec[0] == "L") op = 0;
+  if (vec[0] == "M") op = 1;
+  if (vec[0] == "T") op = 2;
   if (op > 3) {
 std::cerr << "ERROR in BTagCalibration: "
           << "Invalid csv line; OperatingPoint > 3: "

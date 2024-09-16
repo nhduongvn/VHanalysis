@@ -48,7 +48,7 @@ main:	Ana.cxx Global.o Reader.o Processor.o BTagCalibrationStandalone.o LumiMask
 #	$(CXX) $(CXXFLAGS) -c $^ -o $@
 
 %.o:	src/%.cxx
-	$(CXX) $(CXXFLAGS) -c $^ -o $@
+	$(CXX) $(CXXFLAGS) $(CORLIBS) -c $^ -o $@
 
 %.o:	src/%.cpp
 	$(CXX) $(CXXFLAGS) -c $^ -o $@

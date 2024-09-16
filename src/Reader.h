@@ -105,6 +105,7 @@ public :
    TTreeReaderArray<Float_t> FatJet_pt = {fReader, "FatJet_pt"};
    TTreeReaderArray<Float_t> FatJet_eta = {fReader, "FatJet_eta"};
    TTreeReaderArray<Float_t> FatJet_phi = {fReader, "FatJet_phi"};
+   TTreeReaderArray<Float_t> FatJet_area = {fReader, "FatJet_area"};
    TTreeReaderArray<Float_t> FatJet_mass = {fReader, "FatJet_mass"};
    TTreeReaderArray<Float_t> FatJet_n2b1 = {fReader, "FatJet_n2b1"};
    TTreeReaderArray<Float_t> FatJet_msoftdrop = {fReader, "FatJet_msoftdrop"};
@@ -127,6 +128,7 @@ public :
 #endif
    TTreeReaderArray<Float_t> FatJet_deepTagMD_ZHccvsQCD = {fReader, "FatJet_deepTagMD_ZHccvsQCD"};
    TTreeReaderArray<Float_t> FatJet_deepTagMD_ZbbvsQCD = {fReader, "FatJet_deepTagMD_ZbbvsQCD"};
+   TTreeReaderArray<Float_t> FatJet_rawFactor = {fReader, "FatJet_rawFactor"};
 
 #if defined(POSTPROC) && (defined(MC_2016PRE) || defined(MC_2016) || defined(MC_2017) || defined(MC_2018))
   TTreeReaderArray<Float_t> FatJet_pt_raw = {fReader, "FatJet_pt_raw"};
@@ -211,6 +213,7 @@ public :
 
 #if defined(MC_2016PRE) || defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
   TTreeReaderValue<Float_t> Pileup_nTrueInt = {fReader, "Pileup_nTrueInt"};
+  TTreeReaderValue<Float_t> Pileup_pudensity = {fReader, "Pileup_pudensity"};
   TTreeReaderValue<Float_t> genWeight = {fReader, "genWeight"};
   TTreeReaderArray<Int_t> Jet_hadronFlavour = {fReader, "Jet_hadronFlavour"};
   TTreeReaderArray<Int_t> FatJet_hadronFlavour = {fReader, "FatJet_hadronFlavour"};
@@ -221,6 +224,12 @@ public :
   TTreeReaderArray<Float_t> GenPart_pt = {fReader, "GenPart_pt"};
   TTreeReaderArray<Int_t> GenPart_genPartIdxMother = {fReader, "GenPart_genPartIdxMother"};
   TTreeReaderArray<Int_t> GenPart_pdgId = {fReader, "GenPart_pdgId"};
+  TTreeReaderValue<UInt_t> nGenJetAK8 = {fReader, "nGenJetAK8"};
+  TTreeReaderArray<Float_t> GenJetAK8_eta = {fReader, "GenJetAK8_eta"};
+  TTreeReaderArray<Float_t> GenJetAK8_mass = {fReader, "GenJetAK8_mass"};
+  TTreeReaderArray<Float_t> GenJetAK8_phi = {fReader, "GenJetAK8_phi"};
+  TTreeReaderArray<Float_t> GenJetAK8_pt = {fReader, "GenJetAK8_pt"};
+  TTreeReaderArray<UChar_t> GenJetAK8_hadronFlavour = {fReader, "GenJetAK8_hadronFlavour"};
   //TTreeReaderArray<Int_t> GenPart_status = {fReader, "GenPart_status"};
   //TTreeReaderArray<Int_t> GenPart_statusFlags = {fReader, "GenPart_statusFlags"};
   //TTreeReaderValue<UInt_t> nGenJet = {fReader, "nGenJet"};
@@ -268,6 +277,7 @@ public :
 
    //MET
    TTreeReaderValue<Float_t> MET_pt = {fReader, "MET_pt"};
+   TTreeReaderValue<Float_t> MET_phi = {fReader, "MET_phi"};
 
    Reader(TTree * /*tree*/ =0) {}
 

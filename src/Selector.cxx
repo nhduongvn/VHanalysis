@@ -2,6 +2,8 @@
 #include "Global.h"
 #include "math.h"
 
+#include "correction.h"
+
 void Selector::Process(Reader* r) { 
 } 
 
@@ -13,24 +15,24 @@ void Selector::SetLumiMaskFilter(std::string fName_lumiMaskFilter) {
   m_lumiFilter.Set(fName_lumiMaskFilter) ;
 }
 
-void Selector::SetBtagCalib(std::string csvFileName, std::string taggerName, std::string effFileName, std::string btagUncType) {
-  m_btagCal = BTagCalibration(taggerName, csvFileName) ;
-  m_btagReader = BTagCalibrationReader(BTagEntry::OP_MEDIUM,  // operating point
-                                       "central",            //central sys type
-                                       {"up","down"});       //other sys type
+void Selector::SetBtagCalib(std::string corFileName, std::string effFileName, std::string btagUncType) {
+  //m_btagCal = BTagCalibration(taggerName, csvFileName) ;
+  //m_btagReader = BTagCalibrationReader(BTagEntry::OP_MEDIUM,  // operating point
+  //                                     "central",            //central sys type
+  //                                     {"up","down"});       //other sys type
   
-  m_btagReader.load(m_btagCal,     // calibration instance
-            BTagEntry::FLAV_B,    // btag flavour
-            "comb") ;             // measurement type
-  m_btagReader.load(m_btagCal,  
-            BTagEntry::FLAV_C,    
-            "comb") ;            
-  m_btagReader.load(m_btagCal, 
-            BTagEntry::FLAV_UDSG,
-            "incl") ;           
+  //m_btagReader.load(m_btagCal,     // calibration instance
+  //          BTagEntry::FLAV_B,    // btag flavour
+  //          "comb") ;             // measurement type
+  //m_btagReader.load(m_btagCal,  
+  //          BTagEntry::FLAV_C,    
+  //          "comb") ;            
+  //m_btagReader.load(m_btagCal, 
+  //          BTagEntry::FLAV_UDSG,
+  //          "incl") ;           
+  m_btag_corFilename = corFileName;
   m_btagUncType = btagUncType;
   m_btagEffFile = new TFile(effFileName.c_str(),"READ") ;
-
 }
 
 void Selector::SetEleEffCorr(std::vector<std::string> fName_trig,std::string fName_recSF, std::string fName_IDSF, std::vector<float> w_trig, std::string eleUncType) {
@@ -278,7 +280,7 @@ float Selector::CalBtagWeight(std::vector<JetObj>& jets, std::string jet_main_bt
   std::string bN = "b_pt_eff_"+m_year;
   std::string cN = "c_pt_eff_"+m_year;
   std::string lN = "l_pt_eff_"+m_year;
-  if (jet_main_btagWP.find("deepJet") != std::string::npos) {
+  if (jet_main_btagWP.find("deepFlavB") != std::string::npos) {
     bN = "bdj_pt_eff_"+m_year;
     cN = "cdj_pt_eff_"+m_year;
     lN = "ldj_pt_eff_"+m_year;
@@ -286,12 +288,14 @@ float Selector::CalBtagWeight(std::vector<JetObj>& jets, std::string jet_main_bt
   TH1D* hEff_b = (TH1D*)m_btagEffFile->Get(bN.c_str());
   TH1D* hEff_c = (TH1D*)m_btagEffFile->Get(cN.c_str());
   TH1D* hEff_l = (TH1D*)m_btagEffFile->Get(lN.c_str());
+  auto correctionSet = correction::CorrectionSet::from_file(m_btag_corFilename);
   float pMC(1.);
   float pData(1.);
   for (std::vector<JetObj>::iterator jetIt = jets.begin() ; jetIt != jets.end() ; ++jetIt) {
     float jetPt = (jetIt->m_lvec).Pt() ;
+    float absEta = fabs((jetIt->m_lvec).Eta());
     int iBin = hEff_b->FindFixBin(jetPt) ; //return overflow bin if jetPt > max pt range
-    unsigned flav = jetIt->m_flav ;
+    int flav = jetIt->m_flav ;
     std::string uncTypeInput = "central";
     float eff = hEff_l->GetBinContent(iBin); //jet with pt > max pt range of efficinecy histogram will get the eff of overflow bins
     if (eff <= 0) std::cout << "\n Warning: Efficiency <=0, " << eff ; //we do not want eff = 0 
@@ -310,13 +314,23 @@ float Selector::CalBtagWeight(std::vector<JetObj>& jets, std::string jet_main_bt
     if (uncType == "light_down" && flav != 4 && flav != 5) uncTypeInput = "down";
     if (uncType == "bc_up" && (flav == 4 || flav == 5)) uncTypeInput = "up";
     if (uncType == "bc_down" && (flav == 4 || flav == 5)) uncTypeInput = "down";
+    
+    std::string taggerName_sfSet = "";
+    if (jet_main_btagWP.find("deepFlavB") != std::string::npos) taggerName_sfSet = "deepJet";
+    std::string wp(1,jet_main_btagWP.back());
+    if (flav == 5 || flav == 4) taggerName_sfSet = taggerName_sfSet + "_comb";
+    else taggerName_sfSet = taggerName_sfSet + "_incl";
 
+    auto btagInfo = correctionSet->at(taggerName_sfSet);
+    float sf = btagInfo->evaluate({m_btagUncType,wp,flav,absEta,jetPt});
+    /*
     float sf = m_btagReader.eval_auto_bounds(
                  uncTypeInput, 
                  flavCode, 
                  fabs((jetIt->m_lvec).Eta()), // absolute value of eta
                  jetPt
     );
+    */
     //pass b-tagging requirement
     if (jetIt->m_deepFlavB > CUTS.Get<float>("jet_"+jet_main_btagWP+"_" + m_year)) {
       pData = pData*sf*eff ;
@@ -335,11 +349,16 @@ float Selector::CalBtagWeight(std::vector<JetObj>& jets, std::string jet_main_bt
 float Selector::CalTagWeightBoosted_1jet(std::pair<float,bool> jet, int jet_flav, std::string tagType, std::string uncType) {
    //Table 18 and 22
    std::vector<std::vector<float>> sf_bb_all = {{1.029,1.070,1.077},{1.0,1.0,1.0},{1.006,1.051,0.991},{0.966,1.033,1.010}}; //FIXME dummy 2016pre
-   std::vector<std::vector<float>> sf_cc_all = {{1.006,1.150,0.991},{1.252,0.937,1.243},{1.439,1.231,1.142},{1.061,0.999,1.011}}; //post = 2016, pre = 2016PRE, 2017, 2018
    std::vector<std::vector<float>> sf_bb_eru_all = {{0.051,0.066,0.067},{0,0,0},{0.052,0.056,0.038},{0.056,0.030,0.030}};
    std::vector<std::vector<float>> sf_bb_erd_all = {{0.045,0.062,0.059},{0,0,0},{0.052,0.055,0.043},{0.057,0.025,0.035}};
-   std::vector<std::vector<float>> sf_cc_eru_all = {{0.178,0.171,0.184},{0.184,0,108,0.241},{0.396,0.295,0.182},{0.163,0.118,0.114}};
-   std::vector<std::vector<float>> sf_cc_erd_all = {{0.135,0.180,0.162},{0.176,0.098,0.259},{0.402,0.288,0.173},{0.131,0.107,0.094}};
+   //medium
+   //std::vector<std::vector<float>> sf_cc_all = {{1.006,1.150,0.991},{1.252,0.937,1.243},{1.439,1.231,1.142},{1.061,0.999,1.011}}; //post = 2016, pre = 2016PRE, 2017, 2018
+   //std::vector<std::vector<float>> sf_cc_eru_all = {{0.178,0.171,0.184},{0.184,0,108,0.241},{0.396,0.295,0.182},{0.163,0.118,0.114}};
+   //std::vector<std::vector<float>> sf_cc_erd_all = {{0.135,0.180,0.162},{0.176,0.098,0.259},{0.402,0.288,0.173},{0.131,0.107,0.094}};
+   //loose
+   std::vector<std::vector<float>> sf_cc_all = {{1.177,1.055,1.165},{1.169,0.874,1.2},{1.270,1.308,1.095},{0.97,0.963,0.912}}; //post = 2016, pre = 2016PRE, 2017, 2018
+   std::vector<std::vector<float>> sf_cc_eru_all = {{0.166,0.189,0.262},{0.229,0.122,0.240},{0.294,0.334,0.194},{0.154,0.092,0.073}};
+   std::vector<std::vector<float>> sf_cc_erd_all = {{0.184,0.176,0.292},{0.217,0.099,0.233},{0.281,0.327,0.175},{0.111,0.086,0.060}};
    //std::vector<std::vector<float>> sf_cc_all = {{1.005,1.130,0.982},{1.464,1.198,1.203},{1.098,1.003,1.031}};
    //std::vector<std::vector<float>> sf_cc_eru_all = {{0.182,0.185,0.181},{0.426,0.268,0.230},{0.234,0.131,0.126}};
    //std::vector<std::vector<float>> sf_cc_erd_all = {{0.157,0.196,0.148},{0.422,0.262,0.227},{0.188,0.119,0.107}};
@@ -431,9 +450,14 @@ float Selector::CalCtagWeightBoosted(std::pair<JetObjBoosted,bool> jet_1, std::p
    //std::vector<std::vector<float>> sf_cc_all = {{1.005,1.130,0.982},{1.464,1.198,1.203},{1.098,1.003,1.031}};
    //std::vector<std::vector<float>> sf_cc_eru_all = {{0.182,0.185,0.181},{0.426,0.268,0.230},{0.234,0.131,0.126}};
    //std::vector<std::vector<float>> sf_cc_erd_all = {{0.157,0.196,0.148},{0.422,0.262,0.227},{0.188,0.119,0.107}};
-   std::vector<std::vector<float>> sf_cc_all = {{1.006,1.150,0.991},{1.252,0.937,1.243},{1.439,1.231,1.142},{1.061,0.999,1.011}}; //post = 2016, pre = 2016PRE, 2017, 2018
-   std::vector<std::vector<float>> sf_cc_eru_all = {{0.178,0.171,0.184},{0.184,0,108,0.241},{0.396,0.295,0.182},{0.163,0.118,0.114}};
-   std::vector<std::vector<float>> sf_cc_erd_all = {{0.135,0.180,0.162},{0.176,0.098,0.259},{0.402,0.288,0.173},{0.131,0.107,0.094}};
+   //medium
+   //std::vector<std::vector<float>> sf_cc_all = {{1.006,1.150,0.991},{1.252,0.937,1.243},{1.439,1.231,1.142},{1.061,0.999,1.011}}; //post = 2016, pre = 2016PRE, 2017, 2018
+   //std::vector<std::vector<float>> sf_cc_eru_all = {{0.178,0.171,0.184},{0.184,0,108,0.241},{0.396,0.295,0.182},{0.163,0.118,0.114}};
+   //std::vector<std::vector<float>> sf_cc_erd_all = {{0.135,0.180,0.162},{0.176,0.098,0.259},{0.402,0.288,0.173},{0.131,0.107,0.094}};
+   //loose
+   std::vector<std::vector<float>> sf_cc_all = {{1.177,1.055,1.165},{1.169,0.874,1.2},{1.270,1.308,1.095},{0.97,0.963,0.912}}; //post = 2016, pre = 2016PRE, 2017, 2018
+   std::vector<std::vector<float>> sf_cc_eru_all = {{0.166,0.189,0.262},{0.229,0.122,0.240},{0.294,0.334,0.194},{0.154,0.092,0.073}};
+   std::vector<std::vector<float>> sf_cc_erd_all = {{0.184,0.176,0.292},{0.217,0.099,0.233},{0.281,0.327,0.175},{0.111,0.086,0.060}};
    //std::vector<std::vector<float>> sf_cc_all = {{0.9,0.95,0.85},{1.05,0.9,1.1},{1.0,1.0,1.0},{0.95,0.95,0.95}}; //post = 2016, pre = 2016PRE, 2017, 2018
    //std::vector<std::vector<float>> sf_cc_eru_all = {{0.178,0.171,0.184},{0.184,0,108,0.241},{0.396,0.295,0.182},{0.163,0.118,0.114}};
    //std::vector<std::vector<float>> sf_cc_erd_all = {{0.135,0.180,0.162},{0.176,0.098,0.259},{0.402,0.288,0.173},{0.131,0.107,0.094}};

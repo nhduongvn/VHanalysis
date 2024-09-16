@@ -113,7 +113,7 @@ binError_MH = [14.524979842, 14.6705438854, 9.64396617479, 10.4968651727, 16.981
 #regions = ['ZccHcc_boosted_PN_med_zmass_deltaPhi']
 #regions = ['ZccHcc_boosted_PN_med','VHcc_boosted_PN_med']
 #regions = ['ZccHcc_boosted_PN_med_topCR_pass']
-regions = ['ZccHcc_boosted_PN_med','VHcc_boosted_PN_med','VHcc_boosted_PN_med_topCR_pass']
+regions = ['ZccHcc_boosted_PN_med','ZccHcc_boosted_PN_med_topCR_pass','ZccHcc_boosted_PN_med_VjetCR_pass','VHcc_boosted_PN_med','VHcc_boosted_PN_med_topCR_pass','VHcc_boosted_PN_med_VjetCR_pass']
 #regions = ['VHcc_boosted_PN_med']
 summary_eventCount_name = 'summary_eventCount_VH_tmp.txt'
 

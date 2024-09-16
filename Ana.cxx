@@ -195,8 +195,12 @@ int main(int argc, char *argv[]) {
   VbbHcc_sel.SetDataInfo(isData,year); //need to unify SetDataInfo for ana and this
   //VbbHcc_sel_unc.SetDataInfo(isData,year); //need to unify SetDataInfo for ana and this
   VbbHcc_triggerSel VbbHcc_triggerSel;
-  //Efficiency_selector Eff_sel ;
-  
+  Efficiency_selector Eff_sel ;
+  std::string tmp = year;
+  if (year == "2016PRE") tmp = "2016preVFP";
+  std::string fName_btagSF("CalibData/btagging_"+tmp+"_UL.json.gz");
+  std::string fName_btagEff("CalibData/effM.root");
+
   std::string fName_puSF;
   std::string fName_PUjetID_SF;
   std::string fName_PUjetID_eff;
@@ -218,13 +222,19 @@ int main(int argc, char *argv[]) {
   std::string jetPUidUncType = "central";
   if (syst == "JETPUIDU") jetPUidUncType = "up";
   if (syst == "JETPUIDD") jetPUidUncType = "down";
+  std::string btagUncType = "central";
+  if (syst == "BTAGU") btagUncType = "up";
+  if (syst == "BTAGD") btagUncType = "down";
+  if (syst == "BTAGLU") btagUncType = "light_up";
+  if (syst == "BTAGLD") btagUncType = "light_down";
+  if (syst == "BTAGBCU") btagUncType = "bc_up";
+  if (syst == "BTAGBCD") btagUncType = "bc_down";
 
 #if defined(MC_2016PRE) || defined(MC_2016) 
   fName_puSF = "CalibData/2016_pileup_ratio.root";
   if (syst == "PUU") fName_puSF = "CalibData/2016_pileup_ratio_up.root";
   if (syst == "PUD") fName_puSF = "CalibData/2016_pileup_ratio_down.root";
 #endif
-
 #ifdef MC_2017
   fName_puSF = "CalibData/2017_pileup_ratio.root";
   if (syst == "PUU") fName_puSF = "CalibData/2017_pileup_ratio_up.root";
@@ -271,6 +281,8 @@ int main(int argc, char *argv[]) {
   //VbbHcc_sel_unc.SetPileupSF(fName_puSF);
   VbbHcc_triggerSel.SetCentralGenWeight(centralGenWeight);
   VbbHcc_triggerSel.SetPileupSF(fName_puSF);
+  Eff_sel.SetCentralGenWeight(centralGenWeight);
+  Eff_sel.SetPileupSF(fName_puSF);
   fName_PUjetID_SF = "CalibData/scalefactorsPUID_81Xtraining.root";
   fName_PUjetID_eff = "CalibData/effcyPUID_81Xtraining.root";
   //sel.SetPUjetidCalib(fName_PUjetID_SF,fName_PUjetID_eff,jetPUidUncType); //pileup jet ID SF
@@ -278,6 +290,8 @@ int main(int argc, char *argv[]) {
   VbbHcc_sel.SetXbbXccEff(fName_xbb_xcc_sf);
   VbbHcc_sel.SetXbbXccEff1D(fName_xbb_xcc_eff);
   VbbHcc_sel.SetTriggerSF(fName_triggerSF);
+  VbbHcc_sel.SetBtagCalib(fName_btagSF,fName_btagEff,btagUncType);
+  //if (CUTS.GetStr("jet_main_btagWP")=="deepFlavBM") VbbHcc_sel.SetBtagCalib(fName_btagSF,"DeepJet","CalibData/effM.root",btagUncType);
   //VbbHcc_sel_unc.SetPUjetidCalib(fName_PUjetID_SF,fName_PUjetID_eff,jetPUidUncType); //pileup jet ID SF
   //VbbHcc_sel_unc.SetXbbXccEff(fName_xbb_xcc_eff);
   //VbbHcc_sel_unc.SetTriggerSF(fName_triggerSF);
@@ -296,7 +310,7 @@ int main(int argc, char *argv[]) {
   VbbHcc_triggerSel.Setn2b1Cut(fName_n2b1_cut);
 
   sels.push_back(&VbbHcc_sel);
-  //sels.push_back(&Eff_sel);
+  sels.push_back(&Eff_sel);
   //sels.push_back(&VbbHcc_triggerSel);
 
   //sels.push_back(&sel) ;
