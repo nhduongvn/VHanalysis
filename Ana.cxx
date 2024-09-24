@@ -191,10 +191,11 @@ int main(int argc, char *argv[]) {
 
   VbbHcc_selector VbbHcc_sel ;
   //VbbHcc_selector_unc VbbHcc_sel_unc ;
-
+  
   VbbHcc_sel.SetDataInfo(isData,year); //need to unify SetDataInfo for ana and this
   //VbbHcc_sel_unc.SetDataInfo(isData,year); //need to unify SetDataInfo for ana and this
-  VbbHcc_triggerSel VbbHcc_triggerSel;
+  //VbbHcc_triggerSel VbbHcc_triggerSel;
+
   Efficiency_selector Eff_sel ;
   std::string tmp = year;
   if (year == "2016PRE") tmp = "2016preVFP";
@@ -204,7 +205,7 @@ int main(int argc, char *argv[]) {
   std::string fName_puSF;
   std::string fName_PUjetID_SF;
   std::string fName_PUjetID_eff;
-  std::string fName_xbb_xcc_sf("CalibData/xcc_qcd_weights.root"); //to calculate the weight for QCD xcc xbb
+  std::string fName_xbb_xcc_sf("CalibData/xcc_qcd_weights_looseWP.root"); //to calculate the weight for QCD xcc xbb
   std::string fName_xbb_xcc_eff(xccEffFileName); //to calculate the weight for QCD xcc xbb
   std::string fName_triggerSF("CalibData/trigger_turn_on.root"); //to calculate the weight for QCD xcc xbb
  
@@ -272,6 +273,7 @@ int main(int argc, char *argv[]) {
   std::string fName_lumiMaskFilter("CalibData/Cert_314472-325175_13TeV_Legacy2018_Collisions18_JSON.txt");
 #endif
 
+
 #if defined(MC_2016PRE) || defined(MC_2016) || defined(MC_2017) || defined(MC_2018)
   //sel.SetCentralGenWeight(centralGenWeight);
   //sel.SetPileupSF(fName_puSF);
@@ -279,10 +281,9 @@ int main(int argc, char *argv[]) {
   VbbHcc_sel.SetPileupSF(fName_puSF);
   //VbbHcc_sel_unc.SetCentralGenWeight(centralGenWeight);
   //VbbHcc_sel_unc.SetPileupSF(fName_puSF);
-  VbbHcc_triggerSel.SetCentralGenWeight(centralGenWeight);
-  VbbHcc_triggerSel.SetPileupSF(fName_puSF);
-  Eff_sel.SetCentralGenWeight(centralGenWeight);
-  Eff_sel.SetPileupSF(fName_puSF);
+  //VbbHcc_triggerSel.SetCentralGenWeight(centralGenWeight);
+  //VbbHcc_triggerSel.SetPileupSF(fName_puSF);
+  
   fName_PUjetID_SF = "CalibData/scalefactorsPUID_81Xtraining.root";
   fName_PUjetID_eff = "CalibData/effcyPUID_81Xtraining.root";
   //sel.SetPUjetidCalib(fName_PUjetID_SF,fName_PUjetID_eff,jetPUidUncType); //pileup jet ID SF
@@ -295,19 +296,22 @@ int main(int argc, char *argv[]) {
   //VbbHcc_sel_unc.SetPUjetidCalib(fName_PUjetID_SF,fName_PUjetID_eff,jetPUidUncType); //pileup jet ID SF
   //VbbHcc_sel_unc.SetXbbXccEff(fName_xbb_xcc_eff);
   //VbbHcc_sel_unc.SetTriggerSF(fName_triggerSF);
-  VbbHcc_triggerSel.SetPUjetidCalib(fName_PUjetID_SF,fName_PUjetID_eff,jetPUidUncType); //pileup jet ID SF
+  //VbbHcc_triggerSel.SetPUjetidCalib(fName_PUjetID_SF,fName_PUjetID_eff,jetPUidUncType); //pileup jet ID SF
+  Eff_sel.SetCentralGenWeight(centralGenWeight);
+  Eff_sel.SetPileupSF(fName_puSF);
 #endif
 #if defined(DATA_2016PRE) || defined(DATA_2016) || defined(DATA_2017) || defined(DATA_2018)
   //sel.SetLumiMaskFilter(fName_lumiMaskFilter);
   VbbHcc_sel.SetLumiMaskFilter(fName_lumiMaskFilter);
   //VbbHcc_sel_unc.SetLumiMaskFilter(fName_lumiMaskFilter);
-  VbbHcc_triggerSel.SetLumiMaskFilter(fName_lumiMaskFilter);
+  //VbbHcc_triggerSel.SetLumiMaskFilter(fName_lumiMaskFilter);
 #endif
-
+  
   std::string fName_n2b1_cut = "CalibData/n2b1_cut.root"; 
+  
   VbbHcc_sel.Setn2b1Cut(fName_n2b1_cut);
   //VbbHcc_sel_unc.Setn2b1Cut(fName_n2b1_cut);
-  VbbHcc_triggerSel.Setn2b1Cut(fName_n2b1_cut);
+  //VbbHcc_triggerSel.Setn2b1Cut(fName_n2b1_cut);
 
   sels.push_back(&VbbHcc_sel);
   sels.push_back(&Eff_sel);

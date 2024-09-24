@@ -322,7 +322,16 @@ float Selector::CalBtagWeight(std::vector<JetObj>& jets, std::string jet_main_bt
     else taggerName_sfSet = taggerName_sfSet + "_incl";
 
     auto btagInfo = correctionSet->at(taggerName_sfSet);
-    float sf = btagInfo->evaluate({m_btagUncType,wp,flav,absEta,jetPt});
+    float sf = 1.0;
+    try {
+      if (absEta < 0.0001) absEta = 0.0001;
+      if (absEta > 2.4999) absEta = 2.4999;
+      sf = btagInfo->evaluate({m_btagUncType,wp,flav,absEta,jetPt});
+    }
+    catch (std::exception& e) {
+      std::cout << "\n btagInfo fail evaluate: " << m_btagUncType << " " << wp << " " << flav << " " << absEta << " " << jetPt;
+    }
+
     /*
     float sf = m_btagReader.eval_auto_bounds(
                  uncTypeInput, 

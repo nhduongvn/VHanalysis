@@ -251,8 +251,10 @@ void Efficiency_selector::Process(Reader* r) {
     switch (jet.m_flav) {
       case 4:
         h_eff_xbb_cc->Fill(jet, doPass, evtW);
+        break;
       case 5:
         h_eff_xbb_bb->Fill(jet, doPass, evtW);
+        break;
       default:
         h_eff_xbb_light->Fill(jet, doPass, evtW);
     }
@@ -260,8 +262,10 @@ void Efficiency_selector::Process(Reader* r) {
     switch (jet.m_flav) {
       case 4:
         h_eff_xcc_cc->Fill(jet, doPass, evtW);
+        break;
       case 5:
         h_eff_xcc_bb->Fill(jet, doPass, evtW);
+        break;
       default:
         h_eff_xcc_light->Fill(jet, doPass, evtW);
     }
