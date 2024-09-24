@@ -314,7 +314,7 @@ int main(int argc, char *argv[]) {
   //VbbHcc_triggerSel.Setn2b1Cut(fName_n2b1_cut);
 
   sels.push_back(&VbbHcc_sel);
-  sels.push_back(&Eff_sel);
+  //sels.push_back(&Eff_sel);
   //sels.push_back(&VbbHcc_triggerSel);
 
   //sels.push_back(&sel) ;

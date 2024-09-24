@@ -54,6 +54,7 @@ const float pQCDcut = 0.0741;
 
 
 Efficiency_selector::~Efficiency_selector() {
+  /*
   if(h_eff_xbb_bb) delete h_eff_xbb_bb;
   if(h_eff_xbb_cc) delete h_eff_xbb_cc;
   if(h_eff_xbb_light) delete h_eff_xbb_light;
@@ -63,12 +64,12 @@ Efficiency_selector::~Efficiency_selector() {
   if(h_eff_bdj) delete h_eff_bdj;
   if(h_eff_cdj) delete h_eff_cdj;
   if(h_eff_ldj) delete h_eff_ldj;
-
-
+  //if(h_evt_all) delete h_evt_all;
+  */
 } 
 
 void Efficiency_selector::SlaveBegin(Reader* r) {
-  h_evt_all = new TH1D("Nevt_all_VbbHcc_boosted","",4,-1.5,2.5) ; //This stores events before any filter or cut, bin 1: total negative weight events, bin 2: total positive weight events, bin 3: total event weighted by genWeight (= bin2 - bin1, if genWeight are always -1,1
+  h_evt_all = new TH1D("Nevt_all_VbbHcc_boosted_effSel","",4,-1.5,2.5) ; //This stores events before any filter or cut, bin 1: total negative weight events, bin 2: total positive weight events, bin 3: total event weighted by genWeight (= bin2 - bin1, if genWeight are always -1,1
   h_eff_xbb_bb = new BoostedJetEffPlots("xbb_bb");
   h_eff_xbb_cc = new BoostedJetEffPlots("xbb_cc");
   h_eff_xbb_light = new BoostedJetEffPlots("xbb_light");
@@ -279,7 +280,7 @@ void Efficiency_selector::Process(Reader* r) {
 
 
 void Efficiency_selector::Terminate(TList* mergedList, std::string outFileName) {
-  
+  /*
   TList* aList = new TList() ;
   TParameter<double>* a = new TParameter<double>("lep_eta",CUTS.Get<float>("lep_eta")) ;
   aList->Add(a) ;
@@ -290,4 +291,5 @@ void Efficiency_selector::Terminate(TList* mergedList, std::string outFileName) 
   aList->Write("Efficiency_selectorCuts",TObject::kSingleKey) ;
 
   f->Close() ;
+  */
 }

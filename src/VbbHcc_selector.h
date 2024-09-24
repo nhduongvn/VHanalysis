@@ -55,20 +55,11 @@ private:
   TH1D* h_nb_1;
   TH1D* h_nB_1;
   TH1D* h_nbB_1;
-  TH1D* h_cutFlow;
-  TH1D* h_cutFlow_hcc;
-  TH1D* h_cutFlow_VbbHcc_select1;
-  TH1D* h_cutFlow_VbbHcc_select2;
-  TH1D* h_cutFlow_VbbHcc_select3;
-  TH1D* h_cutFlow_VbbHcc_select4;
-  TH1D* h_cutFlow_VbbHcc_PN_med;
   TH1D* h_cutFlow_ZccHcc_PN_med;
   TH1D* h_cutFlow_VHcc_PN_med;
-  TH1D* h_cutFlow_VccHcc_PN_med;
   TH1D* h_test_MH;
   TH1D* h_test_MZ;
   TH1D* h_NextraJet;
-  TH1D* h_NextraJet_VccHcc;
   TH1D* h_NextraJet_ZccHcc;
   TH1D* h_NextraJet_VHcc;
   TH1D* h_triggerCheck;
@@ -76,38 +67,14 @@ private:
   TH1D* h_ljpt_gen;
   TH3D* h_pt_rho_n2b1;
   TH1D* h_jet_mass;
-  VHBoostedPlots* h_VbbHcc;
-  VHBoostedPlots* h_VbbHcc_twojets;
-  VHBoostedPlots* h_VbbHcc_select1;
-  VHBoostedPlots* h_VbbHcc_select2;
-  VHBoostedPlots* h_VbbHcc_select3;
-  VHBoostedPlots* h_VbbHcc_select4;
-  VHBoostedPlots* h_VbbHcc_PN_med; //using particle net medium WP
-  VHBoostedPlots* h_VbbHcc_PN_med_zmass_deltaPhi; //using particle net medium WP
-  VHBoostedPlots* h_VbbHcc_PN_med_xccWeight; //using particle net medium WP
-  VHBoostedPlots* h_VbbHcc_PN_med_qcdCR; //control regions used in QCD bkg estimation in SR using particle net medium WP
-  VHBoostedPlots* h_VbbHcc_PN_med_topCR_pass; //top control regions passing SR tagging requirements using particle net medium WP
-  VHBoostedPlots* h_VbbHcc_PN_med_topCR_fail; //top control regions fail SR tagging requirements using particle net medium WP
-  VHBoostedPlots* h_VbbHcc_PN_med_VR; //validation region using particle net medium WP
-  VHBoostedPlots* h_VbbHcc_PN_med_qcdCR1; //QCD CR1 region used for validation using particle net medium WP
-  VHBoostedPlots* h_VbbHcc_PN_med_topCR1_pass; //top CR1 to be used with VR (passing tagging requirements for VR) using particle net medium WP
-  VHBoostedPlots* h_VbbHcc_PN_med_topCR1_fail; //top CR1 to be used with VR (fail tagging requirements for VR) using particle net medium WP
-  VHBoostedPlots* h_VbbHcc_qcd;
-  VHBoostedPlots* h_VbbHcc_qcd_1;
-  VHBoostedPlots* h_VbbHcc_qcd_2;
-  VHBoostedPlots* h_VbbHcc_qcd_3;
 
-  VHBoostedPlots* h_VccHcc_PN_med; //using particle net medium WP
-  VHBoostedPlots* h_VccHcc_PN_med_zmass_deltaPhi; //using particle net medium WP
   VHBoostedPlots* h_ZccHcc_PN_med; //using particle net medium WP
   VHBoostedPlots* h_ZccHcc_PN_med_zmass_deltaPhi; //using particle net medium WP
   VHBoostedPlots* h_ZccHcc_PN_med_xccWeight; //using particle net medium WP
   VHBoostedPlots* h_ZccHcc_PN_med_qcdCR; //control regions used in QCD bkg estimation in SR using particle net medium WP
-  VHBoostedPlots* h_ZccHcc_PN_med_topCR_fail; //top control regions fail SR tagging requirements using particle net medium WP
   VHBoostedPlots* h_ZccHcc_PN_med_topCR_pass; //top control regions passing SR tagging requirements using particle net medium WP
   VHBoostedPlots* h_ZccHcc_PN_med_VjetCR_pass; //Vjet control regions passing SR tagging requirements using particle net medium WP
   VHBoostedPlots* h_VHcc_PN_med_qcdCR; //control regions used in QCD bkg estimation in SR using particle net medium WP
-  VHBoostedPlots* h_VHcc_PN_med_topCR_fail; //top control regions fail SR tagging requirements using particle net medium WP
   VHBoostedPlots* h_VHcc_PN_med_topCR_pass; //top control regions passing SR tagging requirements using particle net medium WP
   VHBoostedPlots* h_VHcc_PN_med_VjetCR_pass; //top control regions passing SR tagging requirements using particle net medium WP
   VHBoostedPlots* h_VHcc_PN_med; //using particle net medium WP
