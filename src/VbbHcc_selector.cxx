@@ -529,7 +529,7 @@ void VbbHcc_selector::Process(Reader* r) {
     double pT = corrPt; //(r->FatJet_pt)[i];
     double pTGen = 1.0;
     double dPtCut = 3 * res * pT;
-
+    
     TLorentzVector *vec = new TLorentzVector();
     vec->SetPtEtaPhiM(pT, (r->FatJet_eta)[i], (r->FatJet_phi)[i], corrM);
 
@@ -599,7 +599,6 @@ void VbbHcc_selector::Process(Reader* r) {
       double randGauss = normal(m_random_generator);
       //h_normSmear->Fill(randGauss);
     }
-
     h_jesUnc->FillJER("sJER", sJER);
     h_jesUnc->FillJER("cJER", cJER);
     h_jesUnc->FillJER("ptRes", res);
