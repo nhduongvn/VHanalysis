@@ -2,8 +2,6 @@
 #include "Global.h"
 #include "math.h"
 
-#include "correction.h"
-
 void Selector::Process(Reader* r) { 
 } 
 
@@ -30,9 +28,9 @@ void Selector::SetBtagCalib(std::string corFileName, std::string effFileName, st
   //m_btagReader.load(m_btagCal, 
   //          BTagEntry::FLAV_UDSG,
   //          "incl") ;           
-  m_btag_corFilename = corFileName;
   m_btagUncType = btagUncType;
   m_btagEffFile = new TFile(effFileName.c_str(),"READ") ;
+  m_corrPtrBtag = correction::CorrectionSet::from_file(corFileName);
 }
 
 void Selector::SetEleEffCorr(std::vector<std::string> fName_trig,std::string fName_recSF, std::string fName_IDSF, std::vector<float> w_trig, std::string eleUncType) {
@@ -288,7 +286,7 @@ float Selector::CalBtagWeight(std::vector<JetObj>& jets, std::string jet_main_bt
   TH1D* hEff_b = (TH1D*)m_btagEffFile->Get(bN.c_str());
   TH1D* hEff_c = (TH1D*)m_btagEffFile->Get(cN.c_str());
   TH1D* hEff_l = (TH1D*)m_btagEffFile->Get(lN.c_str());
-  auto correctionSet = correction::CorrectionSet::from_file(m_btag_corFilename);
+  //auto correctionSet = correction::CorrectionSet::from_file(m_btag_corFilename);
   float pMC(1.);
   float pData(1.);
   for (std::vector<JetObj>::iterator jetIt = jets.begin() ; jetIt != jets.end() ; ++jetIt) {
@@ -321,7 +319,8 @@ float Selector::CalBtagWeight(std::vector<JetObj>& jets, std::string jet_main_bt
     if (flav == 5 || flav == 4) taggerName_sfSet = taggerName_sfSet + "_comb";
     else taggerName_sfSet = taggerName_sfSet + "_incl";
 
-    auto btagInfo = correctionSet->at(taggerName_sfSet);
+    //auto btagInfo = correctionSet->at(taggerName_sfSet);
+    auto btagInfo = m_corrPtrBtag->at(taggerName_sfSet);
     float sf = 1.0;
     try {
       if (absEta < 0.0001) absEta = 0.0001;

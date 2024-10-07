@@ -16,6 +16,8 @@
 #include "TRandom3.h"
 #include <math.h>
 
+#include <correction.h>
+
 //Base class for all selectors
 class Selector
 {
@@ -98,7 +100,6 @@ class Selector
   TFile* m_btagEffFile ;
   //BTagCalibration m_btagCal ;
   //BTagCalibrationReader m_btagReader ;
-  std::string m_btag_corFilename;
   LumiMaskFilter m_lumiFilter ;
 
   //for electron SFs
@@ -139,6 +140,8 @@ class Selector
   TFile* PUjetID_eff;
 
   TH2D* m_hn2b1;
+
+  std::unique_ptr<correction::CorrectionSet> m_corrPtrBtag;
 
 };
 #endif
