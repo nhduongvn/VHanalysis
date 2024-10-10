@@ -71,8 +71,8 @@ class Selector
   virtual void SetHFtagUncType(std::string hfTagUncType) {m_hfTagUncType = hfTagUncType;};
   virtual void SetL1prefiring(std::string l1prefiringType) {m_l1prefiringType = l1prefiringType;};
   virtual void SetPdfScaleSyst(std::string pdfScaleSystType) {
-    m_nScale = 0;
-    if (pdfScaleSystType=="scale") m_nScale=9;
+    m_scaleUnc = "central";
+    if (pdfScaleSystType=="scale") m_scaleUnc="scale";
     m_iPdfStart = 0;
     m_iPdfStop = 0;
     if (pdfScaleSystType == "pdfg0") {m_iPdfStart=0; m_iPdfStop=35;}
@@ -85,7 +85,7 @@ class Selector
   virtual float DH(float mH,float mZ) {
     float k(125./91);
     return fabs(mH-k*mZ)/sqrt(1+k*k);
-  }
+  };
 
   virtual void Setn2b1Cut(std::string fName_n2b1_cut);
   virtual float Getn2b1Cut(float pt, float rho);
@@ -130,7 +130,7 @@ class Selector
   std::string m_modelUncType;
   std::string m_hfTagUncType;
 
-  unsigned m_nScale;
+  std::string m_scaleUnc;
   unsigned m_iPdfStart;
   unsigned m_iPdfStop;
 
