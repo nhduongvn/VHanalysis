@@ -1,0 +1,72 @@
+======================================================================
+ZH analysis call:
+./main -filelist FileLists/ZH_HToCC_ZToQQ_MC_2016.txt -out Tmp/unc/output_testNONE_JESD.root -data 0 -year 2016 -syst JESD -xccEffFileName CalibData/xcc_eff_VH_looseWP.root -centralGenWeight 0 
+======================================================================
+T StdArg::Get(const std::string&) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>]   -filelist
+
+Using default configuration Configs/inputParameters.txt
+T StdArg::Get(const std::string&) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>]   -out
+T StdArg::Get(const std::string&) [with T = int; std::string = std::__cxx11::basic_string<char>]   -data  0
+T StdArg::Get(const std::string&) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>]   -year
+T StdArg::Get(const std::string&) [with T = double; std::string = std::__cxx11::basic_string<char>]   -centralGenWeight  0
+T StdArg::Get(const std::string&) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>]   -syst
+T StdArg::Get(const std::string&) [with T = std::__cxx11::basic_string<char>; std::string = std::__cxx11::basic_string<char>]   -xccEffFileName
+
+=================================
+
+Is data:              0
+Year:                 2016
+Central gen weight    0
+First and last entry: 0 -1
+Systematic:           JESD
+
+ Can not set value for parameter named: jet_deepFlavBL_2016PRE. Not exist in list of parameters 
+
+ Can not set value for parameter named: jet_deepFlavBT_2016PRE. Not exist in list of parameters 
+
+ Can not set value for parameter named: jet_deepFlavBL_2016. Not exist in list of parameters 
+
+ Can not set value for parameter named: jet_deepFlavBT_2016. Not exist in list of parameters 
+
+ Can not set value for parameter named: jet_deepFlavBL_2017. Not exist in list of parameters 
+
+ Can not set value for parameter named: jet_deepFlavBT_2017. Not exist in list of parameters 
+
+ Can not set value for parameter named: jet_deepFlavBL_2018. Not exist in list of parameters 
+
+ Can not set value for parameter named: jet_deepFlavBT_2018. Not exist in list of parameters 
+reading file root:://cmsxrootd.fnal.gov///store/mc/RunIISummer20UL16NanoAODv9/ZH_HToCC_ZToQQ_M125_TuneCP5_13TeV-powheg-pythia8/NANOAODSIM/106X_mcRun2_asymptotic_v17-v1/2810000/45CCF319-7DC5-844F-B2E6-68A4215CE98D.root
+
+ Number of events: 249197
+ Selections added
+Entry 100
+Entry 200
+Entry 300
+Entry 400
+Entry 500
+Entry 600
+Entry 700
+Entry 800
+Entry 900
+Entry 1000
+Entry 2000
+Entry 3000
+Entry 4000
+Entry 5000
+Entry 6000
+Entry 7000
+Entry 8000
+Entry 9000
+Entry 10000
+Entry 20000
+Entry 30000
+Entry 40000
+Entry 50000
+Entry 60000
+Entry 70000
+Entry 80000
+Entry 90000
+Entry 100000
+Entry 200000
+
+ End processing

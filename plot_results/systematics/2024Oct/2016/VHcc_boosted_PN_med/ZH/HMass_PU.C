@@ -1,0 +1,290 @@
+#ifdef __CLING__
+#pragma cling optimize(0)
+#endif
+void HMass_PU()
+{
+//=========Macro generated from canvas: c1_n2/
+//=========  (Fri Nov  1 13:56:20 2024) by ROOT version 6.30/03
+   TCanvas *c1_n2 = new TCanvas("c1_n2", "",0,0,600,600);
+   gStyle->SetOptStat(0);
+   c1_n2->SetHighLightColor(2);
+   c1_n2->Range(0,0,1,1);
+   c1_n2->SetFillColor(0);
+   c1_n2->SetBorderMode(0);
+   c1_n2->SetBorderSize(2);
+   c1_n2->SetLeftMargin(0.15);
+   c1_n2->SetFrameBorderMode(0);
+  
+// ------------>Primitives in pad: pad1_v1
+   TPad *pad1_v1__2 = new TPad("pad1_v1", "pad1_v1",0,0.3,1,1);
+   pad1_v1__2->Draw();
+   pad1_v1__2->cd();
+   pad1_v1__2->Range(-37.5,-5.288888,337.5,47.59998);
+   pad1_v1__2->SetFillColor(0);
+   pad1_v1__2->SetBorderMode(0);
+   pad1_v1__2->SetBorderSize(2);
+   pad1_v1__2->SetFrameBorderMode(0);
+   pad1_v1__2->SetFrameBorderMode(0);
+   
+   TH1D *VHcc_boosted_PN_med_HMass__6 = new TH1D("VHcc_boosted_PN_med_HMass__6","",30,0,300);
+   VHcc_boosted_PN_med_HMass__6->SetBinContent(8,2.327649);
+   VHcc_boosted_PN_med_HMass__6->SetBinContent(9,3.424545);
+   VHcc_boosted_PN_med_HMass__6->SetBinContent(10,10.98909);
+   VHcc_boosted_PN_med_HMass__6->SetBinContent(11,7.880025);
+   VHcc_boosted_PN_med_HMass__6->SetBinContent(12,17.10883);
+   VHcc_boosted_PN_med_HMass__6->SetBinContent(13,39.4076);
+   VHcc_boosted_PN_med_HMass__6->SetBinContent(14,28.33915);
+   VHcc_boosted_PN_med_HMass__6->SetBinContent(15,9.942373);
+   VHcc_boosted_PN_med_HMass__6->SetBinContent(16,1.12284);
+   VHcc_boosted_PN_med_HMass__6->SetBinError(8,1.648516);
+   VHcc_boosted_PN_med_HMass__6->SetBinError(9,2.012203);
+   VHcc_boosted_PN_med_HMass__6->SetBinError(10,3.673365);
+   VHcc_boosted_PN_med_HMass__6->SetBinError(11,3.537899);
+   VHcc_boosted_PN_med_HMass__6->SetBinError(12,4.588861);
+   VHcc_boosted_PN_med_HMass__6->SetBinError(13,7.075363);
+   VHcc_boosted_PN_med_HMass__6->SetBinError(14,5.806747);
+   VHcc_boosted_PN_med_HMass__6->SetBinError(15,3.524047);
+   VHcc_boosted_PN_med_HMass__6->SetBinError(16,1.12284);
+   VHcc_boosted_PN_med_HMass__6->SetMaximum(42.3111);
+   VHcc_boosted_PN_med_HMass__6->SetEntries(105);
+
+   Int_t ci;      // for color index setting
+   TColor *color; // for color definition with alpha
+   ci = TColor::GetColor("#cccccc");
+   VHcc_boosted_PN_med_HMass__6->SetFillColor(ci);
+   VHcc_boosted_PN_med_HMass__6->SetLineWidth(2);
+   VHcc_boosted_PN_med_HMass__6->GetXaxis()->SetTitle("M_{H} [GeV]");
+   VHcc_boosted_PN_med_HMass__6->GetXaxis()->SetRange(1,30);
+   VHcc_boosted_PN_med_HMass__6->GetXaxis()->SetLabelFont(42);
+   VHcc_boosted_PN_med_HMass__6->GetXaxis()->SetTitleOffset(1.15);
+   VHcc_boosted_PN_med_HMass__6->GetXaxis()->SetTitleFont(42);
+   VHcc_boosted_PN_med_HMass__6->GetYaxis()->SetTitle("Events/10.0 GeV");
+   VHcc_boosted_PN_med_HMass__6->GetYaxis()->SetLabelFont(42);
+   VHcc_boosted_PN_med_HMass__6->GetYaxis()->SetTitleFont(42);
+   VHcc_boosted_PN_med_HMass__6->GetZaxis()->SetLabelFont(42);
+   VHcc_boosted_PN_med_HMass__6->GetZaxis()->SetTitleOffset(1);
+   VHcc_boosted_PN_med_HMass__6->GetZaxis()->SetTitleFont(42);
+   VHcc_boosted_PN_med_HMass__6->Draw("hist");
+   
+   TH1D *VHcc_boosted_PN_med_HMass__7 = new TH1D("VHcc_boosted_PN_med_HMass__7","",30,0,300);
+   VHcc_boosted_PN_med_HMass__7->SetBinContent(8,2.241774);
+   VHcc_boosted_PN_med_HMass__7->SetBinContent(9,2.81059);
+   VHcc_boosted_PN_med_HMass__7->SetBinContent(10,11.02234);
+   VHcc_boosted_PN_med_HMass__7->SetBinContent(11,6.848642);
+   VHcc_boosted_PN_med_HMass__7->SetBinContent(12,16.62718);
+   VHcc_boosted_PN_med_HMass__7->SetBinContent(13,38.70398);
+   VHcc_boosted_PN_med_HMass__7->SetBinContent(14,26.77342);
+   VHcc_boosted_PN_med_HMass__7->SetBinContent(15,10.01405);
+   VHcc_boosted_PN_med_HMass__7->SetBinContent(16,1.17422);
+   VHcc_boosted_PN_med_HMass__7->SetBinError(8,1.586068);
+   VHcc_boosted_PN_med_HMass__7->SetBinError(9,1.683709);
+   VHcc_boosted_PN_med_HMass__7->SetBinError(10,3.69236);
+   VHcc_boosted_PN_med_HMass__7->SetBinError(11,3.218254);
+   VHcc_boosted_PN_med_HMass__7->SetBinError(12,4.490933);
+   VHcc_boosted_PN_med_HMass__7->SetBinError(13,6.844461);
+   VHcc_boosted_PN_med_HMass__7->SetBinError(14,5.535426);
+   VHcc_boosted_PN_med_HMass__7->SetBinError(15,3.567539);
+   VHcc_boosted_PN_med_HMass__7->SetBinError(16,1.17422);
+   VHcc_boosted_PN_med_HMass__7->SetEntries(105);
+
+   ci = TColor::GetColor("#0000ff");
+   VHcc_boosted_PN_med_HMass__7->SetLineColor(ci);
+   VHcc_boosted_PN_med_HMass__7->SetLineWidth(2);
+   VHcc_boosted_PN_med_HMass__7->GetXaxis()->SetRange(1,300);
+   VHcc_boosted_PN_med_HMass__7->GetXaxis()->SetLabelFont(42);
+   VHcc_boosted_PN_med_HMass__7->GetXaxis()->SetTitleOffset(1);
+   VHcc_boosted_PN_med_HMass__7->GetXaxis()->SetTitleFont(42);
+   VHcc_boosted_PN_med_HMass__7->GetYaxis()->SetLabelFont(42);
+   VHcc_boosted_PN_med_HMass__7->GetYaxis()->SetTitleFont(42);
+   VHcc_boosted_PN_med_HMass__7->GetZaxis()->SetLabelFont(42);
+   VHcc_boosted_PN_med_HMass__7->GetZaxis()->SetTitleOffset(1);
+   VHcc_boosted_PN_med_HMass__7->GetZaxis()->SetTitleFont(42);
+   VHcc_boosted_PN_med_HMass__7->Draw("same hist");
+   
+   TH1D *VHcc_boosted_PN_med_HMass__8 = new TH1D("VHcc_boosted_PN_med_HMass__8","",30,0,300);
+   VHcc_boosted_PN_med_HMass__8->SetBinContent(8,2.387558);
+   VHcc_boosted_PN_med_HMass__8->SetBinContent(9,4.18918);
+   VHcc_boosted_PN_med_HMass__8->SetBinContent(10,10.78113);
+   VHcc_boosted_PN_med_HMass__8->SetBinContent(11,9.069791);
+   VHcc_boosted_PN_med_HMass__8->SetBinContent(12,17.60546);
+   VHcc_boosted_PN_med_HMass__8->SetBinContent(13,40.3111);
+   VHcc_boosted_PN_med_HMass__8->SetBinContent(14,30.04681);
+   VHcc_boosted_PN_med_HMass__8->SetBinContent(15,9.757771);
+   VHcc_boosted_PN_med_HMass__8->SetBinContent(16,1.04218);
+   VHcc_boosted_PN_med_HMass__8->SetBinError(8,1.695);
+   VHcc_boosted_PN_med_HMass__8->SetBinError(9,2.437793);
+   VHcc_boosted_PN_med_HMass__8->SetBinError(10,3.646178);
+   VHcc_boosted_PN_med_HMass__8->SetBinError(11,3.964729);
+   VHcc_boosted_PN_med_HMass__8->SetBinError(12,4.845822);
+   VHcc_boosted_PN_med_HMass__8->SetBinError(13,7.568155);
+   VHcc_boosted_PN_med_HMass__8->SetBinError(14,6.270545);
+   VHcc_boosted_PN_med_HMass__8->SetBinError(15,3.523173);
+   VHcc_boosted_PN_med_HMass__8->SetBinError(16,1.04218);
+   VHcc_boosted_PN_med_HMass__8->SetEntries(105);
+
+   ci = TColor::GetColor("#ff0000");
+   VHcc_boosted_PN_med_HMass__8->SetLineColor(ci);
+   VHcc_boosted_PN_med_HMass__8->SetLineWidth(2);
+   VHcc_boosted_PN_med_HMass__8->GetXaxis()->SetRange(1,300);
+   VHcc_boosted_PN_med_HMass__8->GetXaxis()->SetLabelFont(42);
+   VHcc_boosted_PN_med_HMass__8->GetXaxis()->SetTitleOffset(1);
+   VHcc_boosted_PN_med_HMass__8->GetXaxis()->SetTitleFont(42);
+   VHcc_boosted_PN_med_HMass__8->GetYaxis()->SetLabelFont(42);
+   VHcc_boosted_PN_med_HMass__8->GetYaxis()->SetTitleFont(42);
+   VHcc_boosted_PN_med_HMass__8->GetZaxis()->SetLabelFont(42);
+   VHcc_boosted_PN_med_HMass__8->GetZaxis()->SetTitleOffset(1);
+   VHcc_boosted_PN_med_HMass__8->GetZaxis()->SetTitleFont(42);
+   VHcc_boosted_PN_med_HMass__8->Draw("same hist");
+   
+   TLegend *leg = new TLegend(0.53,0.7,0.89,0.87,NULL,"brNDC");
+   leg->SetBorderSize(0);
+   leg->SetTextSize(0.035);
+   leg->SetLineColor(1);
+   leg->SetLineStyle(1);
+   leg->SetLineWidth(2);
+   leg->SetFillColor(0);
+   leg->SetFillStyle(1001);
+   TLegendEntry *entry=leg->AddEntry("VHcc_boosted_PN_med_HMass","Nominal","F");
+
+   ci = TColor::GetColor("#cccccc");
+   entry->SetFillColor(ci);
+   entry->SetFillStyle(1001);
+   entry->SetLineColor(1);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(2);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(42);
+   entry=leg->AddEntry("VHcc_boosted_PN_med_HMass","PU Up","F");
+   entry->SetFillStyle(1001);
+
+   ci = TColor::GetColor("#0000ff");
+   entry->SetLineColor(ci);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(2);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(42);
+   entry=leg->AddEntry("VHcc_boosted_PN_med_HMass","PU Down","F");
+   entry->SetFillStyle(1001);
+
+   ci = TColor::GetColor("#ff0000");
+   entry->SetLineColor(ci);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(2);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(42);
+   leg->Draw();
+   pad1_v1__2->Modified();
+   c1_n2->cd();
+   TLatex *   tex = new TLatex(0.5,0.937775,"CMS Work in Progress #sqrt{s} = 13 TeV");
+   tex->SetNDC();
+   tex->SetTextFont(42);
+   tex->SetTextSize(0.025);
+   tex->SetLineWidth(2);
+   tex->Draw();
+  
+// ------------>Primitives in pad: pad1_v2
+   TPad *pad1_v2__3 = new TPad("pad1_v2", "pad1_v2",0,0.1,1,0.3);
+   pad1_v2__3->Draw();
+   pad1_v2__3->cd();
+   pad1_v2__3->Range(-37.5,0.75,337.5,1.25);
+   pad1_v2__3->SetFillColor(0);
+   pad1_v2__3->SetBorderMode(0);
+   pad1_v2__3->SetBorderSize(2);
+   pad1_v2__3->SetFrameBorderMode(0);
+   pad1_v2__3->SetFrameBorderMode(0);
+   
+   TH1D *VHcc_boosted_PN_med_HMass__9 = new TH1D("VHcc_boosted_PN_med_HMass__9","",30,0,300);
+   VHcc_boosted_PN_med_HMass__9->SetBinContent(8,0.9631068);
+   VHcc_boosted_PN_med_HMass__9->SetBinContent(9,0.8207193);
+   VHcc_boosted_PN_med_HMass__9->SetBinContent(10,1.003025);
+   VHcc_boosted_PN_med_HMass__9->SetBinContent(11,0.8691143);
+   VHcc_boosted_PN_med_HMass__9->SetBinContent(12,0.9718476);
+   VHcc_boosted_PN_med_HMass__9->SetBinContent(13,0.982145);
+   VHcc_boosted_PN_med_HMass__9->SetBinContent(14,0.9447505);
+   VHcc_boosted_PN_med_HMass__9->SetBinContent(15,1.00721);
+   VHcc_boosted_PN_med_HMass__9->SetBinContent(16,1.045759);
+   VHcc_boosted_PN_med_HMass__9->SetBinError(8,0.9641451);
+   VHcc_boosted_PN_med_HMass__9->SetBinError(9,0.6886831);
+   VHcc_boosted_PN_med_HMass__9->SetBinError(10,0.4746721);
+   VHcc_boosted_PN_med_HMass__9->SetBinError(11,0.5648515);
+   VHcc_boosted_PN_med_HMass__9->SetBinError(12,0.3699302);
+   VHcc_boosted_PN_med_HMass__9->SetBinError(13,0.2475095);
+   VHcc_boosted_PN_med_HMass__9->SetBinError(14,0.275003);
+   VHcc_boosted_PN_med_HMass__9->SetBinError(15,0.5061659);
+   VHcc_boosted_PN_med_HMass__9->SetBinError(16,1.478926);
+   VHcc_boosted_PN_med_HMass__9->SetMinimum(0.8);
+   VHcc_boosted_PN_med_HMass__9->SetMaximum(1.2);
+   VHcc_boosted_PN_med_HMass__9->SetEntries(15.88121);
+
+   ci = TColor::GetColor("#0000ff");
+   VHcc_boosted_PN_med_HMass__9->SetLineColor(ci);
+   VHcc_boosted_PN_med_HMass__9->SetLineWidth(2);
+   VHcc_boosted_PN_med_HMass__9->GetXaxis()->SetTitle("M_{H} [GeV]");
+   VHcc_boosted_PN_med_HMass__9->GetXaxis()->SetRange(1,30);
+   VHcc_boosted_PN_med_HMass__9->GetXaxis()->SetLabelFont(42);
+   VHcc_boosted_PN_med_HMass__9->GetXaxis()->SetLabelSize(0.1);
+   VHcc_boosted_PN_med_HMass__9->GetXaxis()->SetTitleSize(0.13);
+   VHcc_boosted_PN_med_HMass__9->GetXaxis()->SetTitleOffset(1);
+   VHcc_boosted_PN_med_HMass__9->GetXaxis()->SetTitleFont(42);
+   VHcc_boosted_PN_med_HMass__9->GetYaxis()->SetTitle("#frac{Up/Down}{Nominal}");
+   VHcc_boosted_PN_med_HMass__9->GetYaxis()->CenterTitle(true);
+   VHcc_boosted_PN_med_HMass__9->GetYaxis()->SetLabelFont(42);
+   VHcc_boosted_PN_med_HMass__9->GetYaxis()->SetLabelSize(0.09);
+   VHcc_boosted_PN_med_HMass__9->GetYaxis()->SetTitleSize(0.12);
+   VHcc_boosted_PN_med_HMass__9->GetYaxis()->SetTitleOffset(0.35);
+   VHcc_boosted_PN_med_HMass__9->GetYaxis()->SetTitleFont(42);
+   VHcc_boosted_PN_med_HMass__9->GetZaxis()->SetLabelFont(42);
+   VHcc_boosted_PN_med_HMass__9->GetZaxis()->SetTitleOffset(1);
+   VHcc_boosted_PN_med_HMass__9->GetZaxis()->SetTitleFont(42);
+   VHcc_boosted_PN_med_HMass__9->Draw("hist");
+   
+   TH1D *VHcc_boosted_PN_med_HMass__10 = new TH1D("VHcc_boosted_PN_med_HMass__10","",30,0,300);
+   VHcc_boosted_PN_med_HMass__10->SetBinContent(8,1.025738);
+   VHcc_boosted_PN_med_HMass__10->SetBinContent(9,1.223281);
+   VHcc_boosted_PN_med_HMass__10->SetBinContent(10,0.981076);
+   VHcc_boosted_PN_med_HMass__10->SetBinContent(11,1.150985);
+   VHcc_boosted_PN_med_HMass__10->SetBinContent(12,1.029028);
+   VHcc_boosted_PN_med_HMass__10->SetBinContent(13,1.022927);
+   VHcc_boosted_PN_med_HMass__10->SetBinContent(14,1.060258);
+   VHcc_boosted_PN_med_HMass__10->SetBinContent(15,0.9814328);
+   VHcc_boosted_PN_med_HMass__10->SetBinContent(16,0.928164);
+   VHcc_boosted_PN_med_HMass__10->SetBinError(8,1.028603);
+   VHcc_boosted_PN_med_HMass__10->SetBinError(9,1.011625);
+   VHcc_boosted_PN_med_HMass__10->SetBinError(10,0.4665201);
+   VHcc_boosted_PN_med_HMass__10->SetBinError(11,0.721239);
+   VHcc_boosted_PN_med_HMass__10->SetBinError(12,0.3954732);
+   VHcc_boosted_PN_med_HMass__10->SetBinError(13,0.2657316);
+   VHcc_boosted_PN_med_HMass__10->SetBinError(14,0.3100913);
+   VHcc_boosted_PN_med_HMass__10->SetBinError(15,0.4965697);
+   VHcc_boosted_PN_med_HMass__10->SetBinError(16,1.312622);
+   VHcc_boosted_PN_med_HMass__10->SetEntries(17.29557);
+
+   ci = TColor::GetColor("#ff0000");
+   VHcc_boosted_PN_med_HMass__10->SetLineColor(ci);
+   VHcc_boosted_PN_med_HMass__10->SetLineWidth(2);
+   VHcc_boosted_PN_med_HMass__10->GetXaxis()->SetTitle("M_{H} [GeV]");
+   VHcc_boosted_PN_med_HMass__10->GetXaxis()->SetRange(1,300);
+   VHcc_boosted_PN_med_HMass__10->GetXaxis()->SetLabelFont(42);
+   VHcc_boosted_PN_med_HMass__10->GetXaxis()->SetTitleSize(0.13);
+   VHcc_boosted_PN_med_HMass__10->GetXaxis()->SetTitleOffset(1);
+   VHcc_boosted_PN_med_HMass__10->GetXaxis()->SetTitleFont(42);
+   VHcc_boosted_PN_med_HMass__10->GetYaxis()->SetLabelFont(42);
+   VHcc_boosted_PN_med_HMass__10->GetYaxis()->SetTitleFont(42);
+   VHcc_boosted_PN_med_HMass__10->GetZaxis()->SetLabelFont(42);
+   VHcc_boosted_PN_med_HMass__10->GetZaxis()->SetTitleOffset(1);
+   VHcc_boosted_PN_med_HMass__10->GetZaxis()->SetTitleFont(42);
+   VHcc_boosted_PN_med_HMass__10->Draw("same hist");
+   TLine *line = new TLine(0,1,300,1);
+   line->SetLineStyle(2);
+   line->Draw();
+   pad1_v2__3->Modified();
+   c1_n2->cd();
+   c1_n2->Modified();
+   c1_n2->SetSelected(c1_n2);
+}

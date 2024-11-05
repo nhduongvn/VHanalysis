@@ -100,6 +100,14 @@ public :
    TTreeReaderArray<Float_t> Jet_btagDeepFlavB = {fReader, "Jet_btagDeepFlavB"};
    TTreeReaderArray<Float_t> Jet_puIdDisc = {fReader, "Jet_puIdDisc"};
 
+   //SubJet
+   TTreeReaderValue<UInt_t> nSubJet = {fReader, "nSubJet"};
+   TTreeReaderArray<Float_t> SubJet_eta = {fReader, "SubJet_eta"};
+   TTreeReaderArray<Float_t> SubJet_mass = {fReader, "SubJet_mass"};
+   TTreeReaderArray<Float_t> SubJet_phi = {fReader, "SubJet_phi"};
+   TTreeReaderArray<Float_t> SubJet_pt = {fReader, "SubJet_pt"};
+   TTreeReaderArray<Float_t> SubJet_rawFactor = {fReader, "SubJet_rawFactor"};
+  
    //FatJet
    TTreeReaderValue<UInt_t> nFatJet = {fReader, "nFatJet"};
    TTreeReaderArray<Float_t> FatJet_pt = {fReader, "FatJet_pt"};
@@ -109,6 +117,8 @@ public :
    TTreeReaderArray<Float_t> FatJet_mass = {fReader, "FatJet_mass"};
    TTreeReaderArray<Float_t> FatJet_n2b1 = {fReader, "FatJet_n2b1"};
    TTreeReaderArray<Float_t> FatJet_msoftdrop = {fReader, "FatJet_msoftdrop"};
+   TTreeReaderArray<Int_t> FatJet_subJetIdx1 = {fReader, "FatJet_subJetIdx1"};
+   TTreeReaderArray<Int_t> FatJet_subJetIdx2 = {fReader, "FatJet_subJetIdx2"};
 #if defined(NANOAODV7)
    TTreeReaderArray<Float_t> FatJet_btagDDCvB = {fReader, "FatJet_btagDDCvB"};
    TTreeReaderArray<Float_t> FatJet_btagDDCvL = {fReader, "FatJet_btagDDCvL"};

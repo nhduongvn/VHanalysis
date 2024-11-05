@@ -131,7 +131,8 @@ void VbbHcc_selector::SlaveBegin(Reader* r) {
 
   h_pt_rho_n2b1 = new TH3D("pt_rho_n2b1","",70,300,1000,75,-6,-1.5,100,0,1);
   h_jet_mass = new TH1D("jet_mass","",2000,0,2000);
-
+  h_jet_pt = new TH1D("jet_pt", "", 2000, 0, 2000);
+  
   h_cutFlow_ZccHcc_PN_med = new TH1D("CutFlow_ZccHcc_boosted_PN_med","",15,0,15) ;
   h_cutFlow_ZccHcc_PN_med->GetXaxis()->SetBinLabel(1,"Total");
   h_cutFlow_ZccHcc_PN_med->GetXaxis()->SetBinLabel(2,"Lumi");
@@ -248,6 +249,7 @@ void VbbHcc_selector::SlaveBegin(Reader* r) {
   r->GetOutputList()->Add(h_nbB_1) ;
   r->GetOutputList()->Add(h_pt_rho_n2b1) ;
   r->GetOutputList()->Add(h_jet_mass) ;
+  r->GetOutputList()->Add(h_jet_pt) ;
   r->GetOutputList()->Add(h_cutFlow_ZccHcc_PN_med) ;
   r->GetOutputList()->Add(h_cutFlow_VHcc_PN_med) ;
   r->GetOutputList()->Add(h_test_MZ);
@@ -466,13 +468,20 @@ void VbbHcc_selector::Process(Reader* r) {
     if (m_jetmetSystType == "jer4u") jetPt = (r->FatJet_pt_jer4Up)[i];
     if (m_jetmetSystType == "jer4d") jetPt = (r->FatJet_pt_jer4Down)[i];
 #endif
-    //std::cout << " " << jetPt;
-    //
-    // Calculate the JES & unc to use
+
+    
+    // Calculate the JES & unc to use. The new recommendation is you need to calculate the values
+    // for the individual AK4 subjects and then use this for the AK8 jet. NOTE: The only correction
+    // that uses jet area and rho is the L1 correction which is no longer actually used. No matter
+    // what we pass, L1 will return 1.0 as a factor. Thus, we do not need a workaround for the fact
+    // that subjets do not provide jet area.
+
+    // Get the subjets, run the JES+JER corrections over them,
+    // and then use them to calculate the "corrected" SD mass.
     std::map<std::string, float> jetMap;
     jetMap["pt_raw"] = (r->FatJet_pt)[i] * (1 - (r->FatJet_rawFactor)[i]);
     jetMap["eta"] = (r->FatJet_eta)[i];
-    jetMap["pt_nom"] = jetPt;
+    //jetMap["pt_nom"] = jetPt;
     jetMap["area"] = (r->FatJet_area)[i];
 
     float m_raw = (r->FatJet_msoftdrop)[i] * (1 - (r->FatJet_rawFactor)[i]);
@@ -486,131 +495,31 @@ void VbbHcc_selector::Process(Reader* r) {
     h_jesUnc->FillUnc("RawFactor", 0, (r->FatJet_rawFactor)[i]);
     h_jesUnc->FillUnc("1mRawFactor", 0, 1.0 - (r->FatJet_rawFactor)[i]);
 
+    double JES_pt = CalculateJES(jetMap, "pt", m_jetmetSystType, m_isData);
+    double JES_m  = CalculateJES(jetMap, "mass", m_jetmetSystType, m_isData);
+    
     //FIXME: use default JEC for corrM corrPt now
-    //double corrM = m_raw * JMS;
-    //double corrPt = jetMap["pt_raw"] * JES;
-    double corrM = (r->FatJet_msoftdrop)[i]; //already has JEC
-    double corrPt = (r->FatJet_pt)[i]; //already has JEC, need to add JER
+    double corrM = m_raw * JES_m;
+    double corrPt = jetMap["pt_raw"] * JES_pt;
+    //double corrM = (r->FatJet_msoftdrop)[i]; //already has JEC
+    //double corrPt = (r->FatJet_pt)[i]; //already has JEC, need to add JER
 
+    jetMap["pt"] = corrPt;
+    jetMap["mass"] = corrM;
+    jetMap["phi"] = (r->FatJet_phi)[i];
+    
     // Calculate the JER corrections. This is only done for MC.
     // It can be done using the exact same correction set.
     // do not apply JER for 2017 for now since does not have JER in correction set
 #if defined(MC_2016PRE) || defined(MC_2016) || defined(MC_2018)
-
-    std::string syst = "nom";
-    if (m_jetmetSystType == "jeru") syst = "up";
-    else if (m_jetmetSystType == "jerd") syst = "down";
-    
-    // Get the necessary values for calculating the scale factors.
-    std::string year = "Summer20UL16APV_JRV3"; //this is for preVFP
-#if defined(MC_2016)
-    year = "Summer20UL16_JRV3"; //this is for postVFP
-#elif defined(MC_2017)
-    year = "Summer19UL17_JRV2";
-#elif defined(MC_2018)
-    year = "Summer19UL18_JRV2";
-#endif
-
-    double absEta = abs((r->FatJet_eta)[i]);
-    float eta = (r->FatJet_eta)[i];
-    auto jerSet = correctionSet->at(year + "_MC_ScaleFactor_AK8PFPuppi");
-    double sJER = jerSet->evaluate({eta, "nom"});
-    double sJER_Up = jerSet->evaluate({eta, "up"});
-    double sJER_Dn = jerSet->evaluate({eta, "down"});
-
-    auto uncSet = correctionSet->at(year + "_MC_PtResolution_AK8PFPuppi");       
-    double res = uncSet->evaluate({eta, corrPt, rho}); 
-    
-    // See if we have a genJetAK8 that matches our jet criteria.
-    double Rcone = 0.8; double RconeCut = Rcone/2;
-    bool foundGenJet = false;
-
-    double cJER = 1.0, cJMR = 1.0;
-    double pT = corrPt; //(r->FatJet_pt)[i];
-    double pTGen = 1.0;
-    double dPtCut = 3 * res * pT;
-    
-    TLorentzVector *vec = new TLorentzVector();
-    vec->SetPtEtaPhiM(pT, (r->FatJet_eta)[i], (r->FatJet_phi)[i], corrM);
-
-    //JetObjBoosted genMatch = NULL;
-    for (auto gJet : genJetAK8)
-    {
-      // Calculate dR between our jet and the genJet.
-      float deltaR = vec->DeltaR(gJet.m_lvec);
-      bool matchesR = (deltaR < RconeCut);
-
-      float dPt = abs(pT - gJet.m_lvec.Pt());
-      bool passPtCut = (dPt < dPtCut);
-
-      if (matchesR && passPtCut)
-      {
-	      //genMatch = gJet;
-	      pTGen = gJet.m_lvec.Pt();
-        foundGenJet = true;
-	      break;
-      }
-      
-    }
-
-    // Choose the proper option based on whether or not we found a gen jet match.
-    if (foundGenJet) // METHOD #1 - Scaling Method
-    {
-      //h_JERmethod->Fill(0.5);
-      double deltapt = (sJER-1)*(pT - pTGen);
-      double deltapt_Up = (sJER_Up-1)*(pT - pTGen);
-      double deltapt_Dn = (sJER_Dn-1)*(pT - pTGen);
-
-      double SF = 1+deltapt/pT;
-      double SF_Up = 1+deltapt_Up/pT;
-      double SF_Dn = 1+deltapt_Dn/pT;
-
-      if (m_jetmetSystType == "jeru") cJER = SF_Up;
-      else if (m_jetmetSystType == "jerd") cJER = SF_Dn;
-      else cJER = SF;
-
-      if (m_jetmetSystType == "jmru") cJMR = SF_Up;
-      else if (m_jetmetSystType == "jmrd") cJMR = SF_Dn;
-      else cJMR = SF;
-    }
-    else // METHOD #2 - Stochastic Smearing
-    {
-      double sigma = res;
-      std::normal_distribution<double> normal(0, res);
-      double rand = normal(m_random_generator);
-      double t = sqrt(std::max(sJER*sJER-1,0.0));
-      double t_u = sqrt(std::max(sJER_Up*sJER_Up-1,0.0));
-      double t_d = sqrt(std::max(sJER_Dn*sJER_Dn-1,0.0));
-       
-      double SF = 1+rand*t;
-      double SF_Up = 1+rand*t_u;
-      double SF_Dn = 1+rand*t_d;
-      
-      if (m_jetmetSystType == "jeru") cJER = SF_Up;
-      else if (m_jetmetSystType == "jerd") cJER = SF_Dn;
-      else cJER = SF;
-
-      if (m_jetmetSystType == "jmru") cJMR = SF_Up;
-      else if (m_jetmetSystType == "jmrd") cJMR = SF_Dn;
-      else cJMR = SF;
-
-      //h_jerSmear->Fill(rand);
-      std::normal_distribution<double> gauss(0, 1);
-      double randGauss = normal(m_random_generator);
-      //h_normSmear->Fill(randGauss);
-    }
-    h_jesUnc->FillJER("sJER", sJER);
-    h_jesUnc->FillJER("cJER", cJER);
-    h_jesUnc->FillJER("ptRes", res);
+    float cJER = CalculateJER(jetMap, genJetAK8, "pt", m_jetmetSystType); 
 #else
-    double cJER = 1.0, cJMR = 1.0;
+    float cJER = 1.0f;
 #endif
 
     //if JER negative or zero do nothing
     if (cJER <= 0) cJER = 1.0;
-    if (cJMR <= 0) cJMR = 1.0;
-
-    h_jet_mass->Fill(corrM);
+    corrPt *= cJER;
 
     auto msdCorr = correctionSet_msd->at("msdfjcorr"); //this is correction applied to JEC correct mass
     float wmass_corr = 1;
@@ -618,9 +527,11 @@ void VbbHcc_selector::Process(Reader* r) {
     //std::cout << "\n wmass_corr: " << wmass_corr << " " << corrM << " ";
     corrM *= wmass_corr;
     //std::cout << corrM << std::endl;
-  
 
-    JetObjBoosted jet(jetPt,(r->FatJet_eta)[i],(r->FatJet_phi)[i],corrM,jetFlav,
+    h_jet_mass->Fill(corrM);
+    h_jet_pt->Fill(corrPt);
+
+    JetObjBoosted jet(corrPt,(r->FatJet_eta)[i],(r->FatJet_phi)[i],corrM,jetFlav,
         (r->FatJet_btagDDCvB)[i],(r->FatJet_btagDDCvL)[i], (r->FatJet_btagDDBvL)[i], 
         (r->FatJet_deepTagMD_ZHccvsQCD)[i],(r->FatJet_deepTagMD_ZbbvsQCD)[i],
         Xcc,Xbb,(r->FatJet_particleNetMD_QCD)[i],
@@ -629,7 +540,7 @@ void VbbHcc_selector::Process(Reader* r) {
         (r->FatJet_particleNet_ZvsQCD)[i],
         (r->FatJet_n2b1)[i], -1) ;
     if(jet.IsLepton(eles_jetOverlap,0.8) || jet.IsLepton(muons_jetOverlap,0.8)) continue;
-    if((r->FatJet_pt)[i] > CUTS.Get<float>("jet_pt_ak08") && fabs((r->FatJet_eta)[i]) < CUTS.Get<float>("jet_eta_ak08")) jets.push_back(jet) ;
+    if(corrPt > CUTS.Get<float>("jet_pt_ak08") && fabs((r->FatJet_eta)[i]) < CUTS.Get<float>("jet_eta_ak08")) jets.push_back(jet) ;
   }
 
   //Fill fat jet pt, rho, n2b1 to identify c_26 cut
