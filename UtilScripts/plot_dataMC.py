@@ -113,7 +113,7 @@ binError_MH = [14.524979842, 14.6705438854, 9.64396617479, 10.4968651727, 16.981
 #regions = ['ZccHcc_boosted_PN_med_zmass_deltaPhi']
 #regions = ['ZccHcc_boosted_PN_med','VHcc_boosted_PN_med']
 #regions = ['ZccHcc_boosted_PN_med_topCR_pass']
-regions = ['ZccHcc_boosted_PN_med','ZccHcc_boosted_PN_med_topCR_pass','ZccHcc_boosted_PN_med_VjetCR_pass','VHcc_boosted_PN_med','VHcc_boosted_PN_med_topCR_pass','VHcc_boosted_PN_med_VjetCR_pass']
+regions = ['ZccHcc_boosted_PN_med','ZccHcc_boosted_PN_med_topCR_pass','ZccHcc_boosted_PN_med_qcdCR','VHcc_boosted_PN_med','VHcc_boosted_PN_med_topCR_pass','VHcc_boosted_PN_med_qcdCR']
 #regions = ['VHcc_boosted_PN_med']
 summary_eventCount_name = 'summary_eventCount_VH_tmp.txt'
 
@@ -126,7 +126,7 @@ use_bEnriched_BGenFilter = False
 
 #create directory to store plots
 #plotFolder = '../SystematicUncTmp/'
-plotFolder = '../Plots_tmp/'
+plotFolder = '../Plots_fromPeter/'
 if doUseReweightForQCD: plotFolder = '../Plots_tmp_qcdReweight_improveWeighting_lepVeto_msoftdrop/'
 if use_bEnriched_BGenFilter: plotFolder = '../Test_bEnriched_BGenFilter/'
 

@@ -210,6 +210,9 @@ class VHBoostedPlots
       h_HPt = new TH1D(name + "_HPt", "", NBIN_PT_JET, X_PT_JET[0], X_PT_JET[1]);
       h_HEta = new TH1D(name + "_HEta", "", NBIN_ETA, X_ETA[0], X_ETA[1]);
       h_HMass = new TH1D(name + "_HMass", "", NBIN_M_H, X_M_H[0], X_M_H[1]);
+      h_HMass_VZcc = new TH1D(name + "_HMass_VZcc", "", NBIN_M_H, X_M_H[0], X_M_H[1]);
+      h_HMass_VZbb = new TH1D(name + "_HMass_VZbb", "", NBIN_M_H, X_M_H[0], X_M_H[1]);
+      h_HMass_VZother = new TH1D(name + "_HMass_VZother", "", NBIN_M_H, X_M_H[0], X_M_H[1]);
       for (int i = iPdfStart ; i < iPdfStop ; ++i) {
         std::string iS = std::to_string(i);
         h_HMass_LHEPdfs.push_back(new TH1D(name+"_HMass_LHEPdf_"+iS,"",NBIN_M_H, X_M_H[0], X_M_H[1]));
@@ -250,6 +253,9 @@ class VHBoostedPlots
       h_HPt->Sumw2();
       h_HEta->Sumw2();
       h_HMass->Sumw2();
+      h_HMass_VZcc->Sumw2();
+      h_HMass_VZbb->Sumw2();
+      h_HMass_VZother->Sumw2();
       for(auto i : h_HMass_LHEPdfs) i->Sumw2();
       for(auto i : h_HMass_LHEScales) i->Sumw2();
       h_HFlav->Sumw2();
@@ -285,9 +291,17 @@ class VHBoostedPlots
     } ;
 
     // Fill the general histograms.
-    void Fill(HObj& H, ZObj& Z, float w=1) {
-
+    //VVtype is used to separate VV events to VZ->cc, VZ->bb and VZ->other
+    //VVtype = 4: VZ->cc
+    //VVtype = 5: VZ->bb
+    //VVtype = 0: VZ->others 
+    //VVtype = -1: not a VV event 
+    void Fill(HObj& H, ZObj& Z, int VVtype=-1, float w=1) {
       h_HMass->Fill(H.m_lvec.M(), w);
+      if (VVtype==4) h_HMass_VZcc->Fill(H.m_lvec.M(),w);
+      if (VVtype==5) h_HMass_VZbb->Fill(H.m_lvec.M(),w);
+      if (VVtype==0) h_HMass_VZother->Fill(H.m_lvec.M(),w);
+
       h_HPt->Fill(H.m_lvec.Pt(), w);
       h_HEta->Fill(H.m_lvec.Eta(), w);
       h_HFlav->Fill(H.m_flav, w);
@@ -388,6 +402,9 @@ class VHBoostedPlots
      
       // V and H plots
       histolist.push_back(h_HMass);
+      histolist.push_back(h_HMass_VZcc);
+      histolist.push_back(h_HMass_VZbb);
+      histolist.push_back(h_HMass_VZother);
       for(auto i : h_HMass_LHEPdfs) histolist.push_back(i);
       for(auto i : h_HMass_LHEScales) histolist.push_back(i);
       histolist.push_back(h_HPt);
@@ -436,6 +453,9 @@ class VHBoostedPlots
     TH1D* h_HPt;    
     TH1D* h_HEta;    
     TH1D* h_HMass;    
+    TH1D* h_HMass_VZcc;    
+    TH1D* h_HMass_VZbb;    
+    TH1D* h_HMass_VZother;    
     TH1D* h_HFlav;
 
     std::vector<TH1D*> h_HMass_LHEPdfs;
